@@ -20,3 +20,23 @@ De esta manera, podemos separar el curso en dos grandes bloques con los siguient
     * Observables y programación reactiva
     * Programación funcional
 * Angular    
+
+
+La forma más sencilla de editar este libro es con Jupyter Notebook. Instala Jupyter y luego Deno como intérprete: 
+
+https://docs.deno.com/runtime/manual/tools/jupyter :
+
+    curl -fsSL https://deno.land/install.sh | sh
+    deno jupyter --unstable
+    deno jupyter --install
+    
+Con todo esto instalado, en Visual Studio también se puede instalar la extensión de Jupyter y seleccionar Deno como Kernel. 
+
+Si lo que se quiere es transformarlo en web, se instala:
+
+    sudo pip install -U jupyter-book
+
+Y luego se puede construir con:
+    jupyter-book build libroDwec/
+
+Pero hay una versión ya construida en este repositorio que se actualiza casi siempre que se cambia algo en el libro. 
