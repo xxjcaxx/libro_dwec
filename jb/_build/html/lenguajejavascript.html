@@ -1,0 +1,1888 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>El lenguaje Javascript &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lenguajejavascript';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Libro DWEC" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">El lenguaje Javascript</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Flenguajejavascript.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lenguajejavascript.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>El lenguaje Javascript</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobar-que-funciona">Comprobar que funciona</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-el-codigo-javascript">Ocultar el código JavaScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-y-evolucion-de-javascript-y-ecmascript">Historia y evolución de JavaScript y ECMAScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#origenes-de-javascript">Orígenes de JavaScript</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estandar-ecmascript">Estándar ECMAScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-y-influencias">Sintaxis y Influencias</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versiones-importantes-de-ecmascript">Versiones Importantes de ECMAScript</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios">Comentarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-variables">Tipos de Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-tipado">No Tipado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-realidad-es-dinamicamente-tipado">En realidad es Dinámicamente Tipado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipado-debil">Tipado Débil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-soportados">Tipos Soportados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typeof">typeOf</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversiones">Conversiones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-cadenas-a-numeros-usando-parseint-parsefloat-o-el-operador">Convertir cadenas a números usando parseInt(), parseFloat() o el operador “+”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-numeros-a-cadenas-concatenandolos-con-una-cadena-vacia">Convertir números a cadenas concatenándolos con una cadena vacía “”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-la-longitud-de-una-cadena-o-array-utilizando-length">Obtener la longitud de una cadena o array utilizando .length</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-cualquier-tipo-a-booleano-truthy-y-falsy">Convertir cualquier tipo a booleano (Truthy y Falsy)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-en-javascript">Funciones en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-las-funciones">Introducción a las Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-en-las-funciones">Argumentos en las Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-adicionales">Argumentos Adicionales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-los-argumentos">Orden de los Argumentos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-globales-y-efectos-secundarios">Variables Globales y Efectos Secundarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-en-funciones">Return en Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-de-funciones">Invocación de Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-funciones-son-objetos">Las Funciones son Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-funciones">Declaración de Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-funcion">Declaración de Función</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expresion-de-funcion">Expresión de Función</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-anonimas">Funciones Anónimas</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-las-funciones">Ámbito de las Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hoisting">Hoisting</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-hoisting">No Hoisting</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-global">Ámbito Global</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-local-o-de-funcion">Ámbito Local o de Función</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-bloque">Ámbito de Bloque</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-las-variables-en-funciones">Ámbito de las Variables en Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-locales-en-funciones">Variables Locales en Funciones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-variables-globales-y-de-funcion-padre">Acceso a Variables Globales y de Función Padre</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-anidadas-y-variables-privadas">Funciones Anidadas y Variables Privadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closures-en-javascript">Closures en JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-auto-invocadas">Funciones Auto-Invocadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-funcion-auto-invocada">Ejemplo de Función Auto-Invocada</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-las-funciones-auto-invocadas">Características de las Funciones Auto-Invocadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-recomendado">Uso Recomendado</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">Argumentos por Defecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-manual-de-argumentos-por-defecto">Implementación Manual de Argumentos por Defecto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-del-lenguaje">Elementos del lenguaje</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-problema-con-comparacion-no-estricta">Ejemplo de Problema con Comparación No Estricta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructuras-de-control">Estructuras de control</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-condicional-if-else">Estructura Condicional <code class="docutils literal notranslate"><span class="pre">if...else</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-ternario">Operador Ternario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-for">Bucle <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-for-of">Bucle <code class="docutils literal notranslate"><span class="pre">for...of</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-while">Bucle <code class="docutils literal notranslate"><span class="pre">while</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-do-while">Bucle <code class="docutils literal notranslate"><span class="pre">do...while</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-logico-y">Operador Lógico <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y <code class="docutils literal notranslate"><span class="pre">||</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-con-el-usuario">Comunicación con el usuario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alerta-confirmacion-y-prompt">1. Alerta, Confirmación y Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#console-log">2. Console.log()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funciones-de-consola">3. Otras funciones de consola</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejorando-la-visualizacion-en-la-consola">4. Mejorando la visualización en la consola</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals">Template Literals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-comillas-simples-y-dobles">1. Uso de comillas simples y dobles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-template-literals">2. Uso de “Template Literals” (<code class="docutils literal notranslate"><span class="pre">`</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-de-variables-y-expresiones">3. Interpolación de variables y expresiones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-de-expresiones-condicionales">4. Inclusión de expresiones condicionales</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tagged-template-literals">Tagged Template Literals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-strings-y-variables-como-argumentos-separados">Uso de strings y variables como argumentos separados</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="el-lenguaje-javascript">
+<h1>El lenguaje Javascript<a class="headerlink" href="#el-lenguaje-javascript" title="Link to this heading">#</a></h1>
+<p>El objetivo de este libro es enseñar a programar para el cliente web. Se presupone que ya se conocen los rudimentos básicos de la programación y los algoritmos. Puesto que el libro está situado en el módulo de DWEC de segundo de DAW, no es necesario enseñar conceptos como Programación orientada a objetos, HTML, JSON, HTTP…
+No obstante, javascript como lenguaje tiene sus particularidades y son las que vamos a destacar en estos primeros capítulos.</p>
+<section id="integrar-js-en-html">
+<h2>Integrar JS en HTML<a class="headerlink" href="#integrar-js-en-html" title="Link to this heading">#</a></h2>
+<p>En primer lugar, veamos cómo integrar Javascript en el HTML para que se ejecute en el navegador:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>     <span class="cm">&lt;!-- Integración de JavaScript directamente en el HTML --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="c1">// Este es un bloque de código JavaScript embebido directamente en el documento HTML.</span>
+<span class="w">        </span><span class="c1">// Aquí puedes escribir cualquier código JavaScript que necesites.</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hola, este es un mensaje desde JavaScript embebido.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="cm">&lt;!-- Integración de un archivo JavaScript externo --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="cm">&lt;!-- Mensaje para navegadores que no soportan JavaScript --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Tu navegador no soporta JavaScript o está desactivado.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
+
+    <span class="cm">&lt;!-- Comentario: Muchas veces, los desarrolladores colocan los scripts al final del documento</span>
+<span class="cm">         para asegurarse de que todo el contenido HTML se haya cargado antes de ejecutar el JavaScript. --&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="comprobar-que-funciona">
+<h2>Comprobar que funciona<a class="headerlink" href="#comprobar-que-funciona" title="Link to this heading">#</a></h2>
+<p>Los navegadores modernos vienen con una consola de depuración muy avanzada que permite interactuar con el DOM, el CSS, el JS, la red, entre otras cosas. La abriremos con F12 o el botón derecho y la mantendremos abierta casi todo el tiempo.</p>
+<p><img alt="f12" src="_images/f12.png" /></p>
+<p>Podemos ejecutar algo como:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hola mundo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hola mundo
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ocultar-el-codigo-javascript">
+<h2>Ocultar el código JavaScript<a class="headerlink" href="#ocultar-el-codigo-javascript" title="Link to this heading">#</a></h2>
+<p><strong>No es posible ocultar completamente el código JavaScript.</strong> El código que se ejecuta en el lado del cliente (es decir, en el navegador web) siempre puede ser visto por los usuarios, ya que se descarga junto con el resto del contenido de la página web.</p>
+<p>Aunque no se puede ocultar el código, sí se pueden utilizar técnicas para <strong>ofuscar</strong> y <strong>comprimir</strong> el código JavaScript. Estas técnicas dificultan la lectura y comprensión del código por parte de personas, aunque no lo hacen completamente inaccesible.</p>
+<p>Tal vez, por eso, muchos proyectos de JS son directamente publicados como <strong>Open Source</strong></p>
+<p>El siguiente código es un ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">_0x47a0</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;log&#39;</span><span class="p">,</span><span class="s1">&#39;Hello\x20World!&#39;</span><span class="p">];</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">_0x558f55</span><span class="p">,</span><span class="nx">_0x47a08a</span><span class="p">){</span><span class="kd">var</span><span class="w"> </span><span class="nx">_0x257f99</span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">_0x256ed6</span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span><span class="k">while</span><span class="p">(</span><span class="o">--</span><span class="nx">_0x256ed6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="nx">_0x558f55</span><span class="p">[</span><span class="s1">&#39;push&#39;</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="nx">_0x558f55</span><span class="p">[</span><span class="s1">&#39;shift&#39;</span><span class="p">]());</span><span class="w"> </span><span class="p">}};</span><span class="nx">_0x257f99</span><span class="p">(</span><span class="o">++</span><span class="nx">_0x47a08a</span><span class="p">);}</span>
+<span class="p">(</span><span class="nx">_0x47a0</span><span class="p">,</span><span class="mh">0x1cb</span><span class="p">));</span><span class="kd">var</span><span class="w"> </span><span class="nx">_0x257f</span><span class="w"> </span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">_0x558f55</span><span class="p">,</span><span class="nx">_0x47a08a</span><span class="p">){</span><span class="nx">_0x558f55</span><span class="o">=</span><span class="nx">_0x558f55</span><span class="o">-</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">_0x257f99</span><span class="o">=</span><span class="nx">_0x47a0</span><span class="p">[</span><span class="nx">_0x558f55</span><span class="p">];</span><span class="k">return</span><span class="w"> </span><span class="nx">_0x257f99</span><span class="p">;};</span><span class="kd">function</span><span class="w"> </span><span class="nx">hi</span><span class="p">(){</span><span class="nx">console</span><span class="p">[</span><span class="nx">_0x257f</span><span class="p">(</span><span class="s1">&#39;0x1&#39;</span><span class="p">)](</span><span class="nx">_0x257f</span><span class="p">(</span><span class="s1">&#39;0x0&#39;</span><span class="p">));}</span><span class="nx">hi</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="historia-y-evolucion-de-javascript-y-ecmascript">
+<h2>Historia y evolución de JavaScript y ECMAScript<a class="headerlink" href="#historia-y-evolucion-de-javascript-y-ecmascript" title="Link to this heading">#</a></h2>
+<section id="origenes-de-javascript">
+<h3>Orígenes de JavaScript<a class="headerlink" href="#origenes-de-javascript" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Mocha</strong>:</p>
+<ul class="simple">
+<li><p>JavaScript se inició bajo el nombre de <strong>Mocha</strong>. Fue desarrollado por Brendan Eich en Netscape Communications en 1995. Mocha fue el nombre original durante las primeras etapas de desarrollo.</p></li>
+</ul>
+</li>
+<li><p><strong>LiveScript</strong>:</p>
+<ul class="simple">
+<li><p>Antes de ser conocido como JavaScript, el lenguaje fue renombrado a <strong>LiveScript</strong>. Este nombre se utilizó durante un breve período en 1995.</p></li>
+</ul>
+</li>
+<li><p><strong>JavaScript</strong>:</p>
+<ul class="simple">
+<li><p>Finalmente, en diciembre de 1995, el lenguaje fue renombrado a <strong>JavaScript</strong>. Este cambio de nombre se debió a una estrategia de marketing para asociarlo con el popular lenguaje de programación Java, a pesar de que JavaScript y Java son muy diferentes en su diseño y propósito.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="estandar-ecmascript">
+<h3>Estándar ECMAScript<a class="headerlink" href="#estandar-ecmascript" title="Link to this heading">#</a></h3>
+<p>A partir de 1997, el <strong>World Wide Web Consortium (W3C)</strong> y <strong>ECMA International</strong> comenzaron a definir las especificaciones del lenguaje JavaScript bajo el nombre de <strong>ECMAScript</strong>. Este estándar asegura la interoperabilidad y la compatibilidad del lenguaje en distintos navegadores y plataformas.</p>
+<section id="sintaxis-y-influencias">
+<h4>Sintaxis y Influencias<a class="headerlink" href="#sintaxis-y-influencias" title="Link to this heading">#</a></h4>
+<p>La sintaxis de JavaScript se inspira en lenguajes como <strong>C</strong> y <strong>Java</strong>. Sin embargo, JavaScript es fundamentalmente diferente en su propósito y funcionalidad:</p>
+<ul class="simple">
+<li><p><strong>C</strong>: Influye en la estructura básica y la sintaxis de control (bucles, condiciones).</p></li>
+<li><p><strong>Java</strong>: Inspira la sintaxis de los objetos y la programación orientada a objetos.</p></li>
+</ul>
+</section>
+</section>
+<section id="versiones-importantes-de-ecmascript">
+<h3>Versiones Importantes de ECMAScript<a class="headerlink" href="#versiones-importantes-de-ecmascript" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>ECMAScript 5th Edition (ES5)</strong>:</p>
+<ul class="simple">
+<li><p>Publicada en diciembre de 2009.</p></li>
+<li><p>Esta versión es <strong>soportada por todos los navegadores actuales</strong>.</p></li>
+<li><p>Introdujo características clave como el “strict mode”, métodos de array adicionales (como <code class="docutils literal notranslate"><span class="pre">forEach</span></code>, <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>), y mejoras en el manejo de objetos.</p></li>
+</ul>
+</li>
+<li><p><strong>ECMAScript 2015 (ES6)</strong>:</p>
+<ul class="simple">
+<li><p>También conocida como <strong>ES6</strong>, fue publicada en junio de 2015.</p></li>
+<li><p>Es una de las actualizaciones más importantes del lenguaje, incorporando muchas características nuevas que facilitan y modernizan el desarrollo en JavaScript:</p>
+<ul>
+<li><p><strong>Clases</strong>: Simplifican la sintaxis para la programación orientada a objetos.</p></li>
+<li><p><strong>Módulos</strong>: Permiten la importación y exportación de bloques de código, mejorando la modularidad y reutilización.</p></li>
+<li><p><strong>Iteradores y Generadores</strong>: Facilitan el manejo de datos iterables.</p></li>
+<li><p><strong>Funciones Flecha</strong>: Proveen una sintaxis más corta para las funciones y cambian el comportamiento del <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p></li>
+<li><p><strong>Declaraciones <code class="docutils literal notranslate"><span class="pre">let</span></code> y <code class="docutils literal notranslate"><span class="pre">const</span></code></strong>: Introducen alcance de bloque y constantes.</p></li>
+<li><p><strong>Promesas</strong>: Manejan la asincronía de manera más efectiva y legible.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>ECMAScript 2024</strong>:</p>
+<ul class="simple">
+<li><p>Es la <strong>última especificación</strong> y trae consigo las actualizaciones más recientes.</p></li>
+</ul>
+</li>
+</ol>
+<p>En este libro se introducen instrucciones y conceptos posteriores al ES6, el cual debería ser el estándard mínimo con el que trabajaremos. Hay código ES6 que no se puede ejecutar ni transpilar fácilmente a ES5.</p>
+</section>
+</section>
+<section id="comentarios">
+<h2>Comentarios<a class="headerlink" href="#comentarios" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Comentarios de una línea</span>
+
+<span class="cm">/*</span>
+<span class="cm">*</span>
+<span class="cm">Comentarios de varias líneas</span>
+<span class="cm">*</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declaración de Variables</span>
+
+<span class="c1">// a = 1;</span>
+<span class="c1">// No recomendable. (Prohibido en clase)</span>
+<span class="c1">// Son globales, se declaren donde se declaren.</span>
+<span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// var a = 1;</span>
+<span class="c1">// Única manera antes de ES6. Ya no hay motivo para utilizarlo. (Prohibido en clase)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// let a = 1;</span>
+<span class="c1">// Soluciona problemas de scope de var.</span>
+<span class="c1">// No se puede declarar dos veces.</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// const a = 1;</span>
+<span class="c1">// No se puede reasignar el valor.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// var a;</span>
+<span class="c1">// a = 1;</span>
+<span class="c1">// Declaración con valor ‘undefined’.</span>
+<span class="c1">// Asignación del valor.</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="p">;</span>
+<span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// window.a = 1;</span>
+<span class="c1">// Equivalente a variable global, pero el código queda más claro.</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Con const no se puede reasignar, pero si es un objeto o array, se puede cambiar su contenido.</p>
+</div></blockquote>
+</section>
+<section id="tipos-de-variables">
+<h2>Tipos de Variables<a class="headerlink" href="#tipos-de-variables" title="Link to this heading">#</a></h2>
+<p>Javascript es un lenguaje no tipado.</p>
+<section id="no-tipado">
+<h3>No Tipado<a class="headerlink" href="#no-tipado" title="Link to this heading">#</a></h3>
+<p>No tipado significa que no es necesario declarar el tipo de datos de una variable al definirla. Esto es diferente a lenguajes como Java o C#, donde se debe especificar si una variable es un entero, un string, etc.</p>
+</section>
+<section id="en-realidad-es-dinamicamente-tipado">
+<h3>En realidad es Dinámicamente Tipado<a class="headerlink" href="#en-realidad-es-dinamicamente-tipado" title="Link to this heading">#</a></h3>
+<p>Aunque Javascript no requiere que se declare el tipo de datos, una vez que una variable es asignada, adquiere un tipo. Además, las variables en Javascript pueden cambiar de tipo a lo largo de la ejecución del programa, lo que se conoce como “tipado dinámico”.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// x es un número</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span><span class="w">    </span><span class="c1">// ahora x es un string</span>
+</pre></div>
+</div>
+</section>
+<section id="tipado-debil">
+<h3>Tipado Débil<a class="headerlink" href="#tipado-debil" title="Link to this heading">#</a></h3>
+<p>Javascript es un lenguaje débilmente tipado, lo que significa que permite operaciones entre diferentes tipos de datos, y a menudo convierte automáticamente los tipos según sea necesario. Estas conversiones automáticas pueden llevar a resultados inesperados, pero también hacen que el lenguaje sea más flexible.</p>
+<p>Por ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;1234&quot;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 1234, string convertido a número</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s2">&quot;bla bla&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// NaN, &quot;bla bla&quot; no se puede convertir a número</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://jsfiddle.net/xxjcaxx/f60qayg9/6/">https://jsfiddle.net/xxjcaxx/f60qayg9/6/</a></p>
+</section>
+</section>
+<section id="tipos-soportados">
+<h2>Tipos Soportados<a class="headerlink" href="#tipos-soportados" title="Link to this heading">#</a></h2>
+<p>Estos son los tipos soportados, como se puede ver, hay menos cantidad que en otros lenguajes sin perder la capacidad de representación de la información. El caso de las variables numéricas es interesante porque internamente usa coma flotante de doble precisión para cualquier número.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>Ejemplo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cadena</p></td>
+<td><p>“Hola Mundo”</p></td>
+<td><p>Caracteres dentro de comillas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Número</p></td>
+<td><p>9.34</p></td>
+<td><p>Números con punto para decimales</p></td>
+</tr>
+<tr class="row-even"><td><p>Boolean</p></td>
+<td><p>true</p></td>
+<td><p>true o false</p></td>
+</tr>
+<tr class="row-odd"><td><p>Null</p></td>
+<td><p>null</p></td>
+<td><p>Sin valor</p></td>
+</tr>
+<tr class="row-even"><td><p>Function</p></td>
+<td><p></p></td>
+<td><p>Una función es referenciable como una variable</p></td>
+</tr>
+<tr class="row-odd"><td><p>Object</p></td>
+<td><p></p></td>
+<td><p>Objetos como arrays o otros</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="typeof">
+<h3>typeOf<a class="headerlink" href="#typeof" title="Link to this heading">#</a></h3>
+<p>Si queremos saber de qué tipo es una variable, podemos preguntar con <em><strong>typeOf():</strong></em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">array_mix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w"> </span><span class="s2">&quot;abcdef&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mf">2.1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mf">2.9e3</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mf">2e-3</span><span class="w"> </span><span class="p">,</span>
+<span class="w"> </span><span class="mo">0o234</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mh">0x23AF</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">]</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">}</span>
+<span class="p">];</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">array_mix</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="p">(</span><span class="nx">array_mix</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>string
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>boolean
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>object
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conversiones">
+<h2>Conversiones<a class="headerlink" href="#conversiones" title="Link to this heading">#</a></h2>
+<p>En javascript las conversiones de tipos no siempre son necesarias, ya que existe un concepto llamado <em><strong>Type coercion</strong></em> que fuerza a una conversión automática cuando se usan distintos tipos.</p>
+<blockquote>
+<div><p>Puede ser útil, pero es una mala práctica usar continuamente la conversión forzada. Es mejor tener claro el tipo de datos que estamos usando. Para evitar los posibles problemas se inventó TypeScript.</p>
+</div></blockquote>
+<section id="convertir-cadenas-a-numeros-usando-parseint-parsefloat-o-el-operador">
+<h3>Convertir cadenas a números usando parseInt(), parseFloat() o el operador “+”<a class="headerlink" href="#convertir-cadenas-a-numeros-usando-parseint-parsefloat-o-el-operador" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">cadenaNumerica</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1234&quot;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numero1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">cadenaNumerica</span><span class="p">);</span><span class="w"> </span><span class="c1">// convierte la cadena a un número entero</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numero2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">cadenaNumerica</span><span class="p">);</span><span class="w"> </span><span class="c1">// convierte la cadena a un número de punto flotante</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numero3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="s2">&quot;1234&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// convierte la cadena a un número utilizando el operador &quot;+&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="convertir-numeros-a-cadenas-concatenandolos-con-una-cadena-vacia">
+<h3>Convertir números a cadenas concatenándolos con una cadena vacía “”<a class="headerlink" href="#convertir-numeros-a-cadenas-concatenandolos-con-una-cadena-vacia" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3600</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">cadenaNumero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">numero</span><span class="p">;</span><span class="w"> </span><span class="c1">// convierte el número a una cadena</span>
+</pre></div>
+</div>
+</section>
+<section id="obtener-la-longitud-de-una-cadena-o-array-utilizando-length">
+<h3>Obtener la longitud de una cadena o array utilizando .length<a class="headerlink" href="#obtener-la-longitud-de-una-cadena-o-array-utilizando-length" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">cadena</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3600</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">longitudCadena</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cadena</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="c1">// longitud de la cadena (en este caso, 4)</span>
+</pre></div>
+</div>
+</section>
+<section id="convertir-cualquier-tipo-a-booleano-truthy-y-falsy">
+<h3>Convertir cualquier tipo a booleano (Truthy y Falsy)<a class="headerlink" href="#convertir-cualquier-tipo-a-booleano-truthy-y-falsy" title="Link to this heading">#</a></h3>
+<p><img alt="exemples truthy falsy" src="_images/truthy.png" /></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Valores Falsy: false, 0, &quot;&quot;, null, undefined, NaN</span>
+<span class="c1">// Valores Truthy: cualquier valor que no sea Falsy</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">valorFalsy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">valorTruthy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hola&quot;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">booleanoFalsy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">valorFalsy</span><span class="p">);</span><span class="w"> </span><span class="c1">// convierte el valor a booleano (en este caso, false)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">booleanoTruthy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">valorTruthy</span><span class="p">);</span><span class="w"> </span><span class="c1">// convierte el valor a booleano (en este caso, true)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="funciones-en-javascript">
+<h2>Funciones en JavaScript<a class="headerlink" href="#funciones-en-javascript" title="Link to this heading">#</a></h2>
+<section id="introduccion-a-las-funciones">
+<h3>Introducción a las Funciones<a class="headerlink" href="#introduccion-a-las-funciones" title="Link to this heading">#</a></h3>
+<p>Las funciones son bloques fundamentales de código en JavaScript. Permiten agrupar y reutilizar código, y son esenciales para la programación modular, estructurada y funcional.</p>
+</section>
+<section id="argumentos-en-las-funciones">
+<h3>Argumentos en las Funciones<a class="headerlink" href="#argumentos-en-las-funciones" title="Link to this heading">#</a></h3>
+<section id="argumentos-adicionales">
+<h4>Argumentos Adicionales<a class="headerlink" href="#argumentos-adicionales" title="Link to this heading">#</a></h4>
+<p>Una característica notable de JavaScript es que no da error si llamas a una función con más argumentos de los que espera. Los argumentos adicionales simplemente son ignorados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">(</span><span class="nx">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hola, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">saludar</span><span class="p">(</span><span class="s2">&quot;Juan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;extra&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Hola, Juan&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola, Juan
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="orden-de-los-argumentos">
+<h4>Orden de los Argumentos<a class="headerlink" href="#orden-de-los-argumentos" title="Link to this heading">#</a></h4>
+<p>El orden de los argumentos es crucial. Los argumentos se asignan a los parámetros en el orden en que se pasan.</p>
+</section>
+</section>
+<section id="variables-globales-y-efectos-secundarios">
+<h3>Variables Globales y Efectos Secundarios<a class="headerlink" href="#variables-globales-y-efectos-secundarios" title="Link to this heading">#</a></h3>
+<p>Las funciones pueden utilizar y modificar variables globales, lo que puede llevar a efectos secundarios (side-effects).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">incrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">contador</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">incrementar</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contador</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="return-en-funciones">
+<h3>Return en Funciones<a class="headerlink" href="#return-en-funciones" title="Link to this heading">#</a></h3>
+<p>Las funciones pueden o no tener un valor de retorno. Si no se especifica un <code class="docutils literal notranslate"><span class="pre">return</span></code>, la función devuelve <code class="docutils literal notranslate"><span class="pre">undefined</span></code> por defecto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sinRetorno</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hola&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">conRetorno</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hola&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">mensaje</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sinRetorno</span><span class="p">(),</span><span class="nx">conRetorno</span><span class="p">());</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>undefined Hola
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="invocacion-de-funciones">
+<h3>Invocación de Funciones<a class="headerlink" href="#invocacion-de-funciones" title="Link to this heading">#</a></h3>
+<p>Al usar paréntesis <code class="docutils literal notranslate"><span class="pre">()</span></code>, invocas a la función. Sin paréntesis, haces referencia al objeto que representa la función.</p>
+</section>
+<section id="las-funciones-son-objetos">
+<h3>Las Funciones son Objetos<a class="headerlink" href="#las-funciones-son-objetos" title="Link to this heading">#</a></h3>
+<p>En JavaScript, las funciones son objetos de primera clase. Esto significa que pueden ser asignadas a variables, pasadas como argumentos y devueltas por otras funciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">multiplicar</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">operacion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">multiplicar</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">operacion</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="declaracion-de-funciones">
+<h3>Declaración de Funciones<a class="headerlink" href="#declaracion-de-funciones" title="Link to this heading">#</a></h3>
+<section id="declaracion-de-funcion">
+<h4>Declaración de Función<a class="headerlink" href="#declaracion-de-funcion" title="Link to this heading">#</a></h4>
+<p>Las funciones pueden ser declaradas de manera explícita. Este tipo de declaración se carga en tiempo de compilación, permitiendo su uso antes de la declaración.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">suma</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 5</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">suma</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="expresion-de-funcion">
+<h4>Expresión de Función<a class="headerlink" href="#expresion-de-funcion" title="Link to this heading">#</a></h4>
+<p>Las funciones también pueden ser definidas mediante expresiones. Este tipo de función se evalúa en tiempo de ejecución y no soporta hoisting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">restar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restar</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="funciones-anonimas">
+<h4>Funciones Anónimas<a class="headerlink" href="#funciones-anonimas" title="Link to this heading">#</a></h4>
+<p>Las expresiones de función pueden ser anónimas, es decir, no tener un nombre. Al no tener nombre, no se pueden invocar a si mismas, por lo que no se pueden hacer recursivas. Si no tienen nombre y son asignadas a una variable con una expresión de función, adquieren el nombre de la variable. Se suelen usar como funciones de “Callback”, aunque no es lo más recomendable porque luego complican la trazabilidad de los errores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">dividir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dividir</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// 5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ambito-de-las-funciones">
+<h3>Ámbito de las Funciones<a class="headerlink" href="#ambito-de-las-funciones" title="Link to this heading">#</a></h3>
+<p>Las funciones deben estar dentro del ámbito en el que se llaman. Las funciones declaradas pueden ser llamadas antes de su definición debido al hoisting, pero las funciones definidas con expresiones no. Las funciones pueden estar dentro del ámbito (scope) de otras funciones y no poder ser invocadas desde fuera.</p>
+<section id="hoisting">
+<h4>Hoisting<a class="headerlink" href="#hoisting" title="Link to this heading">#</a></h4>
+<p>Las declaraciones de función se “elevan” al principio del ámbito, permitiendo su uso antes de la definición.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiplicar</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 6</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">multiplicar</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="no-hoisting">
+<h4>No Hoisting<a class="headerlink" href="#no-hoisting" title="Link to this heading">#</a></h4>
+<p>Las expresiones de función no soportan hoisting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dividir</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// Error</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">dividir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El ámbito (o scope) en JavaScript se refiere al contexto en el que las variables y funciones están accesibles. JavaScript tiene tres tipos principales de ámbito: global, local o de función, y de bloque.</p>
+</section>
+<section id="ambito-global">
+<h4>Ámbito Global<a class="headerlink" href="#ambito-global" title="Link to this heading">#</a></h4>
+<p>Las variables definidas en el ámbito global están disponibles en cualquier parte del código, tanto dentro como fuera de las funciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nb">global</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nb">global</span><span class="p">();</span><span class="w"> </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">1</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el ejemplo anterior, la variable <code class="docutils literal notranslate"><span class="pre">a</span></code> está definida en el ámbito global. Esto significa que es accesible tanto dentro de la función <code class="docutils literal notranslate"><span class="pre">global</span></code> como fuera de ella.</p>
+</section>
+<section id="ambito-local-o-de-funcion">
+<h4>Ámbito Local o de Función<a class="headerlink" href="#ambito-local-o-de-funcion" title="Link to this heading">#</a></h4>
+<p>Las variables definidas dentro de una función tienen un ámbito local a esa función. Esto significa que no se puede acceder a ellas desde fuera de la función.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">local</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="w"> </span><span class="c1">// 2</span>
+<span class="p">}</span>
+
+<span class="nx">local</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: a is not defined</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">2</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, la variable <code class="docutils literal notranslate"><span class="pre">a</span></code> está definida dentro de la función <code class="docutils literal notranslate"><span class="pre">local</span></code>, por lo que sólo es accesible dentro de esa función. Fuera de la función, <code class="docutils literal notranslate"><span class="pre">a</span></code> no está definida.</p>
+</section>
+<section id="ambito-de-bloque">
+<h4>Ámbito de Bloque<a class="headerlink" href="#ambito-de-bloque" title="Link to this heading">#</a></h4>
+<p>El ámbito de bloque se refiere a las variables definidas dentro de un bloque de código, como un bucle <code class="docutils literal notranslate"><span class="pre">for</span></code> o una declaración <code class="docutils literal notranslate"><span class="pre">if</span></code>. En ES6, <code class="docutils literal notranslate"><span class="pre">let</span></code> y <code class="docutils literal notranslate"><span class="pre">const</span></code> permiten definir variables con ámbito de bloque.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime números del 0 al 9</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: i is not defined</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">0</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">1</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">2</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">3</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">4</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">5</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">6</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">7</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">8</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">9</span>
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Stack</span> <span class="n">trace</span><span class="p">:</span>
+<span class="ne">ReferenceError</span>: i is not defined
+    <span class="n">at</span> <span class="o">&lt;</span><span class="n">anonymous</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">13</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el ejemplo anterior, la variable <code class="docutils literal notranslate"><span class="pre">i</span></code> está definida con <code class="docutils literal notranslate"><span class="pre">let</span></code> dentro del bucle <code class="docutils literal notranslate"><span class="pre">for</span></code>. Esto significa que <code class="docutils literal notranslate"><span class="pre">i</span></code> sólo es accesible dentro del bloque del bucle <code class="docutils literal notranslate"><span class="pre">for</span></code>. Intentar acceder a <code class="docutils literal notranslate"><span class="pre">i</span></code> fuera del bucle produce un error.</p>
+<blockquote>
+<div><p>En estos ejemplos hemos usado <code class="docutils literal notranslate"><span class="pre">var</span></code> para demostrar conceptos del ámbito, debem servir para entender que siempre hay que usar <code class="docutils literal notranslate"><span class="pre">let</span></code> y evitar los errores derivados de no respetar el ámbito de bloque.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="ambito-de-las-variables-en-funciones">
+<h3>Ámbito de las Variables en Funciones<a class="headerlink" href="#ambito-de-las-variables-en-funciones" title="Link to this heading">#</a></h3>
+<section id="variables-locales-en-funciones">
+<h4>Variables Locales en Funciones<a class="headerlink" href="#variables-locales-en-funciones" title="Link to this heading">#</a></h4>
+<p>Las variables declaradas dentro de una función tienen un ámbito local a esa función y no pueden ser accedidas desde fuera de ella. Esto garantiza que las variables dentro de una función no interfieran con las variables de otros lugares en el código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">mostrarMensaje</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hola Mundo&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// Ejemplo en var para demostrar que, incluso con var, se respeta el ámbito de función</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mensaje</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">mostrarMensaje</span><span class="p">();</span><span class="w"> </span><span class="c1">// &quot;Hola Mundo&quot;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mensaje</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: mensaje is not defined</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, la variable <code class="docutils literal notranslate"><span class="pre">mensaje</span></code> está definida dentro de la función <code class="docutils literal notranslate"><span class="pre">mostrarMensaje</span></code> y no es accesible fuera de ella.</p>
+</section>
+<section id="acceso-a-variables-globales-y-de-funcion-padre">
+<h4>Acceso a Variables Globales y de Función Padre<a class="headerlink" href="#acceso-a-variables-globales-y-de-funcion-padre" title="Link to this heading">#</a></h4>
+<p>Una función puede acceder a las variables globales o a las variables de la función padre en la que está anidada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">global2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Soy global&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">padre</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">localPadre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Soy una variable de la función padre&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">hijo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">localHijo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Soy una variable de la función hijo&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">global2</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Soy global&quot;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localPadre</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Soy una variable de la función padre&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">hijo</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localHijo</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: localHijo is not defined</span>
+<span class="p">}</span>
+
+<span class="nx">padre</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí, la función <code class="docutils literal notranslate"><span class="pre">hijo</span></code> puede acceder a la variable global <code class="docutils literal notranslate"><span class="pre">global</span></code> y a la variable <code class="docutils literal notranslate"><span class="pre">localPadre</span></code> de la función <code class="docutils literal notranslate"><span class="pre">padre</span></code>. Sin embargo, la variable <code class="docutils literal notranslate"><span class="pre">localHijo</span></code> dentro de la función <code class="docutils literal notranslate"><span class="pre">hijo</span></code> no es accesible desde la función <code class="docutils literal notranslate"><span class="pre">padre</span></code>.</p>
+</section>
+<section id="funciones-anidadas-y-variables-privadas">
+<h4>Funciones Anidadas y Variables Privadas<a class="headerlink" href="#funciones-anidadas-y-variables-privadas" title="Link to this heading">#</a></h4>
+<p>Las funciones en JavaScript pueden ser anidadas, lo que permite crear variables privadas que solo son accesibles dentro de la función interna. Esta técnica se utiliza a menudo para crear closures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">addSquares</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">square</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">square</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addSquares</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 13</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addSquares</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 25</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addSquares</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 41</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">B</span><span class="p">,</span><span class="nx">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, la función <code class="docutils literal notranslate"><span class="pre">square</span></code> es una función interna dentro de <code class="docutils literal notranslate"><span class="pre">addSquares</span></code>. <code class="docutils literal notranslate"><span class="pre">square</span></code> no es accesible desde fuera de <code class="docutils literal notranslate"><span class="pre">addSquares</span></code>, pero <code class="docutils literal notranslate"><span class="pre">addSquares</span></code> puede usar <code class="docutils literal notranslate"><span class="pre">square</span></code> para calcular el cuadrado de <code class="docutils literal notranslate"><span class="pre">a</span></code> y <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+</section>
+<section id="closures-en-javascript">
+<h4>Closures en JavaScript<a class="headerlink" href="#closures-en-javascript" title="Link to this heading">#</a></h4>
+<p>Un closure es una función interna que puede acceder a las variables de la función externa que la contiene. La función interna forma un “cierre” alrededor del entorno en el que fue creada, permitiéndole acceder a las variables de la función externa incluso después de que esta haya terminado de ejecutarse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">outside</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">inside</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">inside</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">fn_inside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outside</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fn_inside</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 8</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">result1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outside</span><span class="p">(</span><span class="mf">3</span><span class="p">)(</span><span class="mf">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 8</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span><span class="nx">result1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">outside</span></code> retorna la función <code class="docutils literal notranslate"><span class="pre">inside</span></code>, que tiene acceso a la variable <code class="docutils literal notranslate"><span class="pre">x</span></code> de <code class="docutils literal notranslate"><span class="pre">outside</span></code>. Esto permite que <code class="docutils literal notranslate"><span class="pre">inside</span></code> use <code class="docutils literal notranslate"><span class="pre">x</span></code> incluso después de que <code class="docutils literal notranslate"><span class="pre">outside</span></code> haya terminado su ejecución.</p>
+<blockquote>
+<div><p>Veremos con más detalle cómo usar las closures más adelante.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="funciones-auto-invocadas">
+<h3>Funciones Auto-Invocadas<a class="headerlink" href="#funciones-auto-invocadas" title="Link to this heading">#</a></h3>
+<p>En JavaScript, una función auto-invocada (IIFE, por sus siglas en inglés: Immediately Invoked Function Expression) es una función que se define y se ejecuta inmediatamente. Este tipo de funciones son útiles para crear un ámbito aislado y evitar la contaminación del espacio de nombres global.</p>
+</section>
+<section id="ejemplo-de-funcion-auto-invocada">
+<h3>Ejemplo de Función Auto-Invocada<a class="headerlink" href="#ejemplo-de-funcion-auto-invocada" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">aName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Barry&quot;</span><span class="p">;</span>
+<span class="p">})();</span>
+<span class="c1">//console.log(aName); // &quot;Uncaught ReferenceError: aName is not defined&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, la variable <code class="docutils literal notranslate"><span class="pre">aName</span></code> está definida dentro de una función auto-invocada y no es accesible fuera de esta. Intentar acceder a <code class="docutils literal notranslate"><span class="pre">aName</span></code> fuera de la función resulta en un error de referencia.</p>
+<p>Otro ejemplo donde la función auto-invocada retorna un valor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Barry&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">})();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Barry&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barry
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí, la función auto-invocada retorna el valor de <code class="docutils literal notranslate"><span class="pre">name</span></code>, que es almacenado en la variable <code class="docutils literal notranslate"><span class="pre">result</span></code>.</p>
+<section id="caracteristicas-de-las-funciones-auto-invocadas">
+<h4>Características de las Funciones Auto-Invocadas<a class="headerlink" href="#caracteristicas-de-las-funciones-auto-invocadas" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Ejecución Inmediata:</strong> Las funciones auto-invocadas se ejecutan tan pronto como se definen, sin necesidad de ser llamadas explícitamente en otro lugar del código.</p></li>
+<li><p><strong>Ámbito Aislado:</strong> Las variables definidas dentro de una función auto-invocada no son accesibles desde fuera de la función. Esto ayuda a mantener el código limpio y a evitar conflictos de nombres.</p></li>
+<li><p><strong>Código Aislado:</strong> El código dentro de una función auto-invocada se ejecuta inmediatamente, pero está aislado del resto del código. Esto es útil para encapsular el código que solo necesita ejecutarse una vez.</p></li>
+<li><p><strong>Acepta Argumentos:</strong> Las funciones auto-invocadas pueden aceptar argumentos a través de los paréntesis al final de la definición de la función.</p></li>
+<li><p><strong>Retorno de Valores:</strong> Cuando se utiliza una expresión de función, se guarda el valor retornado, no la función en sí. Esto permite que las funciones auto-invocadas puedan usarse para inicializar variables con valores calculados en el momento de la definición.</p></li>
+</ol>
+</section>
+<section id="uso-recomendado">
+<h4>Uso Recomendado<a class="headerlink" href="#uso-recomendado" title="Link to this heading">#</a></h4>
+<p>Las funciones auto-invocadas son especialmente recomendables para el “main” de una aplicación, donde necesitas ejecutar código de inicialización sin interferir con el resto del código.</p>
+</section>
+</section>
+<section id="argumentos-por-defecto">
+<h3>Argumentos por Defecto<a class="headerlink" href="#argumentos-por-defecto" title="Link to this heading">#</a></h3>
+<p>JavaScript permite definir argumentos por defecto para las funciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">());</span><span class="w"> </span><span class="c1">// 4</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">(</span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 6</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">x</span></code> es una función que acepta dos argumentos con valores por defecto de 2. Si no se pasan valores al llamar a la función, se utilizan los valores por defecto.</p>
+</section>
+<section id="implementacion-manual-de-argumentos-por-defecto">
+<h3>Implementación Manual de Argumentos por Defecto<a class="headerlink" href="#implementacion-manual-de-argumentos-por-defecto" title="Link to this heading">#</a></h3>
+<p>Antes de que los argumentos por defecto fueran una característica del lenguaje, se usaban técnicas manuales para lograr el mismo resultado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">multi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">y</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// muestra la cantidad de argumentos pasados</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multi</span><span class="p">());</span><span class="w"> </span><span class="c1">// 4</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multi</span><span class="p">(</span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 6</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multi</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">multi</span></code> es una función que verifica si los argumentos <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> son <code class="docutils literal notranslate"><span class="pre">undefined</span></code> y les asigna un valor por defecto de 2 si es necesario. Además, la función utiliza <code class="docutils literal notranslate"><span class="pre">arguments.length</span></code> para mostrar la cantidad de argumentos pasados.</p>
+</section>
+</section>
+<section id="elementos-del-lenguaje">
+<h2>Elementos del lenguaje<a class="headerlink" href="#elementos-del-lenguaje" title="Link to this heading">#</a></h2>
+<section id="operadores">
+<h3>Operadores<a class="headerlink" href="#operadores" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operador</p></th>
+<th class="head"><p>Descripción</p></th>
+<th class="head"><p>Ejemplo</p></th>
+<th class="head"><p>Resultado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>==</p></td>
+<td><p>Igual a</p></td>
+<td><p>1 == 1</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-odd"><td><p>===</p></td>
+<td><p>Igual en valor y tipo</p></td>
+<td><p>1 === ‘1’</p></td>
+<td><p>false</p></td>
+</tr>
+<tr class="row-even"><td><p>!=</p></td>
+<td><p>Distinto a</p></td>
+<td><p>1 != 2</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-odd"><td><p>!==</p></td>
+<td><p>Distinto en valor y tipo</p></td>
+<td><p>1 !== ‘1’</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt;</p></td>
+<td><p>Mayor que</p></td>
+<td><p>1 &gt; 2</p></td>
+<td><p>false</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;</p></td>
+<td><p>Menor que</p></td>
+<td><p>1 &lt; 2</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt;=</p></td>
+<td><p>Mayor o igual que</p></td>
+<td><p>1 &gt;= 1</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;=</p></td>
+<td><p>Menor o igual que</p></td>
+<td><p>2 &lt;= 1</p></td>
+<td><p>false</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los operadores de comparación estrictos en JavaScript son <code class="docutils literal notranslate"><span class="pre">===</span></code> (igual estrictamente) y <code class="docutils literal notranslate"><span class="pre">!==</span></code> (distinto estrictamente). Comparan tanto el valor como el tipo de los operandos. Estos  Son útiles porque:</p>
+<ul class="simple">
+<li><p><strong>Evitan la Coerción de Tipos</strong>: La coerción implícita puede llevar a resultados inesperados y errores difíciles de detectar. Al usar comparación estricta, se elimina esta ambigüedad.</p></li>
+<li><p><strong>Mejoran la Legibilidad del Código</strong>: Los desarrolladores pueden entender más fácilmente lo que el código está comparando, ya que no hay conversiones ocultas.</p></li>
+<li><p><strong>Facilitan el Mantenimiento</strong>: Un código más predecible es más fácil de mantener y menos propenso a errores, lo que resulta en menos tiempo de depuración.</p></li>
+</ul>
+</section>
+<section id="ejemplo-de-problema-con-comparacion-no-estricta">
+<h3>Ejemplo de Problema con Comparación No Estricta<a class="headerlink" href="#ejemplo-de-problema-con-comparacion-no-estricta" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">false</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">false</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// false</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el ejemplo anterior, <code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">==</span> <span class="pre">0</span></code> devuelve <code class="docutils literal notranslate"><span class="pre">true</span></code> debido a la coerción de tipos, mientras que <code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">===</span> <span class="pre">0</span></code> devuelve <code class="docutils literal notranslate"><span class="pre">false</span></code> porque los tipos son diferentes.</p>
+</section>
+<section id="estructuras-de-control">
+<h3>Estructuras de control<a class="headerlink" href="#estructuras-de-control" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+<span class="k">do</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span>
+<span class="nx">a</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{...}</span>
+</pre></div>
+</div>
+<section id="estructura-condicional-if-else">
+<h4>Estructura Condicional <code class="docutils literal notranslate"><span class="pre">if...else</span></code><a class="headerlink" href="#estructura-condicional-if-else" title="Link to this heading">#</a></h4>
+<p>La principal ventaja de <code class="docutils literal notranslate"><span class="pre">if...else</span></code> es su simplicidad y claridad, lo que lo hace fácil de entender y mantener. Sin embargo, su desventaja radica en que puede volverse difícil de gestionar y leer cuando se encadenan muchas condiciones, especialmente si se anidan múltiples <code class="docutils literal notranslate"><span class="pre">if...else</span></code>. Se recomienda usar <code class="docutils literal notranslate"><span class="pre">if...else</span></code> cuando hay una clara bifurcación en el flujo lógico del programa que depende de condiciones booleanas específicas.</p>
+</section>
+</section>
+<section id="operador-ternario">
+<h3>Operador Ternario<a class="headerlink" href="#operador-ternario" title="Link to this heading">#</a></h3>
+<p>El operador ternario (<code class="docutils literal notranslate"><span class="pre">condición</span> <span class="pre">?</span> <span class="pre">expr1</span> <span class="pre">:</span> <span class="pre">expr2</span></code>) es una forma concisa de realizar una operación condicional en una sola línea de código. Se usa para asignar un valor basado en una condición, lo que puede hacer que el código sea más compacto y a veces más legible. Es recomendable usar el operador ternario para asignaciones simples y claras donde su uso mejora la concisión sin sacrificar la claridad.</p>
+<blockquote>
+<div><p>No se debe utilizar para ejecutar instrucciones en función de condiciones. Tan solo para asignar valores. Si se desea ejecutar instrucciones, es mejor con <code class="docutils literal notranslate"><span class="pre">if</span></code>o con operadores <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> o <code class="docutils literal notranslate"><span class="pre">||</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="bucle-for">
+<h3>Bucle <code class="docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#bucle-for" title="Link to this heading">#</a></h3>
+<p>Se recomienda el uso del bucle <code class="docutils literal notranslate"><span class="pre">for</span></code> para iteraciones que tienen un número definido de repeticiones, como iterar sobre índices de arrays.</p>
+</section>
+<section id="bucle-for-of">
+<h3>Bucle <code class="docutils literal notranslate"><span class="pre">for...of</span></code><a class="headerlink" href="#bucle-for-of" title="Link to this heading">#</a></h3>
+<p>El bucle <code class="docutils literal notranslate"><span class="pre">for...of</span></code> se utiliza para iterar sobre elementos de objetos iterables como arrays, strings, mapas y conjuntos. Su ventaja principal es la simplicidad y legibilidad cuando se necesita acceder directamente a los valores de una colección sin preocuparse por los índices. A diferencia del bucle <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">for...of</span></code> proporciona una forma más limpia y directa de trabajar con elementos iterables. Sin embargo, su desventaja es que no proporciona acceso directo a los índices de los elementos, lo que puede ser necesario en algunas situaciones. Se recomienda usar <code class="docutils literal notranslate"><span class="pre">for...of</span></code> cuando se desea iterar directamente sobre los valores de una colección sin necesidad de manipular los índices.</p>
+</section>
+<section id="bucle-while">
+<h3>Bucle <code class="docutils literal notranslate"><span class="pre">while</span></code><a class="headerlink" href="#bucle-while" title="Link to this heading">#</a></h3>
+<p>Se recomienda usar <code class="docutils literal notranslate"><span class="pre">while</span></code> en casos donde la condición de término no se puede determinar de antemano y puede cambiar durante la ejecución del bucle.</p>
+</section>
+<section id="bucle-do-while">
+<h3>Bucle <code class="docutils literal notranslate"><span class="pre">do...while</span></code><a class="headerlink" href="#bucle-do-while" title="Link to this heading">#</a></h3>
+<p>Se recomienda usar <code class="docutils literal notranslate"><span class="pre">do...while</span></code> cuando es necesario asegurar al menos una ejecución del bloque de código antes de evaluar la condición.</p>
+</section>
+<section id="operador-logico-y">
+<h3>Operador Lógico <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y <code class="docutils literal notranslate"><span class="pre">||</span></code><a class="headerlink" href="#operador-logico-y" title="Link to this heading">#</a></h3>
+<p>Los operadores lógicos <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> (AND) y <code class="docutils literal notranslate"><span class="pre">||</span></code> (OR) se utilizan para combinar múltiples condiciones en una expresión lógica. En un contexto de control de flujo, se pueden usar para ejecutar bloques de código condicionalmente de manera concisa. Por ejemplo, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">===</span> <span class="pre">1</span> <span class="pre">&amp;&amp;</span> <span class="pre">{...}</span> <span class="pre">||</span> <span class="pre">{...}</span></code> ejecutará el primer bloque si <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">===</span> <span class="pre">1</span></code> es verdadero, y el segundo bloque en caso contrario. Es recomendable usarlos para simplificar condiciones lógicas simples, pero con precaución para no sacrificar la claridad del código.</p>
+</section>
+</section>
+<section id="comunicacion-con-el-usuario">
+<h2>Comunicación con el usuario<a class="headerlink" href="#comunicacion-con-el-usuario" title="Link to this heading">#</a></h2>
+<section id="alerta-confirmacion-y-prompt">
+<h3>1. Alerta, Confirmación y Prompt<a class="headerlink" href="#alerta-confirmacion-y-prompt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Alerta</strong>: <code class="docutils literal notranslate"><span class="pre">alert(&quot;mensaje&quot;)</span></code> muestra un mensaje de alerta al usuario.</p></li>
+<li><p><strong>Confirmación</strong>: <code class="docutils literal notranslate"><span class="pre">confirm(&quot;mensaje&quot;)</span></code> muestra un mensaje y permite al usuario confirmar o cancelar.</p></li>
+<li><p><strong>Prompt</strong>: <code class="docutils literal notranslate"><span class="pre">prompt(&quot;mensaje&quot;,</span> <span class="pre">&quot;valor</span> <span class="pre">por</span> <span class="pre">defecto&quot;)</span></code> muestra un mensaje y permite al usuario ingresar texto.</p></li>
+</ul>
+</section>
+<section id="console-log">
+<h3>2. Console.log()<a class="headerlink" href="#console-log" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log()</span></code> muestra un mensaje en la consola del navegador.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.error()</span></code> muestra un mensaje de error en la consola.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.warn()</span></code> muestra un mensaje de advertencia en la consola.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.debug()</span></code> muestra un mensaje de depuración en la consola.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.info()</span></code> muestra un mensaje informativo en la consola.</p></li>
+</ul>
+<p>Ejemplos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;%s tiene %d años.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">42</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bob tiene 42 años.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;%cEste es un texto verde sobre un fondo amarillo.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;color:green; background-color:yellow&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Este es un texto verde sobre un fondo amarillo.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="otras-funciones-de-consola">
+<h3>3. Otras funciones de consola<a class="headerlink" href="#otras-funciones-de-consola" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">console.dir(objeto)</span></code> muestra una representación interactiva del objeto en la consola.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.time(label)</span></code> inicia un temporizador con una etiqueta.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.timeEnd(label)</span></code> detiene el temporizador y muestra el tiempo transcurrido.</p></li>
+</ul>
+</section>
+<section id="mejorando-la-visualizacion-en-la-consola">
+<h3>4. Mejorando la visualización en la consola<a class="headerlink" href="#mejorando-la-visualizacion-en-la-consola" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>CSS en la consola</strong>: Puedes aplicar estilos CSS a los mensajes de la consola para mejorar su apariencia y legibilidad.</p>
+<ul>
+<li><p><a class="reference external" href="https://javascript.plainenglish.io/a-prettier-console-log-786f46d0bc3c">Este artículo</a> proporciona ejemplos sobre cómo aplicar estilos CSS.</p></li>
+<li><p><a class="reference external" href="https://javascript.plainenglish.io/adding-css-to-console-log-dde2e167ee7a">Aquí</a> encontrarás más información sobre cómo agregar CSS a <code class="docutils literal notranslate"><span class="pre">console.log()</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>Estos son recursos que puedes utilizar para mejorar la comunicación con el usuario y la visualización de datos en la consola de JavaScript. ¡Espero que te resulten útiles!</p>
+</section>
+</section>
+<section id="template-literals">
+<h2>Template Literals<a class="headerlink" href="#template-literals" title="Link to this heading">#</a></h2>
+<p>Las <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">literals</span></code> son una característica de JavaScript que te permite crear cadenas de texto de manera más flexible y legible.</p>
+<section id="uso-de-comillas-simples-y-dobles">
+<h3>1. Uso de comillas simples y dobles<a class="headerlink" href="#uso-de-comillas-simples-y-dobles" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Puedes usar comillas simples o dobles para definir una cadena de texto, pero si necesitas incluir el mismo tipo de comillas dentro de la cadena, debes escaparlas con una barra invertida (<code class="docutils literal notranslate"><span class="pre">\</span></code>).</p></li>
+</ul>
+<p>Ejemplos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;&quot;No cometemos errores. Solo tenemos accidentes felices.&quot; - Bob Ross&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;\&quot;No cometemos errores. Solo tenemos accidentes felices.\&quot; - Bob Ross&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="uso-de-template-literals">
+<h4>2. Uso de “Template Literals” (<code class="docutils literal notranslate"><span class="pre">`</span></code>)<a class="headerlink" href="#uso-de-template-literals" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Con las plantillas de cadenas de texto, puedes definir cadenas de texto usando comillas invertidas (backticks).</p></li>
+<li><p>Esto te permite incluir fácilmente comillas simples y dobles sin necesidad de escaparlas.</p></li>
+<li><p>También te permite incluir variables y expresiones dentro de la cadena utilizando <code class="docutils literal notranslate"><span class="pre">${}</span></code>.</p></li>
+</ul>
+<p>Ejemplos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`&quot;No cometemos errores. Solo tenemos accidentes felices.&quot; - Bob Ross`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Homer J. Simpson</span>
+<span class="sb">742 Evergreen Terrace</span>
+<span class="sb">Springfield`</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="interpolacion-de-variables-y-expresiones">
+<h4>3. Interpolación de variables y expresiones<a class="headerlink" href="#interpolacion-de-variables-y-expresiones" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Con las plantillas de cadenas de texto, puedes incrustar variables y expresiones dentro de la cadena utilizando <code class="docutils literal notranslate"><span class="pre">${}</span></code>.</p></li>
+<li><p>Esto hace que sea más fácil y legible concatenar variables y expresiones en una cadena de texto.</p></li>
+</ul>
+<p>Ejemplos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;La variable a vale: &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">a</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;La variable a vale:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`La variable a vale: </span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">host</span><span class="si">}</span><span class="sb">/login/oauth/authorize?client_id=</span><span class="si">${</span><span class="nx">clientId</span><span class="si">}</span><span class="sb">&amp;scope=</span><span class="si">${</span><span class="nx">scope</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="inclusion-de-expresiones-condicionales">
+<h4>4. Inclusión de expresiones condicionales<a class="headerlink" href="#inclusion-de-expresiones-condicionales" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Puedes incluir expresiones condicionales dentro de las plantillas de cadenas de texto para generar dinámicamente partes de la cadena.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">19</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`El alumno es: </span><span class="si">${</span><span class="nx">edad</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;menor&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;mayor&#39;</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Las plantillas de cadenas de texto proporcionan una forma más flexible y legible de trabajar con cadenas de texto en JavaScript, permitiéndote incluir variables, expresiones y cadenas multilínea de manera más eficiente.</p>
+</section>
+</section>
+<section id="tagged-template-literals">
+<h3>Tagged Template Literals<a class="headerlink" href="#tagged-template-literals" title="Link to this heading">#</a></h3>
+<p>Los “Tagged Template Literals” son una característica de JavaScript que te permite personalizar el comportamiento de las plantillas de cadenas de texto. Esto se logra definiendo una función que actúa como un “tag” o etiqueta para la plantilla de cadena de texto.</p>
+<section id="uso-de-strings-y-variables-como-argumentos-separados">
+<h4>Uso de strings y variables como argumentos separados<a class="headerlink" href="#uso-de-strings-y-variables-como-argumentos-separados" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>En lugar de recibir una sola cadena de texto con las interpolaciones <code class="docutils literal notranslate"><span class="pre">${}</span></code>, la función de etiqueta recibe dos argumentos separados: un array de strings y un array con los valores interpolados.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span><span class="kd">function</span><span class="w"> </span><span class="nx">miTaggedTemplateLiteral</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">values</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">values</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Carlos&quot;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">32</span><span class="p">;</span>
+<span class="nx">miTaggedTemplateLiteral</span><span class="sb">`Hola soy </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb"> y tengo </span><span class="si">${</span><span class="nx">edad</span><span class="si">}</span><span class="sb"> años`</span><span class="p">;})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ &quot;Hola soy &quot;, &quot; y tengo &quot;, &quot; años&quot; ] Carlos 32
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>En el ejemplo proporcionado, la función <code class="docutils literal notranslate"><span class="pre">generaTemplate</span></code> es un ejemplo de cómo puedes crear una función de etiqueta personalizada.</p></li>
+<li><p>Toma un array de strings y una serie de keys que corresponden a las interpolaciones <code class="docutils literal notranslate"><span class="pre">${}</span></code>.
+Ejemplo:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">generaTemplate</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">keys</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">keys</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">temp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">temp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">temp</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="kd">let</span><span class="w">  </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PC&quot;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">precio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">imagen</span><span class="w"> </span><span class="o">=</span><span class="sb">`http://...`</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">miProducto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">generaTemplate</span><span class="sb">`&lt;article&gt;</span>
+<span class="sb">  &lt;h1&gt;</span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">&lt;/h1&gt;</span>
+<span class="sb">  &lt;img src=&quot;</span><span class="si">${</span><span class="nx">imagen</span><span class="si">}</span><span class="sb">&quot; /&gt;</span>
+<span class="sb">  &lt;span&gt;</span><span class="si">${</span><span class="nx">precio</span><span class="si">}</span><span class="sb"> € &lt;/span&gt;</span>
+<span class="sb">&lt;/article&gt;`</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">miProducto</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;article&gt;
+  &lt;h1&gt;PC&lt;/h1&gt;
+  &lt;img src=&quot;http://...&quot; /&gt;
+  &lt;span&gt;1000 € &lt;/span&gt;
+&lt;/article&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "deno"
+        },
+        kernelOptions: {
+            name: "deno",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'deno'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Libro DWEC</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobar-que-funciona">Comprobar que funciona</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-el-codigo-javascript">Ocultar el código JavaScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-y-evolucion-de-javascript-y-ecmascript">Historia y evolución de JavaScript y ECMAScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#origenes-de-javascript">Orígenes de JavaScript</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estandar-ecmascript">Estándar ECMAScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-y-influencias">Sintaxis y Influencias</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versiones-importantes-de-ecmascript">Versiones Importantes de ECMAScript</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios">Comentarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-variables">Tipos de Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-tipado">No Tipado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-realidad-es-dinamicamente-tipado">En realidad es Dinámicamente Tipado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipado-debil">Tipado Débil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-soportados">Tipos Soportados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typeof">typeOf</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversiones">Conversiones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-cadenas-a-numeros-usando-parseint-parsefloat-o-el-operador">Convertir cadenas a números usando parseInt(), parseFloat() o el operador “+”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-numeros-a-cadenas-concatenandolos-con-una-cadena-vacia">Convertir números a cadenas concatenándolos con una cadena vacía “”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-la-longitud-de-una-cadena-o-array-utilizando-length">Obtener la longitud de una cadena o array utilizando .length</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-cualquier-tipo-a-booleano-truthy-y-falsy">Convertir cualquier tipo a booleano (Truthy y Falsy)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-en-javascript">Funciones en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-las-funciones">Introducción a las Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-en-las-funciones">Argumentos en las Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-adicionales">Argumentos Adicionales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-los-argumentos">Orden de los Argumentos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-globales-y-efectos-secundarios">Variables Globales y Efectos Secundarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-en-funciones">Return en Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-de-funciones">Invocación de Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-funciones-son-objetos">Las Funciones son Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-funciones">Declaración de Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-funcion">Declaración de Función</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expresion-de-funcion">Expresión de Función</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-anonimas">Funciones Anónimas</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-las-funciones">Ámbito de las Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hoisting">Hoisting</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-hoisting">No Hoisting</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-global">Ámbito Global</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-local-o-de-funcion">Ámbito Local o de Función</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-bloque">Ámbito de Bloque</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-las-variables-en-funciones">Ámbito de las Variables en Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-locales-en-funciones">Variables Locales en Funciones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-variables-globales-y-de-funcion-padre">Acceso a Variables Globales y de Función Padre</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-anidadas-y-variables-privadas">Funciones Anidadas y Variables Privadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closures-en-javascript">Closures en JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-auto-invocadas">Funciones Auto-Invocadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-funcion-auto-invocada">Ejemplo de Función Auto-Invocada</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-las-funciones-auto-invocadas">Características de las Funciones Auto-Invocadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-recomendado">Uso Recomendado</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">Argumentos por Defecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-manual-de-argumentos-por-defecto">Implementación Manual de Argumentos por Defecto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-del-lenguaje">Elementos del lenguaje</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-problema-con-comparacion-no-estricta">Ejemplo de Problema con Comparación No Estricta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructuras-de-control">Estructuras de control</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-condicional-if-else">Estructura Condicional <code class="docutils literal notranslate"><span class="pre">if...else</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-ternario">Operador Ternario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-for">Bucle <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-for-of">Bucle <code class="docutils literal notranslate"><span class="pre">for...of</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-while">Bucle <code class="docutils literal notranslate"><span class="pre">while</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bucle-do-while">Bucle <code class="docutils literal notranslate"><span class="pre">do...while</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-logico-y">Operador Lógico <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y <code class="docutils literal notranslate"><span class="pre">||</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-con-el-usuario">Comunicación con el usuario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alerta-confirmacion-y-prompt">1. Alerta, Confirmación y Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#console-log">2. Console.log()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funciones-de-consola">3. Otras funciones de consola</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejorando-la-visualizacion-en-la-consola">4. Mejorando la visualización en la consola</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals">Template Literals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-comillas-simples-y-dobles">1. Uso de comillas simples y dobles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-template-literals">2. Uso de “Template Literals” (<code class="docutils literal notranslate"><span class="pre">`</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-de-variables-y-expresiones">3. Interpolación de variables y expresiones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-de-expresiones-condicionales">4. Inclusión de expresiones condicionales</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tagged-template-literals">Tagged Template Literals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-strings-y-variables-como-argumentos-separados">Uso de strings y variables como argumentos separados</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
