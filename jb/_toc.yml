@@ -7,3 +7,5 @@ chapters:
 - file: lenguajejavascript
 - file: arraysobjetosclases
 - file: dom
+- file: iteradores
+- file: modulos
