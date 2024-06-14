@@ -5,3 +5,5 @@ format: jb-book
 root: intro
 chapters:
 - file: lenguajejavascript
+- file: arraysobjetosclases
+- file: dom

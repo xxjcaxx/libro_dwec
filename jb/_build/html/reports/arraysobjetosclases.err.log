@@ -15,36 +15,12 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-for (let i = 0; i < 10; i++) {
-  console.log(i); // Imprime números del 0 al 9
-}
-
-console.log(i); // Error: i is not defined
+let myApple = new Apple("Granny Smith");
+console.log(myApple.getInfo()); // "red Granny Smith apple"
 ------------------
 
------ stdout -----
-[33m0[39m
------ stdout -----
-[33m1[39m
------ stdout -----
-[33m2[39m
------ stdout -----
-[33m3[39m
------ stdout -----
-[33m4[39m
------ stdout -----
-[33m5[39m
------ stdout -----
-[33m6[39m
------ stdout -----
-[33m7[39m
------ stdout -----
-[33m8[39m
------ stdout -----
-[33m9[39m
-------------------
 
 Stack trace:
-ReferenceError: i is not defined
-    at <anonymous>:4:13
+ReferenceError: Apple is not defined
+    at <anonymous>:1:36
 

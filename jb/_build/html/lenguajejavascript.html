@@ -14,21 +14,21 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -61,6 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lenguajejavascript';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Arrays en JavaScript" href="arraysobjetosclases.html" />
     <link rel="prev" title="Libro DWEC" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -71,23 +72,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -109,13 +114,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -179,6 +179,13 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays en JavaScript</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 </ul>
 
     </div>
@@ -194,7 +201,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -203,7 +210,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -711,7 +718,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <section id="tipos-soportados">
 <h2>Tipos Soportados<a class="headerlink" href="#tipos-soportados" title="Link to this heading">#</a></h2>
 <p>Estos son los tipos soportados, como se puede ver, hay menos cantidad que en otros lenguajes sin perder la capacidad de representación de la información. El caso de las variables numéricas es interesante porque internamente usa coma flotante de doble precisión para cualquier número.</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Tipo</p></th>
 <th class="head"><p>Ejemplo</p></th>
@@ -745,7 +752,6 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </tr>
 </tbody>
 </table>
-</div>
 <section id="typeof">
 <h3>typeOf<a class="headerlink" href="#typeof" title="Link to this heading">#</a></h3>
 <p>Si queremos saber de qué tipo es una variable, podemos preguntar con <em><strong>typeOf():</strong></em></p>
@@ -1355,7 +1361,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <h2>Elementos del lenguaje<a class="headerlink" href="#elementos-del-lenguaje" title="Link to this heading">#</a></h2>
 <section id="operadores">
 <h3>Operadores<a class="headerlink" href="#operadores" title="Link to this heading">#</a></h3>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Operador</p></th>
 <th class="head"><p>Descripción</p></th>
@@ -1406,7 +1412,6 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </tr>
 </tbody>
 </table>
-</div>
 <p>Los operadores de comparación estrictos en JavaScript son <code class="docutils literal notranslate"><span class="pre">===</span></code> (igual estrictamente) y <code class="docutils literal notranslate"><span class="pre">!==</span></code> (distinto estrictamente). Comparan tanto el valor como el tipo de los operandos. Estos  Son útiles porque:</p>
 <ul class="simple">
 <li><p><strong>Evitan la Coerción de Tipos</strong>: La coerción implícita puede llevar a resultados inesperados y errores difíciles de detectar. Al usar comparación estricta, se elimina esta ambigüedad.</p></li>
@@ -1599,7 +1604,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </section>
 <section id="tagged-template-literals">
 <h3>Tagged Template Literals<a class="headerlink" href="#tagged-template-literals" title="Link to this heading">#</a></h3>
-<p>Los “Tagged Template Literals” son una característica de JavaScript que te permite personalizar el comportamiento de las plantillas de cadenas de texto. Esto se logra definiendo una función que actúa como un “tag” o etiqueta para la plantilla de cadena de texto.</p>
+<p>Los “Tagged Template Literals” son una característica de JavaScript que te permite crear funciones que aceptan una plantilla literal y sus interpolaciones. Estas funciones son invocadas de forma muy diferente, ya que no tienen (parentesis) y se entiende que el primer argumento es la plantilla y el resto de argumentos son los distintos valores de las variables interpoladas.</p>
 <section id="uso-de-strings-y-variables-como-argumentos-separados">
 <h4>Uso de strings y variables como argumentos separados<a class="headerlink" href="#uso-de-strings-y-variables-como-argumentos-separados" title="Link to this heading">#</a></h4>
 <ul class="simple">
@@ -1623,42 +1628,76 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>En el ejemplo proporcionado, la función <code class="docutils literal notranslate"><span class="pre">generaTemplate</span></code> es un ejemplo de cómo puedes crear una función de etiqueta personalizada.</p></li>
-<li><p>Toma un array de strings y una serie de keys que corresponden a las interpolaciones <code class="docutils literal notranslate"><span class="pre">${}</span></code>.
-Ejemplo:</p></li>
-</ul>
+<p>En el siguiente ejemplo, extraido de <a class="reference external" href="https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation">https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation</a> se puede ver cómo hacer una función para tagged template literal que personalice una plantilla.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">generaTemplate</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">keys</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
-<span class="w">    </span><span class="nx">keys</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">temp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">temp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">temp</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">htmlEscape</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// first!</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;gt;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;lt;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&quot;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;quot;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;#39;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/`/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;#96;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">html</span><span class="p">(</span><span class="nx">templateObject</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">substs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Use raw template strings: we don’t want</span>
+<span class="w">  </span><span class="c1">// backslashes (\n etc.) to be interpreted</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">raw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">templateObject</span><span class="p">.</span><span class="nx">raw</span><span class="p">;</span>
 
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
 
-<span class="kd">let</span><span class="w">  </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PC&quot;</span><span class="p">;</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">precio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="p">;</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">imagen</span><span class="w"> </span><span class="o">=</span><span class="sb">`http://...`</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">miProducto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">generaTemplate</span><span class="sb">`&lt;article&gt;</span>
-<span class="sb">  &lt;h1&gt;</span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">&lt;/h1&gt;</span>
-<span class="sb">  &lt;img src=&quot;</span><span class="si">${</span><span class="nx">imagen</span><span class="si">}</span><span class="sb">&quot; /&gt;</span>
-<span class="sb">  &lt;span&gt;</span><span class="si">${</span><span class="nx">precio</span><span class="si">}</span><span class="sb"> € &lt;/span&gt;</span>
-<span class="sb">&lt;/article&gt;`</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">miProducto</span><span class="p">);</span>
-<span class="p">})();</span>
+<span class="w">  </span><span class="nx">substs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">subst</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Retrieve the template string preceding</span>
+<span class="w">      </span><span class="c1">// the current substitution</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">lit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">raw</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+<span class="w">      </span><span class="c1">// In the example, map() returns an Array:</span>
+<span class="w">      </span><span class="c1">// If `subst` is an Array (and not a string),</span>
+<span class="w">      </span><span class="c1">// we turn it into a string</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">subst</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">subst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">subst</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// If the substitution is preceded by an exclamation</span>
+<span class="w">      </span><span class="c1">// mark, we escape special characters in it</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">lit</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">subst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">htmlEscape</span><span class="p">(</span><span class="nx">subst</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">lit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lit</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">lit</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">subst</span><span class="p">;</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="c1">// Take care of last template string</span>
+<span class="w">  </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">raw</span><span class="p">[</span><span class="nx">raw</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// (A)</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">tmpl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addrs</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
+<span class="sb">    &lt;table&gt;</span>
+<span class="sb">    </span><span class="si">${</span><span class="nx">addrs</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">addr</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
+<span class="sb">        &lt;tr&gt;&lt;td&gt;!</span><span class="si">${</span><span class="nx">addr</span><span class="p">.</span><span class="nx">first</span><span class="si">}</span><span class="sb">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="sb">        &lt;tr&gt;&lt;td&gt;!</span><span class="si">${</span><span class="nx">addr</span><span class="p">.</span><span class="nx">last</span><span class="si">}</span><span class="sb">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="sb">    `</span><span class="p">)</span><span class="si">}</span>
+<span class="sb">    &lt;/table&gt;</span>
+<span class="sb">`</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;Jane&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">last</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Bond&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lars&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">last</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;Croft&gt;&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tmpl</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;article&gt;
-  &lt;h1&gt;PC&lt;/h1&gt;
-  &lt;img src=&quot;http://...&quot; /&gt;
-  &lt;span&gt;1000 € &lt;/span&gt;
-&lt;/article&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    &lt;table&gt;
+    
+        &lt;tr&gt;&lt;td&gt;&amp;lt;Jane&amp;gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Bond&lt;/td&gt;&lt;/tr&gt;
+    
+        &lt;tr&gt;&lt;td&gt;Lars&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&amp;lt;Croft&amp;gt;&lt;/td&gt;&lt;/tr&gt;
+    
+    &lt;/table&gt;
 </pre></div>
 </div>
 </div>
@@ -1695,7 +1734,7 @@ Ejemplo:</p></li>
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1706,6 +1745,15 @@ Ejemplo:</p></li>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Libro DWEC</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="arraysobjetosclases.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Arrays en JavaScript</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1879,8 +1927,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

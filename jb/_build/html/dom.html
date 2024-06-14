@@ -1,0 +1,1238 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DOM &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dom';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Arrays en JavaScript" href="arraysobjetosclases.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays en JavaScript</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">DOM</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fdom.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/dom.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>DOM</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-en-javascript">DOM en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-document-html">Estructura del Document HTML</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-window">DOM: Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-buscar-nodos">DOM: Buscar Nodos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-modificar-nodos">DOM: Modificar Nodos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-estilos">DOM: Estilos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-formularios">Atributos de Formularios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-tradicional-del-formulario">Ciclo Tradicional del Formulario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-del-formulario-con-javascript">Ciclo del Formulario con JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-interceptar-submit-con-javascript">Ejemplo de Interceptar Submit con JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-formularios">Eventos en Formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-evento-onsubmit">Ejemplo de Evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-formulario-por-javascript">Enviar Formulario por JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-envio-por-javascript">Ejemplo de Envío por JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expresiones-regulares">Expresiones Regulares</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-validacion-con-expresiones-regulares">Ejemplo de Validación con Expresiones Regulares</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Atributos de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-atributos-de-datos">Ejemplo de Atributos de Datos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Esperar a que Cargue el DOM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-esperar-al-dom">Ejemplo de Esperar al DOM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-y-handlers">Eventos y Handlers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-events">Eventos (Events)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-handlers">Manejadores (Handlers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso-en-html-y-javascript">Ejemplo de uso en HTML y JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-javascript">Eventos en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-linea">Eventos en línea</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-en-html-no-recomendable">Ejemplo en HTML (No recomendable)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-tradicional-de-eventos">Registro tradicional de eventos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-avanzado-de-eventos">Registro avanzado de eventos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-informacion-del-evento">Obtención de información del evento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-y-captura-de-eventos">Propagación y captura de eventos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-de-teclado">Eventos de teclado</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dom">
+<h1>DOM<a class="headerlink" href="#dom" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>La versión notebook de este libro no tiene muchos ejemplos ejecutables porque los notebooks se ejecutan en un intérprete de JS como Nodejs o Deno. Estos no tienen DOM.</p>
+</div></blockquote>
+<section id="dom-en-javascript">
+<h2>DOM en JavaScript<a class="headerlink" href="#dom-en-javascript" title="Link to this heading">#</a></h2>
+<p>El DOM (Document Object Model) es una interfaz de programación que permite a los scripts actualizar el contenido, la estructura y el estilo de un documento mientras este se está visualizando en el navegador. A continuación, exploraremos cómo interactuar con el DOM en JavaScript, describiendo su estructura y proporcionando ejemplos prácticos.</p>
+<section id="estructura-del-document-html">
+<h3>Estructura del Document HTML<a class="headerlink" href="#estructura-del-document-html" title="Link to this heading">#</a></h3>
+<p>El DOM representa la estructura de un documento HTML como una jerarquía de objetos. Los principales componentes son:</p>
+<ul class="simple">
+<li><p><strong>Window</strong>: Representa la ventana del navegador y es el objeto global en los scripts del navegador.</p></li>
+<li><p><strong>Document</strong>: Representa el documento HTML que se carga en la ventana.</p></li>
+</ul>
+</section>
+</section>
+<section id="dom-window">
+<h2>DOM: Window<a class="headerlink" href="#dom-window" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Window</span></code> es un objeto predefinido en los navegadores web que representa la ventana en la que se muestra el documento. Algunos métodos importantes de <code class="docutils literal notranslate"><span class="pre">window</span></code> incluyen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">alert()</span></code>, <code class="docutils literal notranslate"><span class="pre">prompt()</span></code>: Métodos para mostrar diálogos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setTimeout(función,</span> <span class="pre">tiempo)</span></code>: Ejecuta una función después de un tiempo especificado.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setInterval(función,</span> <span class="pre">tiempo)</span></code>: Ejecuta una función repetidamente a intervalos de tiempo especificados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clearTimeout(identificador)</span></code>: Cancela un <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> programado.</p></li>
+</ul>
+</section>
+<section id="dom-buscar-nodos">
+<h2>DOM: Buscar Nodos<a class="headerlink" href="#dom-buscar-nodos" title="Link to this heading">#</a></h2>
+<p>Para manipular elementos del DOM, primero debemos encontrarlos. Los métodos más comunes son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">document.getElementById(id)</span></code>: Encuentra un elemento por su ID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getElementsByTagName(tag)</span></code>: Encuentra todos los elementos con un nombre de etiqueta específico.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getElementsByName(name)</span></code>: Encuentra todos los elementos con un nombre especificado.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">querySelector(selector)</span></code>: Devuelve el primer elemento que coincide con un selector CSS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">querySelectorAll(selector)</span></code>: Devuelve todos los elementos que coinciden con un selector CSS.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;exampleId&#39;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">elementByName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;exampleName&#39;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.exampleClass&#39;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">allElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.exampleClass&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Además, podemos navegar por el DOM utilizando propiedades como <code class="docutils literal notranslate"><span class="pre">.children</span></code>, <code class="docutils literal notranslate"><span class="pre">.firstChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.firstElementChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.lastChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.parentElement</span></code>.</p>
+</section>
+<section id="dom-modificar-nodos">
+<h2>DOM: Modificar Nodos<a class="headerlink" href="#dom-modificar-nodos" title="Link to this heading">#</a></h2>
+<p>Una vez que hemos encontrado los nodos, podemos modificarlos. Algunos métodos útiles incluyen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.innerHTML</span></code>, <code class="docutils literal notranslate"><span class="pre">.innerText</span></code>, <code class="docutils literal notranslate"><span class="pre">.outerHTML</span></code>: Para cambiar el contenido HTML o texto de un elemento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.insertAdjacentHTML(position,</span> <span class="pre">text)</span></code>: Inserta texto HTML en una posición específica.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.append(content,</span> <span class="pre">element)</span></code>, <code class="docutils literal notranslate"><span class="pre">.prepend(content,</span> <span class="pre">element)</span></code>: Añade contenido al principio o al final de un elemento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.after()</span></code>, <code class="docutils literal notranslate"><span class="pre">.before()</span></code>: Inserta un elemento antes o después del elemento actual.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.cloneNode(deep)</span></code>: Clona un nodo, con o sin sus hijos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.remove()</span></code>: Elimina un nodo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.className</span></code>: Cambia el nombre de la clase de un elemento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.style.property</span></code>: Cambia un estilo CSS de un elemento.</p></li>
+</ul>
+<p>Métodos más antiguos pero aún en uso incluyen <code class="docutils literal notranslate"><span class="pre">removeChild()</span></code> y <code class="docutils literal notranslate"><span class="pre">appendChild()</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;exampleId&#39;</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Nuevo contenido&#39;</span><span class="p">;</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;Más contenido&lt;/p&gt;&#39;</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;Texto adicional&#39;</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="dom-estilos">
+<h2>DOM: Estilos<a class="headerlink" href="#dom-estilos" title="Link to this heading">#</a></h2>
+<p>Para manipular los estilos de un elemento, podemos usar propiedades de estilo y clases CSS.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.style.property</span></code>: Modifica un estilo CSS directamente.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.className</span></code>: Cambia el nombre de la clase del elemento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.classList.add()</span></code>, <code class="docutils literal notranslate"><span class="pre">.classList.toggle()</span></code>, <code class="docutils literal notranslate"><span class="pre">.classList.remove()</span></code>, <code class="docutils literal notranslate"><span class="pre">.classList.replace()</span></code>: Métodos para manipular clases CSS de manera más dinámica.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;exampleId&#39;</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">;</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;new-class&#39;</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;old-class&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="creacion-de-elementos-template-literal">
+<h2>Creación de Elementos: Template Literal<a class="headerlink" href="#creacion-de-elementos-template-literal" title="Link to this heading">#</a></h2>
+<p>Los template literals y las interpolaciones de cadenas permiten crear contenido dinámico de manera sencilla.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">generateGraphCard</span><span class="p">(</span><span class="nx">graph</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cardTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">cardTemplate</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;col&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">cardTemplate</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">        &lt;div class=&quot;card&quot;&gt;</span>
+<span class="sb">            &lt;div class=&quot;card-header&quot;&gt;</span><span class="si">${</span><span class="nx">graph</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
+<span class="sb">            &lt;div class=&quot;card-body&quot;&gt;</span>
+<span class="sb">                &lt;div class=&quot;graph&quot;&gt;&lt;/div&gt;</span>
+<span class="sb">                &lt;p class=&quot;card-text&quot;&gt;</span><span class="si">${</span><span class="nx">graph</span><span class="p">.</span><span class="nx">description</span><span class="si">}</span><span class="sb">&lt;/p&gt;</span>
+<span class="sb">                &lt;a href=&quot;#/graph/</span><span class="si">${</span><span class="nx">graph</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">&quot; class=&quot;btn btn-primary&quot;&gt;Full screen&lt;/a&gt;</span>
+<span class="sb">            &lt;/div&gt;</span>
+<span class="sb">        &lt;/div&gt;`</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">graphContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cardTemplate</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.graph&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">graphContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">graph</span><span class="p">.</span><span class="nx">Data</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">generateBarGraph</span><span class="p">(</span><span class="nx">graph</span><span class="p">.</span><span class="nx">Data</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">graphPlaceholder</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">cardTemplate</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="creacion-de-elementos-interpolaciones-y-wrapper">
+<h2>Creación de Elementos: Interpolaciones y Wrapper<a class="headerlink" href="#creacion-de-elementos-interpolaciones-y-wrapper" title="Link to this heading">#</a></h2>
+<p>Podemos usar funciones para extraer e implementar interpolaciones en plantillas de cadenas.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">extractInterpolations</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\{\{([^\{\}]*)\}\}/g</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[...</span><span class="nx">template</span><span class="p">.</span><span class="nx">matchAll</span><span class="p">(</span><span class="nx">regex</span><span class="p">)];</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">applyInterpolations</span><span class="p">(</span><span class="nx">template</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">extractInterpolations</span><span class="p">(</span><span class="nx">template</span><span class="p">).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">T</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">I</span><span class="p">,</span><span class="w"> </span><span class="nx">att</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">T</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="nx">att</span><span class="p">]),</span><span class="w"> </span><span class="nx">template</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">wrapElement</span><span class="p">(</span><span class="nx">innerHTML</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">wrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">innerHTML</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">firstElementChild</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">renderNews</span><span class="p">(</span><span class="nx">news</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">newsTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">        &lt;article id=&quot;article_{{id}}&quot;&gt;</span>
+<span class="sb">            &lt;a href=&quot;{{link}}&quot;&gt;&lt;h2&gt;{{headline}}&lt;/h2&gt;&lt;/a&gt;</span>
+<span class="sb">            &lt;time&gt;{{date}}&lt;/time&gt;&lt;address&gt;{{authors}}&lt;/address&gt;</span>
+<span class="sb">            &lt;p&gt;{{short_description}}&lt;/p&gt;</span>
+<span class="sb">            &lt;p&gt;{{category}}&lt;/p&gt;</span>
+<span class="sb">        &lt;/article&gt;`</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wrapElement</span><span class="p">(</span><span class="nx">applyInterpolations</span><span class="p">(</span><span class="nx">newsTemplate</span><span class="p">,</span><span class="w"> </span><span class="nx">news</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="esperar-a-que-cargue-el-dom">
+<h2>Esperar a que Cargue el DOM<a class="headerlink" href="#esperar-a-que-cargue-el-dom" title="Link to this heading">#</a></h2>
+<p>Podemos asegurarnos de que el DOM esté completamente cargado antes de ejecutar nuestro script utilizando <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">number</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>También podemos colocar nuestro script al final del cuerpo (<code class="docutils literal notranslate"><span class="pre">body</span></code>) del documento HTML.</p>
+</section>
+<section id="atributos-de-datos">
+<h2>Atributos de Datos<a class="headerlink" href="#atributos-de-datos" title="Link to this heading">#</a></h2>
+<p>HTML5 permite agregar atributos personalizados no visuales a las etiquetas utilizando <code class="docutils literal notranslate"><span class="pre">data-*</span></code>. Estos atributos pueden ser accesibles a través de JavaScript usando <code class="docutils literal notranslate"><span class="pre">dataset</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">article</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&quot;electriccars&quot;</span>
+    <span class="na">data-columns</span><span class="o">=</span><span class="s">&quot;3&quot;</span>
+    <span class="na">data-index-number</span><span class="o">=</span><span class="s">&quot;12314&quot;</span>
+    <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;cars&quot;</span><span class="p">&gt;</span>
+    ...
+<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">article</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;electriccars&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">columns</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">indexNumber</span><span class="p">);</span><span class="w"> </span><span class="c1">// 12314</span>
+</pre></div>
+</div>
+</section>
+<section id="formularios-en-javascript">
+<h2>Formularios en JavaScript<a class="headerlink" href="#formularios-en-javascript" title="Link to this heading">#</a></h2>
+<p>En una aplicación web, la validación de los formularios se realiza tanto en el lado del cliente como en el del servidor.</p>
+<blockquote>
+<div><p>De hecho, la única validación estrictamente necesaria se debe hacer en el servidor para evitar peticiones ilegales por clientes como postman o curl.</p>
+</div></blockquote>
+<section id="atributos-de-formularios">
+<h3>Atributos de Formularios<a class="headerlink" href="#atributos-de-formularios" title="Link to this heading">#</a></h3>
+<p>El contenido de los campos de entrada en un formulario se puede visualizar y modificar utilizando el atributo <code class="docutils literal notranslate"><span class="pre">value</span></code>. Otros elementos del formulario, como los botones de opción (radio button) y las casillas de verificación (checkbox), deben tener un <code class="docutils literal notranslate"><span class="pre">name</span></code> común y también utilizan los atributos <code class="docutils literal notranslate"><span class="pre">value</span></code> y <code class="docutils literal notranslate"><span class="pre">checked</span></code>. Para los elementos <code class="docutils literal notranslate"><span class="pre">select</span></code>, se utilizan los atributos <code class="docutils literal notranslate"><span class="pre">options</span></code> y <code class="docutils literal notranslate"><span class="pre">selectedIndex</span></code>.</p>
+<p>Observa el ejemplo a continuación:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Formulario de Ejemplo<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;exampleForm&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;textInput&quot;</span><span class="p">&gt;</span>Texto:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;textInput&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Texto inicial&quot;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        
+        <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>Opciones:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;options&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;opcion1&quot;</span> <span class="na">checked</span><span class="p">&gt;</span> Opción 1
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;options&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;opcion2&quot;</span><span class="p">&gt;</span> Opción 2<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;checkboxInput&quot;</span><span class="p">&gt;</span>Casilla:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;checkboxInput&quot;</span> <span class="na">checked</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;selectInput&quot;</span><span class="p">&gt;</span>Selecciona:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;selectInput&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>Opción 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Opción 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">&gt;</span>Opción 3<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;manipulateValues()&quot;</span><span class="p">&gt;</span>Ver y Manipular Valores<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;script.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">manipulateValues</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Obtener el valor del campo de texto</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">textInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;textInput&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Valor del campo de texto:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">textInput</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">textInput</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Nuevo texto&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Obtener el valor del radio button seleccionado</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">selectedOption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input[name=&quot;options&quot;]:checked&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Valor del radio button seleccionado:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">selectedOption</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Cambiar la selección del radio button</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input[name=&quot;options&quot;][value=&quot;opcion2&quot;]&#39;</span><span class="p">).</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Obtener el valor del checkbox</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">checkboxInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;checkboxInput&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Checkbox está marcado:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">checkboxInput</span><span class="p">.</span><span class="nx">checked</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Cambiar el estado del checkbox</span>
+<span class="w">    </span><span class="nx">checkboxInput</span><span class="p">.</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">checkboxInput</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Obtener el valor del select</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">selectInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;selectInput&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Valor del select:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">selectInput</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Cambiar la selección del select</span>
+<span class="w">    </span><span class="nx">selectInput</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ciclo-tradicional-del-formulario">
+<h3>Ciclo Tradicional del Formulario<a class="headerlink" href="#ciclo-tradicional-del-formulario" title="Link to this heading">#</a></h3>
+<p>Tradicionalmente, un formulario está diseñado para enviar datos mediante HTTP al servidor. Al enviar (submit) un formulario, el navegador empaqueta los datos y los envía utilizando el método HTTP especificado (como GET o POST). Los formularios pueden incluir validación interna mediante HTML, lo que es más rápido que JavaScript pero ofrece menos control y personalización. La validación interna de HTML genera pseudo-clases que pueden estilizarse con CSS.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Formulario con Validación<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;styles.css&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;validationForm&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="p">&gt;</span>Nombre:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;name&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span> <span class="na">required</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="p">&gt;</span>Correo Electrónico:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">required</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;</span>Contraseña:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">required</span> <span class="na">minlength</span><span class="o">=</span><span class="s">&quot;6&quot;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;script.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Estilos básicos */</span>
+<span class="nt">form</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">label</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">box-sizing</span><span class="p">:</span><span class="w"> </span><span class="kc">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Pseudo-clases para la validación */</span>
+<span class="nt">input</span><span class="p">:</span><span class="nd">required</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">border-left</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#0000FF</span><span class="p">;</span><span class="w"> </span><span class="c">/* Borde azul para campos requeridos */</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="p">:</span><span class="nd">valid</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">border-left</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#00FF00</span><span class="p">;</span><span class="w"> </span><span class="c">/* Borde verde para campos válidos */</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="p">:</span><span class="nd">invalid</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">border-left</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#FF0000</span><span class="p">;</span><span class="w"> </span><span class="c">/* Borde rojo para campos inválidos */</span>
+<span class="p">}</span>
+
+<span class="c">/* Pseudo-clase para campo enfocado */</span>
+<span class="nt">input</span><span class="p">:</span><span class="nd">focus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">outline</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#66AFE9</span><span class="p">;</span>
+<span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w"> </span><span class="mi">233</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;validationForm&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span><span class="w"> </span><span class="c1">// Evita el envío del formulario para la demostración</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Formulario enviado correctamente (validación exitosa)&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Este ejemplo demuestra cómo utilizar pseudo-clases CSS para estilizar formularios con validación interna en HTML.</p>
+</section>
+<section id="ciclo-del-formulario-con-javascript">
+<h3>Ciclo del Formulario con JavaScript<a class="headerlink" href="#ciclo-del-formulario-con-javascript" title="Link to this heading">#</a></h3>
+<p>Podemos interceptar y detener el ciclo por defecto de un formulario para validarlo y enviarlo utilizando JavaScript. De esta manera, podemos evitar tener un botón <code class="docutils literal notranslate"><span class="pre">submit</span></code> y controlar completamente el proceso de envío. Si el formulario envía datos al servidor y se refresca, JavaScript pierde el control del programa. Para evitar esto, podemos utilizar <code class="docutils literal notranslate"><span class="pre">preventDefault()</span></code> dentro del evento <code class="docutils literal notranslate"><span class="pre">submit</span></code> o devolver <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<section id="ejemplo-de-interceptar-submit-con-javascript">
+<h4>Ejemplo de Interceptar Submit con JavaScript<a class="headerlink" href="#ejemplo-de-interceptar-submit-con-javascript" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;formulario&quot;</span> <span class="na">onsubmit</span><span class="o">=</span><span class="s">&quot;return validar();&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;phone-number&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">validar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">phoneNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;phone-number&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">phoneRGEX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">phoneResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">phoneRGEX</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">phoneNumber</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;phone: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">phoneResult</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">phoneResult</span><span class="p">;</span><span class="w"> </span><span class="c1">// Retorna true si es válido, de lo contrario false</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="eventos-en-formularios">
+<h3>Eventos en Formularios<a class="headerlink" href="#eventos-en-formularios" title="Link to this heading">#</a></h3>
+<p>Podemos manejar eventos de formularios para personalizar su comportamiento. Un ejemplo común es el uso del evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code> para ejecutar una función de validación antes de enviar el formulario. Si la función de validación devuelve <code class="docutils literal notranslate"><span class="pre">true</span></code>, el formulario se envía; de lo contrario, se cancela el envío.</p>
+<section id="ejemplo-de-evento-onsubmit">
+<h4>Ejemplo de Evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code><a class="headerlink" href="#ejemplo-de-evento-onsubmit" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">onsubmit</span><span class="o">=</span><span class="s">&quot;return validar();&quot;</span><span class="p">&gt;</span>
+  <span class="cm">&lt;!-- Campos del formulario --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="enviar-formulario-por-javascript">
+<h3>Enviar Formulario por JavaScript<a class="headerlink" href="#enviar-formulario-por-javascript" title="Link to this heading">#</a></h3>
+<p>Podemos enviar un formulario mediante JavaScript utilizando el método <code class="docutils literal notranslate"><span class="pre">submit()</span></code>. Esto es útil cuando queremos enviar el formulario después de realizar alguna operación adicional o validación personalizada.</p>
+<section id="ejemplo-de-envio-por-javascript">
+<h4>Ejemplo de Envío por JavaScript<a class="headerlink" href="#ejemplo-de-envio-por-javascript" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;enviarFormulario()&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">enviarFormulario</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;formulario&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">formulario</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="expresiones-regulares">
+<h3>Expresiones Regulares<a class="headerlink" href="#expresiones-regulares" title="Link to this heading">#</a></h3>
+<p>Las expresiones regulares son una herramienta poderosa para validar campos de formulario, como números de teléfono, correos electrónicos, y otros patrones específicos.</p>
+<section id="ejemplo-de-validacion-con-expresiones-regulares">
+<h4>Ejemplo de Validación con Expresiones Regulares<a class="headerlink" href="#ejemplo-de-validacion-con-expresiones-regulares" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;phone-number&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;validate()&quot;</span><span class="p">&gt;</span>Validar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">validate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">phoneNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;phone-number&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">phoneRGEX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">phoneResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">phoneRGEX</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">phoneNumber</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;phone: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">phoneResult</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h3>Atributos de Datos<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>HTML5 permite añadir atributos no visuales a una etiqueta utilizando <code class="docutils literal notranslate"><span class="pre">data-*</span></code>. Estos atributos son útiles para almacenar datos personalizados que se pueden acceder mediante JavaScript utilizando <code class="docutils literal notranslate"><span class="pre">dataset</span></code>.</p>
+<section id="ejemplo-de-atributos-de-datos">
+<h4>Ejemplo de Atributos de Datos<a class="headerlink" href="#ejemplo-de-atributos-de-datos" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">article</span>
+  <span class="na">id</span><span class="o">=</span><span class="s">&quot;electriccars&quot;</span>
+  <span class="na">data-columns</span><span class="o">=</span><span class="s">&quot;3&quot;</span>
+  <span class="na">data-index-number</span><span class="o">=</span><span class="s">&quot;12314&quot;</span>
+  <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;cars&quot;</span><span class="p">&gt;</span>
+  ...
+<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">article</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;electriccars&quot;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">columns</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">indexNumber</span><span class="p">);</span><span class="w"> </span><span class="c1">// 12314</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id2">
+<h3>Esperar a que Cargue el DOM<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Es importante asegurarse de que el DOM esté completamente cargado antes de ejecutar ciertas operaciones de JavaScript. Esto se puede hacer utilizando el evento <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
+<section id="ejemplo-de-esperar-al-dom">
+<h4>Ejemplo de Esperar al DOM<a class="headerlink" href="#ejemplo-de-esperar-al-dom" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">contenidor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">numero</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">contenidor</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">numero</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>También se puede lograr poniendo el script al final del <code class="docutils literal notranslate"><span class="pre">body</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="eventos-y-handlers">
+<h2>Eventos y Handlers<a class="headerlink" href="#eventos-y-handlers" title="Link to this heading">#</a></h2>
+<p>Los eventos y los manejadores (handlers) son elementos para capturar interacciones del usuario y realizar acciones en respuesta a estas interacciones.</p>
+<section id="eventos-events">
+<h3>Eventos (Events)<a class="headerlink" href="#eventos-events" title="Link to this heading">#</a></h3>
+<p>Los eventos son mecanismos que se activan cuando el usuario interactúa con la página web. Estas interacciones pueden ser clics del ratón, pulsaciones de teclado, desplazamientos, cambios en el tamaño de la ventana, etc. Los eventos permiten que JavaScript responda dinámicamente a las acciones del usuario.</p>
+<p><strong>Características principales:</strong></p>
+<ul class="simple">
+<li><p>Son disparados por el navegador o por el usuario.</p></li>
+<li><p>Pueden estar relacionados con elementos específicos del DOM, como un botón o un campo de entrada.</p></li>
+<li><p>El objeto <code class="docutils literal notranslate"><span class="pre">Event</span></code> contiene información detallada sobre el evento que ocurrió, como qué elemento lo originó y detalles específicos del tipo de evento.</p></li>
+</ul>
+</section>
+<section id="manejadores-handlers">
+<h3>Manejadores (Handlers)<a class="headerlink" href="#manejadores-handlers" title="Link to this heading">#</a></h3>
+<p>Un manejador, o handler en inglés, es una función que se ejecuta cuando ocurre un evento específico. Cada tipo de evento (como <code class="docutils literal notranslate"><span class="pre">click</span></code>, <code class="docutils literal notranslate"><span class="pre">submit</span></code>, <code class="docutils literal notranslate"><span class="pre">mouseover</span></code>, etc.) puede tener asociado un manejador que define qué acción debe realizarse en respuesta al evento.</p>
+<p><strong>Características principales:</strong></p>
+<ul class="simple">
+<li><p>Es una función que se asigna a un evento particular en un elemento del DOM.</p></li>
+<li><p>Define la acción o comportamiento que se debe llevar a cabo cuando el evento ocurre.</p></li>
+<li><p>Los manejadores pueden ser definidos directamente en el HTML, usando atributos como <code class="docutils literal notranslate"><span class="pre">onclick</span></code>, o pueden ser asignados dinámicamente desde JavaScript.</p></li>
+</ul>
+</section>
+<section id="ejemplo-de-uso-en-html-y-javascript">
+<h3>Ejemplo de uso en HTML y JavaScript<a class="headerlink" href="#ejemplo-de-uso-en-html-y-javascript" title="Link to this heading">#</a></h3>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Eventos y Manejadores<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;myButton&quot;</span><span class="p">&gt;</span>Haz clic aquí<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;script.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Obtener referencia al botón</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myButton&#39;</span><span class="p">);</span>
+
+<span class="c1">// Definir el manejador para el evento &#39;click&#39;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">handleClick</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;¡Se hizo clic en el botón!&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Detalles del evento:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Asignar el manejador al evento &#39;click&#39; del botón</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleClick</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="eventos-en-javascript">
+<h2>Eventos en JavaScript<a class="headerlink" href="#eventos-en-javascript" title="Link to this heading">#</a></h2>
+<p>Los eventos en JavaScript permiten capturar desde movimientos del mouse hasta pulsaciones de teclado y manipular el contenido y comportamiento de la página en respuesta a estas interacciones.</p>
+<section id="eventos-en-linea">
+<h3>Eventos en línea<a class="headerlink" href="#eventos-en-linea" title="Link to this heading">#</a></h3>
+<section id="ejemplo-en-html-no-recomendable">
+<h4>Ejemplo en HTML (No recomendable)<a class="headerlink" href="#ejemplo-en-html-no-recomendable" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">onmouseover</span><span class="o">=</span><span class="s">&quot;this.style.background=&#39;#FF0000&#39;;&quot;</span> <span class="na">onmouseout</span><span class="o">=</span><span class="s">&quot;this.style.background=&#39;#FFFFFF&#39;;&quot;</span><span class="p">&gt;</span>HOLA<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Este método incrusta el código JavaScript directamente en el atributo <code class="docutils literal notranslate"><span class="pre">onmouseover</span></code> y <code class="docutils literal notranslate"><span class="pre">onmouseout</span></code> del elemento <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code>. Aunque es simple, no se recomienda porque mezcla lógica de presentación con el contenido y dificulta el mantenimiento.</p>
+</section>
+</section>
+<section id="registro-tradicional-de-eventos">
+<h3>Registro tradicional de eventos<a class="headerlink" href="#registro-tradicional-de-eventos" title="Link to this heading">#</a></h3>
+<p>Para manejar eventos de manera más estructurada y mantenible, se utiliza el método tradicional de registrar eventos en JavaScript:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">).</span><span class="nx">onmouseover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#FF0000&#39;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">};</span>
+<span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">).</span><span class="nx">onmouseout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#FFFFFF&#39;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Aquí, se espera a que la ventana y todos los recursos se carguen completamente (<code class="docutils literal notranslate"><span class="pre">window.onload</span></code>) antes de asignar los manejadores de eventos <code class="docutils literal notranslate"><span class="pre">onmouseover</span></code> y <code class="docutils literal notranslate"><span class="pre">onmouseout</span></code> al elemento con id <code class="docutils literal notranslate"><span class="pre">hola</span></code>. Sin embargo, esta técnica tiene limitaciones, como la incapacidad de asignar múltiples manejadores a un mismo evento.</p>
+</section>
+<section id="registro-avanzado-de-eventos">
+<h3>Registro avanzado de eventos<a class="headerlink" href="#registro-avanzado-de-eventos" title="Link to this heading">#</a></h3>
+<p>El método recomendado para registrar eventos es usando <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code>, que ofrece más flexibilidad y mejores prácticas:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#FF0000&#39;</span><span class="p">;</span>
+<span class="w">       </span><span class="p">},</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="w">       </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#FFFFFF&#39;</span><span class="p">;</span>
+<span class="w">       </span><span class="p">},</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="w">   </span><span class="p">});</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>Aquí, <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code> permite agregar múltiples manejadores para el mismo evento, separando la lógica de la presentación del HTML.</p>
+</section>
+<section id="obtencion-de-informacion-del-evento">
+<h3>Obtención de información del evento<a class="headerlink" href="#obtencion-de-informacion-del-evento" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">manejador</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="w">       </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">manejador</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="w">   </span><span class="p">});</span>
+
+<span class="w">   </span><span class="kd">function</span><span class="w"> </span><span class="nx">manejador</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;mouseover&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#FF0000&#39;</span><span class="p">;</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;mouseout&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#FFFFFF&#39;</span><span class="p">;</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;hola&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;¡Hola!&#39;</span><span class="p">);</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">manejador</span></code> es una función que maneja tanto el evento <code class="docutils literal notranslate"><span class="pre">mouseover</span></code> como <code class="docutils literal notranslate"><span class="pre">mouseout</span></code>. Utiliza el objeto <code class="docutils literal notranslate"><span class="pre">Event</span></code> para obtener información sobre el tipo de evento (<code class="docutils literal notranslate"><span class="pre">e.type</span></code>) y el objetivo del evento (<code class="docutils literal notranslate"><span class="pre">e.target</span></code>), que es el elemento que disparó el evento.</p>
+</section>
+<section id="propagacion-y-captura-de-eventos">
+<h3>Propagación y captura de eventos<a class="headerlink" href="#propagacion-y-captura-de-eventos" title="Link to this heading">#</a></h3>
+<p>Los eventos se propagan desde el elemento que los desencadena hacia sus elementos padre. Se puede capturar un evento durante esta propagación y realizar acciones diferentes según el elemento específico que lo desencadenó. Para detener la propagación de un evento a elementos padre, se usa <code class="docutils literal notranslate"><span class="pre">event.stopPropagation()</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;padre&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;hijo&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;boton&quot;</span><span class="p">&gt;</span>Haz clic aquí<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;boton&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Haz clic en el botón hijo&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span><span class="w"> </span><span class="c1">// Detiene la propagación del evento hacia arriba</span>
+<span class="p">});</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hijo&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Haz clic en el div hijo&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;padre&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Haz clic en el div padre&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="eventos-de-teclado">
+<h3>Eventos de teclado<a class="headerlink" href="#eventos-de-teclado" title="Link to this heading">#</a></h3>
+<p>Los eventos de teclado (<code class="docutils literal notranslate"><span class="pre">KeyboardEvent</span></code>) permiten capturar las pulsaciones de teclas y actuar en consecuencia. Se puede obtener el código de la tecla presionada usando <code class="docutils literal notranslate"><span class="pre">event.code</span></code>, lo que proporciona una manera estandarizada de identificar cada tecla.
+Aquí tienes un ejemplo sencillo que muestra cómo capturar eventos de teclado y obtener el código de la tecla presionada usando <code class="docutils literal notranslate"><span class="pre">event.code</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputTexto&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Escribe algo aquí...&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;inputTexto&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Tecla presionada:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="arraysobjetosclases.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Arrays en JavaScript</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-en-javascript">DOM en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-document-html">Estructura del Document HTML</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-window">DOM: Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-buscar-nodos">DOM: Buscar Nodos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-modificar-nodos">DOM: Modificar Nodos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-estilos">DOM: Estilos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-formularios">Atributos de Formularios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-tradicional-del-formulario">Ciclo Tradicional del Formulario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-del-formulario-con-javascript">Ciclo del Formulario con JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-interceptar-submit-con-javascript">Ejemplo de Interceptar Submit con JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-formularios">Eventos en Formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-evento-onsubmit">Ejemplo de Evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-formulario-por-javascript">Enviar Formulario por JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-envio-por-javascript">Ejemplo de Envío por JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expresiones-regulares">Expresiones Regulares</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-validacion-con-expresiones-regulares">Ejemplo de Validación con Expresiones Regulares</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Atributos de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-atributos-de-datos">Ejemplo de Atributos de Datos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Esperar a que Cargue el DOM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-esperar-al-dom">Ejemplo de Esperar al DOM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-y-handlers">Eventos y Handlers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-events">Eventos (Events)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-handlers">Manejadores (Handlers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso-en-html-y-javascript">Ejemplo de uso en HTML y JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-javascript">Eventos en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-linea">Eventos en línea</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-en-html-no-recomendable">Ejemplo en HTML (No recomendable)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-tradicional-de-eventos">Registro tradicional de eventos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-avanzado-de-eventos">Registro avanzado de eventos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-informacion-del-evento">Obtención de información del evento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-y-captura-de-eventos">Propagación y captura de eventos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-de-teclado">Eventos de teclado</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
