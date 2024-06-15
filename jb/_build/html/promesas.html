@@ -1,0 +1,1290 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Promesas &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'promesas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fpromesas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/promesas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Promesas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-motor-de-javascript">El Motor de JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-de-ejecucion">Entorno de Ejecución</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-y-pila-de-llamadas">Contexto de Ejecución y Pila de Llamadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion">Contexto de Ejecución</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-global">Contexto de Ejecución Global</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-de-funcion">Contexto de Ejecución de Función</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pila-de-llamadas-call-stack">Pila de Llamadas (Call Stack)</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-analizar-el-call-stack">Herramientas para Analizar el Call Stack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cola-de-macrotareas-y-microtareas">Cola de Macrotareas y Microtareas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-dividir-el-trabajo-con-settimeout">Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-macrotareas-y-microtareas">Diferencias entre Macrotareas y Microtareas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-ejemplo-con-promesas-microtareas">Código de Ejemplo con Promesas (Microtareas)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis-y-asincronia">Web APIs y Asincronía</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#event-loop-pila-y-cola">Event Loop, Pila y Cola</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#callbacks-en-javascript">Callbacks en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#callbacks-en-operaciones-asincronas">Callbacks en Operaciones Asíncronas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#callback-hell-infierno-de-callbacks">Callback Hell (Infierno de Callbacks)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-de-las-promesas">Estados de las Promesas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-promesas">Uso de Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-sincronas-y-asincronas">Promesas Síncronas y Asíncronas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encadenar-promesas">Encadenar Promesas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-errores">Manejo de Errores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-all">Promise.all()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-javascript">Async/Await en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-await">Top-Level Await</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-async-await">Ventajas de <code class="docutils literal notranslate"><span class="pre">async</span></code>/<code class="docutils literal notranslate"><span class="pre">await</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="promesas">
+<h1>Promesas<a class="headerlink" href="#promesas" title="Link to this heading">#</a></h1>
+<p>Antes de estudiar las promesas, vamos a repasar algunos conceptos sobre cómo funciona internamente el motor de javascript. De esta manera será más fácil entender cómo funcionan las promesas y cómo usarlas.</p>
+<section id="el-motor-de-javascript">
+<h2>El Motor de JavaScript<a class="headerlink" href="#el-motor-de-javascript" title="Link to this heading">#</a></h2>
+<p>El motor de JavaScript dentro del navegador es responsable de compilar y ejecutar el código JavaScript, manejar la pila de funciones (call stack), gestionar el alojamiento de los objetos en memoria (heap) y recolectar la basura de los objetos que ya no se necesitan. Además, proporciona una API con utilidades del navegador, red, funciones asíncronas y más. En este capítulo, exploraremos cómo funciona el motor de JavaScript, incluyendo la ejecución de código síncrono y asíncrono, y los conceptos de contexto de ejecución y pila de llamadas.</p>
+<section id="entorno-de-ejecucion">
+<h3>Entorno de Ejecución<a class="headerlink" href="#entorno-de-ejecucion" title="Link to this heading">#</a></h3>
+<p>JavaScript solo puede tener un hilo de ejecución (en principio). Esto significa que si solicitamos algo al servidor de forma síncrona, toda la web se detendrá hasta que llegue la respuesta. Sin embargo, los navegadores tienen un entorno de ejecución que permite que JavaScript realice solicitudes de forma asíncrona y continúe ejecutando otras tareas. Estas peticiones asíncronas pueden ser Callbacks, Promesas o Async/Await. Para entender cómo funcionan las peticiones asíncronas en JavaScript, es fundamental comprender los conceptos de Contexto de Ejecución y Pila de Llamadas.</p>
+<section id="contexto-de-ejecucion-y-pila-de-llamadas">
+<h4>Contexto de Ejecución y Pila de Llamadas<a class="headerlink" href="#contexto-de-ejecucion-y-pila-de-llamadas" title="Link to this heading">#</a></h4>
+<section id="contexto-de-ejecucion">
+<h5>Contexto de Ejecución<a class="headerlink" href="#contexto-de-ejecucion" title="Link to this heading">#</a></h5>
+<p>El contexto de ejecución es el entorno en el cual JavaScript se evalúa y ejecuta. Cada vez que se ejecuta un script o se llama a una función, se crea un nuevo contexto de ejecución. Existen dos tipos principales de contextos de ejecución: el contexto global y el contexto de función.</p>
+<section id="contexto-de-ejecucion-global">
+<h6>Contexto de Ejecución Global<a class="headerlink" href="#contexto-de-ejecucion-global" title="Link to this heading">#</a></h6>
+<p>El contexto de ejecución global se crea cuando se carga una página web o un archivo JavaScript en un entorno de ejecución, como un navegador o Node.js. Este contexto es el entorno predeterminado en el que se evalúa y ejecuta el código global, es decir, cualquier código que no esté dentro de una función.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">globalVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;I am global&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">showGlobalVar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">globalVar</span><span class="p">);</span><span class="w"> </span><span class="c1">// Puede acceder a globalVar porque está en el contexto global</span>
+<span class="p">}</span>
+
+<span class="nx">showGlobalVar</span><span class="p">();</span><span class="w"> </span><span class="c1">// I am global</span>
+<span class="p">})()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I am global
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">globalVar</span></code> se define en el contexto global, y la función <code class="docutils literal notranslate"><span class="pre">showGlobalVar</span></code> puede acceder a <code class="docutils literal notranslate"><span class="pre">globalVar</span></code> porque también se encuentra en el contexto global.</p>
+</section>
+<section id="contexto-de-ejecucion-de-funcion">
+<h6>Contexto de Ejecución de Función<a class="headerlink" href="#contexto-de-ejecucion-de-funcion" title="Link to this heading">#</a></h6>
+<p>Cada vez que se llama a una función, se crea un nuevo contexto de ejecución para esa función. Este contexto de ejecución incluye el ámbito léxico de la función, el objeto <code class="docutils literal notranslate"><span class="pre">this</span></code>, y una referencia al contexto de ejecución de su entorno exterior (si lo hay).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">globalVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;I am global&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">outerFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">outerVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;I am outer&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">innerFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">innerVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;I am inner&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">globalVar</span><span class="p">);</span><span class="w"> </span><span class="c1">// I am global</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">outerVar</span><span class="p">);</span><span class="w">  </span><span class="c1">// I am outer</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">innerVar</span><span class="p">);</span><span class="w">  </span><span class="c1">// I am inner</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">innerFunction</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">outerFunction</span><span class="p">();</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I am global
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I am outer
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I am inner
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">outerFunction</span></code> crea su propio contexto de ejecución que incluye <code class="docutils literal notranslate"><span class="pre">outerVar</span></code>. Cuando <code class="docutils literal notranslate"><span class="pre">innerFunction</span></code> se llama, se crea un nuevo contexto de ejecución que incluye <code class="docutils literal notranslate"><span class="pre">innerVar</span></code>. <code class="docutils literal notranslate"><span class="pre">innerFunction</span></code> también tiene acceso a <code class="docutils literal notranslate"><span class="pre">outerVar</span></code> y <code class="docutils literal notranslate"><span class="pre">globalVar</span></code> debido a la cadena de ámbito léxico.</p>
+</section>
+</section>
+<section id="pila-de-llamadas-call-stack">
+<h5>Pila de Llamadas (Call Stack)<a class="headerlink" href="#pila-de-llamadas-call-stack" title="Link to this heading">#</a></h5>
+<p>La pila de llamadas es una estructura de datos LIFO (Last In, First Out) que almacena los contextos de ejecución en el orden en que deben ejecutarse. Cada vez que se llama a una función, su contexto de ejecución se agrega a la pila de llamadas. Cuando la función termina, su contexto se elimina de la pila.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">first</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Entering first&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">second</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Exiting first&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">second</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Entering second&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">third</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Exiting second&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">third</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Entering third&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="c1">// Realiza alguna tarea</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Exiting third&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nx">first</span><span class="p">();</span>
+<span class="w">    </span><span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering first
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering second
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering third
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exiting third
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exiting second
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exiting first
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Análisis del Call Stack:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first()</span></code> se agrega a la pila de llamadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log(&quot;Entering</span> <span class="pre">first&quot;)</span></code> se ejecuta dentro de <code class="docutils literal notranslate"><span class="pre">first()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">second()</span></code> se agrega a la pila de llamadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log(&quot;Entering</span> <span class="pre">second&quot;)</span></code> se ejecuta dentro de <code class="docutils literal notranslate"><span class="pre">second()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">third()</span></code> se agrega a la pila de llamadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log(&quot;Entering</span> <span class="pre">third&quot;)</span></code> se ejecuta dentro de <code class="docutils literal notranslate"><span class="pre">third()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log(&quot;Exiting</span> <span class="pre">third&quot;)</span></code> se ejecuta dentro de <code class="docutils literal notranslate"><span class="pre">third()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">third()</span></code> se elimina de la pila de llamadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log(&quot;Exiting</span> <span class="pre">second&quot;)</span></code> se ejecuta dentro de <code class="docutils literal notranslate"><span class="pre">second()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">second()</span></code> se elimina de la pila de llamadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log(&quot;Exiting</span> <span class="pre">first&quot;)</span></code> se ejecuta dentro de <code class="docutils literal notranslate"><span class="pre">first()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">first()</span></code> se elimina de la pila de llamadas.</p></li>
+</ol>
+<section id="herramientas-para-analizar-el-call-stack">
+<h6>Herramientas para Analizar el Call Stack<a class="headerlink" href="#herramientas-para-analizar-el-call-stack" title="Link to this heading">#</a></h6>
+<p>En Firefox:</p>
+<ol class="arabic simple">
+<li><p>Presiona <code class="docutils literal notranslate"><span class="pre">F12</span></code> para abrir las herramientas de desarrollo.</p></li>
+<li><p>Ve al panel de Depurador.</p></li>
+<li><p>Coloca un punto de ruptura.</p></li>
+<li><p>Ejecuta y analiza la pila de llamadas y el entorno de ejecución de las funciones.</p></li>
+</ol>
+<p>También puedes usar <code class="docutils literal notranslate"><span class="pre">console.trace()</span></code> y <code class="docutils literal notranslate"><span class="pre">debugger;</span></code> en tu código para depurar y analizar el flujo de ejecución.</p>
+</section>
+</section>
+</section>
+<section id="tareas-y-microtareas">
+<h4>Tareas y Microtareas<a class="headerlink" href="#tareas-y-microtareas" title="Link to this heading">#</a></h4>
+<p>JavaScript gestiona las operaciones asíncronas utilizando varias colas de tareas, cada una con una prioridad diferente. Estas colas incluyen la <strong>cola de macrotareas</strong> y la <strong>cola de microtareas</strong>.</p>
+<section id="cola-de-macrotareas-y-microtareas">
+<h5>Cola de Macrotareas y Microtareas<a class="headerlink" href="#cola-de-macrotareas-y-microtareas" title="Link to this heading">#</a></h5>
+<p>Las <strong>macrotareas</strong> incluyen operaciones como los eventos del DOM, <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">setInterval</span></code> y otras operaciones asíncronas. Las macrotareas se gestionan en la “cola de macrotareas” y se procesan una por una.</p>
+<p>Las <strong>microtareas</strong>, por otro lado, incluyen las promesas (<code class="docutils literal notranslate"><span class="pre">Promises</span></code>) y las mutaciones del DOM (a través de <code class="docutils literal notranslate"><span class="pre">MutationObserver</span></code>). Estas tareas se gestionan en la “cola de microtareas”, que tiene una prioridad más alta que la de las macrotareas. Esto significa que después de cada macrotarea, el motor de JavaScript procesará todas las microtareas antes de continuar con la siguiente macrotarea.</p>
+<p>Cuando se completa una macrotarea, el motor de JavaScript pasa a procesar todas las microtareas pendientes. Este ciclo de procesamiento asegura que las microtareas reciban atención inmediata después de cada macrotarea.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">count</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Trabajo pesado</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1e9</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Done in &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">start</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;ms&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// count();   // Esto bloquea el navegador</span>
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">count</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">count</span></code> ejecuta una operación costosa (una larga iteración de bucle).</p></li>
+<li><p>Si <code class="docutils literal notranslate"><span class="pre">count</span></code> se ejecuta directamente, bloquea el navegador porque el bucle es muy largo.</p></li>
+<li><p>Utilizando <code class="docutils literal notranslate"><span class="pre">setTimeout(count,</span> <span class="pre">0)</span></code>, la función <code class="docutils literal notranslate"><span class="pre">count</span></code> se coloca en la cola de macrotareas, permitiendo que el navegador procese otras tareas mientras tanto.</p></li>
+</ol>
+</section>
+<section id="ejemplo-de-dividir-el-trabajo-con-settimeout">
+<h5>Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code><a class="headerlink" href="#ejemplo-de-dividir-el-trabajo-con-settimeout" title="Link to this heading">#</a></h5>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#progress&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">count</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Realiza una parte del trabajo pesado (*)</span>
+<span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">progress</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">1e3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1e7</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">count</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>En lugar de hacer todo el trabajo pesado en una única ejecución, el trabajo se divide en trozos más pequeños.</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">count</span></code> realiza una pequeña parte del trabajo (incrementar <code class="docutils literal notranslate"><span class="pre">i</span></code> y actualizar el texto de <code class="docutils literal notranslate"><span class="pre">progress</span></code>) antes de ceder el control al navegador con <code class="docutils literal notranslate"><span class="pre">setTimeout(count)</span></code>.</p></li>
+<li><p>Esto permite que el navegador renderice el cambio en el DOM, evitando el bloqueo y ofreciendo una experiencia de usuario más fluida.</p></li>
+</ol>
+</section>
+<section id="diferencias-entre-macrotareas-y-microtareas">
+<h5>Diferencias entre Macrotareas y Microtareas<a class="headerlink" href="#diferencias-entre-macrotareas-y-microtareas" title="Link to this heading">#</a></h5>
+<ol class="arabic simple">
+<li><p><strong>Prioridad de Procesamiento</strong>: Las microtareas tienen una prioridad más alta que las macrotareas. Después de cada macrotarea, se procesan todas las microtareas antes de comenzar una nueva macrotarea.</p></li>
+<li><p><strong>Ejemplos</strong>:</p>
+<ul class="simple">
+<li><p><strong>Macrotareas</strong>: <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">setInterval</span></code>, eventos del DOM.</p></li>
+<li><p><strong>Microtareas</strong>: Promesas (<code class="docutils literal notranslate"><span class="pre">Promises</span></code>), <code class="docutils literal notranslate"><span class="pre">MutationObserver</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="codigo-de-ejemplo-con-promesas-microtareas">
+<h5>Código de Ejemplo con Promesas (Microtareas)<a class="headerlink" href="#codigo-de-ejemplo-con-promesas-microtareas" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Script start&#39;</span><span class="p">);</span>
+
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;SetTimeout&#39;</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Promise 1&#39;</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Promise 2&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Script end&#39;</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script start
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script end
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Promise 1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Promise 2
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>El log ‘Script start’ se imprime primero porque es código síncrono.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> coloca su función de callback en la cola de macrotareas.</p></li>
+<li><p>La promesa se resuelve inmediatamente, colocando sus callbacks en la cola de microtareas.</p></li>
+<li><p>El log ‘Script end’ se imprime porque es código síncrono.</p></li>
+<li><p>Las microtareas (las promesas) se ejecutan antes de la macrotarea (<code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>), imprimiendo ‘Promise 1’ y ‘Promise 2’.</p></li>
+<li><p>Finalmente, la función de <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se ejecuta, imprimiendo ‘SetTimeout’.</p></li>
+</ol>
+<p>Este mecanismo de tareas y microtareas permite que JavaScript gestione de manera eficiente las operaciones asíncronas, asegurando que el código se ejecute de manera ordenada y que las tareas con mayor prioridad (microtareas) se completen antes de procesar tareas menos prioritarias (macrotareas).</p>
+</section>
+</section>
+</section>
+<section id="web-apis-y-asincronia">
+<h3>Web APIs y Asincronía<a class="headerlink" href="#web-apis-y-asincronia" title="Link to this heading">#</a></h3>
+<p>Los navegadores ofrecen servicios asíncronos que JavaScript puede solicitar, como <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, eventos del DOM o <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code>. Estas APIs no son específicas de JavaScript, sino que son proporcionadas por los navegadores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">networkRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Async Code&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+<span class="nx">networkRequest</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The End&#39;</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The End
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Análisis:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log('Hello</span> <span class="pre">World')</span></code> se ejecuta e imprime “Hello World”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">networkRequest()</span></code> se agrega a la pila de llamadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se agrega a la pila de llamadas, programa una función para ejecutarse después de 2 segundos y se elimina de la pila.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console.log('The</span> <span class="pre">End')</span></code> se ejecuta e imprime “The End”.</p></li>
+<li><p>Después de 2 segundos, la función dentro de <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se agrega a la pila de llamadas y se ejecuta, imprimiendo “Async Code”.</p></li>
+</ol>
+<section id="event-loop-pila-y-cola">
+<h4>Event Loop, Pila y Cola<a class="headerlink" href="#event-loop-pila-y-cola" title="Link to this heading">#</a></h4>
+<p>El Event Loop maneja la ejecución de código asíncrono en JavaScript. Funciona de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">first</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">second</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0 segundos</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">third</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">first</span><span class="p">();</span>
+<span class="nx">second</span><span class="p">();</span>
+<span class="nx">third</span><span class="p">();</span>
+
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span>
+<span class="c1">// Siempre se imprimirá 1 3 2</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first()</span></code> se agrega a la pila, guarda <code class="docutils literal notranslate"><span class="pre">1</span></code> y se elimina de la pila.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">second()</span></code> se agrega a la pila, <code class="docutils literal notranslate"><span class="pre">setTimeout()</span></code> se agrega a la pila, la función flecha se agrega a la cola, <code class="docutils literal notranslate"><span class="pre">setTimeout()</span></code> y <code class="docutils literal notranslate"><span class="pre">second()</span></code> se eliminan de la pila.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">third()</span></code> se agrega a la pila, guarda <code class="docutils literal notranslate"><span class="pre">3</span></code> y se elimina de la pila.</p></li>
+<li><p>El Event Loop recorre la cola, agrega la función flecha a la pila, guarda <code class="docutils literal notranslate"><span class="pre">2</span></code> y elimina la función flecha de la pila.</p></li>
+<li><p>Finalmente se espera un milisegundo e imprimime el array.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="callbacks-en-javascript">
+<h2>Callbacks en JavaScript<a class="headerlink" href="#callbacks-en-javascript" title="Link to this heading">#</a></h2>
+<p>En JavaScript, un callback es una función que se pasa como argumento a otra función para que se ejecute después de que se complete alguna operación. Los callbacks son esenciales para manejar operaciones asíncronas como la comunicación con servidores, temporizadores, y eventos del DOM.
+El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funciones de callback, com forEach, map, filter, addEventListener…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">callback</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Ejecutar la función con un callback</span>
+<span class="nx">fetchData</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Data is being fetched...&quot;</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data is being fetched...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">3</span>, <span class=" -Color -Color-Yellow">2</span> ]
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">fetchData</span></code> toma un <code class="docutils literal notranslate"><span class="pre">callback</span></code> como argumento.</p></li>
+<li><p>Dentro de <code class="docutils literal notranslate"><span class="pre">fetchData</span></code>, se usa <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> para simular una operación asíncrona que dura 3 segundos.</p></li>
+<li><p>Después de 3 segundos, <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> ejecuta el <code class="docutils literal notranslate"><span class="pre">callback</span></code> pasando un objeto <code class="docutils literal notranslate"><span class="pre">data</span></code> como argumento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fetchData</span></code> se llama con una función anónima como callback que imprime el <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p></li>
+<li><p>Mientras <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> espera, el programa sigue ejecutando el código siguiente y muestra “Data is being fetched…”.</p></li>
+</ol>
+<section id="callbacks-en-operaciones-asincronas">
+<h3>Callbacks en Operaciones Asíncronas<a class="headerlink" href="#callbacks-en-operaciones-asincronas" title="Link to this heading">#</a></h3>
+<p>Los callbacks son especialmente útiles cuando se trabaja con operaciones asíncronas. En el siguiente ejemplo, la función <code class="docutils literal notranslate"><span class="pre">second</span></code> tiene código asíncrono que usa un callback para garantizar que la función <code class="docutils literal notranslate"><span class="pre">third</span></code> se ejecute después de que <code class="docutils literal notranslate"><span class="pre">second</span></code> haya terminado su tarea.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">first</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">second</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">callback</span><span class="p">();</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">third</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">first</span><span class="p">();</span>
+<span class="nx">second</span><span class="p">(</span><span class="nx">third</span><span class="p">);</span>
+<span class="c1">// Salida: 1 2 3</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first</span></code> imprime <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">second</span></code> toma una función <code class="docutils literal notranslate"><span class="pre">callback</span></code> como argumento y usa <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> con un retardo de 0 milisegundos para simular una operación asíncrona.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">second</span></code> imprime <code class="docutils literal notranslate"><span class="pre">2</span></code> y luego llama al <code class="docutils literal notranslate"><span class="pre">callback</span></code> pasado (en este caso, <code class="docutils literal notranslate"><span class="pre">third</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">third</span></code> imprime <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+</ol>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">first</span></code> se ejecuta primero, seguido de <code class="docutils literal notranslate"><span class="pre">second</span></code> que llama a <code class="docutils literal notranslate"><span class="pre">third</span></code> después de su operación asíncrona.</p>
+</section>
+<section id="callback-hell-infierno-de-callbacks">
+<h3>Callback Hell (Infierno de Callbacks)<a class="headerlink" href="#callback-hell-infierno-de-callbacks" title="Link to this heading">#</a></h3>
+<p>El uso excesivo de callbacks puede llevar a una situación conocida como “Callback Hell” o “Pyramid of Doom”, donde el código se vuelve difícil de leer y mantener debido a la anidación profunda de funciones.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">getData</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">getMoreData</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">getEvenMoreData</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">getEvenEvenMoreData</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">getFinalData</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">finalData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">finalData</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En este ejemplo, cada función depende de los datos obtenidos por la función anterior. Esta cadena de dependencias se anida cada vez más profundamente, resultando en un código que es difícil de seguir y mantener.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Promesas<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Las promesas en JavaScript son objetos que representan la eventual finalización (o falla) de una operación asíncrona y su valor resultante. Proporcionan una forma de manejar operaciones asíncronas de manera más manejable y predecible, evitando los problemas del “callback hell”. A continuación, exploraremos cómo funcionan las promesas y cómo pueden ser utilizadas en diferentes contextos.</p>
+<p>Una promesa se crea (manualmente) utilizando el constructor <code class="docutils literal notranslate"><span class="pre">Promise</span></code>, que acepta una función ejecutora como argumento. Esta función ejecutora recibe dos funciones como parámetros: <code class="docutils literal notranslate"><span class="pre">resolve</span></code> y <code class="docutils literal notranslate"><span class="pre">reject</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">promise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Función ejecutora</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Resolving an asynchronous request!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Rejecting an asynchronous request!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//.then si se resuelve</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// .catch si falla</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">2</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="estados-de-las-promesas">
+<h3>Estados de las Promesas<a class="headerlink" href="#estados-de-las-promesas" title="Link to this heading">#</a></h3>
+<p>Las promesas pueden estar en uno de los siguientes estados:</p>
+<ol class="arabic simple">
+<li><p><strong>Pendiente (Pending)</strong>: Estado inicial, la promesa aún no se ha cumplido ni ha sido rechazada.</p></li>
+<li><p><strong>Cumplida (Fulfilled)</strong>: La operación se completó con éxito y se resolvió la promesa.</p></li>
+<li><p><strong>Rechazada (Rejected)</strong>: La operación falló y la promesa fue rechazada.</p></li>
+</ol>
+<p>En el ejemplo anterior, la promesa tiene un 50% de probabilidad de resolverse o rechazarse después de 2 segundos. Dependiendo del resultado, se ejecuta la función correspondiente en <code class="docutils literal notranslate"><span class="pre">then</span></code> o <code class="docutils literal notranslate"><span class="pre">catch</span></code>.</p>
+</section>
+<section id="uso-de-promesas">
+<h3>Uso de Promesas<a class="headerlink" href="#uso-de-promesas" title="Link to this heading">#</a></h3>
+<section id="promesas-sincronas-y-asincronas">
+<h4>Promesas Síncronas y Asíncronas<a class="headerlink" href="#promesas-sincronas-y-asincronas" title="Link to this heading">#</a></h4>
+<p>Las promesas permiten retornar un objeto de forma síncrona con el que se puede trabajar, representando un valor que puede estar disponible ahora, en el futuro o nunca. Esto permite lanzar peticiones asíncronas sin bloquear la ejecución del código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span><span class="p">};</span>
+<span class="w">      </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">fetchData</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Data is being fetched...&quot;</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data is being fetched...
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, la función <code class="docutils literal notranslate"><span class="pre">fetchData</span></code> retorna una promesa que se resuelve con datos después de 3 segundos. Mientras se espera la resolución de la promesa, el código sigue ejecutándose y se imprime “Data is being fetched…”.</p>
+</section>
+<section id="encadenar-promesas">
+<h4>Encadenar Promesas<a class="headerlink" href="#encadenar-promesas" title="Link to this heading">#</a></h4>
+<p>El método <code class="docutils literal notranslate"><span class="pre">then</span></code> de las promesas permite encadenar varias operaciones asíncronas de manera secuencial. Esto es útil cuando necesitamos ejecutar una serie de tareas asíncronas una tras otra.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">fetchData</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;First then:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Second then:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En este ejemplo, la segunda llamada a <code class="docutils literal notranslate"><span class="pre">then</span></code> solo se ejecuta después de que la primera promesa se resuelva, garantizando un flujo secuencial de operaciones.</p>
+</section>
+<section id="manejo-de-errores">
+<h4>Manejo de Errores<a class="headerlink" href="#manejo-de-errores" title="Link to this heading">#</a></h4>
+<p>El método <code class="docutils literal notranslate"><span class="pre">catch</span></code> se utiliza para manejar errores que ocurren durante la ejecución de una promesa. Este se puede encadenar después de uno o varios <code class="docutils literal notranslate"><span class="pre">then</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">fetchData</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;Something went wrong!&quot;</span><span class="p">);</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Aquí, si ocurre algún error en cualquiera de las funciones <code class="docutils literal notranslate"><span class="pre">then</span></code>, será capturado por <code class="docutils literal notranslate"><span class="pre">catch</span></code>.</p>
+</section>
+<section id="promise-all">
+<h4>Promise.all()<a class="headerlink" href="#promise-all" title="Link to this heading">#</a></h4>
+<p>El método <code class="docutils literal notranslate"><span class="pre">Promise.all</span></code> permite ejecutar múltiples promesas en paralelo y esperar a que todas se resuelvan antes de continuar. Si alguna de las promesas se rechaza, <code class="docutils literal notranslate"><span class="pre">Promise.all</span></code> también se rechazará.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">promise1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">promise2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">42</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">promise3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span><span class="w"> </span><span class="nx">promise2</span><span class="p">,</span><span class="w"> </span><span class="nx">promise3</span><span class="p">]).</span><span class="nx">then</span><span class="p">((</span><span class="nx">values</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span><span class="w"> </span><span class="c1">// [3, 42, &quot;foo&quot;]</span>
+<span class="p">});</span>
+
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">Promise.all</span></code> espera a que todas las promesas se resuelvan y luego imprime los valores resueltos en un array.</p>
+</section>
+</section>
+</section>
+<section id="async-await-en-javascript">
+<h2>Async/Await en JavaScript<a class="headerlink" href="#async-await-en-javascript" title="Link to this heading">#</a></h2>
+<p>El uso de <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">await</span></code> en JavaScript ofrece una forma más concisa y legible de trabajar con promesas. Introducida en ECMAScript 2017, esta sintaxis facilita la gestión de operaciones asíncronas, permitiendo escribir código que parece síncrono mientras maneja promesas en segundo plano.</p>
+<p>Una función definida con la palabra clave <code class="docutils literal notranslate"><span class="pre">async</span></code> automáticamente retorna una promesa. Esto significa que incluso si la función parece devolver un valor regular, en realidad estará devolviendo una promesa que se resuelve con ese valor.</p>
+<p>El uso de <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">await</span></code> en JavaScript simplifica la gestión de operaciones asíncronas, proporcionando una sintaxis más limpia y manejable en comparación con el uso tradicional de promesas con <code class="docutils literal notranslate"><span class="pre">.then()</span></code> y <code class="docutils literal notranslate"><span class="pre">.catch()</span></code>. Con la introducción del top-level <code class="docutils literal notranslate"><span class="pre">await</span></code>, ahora es posible manejar operaciones asíncronas de manera aún más directa en el nivel superior de los módulos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getUser</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/users/octocat&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Ejecutar función asíncrona</span>
+<span class="nx">getUser</span><span class="p">();</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic">
+<li><p><strong>Definición de la función <code class="docutils literal notranslate"><span class="pre">async</span></code></strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getUser</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>Aquí, <code class="docutils literal notranslate"><span class="pre">async</span></code> antes de la función indica que esta función es asíncrona y retornará una promesa.</p>
+</li>
+<li><p><strong>Uso de <code class="docutils literal notranslate"><span class="pre">await</span></code></strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/users/octocat&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Dentro de una función <code class="docutils literal notranslate"><span class="pre">async</span></code>, se puede usar <code class="docutils literal notranslate"><span class="pre">await</span></code> antes de una promesa para esperar su resolución. En este caso, <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">fetch</span></code> espera a que la promesa devuelta por <code class="docutils literal notranslate"><span class="pre">fetch</span></code> se resuelva, es decir, que la solicitud HTTP se complete y se reciba una respuesta. Del mismo modo, <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">response.json()</span></code> espera a que se procese la respuesta en formato JSON.</p>
+</li>
+<li><p><strong>Ejecutar la función asíncrona</strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">getUser</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Llamar a <code class="docutils literal notranslate"><span class="pre">getUser()</span></code> ejecuta la función asíncrona. Dado que <code class="docutils literal notranslate"><span class="pre">getUser</span></code> retorna una promesa, se podría encadenar con <code class="docutils literal notranslate"><span class="pre">.then()</span></code> si fuera necesario.</p>
+</li>
+</ol>
+<section id="top-level-await">
+<h3>Top-Level Await<a class="headerlink" href="#top-level-await" title="Link to this heading">#</a></h3>
+<p>Introducido en 2024, el top-level <code class="docutils literal notranslate"><span class="pre">await</span></code> permite usar <code class="docutils literal notranslate"><span class="pre">await</span></code> directamente en el nivel superior de los módulos, sin necesidad de envolver el código en una función <code class="docutils literal notranslate"><span class="pre">async</span></code>. Esto simplifica el código y mejora su legibilidad cuando se trabaja con operaciones asíncronas en el contexto global del módulo.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;../data/colors.json&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">colors</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p><strong>Fetch con <code class="docutils literal notranslate"><span class="pre">await</span></code> a nivel superior</strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;../data/colors.json&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">colors</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En este ejemplo, se está utilizando <code class="docutils literal notranslate"><span class="pre">await</span></code> directamente en el nivel superior del módulo para esperar la resolución de la promesa devuelta por <code class="docutils literal notranslate"><span class="pre">fetch</span></code>. Esto permite que <code class="docutils literal notranslate"><span class="pre">colors</span></code> contenga el resultado de la operación asíncrona sin necesidad de definir una función <code class="docutils literal notranslate"><span class="pre">async</span></code>.</p>
+</li>
+</ol>
+</section>
+<section id="ventajas-de-async-await">
+<h3>Ventajas de <code class="docutils literal notranslate"><span class="pre">async</span></code>/<code class="docutils literal notranslate"><span class="pre">await</span></code><a class="headerlink" href="#ventajas-de-async-await" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Sintaxis más limpia y legible</strong>:
+El código asíncrono escrito con <code class="docutils literal notranslate"><span class="pre">async</span></code>/<code class="docutils literal notranslate"><span class="pre">await</span></code> es más fácil de leer y entender, ya que se parece más a código síncrono. Esto facilita la identificación de la lógica y el flujo del programa.</p></li>
+<li><p><strong>Manejo de errores simplificado</strong>:
+Se pueden usar bloques <code class="docutils literal notranslate"><span class="pre">try/catch</span></code> para manejar errores en funciones <code class="docutils literal notranslate"><span class="pre">async</span></code>, lo que proporciona una forma clara y estructurada de gestionar excepciones.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">   </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getUser</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/users/octocat&#39;</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Network response was not ok&#39;</span><span class="p">);</span>
+<span class="w">       </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Fetching user failed:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="nx">getUser</span><span class="p">();</span>
+<span class="w">   </span>
+<span class="w">  </span><span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, cualquier error que ocurra dentro de la función <code class="docutils literal notranslate"><span class="pre">getUser</span></code> será capturado y manejado en el bloque <code class="docutils literal notranslate"><span class="pre">catch</span></code>.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Ejecución secuencial de operaciones asíncronas</strong>:
+Utilizando <code class="docutils literal notranslate"><span class="pre">await</span></code>, se puede asegurar que las operaciones asíncronas se ejecuten de manera secuencial, lo cual es útil cuando una operación depende de los resultados de otra.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/users/octocat&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="w">     </span><span class="kd">const</span><span class="w"> </span><span class="nx">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">repos_url</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="w">     </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">repos</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="nx">fetchData</span><span class="p">();</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí, la segunda solicitud <code class="docutils literal notranslate"><span class="pre">fetch</span></code> solo se ejecuta después de que la primera solicitud se haya completado y se haya obtenido la URL de los repositorios del usuario.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "deno"
+        },
+        kernelOptions: {
+            name: "deno",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'deno'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-motor-de-javascript">El Motor de JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-de-ejecucion">Entorno de Ejecución</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-y-pila-de-llamadas">Contexto de Ejecución y Pila de Llamadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion">Contexto de Ejecución</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-global">Contexto de Ejecución Global</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-de-funcion">Contexto de Ejecución de Función</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pila-de-llamadas-call-stack">Pila de Llamadas (Call Stack)</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-analizar-el-call-stack">Herramientas para Analizar el Call Stack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cola-de-macrotareas-y-microtareas">Cola de Macrotareas y Microtareas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-dividir-el-trabajo-con-settimeout">Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-macrotareas-y-microtareas">Diferencias entre Macrotareas y Microtareas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-ejemplo-con-promesas-microtareas">Código de Ejemplo con Promesas (Microtareas)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis-y-asincronia">Web APIs y Asincronía</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#event-loop-pila-y-cola">Event Loop, Pila y Cola</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#callbacks-en-javascript">Callbacks en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#callbacks-en-operaciones-asincronas">Callbacks en Operaciones Asíncronas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#callback-hell-infierno-de-callbacks">Callback Hell (Infierno de Callbacks)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-de-las-promesas">Estados de las Promesas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-promesas">Uso de Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-sincronas-y-asincronas">Promesas Síncronas y Asíncronas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encadenar-promesas">Encadenar Promesas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-errores">Manejo de Errores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-all">Promise.all()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-javascript">Async/Await en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-await">Top-Level Await</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-async-await">Ventajas de <code class="docutils literal notranslate"><span class="pre">async</span></code>/<code class="docutils literal notranslate"><span class="pre">await</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
