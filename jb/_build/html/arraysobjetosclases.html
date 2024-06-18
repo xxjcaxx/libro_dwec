@@ -184,6 +184,12 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Desarrollo Web en el Cliente con Integración y Despliegue Continuo (CI/CD)</a></li>
 </ul>
 
     </div>
@@ -453,7 +459,7 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-simple">Invocación Simple</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-como-metodo">Invocación como Método</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-indirecta">Invocación Indirecta</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-con-funciones-anidadas-y-this">Problemas con Funciones Anidadas y <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-con-funciones-anidadas-y-this-that">Problemas con Funciones Anidadas y <code class="docutils literal notranslate"><span class="pre">this</span></code> (that)</a></li>
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-funciones-flecha-y-this">Uso de Funciones Flecha y <code class="docutils literal notranslate"><span class="pre">this</span></code></a><ul class="nav section-nav flex-column">
@@ -518,59 +524,6 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">3</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
-<span class="nx">a</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
-<span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// [1, 2, 3, 4]</span>
-<span class="nx">a</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span><span class="w"> </span><span class="c1">// [1, 2, 3]</span>
-<span class="nx">a</span>
-<span class="p">})()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">3</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">alligator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thick scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;4 foot tail&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rounded snout&quot;</span><span class="p">];</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;thick scales&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">12</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;4 foot tail&#39;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span><span class="w"> </span><span class="nx">idx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">typeof</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">idx</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;4 foot tail&#39;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;rounded snout&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;rounded snout&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">80</span><span class="p">));</span><span class="w"> </span><span class="c1">// [80]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">true</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 foot tail
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 foot tail
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">3</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">3</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">80</span> ]
 </pre></div>
 </div>
 </div>
@@ -736,19 +689,6 @@ document.write(`
 <p>Ejemplo de uso:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="kr">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">type</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; apple&#39;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">];</span>
 
 <span class="c1">// splice</span>
@@ -808,19 +748,6 @@ document.write(`
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">0</span>, <span class=" -Color -Color-Yellow">0</span>, &lt;1 empty item&gt; ]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">myApple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="s2">&quot;Granny Smith&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myApple</span><span class="p">.</span><span class="nx">getInfo</span><span class="p">());</span><span class="w"> </span><span class="c1">// &quot;red Granny Smith apple&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>red Granny Smith apple
 </pre></div>
 </div>
 </div>
@@ -983,23 +910,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">homework</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">topic</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;JS&quot;</span>
-<span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">homework</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span><span class="w"> </span><span class="c1">// [object Object]</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[object Object]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
 <span class="kd">function</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="kr">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">type</span><span class="p">;</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
@@ -1012,24 +922,6 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">homework</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">topic</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;JS&quot;</span>
-<span class="p">};</span>
-<span class="kd">var</span><span class="w"> </span><span class="nx">otherHomework</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">homework</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">otherHomework</span><span class="p">.</span><span class="nx">topic</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;JS&quot;</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>JS
-</pre></div>
-</div>
-</div>
-</div>
 <p>En este ejemplo, hemos declarado una función constructora llamada <code class="docutils literal notranslate"><span class="pre">Apple</span></code>. Esta función toma un parámetro <code class="docutils literal notranslate"><span class="pre">type</span></code> y establece las propiedades <code class="docutils literal notranslate"><span class="pre">type</span></code> y <code class="docutils literal notranslate"><span class="pre">color</span></code> en el nuevo objeto. También define un método <code class="docutils literal notranslate"><span class="pre">getInfo</span></code> que retorna una cadena con la información del objeto.</p>
 <p>Para crear una instancia de <code class="docutils literal notranslate"><span class="pre">Apple</span></code>, se utiliza el operador <code class="docutils literal notranslate"><span class="pre">new</span></code>:</p>
 <div class="cell docutils container">
@@ -1038,12 +930,10 @@ document.write(`
 <span class="kd">function</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="kr">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">type</span><span class="p">;</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; apple&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
 <span class="p">}</span>
-
-<span class="nx">Apple</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; apple&#39;</span><span class="p">;</span>
-<span class="p">};</span>
-
 <span class="kd">let</span><span class="w"> </span><span class="nx">myApple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="s2">&quot;Granny Smith&quot;</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myApple</span><span class="p">.</span><span class="nx">getInfo</span><span class="p">());</span><span class="w"> </span><span class="c1">// &quot;red Granny Smith apple&quot;</span>
 <span class="p">})();</span>
@@ -1075,6 +965,30 @@ document.write(`
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">myApple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="s2">&quot;Granny Smith&quot;</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myApple</span><span class="p">.</span><span class="nx">getInfo</span><span class="p">());</span><span class="w"> </span><span class="c1">// &quot;red Granny Smith apple&quot;</span>
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="kr">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">type</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Apple</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; apple&#39;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">myApple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="s2">&quot;Granny Smith&quot;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myApple</span><span class="p">.</span><span class="nx">getInfo</span><span class="p">());</span><span class="w"> </span><span class="c1">// &quot;red Granny Smith apple&quot;</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>red Granny Smith apple
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="objetos-literales">
@@ -1993,8 +1907,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="problemas-con-funciones-anidadas-y-this">
-<h5>Problemas con Funciones Anidadas y <code class="docutils literal notranslate"><span class="pre">this</span></code><a class="headerlink" href="#problemas-con-funciones-anidadas-y-this" title="Link to this heading">#</a></h5>
+<section id="problemas-con-funciones-anidadas-y-this-that">
+<h5>Problemas con Funciones Anidadas y <code class="docutils literal notranslate"><span class="pre">this</span></code> (that)<a class="headerlink" href="#problemas-con-funciones-anidadas-y-this-that" title="Link to this heading">#</a></h5>
 <p>A veces, las funciones anidadas necesitan acceder a <code class="docutils literal notranslate"><span class="pre">this</span></code> de la función superior, pero pierden el contexto:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
@@ -2295,7 +2209,7 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-simple">Invocación Simple</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-como-metodo">Invocación como Método</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#invocacion-indirecta">Invocación Indirecta</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-con-funciones-anidadas-y-this">Problemas con Funciones Anidadas y <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-con-funciones-anidadas-y-this-that">Problemas con Funciones Anidadas y <code class="docutils literal notranslate"><span class="pre">this</span></code> (that)</a></li>
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-funciones-flecha-y-this">Uso de Funciones Flecha y <code class="docutils literal notranslate"><span class="pre">this</span></code></a><ul class="nav section-nav flex-column">

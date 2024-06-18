@@ -184,6 +184,12 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Desarrollo Web en el Cliente con Integración y Despliegue Continuo (CI/CD)</a></li>
 </ul>
 
     </div>
@@ -653,7 +659,9 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </ul>
 </li>
 </ol>
-<p>En este libro se introducen instrucciones y conceptos posteriores al ES6, el cual debería ser el estándard mínimo con el que trabajaremos. Hay código ES6 que no se puede ejecutar ni transpilar fácilmente a ES5.</p>
+<blockquote>
+<div><p>En este libro se introducen instrucciones y conceptos posteriores al ES6, el cual debería ser el estándard mínimo con el que trabajaremos. Hay código ES6 que no se puede ejecutar ni transpilar fácilmente a ES5.</p>
+</div></blockquote>
 </section>
 </section>
 <section id="comentarios">
@@ -715,7 +723,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </section>
 <section id="tipos-de-variables">
 <h2>Tipos de Variables<a class="headerlink" href="#tipos-de-variables" title="Link to this heading">#</a></h2>
-<p>Javascript es un lenguaje no tipado.</p>
+<p>Javascript es un lenguaje no tipado. Aunque ya veremos que esta definición se queda corta:</p>
 <section id="no-tipado">
 <h3>No Tipado<a class="headerlink" href="#no-tipado" title="Link to this heading">#</a></h3>
 <p>No tipado significa que no es necesario declarar el tipo de datos de una variable al definirla. Esto es diferente a lenguajes como Java o C#, donde se debe especificar si una variable es un entero, un string, etc.</p>
@@ -1273,6 +1281,16 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola Mundo
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Stack</span> <span class="n">trace</span><span class="p">:</span>
+<span class="ne">ReferenceError</span>: mensaje is not defined
+    <span class="n">at</span> <span class="o">&lt;</span><span class="n">anonymous</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">13</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>En este ejemplo, la variable <code class="docutils literal notranslate"><span class="pre">mensaje</span></code> está definida dentro de la función <code class="docutils literal notranslate"><span class="pre">mostrarMensaje</span></code> y no es accesible fuera de ella.</p>
 </section>
@@ -1300,6 +1318,18 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Soy global
+Soy una variable de la función padre
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Stack</span> <span class="n">trace</span><span class="p">:</span>
+<span class="ne">ReferenceError</span>: localHijo is not defined
+    <span class="n">at</span> <span class="n">padre</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">anonymous</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">at</span> <span class="o">&lt;</span><span class="n">anonymous</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>Aquí, la función <code class="docutils literal notranslate"><span class="pre">hijo</span></code> puede acceder a la variable global <code class="docutils literal notranslate"><span class="pre">global</span></code> y a la variable <code class="docutils literal notranslate"><span class="pre">localPadre</span></code> de la función <code class="docutils literal notranslate"><span class="pre">padre</span></code>. Sin embargo, la variable <code class="docutils literal notranslate"><span class="pre">localHijo</span></code> dentro de la función <code class="docutils literal notranslate"><span class="pre">hijo</span></code> no es accesible desde la función <code class="docutils literal notranslate"><span class="pre">padre</span></code>.</p>
 </section>
@@ -1319,6 +1349,11 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <span class="kd">let</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addSquares</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 25</span>
 <span class="kd">let</span><span class="w"> </span><span class="nx">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addSquares</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 41</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">B</span><span class="p">,</span><span class="nx">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">13</span> <span class=" -Color -Color-Yellow">25</span> <span class=" -Color -Color-Yellow">41</span>
 </pre></div>
 </div>
 </div>
@@ -1342,6 +1377,11 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <span class="kd">let</span><span class="w"> </span><span class="nx">result1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outside</span><span class="p">(</span><span class="mf">3</span><span class="p">)(</span><span class="mf">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// retorna 8</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span><span class="nx">result1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">8</span> <span class=" -Color -Color-Yellow">8</span>
 </pre></div>
 </div>
 </div>
@@ -1417,7 +1457,9 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">4</span>
+<span class=" -Color -Color-Yellow">6</span>
+<span class=" -Color -Color-Yellow">9</span>
 </pre></div>
 </div>
 </div>
@@ -1443,7 +1485,12 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">0</span>
+<span class=" -Color -Color-Yellow">4</span>
+<span class=" -Color -Color-Yellow">1</span>
+<span class=" -Color -Color-Yellow">6</span>
+<span class=" -Color -Color-Yellow">2</span>
+<span class=" -Color -Color-Yellow">9</span>
 </pre></div>
 </div>
 </div>
@@ -1524,7 +1571,8 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">true</span>
+<span class=" -Color -Color-Yellow">false</span>
 </pre></div>
 </div>
 </div>
@@ -1614,7 +1662,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Este es un texto verde sobre un fondo amarillo.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green -Color-Green-BGYellow">Este es un texto verde sobre un fondo amarillo.</span>
 </pre></div>
 </div>
 </div>
@@ -1721,7 +1769,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ &quot;Hola soy &quot;, &quot; y tengo &quot;, &quot; años&quot; ] Carlos 32
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Green">&quot;Hola soy &quot;</span>, <span class=" -Color -Color-Green">&quot; y tengo &quot;</span>, <span class=" -Color -Color-Green">&quot; años&quot;</span> ] Carlos <span class=" -Color -Color-Yellow">32</span>
 </pre></div>
 </div>
 </div>

@@ -9,3 +9,9 @@ chapters:
 - file: dom
 - file: iteradores
 - file: modulos
+- file: promesas
+- file: ajax
+- file: programacionfuncionalreactiva
+- file: errores
+- file: ci-cd
+

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Libro DWEC &#8212; Libro DWEC</title>
+    <title>Vite (Dev Server) &#8212; Libro DWEC</title>
   
   
   
@@ -58,10 +58,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vite';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="El lenguaje Javascript" href="lenguajejavascript.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -142,7 +141,7 @@
 
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -173,8 +172,8 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Libro DWEC
                 </a>
             </li>
@@ -262,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fvite.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -292,7 +291,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/vite.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -302,7 +301,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -363,7 +362,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -374,11 +375,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Libro DWEC</h1>
+    <h1>Vite (Dev Server)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-un-dev-server">¿Por qué un Dev Server?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-bibliotecas">Importación de Bibliotecas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-css-e-imagenes">Importar CSS e Imágenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vite-bootstrap">Vite + Bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-for-production">Build for Production</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -388,38 +402,85 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="libro-dwec">
-<h1>Libro DWEC<a class="headerlink" href="#libro-dwec" title="Link to this heading">#</a></h1>
-<p>Este libro pretende ser la base de un curso de Desarrollo Web en Entorno Cliente del ciclo superior DAW. Puesto que cada profesor puede elegir la metodología y gran parte de los contenidos, es necesario advertir que este libro puede no ser un buen candidato a sustituir a los libros de las editoriales, mucho más genéricos. No obstante, se intenta dar un enfoque de programación moderna del frontend. No nos detendremos tampoco en la adecuación de estos contenidos a los currículos oficiales.</p>
-<p>Todo el libro está enfocado al desarrollo de dos proyectos individuales o grupales. El primer proyecto, que puede ser realizado a lo largo del primer trimestre y el segundo durante el segundo trimestre. El primer proyecto es en Javascript Vanilla y el segundo en Angular. Durante la primera parte iremos introduciendo conceptos y tecnologías necesarios para entender la potencia de un framework como React, Vue o, en este caso, Angular.</p>
-<p>De esta manera, podemos separar el curso en dos grandes bloques con los siguientes temas:</p>
-<ul class="simple">
-<li><p>Javascript “Vanilla”:</p>
-<ul>
-<li><p>Programación Javascript para el frontend</p></li>
-<li><p>Testing</p></li>
-<li><p>Comunicación con el servidor</p>
-<ul>
-<li><p>Promesas</p></li>
-<li><p>Fetch</p></li>
-</ul>
-</li>
-<li><p>Programación moderna en Javascript</p>
-<ul>
-<li><p>Vite</p></li>
-<li><p>CI/CD</p></li>
-<li><p>Despliegue</p></li>
-<li><p>Observables y programación reactiva</p></li>
-<li><p>Programación funcional</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Angular</p></li>
-</ul>
-<p>Puesto que todo está mejor documentado en las webs oficiales de cada tecnología, en MDN o W3CSchool y demás, no es necesario ser exhaustivo en cada sección. Nos detendremos en las partes más interesantes y representativas del frontend con ejemplos prácticos y intentando siempre aplicar las mejores prácticas.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="vite-dev-server">
+<h1>Vite (Dev Server)<a class="headerlink" href="#vite-dev-server" title="Link to this heading">#</a></h1>
+<section id="por-que-un-dev-server">
+<h2>¿Por qué un Dev Server?<a class="headerlink" href="#por-que-un-dev-server" title="Link to this heading">#</a></h2>
+<p>Un servidor de desarrollo (Dev Server) es fundamental para mejorar la experiencia de desarrollo. Algunas de las ventajas clave incluyen:</p>
+<p>🚀 <strong>Mejora en la Experiencia de Desarrollo</strong>: Proporciona una experiencia de desarrollo fluida y rápida.</p>
+<p>🔄 <strong>Carga de Módulos en Tiempo Real</strong>: Permite la recarga de módulos sin necesidad de recargar toda la página.</p>
+<p>🌐 <strong>Soporte ESM (ECMAScript Modules)</strong>: Facilita el uso de módulos ECMAScript nativos.</p>
+<p>🛠️ <strong>Entorno de Desarrollo Rápido</strong>: Acelera el ciclo de desarrollo con herramientas modernas y eficientes.</p>
+<p>Los bundlers, como Vite, agrupan y gestionan múltiples archivos JavaScript, CSS y otros recursos, permitiendo una mejor organización y mantenimiento. Vite utiliza <a class="reference external" href="https://rollupjs.org/">Rollup</a>, en comparación con otra alternativa famosa como <a class="reference external" href="https://esbuild.github.io/">esbuild</a>.</p>
+<p>Vite reduce el tamaño total de los archivos mediante técnicas como la minificación y la compresión.</p>
+<p>Ofrece soporte para funcionalidades modernas con compatibilidad en navegadores antiguos.</p>
+<p>Automatiza tareas como la transpilación de TypeScript a JavaScript, la transpilación de SCSS o SASS a CSS, minificación, ofuscación y la generación de rutas de archivos.</p>
+</section>
+<section id="configuracion">
+<h2>Configuración<a class="headerlink" href="#configuracion" title="Link to this heading">#</a></h2>
+<p>Para iniciar un proyecto con Vite:</p>
+<ol class="arabic">
+<li><p>Crear un nuevo proyecto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>create<span class="w"> </span>vite@latest<span class="w"> </span>my-app<span class="w"> </span>--<span class="w"> </span>--template<span class="w"> </span>vanilla
+</pre></div>
 </div>
+</li>
+<li><p>Instalar las dependencias:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-app
+$<span class="w"> </span>npm<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+<li><p>Ejecutar el servidor de desarrollo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>dev
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Mover los archivos y las importaciones innecesarias al directorio <code class="docutils literal notranslate"><span class="pre">./src/</span></code> permite mantener una estructura de proyecto limpia y organizada.</p>
+</section>
+<section id="importacion-de-bibliotecas">
+<h2>Importación de Bibliotecas<a class="headerlink" href="#importacion-de-bibliotecas" title="Link to this heading">#</a></h2>
+<p>Para importar bibliotecas en Vite, se usa <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>lodash
+</pre></div>
+</div>
+<p>Luego, en tu archivo JavaScript:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;lodash&quot;</span><span class="p">;</span>
+<span class="nx">_</span><span class="p">.</span><span class="nx">join</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Vite utiliza una técnica llamada “bare module imports”, que funciona también en TypeScript y Angular, lo cual elimina la necesidad de importar desde <code class="docutils literal notranslate"><span class="pre">../node_modules…</span></code> y de añadir <code class="docutils literal notranslate"><span class="pre">.js</span></code> al final del archivo.</p>
+</section>
+<section id="importar-css-e-imagenes">
+<h2>Importar CSS e Imágenes<a class="headerlink" href="#importar-css-e-imagenes" title="Link to this heading">#</a></h2>
+<p>Para importar CSS y trabajar con imágenes en Vite:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;./style.css&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">javascriptLogo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./javascript.svg&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">viteLogo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;/vite.svg&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">logoHtml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;img src=&quot;</span><span class="si">${</span><span class="nx">viteLogo</span><span class="si">}</span><span class="sb">&quot; class=&quot;logo&quot; alt=&quot;Vite logo&quot; /&gt;`</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">logoHtml</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El CSS se incluye directamente en el bundle, mientras que las imágenes no se importan directamente, pero sus nombres son modificados en el build. Trabajar con variables permite modificar dinámicamente el nombre de las imágenes.</p>
+<p>Vite también permite importar JSON y otros tipos de archivos.</p>
+</section>
+<section id="vite-bootstrap">
+<h2>Vite + Bootstrap<a class="headerlink" href="#vite-bootstrap" title="Link to this heading">#</a></h2>
+<p>Para usar Bootstrap con Vite, sigue los pasos proporcionados en la <a class="reference external" href="https://getbootstrap.com/docs/5.2/getting-started/vite/">documentación oficial de Bootstrap</a>. Puede que no necesites seguir todos los pasos si ya tienes un proyecto en marcha.</p>
+</section>
+<section id="build-for-production">
+<h2>Build for Production<a class="headerlink" href="#build-for-production" title="Link to this heading">#</a></h2>
+<p>Para crear una versión de producción del proyecto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vite<span class="w"> </span>build
+</pre></div>
+</div>
+<p>Si necesitas desplegar tu aplicación en una subcarpeta:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vite<span class="w"> </span>build<span class="w"> </span>--base<span class="o">=</span>/my/public/path/
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -452,21 +513,32 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="lenguajejavascript.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">El lenguaje Javascript</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-un-dev-server">¿Por qué un Dev Server?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-bibliotecas">Importación de Bibliotecas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-css-e-imagenes">Importar CSS e Imágenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vite-bootstrap">Vite + Bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-for-production">Build for Production</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

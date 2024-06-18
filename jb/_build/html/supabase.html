@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Supabase: Backend como Servicio para Desarrollo Web en el Cliente &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'supabase';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Desarrollo Web en el Cliente con Integración y Despliegue Continuo (CI/CD)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fsupabase.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/supabase.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Supabase: Backend como Servicio para Desarrollo Web en el Cliente</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-principales">Características Principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos-postgresql">Base de Datos PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-y-sdk">API y SDK</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activacion-de-rls-row-level-security">Activación de RLS (Row Level Security)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-por-email-y-contrasena">Autenticación por Email y Contraseña</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-usuarios">Registro de Usuarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-tiempo-de-sesion">Gestión del Tiempo de Sesión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-manejo-de-perfiles">Ejemplo de Manejo de Perfiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-subida-de-imagenes">Ejemplo de Subida de Imágenes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funcionalidades">Otras Funcionalidades</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cantidad-count">Cantidad (Count)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-con-or-logico">Consultas con OR Lógico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websocket">WebSocket</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-comunicacion-broadcast">Ejemplo de Comunicación “Broadcast”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-chat-con-mensajes-guardados">Ejemplo de Chat con Mensajes Guardados</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="supabase-backend-como-servicio-para-desarrollo-web-en-el-cliente">
+<h1>Supabase: Backend como Servicio para Desarrollo Web en el Cliente<a class="headerlink" href="#supabase-backend-como-servicio-para-desarrollo-web-en-el-cliente" title="Link to this heading">#</a></h1>
+<p>Supabase es un Backend como Servicio (BaaS) que proporciona un conjunto de herramientas para desarrollar aplicaciones web sin la necesidad de implementar un backend completo. Este servicio incluye características como SDK, analíticas, autenticación, bases de datos, almacenamiento, dashboard, WebSockets, entre otros.</p>
+<section id="caracteristicas-principales">
+<h2>Características Principales<a class="headerlink" href="#caracteristicas-principales" title="Link to this heading">#</a></h2>
+<section id="base-de-datos-postgresql">
+<h3>Base de Datos PostgreSQL<a class="headerlink" href="#base-de-datos-postgresql" title="Link to this heading">#</a></h3>
+<p>Supabase utiliza PostgreSQL como su motor de base de datos, permitiendo a los desarrolladores aprovechar todas las capacidades de esta robusta base de datos relacional.</p>
+</section>
+<section id="api-y-sdk">
+<h3>API y SDK<a class="headerlink" href="#api-y-sdk" title="Link to this heading">#</a></h3>
+<p>Ofrece varios tipos de APIs y un SDK que facilita la interacción con el backend desde el cliente. También soporta el almacenamiento de archivos estáticos y permite la ejecución de funciones definidas por el usuario a través de RPC (Remote Procedure Call).</p>
+</section>
+</section>
+<section id="gestion-de-tablas-y-api">
+<h2>Gestión de Tablas y API<a class="headerlink" href="#gestion-de-tablas-y-api" title="Link to this heading">#</a></h2>
+<p>Cuando se crea una tabla en Supabase, se genera automáticamente una API para interactuar con ella. Puedes ver la API generada en el SDK o en Bash. Aquí utilizaremos ejemplos en Bash para evitar la instalación del SDK.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s1">&#39;https://bqhnvwfovmcxrqrsmfxr.supabase.co/rest/v1/graphs?select=id&#39;</span><span class="w"> </span><span class="se">\</span>
+-H<span class="w"> </span><span class="s2">&quot;apikey: tu_apikey&quot;</span><span class="w"> </span><span class="se">\</span>
+-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer tu_token&quot;</span>
+</pre></div>
+</div>
+<p>Este comando <code class="docutils literal notranslate"><span class="pre">curl</span></code> realiza una petición GET a la tabla <code class="docutils literal notranslate"><span class="pre">graphs</span></code> para obtener el campo <code class="docutils literal notranslate"><span class="pre">id</span></code>.</p>
+<p>En JavaScript, se puede hacer una solicitud similar usando <code class="docutils literal notranslate"><span class="pre">fetch</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://bqhnvwfovmcxrqrsmfxr.supabase.co/rest/v1/graphs&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tu_apikey&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bearer tu_token&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="almacenamiento-de-json">
+<h2>Almacenamiento de JSON<a class="headerlink" href="#almacenamiento-de-json" title="Link to this heading">#</a></h2>
+<p>En Supabase, el primer nivel de los objetos se guarda como columnas en la tabla. Si los objetos tienen subniveles o se realizan consultas a otras tablas, se guardan en formato JSON como texto.</p>
+</section>
+<section id="autenticacion">
+<h2>Autenticación<a class="headerlink" href="#autenticacion" title="Link to this heading">#</a></h2>
+<p>Las tablas públicas son accesibles con la apiKey pública. Sin embargo, al estar en el cliente, cualquiera podría ver esta apiKey en el código. Para proteger tablas privadas, se deben crear usuarios y aplicar métodos de autenticación y autorización.</p>
+<section id="activacion-de-rls-row-level-security">
+<h3>Activación de RLS (Row Level Security)<a class="headerlink" href="#activacion-de-rls-row-level-security" title="Link to this heading">#</a></h3>
+<p>Primero, es necesario activar RLS en las tablas y crear políticas para controlar el acceso. Por ejemplo, podemos permitir que solo los usuarios autenticados puedan leer y escribir en una tabla.</p>
+</section>
+<section id="autenticacion-por-email-y-contrasena">
+<h3>Autenticación por Email y Contraseña<a class="headerlink" href="#autenticacion-por-email-y-contrasena" title="Link to this heading">#</a></h3>
+<p>Podemos invitar usuarios a través de la interfaz o crear un formulario de inscripción. En cualquier caso, es necesario que el usuario confirme su email.</p>
+<p>En el caso de la invitación, la redirección por defecto es a <code class="docutils literal notranslate"><span class="pre">localhost:3000</span></code>, pero esto se puede modificar. Una vez confirmado, el usuario recibirá un token que se puede probar en <a class="reference external" href="https://jwt.io">jwt.io</a>. Este token se usará en la cabecera <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>.</p>
+</section>
+</section>
+<section id="registro-de-usuarios">
+<h2>Registro de Usuarios<a class="headerlink" href="#registro-de-usuarios" title="Link to this heading">#</a></h2>
+<p>En la documentación autogenerada de la API se explica qué datos enviar en Bash para registrar usuarios. Al iniciar sesión, nos quedaremos con el atributo <code class="docutils literal notranslate"><span class="pre">access_token</span></code> de la respuesta para utilizarlo en futuras peticiones.</p>
+</section>
+<section id="gestion-del-tiempo-de-sesion">
+<h2>Gestión del Tiempo de Sesión<a class="headerlink" href="#gestion-del-tiempo-de-sesion" title="Link to this heading">#</a></h2>
+<p>Después de iniciar sesión, guardamos el token en <code class="docutils literal notranslate"><span class="pre">LocalStorage</span></code> para realizar peticiones. Cada inicio de sesión retorna un tiempo de expiración (<code class="docutils literal notranslate"><span class="pre">expires_in</span></code> y <code class="docutils literal notranslate"><span class="pre">expires_at</span></code>). Podemos calcular la fecha de expiración y evitar confiar en el token después de esta fecha.</p>
+</section>
+<section id="gestion-de-perfiles-de-usuario">
+<h2>Gestión de Perfiles de Usuario<a class="headerlink" href="#gestion-de-perfiles-de-usuario" title="Link to this heading">#</a></h2>
+<p>Es común que los usuarios necesiten gestionar información personal como avatar, dirección, teléfono, etc. Para ello, Supabase proporciona un script SQL que crea una tabla de perfiles de usuario y asocia la información correspondiente.</p>
+<section id="ejemplo-de-manejo-de-perfiles">
+<h3>Ejemplo de Manejo de Perfiles<a class="headerlink" href="#ejemplo-de-manejo-de-perfiles" title="Link to this heading">#</a></h3>
+<p>Cuando un usuario inicia sesión, obtenemos sus datos de perfil y los almacenamos en <code class="docutils literal notranslate"><span class="pre">LocalStorage</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">dataLogin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">loginSupabase</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="p">);</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;access_token&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">access_token</span><span class="p">);</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;uid&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;mail&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">email</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">dataProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="sb">`profiles?id=eq.</span><span class="si">${</span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">access_token</span><span class="p">);</span>
+<span class="nx">dataProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dataProfile</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;dataProfile&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">dataProfile</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gestion-de-avatares">
+<h2>Gestión de Avatares<a class="headerlink" href="#gestion-de-avatares" title="Link to this heading">#</a></h2>
+<p>Los avatares se guardan en “Storage”. Es necesario crear un bucket con permisos de escritura y actualización para los usuarios autenticados. Para subir imágenes, se realiza un POST con un <code class="docutils literal notranslate"><span class="pre">FormData</span></code> que contiene la imagen.</p>
+<section id="ejemplo-de-subida-de-imagenes">
+<h3>Ejemplo de Subida de Imágenes<a class="headerlink" href="#ejemplo-de-subida-de-imagenes" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">updateProfile</span><span class="p">(</span><span class="nx">profile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">formImg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">formImg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;avatar&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">profile</span><span class="p">.</span><span class="nx">avatar</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;avatarProfile.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">avatarResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fileRequest</span><span class="p">(</span><span class="sb">`/storage/v1/object/avatars/avatar</span><span class="si">${</span><span class="nx">uid</span><span class="si">}</span><span class="sb">.png`</span><span class="p">,</span><span class="w"> </span><span class="nx">formImg</span><span class="p">,</span><span class="w"> </span><span class="nx">access_token</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">profile</span><span class="p">.</span><span class="nx">avatar_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">avatarResponse</span><span class="p">.</span><span class="nx">urlAvatar</span><span class="p">;</span>
+<span class="w">    </span><span class="ow">delete</span><span class="w"> </span><span class="nx">profile</span><span class="p">.</span><span class="nx">avatar</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">responseUpdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">updateData</span><span class="p">(</span><span class="sb">`profiles?id=eq.</span><span class="si">${</span><span class="nx">uid</span><span class="si">}</span><span class="sb">&amp;select=*`</span><span class="p">,</span><span class="w"> </span><span class="nx">access_token</span><span class="p">,</span><span class="w"> </span><span class="nx">profile</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="subida-de-una-imagen-a-storage">
+<h3>Subida de una Imagen a Storage<a class="headerlink" href="#subida-de-una-imagen-a-storage" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;x-upsert&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">urlBase</span><span class="si">}${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="nx">headersFile</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">formImg</span>
+<span class="p">});</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;content-type&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">datos</span><span class="p">.</span><span class="nx">urlAvatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">urlBase</span><span class="si">}${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">datos</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="descarga-de-una-imagen">
+<h2>Descarga de una Imagen<a class="headerlink" href="#descarga-de-una-imagen" title="Link to this heading">#</a></h2>
+<p>Si no se necesita autorización, se puede utilizar un bucket público y la URL proporcionada. Si se requiere autorización, se debe enviar la API key y el token.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span>
+<span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="nx">headersFile</span>
+<span class="p">});</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;content-type&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">blob</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">datos</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">avatar_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">responseGet</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">avatar_url</span><span class="p">;</span>
+<span class="nx">responseGet</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">avatar_blob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">getFileRequest</span><span class="p">(</span><span class="nx">avatar_url</span><span class="p">,</span><span class="w"> </span><span class="nx">access_token</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="otras-funcionalidades">
+<h2>Otras Funcionalidades<a class="headerlink" href="#otras-funcionalidades" title="Link to this heading">#</a></h2>
+<section id="cantidad-count">
+<h3>Cantidad (Count)<a class="headerlink" href="#cantidad-count" title="Link to this heading">#</a></h3>
+<p>Para obtener la cantidad de registros, se usa el método HEAD y la preferencia <code class="docutils literal notranslate"><span class="pre">count=exact</span></code>. El resultado se encuentra en el header <code class="docutils literal notranslate"><span class="pre">content-range</span></code>.</p>
+</section>
+<section id="consultas-con-or-logico">
+<h3>Consultas con OR Lógico<a class="headerlink" href="#consultas-con-or-logico" title="Link to this heading">#</a></h3>
+<p>En la URL se puede usar la consulta <code class="docutils literal notranslate"><span class="pre">select=*&amp;or=(id.eq.464,id.eq.466)</span></code>.</p>
+</section>
+</section>
+<section id="websocket">
+<h2>WebSocket<a class="headerlink" href="#websocket" title="Link to this heading">#</a></h2>
+<p>Supabase ofrece una función llamada Realtime para manejar WebSockets. Se debe agregar en la sección de Database &gt; Replication las tablas que queremos monitorear. Es muy recomendable utilizar las librerías proporcionadas por Supabase para esto.</p>
+<section id="ejemplo-de-comunicacion-broadcast">
+<h3>Ejemplo de Comunicación “Broadcast”<a class="headerlink" href="#ejemplo-de-comunicacion-broadcast" title="Link to this heading">#</a></h3>
+<p>Supabase permite la comunicación directa con otros usuarios o la notificación de cambios en las tablas mediante WebSockets.</p>
+</section>
+</section>
+<section id="ejemplo-de-chat-con-mensajes-guardados">
+<h2>Ejemplo de Chat con Mensajes Guardados<a class="headerlink" href="#ejemplo-de-chat-con-mensajes-guardados" title="Link to this heading">#</a></h2>
+<p>Supabase facilita la implementación de un sistema de chat donde los mensajes se guardan en la base de datos. Puedes modificar el chat para mantener la sesión del usuario en cookies.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Código ejemplo de comunicación &quot;broadcast&quot; o chat</span>
+</pre></div>
+</div>
+<p>Supabase es una poderosa herramienta que facilita el desarrollo de aplicaciones web del lado del cliente, proporcionando un backend completo y fácil de usar. Sus características avanzadas de autenticación, almacenamiento, y tiempo real lo convierten en una opción robusta para desarrolladores que buscan una solución BaaS eficiente.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "deno"
+        },
+        kernelOptions: {
+            name: "deno",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'deno'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-principales">Características Principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos-postgresql">Base de Datos PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-y-sdk">API y SDK</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activacion-de-rls-row-level-security">Activación de RLS (Row Level Security)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-por-email-y-contrasena">Autenticación por Email y Contraseña</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-usuarios">Registro de Usuarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-tiempo-de-sesion">Gestión del Tiempo de Sesión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-manejo-de-perfiles">Ejemplo de Manejo de Perfiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-subida-de-imagenes">Ejemplo de Subida de Imágenes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funcionalidades">Otras Funcionalidades</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cantidad-count">Cantidad (Count)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-con-or-logico">Consultas con OR Lógico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websocket">WebSocket</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-comunicacion-broadcast">Ejemplo de Comunicación “Broadcast”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-chat-con-mensajes-guardados">Ejemplo de Chat con Mensajes Guardados</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
