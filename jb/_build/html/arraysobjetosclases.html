@@ -390,6 +390,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-arrays">Recorrer Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-arrays">Búsqueda en Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-operaciones-en-arrays">Otras Operaciones en Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutabilidad-de-los-arrays">Mutabilidad de los arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-que-mutan-el-array">Métodos que mutan el array</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-que-no-mutan-el-array">Métodos que no mutan el array</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos-en-javascript">Objetos en JavaScript</a><ul class="nav section-nav flex-column">
@@ -434,12 +439,10 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desestructuracion-de-objetos-anidados">Desestructuración de Objetos Anidados</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desestructuracion-de-arrays">Desestructuración de Arrays</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desestructuracion-en-funciones">Desestructuración en Funciones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-con-valores-por-defecto">Clases con Valores por Defecto</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-con-valores-por-defecto">Clases con Valores por Defecto</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mejoras-en-objetos-literales-object-literal-enhacement">Mejoras en Objetos Literales (Object Literal enhacement)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejoras-en-objetos-literales-object-literal-enhacement">Mejoras en Objetos Literales (Object Literal enhacement)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-en-javascript-es6">Clases en JavaScript (ES6)</a><ul class="nav section-nav flex-column">
@@ -502,7 +505,7 @@ document.write(`
 </div>
 <section id="metodos-y-propiedades-de-los-arrays">
 <h3>Métodos y Propiedades de los Arrays<a class="headerlink" href="#metodos-y-propiedades-de-los-arrays" title="Link to this heading">#</a></h3>
-<p>Los arrays en JavaScript tienen varias propiedades y métodos interesantes que facilitan su manipulación:</p>
+<p>Los arrays en JavaScript tienen varias propiedades y métodos interesantes que facilitan su manipulación. Entre otros:</p>
 <ul class="simple">
 <li><p><strong>length</strong>: Devuelve el número de elementos en el array.</p></li>
 <li><p><strong>sort()</strong>: Ordena los elementos del array.</p></li>
@@ -688,6 +691,96 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="mutabilidad-de-los-arrays">
+<h3>Mutabilidad de los arrays<a class="headerlink" href="#mutabilidad-de-los-arrays" title="Link to this heading">#</a></h3>
+<p>En Javascript, los arrays son mutables. Esto quiere decir que se puede alterar su contenido. No siempre nos interesa mutar un array cuando queremos obtener un resultado de él.</p>
+<section id="metodos-que-mutan-el-array">
+<h4>Métodos que mutan el array<a class="headerlink" href="#metodos-que-mutan-el-array" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.copyWithin()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.fill()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.pop()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.push()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.reverse()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.shift()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.sort()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.splice()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.unshift()</span></code></p></li>
+</ul>
+</section>
+<section id="metodos-que-no-mutan-el-array">
+<h4>Métodos que no mutan el array<a class="headerlink" href="#metodos-que-no-mutan-el-array" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.concat()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.includes()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.indexOf()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.join()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.keys()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.lastIndexOf()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.map()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.reduce()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.reduceRight()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.slice()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.some()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.toLocaleString()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.toString()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.values()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.every()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.filter()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.find()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.findIndex()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.flat()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.flatMap()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.forEach()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.entries()</span></code></p></li>
+<li><p>Alternativas modernas no mutables:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.toSorted()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.toReverse()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array.prototype.toSpliced()</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>En esta tabla se muestran algunos métodos que mutan con una alternativa. En algunos casos, la alternativa puede ser hacer una copia con <code class="docutils literal notranslate"><span class="pre">[...array]</span></code> sobre la que aplicar el método:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Método que muta el array</p></th>
+<th class="head"><p>Método que no muta el array</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">push()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">concat()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">slice(0,</span> <span class="pre">-1)</span></code> (o similar)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shift()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">slice(1)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">unshift()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[...newElements,</span> <span class="pre">...arr]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">splice()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">slice()</span></code> (para obtener) / <code class="docutils literal notranslate"><span class="pre">concat()</span></code> (para combinar)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sort()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[...arr].sort()</span></code> o <code class="docutils literal notranslate"><span class="pre">.toSorted()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reverse()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[...arr].reverse()</span></code> o <code class="docutils literal notranslate"><span class="pre">toReversed()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fill()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[...arr].fill()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">copyWithin()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[...arr].copyWithin()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 </section>
 <section id="objetos-en-javascript">
@@ -1211,6 +1304,7 @@ document.write(`
 </section>
 <section id="copia-profunda-con-structuredclone">
 <h3>Copia Profunda con structuredClone()<a class="headerlink" href="#copia-profunda-con-structuredclone" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">https://developer.mozilla.org/en-US/docs/Web/API/structuredClone</a></p>
 <p>Para realizar una copia profunda, donde todas las referencias anidadas también se copian, se puede usar <code class="docutils literal notranslate"><span class="pre">structuredClone()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1226,6 +1320,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>La copia profunda funciona para atributos y objetos normales, pero no para métodos y nodos del DOM. Tampoco mantiene la “prototype chain”.</p>
 </section>
 <section id="desestructuracion-de-objetos">
 <h3>Desestructuración de Objetos<a class="headerlink" href="#desestructuracion-de-objetos" title="Link to this heading">#</a></h3>
@@ -1346,9 +1441,8 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="clases-con-valores-por-defecto">
-<h3>Clases con Valores por Defecto<a class="headerlink" href="#clases-con-valores-por-defecto" title="Link to this heading">#</a></h3>
+<h4>Clases con Valores por Defecto<a class="headerlink" href="#clases-con-valores-por-defecto" title="Link to this heading">#</a></h4>
 <p>Las clases en JavaScript permiten establecer valores por defecto para sus propiedades en el constructor.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Chameleon</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">constructor</span><span class="p">({</span><span class="w"> </span><span class="nx">newColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
@@ -1361,8 +1455,11 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">newColor</span></code> se establece por defecto a “green” si no se proporciona un valor al crear una instancia de <code class="docutils literal notranslate"><span class="pre">Chameleon</span></code>.</p>
+<p>En realidad esa asignación desestructurada se puede aplicar a cualquier función. En este enlace hay muchos más ejemplos que vale la pena analizar: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#examples">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#examples</a></p>
+</section>
+</section>
 <section id="mejoras-en-objetos-literales-object-literal-enhacement">
-<h4>Mejoras en Objetos Literales (Object Literal enhacement)<a class="headerlink" href="#mejoras-en-objetos-literales-object-literal-enhacement" title="Link to this heading">#</a></h4>
+<h3>Mejoras en Objetos Literales (Object Literal enhacement)<a class="headerlink" href="#mejoras-en-objetos-literales-object-literal-enhacement" title="Link to this heading">#</a></h3>
 <p>En ES6, se introdujo una sintaxis más concisa para definir objetos literales. Cuando el nombre de la variable y la propiedad son iguales, no es necesario repetirlos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1384,7 +1481,6 @@ document.write(`
 </div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">object1</span></code> se crea de manera más concisa, sin necesidad de escribir <code class="docutils literal notranslate"><span class="pre">a:</span> <span class="pre">a,</span> <span class="pre">b:</span> <span class="pre">b,</span> <span class="pre">c:</span> <span class="pre">c</span></code>.</p>
-</section>
 </section>
 </section>
 <section id="clases-en-javascript-es6">
@@ -2070,6 +2166,11 @@ La desestructuración de Arrays el spread operator, la copia profunda… son té
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-arrays">Recorrer Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-arrays">Búsqueda en Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-operaciones-en-arrays">Otras Operaciones en Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutabilidad-de-los-arrays">Mutabilidad de los arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-que-mutan-el-array">Métodos que mutan el array</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-que-no-mutan-el-array">Métodos que no mutan el array</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos-en-javascript">Objetos en JavaScript</a><ul class="nav section-nav flex-column">
@@ -2114,12 +2215,10 @@ La desestructuración de Arrays el spread operator, la copia profunda… son té
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desestructuracion-de-objetos-anidados">Desestructuración de Objetos Anidados</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desestructuracion-de-arrays">Desestructuración de Arrays</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desestructuracion-en-funciones">Desestructuración en Funciones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-con-valores-por-defecto">Clases con Valores por Defecto</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-con-valores-por-defecto">Clases con Valores por Defecto</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mejoras-en-objetos-literales-object-literal-enhacement">Mejoras en Objetos Literales (Object Literal enhacement)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejoras-en-objetos-literales-object-literal-enhacement">Mejoras en Objetos Literales (Object Literal enhacement)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-en-javascript-es6">Clases en JavaScript (ES6)</a><ul class="nav section-nav flex-column">
