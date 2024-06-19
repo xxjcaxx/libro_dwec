@@ -14,21 +14,21 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -72,23 +72,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,13 +114,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -205,7 +204,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -214,7 +213,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -475,6 +474,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>
 </ul>
             </nav>
         </div>
@@ -573,71 +573,6 @@ document.write(`
 <li><p><strong>filter()</strong>: Crea un nuevo array con todos los elementos que cumplen la condición.</p></li>
 </ul>
 <p>Ejemplo:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">];</span>
-
-<span class="c1">// splice</span>
-<span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Elimina un elemento desde la posición 2</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span><span class="w"> </span><span class="c1">// [1, 2, 4, 5]</span>
-
-<span class="c1">// slice</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">newArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newArray</span><span class="p">);</span><span class="w"> </span><span class="c1">// [2, 4]</span>
-
-<span class="c1">// flat</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">multiArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]]];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiArray</span><span class="p">.</span><span class="nx">flat</span><span class="p">(</span><span class="mf">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// [1, 2, 3, 4]</span>
-
-<span class="c1">// flatMap</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">mapArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mapArray</span><span class="p">.</span><span class="nx">flatMap</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">]));</span><span class="w"> </span><span class="c1">// [1, 2, 2, 4, 3, 6]</span>
-
-<span class="c1">// join</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// &quot;1-2-4-5&quot;</span>
-
-<span class="c1">// split</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="p">;</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">strArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strArray</span><span class="p">);</span><span class="w"> </span><span class="c1">// [&quot;Hello&quot;, &quot;World&quot;]</span>
-
-<span class="c1">// fill</span>
-<span class="nx">array</span><span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// Llena con 0 desde la posición 1 hasta la 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span><span class="w"> </span><span class="c1">// [1, 0, 0, 5]</span>
-
-<span class="c1">// delete</span>
-<span class="ow">delete</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="mf">3</span><span class="p">];</span><span class="w"> </span><span class="c1">// Deja un empty</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span><span class="w"> </span><span class="c1">// [1, 0, 0, empty]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">4</span>, <span class=" -Color -Color-Yellow">5</span> ]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">4</span> ]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">3</span>, <span class=" -Color -Color-Yellow">4</span> ]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">4</span>, <span class=" -Color -Color-Yellow">3</span>, <span class=" -Color -Color-Yellow">6</span> ]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-2-4-5
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Green">&quot;Hello&quot;</span>, <span class=" -Color -Color-Green">&quot;World&quot;</span> ]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">0</span>, <span class=" -Color -Color-Yellow">0</span>, <span class=" -Color -Color-Yellow">5</span> ]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">0</span>, <span class=" -Color -Color-Yellow">0</span>, &lt;1 empty item&gt; ]
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">alligator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thick scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;4 foot tail&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rounded snout&quot;</span><span class="p">];</span>
@@ -797,6 +732,7 @@ document.write(`
 </section>
 <section id="objetos-predefinidos-en-javascript">
 <h3>Objetos Predefinidos en JavaScript<a class="headerlink" href="#objetos-predefinidos-en-javascript" title="Link to this heading">#</a></h3>
+<p>Antes de entrar en más detalle sobre los objetos, vamos a repasar objetos predefinidos en Javascript que tenemos disponibles.</p>
 <section id="string">
 <h4>String<a class="headerlink" href="#string" title="Link to this heading">#</a></h4>
 <p>El objeto <code class="docutils literal notranslate"><span class="pre">String</span></code> tiene varias funciones importantes:</p>
@@ -903,7 +839,8 @@ document.write(`
 <section id="clases-en-javascript">
 <h2>Clases en JavaScript<a class="headerlink" href="#clases-en-javascript" title="Link to this heading">#</a></h2>
 <p>Antes de la introducción de ES6, las clases en JavaScript se creaban utilizando funciones constructoras. Esta técnica sigue siendo utilizada. Con ES6, se incorporó la palabra clave <code class="docutils literal notranslate"><span class="pre">class</span></code>, que se asemeja más a la sintaxis de otros lenguajes de programación orientados a objetos. Sin embargo, es importante entender que JavaScript no funciona exactamente con clases en el sentido tradicional, sino con prototipos.</p>
-<p>JavaScript siempre ha tenido objetos, pero no clases de la forma tradicional que se encuentran en otros lenguajes como Java o C++. Las clases en ES6 no tienen atributos y métodos privados de manera directa; esto se maneja mediante <code class="docutils literal notranslate"><span class="pre">closures</span></code>. En JavaScript, las clases son más una técnica de programación que una funcionalidad del lenguaje.</p>
+<p>JavaScript siempre ha tenido objetos, pero no clases de la forma tradicional que se encuentran en otros lenguajes como Java o C++. Las clases en ES6 no tienen atributos y métodos privados de manera directa; esto se maneja mediante <code class="docutils literal notranslate"><span class="pre">closures</span></code>. En las nuevas versiones ya se permite declarar atributos privados con #. En JavaScript, las clases son más una técnica de programación que una funcionalidad del lenguaje.</p>
+<p>En este apartado vamos a ver lo que realmente son las clases, explicando cómo se crean con funciones constructoras, aunque sabemos que hoy en dia se puede usar <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p>
 <section id="creacion-de-objetos-con-funciones-constructoras">
 <h3>Creación de Objetos con Funciones Constructoras<a class="headerlink" href="#creacion-de-objetos-con-funciones-constructoras" title="Link to this heading">#</a></h3>
 <p>Una función constructora es una plantilla para crear nuevos objetos. Veamos un ejemplo:</p>
@@ -951,21 +888,7 @@ document.write(`
 <section id="metodos-en-el-prototipo">
 <h3>Métodos en el Prototipo<a class="headerlink" href="#metodos-en-el-prototipo" title="Link to this heading">#</a></h3>
 <p>Para hacer el código más eficiente, es posible definir métodos en el prototipo de la función constructora en lugar de definirlos dentro de la propia función. Esto evita recrear la función cada vez que se crea un nuevo objeto:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">type</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">Apple</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; apple&#39;</span><span class="p">;</span>
-<span class="p">};</span>
-</pre></div>
-</div>
 <p>En este caso, <code class="docutils literal notranslate"><span class="pre">getInfo</span></code> se define en el prototipo de <code class="docutils literal notranslate"><span class="pre">Apple</span></code>. Esto significa que todas las instancias de <code class="docutils literal notranslate"><span class="pre">Apple</span></code> comparten la misma función <code class="docutils literal notranslate"><span class="pre">getInfo</span></code>, en lugar de tener su propia copia. Esto es más eficiente en términos de memoria y rendimiento.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">myApple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="s2">&quot;Granny Smith&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myApple</span><span class="p">.</span><span class="nx">getInfo</span><span class="p">());</span><span class="w"> </span><span class="c1">// &quot;red Granny Smith apple&quot;</span>
-</pre></div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -2069,6 +1992,12 @@ document.write(`
 </section>
 </section>
 </section>
+<section id="notas-finales">
+<h2>Notas finales<a class="headerlink" href="#notas-finales" title="Link to this heading">#</a></h2>
+<p>Hemos visto multitud de formas de tratar los objetos y las clases. Es importante conocerlas todas aunque algunas entren en “contradicción”. En este aspecto, el lenguaje ha evolucionado mucho y las distintas técnicas han quedado en el estilo de l&#64;s programador&#64;s.
+Si atendemos a las últimas tendencias, el uso de clases se ha quedado para hacer librerías o componentes mientras que en la programación funcional es más común el uso de objetos literales para la comunicación entre funciones y evitando usar el “this”.
+La desestructuración de Arrays el spread operator, la copia profunda… son técnicas muy usadas tanto en Javascript Vanilla como en los distintos frameworks.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2098,7 +2027,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -2225,6 +2154,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>
 </ul>
   </nav></div>
 
@@ -2273,8 +2203,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

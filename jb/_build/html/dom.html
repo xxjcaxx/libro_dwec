@@ -14,21 +14,21 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -72,23 +72,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,13 +114,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -205,7 +204,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -214,7 +213,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -444,6 +443,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-de-teclado">Eventos de teclado</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>
 </ul>
             </nav>
         </div>
@@ -481,6 +481,9 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">setInterval(función,</span> <span class="pre">tiempo)</span></code>: Ejecuta una función repetidamente a intervalos de tiempo especificados.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">clearTimeout(identificador)</span></code>: Cancela un <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> programado.</p></li>
 </ul>
+<blockquote>
+<div><p>Window no está cuando programamos para <code class="docutils literal notranslate"><span class="pre">Node</span></code> o otros intérpretes de servidor. Por esta razón, el Javascript dedicado al DOM debería estar separado de funciones normales, de manera que estas se puedan reaprovechar si parte de la lógica se mueve al servidor.</p>
+</div></blockquote>
 </section>
 <section id="dom-buscar-nodos">
 <h2>DOM: Buscar Nodos<a class="headerlink" href="#dom-buscar-nodos" title="Link to this heading">#</a></h2>
@@ -500,6 +503,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Además, podemos navegar por el DOM utilizando propiedades como <code class="docutils literal notranslate"><span class="pre">.children</span></code>, <code class="docutils literal notranslate"><span class="pre">.firstChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.firstElementChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.lastChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.parentElement</span></code>.</p>
+<p>No hay una manera mejor de encontrar los nodos. Si no queremos fallar se puede usar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> y usar selectores de CSS. De esta manera, cambiar el selector es cambiar la “query”. No obstante, los otros selectores más primitivos puede que sean más rápidos en ciertas ocasiones.</p>
 </section>
 <section id="dom-modificar-nodos">
 <h2>DOM: Modificar Nodos<a class="headerlink" href="#dom-modificar-nodos" title="Link to this heading">#</a></h2>
@@ -511,8 +515,6 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">.after()</span></code>, <code class="docutils literal notranslate"><span class="pre">.before()</span></code>: Inserta un elemento antes o después del elemento actual.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.cloneNode(deep)</span></code>: Clona un nodo, con o sin sus hijos.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.remove()</span></code>: Elimina un nodo.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.className</span></code>: Cambia el nombre de la clase de un elemento.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.style.property</span></code>: Cambia un estilo CSS de un elemento.</p></li>
 </ul>
 <p>Métodos más antiguos pero aún en uso incluyen <code class="docutils literal notranslate"><span class="pre">removeChild()</span></code> y <code class="docutils literal notranslate"><span class="pre">appendChild()</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;exampleId&#39;</span><span class="p">);</span>
@@ -537,6 +539,9 @@ document.write(`
 <span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;old-class&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>ClassName no debería usarse, ya que puede molestar si se usa classList por otro lado. Usaremos classList en todas las ocasiones excepto para eliminar todas las clases.</p>
+</div></blockquote>
 </section>
 <section id="creacion-de-elementos-template-literal">
 <h2>Creación de Elementos: Template Literal<a class="headerlink" href="#creacion-de-elementos-template-literal" title="Link to this heading">#</a></h2>
@@ -562,7 +567,7 @@ document.write(`
 </section>
 <section id="creacion-de-elementos-interpolaciones-y-wrapper">
 <h2>Creación de Elementos: Interpolaciones y Wrapper<a class="headerlink" href="#creacion-de-elementos-interpolaciones-y-wrapper" title="Link to this heading">#</a></h2>
-<p>Podemos usar funciones para extraer e implementar interpolaciones en plantillas de cadenas.</p>
+<p>Podemos usar funciones para extraer e implementar interpolaciones en template literals.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">extractInterpolations</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\{\{([^\{\}]*)\}\}/g</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[...</span><span class="nx">template</span><span class="p">.</span><span class="nx">matchAll</span><span class="p">(</span><span class="nx">regex</span><span class="p">)];</span>
@@ -591,6 +596,7 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Este ejemplo es un poco más complicado de lo que se espera poder hacer a estas alturas. No obstante, es interesante intentar entender su funcionamiento. En él se usan <code class="docutils literal notranslate"><span class="pre">{{}}</span></code> como interpolaciones como en <code class="docutils literal notranslate"><span class="pre">Angular</span></code>. Esta puede ser una base para hacer un motor de plantillas como tienen los frameworks. Por otro lado, se crea un div que actua de <code class="docutils literal notranslate"><span class="pre">Wrapper</span></code>, és dedir, que envuelve el verdadero elemento para poder trabajar sólo con strings hasta el final, pero retornar un <code class="docutils literal notranslate"><span class="pre">Element</span></code>, gracias a <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>.</p>
 </section>
 <section id="esperar-a-que-cargue-el-dom">
 <h2>Esperar a que Cargue el DOM<a class="headerlink" href="#esperar-a-que-cargue-el-dom" title="Link to this heading">#</a></h2>
@@ -609,6 +615,11 @@ document.write(`
 </pre></div>
 </div>
 <p>También podemos colocar nuestro script al final del cuerpo (<code class="docutils literal notranslate"><span class="pre">body</span></code>) del documento HTML.</p>
+<p>Si, además, añadimos el atributo <code class="docutils literal notranslate"><span class="pre">defer</span></code>a un script, este se descargará de manera asíncrona y se ejecutará cuando el HTML haya sido totalmente interpretado y justo antes que <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
+<p>Si es necesario esperar a que carge también todo el CSS, es decir el <code class="docutils literal notranslate"><span class="pre">CSSOM</span></code>, podemos recurrir al evento <code class="docutils literal notranslate"><span class="pre">load</span></code>, que espera a cargar e interpretar todo el CSS. Pero si no es necesario, es mejor esperar sólo al DOM. Esto es porque hay recursos muy pesados como imágenes o vídeos que puede incluso que no lleguen a cargar.</p>
+<blockquote>
+<div><p>En general, recomendaremos usar <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code> en vez de poner el script al final o <code class="docutils literal notranslate"><span class="pre">load</span></code> porque al ser ejecutado al principio, ya hay cosas que se puede ir ejecutando sin necesidad de DOM antes de que cargue totalmente. En cualquier caso, los script en <em><strong>Módulos</strong></em> siempre se ejecutan en modo <code class="docutils literal notranslate"><span class="pre">defer</span></code>.</p>
+</div></blockquote>
 </section>
 <section id="atributos-de-datos">
 <h2>Atributos de Datos<a class="headerlink" href="#atributos-de-datos" title="Link to this heading">#</a></h2>
@@ -1070,6 +1081,11 @@ Aquí tienes un ejemplo sencillo que muestra cómo capturar eventos de teclado y
 </div>
 </section>
 </section>
+<section id="notas-finales">
+<h2>Notas finales<a class="headerlink" href="#notas-finales" title="Link to this heading">#</a></h2>
+<p>Cuando programamos para el Frontend, la manera de tratar el DOM es muy diversa. Si distinguimos entre una SPA y una web generada en el servidor con algo de Javascript, las técnicas son muy diferentes. En el caso de la SPA, es muy importante tener claro una arquitectura MVC o similar en la que unas plantillas se rellenen con los datos del servidor. La interactividad y el manejo de formularios se suele implementar toda en Javascript porque préviamente no havia nada de HTML. En una web más tradicional en la que el HTML ya está generado por el servidor, es importante saber buscar nodos y manipularlos sin romper la estructura previa.
+Por otro lado, está el Javascript enfocado a la parte visual: controlar el scroll, drag &amp; drop, animaciones… En este tema se han puesto las bases, pero eso requiere un estudio por separado. Esta parte puede ser explorada más profundamente en el módulo de Diseño de Interfaces.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1099,7 +1115,7 @@ Aquí tienes un ejemplo sencillo que muestra cómo capturar eventos de teclado y
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1195,6 +1211,7 @@ Aquí tienes un ejemplo sencillo que muestra cómo capturar eventos de teclado y
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-de-teclado">Eventos de teclado</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>
 </ul>
   </nav></div>
 
@@ -1243,8 +1260,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
