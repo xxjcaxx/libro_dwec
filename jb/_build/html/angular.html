@@ -1,0 +1,1057 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Angular &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'angular';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Typescript" href="typescript.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyecto en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fangular.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/angular.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Angular</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-previos-para-comenzar-con-angular">Requisitos previos para comenzar con Angular</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-contrato-del-framework">El “contrato” del framework:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primeros-pasos-con-angular-hola-mundo">Primeros pasos con Angular: ¡Hola Mundo!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-cli">Angular CLI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generando-elementos-del-framework">Generando elementos del framework:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anadiendo-e-integrando-librerias">Añadiendo e integrando librerías:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizando-angular">Actualizando Angular:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compilando-la-aplicacion">Compilando la aplicación:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primeros-componentes-en-angular">Primeros Componentes en Angular</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reactividad">Reactividad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-la-interpolacion">¿Qué es la interpolación?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-atributos">Vincular atributos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vinculacion-bidireccional-ngmodel">Vinculación bidireccional <code class="docutils literal notranslate"><span class="pre">[(ngModel)]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-estructurales">Directivas estructurales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">Componentes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="angular">
+<h1>Angular<a class="headerlink" href="#angular" title="Link to this heading">#</a></h1>
+<p>Angular es un framework de desarrollo web de código abierto, mantenido por Google, para la creación de aplicaciones web front-end dinámicas. Se basa en TypeScript, una extensión de JavaScript que añade tipado estático, para mejorar la legibilidad, mantenibilidad y robustez del código.</p>
+<p>Angular cambia totalmente la manera de programar. Reduce significativamente el código que hay que escribir a cambio de ser muy rígido en la manera de tratar con los elementos de la aplicación. Por tanto, tiene una curva de aprendizaje un poco alta al principio.</p>
+<p><strong>Evolución del nombre y versiones</strong></p>
+<p>El framework ha experimentado cambios en su nombre y esquema de versiones a lo largo del tiempo:</p>
+<ul class="simple">
+<li><p><strong>Hasta la versión 1.7:</strong> Angular.js</p></li>
+<li><p><strong>Desde la versión 2:</strong> Angular 2, 4, 5, 6, 7, …, 18 (actual)</p></li>
+</ul>
+<p>Cada 6 meses libera una nueva versión. Suelen ser bastante compatibles entre las que están próximas y las últimas son retrocompatibles, excepto entre la 1 y la 2, donde cambió casi todo.</p>
+<p><strong>Características principales</strong></p>
+<ul class="simple">
+<li><p><strong>Expressivitad en las plantillas HTML:</strong> Permite crear interfaces de usuario dinámicas y declarativas utilizando sintaxis HTML enriquecida.</p></li>
+<li><p><strong>Diseño modular y Lazy Loading:</strong> Promueve la organización del código en módulos reutilizables y la carga en diferido de componentes para optimizar el rendimiento.</p></li>
+<li><p><strong>Facilidad para reutlizar componentes:</strong> Fomenta la creación de componentes reutilizables que encapsulan funcionalidad y lógica de negocio, mejorando la modularidad y mantenibilidad del código.</p></li>
+<li><p><strong>Comunicación fluida con el backend:</strong> Facilita la comunicación entre la aplicación Angular y el servidor backend, permitiendo diversas tecnologías como RESTful APIs, WebSockets y Server-Side Rendering.</p></li>
+<li><p><strong>Herramientas de desarrollo potentes:</strong> Ofrece una completa suite de herramientas de desarrollo, como Augury, Karma y Jasmine, para facilitar la creación, prueba y depuración de aplicaciones.</p></li>
+<li><p><strong>Integración con frameworks de diseño:</strong> Se integra perfectamente con frameworks de diseño populares como Bootstrap, Angular Material e Ionic, permitiendo crear interfaces de usuario atractivas y consistentes.</p></li>
+<li><p><strong>Single Page Applications (SPAs):</strong> Permite la creación de aplicaciones web de una sola página (SPAs).</p></li>
+<li><p><strong>Arquitectura extensible:</strong> Posee un sistema modular extensible que facilita la incorporación de nuevas funcionalidades y bibliotecas de terceros.</p></li>
+<li><p><strong>Reactividad simplificada:</strong> Simplifica la gestión de la reactividad en la interfaz de usuario, permitiendo que los cambios en los datos se reflejen automáticamente en la vista.</p></li>
+<li><p><strong>DOM virtual:</strong> Implementa un DOM virtual que optimiza el rendimiento y reduce las manipulaciones directas del DOM real.</p></li>
+<li><p><strong>Pensado para grandes aplicaciones:</strong> Está diseñado para el desarrollo de aplicaciones web a gran escala, ofreciendo características como el enrutado, la gestión de estado y la inyección de dependencias.</p></li>
+</ul>
+<p><strong>Tipos de aplicaciones web con Angular</strong></p>
+<p>Angular se puede utilizar para desarrollar diferentes tipos de aplicaciones web:</p>
+<ul class="simple">
+<li><p><strong>Páginas web tradicionales:</strong> Permite generar páginas web dinámicas con HTML generado en el servidor y Javascript para la interacción y las peticiones AJAX.</p></li>
+<li><p><strong>Single Page Applications (SPAs):</strong> Facilita la creación de SPAs que generan el HTML en el cliente a partir de datos JSON o XML enviados por el servidor. Puede que este tipo de APPs sean para las que está más preparado.</p></li>
+<li><p><strong>Progressive Web Applications (PWAs):</strong> Brinda soporte para el desarrollo de PWAs, que ofrecen una experiencia similar a las aplicaciones nativas, con la posibilidad de funcionar sin conexión y acceso a las capacidades del dispositivo.</p></li>
+<li><p><strong>Aplicaciones híbridas:</strong> Permite la creación de aplicaciones híbridas que se ejecutan dentro de un navegador web mínimo embebido en la aplicación nativa, utilizando tecnologías como Cordova o Ionic.</p></li>
+</ul>
+<section id="requisitos-previos-para-comenzar-con-angular">
+<h2>Requisitos previos para comenzar con Angular<a class="headerlink" href="#requisitos-previos-para-comenzar-con-angular" title="Link to this heading">#</a></h2>
+<p><strong>Instalación de herramientas básicas</strong></p>
+<p>Antes de adentrarnos en el mundo de Angular, es necesario contar con algunas herramientas esenciales para el desarrollo:</p>
+<p><strong>1. Node.js:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nodejs
+</pre></div>
+</div>
+<p><strong>2. npm:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>npm
+</pre></div>
+</div>
+<p><strong>3. TypeScript:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>typescript
+</pre></div>
+</div>
+<p><strong>4. CLI de Angular:</strong></p>
+<ul class="simple">
+<li><p>La interfaz de línea de comandos de Angular (CLI) facilita la creación, desarrollo y mantenimiento de proyectos Angular.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@angular/cli
+</pre></div>
+</div>
+<p><strong>5. Editor de texto:</strong></p>
+<ul class="simple">
+<li><p>En Visual Studio</p>
+<ul>
+<li><p>Angular 2 TypeScript Emmet</p></li>
+<li><p>Angular Language Service</p></li>
+<li><p>Angular Snippets</p></li>
+<li><p>Material icon Theme</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>6. Navegador web:</strong></p>
+<p><a class="reference external" href="https://angular.io/guide/devtools">https://angular.io/guide/devtools</a></p>
+<p><strong>8. Actualización de Node.js:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```bash
+sudo npm install -g n
+sudo n stable
+sudo npm install -g npm
+```
+</pre></div>
+</div>
+</section>
+<section id="el-contrato-del-framework">
+<h2>El “contrato” del framework:<a class="headerlink" href="#el-contrato-del-framework" title="Link to this heading">#</a></h2>
+<p>Es importante tener en cuenta que la adopción de un framework como Angular implica un compromiso por parte del desarrollador. Al utilizar un framework, se aceptan ciertas limitaciones y responsabilidades:</p>
+<ul class="simple">
+<li><p><strong>Inversión de tiempo:</strong> Se requiere un tiempo de aprendizaje para comprender el funcionamiento del framework y sus mejores prácticas.</p></li>
+<li><p><strong>Cambio de hábitos:</strong> El uso de un framework implica un cambio en la forma de abordar el desarrollo web, lo que puede requerir la adaptación de hábitos y metodologías de trabajo previas.</p></li>
+<li><p><strong>Restricciones en el uso de librerías:</strong> Algunos frameworks pueden limitar el uso de ciertas librerías o herramientas externas, obligando a trabajar dentro del ecosistema propio del framework.</p></li>
+<li><p><strong>Abstracción y potencial falta de comprensión:</strong> La abstracción que ofrece el framework puede, en ocasiones, dificultar la comprensión profunda del funcionamiento interno de las aplicaciones.</p></li>
+<li><p><strong>Dependencia y actualizaciones:</strong> El desarrollo queda sujeto a las actualizaciones y evoluciones del framework, lo que puede requerir cambios constantes en el código y la adaptación a nuevas versiones.</p></li>
+<li><p><strong>Compromiso a largo plazo:</strong> La adopción de un framework implica un compromiso a largo plazo con la tecnología elegida, lo que puede dificultar el cambio a otro framework en el futuro.</p></li>
+<li><p><strong>Potencial pérdida de habilidades básicas:</strong> El uso excesivo de un framework puede llevar a la pérdida de práctica y dominio de las habilidades de desarrollo web básicas.</p></li>
+</ul>
+<p><strong>Silos y portabilidad del código:</strong></p>
+<p>Es importante recordar que el uso de un framework específico puede crear un “silo” en el desarrollo, dificultando la reutilización del código en otros proyectos que no utilicen el mismo framework.</p>
+<p><strong>Alternativas:</strong></p>
+<p>Es importante destacar que el desarrollo web no se limita únicamente al uso de frameworks. La opción de trabajar con JavaScript puro (“Vanilla JS”) junto con librerías puntuales como JQuery, Lodash, Ramda, Mocha o RxJS sigue siendo una alternativa viable para muchos proyectos.</p>
+<p><a class="reference external" href="https://javarome.medium.com/design-noframework-bbc00a02d9b3">https://javarome.medium.com/design-noframework-bbc00a02d9b3</a></p>
+<p>Antes de embarcarse en el desarrollo con Angular, es crucial evaluar cuidadosamente las necesidades del proyecto, las habilidades del equipo y las implicaciones a largo plazo de adoptar un framework.</p>
+</section>
+<section id="primeros-pasos-con-angular-hola-mundo">
+<h2>Primeros pasos con Angular: ¡Hola Mundo!<a class="headerlink" href="#primeros-pasos-con-angular-hola-mundo" title="Link to this heading">#</a></h2>
+<p>En este capítulo, daremos nuestros primeros pasos en el mundo de Angular creando una sencilla aplicación que muestre el clásico mensaje “Hola Mundo”. A lo largo del camino, conoceremos algunos conceptos básicos del framework y la estructura de un proyecto Angular.</p>
+<p><strong>Preparación del entorno</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Instalación de herramientas previas:</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@angular/cli<span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+ng<span class="w"> </span>new<span class="w"> </span>my-app
+<span class="nb">cd</span><span class="w"> </span>my-app<span class="w"> </span>
+ng<span class="w"> </span>serve<span class="w"> </span>-o
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Creación de un nuevo proyecto:</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>new<span class="w"> </span>mi-aplicacion
+</pre></div>
+</div>
+<p>Este comando creará la estructura básica del proyecto.</p>
+<p><strong>Estructura del proyecto:</strong></p>
+<p>La estructura de un proyecto Angular típico se compone de las siguientes carpetas:</p>
+<ul class="simple">
+<li><p><strong>src:</strong> Contiene el código fuente de la aplicación, incluyendo componentes, servicios, módulos y otros elementos.</p></li>
+<li><p><strong>assets:</strong> Almacena recursos estáticos como imágenes, fuentes y archivos CSS.</p></li>
+<li><p><strong>environments:</strong> Define las variables de entorno para diferentes configuraciones (desarrollo, producción, etc.).</p></li>
+<li><p><strong>node_modules:</strong> Contiene las dependencias de terceros instaladas mediante npm.</p></li>
+<li><p><strong>package.json:</strong> El archivo de configuración del proyecto, donde se especifican las dependencias, scripts y metadatos del proyecto.</p></li>
+<li><p><strong>tsconfig.json:</strong> La configuración de TypeScript para el proyecto.</p></li>
+</ul>
+<p><strong>Creando el “Hola Mundo”:</strong></p>
+<ol class="arabic">
+<li><p><strong>Editando el componente principal:</strong></p>
+<p>Modificar el contenido del archivo <code class="docutils literal notranslate"><span class="pre">app.component.ts</span></code> de la siguiente manera:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./app.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrls</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;./app.component.css&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Mi primera aplicación Angular&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Este código define un componente llamado <code class="docutils literal notranslate"><span class="pre">AppComponent</span></code> con un selector <code class="docutils literal notranslate"><span class="pre">app-root</span></code>. El selector indica cómo se usará este componente en la plantilla HTML. El componente tiene un título definido como <code class="docutils literal notranslate"><span class="pre">Mi</span> <span class="pre">primera</span> <span class="pre">aplicación</span> <span class="pre">Angular</span></code>.</p>
+</li>
+<li><p><strong>Creando la plantilla HTML:</strong></p>
+<p>Abrir el archivo <code class="docutils literal notranslate"><span class="pre">app.component.html</span></code> en la misma carpeta. Este archivo contiene la plantilla HTML del componente.</p>
+<p>Agregar el siguiente código HTML dentro de las etiquetas <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>¡Hola Mundo!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Ejecutando la aplicación:</strong></p>
+<p>En la terminal, ejecutar el siguiente comando para iniciar el servidor de desarrollo local:</p>
+</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>serve<span class="w"> </span>-o
+</pre></div>
+</div>
+<p>Esto abrirá un navegador web en la dirección <code class="docutils literal notranslate"><span class="pre">http://localhost:4200</span></code>.</p>
+<section id="angular-cli">
+<h3>Angular CLI<a class="headerlink" href="#angular-cli" title="Link to this heading">#</a></h3>
+<p>El Angular CLI (Command Line Interface) es una herramienta fundamental para el desarrollo de aplicaciones Angular. Actúa como un asistente que permite crear, generar, compilar, ejecutar y mantener tu proyecto de forma eficiente.</p>
+<section id="generando-elementos-del-framework">
+<h4>Generando elementos del framework:<a class="headerlink" href="#generando-elementos-del-framework" title="Link to this heading">#</a></h4>
+<p>El CLI facilita la generación de los elementos básicos que componen una aplicación Angular. Veamos algunos de los comandos más utilizados:</p>
+<ul class="simple">
+<li><p><strong>ng generate component <nombre-componente></strong>: Crea un nuevo componente con el nombre especificado.</p></li>
+<li><p><strong>ng generate directive <nombre-directiva></strong>: Genera una directiva para modificar el comportamiento del DOM.</p></li>
+<li><p><strong>ng generate pipe <nombre-pipe></strong>: Crea un pipe para transformar datos en la vista.</p></li>
+<li><p><strong>ng generate service <nombre-servicio></strong>: Genera un servicio para encapsular lógica y compartir datos entre componentes.</p></li>
+<li><p><strong>ng generate class <nombre-clase></strong>: Genera una clase simple de TypeScript.</p></li>
+<li><p><strong>ng generate interface <nombre-interface></strong>: Crea una interfaz para definir contratos de tipos.</p></li>
+<li><p><strong>ng generate enum <nombre-enum></strong>: Genera una enumeración para definir un conjunto de valores constantes.</p></li>
+<li><p><strong>ng generate module <nombre-modulo></strong>: Crea un nuevo módulo para organizar tu aplicación.</p></li>
+<li><p><strong>ng generate guard <nombre-guard></strong>: Genera un guard para controlar el acceso a rutas en tu aplicación.</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">generate</span></code>puede ser resumido con <code class="docutils literal notranslate"><span class="pre">g</span></code>, por ejemplo: <strong>ng g component <nombre-componente></strong></p>
+</div></blockquote>
+</section>
+<section id="anadiendo-e-integrando-librerias">
+<h4>Añadiendo e integrando librerías:<a class="headerlink" href="#anadiendo-e-integrando-librerias" title="Link to this heading">#</a></h4>
+<p>El CLI también permite incorporar librerías externas al proyecto de forma sencilla. Por ejemplo, para añadir el popular <code class="docutils literal notranslate"><span class="pre">&#64;angular/material</span></code> que ofrece componentes de diseño predefinidos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>add<span class="w"> </span>@angular/material
+</pre></div>
+</div>
+</section>
+<section id="actualizando-angular">
+<h4>Actualizando Angular:<a class="headerlink" href="#actualizando-angular" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>update<span class="w"> </span>--all
+</pre></div>
+</div>
+</section>
+<section id="compilando-la-aplicacion">
+<h4>Compilando la aplicación:<a class="headerlink" href="#compilando-la-aplicacion" title="Link to this heading">#</a></h4>
+<p>Para generar una versión optimizada de la aplicación lista para producción, se utiliza el comando <code class="docutils literal notranslate"><span class="pre">ng</span> <span class="pre">build</span></code>. Puedes añadir la opción <code class="docutils literal notranslate"><span class="pre">--prod</span></code> para habilitar optimizaciones adicionales:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>build<span class="w"> </span><span class="o">[</span>--prod<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>Creando un nuevo proyecto:</strong></p>
+<p>Para iniciar un nuevo proyecto Angular, se utiliza el comando <code class="docutils literal notranslate"><span class="pre">ng</span> <span class="pre">new</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>new<span class="w"> </span>mi-proyecto-angular
+</pre></div>
+</div>
+</section>
+</section>
+<section id="primeros-componentes-en-angular">
+<h3>Primeros Componentes en Angular<a class="headerlink" href="#primeros-componentes-en-angular" title="Link to this heading">#</a></h3>
+<p>Cada componente encapsula una parte específica de la interfaz de usuario (UI) y su funcionalidad asociada, promoviendo la modularidad y la reutilización de código. A modo de bloques de construcción, los componentes se ensamblan para crear aplicaciones web dinámicas y escalables.</p>
+<p><strong>Importando el decorador fundamental:</strong></p>
+<p>Para declarar un componente, es necesario importar el decorador <code class="docutils literal notranslate"><span class="pre">Component</span></code> desde el paquete <code class="docutils literal notranslate"><span class="pre">&#64;angular/core</span></code>. Este decorador proporciona metadatos esenciales sobre el componente, como su selector, plantilla y estilos.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Estructura de un componente:</strong></p>
+<p>Un componente se define como una clase TypeScript decorada con <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code>. La estructura básica de un componente incluye:</p>
+<ul class="simple">
+<li><p><strong>Selector:</strong> Un identificador único que define cómo se utilizará el componente en el HTML. Se especifica mediante la propiedad <code class="docutils literal notranslate"><span class="pre">selector</span></code> del decorador.</p></li>
+<li><p><strong>Plantilla:</strong> El código HTML que define la estructura visual del componente. Se define mediante la propiedad <code class="docutils literal notranslate"><span class="pre">templateUrl</span></code> del decorador, que apunta a un archivo HTML externo.</p></li>
+<li><p><strong>Estilos:</strong> Las reglas CSS que definen la apariencia del componente. Se definen mediante la propiedad <code class="docutils literal notranslate"><span class="pre">styleUrls</span></code> del decorador, que apunta a un archivo CSS externo.</p></li>
+<li><p><strong>Lógica del componente:</strong> El código TypeScript que define el comportamiento del componente, como propiedades, métodos y eventos. Este código se escribe dentro de la clase del componente.</p></li>
+</ul>
+<p><strong>Componentes Standalone:</strong></p>
+<p>En Angular, los componentes pueden existir de dos maneras: como parte de un módulo o como componentes Standalone. Los componentes Standalone no requieren de un módulo para funcionar y se definen de forma independiente. Para declarar un componente Standalone, se utiliza la propiedad <code class="docutils literal notranslate"><span class="pre">standalone</span></code> del decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> y se establece en <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p><strong>Ejemplo de un componente:</strong></p>
+<p>A continuación, se muestra un ejemplo de un componente simple llamado <code class="docutils literal notranslate"><span class="pre">AppComponent</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">standalone</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./app.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrls</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;./app.component.css&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Mi primera aplicación Angular&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reactividad">
+<h2>Reactividad<a class="headerlink" href="#reactividad" title="Link to this heading">#</a></h2>
+<p>La interpolación en Angular es una herramienta fundamental para inyectar datos dinámicos en las plantillas HTML, permitiendo que tus interfaces de usuario sean reactivas y se actualicen automáticamente en función de los cambios en los datos.</p>
+<section id="que-es-la-interpolacion">
+<h3>¿Qué es la interpolación?<a class="headerlink" href="#que-es-la-interpolacion" title="Link to this heading">#</a></h3>
+<p>La interpolación permite incrustar expresiones JavaScript dentro de las plantillas HTML utilizando las llaves dobles <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">}}</span></code>. El valor de la expresión se evalúa y se inserta en el lugar correspondiente.</p>
+<p><strong>Casos de uso comunes:</strong></p>
+<ul class="simple">
+<li><p><strong>Mostrar valores de variables:</strong> Puedes mostrar el valor de cualquier variable o propiedad de un componente dentro de una plantilla. Por ejemplo:</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Nombre: {{ nombre }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{ imagenURL }}&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Ejecutar métodos de componentes:</strong> Puedes llamar a métodos de tu componente dentro de la plantilla y mostrar el resultado. Por ejemplo:</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Resultado: {{ metodoComponente() }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Dinamismo y reactividad:</strong></p>
+<p>La interpolación hace que las plantillas sean dinámicas, ya que el contenido se actualiza automáticamente cuando los valores de las variables o las expresiones cambian en el código TypeScript. Esto permite crear interfaces de usuario que responden a eventos, interacciones del usuario o cambios en los datos.</p>
+<p><strong>Limitaciones:</strong></p>
+<ul class="simple">
+<li><p><strong>Dirección única:</strong> La interpolación solo funciona en una dirección, desde JavaScript hacia HTML. No se pueden modificar variables o propiedades desde la plantilla.</p></li>
+<li><p><strong>Expresiones simples:</strong> Las expresiones dentro de la interpolación deben ser simples y no deben contener instrucciones de control de flujo como <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code> o <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p></li>
+</ul>
+<p><strong>Contexto de las expresiones:</strong></p>
+<p>Las expresiones dentro de la interpolación se evalúan en el contexto del componente actual. No tienen acceso directo a variables o funciones globales.</p>
+<p><strong>Buenas prácticas:</strong></p>
+<ul class="simple">
+<li><p><strong>Mantén la simplicidad:</strong> Utiliza expresiones simples y evita código complejo dentro de la interpolación.</p></li>
+<li><p><strong>Usa <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code> para contenido HTML:</strong> Si la variable contiene código HTML, utiliza la directiva <code class="docutils literal notranslate"><span class="pre">[innerHTML]</span></code> para evitar problemas de seguridad.</p></li>
+</ul>
+</section>
+<section id="vincular-atributos">
+<h3>Vincular atributos<a class="headerlink" href="#vincular-atributos" title="Link to this heading">#</a></h3>
+<p>Angular permite vincular atributos HTML a propiedades de componentes utilizando la sintaxis <code class="docutils literal notranslate"><span class="pre">[]</span></code>. Por ejemplo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="err">[</span><span class="na">src</span><span class="err">]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">imageUrl</span><span class="err">&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="err">[</span><span class="na">style</span><span class="err">.</span><span class="na">height</span><span class="err">.</span><span class="na">px</span><span class="err">]=&quot;</span><span class="na">imageHeight</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Directivas <code class="docutils literal notranslate"><span class="pre">ngStyle</span></code> y <code class="docutils literal notranslate"><span class="pre">ngClass</span></code>:</strong></p>
+<p>Las directivas <code class="docutils literal notranslate"><span class="pre">ngStyle</span></code> y <code class="docutils literal notranslate"><span class="pre">ngClass</span></code> proporcionan mayor flexibilidad para manipular estilos y clases CSS a partir de variables o expresiones. Ambas requieren la importación del módulo <code class="docutils literal notranslate"><span class="pre">CommonModule</span></code>.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">ngStyle</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Permite aplicar estilos dinámicos a elementos HTML.</p></li>
+<li><p>Acepta un objeto literal o una variable que contenga pares clave-valor para los estilos.</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="err">[</span><span class="na">ngStyle</span><span class="err">]=&quot;{&#39;</span><span class="na">font-size</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">tamano</span><span class="err">+&#39;</span><span class="na">px</span><span class="err">&#39;}&quot;</span><span class="p">&gt;</span>Hola Mundo<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="err">[</span><span class="na">ngStyle</span><span class="err">]=&quot;</span><span class="na">styleObject</span><span class="err">&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">ngClass</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Permite aplicar clases CSS dinámicamente a elementos HTML.</p></li>
+<li><p>Acepta un objeto literal, una variable o un array que contenga las clases que se aplicarán.</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;</span><span class="na">clase</span><span class="err">&quot;</span><span class="p">&gt;</span>Hola Mundo<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;[</span><span class="na">clase</span><span class="err">,</span> <span class="na">claseParrafo</span> <span class="err">]&quot;</span><span class="p">&gt;</span>Hola Mundo<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{&#39;</span><span class="na">text-danger</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">danger</span><span class="err">,</span> <span class="err">&#39;</span><span class="na">text-info</span><span class="err">&#39;</span><span class="na">:</span> <span class="err">!</span><span class="na">danger</span><span class="err">}&quot;</span><span class="p">&gt;</span>Hola Mundo<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="vinculacion-bidireccional-ngmodel">
+<h3>Vinculación bidireccional <code class="docutils literal notranslate"><span class="pre">[(ngModel)]</span></code><a class="headerlink" href="#vinculacion-bidireccional-ngmodel" title="Link to this heading">#</a></h3>
+<p>La vinculación bidireccional permite sincronizar el valor de un elemento de entrada (como <code class="docutils literal notranslate"><span class="pre">input</span></code> o <code class="docutils literal notranslate"><span class="pre">textarea</span></code>) con una propiedad de un componente. Requiere la importación del módulo <code class="docutils literal notranslate"><span class="pre">FormsModule</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]=&quot;</span><span class="na">filterSearch</span><span class="err">&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+<span class="na">name</span><span class="o">=</span><span class="s">&quot;filterDesc&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;filterDesc&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Filter...&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="vincular-eventos">
+<h3>Vincular eventos<a class="headerlink" href="#vincular-eventos" title="Link to this heading">#</a></h3>
+<p>Los eventos de los elementos HTML se pueden vincular a métodos de componentes utilizando la sintaxis <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">toggleImage</span><span class="err">()&quot;</span><span class="p">&gt;</span>Mostrar imagen<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="directivas-estructurales">
+<h2>Directivas estructurales<a class="headerlink" href="#directivas-estructurales" title="Link to this heading">#</a></h2>
+<p>Las directivas estructurales en Angular permiten controlar el flujo condicional de las plantillas HTML, mostrando o ocultando contenido en función de diversos criterios.</p>
+<p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>:</strong></p>
+<p>La directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> funciona similar a la instrucción <code class="docutils literal notranslate"><span class="pre">if</span></code> en JavaScript, permitiendo mostrar o esconder contenido en base a una condición booleana. Su sintaxis es la siguiente:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@if (expresiónBooleana) {
+  } else {
+  }
+</pre></div>
+</div>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@if (names.length &gt; 0) {
+  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let name of names&quot;</span><span class="p">&gt;</span>{{ name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+} else {
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>No hay nombres para mostrar<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+}
+</pre></div>
+</div>
+<p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code>:</strong></p>
+<p>La directiva <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> itera sobre una colección de datos, mostrando un elemento HTML por cada elemento de la colección. Su sintaxis es la siguiente:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (elemento of colección; trackBy clave) {
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ elemento }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+}
+</pre></div>
+</div>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (let nombre of nombres) {
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ nombre }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+}
+</pre></div>
+</div>
+<p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code>:</strong></p>
+<p>La directiva <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> funciona como la instrucción <code class="docutils literal notranslate"><span class="pre">switch</span></code> en JavaScript, permitiendo mostrar o esconder contenido en función de una expresión que puede tener varios valores. Su sintaxis es la siguiente:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@switch (expresión) {
+  case valor1:
+    break;
+  case valor2:
+    break;
+  default:
+    }
+</pre></div>
+</div>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@switch (tipoUsuario) {
+  case &#39;admin&#39;:
+    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Administrar usuarios<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    break;
+  case &#39;user&#39;:
+    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Ver mis datos<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    break;
+  default:
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Usuario no reconocido<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+}
+</pre></div>
+</div>
+<p><strong>Directivas <code class="docutils literal notranslate"><span class="pre">&#64;empty</span></code> y <code class="docutils literal notranslate"><span class="pre">trackBy</span></code>:</strong></p>
+<p>Las directivas <code class="docutils literal notranslate"><span class="pre">&#64;empty</span></code> y <code class="docutils literal notranslate"><span class="pre">trackBy</span></code> son opcionales y proporcionan funcionalidades adicionales:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">&#64;empty</span></code>:</strong> Define el contenido a mostrar cuando la colección de datos está vacía.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">trackBy</span></code>:</strong> Especifica un valor único para cada elemento de la colección, lo que optimiza la actualización del DOM al iterar sobre la colección.</p></li>
+</ul>
+<p><strong>Modernización a partir de Angular 17:</strong></p>
+<p>A partir de Angular 17, las directivas estructurales <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> se han simplificado y no requieren la importación de ninguna librería adicional. Además, la sintaxis se ha hecho más intuitiva y fácil de leer.</p>
+</section>
+<section id="interfaces">
+<h2>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h2>
+<p>Las interfaces en Angular son un mecanismo fundamental para definir la estructura de objetos de datos. Proporcionan un contrato que describe las propiedades que un objeto debe tener y sus respectivos tipos. Esto mejora la legibilidad, mantenibilidad y seguridad del código, ya que Angular puede detectar errores en tiempo de compilación si se intenta utilizar un objeto que no cumple con la interfaz definida.</p>
+<p><strong>¿Por qué utilizar interfaces?</strong></p>
+<ul class="simple">
+<li><p><strong>Claridad y definición:</strong> Las interfaces documentan de forma explícita la estructura de los objetos, mejorando la comprensión del código.</p></li>
+<li><p><strong>Detección temprana de errores:</strong> Angular puede detectar en tiempo de compilación si se intenta utilizar un objeto que no cumple con la interfaz, evitando errores en tiempo de ejecución.</p></li>
+<li><p><strong>Refactorización segura:</strong> Al modificar la estructura de una interfaz, Angular te avisará de los lugares donde se utilizan objetos afectados, facilitando la refactorización segura del código.</p></li>
+<li><p><strong>Autocompletado:</strong> Los editores de código modernos utilizan las interfaces para ofrecer autocompletado y sugerencias de tipos, mejorando la productividad del desarrollador.</p></li>
+</ul>
+<p><strong>Creando una interfaz:</strong></p>
+<p>Para crear una interfaz, se utiliza la palabra clave <code class="docutils literal notranslate"><span class="pre">interface</span></code> seguida por el nombre de la interfaz y un bloque con llaves que define sus propiedades:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">IProduct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">available</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">imageUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">rating</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Propiedades de la interfaz:</strong></p>
+<p>Cada propiedad de la interfaz se define con su nombre, seguido de dos puntos <code class="docutils literal notranslate"><span class="pre">:</span></code> y el tipo de dato esperado. En el ejemplo anterior, se definen las propiedades:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: Número identificador del producto.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code>: Descripción textual del producto.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: Precio del producto (número).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">available</span></code>: Fecha de disponibilidad del producto (objeto <code class="docutils literal notranslate"><span class="pre">Date</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imageUrl</span></code>: URL de la imagen del producto (cadena de texto).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rating</span></code>: Valoración del producto (número).</p></li>
+</ul>
+<p><strong>Utilizando interfaces:</strong></p>
+<p>Una vez definida la interfaz, puedes utilizarla para declarar variables o propiedades de componentes que deben contener objetos con esa estructura. Por ejemplo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">IProduct</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SSD hard drive&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">available</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2016-10-03&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">75</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">imageUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;assets/ssd.jpg&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">rating</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// ... otros productos</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>En este ejemplo, el array <code class="docutils literal notranslate"><span class="pre">products</span></code> está tipado como un array de objetos que cumplen con la interfaz <code class="docutils literal notranslate"><span class="pre">IProduct</span></code>. Esto garantiza que cada objeto del array tenga las propiedades esperadas y del tipo correcto.</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="#componentes" title="Link to this heading">#</a></h2>
+<p>Los componentes son los pilares fundamentales de una aplicación Angular. Cada componente encapsula una parte específica de la interfaz de usuario (UI) y su funcionalidad asociada. A modo de bloques de construcción, los componentes se ensamblan para crear aplicaciones web dinámicas y escalables.</p>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="_images/components.png"><img alt="_images/components.png" src="_images/components.png" style="width: 583.0px; height: 449.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Anatomía de un componente:</strong></p>
+<p>Un componente se define como una clase TypeScript decorada con <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code>. La estructura básica de un componente incluye:</p>
+<ul class="simple">
+<li><p><strong>Selector:</strong> Un identificador único que define cómo se utilizará el componente en el HTML. Se especifica mediante la propiedad <code class="docutils literal notranslate"><span class="pre">selector</span></code> del decorador.</p></li>
+<li><p><strong>Plantilla:</strong> El código HTML que define la estructura visual del componente. Se define mediante la propiedad <code class="docutils literal notranslate"><span class="pre">templateUrl</span></code> del decorador, que apunta a un archivo HTML externo.</p></li>
+<li><p><strong>Estilos:</strong> Las reglas CSS que definen la apariencia del componente. Se definen mediante la propiedad <code class="docutils literal notranslate"><span class="pre">styleUrls</span></code> del decorador, que apunta a un archivo CSS externo.</p></li>
+<li><p><strong>Lógica del componente:</strong> El código TypeScript que define el comportamiento del componente, como propiedades, métodos y eventos. Este código se escribe dentro de la clase del componente.</p></li>
+</ul>
+<p><strong>Componentes como elementos reutilizables:</strong></p>
+<p>Los componentes son elementos reutilizables por naturaleza. Se pueden importar y utilizar en otros componentes, promoviendo la modularidad y evitando la duplicación de código. Esto facilita la creación de interfaces de usuario consistentes y escalables.</p>
+<p><strong>Comunicación entre componentes:</strong></p>
+<figure class="align-right" id="id2">
+<a class="reference internal image-reference" href="_images/inputoutputcomponents.png"><img alt="_images/inputoutputcomponents.png" src="_images/inputoutputcomponents.png" style="width: 310.0px; height: 212.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Los componentes padres envían datos a los hijos mediante &#64;Input</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Los componentes pueden comunicarse entre sí mediante diferentes mecanismos, como:</p>
+<ul class="simple">
+<li><p><strong>Entrada y salida de datos:</strong> Los componentes pueden intercambiar datos a través de propiedades de entrada y salida &#64;Input y &#64;Output.</p></li>
+<li><p><strong>Servicios:</strong> Los componentes pueden compartir lógica y datos mediante servicios, que son clases que encapsulan funcionalidad reutilizable.</p></li>
+<li><p><strong>Eventos:</strong> Los componentes pueden emitir eventos que otros componentes pueden escuchar y responder.</p></li>
+</ul>
+<p><strong>Ciclo de vida de los componentes:</strong></p>
+<p>Los componentes tienen un ciclo de vida definido por una serie de métodos que se llaman en diferentes momentos de su existencia. Algunos de los métodos más importantes son:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">constructor</span></code>:</strong> Se llama cuando se crea una instancia del componente.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code>:</strong> Se llama una vez que el componente se ha inicializado y está listo para usarse.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ngAfterContentInit</span></code>:</strong> Se llama después de que se haya inicializado el contenido del componente.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ngAfterViewInit</span></code>:</strong> Se llama después de que se haya renderizado el componente completamente.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ngOnChanges</span></code>:</strong> Se llama cada vez que cambia una propiedad de entrada del componente.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ngDoCheck</span></code>:</strong> Se llama en cada ciclo de detección de cambios de Angular.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ngOnDestroy</span></code>:</strong> Se llama cuando el componente se destruye.</p></li>
+</ul>
+<p><strong>Componentes anidados:</strong></p>
+<p>Los componentes se pueden anidar en una estructura jerárquica, lo que permite crear interfaces de usuario complejas y modulares. Un componente padre puede contener uno o más componentes hijos, y cada componente hijo puede contener a su vez otros componentes hijos.</p>
+<p><strong>Comunicación entre componentes anidados:</strong></p>
+<figure class="align-right" id="id3">
+<a class="reference internal image-reference" href="_images/inputoutputparentchild.png"><img alt="_images/inputoutputparentchild.png" src="_images/inputoutputparentchild.png" style="width: 637.0px; height: 240.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Diagrama de comunicación entre componentes padres e hijos.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Los componentes anidados pueden comunicarse entre sí de la misma manera que los componentes no anidados. Los componentes padres pueden enviar datos a sus componentes hijos mediante propiedades de entrada, y los componentes hijos pueden emitir eventos que sus componentes padres pueden escuchar.</p>
+<p><strong>Ejemplo de componentes anidados:</strong></p>
+<p>Consideremos un ejemplo de una aplicación de catálogo de productos. La aplicación podría tener un componente padre <code class="docutils literal notranslate"><span class="pre">ProductListComponent</span></code> que muestra una lista de productos, y cada producto podría estar representado por un componente hijo <code class="docutils literal notranslate"><span class="pre">ProductItem</span></code>. El componente <code class="docutils literal notranslate"><span class="pre">ProductListComponent</span></code> podría enviar datos a cada componente <code class="docutils literal notranslate"><span class="pre">ProductItem</span></code> mediante propiedades de entrada, como el nombre del producto, la imagen y el precio. Los componentes <code class="docutils literal notranslate"><span class="pre">ProductItem</span></code> podrían emitir eventos que el componente <code class="docutils literal notranslate"><span class="pre">ProductListComponent</span></code> podría escuchar, como un evento de clic que indica que el usuario ha seleccionado un producto.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "deno"
+        },
+        kernelOptions: {
+            name: "deno",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'deno'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="typescript.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Typescript</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-previos-para-comenzar-con-angular">Requisitos previos para comenzar con Angular</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-contrato-del-framework">El “contrato” del framework:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primeros-pasos-con-angular-hola-mundo">Primeros pasos con Angular: ¡Hola Mundo!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-cli">Angular CLI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generando-elementos-del-framework">Generando elementos del framework:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anadiendo-e-integrando-librerias">Añadiendo e integrando librerías:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizando-angular">Actualizando Angular:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compilando-la-aplicacion">Compilando la aplicación:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primeros-componentes-en-angular">Primeros Componentes en Angular</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reactividad">Reactividad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-la-interpolacion">¿Qué es la interpolación?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-atributos">Vincular atributos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vinculacion-bidireccional-ngmodel">Vinculación bidireccional <code class="docutils literal notranslate"><span class="pre">[(ngModel)]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-estructurales">Directivas estructurales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">Componentes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

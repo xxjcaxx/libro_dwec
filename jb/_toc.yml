@@ -16,7 +16,10 @@ chapters:
 - file: tests
 - file: programacionfuncionalreactiva
 - file: errores
+- file: webworkers
 - file: vite
 - file: ci-cd
 - file: proyectos
-
+- file: documentacion
+- file: typescript
+- file: angular
