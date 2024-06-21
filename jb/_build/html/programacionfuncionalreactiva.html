@@ -14,33 +14,33 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gestión de Errores" href="errores.html" />
-    <link rel="prev" title="Comunicación con el servidor" href="ajax.html" />
+    <link rel="prev" title="tests" href="tests.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -72,23 +72,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,13 +114,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -186,10 +185,13 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: Backend como Servicio para Desarrollo Web en el Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Desarrollo Web en el Cliente con Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 </ul>
 
     </div>
@@ -205,7 +207,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -214,7 +216,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -405,16 +407,24 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-map">Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-encadenados">Métodos Encadenados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#currying">Currying</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-currying">Ejemplo de Currying</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composicion-de-funciones">Composición de Funciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composicion-de-funciones">Composición de Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#composicion-vs-pipelining">Composición vs Pipelining</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-compose">Función <code class="docutils literal notranslate"><span class="pre">compose</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-pipe">Función <code class="docutils literal notranslate"><span class="pre">pipe</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-operator">Pipeline Operator</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajar-con-arrays">Trabajar con Arrays</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-metodos-de-arrays">Ejemplos de Métodos de Arrays</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-encadenados">Métodos Encadenados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-y-tuplas">Records y Tuplas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-decorador">Ejemplo de Decorador</a></li>
@@ -555,6 +565,9 @@ document.write(`
 <li><p><strong>Sin efectos secundarios (side effects)</strong>: Las funciones no deben alterar el estado del programa.</p></li>
 </ul>
 <p>Es un paradigma, una manera de pensar y escribir código que busca reducir la programación imperativa y la programación orientada a objetos (POO).</p>
+<blockquote>
+<div><p>No es obligatorio seguir absolutamente todos los principios de la programación funcional para programar bien en Javascript. Pero es interesante conocer los principios básicos para mejorar la calidad de código. La immutabilidad y las funciones puras siempre que se puedan aplicar son beneficiosas y permiten hacer programas más fáciles de mantener. No obstante, obsesionarse por la pureza de la programación funcional puede retrasar la programación o, incluso, hacer el código más difícil de leer.</p>
+</div></blockquote>
 <section id="inmutabilidad">
 <h2>Inmutabilidad<a class="headerlink" href="#inmutabilidad" title="Link to this heading">#</a></h2>
 <p>La inmutabilidad es un principio clave en la programación funcional que implica que los datos no pueden ser modificados una vez creados. Esto ayuda a evitar errores y a mantener el código más predecible.</p>
@@ -601,6 +614,17 @@ document.write(`
 </div>
 </div>
 </div>
+<p>También se puede usar el <code class="docutils literal notranslate"><span class="pre">spread</span> <span class="pre">operator</span></code> ([…xs]).</p>
+<p>Para evitar la mutabilidad de las variables se puede:</p>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">const</span></code> (sólo funciona con variables primitivas, ya que los arrays son mutables internamente)</p></li>
+<li><p>Reducir o eliminar las asignaciones</p></li>
+<li><p>Usar estructuras de datos Inmutables como tuplas o records</p></li>
+<li><p>Hacer copias de los objetos antes de modificarlos (… o structuredClone)</p></li>
+<li><p>No asignar objetos por referencia.</p></li>
+<li><p>Función <code class="docutils literal notranslate"><span class="pre">freeze</span></code> o <code class="docutils literal notranslate"><span class="pre">seal</span></code></p></li>
+<li><p>No usar funciones que provocan mutaciones en arrays, como splice, sort, push… como vimos en el capítulo de los arrays.</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -611,6 +635,24 @@ document.write(`
 <li><p><strong>Pocos argumentos</strong>: Idealmente, una función debe tener pocos argumentos.</p></li>
 <li><p><strong>Una sola tarea</strong>: Deben hacer solo una cosa.</p></li>
 <li><p><strong>Puras y deterministas</strong>: Deben ser funciones puras, es decir, no deben tener efectos secundarios y deben producir el mismo resultado para los mismos argumentos.</p></li>
+<li><p><strong>KISS</strong></p></li>
+<li><p><strong>DRY</strong></p></li>
+<li><p><strong>Trabajan sobre datos inmutables</strong></p></li>
+<li><p><strong>Pueden ser “meonizadas”</strong>: Si la función se llama nuevamente con los mismos argumentos, se puede devolver el resultado almacenado en lugar de volver a ejecutar toda la función.</p></li>
+<li><p><strong>Expresan sus dependencias</strong></p></li>
+<li><p><strong>Son testables</strong></p></li>
+<li><p><strong>Transparencia referencial</strong></p></li>
+</ul>
+<p>Además de estas condiciones, también es aconsejable seguir estas consideraciones:</p>
+<ul class="simple">
+<li><p>Si la función acepta un número indeterminado de argumentos es mejor aceptar un objeto o un array.</p>
+<ul>
+<li><p>También se puede aceptar un número indeterminado y poner <code class="docutils literal notranslate"><span class="pre">...args</span></code> para convertirlos en un array dentro de la función.</p></li>
+<li><p>Más avanzado puede ser hacer <a class="github reference external" href="https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch2.md/#parameter-destructuring">getify/Functional-Light-JS</a></p></li>
+</ul>
+</li>
+<li><p>Evitar que una función retorne más de un valor. Esto rompe el flujo y las hace más difíciles de leer.</p></li>
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">closures</span></code> también se considera efecto colateral.</p></li>
 </ul>
 <section id="funciones-impuras">
 <h3>Funciones Impuras<a class="headerlink" href="#funciones-impuras" title="Link to this heading">#</a></h3>
@@ -637,6 +679,19 @@ document.write(`
 <span class="kd">const</span><span class="w"> </span><span class="nx">checkAgePure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">age</span><span class="p">,</span><span class="w"> </span><span class="nx">minimum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">21</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">minimum</span><span class="p">;</span>
 </pre></div>
 </div>
+<p>Las funciones impuras se detectan si:</p>
+<ul class="simple">
+<li><p>No tiene argumentos de entrada</p></li>
+<li><p>No retornan nada</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">this</span></code></p></li>
+<li><p>Usa variables globales</p></li>
+<li><p>Modifica objetos que deberían ser inmutables.</p></li>
+<li><p>El resultado no es determinista.</p></li>
+</ul>
+<p>Lo más difícil de detectar es cuando aceptan un objeto y retorna un objeto que es el mismo mutado. Si no retornan una copia profunda del objeto, no son puras.</p>
+<blockquote>
+<div><p>No todas las funciones pueden ser puras, la cuestión es delimitarlas para que no hagan daño.</p>
+</div></blockquote>
 </section>
 </section>
 </section>
@@ -671,10 +726,67 @@ document.write(`
 </div>
 </li>
 </ul>
+<table>
+    <thead>
+        <tr>
+            <th>Condiciones positivas para la programación funcional</th>
+            <th>Declaración de función con nombre</th>
+            <th>Declaración de función anónima</th>
+            <th>Función flecha</th>
+            <th>Expresión de función flecha</th>
+            <th>Expresión de función con function()</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>En caso de error, podemos encontrar la función que ha fallado</td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#c8e6c9">✔ No siempre tiene el mismo nombre</td>
+            <td style="background-color:#c8e6c9">✔ No siempre tiene el mismo nombre</td>
+        </tr>
+        <tr>
+            <td>Puede autoreferenciarse</td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#c8e6c9">✔</td>
+        </tr>
+        <tr>
+            <td>La sintaxis es más consistente para argumentos y returns avanzados</td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#c8e6c9">✔</td>
+        </tr>
+        <tr>
+            <td>Tiene hoisting</td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#ffcdd2">✘</td>
+        </tr>
+        <tr>
+            <td>El código es breve</td>
+            <td style="background-color:#ffcdd2">✘</td>
+            <td style="background-color:#ffddd2"></td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#c8e6c9">✔</td>
+            <td style="background-color:#ffcdd2">✘</td>
+        </tr>
+    </tbody>
+</table>
 </section>
 <section id="funciones-de-orden-superior">
 <h2>Funciones de Orden Superior<a class="headerlink" href="#funciones-de-orden-superior" title="Link to this heading">#</a></h2>
-<p>Las funciones de orden superior son aquellas que aceptan o retornan otras funciones. En JavaScript, métodos como <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code> son funciones de orden superior.</p>
+<p>Las funciones de orden superior son aquellas que aceptan o retornan otras funciones. En JavaScript, métodos como <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code> son funciones de orden superior.
+Estas son las más importantes y forman parte de los fundamentos de la programación funcional. Estas funciones forman parte del objeto Array.</p>
+<p>Podemos hacer nuestras funciones de órden superior.</p>
+<p>Otras funciones de los objetos Array, algunas no totalmente funcionales, también son de órden superior y muy útiles: <code class="docutils literal notranslate"><span class="pre">forEach</span></code>, <code class="docutils literal notranslate"><span class="pre">some</span></code>, <code class="docutils literal notranslate"><span class="pre">every</span></code>, <code class="docutils literal notranslate"><span class="pre">find</span></code>, <code class="docutils literal notranslate"><span class="pre">findIndex</span></code>, <code class="docutils literal notranslate"><span class="pre">flatMap</span></code>, <code class="docutils literal notranslate"><span class="pre">reduceRight</span></code>…</p>
 <section id="ejemplo-de-map">
 <h3>Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code><a class="headerlink" href="#ejemplo-de-map" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -696,9 +808,30 @@ document.write(`
 </div>
 </section>
 </section>
+<section id="metodos-encadenados">
+<h2>Métodos Encadenados<a class="headerlink" href="#metodos-encadenados" title="Link to this heading">#</a></h2>
+<p>Los métodos encadenados permiten ejecutar múltiples métodos en una secuencia en una sola línea de código. Aunque no es 100% funcional (debido a los métodos prototípicos que pueden mutar el objeto original), los métodos encadenados facilitan la lectura y escritura del código.</p>
+<p>No se aconseja añadir métodos encadenables a los prototipos de Array o similares, ya no por los principios de la programación funcional, sino por los problemas que pueden derivar de ellos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello World&#39;</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="c1">// Salida: &quot;hello&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="currying">
 <h2>Currying<a class="headerlink" href="#currying" title="Link to this heading">#</a></h2>
-<p>Currificar consiste en transformar una función de múltiples argumentos en una secuencia de funciones que toman un único argumento. Esto permite reutilizar mejor el código y mantener funciones puras.</p>
+<p>Currificar consiste en transformar una función de múltiples argumentos en una secuencia de funciones que toman un único argumento (funciones unarias). Esto permite reutilizar mejor el código y mantener funciones puras.</p>
+<p>Bibliotecas como Lodash o Ramda incorporan la posibilidad de currificar otras funciones existentes. Las funciones currificadas de esta manera pueden ser llamadas tanto con varios argumentos como por separado.</p>
+<p>En realidad, el curring se basa en las closures, ya que se trata de funciones que aceptan un argumento y retornan otra función para aceptar el siguiente argumento.</p>
 <section id="ejemplo-de-currying">
 <h3>Ejemplo de Currying<a class="headerlink" href="#ejemplo-de-currying" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -720,11 +853,79 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">players</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="nx">position</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="kt">20</span><span class="p">}},{</span><span class="nx">position</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kt">15</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="p">}}];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">end</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">end</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">start</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">end</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">start</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">distancewithCurrying</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">start</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">end</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">end</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">start</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">end</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">start</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">distances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">players</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">player</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">distance</span><span class="p">(</span><span class="nx">flag</span><span class="p">,</span><span class="w"> </span><span class="nx">player</span><span class="p">.</span><span class="nx">position</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Distancias tradicionales: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">distances</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">distanceFromFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">distancewithCurrying</span><span class="p">(</span><span class="nx">flag</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">curriedDistances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">players</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">player</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">player</span><span class="p">.</span><span class="nx">position</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">distanceFromFlag</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Dist currificadas:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">curriedDistances</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distancias tradicionales:  [ <span class=" -Color -Color-Yellow">22.360679774997898</span>, <span class=" -Color -Color-Yellow">18.027756377319946</span> ]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dist currificadas: [ <span class=" -Color -Color-Yellow">22.360679774997898</span>, <span class=" -Color -Color-Yellow">18.027756377319946</span> ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el ejemplo anterior, supongamos un juego de capturar la bandera en el que esta siempre se queda en la misma posición. Para calcular la distancia no es necesario pasar siempre la posición. Otra manera de usar esta función puede ser esta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">curriedDistances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">players</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">player</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">player</span><span class="p">.</span><span class="nx">position</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">distancewithCurrying</span><span class="p">(</span><span class="nx">flag</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Así no es necesario crear la función <code class="docutils literal notranslate"><span class="pre">distanceFromFlag</span></code>;</p>
+<p>El curring puede parecer innecesario, pero tiene ventajas, sobretodo con la siguiente técnica que es la composición. El hecho de poder tener siempre disponible funciones unarias simplifica en muchas ocasiones la programación.</p>
 </section>
 </section>
 <section id="composicion-de-funciones">
 <h2>Composición de Funciones<a class="headerlink" href="#composicion-de-funciones" title="Link to this heading">#</a></h2>
-<p>La composición de funciones permite encadenar funciones de manera que el resultado de una función se pasa como entrada a la siguiente.</p>
+<p>La composición de funciones permite encadenar funciones de manera que el resultado de una función se pasa como entrada a la siguiente. Esta técnica es similar a lo que sucede al concatenar comandos en una tubería (<code class="docutils literal notranslate"><span class="pre">|</span></code>) en Linux. La composición permite construir operaciones complejas a partir de funciones más simples.</p>
+<p>Aunque librerías como Ramda.js proporcionan funciones como <code class="docutils literal notranslate"><span class="pre">compose()</span></code> o <code class="docutils literal notranslate"><span class="pre">pipe()</span></code> para facilitar la composición, también podemos crear nuestras propias funciones de composición en JavaScript Vanilla.</p>
+<section id="composicion-vs-pipelining">
+<h3>Composición vs Pipelining<a class="headerlink" href="#composicion-vs-pipelining" title="Link to this heading">#</a></h3>
+<p>La principal diferencia entre composición (<code class="docutils literal notranslate"><span class="pre">compose</span></code>) y pipelining (<code class="docutils literal notranslate"><span class="pre">pipe</span></code>) radica en el orden de ejecución de las funciones:</p>
+<ul class="simple">
+<li><p><strong>Compose</strong>: Ejecuta las funciones de derecha a izquierda.</p></li>
+<li><p><strong>Pipe</strong>: Ejecuta las funciones de izquierda a derecha.</p></li>
+</ul>
+<section id="funcion-compose">
+<h4>Función <code class="docutils literal notranslate"><span class="pre">compose</span></code><a class="headerlink" href="#funcion-compose" title="Link to this heading">#</a></h4>
+<p>La función <code class="docutils literal notranslate"><span class="pre">compose</span></code> toma un número variable de funciones como argumentos y devuelve una nueva función. Esta nueva función toma argumentos iniciales, ejecuta la última función con estos argumentos y luego pasa el resultado sucesivamente a través de las demás funciones en orden inverso.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">  </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">fns</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">reduce</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">memo</span><span class="p">,</span><span class="w"> </span><span class="nx">fn</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fn</span><span class="p">(</span><span class="nx">memo</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">fns</span><span class="p">[</span><span class="nx">fns</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">](...</span><span class="nx">args</span><span class="p">)</span>
+<span class="w">      </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Aunque, con <code class="docutils literal notranslate"><span class="pre">reduceRight</span></code> el código queda más compacto:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Esta función es igual que la anterior. Merece la pena dedicar un momento a leerla e intentar entender su funcionamiento.</p>
+</section>
+<section id="funcion-pipe">
+<h4>Función <code class="docutils literal notranslate"><span class="pre">pipe</span></code><a class="headerlink" href="#funcion-pipe" title="Link to this heading">#</a></h4>
+<p>La función <code class="docutils literal notranslate"><span class="pre">pipe</span></code> es similar a <code class="docutils literal notranslate"><span class="pre">compose</span></code>, pero ejecuta las funciones en el orden en que se pasan, de izquierda a derecha.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Aquí vemos un ejemplo simple del uso de la composición:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -747,6 +948,57 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Otro ejemplo más avanzado consiste en crear una función de composición asíncrona para poder usar await en otras funciones asíncronas o que retornan promesas. Con esta se pueden componer funciones de, por ejemplo, pedir datos al servidor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="k">async</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">addImgUrL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">artWork</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">artWork</span><span class="p">.</span><span class="nx">img_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`https://www.artic.edu/iiif/2/</span><span class="si">${</span><span class="nx">artWork</span><span class="p">.</span><span class="nx">image_id</span><span class="si">}</span><span class="sb">/full/843,/0/default.jpg`</span><span class="p">,</span><span class="nx">artWork</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">addImgUrLArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">artWorks</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">artWorks</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">addImgUrL</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">getURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w">  </span><span class="nx">compose</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span><span class="nx">fetch</span><span class="p">)(</span><span class="nx">url</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">getArtWorks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">compose</span><span class="p">(</span><span class="nx">addImgUrLArray</span><span class="p">,</span><span class="nx">r</span><span class="p">=&gt;</span><span class="nx">r</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span><span class="nx">getURL</span><span class="p">)(</span><span class="nx">url</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">consoleLog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">datos</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">datos</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="w"> </span><span class="p">([</span><span class="nx">d</span><span class="p">.</span><span class="nx">img_url</span><span class="p">,</span><span class="w"> </span><span class="nx">d</span><span class="p">.</span><span class="nx">title</span><span class="p">])));</span>
+<span class="w">    </span><span class="nx">compose</span><span class="p">(</span><span class="nx">consoleLog</span><span class="p">,</span><span class="nx">getArtWorks</span><span class="p">)(</span><span class="s1">&#39;https://api.artic.edu/api/v1/artworks&#39;</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo se usa la composición varias veces y funciones puras muy breves que descomponen la tarea. Como se ve, si las funciones son unarias y retornan algo, pueden ser compuestas.
+La función de fetch no es pura porque conecta con el exterior y la función consoleLog tampoco porque no retorna nada y provoca un efecto colateral, pero las tenemos controladas.
+El pasar funciones como referencia a otras es llamado por algunos como <code class="docutils literal notranslate"><span class="pre">point</span> <span class="pre">free</span> <span class="pre">style</span></code>. En este ejemplo se concatenan muchas funciones dentro de compose sin indicar los argumentos con los que serán invocadas.</p>
+</section>
+</section>
+<section id="pipeline-operator">
+<h3>Pipeline Operator<a class="headerlink" href="#pipeline-operator" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.geeksforgeeks.org/javascript-pipeline-operator/">https://www.geeksforgeeks.org/javascript-pipeline-operator/</a></p>
+<p>Puesto que esta funcionalidad ha sido añadida en 2024, puede que no esté disponible en todos los navegadores. Pero <code class="docutils literal notranslate"><span class="pre">Babel</span></code> lo soporta y lo puede transpilar.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">subtract</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Without pipeline operator</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">val1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">subtract</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="nx">subtract</span><span class="p">(</span><span class="mf">10</span><span class="p">))));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val1</span><span class="p">);</span>
+
+<span class="c1">// Using pipeline operator</span>
+
+<span class="c1">// First 10 is passed as argument to subtract</span>
+<span class="c1">// function then returned value is passed to</span>
+<span class="c1">// add function then value we get is passed to</span>
+<span class="c1">// subtract and then the value we get is again</span>
+<span class="c1">// passed to add function</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">val2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nx">subtract</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nx">subtract</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nx">add</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val2</span><span class="p">);</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Currificar y componer pueden parecer técnicas innecesarias y complicadas. Pero si las usamos bien y de forma que el código se entienda, puede quedar un código auto-documentado, más fácil de testar, reutilizable y más fácil de mantener. Por otro lado, son técnicas usadas continuamente dentro de los frameworks más conocidos y hay que saber leer ese código.</p>
+</div></blockquote>
+</section>
 </section>
 <section id="trabajar-con-arrays">
 <h2>Trabajar con Arrays<a class="headerlink" href="#trabajar-con-arrays" title="Link to this heading">#</a></h2>
@@ -815,33 +1067,21 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="metodos-encadenados">
-<h2>Métodos Encadenados<a class="headerlink" href="#metodos-encadenados" title="Link to this heading">#</a></h2>
-<p>Los métodos encadenados permiten ejecutar múltiples métodos en una secuencia en una sola línea de código. Aunque no es 100% funcional (debido a los métodos prototípicos que pueden mutar el objeto original), los métodos encadenados facilitan la lectura y escritura del código.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello World&#39;</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-<span class="c1">// Salida: &quot;hello&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="records-y-tuplas">
 <h2>Records y Tuplas<a class="headerlink" href="#records-y-tuplas" title="Link to this heading">#</a></h2>
-<p>A partir de 2024, JavaScript ha incorporado Records y Tuples, que son estructuras de datos inmutables similares a los objetos y arrays respectivamente. Esto mejora la capacidad de trabajar con datos de manera segura y predecible.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Record</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="w"> </span><span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
-<span class="c1">// Salida: { name: &quot;Alice&quot;, age: 25 }</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Tuple</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">point</span><span class="p">);</span>
-<span class="c1">// Salida: [1, 2]</span>
+<p>A partir de 2024, JavaScript ha incorporado Records y Tuples, que son estructuras de datos inmutables similares a los objetos y arrays respectivamente.
+Las tuplas y records se pueden comparar directamente.</p>
+<p>Tampoco funciona en todos los navegadores.</p>
+<p><a class="reference external" href="https://tc39.es/proposal-record-tuple/tutorial/">https://tc39.es/proposal-record-tuple/tutorial/</a></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">debitCard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">#</span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Visa&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">number</span><span class="o">:</span><span class="w"> </span><span class="mf">4242424242424242</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">#</span><span class="p">[</span>
+<span class="w">    </span><span class="nx">drivingLicence</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">creditCard</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">debitCard</span><span class="p">,</span>
+<span class="p">];</span>
 </pre></div>
 </div>
 <section id="decoradores">
@@ -900,7 +1140,7 @@ document.write(`
 <h1>Programación Reactiva<a class="headerlink" href="#programacion-reactiva" title="Link to this heading">#</a></h1>
 <section id="programacion-asincrona">
 <h2>Programación Asíncrona<a class="headerlink" href="#programacion-asincrona" title="Link to this heading">#</a></h2>
-<p>La programación asíncrona es un componente crucial en el desarrollo web moderno. Cualquier llamada a una API del navegador, como <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">fetch</span></code>, o <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code>, se ejecuta de manera asíncrona. Para manejar esta asincronía, se pueden utilizar tres técnicas principales:</p>
+<p>Cualquier llamada a una API del navegador, como <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">fetch</span></code>, o <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code>, se ejecuta de manera asíncrona. Para manejar esta asincronía, se pueden utilizar tres técnicas principales:</p>
 <ol class="arabic simple">
 <li><p><strong>Callbacks</strong>: Una función se pasa como argumento a otra función y se ejecuta después de que la operación asíncrona se completa.</p></li>
 <li><p><strong>Promesas</strong>: Objetos que representan la eventual finalización (o falla) de una operación asíncrona y su valor resultante.</p></li>
@@ -913,6 +1153,12 @@ document.write(`
 <section id="pensar-en-reactivo">
 <h3>Pensar en “Reactivo”<a class="headerlink" href="#pensar-en-reactivo" title="Link to this heading">#</a></h3>
 <p>Cuando programamos de manera tradicional, utilizamos paradigmas imperativos, estructurados y orientados a objetos. Con la programación reactiva, aprovechamos técnicas de programación asíncrona y funcional para cambiar nuestra manera de pensar. Se trata de programar con flujos de datos asíncronos.</p>
+<p>Lecturas recomendadas:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming">https://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming</a></p></li>
+<li><p><a class="reference external" href="https://www.reactivemanifesto.org/">https://www.reactivemanifesto.org/</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Reactive_programming">https://en.wikipedia.org/wiki/Reactive_programming</a></p></li>
+</ul>
 </section>
 </section>
 <section id="paradigma-reactivo">
@@ -937,7 +1183,7 @@ document.write(`
 </section>
 <section id="rxjs">
 <h2>RxJS<a class="headerlink" href="#rxjs" title="Link to this heading">#</a></h2>
-<p>RxJS (Reactive Extensions for JavaScript) permite manejar la asincronía utilizando el patrón de diseño Observable. Con RxJS, se pueden crear Observables a partir de cualquier evento posible. Un Observable emite valores cuando algún Observador se suscribe. Cada suscripción es independiente y tiene su propio contexto de ejecución. RxJS ofrece muchas formas de crear, filtrar y consumir Observables.</p>
+<p>RxJS (Reactive Extensions for JavaScript) permite manejar la asincronía utilizando el patrón de diseño <code class="docutils literal notranslate"><span class="pre">Observable</span></code>. Con RxJS, se pueden crear Observables a partir de cualquier evento posible. Un Observable emite valores cuando algún Observador se suscribe. Cada suscripción es independiente y tiene su propio contexto de ejecución. RxJS ofrece muchas formas de crear, filtrar y consumir Observables.</p>
 <section id="mecanismo-unificado">
 <h3>Mecanismo Unificado<a class="headerlink" href="#mecanismo-unificado" title="Link to this heading">#</a></h3>
 <p>RxJS unifica varios mecanismos asincrónicos bajo un solo modelo:</p>
@@ -1888,16 +2134,16 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ajax.html"
+       href="tests.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Comunicación con el servidor</p>
+        <p class="prev-next-title">tests</p>
       </div>
     </a>
     <a class="right-next"
@@ -1945,16 +2191,24 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-map">Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-encadenados">Métodos Encadenados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#currying">Currying</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-currying">Ejemplo de Currying</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composicion-de-funciones">Composición de Funciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composicion-de-funciones">Composición de Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#composicion-vs-pipelining">Composición vs Pipelining</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-compose">Función <code class="docutils literal notranslate"><span class="pre">compose</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-pipe">Función <code class="docutils literal notranslate"><span class="pre">pipe</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-operator">Pipeline Operator</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajar-con-arrays">Trabajar con Arrays</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-metodos-de-arrays">Ejemplos de Métodos de Arrays</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-encadenados">Métodos Encadenados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-y-tuplas">Records y Tuplas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-decorador">Ejemplo de Decorador</a></li>
@@ -2121,8 +2375,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -8,27 +8,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Supabase: Backend como Servicio para Desarrollo Web en el Cliente &#8212; Libro DWEC</title>
+    <title>Supabase: (Backend como Servicio) &#8212; Libro DWEC</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'supabase';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NPM" href="npm.html" />
+    <link rel="prev" title="Comunicación con el servidor" href="ajax.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -70,23 +72,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -108,13 +114,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -122,8 +123,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -178,7 +177,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -186,10 +185,15 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Desarrollo Web en el Cliente con Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyecto en Javascript</a></li>
 </ul>
 
     </div>
@@ -205,7 +209,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -214,7 +218,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -375,7 +379,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Supabase: Backend como Servicio para Desarrollo Web en el Cliente</h1>
+    <h1>Supabase: (Backend como Servicio)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -385,11 +389,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-principales">Características Principales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos-postgresql">Base de Datos PostgreSQL</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-y-sdk">API y SDK</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
@@ -430,20 +429,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="supabase-backend-como-servicio-para-desarrollo-web-en-el-cliente">
-<h1>Supabase: Backend como Servicio para Desarrollo Web en el Cliente<a class="headerlink" href="#supabase-backend-como-servicio-para-desarrollo-web-en-el-cliente" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="supabase-backend-como-servicio">
+<h1>Supabase: (Backend como Servicio)<a class="headerlink" href="#supabase-backend-como-servicio" title="Link to this heading">#</a></h1>
 <p>Supabase es un Backend como Servicio (BaaS) que proporciona un conjunto de herramientas para desarrollar aplicaciones web sin la necesidad de implementar un backend completo. Este servicio incluye características como SDK, analíticas, autenticación, bases de datos, almacenamiento, dashboard, WebSockets, entre otros.</p>
-<section id="caracteristicas-principales">
-<h2>Características Principales<a class="headerlink" href="#caracteristicas-principales" title="Link to this heading">#</a></h2>
-<section id="base-de-datos-postgresql">
-<h3>Base de Datos PostgreSQL<a class="headerlink" href="#base-de-datos-postgresql" title="Link to this heading">#</a></h3>
 <p>Supabase utiliza PostgreSQL como su motor de base de datos, permitiendo a los desarrolladores aprovechar todas las capacidades de esta robusta base de datos relacional.</p>
-</section>
-<section id="api-y-sdk">
-<h3>API y SDK<a class="headerlink" href="#api-y-sdk" title="Link to this heading">#</a></h3>
-<p>Ofrece varios tipos de APIs y un SDK que facilita la interacción con el backend desde el cliente. También soporta el almacenamiento de archivos estáticos y permite la ejecución de funciones definidas por el usuario a través de RPC (Remote Procedure Call).</p>
-</section>
-</section>
+<p>Ofrece varios tipos de <code class="docutils literal notranslate"><span class="pre">APIs</span></code> y un <code class="docutils literal notranslate"><span class="pre">SDK</span></code> que facilita la interacción con el backend desde el cliente. También soporta el almacenamiento de archivos estáticos y permite la ejecución de funciones definidas por el usuario a través de RPC (Remote Procedure Call).</p>
+<blockquote>
+<div><p>Puesto que hay que ser capaz de usar cualquier <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Rest</span></code>, no usaremos el SDK de Supabase inicialmente.</p>
+</div></blockquote>
 <section id="gestion-de-tablas-y-api">
 <h2>Gestión de Tablas y API<a class="headerlink" href="#gestion-de-tablas-y-api" title="Link to this heading">#</a></h2>
 <p>Cuando se crea una tabla en Supabase, se genera automáticamente una API para interactuar con ella. Puedes ver la API generada en el SDK o en Bash. Aquí utilizaremos ejemplos en Bash para evitar la instalación del SDK.</p>
@@ -483,6 +476,7 @@ document.write(`
 </section>
 <section id="autenticacion-por-email-y-contrasena">
 <h3>Autenticación por Email y Contraseña<a class="headerlink" href="#autenticacion-por-email-y-contrasena" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=pi33WDrgfpI">https://www.youtube.com/watch?v=pi33WDrgfpI</a></p>
 <p>Podemos invitar usuarios a través de la interfaz o crear un formulario de inscripción. En cualquier caso, es necesario que el usuario confirme su email.</p>
 <p>En el caso de la invitación, la redirección por defecto es a <code class="docutils literal notranslate"><span class="pre">localhost:3000</span></code>, pero esto se puede modificar. Una vez confirmado, el usuario recibirá un token que se puede probar en <a class="reference external" href="https://jwt.io">jwt.io</a>. Este token se usará en la cabecera <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>.</p>
 </section>
@@ -594,12 +588,117 @@ document.write(`
 <section id="ejemplo-de-comunicacion-broadcast">
 <h3>Ejemplo de Comunicación “Broadcast”<a class="headerlink" href="#ejemplo-de-comunicacion-broadcast" title="Link to this heading">#</a></h3>
 <p>Supabase permite la comunicación directa con otros usuarios o la notificación de cambios en las tablas mediante WebSockets.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">supabase</span><span class="p">.</span><span class="nx">createClient</span><span class="p">(</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">currentUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="p">.</span><span class="nx">channel</span><span class="p">(</span><span class="s1">&#39;chat-db&#39;</span><span class="p">)</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">renderMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">messageContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;message-container&#39;</span><span class="p">);</span>
+<span class="w">   </span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">messageElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">messageElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">messageElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">user</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">currentUser</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;outgoing&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;incoming&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">messageContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">messageContent</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;message-content&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">messageContent</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">message</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">messageElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">messageContent</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">messageContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">messageElement</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Hacer scroll hacia abajo para mostrar el último mensaje</span>
+<span class="w">  </span><span class="nx">messageContainer</span><span class="p">.</span><span class="nx">scrollTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">messageContainer</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">channel</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">on</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;postgres_changes&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">schema</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;public&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;chat&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payload</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">renderMessage</span><span class="p">(</span><span class="nx">payload</span><span class="p">.</span><span class="ow">new</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}).</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">status</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">status</span><span class="p">))</span>
+
+
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">downloadHistoric</span><span class="p">(){</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s2">&quot;chat&quot;</span><span class="p">).</span><span class="nx">select</span><span class="p">();</span>
+<span class="w">   </span><span class="c1">// console.log(data);</span>
+<span class="w">   </span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">renderMessage</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,()=&gt;{</span>
+
+<span class="w">    </span><span class="nx">downloadHistoric</span><span class="p">();</span>
+
+
+<span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#send-button&quot;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()=&gt;{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#message-input&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s2">&quot;chat&quot;</span><span class="p">).</span><span class="nx">insert</span><span class="p">([</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="nx">currentUser</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">message</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">  </span><span class="p">]);</span>
+<span class="w">   </span><span class="p">});</span><span class="w"> </span>
+<span class="w">  </span><span class="p">})</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="ejemplo-de-chat-con-mensajes-guardados">
 <h2>Ejemplo de Chat con Mensajes Guardados<a class="headerlink" href="#ejemplo-de-chat-con-mensajes-guardados" title="Link to this heading">#</a></h2>
 <p>Supabase facilita la implementación de un sistema de chat donde los mensajes se guardan en la base de datos. Puedes modificar el chat para mantener la sesión del usuario en cookies.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Código ejemplo de comunicación &quot;broadcast&quot; o chat</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">supabase</span><span class="p">.</span><span class="nx">createClient</span><span class="p">(</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">currentUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="p">.</span><span class="nx">channel</span><span class="p">(</span><span class="s1">&#39;chat&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">broadcast</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">self</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">})</span>
+
+
+
+<span class="nx">channel</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">()</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;broadcast&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;supa&#39;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payload</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">messageContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;message-container&#39;</span><span class="p">);</span>
+<span class="w">   </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">messageElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">messageElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">messageElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">payload</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">user</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">currentUser</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;outgoing&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;incoming&#39;</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">messageContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">messageContent</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;message-content&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">messageContent</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">payload</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="nx">messageElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">messageContent</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">messageContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">messageElement</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="c1">// Hacer scroll hacia abajo para mostrar el último mensaje</span>
+<span class="w">    </span><span class="nx">messageContainer</span><span class="p">.</span><span class="nx">scrollTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">messageContainer</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">;</span>
+<span class="w">  </span><span class="p">})</span>
+
+
+
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,()=&gt;{</span>
+<span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#send-button&quot;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,()=&gt;{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#message-input&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">channel</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;broadcast&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;supa&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">message</span><span class="p">,</span><span class="nx">user</span><span class="o">:</span><span class="nx">currentUser</span><span class="p">},</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">   </span><span class="p">});</span><span class="w"> </span>
+<span class="w">  </span><span class="p">})</span>
 </pre></div>
 </div>
 <p>Supabase es una poderosa herramienta que facilita el desarrollo de aplicaciones web del lado del cliente, proporcionando un backend completo y fácil de usar. Sus características avanzadas de autenticación, almacenamiento, y tiempo real lo convierten en una opción robusta para desarrolladores que buscan una solución BaaS eficiente.</p>
@@ -633,9 +732,27 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="ajax.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Comunicación con el servidor</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="npm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">NPM</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -652,11 +769,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-principales">Características Principales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-de-datos-postgresql">Base de Datos PostgreSQL</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-y-sdk">API y SDK</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
@@ -734,8 +846,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

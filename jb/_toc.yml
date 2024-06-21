@@ -11,7 +11,12 @@ chapters:
 - file: modulos
 - file: promesas
 - file: ajax
+- file: supabase
+- file: npm
+- file: tests
 - file: programacionfuncionalreactiva
 - file: errores
+- file: vite
 - file: ci-cd
+- file: proyectos
 

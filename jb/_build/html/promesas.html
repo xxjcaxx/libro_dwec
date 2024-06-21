@@ -14,33 +14,33 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -72,23 +72,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,13 +114,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -186,10 +185,13 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: Backend como Servicio para Desarrollo Web en el Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Desarrollo Web en el Cliente con Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 </ul>
 
     </div>
@@ -205,7 +207,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -214,7 +216,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -402,14 +404,9 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cola-de-macrotareas-y-microtareas">Cola de Macrotareas y Microtareas</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-dividir-el-trabajo-con-settimeout">Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-macrotareas-y-microtareas">Diferencias entre Macrotareas y Microtareas</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-ejemplo-con-promesas-microtareas">Código de Ejemplo con Promesas (Microtareas)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis-y-asincronia">Web APIs y Asincronía</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#event-loop-pila-y-cola">Event Loop, Pila y Cola</a></li>
 </ul>
 </li>
 </ul>
@@ -448,13 +445,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="promesas">
 <h1>Promesas<a class="headerlink" href="#promesas" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>Parece ser que la salida de los scripts en Jupyter Notebook no funciona correctamente con la asincronía. Puede que alguna salida no sea totalmente correcta en los ejemplos. Se recomienda probarlos en un navegador.</p>
+</div></blockquote>
 <p>Antes de estudiar las promesas, vamos a repasar algunos conceptos sobre cómo funciona internamente el motor de javascript. De esta manera será más fácil entender cómo funcionan las promesas y cómo usarlas.</p>
 <section id="el-motor-de-javascript">
 <h2>El Motor de JavaScript<a class="headerlink" href="#el-motor-de-javascript" title="Link to this heading">#</a></h2>
 <p>El motor de JavaScript dentro del navegador es responsable de compilar y ejecutar el código JavaScript, manejar la pila de funciones (call stack), gestionar el alojamiento de los objetos en memoria (heap) y recolectar la basura de los objetos que ya no se necesitan. Además, proporciona una API con utilidades del navegador, red, funciones asíncronas y más. En este capítulo, exploraremos cómo funciona el motor de JavaScript, incluyendo la ejecución de código síncrono y asíncrono, y los conceptos de contexto de ejecución y pila de llamadas.</p>
 <section id="entorno-de-ejecucion">
 <h3>Entorno de Ejecución<a class="headerlink" href="#entorno-de-ejecucion" title="Link to this heading">#</a></h3>
-<p>JavaScript solo puede tener un hilo de ejecución (en principio). Esto significa que si solicitamos algo al servidor de forma síncrona, toda la web se detendrá hasta que llegue la respuesta. Sin embargo, los navegadores tienen un entorno de ejecución que permite que JavaScript realice solicitudes de forma asíncrona y continúe ejecutando otras tareas. Estas peticiones asíncronas pueden ser Callbacks, Promesas o Async/Await. Para entender cómo funcionan las peticiones asíncronas en JavaScript, es fundamental comprender los conceptos de Contexto de Ejecución y Pila de Llamadas.</p>
+<p>JavaScript solo puede tener un hilo de ejecución (en principio). Esto significa que si solicitamos algo al servidor de forma síncrona, toda la web se detendrá hasta que llegue la respuesta. Sin embargo, los navegadores tienen un entorno de ejecución que permite que JavaScript realice solicitudes de forma asíncrona y continúe ejecutando otras tareas. Estas peticiones asíncronas las proporciona las web APIs y sus respuestas pueden ser gestionadas mediante Callbacks, Promesas o Async/Await. Para entender cómo funcionan las peticiones asíncronas en JavaScript, es fundamental comprender los conceptos de Contexto de Ejecución y Pila de Llamadas.</p>
 <section id="contexto-de-ejecucion-y-pila-de-llamadas">
 <h4>Contexto de Ejecución y Pila de Llamadas<a class="headerlink" href="#contexto-de-ejecucion-y-pila-de-llamadas" title="Link to this heading">#</a></h4>
 <section id="contexto-de-ejecucion">
@@ -609,6 +609,12 @@ document.write(`
 <p>JavaScript gestiona las operaciones asíncronas utilizando varias colas de tareas, cada una con una prioridad diferente. Estas colas incluyen la <strong>cola de macrotareas</strong> y la <strong>cola de microtareas</strong>.</p>
 <section id="cola-de-macrotareas-y-microtareas">
 <h5>Cola de Macrotareas y Microtareas<a class="headerlink" href="#cola-de-macrotareas-y-microtareas" title="Link to this heading">#</a></h5>
+<figure class="align-right" id="id2">
+<a class="reference internal image-reference" href="_images/microtasks.png"><img alt="_images/microtasks.png" src="_images/microtasks.png" style="width: 441.0px; height: 469.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Ilustración de microtareas y macrotareas</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Las <strong>macrotareas</strong> incluyen operaciones como los eventos del DOM, <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">setInterval</span></code> y otras operaciones asíncronas. Las macrotareas se gestionan en la “cola de macrotareas” y se procesan una por una.</p>
 <p>Las <strong>microtareas</strong>, por otro lado, incluyen las promesas (<code class="docutils literal notranslate"><span class="pre">Promises</span></code>) y las mutaciones del DOM (a través de <code class="docutils literal notranslate"><span class="pre">MutationObserver</span></code>). Estas tareas se gestionan en la “cola de microtareas”, que tiene una prioridad más alta que la de las macrotareas. Esto significa que después de cada macrotarea, el motor de JavaScript procesará todas las microtareas antes de continuar con la siguiente macrotarea.</p>
 <p>Cuando se completa una macrotarea, el motor de JavaScript pasa a procesar todas las microtareas pendientes. Este ciclo de procesamiento asegura que las microtareas reciban atención inmediata después de cada macrotarea.</p>
@@ -619,6 +625,7 @@ document.write(`
 
 <span class="kd">function</span><span class="w"> </span><span class="nx">count</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Trabajo pesado</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1e9</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
@@ -637,6 +644,7 @@ document.write(`
 <li><p>Si <code class="docutils literal notranslate"><span class="pre">count</span></code> se ejecuta directamente, bloquea el navegador porque el bucle es muy largo.</p></li>
 <li><p>Utilizando <code class="docutils literal notranslate"><span class="pre">setTimeout(count,</span> <span class="pre">0)</span></code>, la función <code class="docutils literal notranslate"><span class="pre">count</span></code> se coloca en la cola de macrotareas, permitiendo que el navegador procese otras tareas mientras tanto.</p></li>
 </ol>
+<p>Este ejemplo ilustra cómo retrasar el bloqueo hasta que, por ejemplo, se ejecute todo el programa principal. Pero no soluciona el hecho de que, al final se va a quedar el navegador bloqueado, ya que se ejecutará en el único hilo de ejecución de Javascript. Si queremos tener más hilos, podemos usar <code class="docutils literal notranslate"><span class="pre">worker</span></code>. En el siguiente ejemplo se ve cómo dividir el trabajo para que, en medio, dé tiempo a renderizar o ejecutar otras tareas y microtareas como atender eventos:</p>
 </section>
 <section id="ejemplo-de-dividir-el-trabajo-con-settimeout">
 <h5>Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code><a class="headerlink" href="#ejemplo-de-dividir-el-trabajo-con-settimeout" title="Link to this heading">#</a></h5>
@@ -664,51 +672,39 @@ document.write(`
 <li><p>Esto permite que el navegador renderice el cambio en el DOM, evitando el bloqueo y ofreciendo una experiencia de usuario más fluida.</p></li>
 </ol>
 </section>
-<section id="diferencias-entre-macrotareas-y-microtareas">
-<h5>Diferencias entre Macrotareas y Microtareas<a class="headerlink" href="#diferencias-entre-macrotareas-y-microtareas" title="Link to this heading">#</a></h5>
-<ol class="arabic simple">
-<li><p><strong>Prioridad de Procesamiento</strong>: Las microtareas tienen una prioridad más alta que las macrotareas. Después de cada macrotarea, se procesan todas las microtareas antes de comenzar una nueva macrotarea.</p></li>
-<li><p><strong>Ejemplos</strong>:</p>
-<ul class="simple">
-<li><p><strong>Macrotareas</strong>: <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">setInterval</span></code>, eventos del DOM.</p></li>
-<li><p><strong>Microtareas</strong>: Promesas (<code class="docutils literal notranslate"><span class="pre">Promises</span></code>), <code class="docutils literal notranslate"><span class="pre">MutationObserver</span></code>.</p></li>
-</ul>
-</li>
-</ol>
-</section>
 <section id="codigo-de-ejemplo-con-promesas-microtareas">
 <h5>Código de Ejemplo con Promesas (Microtareas)<a class="headerlink" href="#codigo-de-ejemplo-con-promesas-microtareas" title="Link to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Script start&#39;</span><span class="p">);</span>
-
-<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;SetTimeout&#39;</span><span class="p">);</span>
-<span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
-
-<span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Promise 1&#39;</span><span class="p">);</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Promise 2&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Script end&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Script start&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;SetTimeout&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">printMessages</span><span class="p">();</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Promise 1&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}).</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Promise 2&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Script end&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">printMessages</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;\n&#39;</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">})();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 746ms
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script start
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script end
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Promise 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Promise 2
+Script end
+Promise 1
+Promise 2
+SetTimeout
 </pre></div>
 </div>
 </div>
@@ -723,81 +719,6 @@ document.write(`
 </ol>
 <p>Este mecanismo de tareas y microtareas permite que JavaScript gestione de manera eficiente las operaciones asíncronas, asegurando que el código se ejecute de manera ordenada y que las tareas con mayor prioridad (microtareas) se completen antes de procesar tareas menos prioritarias (macrotareas).</p>
 </section>
-</section>
-</section>
-<section id="web-apis-y-asincronia">
-<h3>Web APIs y Asincronía<a class="headerlink" href="#web-apis-y-asincronia" title="Link to this heading">#</a></h3>
-<p>Los navegadores ofrecen servicios asíncronos que JavaScript puede solicitar, como <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, eventos del DOM o <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code>. Estas APIs no son específicas de JavaScript, sino que son proporcionadas por los navegadores.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">networkRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Async Code&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
-<span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
-<span class="nx">networkRequest</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The End&#39;</span><span class="p">);</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The End
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Análisis:</strong></p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">console.log('Hello</span> <span class="pre">World')</span></code> se ejecuta e imprime “Hello World”.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">networkRequest()</span></code> se agrega a la pila de llamadas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se agrega a la pila de llamadas, programa una función para ejecutarse después de 2 segundos y se elimina de la pila.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">console.log('The</span> <span class="pre">End')</span></code> se ejecuta e imprime “The End”.</p></li>
-<li><p>Después de 2 segundos, la función dentro de <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se agrega a la pila de llamadas y se ejecuta, imprimiendo “Async Code”.</p></li>
-</ol>
-<section id="event-loop-pila-y-cola">
-<h4>Event Loop, Pila y Cola<a class="headerlink" href="#event-loop-pila-y-cola" title="Link to this heading">#</a></h4>
-<p>El Event Loop maneja la ejecución de código asíncrono en JavaScript. Funciona de la siguiente manera:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">first</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">second</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
-<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0 segundos</span>
-<span class="p">}</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">third</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">first</span><span class="p">();</span>
-<span class="nx">second</span><span class="p">();</span>
-<span class="nx">third</span><span class="p">();</span>
-
-<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">);</span>
-<span class="p">},</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span>
-<span class="c1">// Siempre se imprimirá 1 3 2</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">first()</span></code> se agrega a la pila, guarda <code class="docutils literal notranslate"><span class="pre">1</span></code> y se elimina de la pila.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">second()</span></code> se agrega a la pila, <code class="docutils literal notranslate"><span class="pre">setTimeout()</span></code> se agrega a la pila, la función flecha se agrega a la cola, <code class="docutils literal notranslate"><span class="pre">setTimeout()</span></code> y <code class="docutils literal notranslate"><span class="pre">second()</span></code> se eliminan de la pila.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">third()</span></code> se agrega a la pila, guarda <code class="docutils literal notranslate"><span class="pre">3</span></code> y se elimina de la pila.</p></li>
-<li><p>El Event Loop recorre la cola, agrega la función flecha a la pila, guarda <code class="docutils literal notranslate"><span class="pre">2</span></code> y elimina la función flecha de la pila.</p></li>
-<li><p>Finalmente se espera un milisegundo e imprimime el array.</p></li>
-</ol>
 </section>
 </section>
 </section>
@@ -827,9 +748,6 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data is being fetched...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">3</span>, <span class=" -Color -Color-Yellow">2</span> ]
 </pre></div>
 </div>
 </div>
@@ -1170,7 +1088,7 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1224,14 +1142,9 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cola-de-macrotareas-y-microtareas">Cola de Macrotareas y Microtareas</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-dividir-el-trabajo-con-settimeout">Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-macrotareas-y-microtareas">Diferencias entre Macrotareas y Microtareas</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-ejemplo-con-promesas-microtareas">Código de Ejemplo con Promesas (Microtareas)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis-y-asincronia">Web APIs y Asincronía</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#event-loop-pila-y-cola">Event Loop, Pila y Cola</a></li>
 </ul>
 </li>
 </ul>
@@ -1305,8 +1218,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
