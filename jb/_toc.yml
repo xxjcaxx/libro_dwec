@@ -3,23 +3,28 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: lenguajejavascript
-- file: arraysobjetosclases
-- file: dom
-- file: iteradores
-- file: modulos
-- file: promesas
-- file: ajax
-- file: supabase
-- file: npm
-- file: tests
-- file: programacionfuncionalreactiva
-- file: errores
-- file: webworkers
-- file: vite
-- file: ci-cd
-- file: proyectos
-- file: documentacion
-- file: typescript
-- file: angular
+parts:
+  - caption: Javascript
+    chapters:
+    - file: lenguajejavascript
+    - file: arraysobjetosclases
+    - file: dom
+    - file: iteradores
+    - file: modulos
+    - file: promesas
+    - file: ajax
+    - file: supabase
+    - file: npm
+    - file: tests
+    - file: programacionfuncionalreactiva
+    - file: errores
+    - file: webworkers
+    - file: vite
+    - file: ci-cd
+    - file: proyectos
+    - file: documentacion
+
+  - caption: Angular
+    chapters: 
+    - file: typescript
+    - file: angular

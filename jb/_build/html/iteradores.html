@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -406,6 +406,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterables-avanzados">Iterables avanzados</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakmap">WeakMap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakset">WeakSet</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa">Comparativa</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso">Ejemplo de uso</a></li>
 </ul>
@@ -658,6 +660,65 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="weakmap">
+<h3>WeakMap<a class="headerlink" href="#weakmap" title="Link to this heading">#</a></h3>
+<p><strong>Definición y Características:</strong></p>
+<ul class="simple">
+<li><p><strong>WeakMap</strong> es una estructura de datos introducida en ECMAScript 6 (ES6) para almacenar pares clave-valor, donde las claves deben ser objetos y los valores pueden ser cualquier tipo de dato.</p></li>
+<li><p><strong>Claves solo de objetos</strong>: Solo acepta objetos como claves. Intentar usar un tipo no objeto como clave resultará en un TypeError.</p></li>
+<li><p><strong>Recolección de basura de claves</strong>: Permite que las claves sean recolectadas cuando no hay otras referencias a ellas.</p></li>
+<li><p><strong>No enumeración de claves</strong>: No expone métodos para enumerar sus claves (keys(), values(), entries()).</p></li>
+<li><p><strong>Sin propiedad size</strong>: No tiene la propiedad size.</p></li>
+</ul>
+<p><strong>Creación y Uso:</strong></p>
+<ul class="simple">
+<li><p>Se crea utilizando <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">WeakMap()</span></code>.</p></li>
+<li><p>Métodos disponibles:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">set(key,</span> <span class="pre">value)</span></code>: Establece un par clave-valor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get(key)</span></code>: Recupera el valor asociado a una clave.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">has(key)</span></code>: Verifica si una clave existe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delete(key)</span></code>: Elimina un par clave-valor.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Casos de Uso Comunes:</strong></p>
+<ul class="simple">
+<li><p><strong>Almacenamiento de datos privados</strong>: Asociar datos privados a objetos sin exponerlos públicamente.</p></li>
+<li><p><strong>Mecanismo de caché</strong>: Caché de datos donde los valores pueden ser recolectados si no son necesarios.</p></li>
+<li><p><strong>Gestión de elementos del DOM</strong>: Seguimiento de elementos del DOM sin impedir su recolección de basura.</p></li>
+<li><p><strong>Memoización</strong>: Almacenar resultados de funciones costosas sin crecimiento indefinido de memoria.</p></li>
+</ul>
+</section>
+<section id="weakset">
+<h3>WeakSet<a class="headerlink" href="#weakset" title="Link to this heading">#</a></h3>
+<p><strong>Definición y Características:</strong></p>
+<ul class="simple">
+<li><p><strong>WeakSet</strong> es una estructura de datos diseñada para trabajar con colecciones de objetos, permitiendo solo objetos como valores y manteniendo referencias débiles.</p></li>
+<li><p><strong>Valores solo de objetos</strong>: Solo permite almacenar objetos.</p></li>
+<li><p><strong>Referencias débiles</strong>: Las referencias débiles permiten la recolección de basura de los objetos cuando no son necesarios.</p></li>
+<li><p><strong>Sin enumeración</strong>: No proporciona métodos para enumerar sus valores (keys(), values(), entries(), forEach()).</p></li>
+<li><p><strong>Sin propiedad size</strong>: No tiene la propiedad size.</p></li>
+</ul>
+<p><strong>Creación y Uso:</strong></p>
+<ul class="simple">
+<li><p>Se crea utilizando <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">WeakSet()</span></code>.</p></li>
+<li><p>Métodos disponibles:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">add(value)</span></code>: Añade un objeto al WeakSet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delete(value)</span></code>: Elimina un objeto del WeakSet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">has(value)</span></code>: Verifica si un objeto está en el WeakSet.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Casos de Uso Comunes:</strong></p>
+<ul class="simple">
+<li><p><strong>Comprobación de pertenencia de objetos</strong>: Seguimiento de la pertenencia de objetos sin impedir su recolección de basura.</p></li>
+<li><p><strong>Prevención de duplicación de objetos</strong>: Asegura que los objetos no se dupliquen dentro de una colección.</p></li>
+<li><p><strong>Gestión de referencias débiles en cachés</strong>: Mantener referencias débiles a objetos en cachés.</p></li>
+<li><p><strong>Gestión de referencias de objetos en estructuras de datos</strong>: Gestión de referencias de objetos en gráficos o estructuras arbóreas.</p></li>
+</ul>
+</section>
 <section id="comparativa">
 <h3>Comparativa<a class="headerlink" href="#comparativa" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -667,6 +728,8 @@ document.write(`
 <th class="head"><p>Objetos</p></th>
 <th class="head"><p>Sets</p></th>
 <th class="head"><p>Arrays</p></th>
+<th class="head"><p>WeakMap</p></th>
+<th class="head"><p>WeakSet</p></th>
 </tr>
 </thead>
 <tbody>
@@ -675,36 +738,48 @@ document.write(`
 <td><p>No</p></td>
 <td><p>Sí</p></td>
 <td><p>Sí</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
 </tr>
 <tr class="row-odd"><td><p>Valores repetidos</p></td>
 <td><p>Sí</p></td>
 <td><p>Sí</p></td>
 <td><p>No</p></td>
 <td><p>Sí</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
 </tr>
 <tr class="row-even"><td><p>Clave-valor</p></td>
 <td><p>Sí</p></td>
 <td><p>Sí</p></td>
 <td><p>No</p></td>
 <td><p>Índices</p></td>
+<td><p>Sí</p></td>
+<td><p>No</p></td>
 </tr>
 <tr class="row-odd"><td><p>Eliminar elementos</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">.delete()</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">delete</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">.delete()</span></code></p></td>
 <td><p>No directamente</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.delete()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.delete()</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>Filtrar, ordenar, map</p></td>
 <td><p>No</p></td>
 <td><p>No</p></td>
 <td><p>No</p></td>
 <td><p>Sí</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
 </tr>
 <tr class="row-odd"><td><p>Acceso aleatorio</p></td>
 <td><p>Sí</p></td>
 <td><p>Sí</p></td>
 <td><p>No</p></td>
 <td><p>Sí</p></td>
+<td><p>Sí</p></td>
+<td><p>No</p></td>
 </tr>
 </tbody>
 </table>
@@ -820,6 +895,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterables-avanzados">Iterables avanzados</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakmap">WeakMap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakset">WeakSet</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa">Comparativa</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso">Ejemplo de uso</a></li>
 </ul>
