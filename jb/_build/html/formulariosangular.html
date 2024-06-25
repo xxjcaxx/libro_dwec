@@ -1,0 +1,1009 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Formularios en Angular &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'formulariosangular';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Rutas en Angular" href="rutasangular.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyecto en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Formularios en Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fformulariosangular.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/formulariosangular.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Formularios en Angular</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-de-plantilla-en-angular">Formularios de Plantilla en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-formularios-basados-en-plantillas">Configuración de Formularios Basados en Plantillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-ngmodel-y-validadores-html5">Uso de ngModel y Validadores HTML5</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-estilos-al-validar">Modificar Estilos al Validar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manipular-la-entrada-del-usuario-en-tiempo-real">Manipular la Entrada del Usuario en Tiempo Real</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ngform-y-directiva-novalidate">ngForm y Directiva noValidate</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-los-errores-de-validacion">Mostrar los Errores de Validación</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-validadores-personalizados">Creación de Validadores Personalizados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-el-formulario">Enviar el Formulario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-reactivos">Formularios Reactivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones-sincronas">Validaciones Síncronas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Creación de Validadores Personalizados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-campos-cruzados">Validación de Campos Cruzados</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupar-campos">Agrupar Campos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar Datos en el Formulario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-cambios">Detección de Cambios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-dinamicos">Formularios Dinámicos</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="formularios-en-angular">
+<h1>Formularios en Angular<a class="headerlink" href="#formularios-en-angular" title="Link to this heading">#</a></h1>
+<p>Los formularios son una parte fundamental de cualquier aplicación web, y Angular ofrece dos enfoques principales para manejarlos: formularios reactivos y formularios basados en plantillas.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Característica</p></th>
+<th class="head"><p>Formularios Reactivos</p></th>
+<th class="head"><p>Formularios Basados en Plantillas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Configuración del modelo de formulario</p></td>
+<td><p>Explícita, creada en la clase del componente</p></td>
+<td><p>Implícita, creada por directivas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Modelo de datos</p></td>
+<td><p>Estructurado e inmutable</p></td>
+<td><p>No estructurado y mutable</p></td>
+</tr>
+<tr class="row-even"><td><p>Flujo de datos</p></td>
+<td><p>Sincrónico</p></td>
+<td><p>Asincrónico</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validación del formulario</p></td>
+<td><p>Funciones</p></td>
+<td><p>Directivas</p></td>
+</tr>
+</tbody>
+</table>
+<section id="formularios-de-plantilla-en-angular">
+<h2>Formularios de Plantilla en Angular<a class="headerlink" href="#formularios-de-plantilla-en-angular" title="Link to this heading">#</a></h2>
+<p>Usaremos los formularios de plantilla para aquellos que sean muy simples y no requieran una validación o manejo de los datos sofisticados.</p>
+<section id="configuracion-de-formularios-basados-en-plantillas">
+<h3>Configuración de Formularios Basados en Plantillas<a class="headerlink" href="#configuracion-de-formularios-basados-en-plantillas" title="Link to this heading">#</a></h3>
+<p>Para empezar a trabajar con formularios basados en plantillas, necesitamos importar el módulo <code class="docutils literal notranslate"><span class="pre">FormsModule</span></code> en nuestro componente:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FormsModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+
+<span class="p">...</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">FormsModule</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// otros módulos</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<section id="uso-de-ngmodel-y-validadores-html5">
+<h4>Uso de ngModel y Validadores HTML5<a class="headerlink" href="#uso-de-ngmodel-y-validadores-html5" title="Link to this heading">#</a></h4>
+<p>Los formularios basados en plantillas en Angular permiten utilizar validadores HTML5 directamente en los elementos <code class="docutils literal notranslate"><span class="pre">input</span></code>. Estos validadores aplican automáticamente clases de estilo dependiendo del estado del formulario.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span>
+  <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+  <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+  <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">description</span><span class="err">&quot;</span>
+  <span class="na">minlength</span><span class="o">=</span><span class="s">&quot;5&quot;</span>
+  <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;600&quot;</span>
+  <span class="na">required</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="modificar-estilos-al-validar">
+<h4>Modificar Estilos al Validar<a class="headerlink" href="#modificar-estilos-al-validar" title="Link to this heading">#</a></h4>
+<p>Podemos cambiar los estilos de los elementos del formulario en función de su estado de validación utilizando clases CSS personalizadas y la referencia a <code class="docutils literal notranslate"><span class="pre">ngModel</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span>
+  <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+  <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span>
+  <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+  <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">description</span><span class="err">&quot;</span>
+  <span class="na">minlength</span><span class="o">=</span><span class="s">&quot;5&quot;</span>
+  <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;600&quot;</span>
+  <span class="na">required</span>
+  <span class="err">#</span><span class="na">descriptionModel</span><span class="o">=</span><span class="s">&quot;ngModel&quot;</span>
+  <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{</span>
+    <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">descriptionModel</span><span class="err">.</span><span class="na">touched</span> <span class="err">&amp;&amp;</span> <span class="na">descriptionModel</span><span class="err">.</span><span class="na">valid</span><span class="err">,</span>
+    <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">descriptionModel</span><span class="err">.</span><span class="na">touched</span> <span class="err">&amp;&amp;</span> <span class="err">!</span><span class="na">descriptionModel</span><span class="err">.</span><span class="na">valid</span>
+  <span class="err">}&quot;</span>
+<span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>{{ product | json }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Dirty: {{ descriptionModel.dirty }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Valid: {{ descriptionModel.valid }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Value: {{ descriptionModel.value }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Errors: {{ descriptionModel.errors | json }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="manipular-la-entrada-del-usuario-en-tiempo-real">
+<h4>Manipular la Entrada del Usuario en Tiempo Real<a class="headerlink" href="#manipular-la-entrada-del-usuario-en-tiempo-real" title="Link to this heading">#</a></h4>
+<p>Podemos separar la vinculación del modelo y el evento <code class="docutils literal notranslate"><span class="pre">ngModelChange</span></code> para manipular la entrada del usuario en tiempo real.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span>
+  <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+  <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+  <span class="err">[</span><span class="na">ngModel</span><span class="err">]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">description</span><span class="err">&quot;</span>
+  <span class="err">(</span><span class="na">ngModelChange</span><span class="err">)=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">description </span><span class="o">=</span> <span class="s">$event.toUpperCase()&quot;</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ngform-y-directiva-novalidate">
+<h3>ngForm y Directiva noValidate<a class="headerlink" href="#ngform-y-directiva-novalidate" title="Link to this heading">#</a></h3>
+<p>Por defecto, todos los formularios en Angular tienen la directiva <code class="docutils literal notranslate"><span class="pre">ngForm</span></code>. Podemos hacer una referencia a esta directiva para observar las propiedades generales del formulario. Es recomendable usar la directiva <code class="docutils literal notranslate"><span class="pre">novalidate</span></code> para desactivar la validación del navegador y permitir que Angular gestione la validación.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="err">#</span><span class="na">productForm</span><span class="o">=</span><span class="s">&quot;ngForm&quot;</span> <span class="na">novalidate</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="err">...</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Touched: {{ productForm.touched }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Valid: {{ productForm.valid }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Value: {{ productForm.value | json }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Descripción: {{productForm.control.get(&#39;description&#39;).value | json}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<section id="mostrar-los-errores-de-validacion">
+<h4>Mostrar los Errores de Validación<a class="headerlink" href="#mostrar-los-errores-de-validacion" title="Link to this heading">#</a></h4>
+<p>Podemos combinar estilos de Bootstrap, validación HTML5, <code class="docutils literal notranslate"><span class="pre">ngIf</span></code> y referencias a <code class="docutils literal notranslate"><span class="pre">ngModel</span></code> para mostrar mensajes de error de validación.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="err">#</span><span class="na">productForm</span><span class="o">=</span><span class="s">&quot;ngForm&quot;</span> <span class="na">novalidate</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span>
+    <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+    <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span>
+    <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+    <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">description</span><span class="err">&quot;</span>
+    <span class="na">minlength</span><span class="o">=</span><span class="s">&quot;5&quot;</span>
+    <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;600&quot;</span>
+    <span class="na">required</span>
+    <span class="err">#</span><span class="na">descriptionModel</span><span class="o">=</span><span class="s">&quot;ngModel&quot;</span>
+    <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{</span>
+      <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">descriptionModel</span><span class="err">.</span><span class="na">touched</span> <span class="err">&amp;&amp;</span> <span class="na">descriptionModel</span><span class="err">.</span><span class="na">valid</span><span class="err">,</span>
+      <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">descriptionModel</span><span class="err">.</span><span class="na">touched</span> <span class="err">&amp;&amp;</span> <span class="err">!</span><span class="na">descriptionModel</span><span class="err">.</span><span class="na">valid</span>
+    <span class="err">}&quot;</span>
+  <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="err">*</span><span class="na">ngIf</span><span class="o">=</span><span class="s">&quot;descriptionModel.touched &amp;&amp; descriptionModel.invalid&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-danger&quot;</span><span class="p">&gt;</span>
+    Descripción requerida (entre 5 y 60 caracteres)
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="creacion-de-validadores-personalizados">
+<h3>Creación de Validadores Personalizados<a class="headerlink" href="#creacion-de-validadores-personalizados" title="Link to this heading">#</a></h3>
+<p>Angular permite la creación de validadores personalizados mediante directivas. Estos validadores se registran como validadores de Angular utilizando el proveedor <code class="docutils literal notranslate"><span class="pre">NG_VALIDATORS</span></code>.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Directive</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Validator</span><span class="p">,</span><span class="w"> </span><span class="nx">AbstractControl</span><span class="p">,</span><span class="w"> </span><span class="nx">NG_VALIDATORS</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+
+<span class="kd">@Directive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[appMinPrice]&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">provide</span><span class="o">:</span><span class="w"> </span><span class="kt">NG_VALIDATORS</span><span class="p">,</span><span class="w"> </span><span class="nx">useExisting</span><span class="o">:</span><span class="w"> </span><span class="kt">MinPriceDirective</span><span class="p">,</span><span class="w"> </span><span class="nx">multi</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">}]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">MinPriceDirective</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">Validator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@Input</span><span class="p">(</span><span class="s1">&#39;appMinPrice&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">minPrice</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">validate</span><span class="p">(</span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="kt">AbstractControl</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">minPrice</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">minPrice</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">minPrice</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">};</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="enviar-el-formulario">
+<h3>Enviar el Formulario<a class="headerlink" href="#enviar-el-formulario" title="Link to this heading">#</a></h3>
+<p>Podemos enviar el formulario y realizar validaciones adicionales antes de enviarlo. Además, podemos desactivar el botón de envío hasta que el formulario sea válido.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="err">#</span><span class="na">productForm</span><span class="o">=</span><span class="s">&quot;ngForm&quot;</span> <span class="err">(</span><span class="na">ngSubmit</span><span class="err">)=&quot;</span><span class="na">editar</span><span class="err">(</span><span class="na">productForm</span><span class="err">)&quot;</span> <span class="na">novalidate</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="err">...</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span> <span class="err">[</span><span class="na">disabled</span><span class="err">]=&quot;</span><span class="na">productForm</span><span class="err">.</span><span class="na">invalid</span><span class="err">&quot;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>En el componente, obtenemos el formulario utilizando <code class="docutils literal notranslate"><span class="pre">&#64;ViewChild</span></code> y la variable de referencia:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@ViewChild</span><span class="p">(</span><span class="s1">&#39;editForm&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">static</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="nx">editForm</span><span class="o">:</span><span class="w"> </span><span class="kt">NgForm</span><span class="p">;</span>
+
+<span class="nx">editar</span><span class="p">(</span><span class="nx">productForm</span><span class="o">:</span><span class="w"> </span><span class="kt">NgForm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">editForm</span><span class="p">.</span><span class="nx">valid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">productService</span><span class="p">.</span><span class="nx">editProduct</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">ok</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/product/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">])</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="formularios-reactivos">
+<h2>Formularios Reactivos<a class="headerlink" href="#formularios-reactivos" title="Link to this heading">#</a></h2>
+<p>En Angular, los formularios reactivos representan un conjunto de técnicas que permiten controlar mejor el comportamiento de los formularios desde el código del componente en lugar de desde la plantilla. Aunque el uso de <code class="docutils literal notranslate"><span class="pre">[(ngModel)]</span></code> en formularios basados en plantillas ya proporciona cierto comportamiento reactivo, los formularios reactivos ofrecen una manera más estructurada y potente de manejar formularios complejos. Es recomendable usar formularios reactivos, especialmente en formularios más avanzados que van más allá de simples búsquedas o inicios de sesión.</p>
+<p>Para trabajar con formularios reactivos, debemos importar el módulo <code class="docutils literal notranslate"><span class="pre">ReactiveFormsModule</span></code></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ReactiveFormsModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+
+<span class="p">...</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">ReactiveFormsModule</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// otros módulos</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>En los formularios reactivos, declaramos directamente en el código los objetos <code class="docutils literal notranslate"><span class="pre">FormControl</span></code>, <code class="docutils literal notranslate"><span class="pre">FormGroup</span></code> y <code class="docutils literal notranslate"><span class="pre">FormArray</span></code>. A continuación, se muestra un ejemplo básico de cómo configurar un formulario reactivo:</p>
+<ol class="arabic simple">
+<li><p><strong>Definir el Formulario en el Componente</strong></p></li>
+</ol>
+<p>En el componente, necesitamos una variable de tipo <code class="docutils literal notranslate"><span class="pre">FormGroup</span></code> inicializada en el constructor. Utilizaremos un servicio inyectado llamado <code class="docutils literal notranslate"><span class="pre">FormBuilder</span></code> para construir el formulario.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FormBuilder</span><span class="p">,</span><span class="w"> </span><span class="nx">FormGroup</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-product-form&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./product-form.component.html&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductFormComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">formulario</span><span class="o">:</span><span class="w"> </span><span class="kt">FormGroup</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">formBuilder</span><span class="o">:</span><span class="w"> </span><span class="kt">FormBuilder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">crearFormulario</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">crearFormulario</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+<span class="w">      </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">crear</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Lógica para crear el producto</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>HTML del Formulario</strong></p></li>
+</ol>
+<p>En el HTML del formulario, solo necesitamos agregar <code class="docutils literal notranslate"><span class="pre">[formGroup]</span></code> y <code class="docutils literal notranslate"><span class="pre">formControlName</span></code> en cada <code class="docutils literal notranslate"><span class="pre">input</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="err">[</span><span class="na">formGroup</span><span class="err">]=&quot;</span><span class="na">formulario</span><span class="err">&quot;</span> <span class="err">(</span><span class="na">ngSubmit</span><span class="err">)=&quot;</span><span class="na">crear</span><span class="err">()&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;inputName&quot;</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputName&quot;</span> <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;inputPrice&quot;</span><span class="p">&gt;</span>Price<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputPrice&quot;</span> <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;price&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;inputDescription&quot;</span><span class="p">&gt;</span>Description<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputDescription&quot;</span> <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;description&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<section id="validaciones-sincronas">
+<h3>Validaciones Síncronas<a class="headerlink" href="#validaciones-sincronas" title="Link to this heading">#</a></h3>
+<p>En los formularios reactivos, las validaciones son más sencillas y se pueden declarar directamente en el código del componente usando <code class="docutils literal notranslate"><span class="pre">Validators</span></code>.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Validators</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+
+<span class="nx">crearFormulario</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">minLength</span><span class="p">(</span><span class="mf">5</span><span class="p">),</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">pattern</span><span class="p">(</span><span class="s1">&#39;.*[a-zA-Z].*&#39;</span><span class="p">)]],</span>
+<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)],</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">get</span><span class="w"> </span><span class="nx">nameNotValid</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">).</span><span class="nx">invalid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">).</span><span class="nx">touched</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Para aplicar las validaciones visualmente en el HTML, podemos utilizar getters:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputName&quot;</span> <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;name&quot;</span> 
+  <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;</span><span class="na">nameNotValid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Creación de Validadores Personalizados<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Los validadores personalizados en formularios reactivos son funciones que devuelven una <code class="docutils literal notranslate"><span class="pre">ValidatorFn</span></code>. Aquí mostramos cómo crear un validador personalizado para fechas mínimas:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AbstractControl</span><span class="p">,</span><span class="w"> </span><span class="nx">ValidatorFn</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">minDateValidator</span><span class="p">(</span><span class="nx">minInputDate</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">ValidatorFn</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="kt">AbstractControl</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">minDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="nx">minInputDate</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">inputDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">minDate</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">inputDate</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;minDate&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">minDate</span><span class="p">.</span><span class="nx">toLocaleDateString</span><span class="p">()</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="validacion-de-campos-cruzados">
+<h4>Validación de Campos Cruzados<a class="headerlink" href="#validacion-de-campos-cruzados" title="Link to this heading">#</a></h4>
+<p>Podemos crear validadores personalizados para evaluar un campo en función de otros campos en el formulario. Aquí un ejemplo para validar que dos campos de contraseña coincidan:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">registerForm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">minLength</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">(</span><span class="mf">10</span><span class="p">)]],</span>
+<span class="w">  </span><span class="nx">confirm_password</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">minLength</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">(</span><span class="mf">10</span><span class="p">)]]</span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">validators</span><span class="o">:</span><span class="w"> </span><span class="kt">passwordValidator</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">passwordValidator</span><span class="o">:</span><span class="w"> </span><span class="kt">ValidatorFn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">control</span><span class="o">:</span><span class="w"> </span><span class="kt">AbstractControl</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">ValidationErrors</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">control</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">confirmPassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">control</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;confirm_password&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">confirmPassword</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">password</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">confirmPassword</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">passwordValidator</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="agrupar-campos">
+<h3>Agrupar Campos<a class="headerlink" href="#agrupar-campos" title="Link to this heading">#</a></h3>
+<p>Podemos agrupar campos en un <code class="docutils literal notranslate"><span class="pre">FormGroup</span></code> dentro de otro <code class="docutils literal notranslate"><span class="pre">FormGroup</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">minLength</span><span class="p">(</span><span class="mf">5</span><span class="p">),</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">pattern</span><span class="p">(</span><span class="s1">&#39;.*[a-zA-Z].*&#39;</span><span class="p">)]],</span>
+<span class="w">  </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)],</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="kt">this.formBuilder.group</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">street</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Y en el HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group row mb-3&quot;</span> <span class="na">formGroupName</span><span class="o">=</span><span class="s">&quot;address&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;inputStreet&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-sm-2 col-form-label&quot;</span><span class="p">&gt;</span>Street<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-row col&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputStreet&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Street&quot;</span> <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;street&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputCity&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;City&quot;</span> <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;city&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="cargar-datos-en-el-formulario">
+<h3>Cargar Datos en el Formulario<a class="headerlink" href="#cargar-datos-en-el-formulario" title="Link to this heading">#</a></h3>
+<p>Si estamos trabajando en un formulario de edición, podemos cargar los valores en los controles de formulario utilizando <code class="docutils literal notranslate"><span class="pre">setValue()</span></code>, <code class="docutils literal notranslate"><span class="pre">patchValue()</span></code> o <code class="docutils literal notranslate"><span class="pre">reset()</span></code>.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">);</span><span class="w">  </span><span class="c1">// Necesita todos los campos</span>
+
+<span class="c1">// Para resetear con valores por defecto</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">reset</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Default Name&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Default Description&#39;</span>
+<span class="p">});</span>
+
+<span class="c1">// Para actualizar solo algunos campos</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">patchValue</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Updated Name&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="deteccion-de-cambios">
+<h3>Detección de Cambios<a class="headerlink" href="#deteccion-de-cambios" title="Link to this heading">#</a></h3>
+<p>Los <code class="docutils literal notranslate"><span class="pre">FormGroup</span></code> y <code class="docutils literal notranslate"><span class="pre">FormControl</span></code> contienen un Observable llamado <code class="docutils literal notranslate"><span class="pre">valueChanges</span></code> que emite el valor actual del control cada vez que cambia. Podemos suscribirnos a este Observable para realizar acciones en respuesta a los cambios.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">formulario</span><span class="o">:</span><span class="w"> </span><span class="kt">FormGroup</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">formBuilder</span><span class="o">:</span><span class="w"> </span><span class="kt">FormBuilder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">notifications</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="kc">false</span><span class="p">]</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;notifications&#39;</span><span class="p">).</span><span class="nx">valueChanges</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">updateNotificationMethod</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">updateNotificationMethod</span><span class="p">(</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Lógica para manejar cambios en las notificaciones</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="formularios-dinamicos">
+<h3>Formularios Dinámicos<a class="headerlink" href="#formularios-dinamicos" title="Link to this heading">#</a></h3>
+<p>Los <code class="docutils literal notranslate"><span class="pre">FormArray</span></code> permiten crear formularios dinámicos donde los controles pueden añadirse o eliminarse en tiempo de ejecución.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">production</span><span class="o">:</span><span class="w"> </span><span class="kt">this.formBuilder.array</span><span class="p">([</span><span class="k">this</span><span class="p">.</span><span class="nx">getProductionControl</span><span class="p">()])</span>
+<span class="p">});</span>
+
+<span class="nx">getProductionControl</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormControl</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">control</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">control</span><span class="p">.</span><span class="nx">setValidators</span><span class="p">(</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mf">100</span><span class="p">));</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">control</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">get</span><span class="w"> </span><span class="nx">productionArray</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormArray</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">addProduction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">productionArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getProductionControl</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="nx">delProduction</span><span class="p">(</span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">productionArray</span><span class="p">.</span><span class="nx">removeAt</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Y en el HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row row-cols-6 g-3&quot;</span> <span class="na">formArrayName</span><span class="o">=</span><span class="s">&quot;production&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let prod of productionArray.controls; let i=index&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control col&quot;</span> <span class="err">[</span><span class="na">formControlName</span><span class="err">]=&quot;</span><span class="na">i</span><span class="err">&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Production {{i}}&quot;</span> 
+      <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{</span>
+        <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">valid</span> <span class="err">&amp;&amp;</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">touched</span><span class="err">,</span>
+        <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">invalid</span> <span class="err">&amp;&amp;</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">touched</span>
+      <span class="err">}&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col btn btn-outline-danger&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">delProduction</span><span class="err">(</span><span class="na">i</span><span class="err">)&quot;</span><span class="p">&gt;</span>🗑<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col btn btn-primary&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">addProduction</span><span class="err">()&quot;</span><span class="p">&gt;</span>Add Production<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="rutasangular.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Rutas en Angular</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-de-plantilla-en-angular">Formularios de Plantilla en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-formularios-basados-en-plantillas">Configuración de Formularios Basados en Plantillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-ngmodel-y-validadores-html5">Uso de ngModel y Validadores HTML5</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-estilos-al-validar">Modificar Estilos al Validar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manipular-la-entrada-del-usuario-en-tiempo-real">Manipular la Entrada del Usuario en Tiempo Real</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ngform-y-directiva-novalidate">ngForm y Directiva noValidate</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-los-errores-de-validacion">Mostrar los Errores de Validación</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-validadores-personalizados">Creación de Validadores Personalizados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-el-formulario">Enviar el Formulario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-reactivos">Formularios Reactivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones-sincronas">Validaciones Síncronas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Creación de Validadores Personalizados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-campos-cruzados">Validación de Campos Cruzados</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupar-campos">Agrupar Campos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar Datos en el Formulario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-cambios">Detección de Cambios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-dinamicos">Formularios Dinámicos</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

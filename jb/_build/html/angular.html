@@ -8,27 +8,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Angular &#8212; Libro DWEC</title>
+    <title>Introducción a Angular &#8212; Libro DWEC</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -61,6 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'angular';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Comunicación con el servidor en Angular" href="httpangular.html" />
     <link rel="prev" title="Typescript" href="typescript.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -71,23 +72,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -109,13 +114,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -197,11 +197,14 @@
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyecto en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
 </ul>
 
     </div>
@@ -217,7 +220,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -226,7 +229,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -387,7 +390,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Angular</h1>
+    <h1>Introducción a Angular</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -437,44 +440,58 @@ document.write(`
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-en-angular">Rutas en Angular</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-rutas">Ejemplo Básico de Rutas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-con-hash">Rutas con Hash</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-rutas">Creación de Rutas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-de-navegacion">Enlaces de Navegación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navegacion-por-codigo">Navegación por Código</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-parametros-de-las-rutas">Obtener Parámetros de las Rutas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transiciones-en-angular-2024">Transiciones en Angular (2024)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-animaciones-en-css">Definición de Animaciones en CSS</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-en-angular">Configuración de Rutas en Angular</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizacion-de-transiciones">Personalización de Transiciones</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-onviewtransitioncreated">Uso de <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes">Pipes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-pipes-predefinidos">Uso de Pipes Predefinidos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-pipes-personalizados">Creación de Pipes Personalizados</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-en-angular">Servicios en Angular</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decorador-injectable">Decorador @Injectable</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inyeccion-de-dependencias">Inyección de Dependencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-en-angular">Directivas en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-de-atributo">Crear directivas de atributo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementref-vs-renderer2">ElementRef vs Renderer2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-estructurales">Crear directivas estructurales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos">Eventos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-en-angular">Módulos en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-del-decorador-ngmodule">Arrays del Decorador @NgModule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-para-separar-la-aplicacion-en-modulos">Criterios para Separar la Aplicación en Módulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-un-modulo-en-angular">Ejemplo de un Módulo en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-del-modulo">Definición del Módulo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-del-modulo">Descripción del Módulo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-de-modulos-en-una-aplicacion-grande">Organización de Módulos en una Aplicación Grande</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-principal-appmodule">Módulo Principal (AppModule)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-de-core">Módulo de Core</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-de-caracteristica-feature-module">Módulo de Característica (Feature Module)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-de-rutas-routing-module">Módulo de Rutas (Routing Module)</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-y-mejores-practicas-para-desarrollar-en-angular">Consejos y Mejores Prácticas para Desarrollar en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-herramientas-y-funcionalidades-de-angular">1. Utilización de Herramientas y Funcionalidades de Angular</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-estructura-de-la-aplicacion">2. Arquitectura y Estructura de la Aplicación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-de-programacion">3. Principios de Programación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">4. Componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-directorios">5. Estructura de Directorios</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-bibliotecas-de-terceros">Integración de Bibliotecas de Terceros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">1. Bootstrap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-del-cdn-de-bootstrap">Uso del CDN de Bootstrap</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-manual">Descarga Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-via-npm">Instalación vía npm</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-material">2. Angular Material</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso">Uso</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ngx-charts">3. Ngx Charts</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Uso</a></li>
 </ul>
 </li>
 </ul>
@@ -490,8 +507,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="angular">
-<h1>Angular<a class="headerlink" href="#angular" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-angular">
+<h1>Introducción a Angular<a class="headerlink" href="#introduccion-a-angular" title="Link to this heading">#</a></h1>
 <p>Angular es un framework de desarrollo web de código abierto, mantenido por Google, para la creación de aplicaciones web front-end dinámicas. Se basa en TypeScript, una extensión de JavaScript que añade tipado estático, para mejorar la legibilidad, mantenibilidad y robustez del código.</p>
 <p>Angular cambia totalmente la manera de programar. Reduce significativamente el código que hay que escribir a cambio de ser muy rígido en la manera de tratar con los elementos de la aplicación. Por tanto, tiene una curva de aprendizaje un poco alta al principio.</p>
 <p><strong>Evolución del nombre y versiones</strong></p>
@@ -911,10 +928,10 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 </section>
 <section id="ciclo-de-vida-de-los-componentes">
 <h3>Ciclo de vida de los componentes<a class="headerlink" href="#ciclo-de-vida-de-los-componentes" title="Link to this heading">#</a></h3>
-<figure class="align-right" id="id1">
+<figure class="align-right" id="id2">
 <a class="reference internal image-reference" href="_images/components.png"><img alt="_images/components.png" src="_images/components.png" style="width: 291.5px; height: 224.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Los componentes son elementos reutilizables por naturaleza. Se pueden importar y utilizar en otros componentes, promoviendo la modularidad y evitando la duplicación de código. Esto facilita la creación de interfaces de usuario consistentes y escalables.</p>
@@ -975,10 +992,10 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 <p>A su vez, esa comunicación suele ser internamente reactiva mediante <code class="docutils literal notranslate"><span class="pre">Observables</span></code> o <code class="docutils literal notranslate"><span class="pre">Signals</span></code>. Veremos cómo funciona la comunicación típica entre componentes padres e hijos y más adelante veremos cómo comunicarse a través de un servicio.</p>
 <section id="input">
 <h4>&#64;Input<a class="headerlink" href="#input" title="Link to this heading">#</a></h4>
-<figure class="align-right" id="id2">
+<figure class="align-right" id="id3">
 <a class="reference internal image-reference" href="_images/inputoutputparentchild.png"><img alt="_images/inputoutputparentchild.png" src="_images/inputoutputparentchild.png" style="width: 318.5px; height: 120.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Diagrama de comunicación entre componentes padres e hijos.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Diagrama de comunicación entre componentes padres e hijos.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Los componentes padres pueden enviar datos a sus componentes hijos mediante propiedades de entrada, y los componentes hijos pueden emitir eventos que sus componentes padres pueden escuchar.</p>
@@ -1131,487 +1148,648 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 </section>
 </section>
 </section>
+<section id="pipes">
+<h3>Pipes<a class="headerlink" href="#pipes" title="Link to this heading">#</a></h3>
+<p>Los Pipes en Angular  permiten transformar los datos directamente en las plantillas antes de mostrarlos. Al igual que los filtros en Linux, los pipes toman una entrada, la procesan y devuelven una salida transformada. Angular proporciona varios pipes predefinidos, pero también es posible crear pipes personalizados para satisfacer necesidades específicas.</p>
+<section id="uso-de-pipes-predefinidos">
+<h4>Uso de Pipes Predefinidos<a class="headerlink" href="#uso-de-pipes-predefinidos" title="Link to this heading">#</a></h4>
+<p>En Angular, los pipes se utilizan en las plantillas después de la variable, separados por el símbolo <code class="docutils literal notranslate"><span class="pre">|</span></code>. Un punto importante es que los pipes no modifican la variable original, sino que retornan una versión transformada de la misma. Algunos pipes predefinidos en Angular incluyen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uppercase</span></code>: Convierte el texto a mayúsculas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">currency</span></code>: Formatea un número como una moneda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date</span></code>: Formatea una fecha según el formato especificado.</p></li>
+</ul>
+<p>Aquí hay un ejemplo de cómo usar algunos de estos pipes predefinidos en una tabla que muestra una lista de productos:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let product of products&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="err">[</span><span class="na">src</span><span class="err">]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">imageUrl</span><span class="err">&quot;</span> 
+             <span class="err">*</span><span class="na">ngIf</span><span class="o">=</span><span class="s">&quot;showImage&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;&quot;</span>
+             <span class="err">[</span><span class="na">title</span><span class="err">]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">desc</span> <span class="err">|</span> <span class="na">uppercase</span><span class="err">&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.description }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.price | currency:&#39;EUR&#39;:&#39;symbol&#39;}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.available | date:&#39;dd/MM/y&#39; }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p>El pipe <code class="docutils literal notranslate"><span class="pre">uppercase</span></code> se usa para convertir la descripción del producto a mayúsculas.</p></li>
+<li><p>El pipe <code class="docutils literal notranslate"><span class="pre">currency</span></code> formatea el precio del producto en euros.</p></li>
+<li><p>El pipe <code class="docutils literal notranslate"><span class="pre">date</span></code> formatea la fecha de disponibilidad del producto en el formato <code class="docutils literal notranslate"><span class="pre">dd/MM/y</span></code>.</p></li>
+</ul>
 </section>
-<section id="rutas-en-angular">
-<h2>Rutas en Angular<a class="headerlink" href="#rutas-en-angular" title="Link to this heading">#</a></h2>
-<p>Angular es comúnmente utilizado para desarrollar Single Page Applications (SPA). A pesar de ser una SPA, la aplicación debe comportarse de manera similar a los sitios web tradicionales en términos de URLs (Uniform Resource Identifiers). Esto implica que necesitamos poder referenciar externamente las diferentes partes de la aplicación, tener la capacidad de navegar hacia atrás y adelante en el historial del navegador y manejar rutas virtuales adecuadamente.</p>
-<p>Las rutas en Angular se definen en el archivo <code class="docutils literal notranslate"><span class="pre">app-routing.module.ts</span></code>. Las rutas son objetos que contienen el camino (<code class="docutils literal notranslate"><span class="pre">path</span></code>) y el componente al que hacen referencia. Las páginas en una SPA de Angular son representadas por componentes, y el enrutador carga las rutas dentro de un <code class="docutils literal notranslate"><span class="pre">&lt;router-outlet&gt;</span></code> en la plantilla principal de la aplicación.</p>
-<section id="ejemplo-basico-de-rutas">
-<h3>Ejemplo Básico de Rutas<a class="headerlink" href="#ejemplo-basico-de-rutas" title="Link to this heading">#</a></h3>
-<p>El siguiente es un ejemplo de cómo configurar rutas básicas en Angular:</p>
+<section id="creacion-de-pipes-personalizados">
+<h4>Creación de Pipes Personalizados<a class="headerlink" href="#creacion-de-pipes-personalizados" title="Link to this heading">#</a></h4>
+<p>Si los pipes predefinidos no cumplen con todas las necesidades de transformación de datos, Angular permite crear pipes personalizados. La creación de un pipe personalizado implica los siguientes pasos:</p>
+<ol class="arabic">
+<li><p><strong>Generar el Pipe</strong>: Utilizar el comando Angular CLI para generar el esqueleto del pipe.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>g<span class="w"> </span>pipe<span class="w"> </span>pipes/nombreDelPipe
+</pre></div>
+</div>
+</li>
+<li><p><strong>Implementar el Pipe</strong>: Definir la lógica de transformación en el pipe generado. Aquí hay un ejemplo de un pipe personalizado que filtra productos basándose en un criterio de búsqueda:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Pipe</span><span class="p">,</span><span class="w"> </span><span class="nx">PipeTransform</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../product/product&#39;</span><span class="p">;</span>
+
+<span class="kd">@Pipe</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;productFilter&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductFilterPipe</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">PipeTransform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">transform</span><span class="p">(</span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[],</span><span class="w"> </span><span class="nx">filterBy</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Product</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">filterBy</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">filterBy</span><span class="p">.</span><span class="nx">toLocaleLowerCase</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">?</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">products</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">p</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">toLocaleLowerCase</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="nx">filter</span><span class="p">))</span><span class="w"> </span>
+<span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="nx">products</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este pipe personalizado:</p>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">transform</span></code> toma dos argumentos: una lista de productos y un criterio de búsqueda.</p></li>
+<li><p>Convierte el criterio de búsqueda a minúsculas para realizar una comparación insensible a mayúsculas.</p></li>
+<li><p>Filtra los productos cuyo nombre incluye el criterio de búsqueda.</p></li>
+</ul>
+</li>
+<li><p><strong>Usar el Pipe Personalizado</strong>: Aplicar el pipe en la plantilla para filtrar los productos según el criterio de búsqueda.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let product of products | productFilter: filter&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.name }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.price | currency:&#39;EUR&#39;:&#39;symbol&#39; }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.available | date:&#39;dd/MM/y&#39; }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="directivas-en-angular">
+<h2>Directivas en Angular<a class="headerlink" href="#directivas-en-angular" title="Link to this heading">#</a></h2>
+<p>Las directivas en Angular son un mecanismo potente para manipular el DOM de manera declarativa. Pueden modificar elementos HTML y su comportamiento en función de la lógica de la aplicación. Existen tres tipos principales de directivas en Angular:</p>
+<ol class="arabic simple">
+<li><p><strong>Directivas de componente:</strong> Se definen mediante el selector en el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> y son las que hemos creado hasta ahora.</p></li>
+<li><p><strong>Directivas de atributo:</strong> Modifican el comportamiento de un elemento. Ejemplos comunes son <code class="docutils literal notranslate"><span class="pre">NgClass</span></code> y <code class="docutils literal notranslate"><span class="pre">NgStyle</span></code>.</p></li>
+<li><p><strong>Directivas estructurales:</strong> Manipulan la estructura del DOM, como <code class="docutils literal notranslate"><span class="pre">ngIf</span></code>, <code class="docutils literal notranslate"><span class="pre">ngFor</span></code> y <code class="docutils literal notranslate"><span class="pre">ngSwitch</span></code>, controlando si un elemento se muestra o no.</p></li>
+</ol>
+<section id="crear-directivas-de-atributo">
+<h3>Crear directivas de atributo<a class="headerlink" href="#crear-directivas-de-atributo" title="Link to this heading">#</a></h3>
+<p>Podemos crear nuestras propias directivas de atributo para añadir comportamientos personalizados a los elementos HTML. Vamos a crear una directiva llamada <code class="docutils literal notranslate"><span class="pre">Resaltado</span></code> que cambiará el color de fondo de un elemento cuando el ratón pase sobre él.</p>
+<p>Primero, generamos la directiva con Angular CLI:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>g<span class="w"> </span>directive<span class="w"> </span>directives/resaltado
+</pre></div>
+</div>
+<p>Luego, implementamos la lógica en el archivo <code class="docutils literal notranslate"><span class="pre">resaltado.directive.ts</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Directive</span><span class="p">,</span><span class="w"> </span><span class="nx">ElementRef</span><span class="p">,</span><span class="w"> </span><span class="nx">HostListener</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Directive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[appResaltado]&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ResaltadoDirective</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@Input</span><span class="p">(</span><span class="s1">&#39;appResaltado&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">nuevoColor</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">el</span><span class="o">:</span><span class="w"> </span><span class="kt">ElementRef</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="kd">@HostListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">entrarMouse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">nuevoColor</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">@HostListener</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">saleMouse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el archivo de plantilla HTML, utilizamos nuestra directiva <code class="docutils literal notranslate"><span class="pre">Resaltado</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-md-4&quot;</span> <span class="err">[</span><span class="na">appResaltado</span><span class="err">]=&quot;</span><span class="na">color</span><span class="err">&quot;</span><span class="p">&gt;</span>
+  <span class="cm">&lt;!-- Contenido del elemento --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="elementref-vs-renderer2">
+<h3>ElementRef vs Renderer2<a class="headerlink" href="#elementref-vs-renderer2" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ElementRef</span></code> nos da una referencia directa a un elemento del DOM una vez renderizado. Sin embargo, utilizar <code class="docutils literal notranslate"><span class="pre">ElementRef</span></code> puede exponer riesgos de seguridad y no es la mejor práctica en aplicaciones que necesitan ser multiplataforma. En cambio, <code class="docutils literal notranslate"><span class="pre">Renderer2</span></code> proporciona una abstracción adicional, permitiendo manipular el DOM de manera segura y compatible con aplicaciones de servidor y Web Workers.</p>
+<p>Ejemplo con <code class="docutils literal notranslate"><span class="pre">Renderer2</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Directive</span><span class="p">,</span><span class="w"> </span><span class="nx">ElementRef</span><span class="p">,</span><span class="w"> </span><span class="nx">HostListener</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="p">,</span><span class="w"> </span><span class="nx">Renderer2</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Directive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[appMostrar]&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">MostrarDirective</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">elementMostrar</span><span class="o">!:</span><span class="w"> </span><span class="nx">any</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">el</span><span class="o">:</span><span class="w"> </span><span class="kt">ElementRef</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="nx">renderer</span><span class="o">:</span><span class="w"> </span><span class="kt">Renderer2</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="kd">@HostListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">entrarMouse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">elementMostrar</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;display&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">@HostListener</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">saleMouse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">elementMostrar</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;display&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;none&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el archivo de plantilla HTML, utilizamos nuestra directiva <code class="docutils literal notranslate"><span class="pre">Mostrar</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="na">appMostrar</span> 
+<span class="err">[</span><span class="na">elementMostrar</span><span class="err">]=&quot;</span><span class="na">ocultar</span><span class="err">&quot;</span><span class="p">&gt;</span>
+  <span class="cm">&lt;!-- Contenido del elemento --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span> <span class="err">#</span><span class="na">ocultar</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;margin-bottom: 0; display:none;&quot;</span><span class="p">&gt;</span>
+  Producción: <span class="p">&lt;</span><span class="nt">span</span> <span class="err">*</span><span class="na">appForDelay</span><span class="o">=</span><span class="s">&quot;100; let p of placa.production&quot;</span><span class="p">&gt;</span>{{p}}W<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="crear-directivas-estructurales">
+<h3>Crear directivas estructurales<a class="headerlink" href="#crear-directivas-estructurales" title="Link to this heading">#</a></h3>
+<p>Las directivas estructurales, como <code class="docutils literal notranslate"><span class="pre">ngIf</span></code>, <code class="docutils literal notranslate"><span class="pre">ngFor</span></code> y <code class="docutils literal notranslate"><span class="pre">ngSwitch</span></code>, utilizan el asterisco (*) para simplificar la manipulación de etiquetas <code class="docutils literal notranslate"><span class="pre">&lt;ng-template&gt;</span></code> que rodean al elemento que están manipulando.</p>
+<p>Vamos a crear una directiva estructural llamada <code class="docutils literal notranslate"><span class="pre">ForDelay</span></code> que retrasa la visualización de elementos en un bucle.</p>
+<p>Primero, generamos la directiva:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>g<span class="w"> </span>directive<span class="w"> </span>directives/for-delay
+</pre></div>
+</div>
+<p>Implementamos la lógica en el archivo <code class="docutils literal notranslate"><span class="pre">for-delay.directive.ts</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Directive</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="p">,</span><span class="w"> </span><span class="nx">TemplateRef</span><span class="p">,</span><span class="w"> </span><span class="nx">ViewContainerRef</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Directive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[appForDelay]&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ForDelayDirective</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">items</span><span class="o">:</span><span class="w"> </span><span class="kt">Array</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">delay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">templateRef</span><span class="o">:</span><span class="w"> </span><span class="kt">TemplateRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="nx">viewContainer</span><span class="o">:</span><span class="w"> </span><span class="kt">ViewContainerRef</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">appForDelay</span><span class="p">(</span><span class="nx">t</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">delay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">t</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">appForDelayOf</span><span class="p">(</span><span class="nx">array</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">array</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">renderItems</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">renderItems</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">viewContainer</span><span class="p">.</span><span class="nx">createEmbeddedView</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">templateRef</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">$implicit</span><span class="o">:</span><span class="w"> </span><span class="kt">item</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">delayTime</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">delay</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">delayTime</span><span class="p">(</span><span class="nx">ms</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el archivo de plantilla HTML, utilizamos nuestra directiva <code class="docutils literal notranslate"><span class="pre">ForDelay</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">span</span> <span class="err">*</span><span class="na">appForDelay</span><span class="o">=</span><span class="s">&quot;100; let p of placa.production&quot;</span><span class="p">&gt;</span>{{p}}W<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="eventos">
+<h3>Eventos<a class="headerlink" href="#eventos" title="Link to this heading">#</a></h3>
+<p>En Angular, la manera más simple de gestionar eventos es con la sintaxis <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> en el elemento HTML correspondiente. Esto crea una suscripción externa. Para una suscripción interna, usamos <code class="docutils literal notranslate"><span class="pre">&#64;HostListener</span></code>.</p>
+<p>Ejemplo de suscripción interna con <code class="docutils literal notranslate"><span class="pre">&#64;HostListener</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Directive</span><span class="p">,</span><span class="w"> </span><span class="nx">HostListener</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Directive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[appScroll]&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ScrollDirective</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">imgY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">@HostListener</span><span class="p">(</span><span class="s1">&#39;window:scroll&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;$event&#39;</span><span class="p">])</span>
+<span class="w">  </span><span class="nx">homeScroll</span><span class="p">(</span><span class="nx">$event</span><span class="o">:</span><span class="w"> </span><span class="kt">Event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">scrollOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">imgY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">scrollOffset</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">imgY</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">imgY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el archivo de plantilla HTML, utilizamos nuestra directiva <code class="docutils literal notranslate"><span class="pre">Scroll</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">appScroll</span><span class="p">&gt;</span>
+  <span class="cm">&lt;!-- Contenido del elemento --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="modulos-en-angular">
+<h2>Módulos en Angular<a class="headerlink" href="#modulos-en-angular" title="Link to this heading">#</a></h2>
+<p>A medida que una aplicación de Angular crece en tamaño y complejidad, no es sostenible mantener toda la funcionalidad en un solo módulo <code class="docutils literal notranslate"><span class="pre">AppModule</span></code> y organizar los componentes únicamente en directorios. En Angular, los módulos (<code class="docutils literal notranslate"><span class="pre">NgModules</span></code>) son la manera recomendada de organizar y estructurar aplicaciones grandes y complejas. Un módulo es una clase con el decorador <code class="docutils literal notranslate"><span class="pre">&#64;NgModule</span></code> que define un contenedor para un conjunto coherente de componentes, directivas, pipes y servicios.</p>
+<p>Angular permite la carga diferida (lazy loading) de módulos, lo que ayuda a mejorar el rendimiento de la aplicación cargando módulos solo cuando se necesitan. Esta técnica es especialmente útil para grandes aplicaciones con muchas rutas y funcionalidades diversas.</p>
+<section id="arrays-del-decorador-ngmodule">
+<h3>Arrays del Decorador &#64;NgModule<a class="headerlink" href="#arrays-del-decorador-ngmodule" title="Link to this heading">#</a></h3>
+<p>El decorador <code class="docutils literal notranslate"><span class="pre">&#64;NgModule</span></code> define varios arrays que especifican cómo se organiza el módulo:</p>
+<ul class="simple">
+<li><p><strong>bootstrap</strong>: Solo se utiliza en el <code class="docutils literal notranslate"><span class="pre">AppModule</span></code>, define el componente inicial que se debe cargar al iniciar la aplicación.</p></li>
+<li><p><strong>declarations</strong>: Contiene los componentes, directivas y pipes que pertenecen a este módulo. Cada componente, directiva o pipe solo puede estar declarado en un único módulo, pero puede ser exportado para ser utilizado en otros módulos. La declaración es necesaria para que estos elementos sean compilados y utilizados en la aplicación.</p></li>
+<li><p><strong>exports</strong>: Permite compartir los componentes, directivas y pipes con otros módulos. También se pueden exportar módulos completos para crear un meta-módulo que importe otros módulos. Sin embargo, no se pueden exportar servicios, ya que estos son inyectables a nivel global por defecto.</p></li>
+<li><p><strong>imports</strong>: Contiene otros módulos (de terceros o propios) que el módulo necesita. Lo que se importa son los elementos que esos módulos exportan.</p></li>
+<li><p><strong>providers</strong>: Define los servicios que deben estar disponibles en toda la aplicación. Normalmente, solo se declara en el <code class="docutils literal notranslate"><span class="pre">AppModule</span></code> para evitar conflictos y asegurar que el servicio esté disponible de manera global. Los servicios pueden ser autoinyectables con <code class="docutils literal notranslate"><span class="pre">providedIn:</span> <span class="pre">'root'</span></code> en su decorador <code class="docutils literal notranslate"><span class="pre">&#64;Injectable</span></code>.</p></li>
+</ul>
+</section>
+<section id="criterios-para-separar-la-aplicacion-en-modulos">
+<h3>Criterios para Separar la Aplicación en Módulos<a class="headerlink" href="#criterios-para-separar-la-aplicacion-en-modulos" title="Link to this heading">#</a></h3>
+<p>Separar una aplicación en módulos bien definidos facilita la gestión, el mantenimiento y la escalabilidad del código. A continuación se detallan algunos criterios para organizar los módulos en una aplicación Angular:</p>
+<ul class="simple">
+<li><p><strong>Módulos de Dominio</strong>: Se utilizan para organizar el código sin representar necesariamente una ruta. Por ejemplo, un módulo que contiene componentes relacionados con un menú de navegación.</p></li>
+<li><p><strong>Módulos de Sección</strong>: Representan secciones, rutas o páginas específicas de la aplicación. Por ejemplo, módulos para gestionar productos, clientes o facturas.</p></li>
+<li><p><strong>Módulos de Servicios</strong>: Se utilizan para organizar servicios que serán utilizados en toda la aplicación. Normalmente, estos módulos solo se importan en el <code class="docutils literal notranslate"><span class="pre">AppModule</span></code>. Un ejemplo típico es <code class="docutils literal notranslate"><span class="pre">HttpClientModule</span></code>.</p></li>
+<li><p><strong>Módulos de Componentes</strong>: Contienen componentes que pueden ser reutilizados en diversos módulos de la aplicación. Por ejemplo, un módulo que contiene una vista modal para mostrar imágenes en tamaño completo.</p></li>
+</ul>
+</section>
+<section id="ejemplo-de-un-modulo-en-angular">
+<h3>Ejemplo de un Módulo en Angular<a class="headerlink" href="#ejemplo-de-un-modulo-en-angular" title="Link to this heading">#</a></h3>
+<p>A continuación, se muestra un ejemplo de cómo definir un módulo en Angular.</p>
+<section id="definicion-del-modulo">
+<h4>Definición del Módulo<a class="headerlink" href="#definicion-del-modulo" title="Link to this heading">#</a></h4>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CommonModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FormsModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductListComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product-list/product-list.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductDetailComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product-detail/product-detail.component&#39;</span><span class="p">;</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">declarations</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">ProductListComponent</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ProductDetailComponent</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">CommonModule</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">FormsModule</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">exports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">ProductListComponent</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ProductDetailComponent</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="descripcion-del-modulo">
+<h4>Descripción del Módulo<a class="headerlink" href="#descripcion-del-modulo" title="Link to this heading">#</a></h4>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">ProductModule</span></code> es un módulo que encapsula toda la funcionalidad relacionada con los productos en la aplicación. Los componentes <code class="docutils literal notranslate"><span class="pre">ProductListComponent</span></code> y <code class="docutils literal notranslate"><span class="pre">ProductDetailComponent</span></code> son declarados y exportados para que puedan ser utilizados en otros módulos si es necesario.</p>
+<ul class="simple">
+<li><p><strong>declarations</strong>: Declara <code class="docutils literal notranslate"><span class="pre">ProductListComponent</span></code> y <code class="docutils literal notranslate"><span class="pre">ProductDetailComponent</span></code> para que puedan ser utilizados dentro del módulo.</p></li>
+<li><p><strong>imports</strong>: Importa <code class="docutils literal notranslate"><span class="pre">CommonModule</span></code> para obtener acceso a las directivas comunes de Angular, como <code class="docutils literal notranslate"><span class="pre">ngIf</span></code> y <code class="docutils literal notranslate"><span class="pre">ngFor</span></code>, e <code class="docutils literal notranslate"><span class="pre">FormsModule</span></code> para trabajar con formularios basados en plantillas.</p></li>
+<li><p><strong>exports</strong>: Exporta los componentes <code class="docutils literal notranslate"><span class="pre">ProductListComponent</span></code> y <code class="docutils literal notranslate"><span class="pre">ProductDetailComponent</span></code> para que puedan ser utilizados en otros módulos de la aplicación.</p></li>
+</ul>
+</section>
+</section>
+<section id="organizacion-de-modulos-en-una-aplicacion-grande">
+<h3>Organización de Módulos en una Aplicación Grande<a class="headerlink" href="#organizacion-de-modulos-en-una-aplicacion-grande" title="Link to this heading">#</a></h3>
+<p>Para una aplicación grande, es esencial seguir una estructura modular clara y bien definida. A continuación, se describe una posible estructura de módulos para una aplicación compleja:</p>
+<section id="modulo-principal-appmodule">
+<h4>Módulo Principal (AppModule)<a class="headerlink" href="#modulo-principal-appmodule" title="Link to this heading">#</a></h4>
+<p>El <code class="docutils literal notranslate"><span class="pre">AppModule</span></code> es el módulo principal de la aplicación y generalmente contiene la configuración de los servicios globales, el enrutador principal y el componente raíz.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">BrowserModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/platform-browser&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppRoutingModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./app-routing.module&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./app.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CoreModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./core/core.module&#39;</span><span class="p">;</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">declarations</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">AppComponent</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">BrowserModule</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">AppRoutingModule</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">HttpClientModule</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">CoreModule</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nx">bootstrap</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="modulo-de-core">
+<h4>Módulo de Core<a class="headerlink" href="#modulo-de-core" title="Link to this heading">#</a></h4>
+<p>El <code class="docutils literal notranslate"><span class="pre">CoreModule</span></code> puede contener servicios singleton que se utilizan en toda la aplicación y otros elementos que deberían ser únicos y cargados una sola vez.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgModule</span><span class="p">,</span><span class="w"> </span><span class="nx">Optional</span><span class="p">,</span><span class="w"> </span><span class="nx">SkipSelf</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CommonModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common&#39;</span><span class="p">;</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">CommonModule</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="c1">// Servicios singleton</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">exports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="c1">// Componentes y directivas compartidos</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CoreModule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="kd">@Optional</span><span class="p">()</span><span class="w"> </span><span class="kd">@SkipSelf</span><span class="p">()</span><span class="w"> </span><span class="nx">parentModule</span><span class="o">:</span><span class="w"> </span><span class="kt">CoreModule</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">parentModule</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;CoreModule is already loaded. Import it in the AppModule only.&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="modulo-de-caracteristica-feature-module">
+<h4>Módulo de Característica (Feature Module)<a class="headerlink" href="#modulo-de-caracteristica-feature-module" title="Link to this heading">#</a></h4>
+<p>Los módulos de característica encapsulan funcionalidad específica de una sección de la aplicación, como gestión de productos, clientes o facturas.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CommonModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductRoutingModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product-routing.module&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductListComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product-list/product-list.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductDetailComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product-detail/product-detail.component&#39;</span><span class="p">;</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">declarations</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">ProductListComponent</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ProductDetailComponent</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">CommonModule</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ProductRoutingModule</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="modulo-de-rutas-routing-module">
+<h4>Módulo de Rutas (Routing Module)<a class="headerlink" href="#modulo-de-rutas-routing-module" title="Link to this heading">#</a></h4>
+<p>El módulo de rutas se encarga de definir las rutas para la navegación de la aplicación.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RouterModule</span><span class="p">,</span><span class="w"> </span><span class="nx">Routes</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HomeComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./home/home.component&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetListComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-list/planet-list.component&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SunComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./sun/sun.component&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-detail/planet-detail.component&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetEditComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-edit/planet-edit.component&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">LoginComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./auth/login/login.component&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AuthGuard</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./auth/auth.guard&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetResolveService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-resolve.service&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductListComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product-list/product-list.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductDetailComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product-detail/product-detail.component&#39;</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="kt">Routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">HomeComponent</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planets&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetListComponent</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;suns&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">SunComponent</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/edit/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">resolve</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">planet</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetResolveService</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetEditComponent</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;login&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">LoginComponent</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">pathMatch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;full&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">redirectTo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;products&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductListComponent</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;products/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductDetailComponent</span><span class="w"> </span><span class="p">}</span>
 <span class="p">];</span>
 
 <span class="kd">@NgModule</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useHash</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">})],</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forChild</span><span class="p">(</span><span class="nx">routes</span><span class="p">)],</span>
 <span class="w">  </span><span class="nx">exports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">RouterModule</span><span class="p">]</span>
 <span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppRoutingModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: Define el URI para la ruta.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">component</span></code>: El componente que se carga cuando se navega a esa ruta.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">canActivate</span></code>: Define guardias que protegen las rutas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">resolve</span></code>: Permite precargar datos antes de que el componente se cargue.</p></li>
-</ul>
-</section>
-<section id="rutas-con-hash">
-<h3>Rutas con Hash<a class="headerlink" href="#rutas-con-hash" title="Link to this heading">#</a></h3>
-<p>Una manera de implementar SPA sin manipular el servidor es usar una almohadilla (<code class="docutils literal notranslate"><span class="pre">#</span></code>) al principio de la ruta:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>http://localhost:4200/#/home
-</pre></div>
-</div>
-<p>Esto es más antiguo, pero funciona en todos los navegadores, simplifica el envío de parámetros y evita la manipulación del servidor. Para que funcione, se debe agregar <code class="docutils literal notranslate"><span class="pre">withHashLocation()</span></code> al los providers del bootstrap:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">bootstrapApplication</span><span class="p">(</span><span class="nx">AppComponent</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w"> </span><span class="nx">withHashLocation</span><span class="p">()),</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="p">});</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductRoutingModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="creacion-de-rutas">
-<h3>Creación de Rutas<a class="headerlink" href="#creacion-de-rutas" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="consejos-y-mejores-practicas-para-desarrollar-en-angular">
+<h2>Consejos y Mejores Prácticas para Desarrollar en Angular<a class="headerlink" href="#consejos-y-mejores-practicas-para-desarrollar-en-angular" title="Link to this heading">#</a></h2>
+<p>Angular es un framework potente y flexible para desarrollar aplicaciones web modernas. Sin embargo, su complejidad puede ser abrumadora, especialmente en proyectos grandes. A continuación, se presentan una serie de consejos y mejores prácticas para organizar y estructurar tu código de Angular de manera efectiva.</p>
+<section id="utilizacion-de-herramientas-y-funcionalidades-de-angular">
+<h3>1. Utilización de Herramientas y Funcionalidades de Angular<a class="headerlink" href="#utilizacion-de-herramientas-y-funcionalidades-de-angular" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Ruta Básica</strong>: Define un camino y el componente que se activa.</p></li>
+<li><p><strong>Componentes</strong>: Utiliza componentes para dividir tu HTML en partes más pequeñas y con una entidad propia. Cada componente debería tener una responsabilidad clara y específica.</p></li>
+<li><p><strong>Rutas</strong>: Usa el enrutador de Angular para gestionar la navegación dentro de tu aplicación. Define rutas en tu módulo de enrutamiento y asegúrate de que cada ruta apunte a un componente que se encargue de una sección específica de la aplicación.</p></li>
+<li><p><strong>Interpolación</strong>: Muestra variables en el HTML usando <code class="docutils literal notranslate"><span class="pre">{{}}</span></code>. Esto enlaza las propiedades del componente con la vista de manera declarativa.</p></li>
+<li><p><strong>Estilos Dinámicos</strong>: Cambia estilos de forma dinámica usando <code class="docutils literal notranslate"><span class="pre">ngStyle</span></code>, <code class="docutils literal notranslate"><span class="pre">ngClass</span></code> o las propiedades <code class="docutils literal notranslate"><span class="pre">[style]</span></code> y <code class="docutils literal notranslate"><span class="pre">[class]</span></code>.</p></li>
+<li><p><strong>Formularios</strong>: Usa el binding bidireccional <code class="docutils literal notranslate"><span class="pre">[()]</span></code> para formularios simples y formularios reactivos para formularios más complejos. Los formularios reactivos ofrecen un mayor control desde el código del componente.</p></li>
+<li><p><strong>Eventos</strong>: Maneja eventos individuales usando <code class="docutils literal notranslate"><span class="pre">()</span></code>. Esto enlaza eventos del DOM con métodos del componente.</p></li>
+<li><p><strong>Interfaces</strong>: Utiliza interfaces para definir datos que serán compartidos entre varios componentes o servicios. Esto ayuda a mantener el código tipado y reduce errores.</p></li>
+<li><p><strong>Directivas de Atributo</strong>: Usa directivas de atributo para manejar eventos recurrentes en varios componentes. Esto permite reutilizar lógica de manera eficiente.</p></li>
+<li><p><strong>Guards</strong>: Protege las rutas de tu aplicación con guards. Los guards pueden controlar el acceso a las rutas basándose en condiciones específicas.</p></li>
+<li><p><strong>Servicios y Resolvers</strong>: Usa servicios para guardar y servir datos tanto en el navegador como en el servidor. Los resolvers pueden precargar datos antes de activar una ruta, mejorando la experiencia del usuario.</p></li>
+<li><p><strong>Variables Globales</strong>:</p>
+<ul>
+<li><p><strong>Environment</strong>: Usa variables de entorno (<code class="docutils literal notranslate"><span class="pre">environment.ts</span></code>) para configurar valores globales que pueden ser consultados por cualquier componente.</p></li>
+<li><p><strong>Servicios con Observable</strong>: Utiliza servicios que expongan Observables para reaccionar a cambios en tiempo real.</p></li>
 </ul>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">HomeComponent</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
+</li>
+<li><p><strong>Módulos</strong>: Divide tu aplicación en módulos. Los módulos permiten organizar tu código en partes diferenciadas y reutilizables, facilitando la escalabilidad y el mantenimiento.</p></li>
+</ul>
+</section>
+<section id="arquitectura-y-estructura-de-la-aplicacion">
+<h3>2. Arquitectura y Estructura de la Aplicación<a class="headerlink" href="#arquitectura-y-estructura-de-la-aplicacion" title="Link to this heading">#</a></h3>
+<p>La arquitectura de tu aplicación Angular debe facilitar la localización de elementos, reducir la complejidad y evitar la duplicación de código. Aquí hay algunas pautas clave:</p>
 <ul class="simple">
-<li><p><strong>Ruta con Guard</strong>: Protege rutas usando guardias.</p></li>
+<li><p><strong>Claridad y Accesibilidad</strong>: Organiza tu código de manera que cualquier desarrollador pueda encontrar fácilmente los elementos de la aplicación.</p></li>
+<li><p><strong>Reducción de Complejidad</strong>: Divide la funcionalidad en módulos y componentes específicos para mantener el código manejable.</p></li>
+<li><p><strong>Evitar Duplicación de Código</strong>: Adopta el principio DRY (Don’t Repeat Yourself). Reutiliza componentes y servicios siempre que sea posible.</p></li>
+<li><p><strong>Guía de Estilos</strong>: Sigue las recomendaciones de la <a class="reference external" href="https://angular.io/guide/styleguide">guía de estilos de Angular</a> para mantener un código limpio y coherente.</p></li>
 </ul>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planets&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetListComponent</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
+</section>
+<section id="principios-de-programacion">
+<h3>3. Principios de Programación<a class="headerlink" href="#principios-de-programacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Ruta con Parámetros</strong>: Permite pasar parámetros en la URL.</p></li>
+<li><p><strong>Programación Funcional y Reactiva</strong>: Prefiere la programación funcional y reactiva sobre la orientación a objetos o imperativa. Usa RxJS para manejar flujos de datos asincrónicos.</p></li>
+<li><p><strong>Composición sobre Herencia</strong>: En la programación orientada a objetos, la composición es preferible a la herencia. Esto permite crear componentes más flexibles y reutilizables.</p></li>
+<li><p><strong>Principio de Responsabilidad Única (SRP)</strong>: Mantén tus archivos pequeños y enfocados en una única responsabilidad. Cada clase, componente o interfaz debería estar en su propio archivo.</p></li>
 </ul>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
+</section>
+<section id="componentes">
+<h3>4. Componentes<a class="headerlink" href="#componentes" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Ruta con Resolve</strong>: Precarga datos necesarios para el componente.</p></li>
+<li><p><strong>Mantén Componentes Pequeños</strong>: Los componentes deben ser pequeños y enfocados. Es mejor tener varios componentes hijos que un único componente complejo.</p></li>
+<li><p><strong>Componentes de Presentación y Contenedores</strong>:</p>
+<ul>
+<li><p><strong>Dumb Components</strong>: Estos componentes solo se encargan de la presentación. Reciben datos a través de <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> y emiten eventos mediante <code class="docutils literal notranslate"><span class="pre">&#64;Output</span></code>.</p></li>
+<li><p><strong>Smart Components</strong>: Estos componentes manejan la lógica de la aplicación. Se conectan a servicios para obtener o enviar datos. Las rutas generalmente apuntan a componentes inteligentes.</p></li>
 </ul>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/edit/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">resolve</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">planet</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetResolveService</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetEditComponent</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
+</li>
+</ul>
+</section>
+<section id="estructura-de-directorios">
+<h3>5. Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios" title="Link to this heading">#</a></h3>
+<p>Organiza tu código en directorios de manera que refleje la estructura de tu aplicación:</p>
 <ul class="simple">
-<li><p><strong>Ruta por Defecto</strong>: Redirige a una ruta específica si la ruta no existe.</p></li>
+<li><p><strong>Core</strong>: Contiene servicios singleton, guardias, y cualquier otro código que solo debe cargarse una vez.</p></li>
+<li><p><strong>Shared</strong>: Contiene componentes, directivas y pipes reutilizables.</p></li>
+<li><p><strong>Features</strong>: Cada funcionalidad principal de la aplicación tiene su propio módulo y directorio.</p></li>
+<li><p><strong>App</strong>: Contiene el módulo principal de la aplicación, el módulo de enrutamiento principal y el componente raíz.</p></li>
 </ul>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">pathMatch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;full&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">redirectTo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="w"> </span><span class="p">}</span>
+<p>Ejemplo de estructura de directorios:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">src</span>
+  <span class="o">/</span><span class="n">app</span>
+    <span class="o">/</span><span class="n">core</span>
+      <span class="o">/</span><span class="n">services</span>
+      <span class="o">/</span><span class="n">guards</span>
+      <span class="n">core</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
+    <span class="o">/</span><span class="n">shared</span>
+      <span class="o">/</span><span class="n">components</span>
+      <span class="o">/</span><span class="n">directives</span>
+      <span class="o">/</span><span class="n">pipes</span>
+      <span class="n">shared</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
+    <span class="o">/</span><span class="n">features</span>
+      <span class="o">/</span><span class="n">products</span>
+        <span class="o">/</span><span class="n">components</span>
+        <span class="o">/</span><span class="n">services</span>
+        <span class="o">/</span><span class="n">models</span>
+        <span class="n">products</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
+      <span class="o">/</span><span class="n">customers</span>
+        <span class="o">/</span><span class="n">components</span>
+        <span class="o">/</span><span class="n">services</span>
+        <span class="o">/</span><span class="n">models</span>
+        <span class="n">customers</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
+    <span class="o">/</span><span class="n">app</span><span class="o">-</span><span class="n">routing</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">ts</span>
 </pre></div>
 </div>
 </section>
-<section id="enlaces-de-navegacion">
-<h3>Enlaces de Navegación<a class="headerlink" href="#enlaces-de-navegacion" title="Link to this heading">#</a></h3>
-<p>Para crear enlaces de navegación en Angular, se utiliza <code class="docutils literal notranslate"><span class="pre">[routerLink]</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">href</span></code>:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-link active&quot;</span> <span class="na">aria-current</span><span class="o">=</span><span class="s">&quot;page&quot;</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;</span><span class="na">home</span><span class="err">&#39;]&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<p>Si la ruta tiene más niveles, se usarán elementos adicionales en el array.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-link&quot;</span> <span class="na">aria-current</span><span class="o">=</span><span class="s">&quot;page&quot;</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;</span><span class="na">home</span><span class="err">&#39;]&quot;</span> <span class="err">[</span><span class="na">routerLinkActive</span><span class="err">]=&quot;[&#39;</span><span class="na">active</span><span class="err">&#39;]&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<p>El atributo <code class="docutils literal notranslate"><span class="pre">routerLinkActive</span></code> puede estar sin corchetes y aplicarse al elemento padre del enlace si es necesario.</p>
 </section>
-<section id="navegacion-por-codigo">
-<h3>Navegación por Código<a class="headerlink" href="#navegacion-por-codigo" title="Link to this heading">#</a></h3>
-<p>Para navegar por código en Angular, se importa el <code class="docutils literal notranslate"><span class="pre">Router</span></code> y se inyecta en el constructor:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-
-<span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
-
-<span class="nx">detailsProduct</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/product&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">]);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="obtener-parametros-de-las-rutas">
-<h3>Obtener Parámetros de las Rutas<a class="headerlink" href="#obtener-parametros-de-las-rutas" title="Link to this heading">#</a></h3>
-<p>Las rutas pueden contener parámetros, como un <code class="docutils literal notranslate"><span class="pre">id</span></code>. Para obtener estos parámetros, se utiliza <code class="docutils literal notranslate"><span class="pre">ActivatedRoute</span></code>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ActivatedRoute</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-
-<span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">activatedRoute</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
-<span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">activatedRoute</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">params</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
-<span class="w">  </span><span class="p">});</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Los parámetros (<code class="docutils literal notranslate"><span class="pre">params</span></code>) son un observable al que nos suscribimos para recibir los valores pasados en la URL.</p>
-<p>A partir de Angular 16, se pueden configurar los parámetros del router para aceptarlos mediante <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code> usando <code class="docutils literal notranslate"><span class="pre">withComponentInputBinding()</span></code>.</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">bootstrapApplication</span><span class="p">(</span><span class="nx">App</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="c1">//... other features</span>
-<span class="w">        </span><span class="nx">withComponentInputBinding</span><span class="p">()</span><span class="w"> </span><span class="c1">// &lt;-- enable this feature</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="p">});</span>
-</pre></div>
-</div>
-<p>En el componente:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">query?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// Normal</span>
-<span class="w"> </span><span class="kd">@Input</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">queryParam?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// Renombrar el parámetro</span>
-</pre></div>
-</div>
-<p>En el router:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:query&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="transiciones-en-angular-2024">
-<h3>Transiciones en Angular (2024)<a class="headerlink" href="#transiciones-en-angular-2024" title="Link to this heading">#</a></h3>
-<p>Las transiciones en Angular permiten crear animaciones fluidas entre diferentes estados de la aplicación. En la actualidad, la funcionalidad completa de estas transiciones solo está totalmente disponible en Google Chrome. A continuación, se detalla cómo implementar y personalizar las transiciones en Angular.</p>
-<section id="definicion-de-animaciones-en-css">
-<h4>Definición de Animaciones en CSS<a class="headerlink" href="#definicion-de-animaciones-en-css" title="Link to this heading">#</a></h4>
-<p>Primero, definimos las animaciones CSS utilizando <code class="docutils literal notranslate"><span class="pre">&#64;keyframes</span></code>. Esto permite rotar los elementos durante las transiciones.</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">keyframes</span><span class="w"> </span><span class="nt">rotate-out</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">to</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">rotate</span><span class="p">(</span><span class="mi">90</span><span class="kt">deg</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="p">@</span><span class="k">keyframes</span><span class="w"> </span><span class="nt">rotate-in</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">from</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">rotate</span><span class="p">(</span><span class="nv">-90deg</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">),</span>
-<span class="p">::</span><span class="nd">view-transition-new</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">animation-duration</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">ms</span><span class="p">;</span>
-<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-in</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">in</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-out</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>En este ejemplo:</p>
+<section id="integracion-de-bibliotecas-de-terceros">
+<h2>Integración de Bibliotecas de Terceros<a class="headerlink" href="#integracion-de-bibliotecas-de-terceros" title="Link to this heading">#</a></h2>
+<p>Angular, al ser un framework altamente extensible, permite la integración de diversas bibliotecas de terceros que facilitan el desarrollo y mejoran la funcionalidad de nuestras aplicaciones. A continuación, se describen algunas de las bibliotecas más populares y cómo integrarlas en tu proyecto Angular.</p>
+<section id="bootstrap">
+<h3>1. Bootstrap<a class="headerlink" href="#bootstrap" title="Link to this heading">#</a></h3>
+<p>Bootstrap es un framework de CSS que facilita la creación de interfaces web responsivas y modernas. Hay varias maneras de integrarlo en un proyecto Angular:</p>
+<section id="uso-del-cdn-de-bootstrap">
+<h4>Uso del CDN de Bootstrap<a class="headerlink" href="#uso-del-cdn-de-bootstrap" title="Link to this heading">#</a></h4>
+<p>Esta es la forma más simple y rápida de agregar Bootstrap a tu proyecto.</p>
+<p><strong>Ventajas:</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">rotate-out</span></code>: rota un elemento 90 grados.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rotate-in</span></code>: rota un elemento desde -90 grados hasta su posición original.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">::view-transition-old(count)</span></code> y <code class="docutils literal notranslate"><span class="pre">::view-transition-new(count)</span></code>: aplican las animaciones durante la transición.</p></li>
+<li><p>Puede estar en la caché del navegador del cliente.</p></li>
+<li><p>Siempre estará actualizado.</p></li>
 </ul>
+<p><strong>Desventajas:</strong></p>
+<ul class="simple">
+<li><p>No siempre necesitas todos los componentes de Bootstrap.</p></li>
+<li><p>Necesitas estar conectado a Internet.</p></li>
+</ul>
+<p>Para usar el CDN, simplemente agrega los siguientes enlaces en el archivo <code class="docutils literal notranslate"><span class="pre">index.html</span></code> de tu proyecto Angular:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span>
+  <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
+  <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>
+<span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 </section>
-<section id="configuracion-de-rutas-en-angular">
-<h4>Configuración de Rutas en Angular<a class="headerlink" href="#configuracion-de-rutas-en-angular" title="Link to this heading">#</a></h4>
-<p>Para habilitar las transiciones, configuramos las rutas en <code class="docutils literal notranslate"><span class="pre">app-routing.module.ts</span></code> utilizando <code class="docutils literal notranslate"><span class="pre">provideRouter</span></code> y añadiendo <code class="docutils literal notranslate"><span class="pre">withViewTransitions()</span></code>.</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="nx">provideRouter</span><span class="p">(</span>
-<span class="w">    </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">pathMatch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;full&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">redirectTo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/0&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;:count&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">Counter</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="nx">withViewTransitions</span><span class="p">(),</span>
-<span class="w">    </span><span class="nx">withComponentInputBinding</span><span class="p">()</span>
-<span class="w">  </span><span class="p">),</span>
+<section id="descarga-manual">
+<h4>Descarga Manual<a class="headerlink" href="#descarga-manual" title="Link to this heading">#</a></h4>
+<p>Otra opción es descargar el archivo comprimido de Bootstrap y colocarlo en el directorio <code class="docutils literal notranslate"><span class="pre">assets</span></code> de tu proyecto.</p>
+</section>
+<section id="instalacion-via-npm">
+<h4>Instalación vía npm<a class="headerlink" href="#instalacion-via-npm" title="Link to this heading">#</a></h4>
+<p>La forma más recomendada para proyectos Angular es instalar Bootstrap a través de npm, ya que facilita la gestión de dependencias.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>bootstrap
+npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>@types/bootstrap
+</pre></div>
+</div>
+<p>Luego, agrega las rutas a los archivos de Bootstrap en tu archivo <code class="docutils literal notranslate"><span class="pre">angular.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;styles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s2">&quot;node_modules/bootstrap/dist/css/bootstrap.min.css&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;src/styles.scss&quot;</span>
 <span class="p">],</span>
+<span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s2">&quot;node_modules/bootstrap/dist/js/bootstrap.bundle.min.js&quot;</span>
+<span class="p">]</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">provideRouter</span></code>: Define las rutas de la aplicación.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">withViewTransitions()</span></code>: Habilita las transiciones de vista.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">withComponentInputBinding()</span></code>: Permite el enlace de entrada del componente.</p></li>
-</ul>
 </section>
-<section id="personalizacion-de-transiciones">
-<h4>Personalización de Transiciones<a class="headerlink" href="#personalizacion-de-transiciones" title="Link to this heading">#</a></h4>
-<p>Es posible personalizar las transiciones en el archivo CSS.</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">),</span>
-<span class="p">::</span><span class="nd">view-transition-new</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">animation-duration</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">ms</span><span class="p">;</span>
-<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-in</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">in</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-out</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
-<span class="p">}</span>
+</section>
+<section id="angular-material">
+<h3>2. Angular Material<a class="headerlink" href="#angular-material" title="Link to this heading">#</a></h3>
+<p>Angular Material es una biblioteca de componentes UI basada en Material Design, desarrollada específicamente para Angular.</p>
+<p>Para instalar Angular Material, utiliza el siguiente comando:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>add<span class="w"> </span>@angular/material
 </pre></div>
 </div>
-<p>Aquí, se definen las duraciones y los nombres de las animaciones para las transiciones de entrada y salida.</p>
-</section>
-<section id="uso-de-onviewtransitioncreated">
-<h4>Uso de <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code><a class="headerlink" href="#uso-de-onviewtransitioncreated" title="Link to this heading">#</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">withViewTransitions</span></code> acepta un objeto con la función <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code> para manejar eventos de transición.</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">withViewTransitions</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">onViewTransitionCreated</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">transition</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">targetUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">.</span><span class="nx">getCurrentNavigation</span><span class="p">()</span><span class="o">!</span><span class="p">.</span><span class="nx">finalUrl</span><span class="o">!</span><span class="p">;</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">      </span><span class="nx">paths</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;exact&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">      </span><span class="nx">matrixParams</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;exact&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">fragment</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ignored&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">queryParams</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ignored&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="p">};</span>
+<p>Este comando configurará Angular Material en tu proyecto, incluyendo los temas y animaciones necesarias. También puedes seguir la <a class="reference external" href="https://material.angular.io/guide/getting-started">guía de inicio rápido</a> en la documentación oficial.</p>
+<section id="uso">
+<h4>Uso<a class="headerlink" href="#uso" title="Link to this heading">#</a></h4>
+<p>Una vez instalado, puedes empezar a usar los componentes de Angular Material importándolos en tus módulos. Por ejemplo, para usar un botón de Angular Material:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">MatButtonModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/material/button&#39;</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">router</span><span class="p">.</span><span class="nx">isActive</span><span class="p">(</span><span class="nx">targetUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">transition</span><span class="p">.</span><span class="nx">skipTransition</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="p">}),</span>
-</pre></div>
-</div>
-<p>En este ejemplo:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code>: Se invoca cuando se crea una transición de vista.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">transition.skipTransition()</span></code>: Cancela la animación si solo cambian el fragmento o los parámetros de consulta.</p></li>
-</ul>
-</section>
-</section>
-</section>
-<section id="servicios-en-angular">
-<h2>Servicios en Angular<a class="headerlink" href="#servicios-en-angular" title="Link to this heading">#</a></h2>
-<p>En Angular, los servicios son componentes fundamentales que proporcionan datos y funcionalidades reutilizables a lo largo de la aplicación. Generalmente, los servicios manejan operaciones CRUD (Create, Read, Update, Delete) y permiten mantener la lógica de negocio y la gestión de datos de forma centralizada y persistente.</p>
-<ul class="simple">
-<li><p><strong>Provisión de Información</strong>: Los servicios proporcionan datos a los componentes que los soliciten.</p></li>
-<li><p><strong>Operaciones CRUD</strong>: Realizan operaciones básicas de creación, lectura, actualización y eliminación.</p></li>
-<li><p><strong>Persistencia de Datos</strong>: Mantienen los datos de manera persistente a través de diferentes componentes.</p></li>
-<li><p><strong>Reutilizables</strong>: Son reutilizables en toda la aplicación, promoviendo un código limpio y modular.</p></li>
-</ul>
-<section id="decorador-injectable">
-<h3>Decorador &#64;Injectable<a class="headerlink" href="#decorador-injectable" title="Link to this heading">#</a></h3>
-<p>Las clases de servicio en Angular están decoradas con <code class="docutils literal notranslate"><span class="pre">&#64;Injectable()</span></code>. Este decorador indica al inyector de dependencias de Angular que debe proporcionar una instancia de la clase cuando sea necesario. Aquí hay un ejemplo de una clase de servicio:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-
-<span class="kd">@Injectable</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w">  </span><span class="c1">// Inicia que no hace falta que esté en providers</span>
+<span class="kd">@NgModule</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">MatButtonModule</span>
+<span class="w">  </span><span class="p">]</span>
 <span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// Métodos y lógica del servicio</span>
-<span class="p">}</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>El decorador <code class="docutils literal notranslate"><span class="pre">&#64;Injectable</span></code> asegura que Angular gestione la instancia del servicio como un Singleton, lo que significa que se crea una única instancia del servicio y se comparte entre todos los componentes que lo requieran.</p>
-<p>Si el servicio se declara con <code class="docutils literal notranslate"><span class="pre">providedIn:</span> <span class="pre">'root'</span></code>, no es necesario agregarlo a <code class="docutils literal notranslate"><span class="pre">providers</span></code> porque Angular se encargará de su inyección automáticamente en toda la aplicación.</p>
-<section id="inyeccion-de-dependencias">
-<h4>Inyección de Dependencias<a class="headerlink" href="#inyeccion-de-dependencias" title="Link to this heading">#</a></h4>
-<p>En Angular, la inyección de dependencias (DI) es una técnica poderosa que permite a los componentes solicitar servicios de manera eficiente. En lugar de crear instancias de servicios con <code class="docutils literal notranslate"><span class="pre">new</span></code>, Angular maneja la creación y provisión de servicios mediante el constructor:</p>
+<p>Y en tu plantilla HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">mat-button</span><span class="p">&gt;</span>Click me!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ngx-charts">
+<h3>3. Ngx Charts<a class="headerlink" href="#ngx-charts" title="Link to this heading">#</a></h3>
+<p>Ngx Charts es una biblioteca para crear gráficos y visualizaciones interactivas en Angular.</p>
+<p>Para instalar Ngx Charts, ejecuta el siguiente comando:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>@swimlane/ngx-charts<span class="w"> </span>--save
+</pre></div>
+</div>
+<p>Luego, importa el módulo en <code class="docutils literal notranslate"><span class="pre">app.module.ts</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgxChartsModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@swimlane/ngx-charts&#39;</span><span class="p">;</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">NgxChartsModule</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<section id="id1">
+<h4>Uso<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Puedes encontrar ejemplos y documentación detallada en la <a class="reference external" href="https://swimlane.gitbook.io/ngx-charts/">web oficial de Ngx Charts</a>. Aquí tienes un ejemplo básico de cómo usar un gráfico de barras:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.service&#39;</span><span class="p">;</span>
 
 <span class="kd">@Component</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-product&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./product.component.html&#39;</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;ngx-charts-bar-vertical</span>
+<span class="sb">      [view]=&quot;[700, 400]&quot;</span>
+<span class="sb">      [scheme]=&quot;colorScheme&quot;</span>
+<span class="sb">      [results]=&quot;single&quot;</span>
+<span class="sb">      [gradient]=&quot;gradient&quot;</span>
+<span class="sb">      [xAxis]=&quot;showXAxis&quot;</span>
+<span class="sb">      [yAxis]=&quot;showYAxis&quot;</span>
+<span class="sb">      [legend]=&quot;showLegend&quot;</span>
+<span class="sb">      [showXAxisLabel]=&quot;showXAxisLabel&quot;</span>
+<span class="sb">      [showYAxisLabel]=&quot;showYAxisLabel&quot;</span>
+<span class="sb">      [xAxisLabel]=&quot;xAxisLabel&quot;</span>
+<span class="sb">      [yAxisLabel]=&quot;yAxisLabel&quot;&gt;</span>
+<span class="sb">    &lt;/ngx-charts-bar-vertical&gt;</span>
+<span class="sb">  `</span>
 <span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">productService</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Este enfoque hace que el código sea más legible y fácil de mantener. Además, permite que Angular gestione la creación de servicios como Singletons, asegurando que todos los componentes utilicen la misma instancia del servicio.</p>
-</section>
-</section>
-<section id="httpclientmodule">
-<h3>HttpClientModule<a class="headerlink" href="#httpclientmodule" title="Link to this heading">#</a></h3>
-<p>Los servicios en Angular a menudo obtienen datos de un servidor a través de HTTP. Para hacer esto, se debe importar <code class="docutils literal notranslate"><span class="pre">HttpClientModule</span></code>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
-<span class="p">....</span>
-</pre></div>
-</div>
-<section id="servicios-como-clientes-http">
-<h4>Servicios como Clientes HTTP<a class="headerlink" href="#servicios-como-clientes-http" title="Link to this heading">#</a></h4>
-<p>Los servicios pueden utilizar <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code> para realizar solicitudes HTTP. Esto se logra mediante la inyección de dependencias. Aquí hay un ejemplo de un servicio que obtiene productos de un servidor:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">map</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.model&#39;</span><span class="p">;</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">single</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Germany&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">8940000</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;USA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">5000000</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">];</span>
 
-<span class="kd">@Injectable</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">productURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/products&#39;</span><span class="p">;</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">getProducts</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[]}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">productURL</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
-<span class="w">      </span><span class="nx">map</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">products</span><span class="p">)</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">getProducts</span></code> realiza una solicitud HTTP GET para obtener una lista de productos. Utiliza <code class="docutils literal notranslate"><span class="pre">map</span></code> de RxJS para transformar la respuesta antes de devolverla como un <code class="docutils literal notranslate"><span class="pre">Observable</span></code>.</p>
-</section>
-<section id="envio-de-datos-con-post">
-<h4>Envío de Datos con POST<a class="headerlink" href="#envio-de-datos-con-post" title="Link to this heading">#</a></h4>
-<p>Para enviar datos al servidor, se utiliza el método <code class="docutils literal notranslate"><span class="pre">post</span></code> de <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code>. Aquí se muestra cómo hacerlo:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
-
-<span class="kd">@Injectable</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AuthService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">loginURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/login&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">httpOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">({</span>
-<span class="w">      </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="nx">showXAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">showYAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">gradient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">showLegend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">showXAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">xAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Country&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">showYAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">yAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Population&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">colorScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">domain</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;#5AA454&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#A10A28&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#C7B42C&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#AAAAAA&#39;</span><span class="p">]</span>
 <span class="w">  </span><span class="p">};</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">login</span><span class="p">(</span><span class="nx">credentials</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">})</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">loginURL</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">credentials</span><span class="p">),</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">httpOptions</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">login</span></code> envía credenciales de usuario al servidor utilizando una solicitud HTTP POST. Se configuran las cabeceras HTTP para especificar que el contenido es JSON.</p>
-</section>
-</section>
-<section id="datos-asincronos">
-<h3>Datos asíncronos<a class="headerlink" href="#datos-asincronos" title="Link to this heading">#</a></h3>
-<p>En Angular, el manejo de datos asíncronos es una habilidad crucial para desarrollar aplicaciones web modernas y eficientes. Angular utiliza la librería RxJS para implementar una versión avanzada de manejo de datos asíncronos conocida como Observables, que ofrece capacidades más robustas en comparación con las Promesas tradicionales de JavaScript.</p>
-<section id="promesas-vs-observables">
-<h4>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h4>
-<p>Aunque se puede trabajar con promesas para obtener datos, Angular utiliza por defecto los Observables de RxJS debido a sus ventajas:</p>
-<ul class="simple">
-<li><p><strong>Valores Múltiples</strong>: Mientras que una promesa retorna un solo valor o un error, un Observable puede emitir múltiples valores a lo largo del tiempo.</p></li>
-<li><p><strong>Lazy Loading</strong>: Una promesa comienza su ejecución en el momento de su creación, mientras que un Observable sólo empieza a emitir valores cuando alguien se suscribe a él.</p></li>
-<li><p><strong>Cancelación</strong>: Los observables pueden ser cancelados mediante la cancelación de las suscripciones, lo que permite un control más fino sobre el flujo de datos.</p></li>
-<li><p><strong>Operadores</strong>: RxJS proporciona una amplia gama de operadores como <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code> que permiten manipular fácilmente los datos emitidos por los observables.</p></li>
-</ul>
-</section>
-<section id="uso-de-operadores-en-observables">
-<h4>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h4>
-<p>Los operadores en RxJS son funciones que permiten transformar, filtrar y combinar flujos de datos de observables. Aquí hay un ejemplo de cómo se utilizan los operadores <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">filter</span></code>:</p>
-<ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">map</span></code></strong>: Manipula los datos y los retorna.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">filter</span></code></strong>: Deja pasar sólo los datos que cumplen con una condición específica.</p></li>
-</ul>
-<p>Estos operadores se aplican como parámetros del método <code class="docutils literal notranslate"><span class="pre">pipe</span></code> de la clase <code class="docutils literal notranslate"><span class="pre">Observable</span></code>.</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">productURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/products&#39;</span><span class="p">;</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">getProducts</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[]}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">productURL</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
-<span class="w">      </span><span class="nx">map</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">products</span><span class="p">),</span>
-<span class="w">      </span><span class="nx">filter</span><span class="p">(</span><span class="nx">product</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">product</span><span class="p">.</span><span class="nx">price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">20</span><span class="p">)</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="procesamiento-de-respuestas-de-observables">
-<h4>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h4>
-<p>Un observable puede tener múltiples suscriptores y sólo comienza a emitir datos cuando alguien se suscribe a él. El método <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code> acepta tres funciones como parámetros:</p>
-<ol class="arabic simple">
-<li><p><strong>Función de éxito</strong>: Se ejecuta cuando el observable emite un valor.</p></li>
-<li><p><strong>Función de error (opcional)</strong>: Se ejecuta si el observable o alguno de sus operadores falla.</p></li>
-<li><p><strong>Función de finalización (opcional)</strong>: Se ejecuta siempre al finalizar la emisión de datos.</p></li>
-</ol>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-
-<span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">productsService</span><span class="p">.</span><span class="nx">getProducts</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span>
-<span class="w">    </span><span class="nx">prods</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">products</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prods</span><span class="p">,</span><span class="w"> </span><span class="c1">// Función de éxito</span>
-<span class="w">    </span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">),</span><span class="w">  </span><span class="c1">// Función de error (opcional)</span>
-<span class="w">    </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Products loaded&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Función de finalización (opcional)</span>
-<span class="w">  </span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="mostrar-datos-asincronos">
-<h4>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h4>
-<p>La carga de datos asíncronos puede retrasarse, lo que puede causar errores si Angular intenta acceder a datos que aún no están disponibles. Para manejar esto, se pueden utilizar varias técnicas:</p>
-<ul class="simple">
-<li><p><strong>Objetos Vacíos</strong>: Crear un objeto con datos vacíos para evitar errores.</p></li>
-<li><p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code></strong>: Mostrar los datos sólo cuando estén completamente cargados.</p></li>
-<li><p><strong>Operador <code class="docutils literal notranslate"><span class="pre">?</span></code></strong>: Asegurar que los datos no se accedan hasta que tengan un valor válido.</p></li>
-</ul>
-</section>
-<section id="signals">
-<h4>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h4>
-<p>Las señales (<code class="docutils literal notranslate"><span class="pre">signals</span></code>) son una opción más simple y menos potente que los observables para tareas reactivas básicas. Desde Angular 17, se consideran una buena opción para tareas reactivas simples.</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(){</span>
-<span class="w">  </span><span class="nx">effect</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Valor de num: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
-<span class="p">}</span>
-<span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
-<span class="nx">updateNum</span><span class="p">(){</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">update</span><span class="p">((</span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-<span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="resolver">
-<h4>Resolver<a class="headerlink" href="#resolver" title="Link to this heading">#</a></h4>
-<p>A veces es necesario obtener datos del servidor antes de acceder a una ruta específica. Para esto, se utiliza un tipo especial de servicio llamado Resolver.</p>
-<p>Un Resolver es un servicio que implementa el método <code class="docutils literal notranslate"><span class="pre">resolve</span></code>, el cual obtiene los datos antes de que la ruta se cargue:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">RouterStateSnapshot</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.service&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="p">,</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">catchError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.model&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-
-<span class="kd">@Injectable</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductResolver</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">Resolve</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">productsService</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductService</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">state</span><span class="o">:</span><span class="w"> </span><span class="kt">RouterStateSnapshot</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">productsService</span><span class="p">.</span><span class="nx">getProduct</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
-<span class="w">      </span><span class="nx">catchError</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/products&#39;</span><span class="p">]);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">of</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="w">      </span><span class="p">})</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Este resolver utiliza el servicio real para obtener los productos y maneja cualquier error redirigiendo al usuario a una ruta segura.</p>
-<section id="configuracion-de-rutas-con-resolver">
-<h5>Configuración de Rutas con Resolver<a class="headerlink" href="#configuracion-de-rutas-con-resolver" title="Link to this heading">#</a></h5>
-<p>Las rutas pueden configurarse para utilizar un resolver, asegurando que los datos necesarios estén disponibles antes de cargar el componente:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="kt">Routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;product/edit/:id&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">ProductDetailGuard</span><span class="p">],</span>
-<span class="w">    </span><span class="nx">canDeactivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">LeavePageGuard</span><span class="p">],</span>
-<span class="w">    </span><span class="nx">resolve</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">product</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductResolver</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductEditComponent</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">// Otras rutas</span>
-<span class="p">];</span>
-</pre></div>
-</div>
-</section>
 </section>
 </section>
 </section>
@@ -1644,7 +1822,7 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1655,6 +1833,15 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Typescript</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="httpangular.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Comunicación con el servidor en Angular</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1712,44 +1899,58 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-en-angular">Rutas en Angular</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-rutas">Ejemplo Básico de Rutas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-con-hash">Rutas con Hash</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-rutas">Creación de Rutas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-de-navegacion">Enlaces de Navegación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navegacion-por-codigo">Navegación por Código</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-parametros-de-las-rutas">Obtener Parámetros de las Rutas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transiciones-en-angular-2024">Transiciones en Angular (2024)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-animaciones-en-css">Definición de Animaciones en CSS</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-en-angular">Configuración de Rutas en Angular</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizacion-de-transiciones">Personalización de Transiciones</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-onviewtransitioncreated">Uso de <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes">Pipes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-pipes-predefinidos">Uso de Pipes Predefinidos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-pipes-personalizados">Creación de Pipes Personalizados</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-en-angular">Servicios en Angular</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decorador-injectable">Decorador @Injectable</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inyeccion-de-dependencias">Inyección de Dependencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-en-angular">Directivas en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-de-atributo">Crear directivas de atributo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementref-vs-renderer2">ElementRef vs Renderer2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-estructurales">Crear directivas estructurales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos">Eventos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-en-angular">Módulos en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-del-decorador-ngmodule">Arrays del Decorador @NgModule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-para-separar-la-aplicacion-en-modulos">Criterios para Separar la Aplicación en Módulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-un-modulo-en-angular">Ejemplo de un Módulo en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-del-modulo">Definición del Módulo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-del-modulo">Descripción del Módulo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-de-modulos-en-una-aplicacion-grande">Organización de Módulos en una Aplicación Grande</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-principal-appmodule">Módulo Principal (AppModule)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-de-core">Módulo de Core</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-de-caracteristica-feature-module">Módulo de Característica (Feature Module)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-de-rutas-routing-module">Módulo de Rutas (Routing Module)</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-y-mejores-practicas-para-desarrollar-en-angular">Consejos y Mejores Prácticas para Desarrollar en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-herramientas-y-funcionalidades-de-angular">1. Utilización de Herramientas y Funcionalidades de Angular</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-estructura-de-la-aplicacion">2. Arquitectura y Estructura de la Aplicación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-de-programacion">3. Principios de Programación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">4. Componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-directorios">5. Estructura de Directorios</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-bibliotecas-de-terceros">Integración de Bibliotecas de Terceros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">1. Bootstrap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-del-cdn-de-bootstrap">Uso del CDN de Bootstrap</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-manual">Descarga Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-via-npm">Instalación vía npm</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-material">2. Angular Material</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso">Uso</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ngx-charts">3. Ngx Charts</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Uso</a></li>
 </ul>
 </li>
 </ul>
@@ -1802,8 +2003,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -28,3 +28,6 @@ parts:
     chapters: 
     - file: typescript
     - file: angular
+    - file: httpangular
+    - file: rutasangular
+    - file: formulariosangular

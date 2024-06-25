@@ -1,0 +1,1114 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comunicación con el servidor en Angular &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'httpangular';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Rutas en Angular" href="rutasangular.html" />
+    <link rel="prev" title="Introducción a Angular" href="angular.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyecto en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fhttpangular.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/httpangular.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Comunicación con el servidor en Angular</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-en-angular">Servicios en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decorador-injectable">Decorador @Injectable</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inyeccion-de-dependencias">Inyección de Dependencias</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cookies-y-tokens">Cookies y Tokens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interceptores">Interceptores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guards">Guards</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-como-observables">Variables como Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="comunicacion-con-el-servidor-en-angular">
+<h1>Comunicación con el servidor en Angular<a class="headerlink" href="#comunicacion-con-el-servidor-en-angular" title="Link to this heading">#</a></h1>
+<section id="servicios-en-angular">
+<h2>Servicios en Angular<a class="headerlink" href="#servicios-en-angular" title="Link to this heading">#</a></h2>
+<p>En Angular, los servicios son componentes fundamentales que proporcionan datos y funcionalidades reutilizables a lo largo de la aplicación. Generalmente, los servicios manejan operaciones CRUD (Create, Read, Update, Delete) y permiten mantener la lógica de negocio y la gestión de datos de forma centralizada y persistente.</p>
+<ul class="simple">
+<li><p><strong>Provisión de Información</strong>: Los servicios proporcionan datos a los componentes que los soliciten.</p></li>
+<li><p><strong>Operaciones CRUD</strong>: Realizan operaciones básicas de creación, lectura, actualización y eliminación.</p></li>
+<li><p><strong>Persistencia de Datos</strong>: Mantienen los datos de manera persistente a través de diferentes componentes.</p></li>
+<li><p><strong>Reutilizables</strong>: Son reutilizables en toda la aplicación, promoviendo un código limpio y modular.</p></li>
+</ul>
+<section id="decorador-injectable">
+<h3>Decorador &#64;Injectable<a class="headerlink" href="#decorador-injectable" title="Link to this heading">#</a></h3>
+<p>Las clases de servicio en Angular están decoradas con <code class="docutils literal notranslate"><span class="pre">&#64;Injectable()</span></code>. Este decorador indica al inyector de dependencias de Angular que debe proporcionar una instancia de la clase cuando sea necesario. Aquí hay un ejemplo de una clase de servicio:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w">  </span><span class="c1">// Inicia que no hace falta que esté en providers</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Métodos y lógica del servicio</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>El decorador <code class="docutils literal notranslate"><span class="pre">&#64;Injectable</span></code> asegura que Angular gestione la instancia del servicio como un Singleton, lo que significa que se crea una única instancia del servicio y se comparte entre todos los componentes que lo requieran.</p>
+<p>Si el servicio se declara con <code class="docutils literal notranslate"><span class="pre">providedIn:</span> <span class="pre">'root'</span></code>, no es necesario agregarlo a <code class="docutils literal notranslate"><span class="pre">providers</span></code> porque Angular se encargará de su inyección automáticamente en toda la aplicación.</p>
+<section id="inyeccion-de-dependencias">
+<h4>Inyección de Dependencias<a class="headerlink" href="#inyeccion-de-dependencias" title="Link to this heading">#</a></h4>
+<p>En Angular, la inyección de dependencias (DI) es una técnica poderosa que permite a los componentes solicitar servicios de manera eficiente. En lugar de crear instancias de servicios con <code class="docutils literal notranslate"><span class="pre">new</span></code>, Angular maneja la creación y provisión de servicios mediante el constructor:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.service&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-product&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./product.component.html&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">productService</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Este enfoque hace que el código sea más legible y fácil de mantener. Además, permite que Angular gestione la creación de servicios como Singletons, asegurando que todos los componentes utilicen la misma instancia del servicio.</p>
+</section>
+</section>
+<section id="httpclientmodule">
+<h3>HttpClientModule<a class="headerlink" href="#httpclientmodule" title="Link to this heading">#</a></h3>
+<p>Los servicios en Angular a menudo obtienen datos de un servidor a través de HTTP. Para hacer esto, se debe importar <code class="docutils literal notranslate"><span class="pre">HttpClientModule</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+<span class="p">....</span>
+</pre></div>
+</div>
+<section id="servicios-como-clientes-http">
+<h4>Servicios como Clientes HTTP<a class="headerlink" href="#servicios-como-clientes-http" title="Link to this heading">#</a></h4>
+<p>Los servicios pueden utilizar <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code> para realizar solicitudes HTTP. Esto se logra mediante la inyección de dependencias. Aquí hay un ejemplo de un servicio que obtiene productos de un servidor:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">map</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.model&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">productURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/products&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">getProducts</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[]}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">productURL</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">products</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">getProducts</span></code> realiza una solicitud HTTP GET para obtener una lista de productos. Utiliza <code class="docutils literal notranslate"><span class="pre">map</span></code> de RxJS para transformar la respuesta antes de devolverla como un <code class="docutils literal notranslate"><span class="pre">Observable</span></code>.</p>
+</section>
+<section id="envio-de-datos-con-post">
+<h4>Envío de Datos con POST<a class="headerlink" href="#envio-de-datos-con-post" title="Link to this heading">#</a></h4>
+<p>Para enviar datos al servidor, se utiliza el método <code class="docutils literal notranslate"><span class="pre">post</span></code> de <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code>. Aquí se muestra cómo hacerlo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AuthService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">loginURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/login&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">httpOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">({</span>
+<span class="w">      </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">login</span><span class="p">(</span><span class="nx">credentials</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">})</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">loginURL</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">credentials</span><span class="p">),</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">httpOptions</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">login</span></code> envía credenciales de usuario al servidor utilizando una solicitud HTTP POST. Se configuran las cabeceras HTTP para especificar que el contenido es JSON.</p>
+</section>
+</section>
+<section id="datos-asincronos">
+<h3>Datos asíncronos<a class="headerlink" href="#datos-asincronos" title="Link to this heading">#</a></h3>
+<p>En Angular, el manejo de datos asíncronos es una habilidad crucial para desarrollar aplicaciones web modernas y eficientes. Angular utiliza la librería RxJS para implementar una versión avanzada de manejo de datos asíncronos conocida como Observables, que ofrece capacidades más robustas en comparación con las Promesas tradicionales de JavaScript.</p>
+<section id="promesas-vs-observables">
+<h4>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h4>
+<p>Aunque se puede trabajar con promesas para obtener datos, Angular utiliza por defecto los Observables de RxJS debido a sus ventajas:</p>
+<ul class="simple">
+<li><p><strong>Valores Múltiples</strong>: Mientras que una promesa retorna un solo valor o un error, un Observable puede emitir múltiples valores a lo largo del tiempo.</p></li>
+<li><p><strong>Lazy Loading</strong>: Una promesa comienza su ejecución en el momento de su creación, mientras que un Observable sólo empieza a emitir valores cuando alguien se suscribe a él.</p></li>
+<li><p><strong>Cancelación</strong>: Los observables pueden ser cancelados mediante la cancelación de las suscripciones, lo que permite un control más fino sobre el flujo de datos.</p></li>
+<li><p><strong>Operadores</strong>: RxJS proporciona una amplia gama de operadores como <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code> que permiten manipular fácilmente los datos emitidos por los observables.</p></li>
+</ul>
+</section>
+<section id="uso-de-operadores-en-observables">
+<h4>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h4>
+<p>Los operadores en RxJS son funciones que permiten transformar, filtrar y combinar flujos de datos de observables. Aquí hay un ejemplo de cómo se utilizan los operadores <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">filter</span></code>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">map</span></code></strong>: Manipula los datos y los retorna.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">filter</span></code></strong>: Deja pasar sólo los datos que cumplen con una condición específica.</p></li>
+</ul>
+<p>Estos operadores se aplican como parámetros del método <code class="docutils literal notranslate"><span class="pre">pipe</span></code> de la clase <code class="docutils literal notranslate"><span class="pre">Observable</span></code>.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">productURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/products&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">getProducts</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[]}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">productURL</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">products</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">filter</span><span class="p">(</span><span class="nx">product</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">product</span><span class="p">.</span><span class="nx">price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">20</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="procesamiento-de-respuestas-de-observables">
+<h4>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h4>
+<p>Un observable puede tener múltiples suscriptores y sólo comienza a emitir datos cuando alguien se suscribe a él. El método <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code> acepta tres funciones como parámetros:</p>
+<ol class="arabic simple">
+<li><p><strong>Función de éxito</strong>: Se ejecuta cuando el observable emite un valor.</p></li>
+<li><p><strong>Función de error (opcional)</strong>: Se ejecuta si el observable o alguno de sus operadores falla.</p></li>
+<li><p><strong>Función de finalización (opcional)</strong>: Se ejecuta siempre al finalizar la emisión de datos.</p></li>
+</ol>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">productsService</span><span class="p">.</span><span class="nx">getProducts</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">prods</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">products</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prods</span><span class="p">,</span><span class="w"> </span><span class="c1">// Función de éxito</span>
+<span class="w">    </span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">),</span><span class="w">  </span><span class="c1">// Función de error (opcional)</span>
+<span class="w">    </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Products loaded&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Función de finalización (opcional)</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="mostrar-datos-asincronos">
+<h4>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h4>
+<p>La carga de datos asíncronos puede retrasarse, lo que puede causar errores si Angular intenta acceder a datos que aún no están disponibles. Para manejar esto, se pueden utilizar varias técnicas:</p>
+<ul class="simple">
+<li><p><strong>Objetos Vacíos</strong>: Crear un objeto con datos vacíos para evitar errores.</p></li>
+<li><p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code></strong>: Mostrar los datos sólo cuando estén completamente cargados.</p></li>
+<li><p><strong>Operador <code class="docutils literal notranslate"><span class="pre">?</span></code></strong>: Asegurar que los datos no se accedan hasta que tengan un valor válido.</p></li>
+</ul>
+</section>
+<section id="signals">
+<h4>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h4>
+<p>Las señales (<code class="docutils literal notranslate"><span class="pre">signals</span></code>) son una opción más simple y menos potente que los observables para tareas reactivas básicas. Desde Angular 17, se consideran una buena opción para tareas reactivas simples.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(){</span>
+<span class="w">  </span><span class="nx">effect</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Valor de num: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
+<span class="p">}</span>
+<span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="nx">updateNum</span><span class="p">(){</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">update</span><span class="p">((</span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="resolver">
+<h4>Resolver<a class="headerlink" href="#resolver" title="Link to this heading">#</a></h4>
+<p>A veces es necesario obtener datos del servidor antes de acceder a una ruta específica. Para esto, se utiliza un tipo especial de servicio llamado Resolver.</p>
+<p>Un Resolver es un servicio que implementa el método <code class="docutils literal notranslate"><span class="pre">resolve</span></code>, el cual obtiene los datos antes de que la ruta se cargue:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">RouterStateSnapshot</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.service&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="p">,</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">catchError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.model&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductResolver</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">Resolve</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">productsService</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductService</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">state</span><span class="o">:</span><span class="w"> </span><span class="kt">RouterStateSnapshot</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">productsService</span><span class="p">.</span><span class="nx">getProduct</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">catchError</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/products&#39;</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">of</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Este resolver utiliza el servicio real para obtener los productos y maneja cualquier error redirigiendo al usuario a una ruta segura.</p>
+<section id="configuracion-de-rutas-con-resolver">
+<h5>Configuración de Rutas con Resolver<a class="headerlink" href="#configuracion-de-rutas-con-resolver" title="Link to this heading">#</a></h5>
+<p>Las rutas pueden configurarse para utilizar un resolver, asegurando que los datos necesarios estén disponibles antes de cargar el componente:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="kt">Routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;product/edit/:id&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">ProductDetailGuard</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">canDeactivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">LeavePageGuard</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">resolve</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">product</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductResolver</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductEditComponent</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// Otras rutas</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="autenticacion-con-angular">
+<h2>Autenticación con Angular<a class="headerlink" href="#autenticacion-con-angular" title="Link to this heading">#</a></h2>
+<p>La autenticación es un aspecto crucial de las aplicaciones web modernas. En Angular, la autenticación puede ser manejada de varias formas, dependiendo de si la aplicación está alojada en el mismo servidor que el backend o si se utiliza un servicio externo. En este capítulo, exploraremos diferentes técnicas de autenticación y autorización en Angular, incluyendo el uso de cookies, tokens, interceptores, y guards.</p>
+<section id="cookies-y-tokens">
+<h3>Cookies y Tokens<a class="headerlink" href="#cookies-y-tokens" title="Link to this heading">#</a></h3>
+<p>Si la aplicación web y el servidor están alojados en el mismo dominio, se pueden utilizar cookies para la autenticación. Sin embargo, cuando se utiliza un servicio externo, es común utilizar tokens de autenticación, como los JSON Web Tokens (JWT).</p>
+<p><strong>Cookies:</strong></p>
+<ul class="simple">
+<li><p>Son enviadas automáticamente por el navegador en cada petición al servidor.</p></li>
+<li><p>Simplifican la gestión de sesiones cuando el frontend y el backend comparten el mismo dominio.</p></li>
+</ul>
+<p><strong>Tokens:</strong></p>
+<ul class="simple">
+<li><p>Deben ser enviados manualmente en cada petición.</p></li>
+<li><p>Se almacenan en <code class="docutils literal notranslate"><span class="pre">localStorage</span></code> o <code class="docutils literal notranslate"><span class="pre">sessionStorage</span></code>.</p></li>
+<li><p>Proporcionan una mayor flexibilidad, especialmente cuando el frontend y el backend están en dominios diferentes.</p></li>
+</ul>
+</section>
+<section id="interceptores">
+<h3>Interceptores<a class="headerlink" href="#interceptores" title="Link to this heading">#</a></h3>
+<p>Los interceptores en Angular permiten interceptar y manipular solicitudes HTTP antes de que se envíen al servidor. Esto es útil para agregar tokens de autenticación a cada petición automáticamente.</p>
+<p><strong>Ejemplo de Interceptor de Autenticación:</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpRequest</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpHandler</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpEvent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AuthInterceptorService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">intercept</span><span class="p">(</span><span class="nx">req</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpRequest</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpHandler</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">HttpEvent</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;idToken&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Token de localStorage</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Clonamos la petición y añadimos el token</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">authReq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">clone</span><span class="p">({</span><span class="w"> </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">req.url.concat</span><span class="p">(</span><span class="sb">`?auth=</span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span><span class="w"> </span><span class="p">});</span>
+<span class="w">      </span><span class="c1">// Enviamos la petición con el token</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">next</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="nx">authReq</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Sin token, enviamos la petición original</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">next</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="nx">req</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Para utilizar este interceptor, se debe proporcionar en el módulo principal:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">provide</span><span class="o">:</span><span class="w"> </span><span class="kt">HTTP_INTERCEPTORS</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">useClass</span><span class="o">:</span><span class="w"> </span><span class="kt">AuthInterceptorService</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">multi</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">],</span>
+</pre></div>
+</div>
+</section>
+<section id="guards">
+<h3>Guards<a class="headerlink" href="#guards" title="Link to this heading">#</a></h3>
+<p>Los guards son servicios que permiten o deniegan el acceso a ciertas rutas en una aplicación Angular. El guard <code class="docutils literal notranslate"><span class="pre">CanActivate</span></code> se utiliza para proteger rutas y asegurar que solo usuarios autenticados puedan acceder a ellas.</p>
+<p><strong>Ejemplo de Guard <code class="docutils literal notranslate"><span class="pre">CanActivate</span></code>:</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CanActivate</span><span class="p">,</span><span class="w"> </span><span class="nx">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">RouterStateSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">UrlTree</span><span class="p">,</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductDetailGuard</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">CanActivate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">canActivate</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRouteSnapshot</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">state</span><span class="o">:</span><span class="w"> </span><span class="kt">RouterStateSnapshot</span>
+<span class="w">  </span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">UrlTree</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">UrlTree</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">UrlTree</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;La ID no es válida&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">parseUrl</span><span class="p">(</span><span class="s1">&#39;/catalog&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Configuración de la ruta con Guard:</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;product/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">ProductDetailGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductDetailComponent</span><span class="w"> </span><span class="p">},</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="variables-como-observables">
+<h2>Variables como Observables<a class="headerlink" href="#variables-como-observables" title="Link to this heading">#</a></h2>
+<p>En una aplicación autenticada, es importante que los componentes reaccionen a los cambios en el estado de autenticación sin necesidad de recargar la página. Esto se puede lograr usando <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code> o <code class="docutils literal notranslate"><span class="pre">Subject</span></code> para mantener y observar el estado de autenticación.</p>
+<p><strong>Ejemplo de Uso de <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code>:</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="p">,</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AuthService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">loguedInfo</span><span class="o">:</span><span class="w"> </span><span class="kt">BehaviorSubject</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">loguedInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">isLogued</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">loguedInfo</span><span class="p">.</span><span class="nx">asObservable</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">login</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Lógica de autenticación</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">loguedInfo</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">logout</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Lógica de cierre de sesión</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">loguedInfo</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Suscripción al Estado de Autenticación en un Componente:</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AuthService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./auth.service&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;div *ngIf=&quot;logued&quot;&gt;Usuario autenticado&lt;/div&gt;`</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">logued</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="kt">AuthService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">isLogued</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">logued</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">logued</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">logued</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="integracion-de-angular-con-supabase">
+<h2>Integración de Angular con Supabase<a class="headerlink" href="#integracion-de-angular-con-supabase" title="Link to this heading">#</a></h2>
+<p>Supabase es una plataforma de backend como servicio (BaaS) que ofrece una variedad de servicios para aplicaciones web y móviles, como bases de datos en tiempo real, autenticación y almacenamiento. Supabase es compatible con TypeScript, lo que facilita su integración con aplicaciones Angular. En este capítulo, veremos cómo configurar y utilizar Supabase en una aplicación Angular.</p>
+<p>Para comenzar, necesitamos instalar el SDK de Supabase utilizando npm:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>@supabase/supabase-js
+</pre></div>
+</div>
+<p>Después de instalar el SDK, configuramos nuestras credenciales de Supabase en el archivo <code class="docutils literal notranslate"><span class="pre">environment.ts</span></code>. Este archivo es utilizado por Angular para gestionar diferentes configuraciones de entorno, como las variables de entorno para desarrollo y producción.</p>
+<p>En <code class="docutils literal notranslate"><span class="pre">src/environments/environment.ts</span></code>, añade las siguientes líneas:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">production</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">supabaseUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_SUPABASE_URL&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">supabaseKey</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_SUPABASE_KEY&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Asegúrate de reemplazar <code class="docutils literal notranslate"><span class="pre">'YOUR_SUPABASE_URL'</span></code> y <code class="docutils literal notranslate"><span class="pre">'YOUR_SUPABASE_KEY'</span></code> con tus credenciales de Supabase.</p>
+<p>A continuación, creamos un servicio en Angular para inicializar y gestionar Supabase. Este servicio será responsable de la configuración inicial y de proporcionar métodos para interactuar con la base de datos.</p>
+<p>Crea un nuevo servicio utilizando Angular CLI:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>generate<span class="w"> </span>service<span class="w"> </span>supabase
+</pre></div>
+</div>
+<p>En el archivo <code class="docutils literal notranslate"><span class="pre">supabase.service.ts</span></code>, inicializa Supabase de la siguiente manera:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createClient</span><span class="p">,</span><span class="w"> </span><span class="nx">SupabaseClient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@supabase/supabase-js&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">environment</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../environments/environment&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">supabase</span><span class="o">:</span><span class="w"> </span><span class="kt">SupabaseClient</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createClient</span><span class="p">(</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseKey</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Métodos para interactuar con Supabase</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">table</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">insertData</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">row</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">table</span><span class="p">).</span><span class="nx">insert</span><span class="p">(</span><span class="nx">row</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error inserting data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">updateData</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">row</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">table</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">row</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error updating data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">deleteData</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">table</span><span class="p">).</span><span class="ow">delete</span><span class="p">().</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error deleting data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="conversion-de-promesas-a-observables">
+<h3>Conversión de Promesas a Observables<a class="headerlink" href="#conversion-de-promesas-a-observables" title="Link to this heading">#</a></h3>
+<p>El SDK de Supabase funciona con promesas, pero en Angular es común trabajar con Observables para aprovechar las capacidades de programación reactiva de RxJS. Podemos convertir promesas a observables utilizando el operador <code class="docutils literal notranslate"><span class="pre">from</span></code> de RxJS.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">from</span><span class="p">,</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">supabase</span><span class="o">:</span><span class="w"> </span><span class="kt">SupabaseClient</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createClient</span><span class="p">(</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseKey</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">getDataObservable</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">table</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el componente, podemos suscribirnos al Observable para obtener los datos:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../supabase.service&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-data&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./data.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrls</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;./data.component.css&#39;</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">DataComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">supabaseService</span><span class="o">:</span><span class="w"> </span><span class="kt">SupabaseService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabaseService</span><span class="p">.</span><span class="nx">getDataObservable</span><span class="p">(</span><span class="s1">&#39;your_table_name&#39;</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error loading data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="angular.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción a Angular</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="rutasangular.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Rutas en Angular</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-en-angular">Servicios en Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decorador-injectable">Decorador @Injectable</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inyeccion-de-dependencias">Inyección de Dependencias</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cookies-y-tokens">Cookies y Tokens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interceptores">Interceptores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guards">Guards</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-como-observables">Variables como Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
