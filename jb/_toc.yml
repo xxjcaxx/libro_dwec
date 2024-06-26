@@ -23,6 +23,7 @@ parts:
     - file: ci-cd
     - file: proyectos
     - file: documentacion
+    - file: proyectovanilla
 
   - caption: Angular
     chapters: 

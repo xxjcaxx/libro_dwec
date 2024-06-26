@@ -1,0 +1,944 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Proyecto completo en Javascript &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'proyectovanilla';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Typescript" href="typescript.html" />
+    <link rel="prev" title="Documentación en JavaScript" href="documentacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fproyectovanilla.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/proyectovanilla.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Proyecto completo en Javascript</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">Configuración inicial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vite">Vite</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vitest">Vitest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">Estructura del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-basico-con-supabase">Backend básico con Supabase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-el-backend">Búsqueda en el backend</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#router">Router</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="proyecto-completo-en-javascript">
+<h1>Proyecto completo en Javascript<a class="headerlink" href="#proyecto-completo-en-javascript" title="Link to this heading">#</a></h1>
+<p>Una vez vistos todos los contenidos de la parte de Javascript, estamos listos para hacer un proyecto entero. No nos detendremos a explicar el porqué de los pasos a seguir, tan solo a hacer referencia a los capítulos anteriores.</p>
+<p><a class="reference external" href="https://youtu.be/gFOOsefQMlg">Video de proyecto en JS</a></p>
+<blockquote>
+<div><p>El orden en que se realizan los pasos de este proyecto puede ser alterado. De hecho, el orden es un poco arbitrario porque es el que podriamos seguir en clase, no en un proyecto real. En clase se puede ir mejorando incrementalmente y hacer i deshacer. En un proyecto real comenzariamos instalando todas las librerias, configurando los tests, linters, hooks, github actions i el despliegue automatizado antes de hacer la primera línea de código para ser más eficientes. También empezaríamos directamente con programación funcional y reactiva. Pero puede que todo ese entorno resulte demasiado denso para el alumnado que empieza. Así que comenzaremos con una configuración mínima y refactorizaremos en algunas ocasiones.</p>
+</div></blockquote>
+<section id="configuracion-inicial">
+<h2>Configuración inicial<a class="headerlink" href="#configuracion-inicial" title="Link to this heading">#</a></h2>
+<p>En realidad, para empezar a hacer algo en Javascript en el frontend, tan solo necesitamos un archivo HTML y uno JS. Se puede empezar por ahí e ir incorporando las distintas librerias, bundlers y demás. También se puede empezar con el esqueleto del CI/CD completo y luego empezar a programar. Empezaremos de una manera “mixta”, configurando <code class="docutils literal notranslate"><span class="pre">Vite</span></code> y los archivos y servicios que nos afectan a la programación desde el principio e iremos instalando y configurando conforme sea necesario.</p>
+<section id="vite">
+<h3>Vite<a class="headerlink" href="#vite" title="Link to this heading">#</a></h3>
+<p>Ejecutamos los comandos básicos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>create<span class="w"> </span>vite@latest<span class="w"> </span>my-app<span class="w"> </span>--<span class="w"> </span>--template<span class="w"> </span>vanilla
+<span class="nb">cd</span><span class="w"> </span>my-app
+npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>dev
+</pre></div>
+</div>
+<p>Con esto ya tenemos una plantilla con la que comenzar. Eliminaremos el código de ejemplo, las imágenes y el css de ejemplo para empezar desde cero. Este puede ser un buen momento para instalar algun framework de estilos como <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code>. En nuesto caso, como no nos interesa tanto la parte visual, vamos a instalarlo y así simplificamos ese apartado:</p>
+<p><a class="reference external" href="https://getbootstrap.com/docs/5.2/getting-started/vite/">https://getbootstrap.com/docs/5.2/getting-started/vite/</a></p>
+<p>Podemos crear una estructura html mínima para el <code class="docutils literal notranslate"><span class="pre">index.html</span></code> a partir de la plantilla proporcionada por Vite:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image/svg+xml&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/vite.svg&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Vite App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;menu&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;container&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/main.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Puesto que ya tenemos <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code>, crearemos el menú más simple, un <code class="docutils literal notranslate"><span class="pre">navbar</span></code> en views/views.js:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">buildMenu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">divWrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">menu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;nav class=&quot;navbar navbar-expand-lg bg-light&quot;&gt;</span>
+<span class="sb">  &lt;div class=&quot;container-fluid&quot;&gt;</span>
+<span class="sb">    &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Movies 2024&lt;/a&gt;</span>
+<span class="sb">    &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#navbarSupportedContent&quot; aria-controls=&quot;navbarSupportedContent&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;</span>
+<span class="sb">      &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;</span>
+<span class="sb">    &lt;/button&gt;</span>
+<span class="sb">    &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarSupportedContent&quot;&gt;</span>
+<span class="sb">      &lt;ul class=&quot;navbar-nav me-auto mb-2 mb-lg-0&quot;&gt;</span>
+<span class="sb">        &lt;li class=&quot;nav-item&quot;&gt;</span>
+<span class="sb">          &lt;a class=&quot;nav-link active&quot; aria-current=&quot;page&quot; href=&quot;#&quot;&gt;Home&lt;/a&gt;</span>
+<span class="sb">        &lt;/li&gt;</span>
+<span class="sb">        &lt;li class=&quot;nav-item&quot;&gt;</span>
+<span class="sb">          &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;</span>
+<span class="sb">        &lt;/li&gt;</span>
+<span class="sb">        &lt;li class=&quot;nav-item dropdown&quot;&gt;</span>
+<span class="sb">          &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; role=&quot;button&quot; data-bs-toggle=&quot;dropdown&quot; aria-expanded=&quot;false&quot;&gt;</span>
+<span class="sb">            Dropdown</span>
+<span class="sb">          &lt;/a&gt;</span>
+<span class="sb">          &lt;ul class=&quot;dropdown-menu&quot;&gt;</span>
+<span class="sb">            &lt;li&gt;&lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;&lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;&lt;hr class=&quot;dropdown-divider&quot;&gt;&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;&lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;</span>
+<span class="sb">          &lt;/ul&gt;</span>
+<span class="sb">        &lt;/li&gt;</span>
+<span class="sb">        &lt;li class=&quot;nav-item&quot;&gt;</span>
+<span class="sb">          &lt;a class=&quot;nav-link disabled&quot;&gt;Disabled&lt;/a&gt;</span>
+<span class="sb">        &lt;/li&gt;</span>
+<span class="sb">      &lt;/ul&gt;</span>
+<span class="sb">      &lt;form class=&quot;d-flex&quot; role=&quot;search&quot;&gt;</span>
+<span class="sb">        &lt;input class=&quot;form-control me-2&quot; type=&quot;search&quot; placeholder=&quot;Search&quot; aria-label=&quot;Search&quot;&gt;</span>
+<span class="sb">        &lt;button class=&quot;btn btn-outline-success&quot; type=&quot;submit&quot;&gt;Search&lt;/button&gt;</span>
+<span class="sb">      &lt;/form&gt;</span>
+<span class="sb">    &lt;/div&gt;</span>
+<span class="sb">  &lt;/div&gt;</span>
+<span class="sb">&lt;/nav&gt;`</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">divWrapper</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">menu</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">divWrapper</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;nav&quot;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>y en main.js:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./styles.scss&quot;</span><span class="p">;</span>
+<span class="c1">//import * as bootstrap from &quot;bootstrap&quot;;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">buildMenu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./views/views&quot;</span><span class="p">;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">menuDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#menu&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">containerDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#container&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">containerDiv</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">menuDiv</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">buildMenu</span><span class="p">());</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="vitest">
+<h3>Vitest<a class="headerlink" href="#vitest" title="Link to this heading">#</a></h3>
+<p>Durante el proyecto vamos a seguir una metodología próxima a TDD. Por tanto, desde el principio necesitamos instalar los test.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>vitest
+</pre></div>
+</div>
+<p>Debemos crear archivos de prueba que tengan la extensión <code class="docutils literal notranslate"><span class="pre">.test.js</span></code>.</p>
+<p>En package.json:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run --coverage&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
+npm<span class="w"> </span>run<span class="w"> </span>coverage
+npx<span class="w"> </span>vitest<span class="w"> </span>--ui
+</pre></div>
+</div>
+<p>En el artículo de tests tenemos lo anterior explicado con detalle.</p>
+</section>
+</section>
+<section id="estructura-del-proyecto">
+<h2>Estructura del proyecto<a class="headerlink" href="#estructura-del-proyecto" title="Link to this heading">#</a></h2>
+<p>El proyecto va a ser muy básico, así que no necesitamos una gran arquitectura. Separaremos la conexión al backend de la vista y los controladores. Por tanto, inicialmente podemos crear carpetas para <code class="docutils literal notranslate"><span class="pre">modelos</span></code> o <code class="docutils literal notranslate"><span class="pre">servicios</span></code> y para las <code class="docutils literal notranslate"><span class="pre">vistas</span></code>. Los modelos se conectarán a la base de datos y servirán los datos de forma reactiva, es decir, con RxJS. Las vistas crearán elementos del <code class="docutils literal notranslate"><span class="pre">DOM</span></code> mediante template literals y serán reactivas. Haremos un CRUD con autenticación en el que el backend será <code class="docutils literal notranslate"><span class="pre">Supabase</span></code>.</p>
+</section>
+<section id="backend-basico-con-supabase">
+<h2>Backend básico con Supabase<a class="headerlink" href="#backend-basico-con-supabase" title="Link to this heading">#</a></h2>
+<p>Nos damos de alta en Supabase y creamos un proyecto nuevo. Una vez creado, creamos las tablas de la base de datos y ponemos algunos datos. En nuestro caso, he creado inicialmente una tabla <code class="docutils literal notranslate"><span class="pre">movies</span></code> con el contenido de una base de datos de unas 45000 películas de la IMDB. Probamos el comando que nos recomienda para ver las películas:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s1">&#39;https://ygvtpucoxveebizknhat.supabase.co/rest/v1/movies?select=*&#39;</span><span class="w"> </span><span class="se">\</span>
+-H<span class="w"> </span><span class="s2">&quot;apikey: SUPABASE_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
+-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer SUPABASE_KEY&quot;</span>
+</pre></div>
+</div>
+<p>Lo podemos probar también en Postman. Esta información proporcionada por el <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Docs</span></code> de Supabase será la base para una función inicial de obtención de las películas:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">getSupabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">table</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span>
+<span class="w">      </span><span class="sb">`https://ygvtpucoxveebizknhat.supabase.co/rest/v1/</span><span class="si">${</span><span class="nx">table</span><span class="si">}</span><span class="sb">?select=*`</span><span class="p">,</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">apikey</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">apikey</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Bad request&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Network Error&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">getData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Como esta función, podemos ir haciendo las demás.</p>
+<p>Veamos un objeto de los que retorna esta petición:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">		</span><span class="nt">&quot;adult&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;belongs_to_collection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toy Story Collection&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;budget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30000000&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;original_language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;original_title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toy Story&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;overview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Led by Woody, Andy&#39;s toys live happily in his room until Andy&#39;s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy&#39;s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;popularity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">21.946943</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;release_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1995-10-30&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;revenue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;373554033.0&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;81.0&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;tagline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not available&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toy Story&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;vote_average&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7.7&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;vote_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5415.0&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[&#39;English&#39;]&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;day_of_week&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Monday&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;month&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Oct&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;season&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Q4&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1995&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;has_homepage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YES&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;genre&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[&#39;Animation&#39;, &#39;Comedy&#39;, &#39;Family&#39;]&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;companies&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[&#39;Pixar Animation Studios&#39;]&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;countries&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[&#39;United States of America&#39;]&quot;</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8554eb64-1588-4480-84aa-ab1796b1707b&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Como se puede ver, es un objeto que tiene un “id” generado automáticamente por Supabase que es lo que lo identifica en la base de datos. Uno de los problemas que tiene es que el género, compañías, idiomas y países son “arrays”, pero tratados por Supabase como Strings. Por tanto, si queremos interpretarlos hay que parsearlos. Por lo demás no parece tener más problemas.</p>
+<p>Los Arrays entre comillas que nos retorna el servidor son una buena ocasión para practicar TDD. Este es el test:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;stringToArray&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;stringToArray should return an Array of movies&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">complexArray</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="sb">`[&#39;Procirep&#39;, &#39;Constellation Productions&#39;, &#39;France 3 Cinéma&#39;, &#39;Claudie Ossard Productions&#39;, &#39;Eurimages&#39;, &#39;MEDIA Programme of the European Union&#39;, &#39;Cofimage 5&#39;, &#39;Televisión Española (TVE)&#39;, &#39;Tele München Fernseh Produktionsgesellschaft (TMG)&#39;, &quot;Club d&#39;Investissement Média&quot;, &#39;Canal+ España&#39;, &#39;Elías Querejeta Producciones Cinematográficas S.L.&#39;, &#39;Centre National de la Cinématographie (CNC)&#39;, &#39;Victoires Productions&#39;, &#39;Constellation&#39;, &#39;Lumière Pictures&#39;, &#39;Canal+&#39;, &#39;Studio Image&#39;, &#39;Cofimage 4&#39;, &#39;Ossane&#39;, &#39;Phoenix Images&#39;]`</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">_views</span><span class="p">.</span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">complexArray</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">21</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Observemos que <code class="docutils literal notranslate"><span class="pre">&quot;Club</span> <span class="pre">d'Investissement</span> <span class="pre">Média&quot;</span></code> tiene comillas dobles y una comilla simple en medio. Esto complica el JSON.parse.</p>
+<p>Y la función resultante:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">stringToArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">convertedString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;,/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&quot;,&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ &#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; &quot;&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\[&#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[&quot;&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;\]/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&quot;]&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">,</span><span class="w"> </span><span class="nx">convertedString</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">convertedString</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Puesto que tenemos funciones genéricas para obtener datos y funciones específicas de las películas para transformar los datos, es buena idea separarlas. Por eso, podemos crear un fichero para el <code class="docutils literal notranslate"><span class="pre">modelo</span></code> “movies” y otro para las peticiones http. El primero tendrá esas funciones para transformar las películas en un array válido. Por ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">parseMovies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">movies</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">moviesCopy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">movies</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">moviesCopy</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">m</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">m</span><span class="p">.</span><span class="nx">genre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">genre</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">m</span><span class="p">.</span><span class="nx">companies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">companies</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">m</span><span class="p">.</span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">countries</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">moviesCopy</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Cuyo test es:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;parseMovies should return an Array of movies with arrays parsed&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">_movies</span><span class="p">.</span><span class="nx">parseMovies</span><span class="p">(</span><span class="nx">exampleMovies</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">4</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">m</span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">m</span><span class="p">.</span><span class="nx">genre</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nb">Array</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">m</span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">m</span><span class="p">.</span><span class="nx">companies</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nb">Array</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">m</span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">m</span><span class="p">.</span><span class="nx">countries</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nb">Array</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Luego, para ver las películas de forma básica en la vista, gracias a <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code> podemos hacer una lista desplegable:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">buildMoviesComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">movies</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">divWrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">divWrapper</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;accordion&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">divWrapper</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">movies</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;div class=&quot;accordion-item&quot;&gt;</span>
+<span class="sb">   </span>
+<span class="sb">&lt;h2 class=&quot;accordion-header&quot; id=&quot;panelsStayOpen-heading</span><span class="si">${</span><span class="nx">index</span><span class="si">}</span><span class="sb">&quot;&gt;</span>
+<span class="sb">    &lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#panelsStayOpen-collapse</span><span class="si">${</span><span class="nx">index</span><span class="si">}</span><span class="sb">&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;panelsStayOpen-collapse</span><span class="si">${</span><span class="nx">index</span><span class="si">}</span><span class="sb">&quot;&gt;</span>
+<span class="sb">    </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">original_title</span><span class="si">}</span>
+<span class="sb">    &lt;/button&gt;</span>
+<span class="sb">&lt;/h2&gt;</span>
+<span class="sb">&lt;div id=&quot;panelsStayOpen-collapse</span><span class="si">${</span><span class="nx">index</span><span class="si">}</span><span class="sb">&quot;  class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;panelsStayOpen-heading</span><span class="si">${</span><span class="nx">index</span><span class="si">}</span><span class="sb">&quot;&gt;</span>
+<span class="sb">&lt;div class=&quot;accordion-body&quot;&gt;</span>
+<span class="sb">&lt;h3&gt;Overview&lt;/h3&gt;</span>
+<span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">overview</span><span class="si">}</span>
+<span class="sb">&lt;h3&gt;Technical Data:&lt;/h3&gt;</span>
+<span class="sb">&lt;ul class=&quot;list-group&quot;&gt;</span>
+<span class="sb">  &lt;li class=&quot;list-group-item&quot;&gt;Release Date: </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">release_date</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">  &lt;li class=&quot;list-group-item&quot;&gt;Revenue: </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">revenue</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">  &lt;li class=&quot;list-group-item&quot;&gt;Runtime: </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">runtime</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">  &lt;li class=&quot;list-group-item&quot;&gt;Tagline: </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">tagline</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">  &lt;li class=&quot;list-group-item&quot;&gt;Vote Average: </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">vote_average</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">  &lt;li class=&quot;list-group-item&quot;&gt;Vote Count: </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">vote_count</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">  &lt;li class=&quot;list-group-item&quot;&gt;Year: </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">year</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">&lt;/ul&gt;</span>
+<span class="sb">&lt;h3&gt;Genres&lt;/h3&gt;</span>
+<span class="sb">&lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;Basic example&quot;&gt;</span>
+<span class="sb">  </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">genre</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">g</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">        </span><span class="sb">`&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-genre=&quot;</span><span class="si">${</span><span class="nx">g</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">g</span><span class="si">}</span><span class="sb">&lt;/button&gt;`</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="si">}</span>
+<span class="sb">&lt;/div&gt;</span>
+<span class="sb">&lt;h3&gt;Companies&lt;/h3&gt;</span>
+<span class="sb">&lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;Basic example&quot;&gt;</span>
+<span class="sb">  </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">companies</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">g</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">        </span><span class="sb">`&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-company=&quot;</span><span class="si">${</span><span class="nx">g</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">g</span><span class="si">}</span><span class="sb">&lt;/button&gt;`</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="si">}</span>
+<span class="sb">&lt;/div&gt;</span>
+<span class="sb">&lt;h3&gt;Countries&lt;/h3&gt;</span>
+<span class="sb">&lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;Basic example&quot;&gt;</span>
+<span class="sb">  </span><span class="si">${</span><span class="nx">m</span><span class="p">.</span><span class="nx">countries</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">g</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">        </span><span class="sb">`&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-country=&quot;</span><span class="si">${</span><span class="nx">g</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">g</span><span class="si">}</span><span class="sb">&lt;/button&gt;`</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="si">}</span>
+<span class="sb">&lt;/div&gt;</span>
+<span class="sb">&lt;/div&gt;</span>
+<span class="sb">&lt;/div&gt;</span>
+
+<span class="sb">&lt;/div&gt;`</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">divWrapper</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>En el ejemplo anterior usamos un <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">literal</span></code> para cada película i dentro usamos más para los botones. De momento no le hemos dado funcionalidad a los botones.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/projecte1.png"><img alt="_images/projecte1.png" src="_images/projecte1.png" style="width: 479.5px; height: 403.5px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Así queda de momento la aplicación</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="busqueda-en-el-backend">
+<h2>Búsqueda en el backend<a class="headerlink" href="#busqueda-en-el-backend" title="Link to this heading">#</a></h2>
+<p>Ahora que ya tenemos la capacidad de descargar cosas del backend, vamos a implementar una búsqueda para ver las posibilidades.</p>
+<p>Cuando un usuario pulse uno de los botones de, por ejemplo, el género de una película, se debería buscar en Supabase todas las películas de ese género. Puesto que se trata de una base de datos PostgreSQL, esto será traducido finalmente a una consulta SQL. Pero Supabase proporciona una interfaz API REST para hacer esta petición de forma remota. Tengamos en cuenta también que el género se almacena en una string, aunque parezca un array.</p>
+<p>Para hacer una búsqueda en Supabase usando el API REST, seguiremos la siguente sintaxis:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>products?select=*&amp;asin=like.*AX*
+</pre></div>
+</div>
+<p>Como se ve, <code class="docutils literal notranslate"><span class="pre">products</span></code> es la tabla, después va <code class="docutils literal notranslate"><span class="pre">select=*</span></code> para indicar que necesitamos todas las columnas y a continuación la condición de búsqueda. Imaginemos que en la tabla <code class="docutils literal notranslate"><span class="pre">movies</span></code> necesitamos las películas del género <code class="docutils literal notranslate"><span class="pre">action</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>https://ygvtpucoxveebizknhat.supabase.co/rest/v1/movies?genre=like.*Action*&amp;select=*&amp;
+</pre></div>
+</div>
+<p>Por tanto, hay que construir la petición. Esto va a cambiar las funciones que hemos creado antes para poder hacerlas más genéricas y reutilizar código.</p>
+<p>Este es el cambio en la petición:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">getSupabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">table</span><span class="p">,</span><span class="w"> </span><span class="nx">columns</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span>
+<span class="w">      </span><span class="sb">`https://ygvtpucoxveebizknhat.supabase.co/rest/v1/</span><span class="si">${</span><span class="nx">table</span><span class="si">}</span><span class="sb">?select=</span><span class="si">${</span><span class="nx">columns</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="si">}${</span><span class="nx">search</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`&amp;</span><span class="si">${</span><span class="nx">search</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">      </span><span class="p">....</span>
+</pre></div>
+</div>
+<p>La búsqueda cambiará la lista de películas descargadas que se visualizan. Para volver atrás, una buena manera es implementar un router:</p>
+<section id="router">
+<h3>Router<a class="headerlink" href="#router" title="Link to this heading">#</a></h3>
+<p>Este sería el <code class="docutils literal notranslate"><span class="pre">main.js</span></code> aplicando un router:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">fillElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">container</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">content</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">container</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span><span class="w"> </span><span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">,</span><span class="w"> </span><span class="nx">container</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">fillContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fillElement</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Rutas con expresiones regulares</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/movies\/genre\/.+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">genreID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">3</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getMovies</span><span class="p">(</span><span class="sb">`genre=ilike.*</span><span class="si">${</span><span class="nx">genreID</span><span class="si">}</span><span class="sb">*`</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">fillContainer</span><span class="p">(</span><span class="nx">buildMoviesComponent</span><span class="p">(</span><span class="nx">movies</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="c1">// Rutas a páginas específicas</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nx">movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getMovies</span><span class="p">();</span>
+<span class="w">          </span><span class="nx">fillContainer</span><span class="p">(</span><span class="nx">buildMoviesComponent</span><span class="p">(</span><span class="nx">movies</span><span class="p">));</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/movies&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nx">movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getMovies</span><span class="p">();</span>
+<span class="w">          </span><span class="nx">fillContainer</span><span class="p">(</span><span class="nx">buildMoviesComponent</span><span class="p">(</span><span class="nx">movies</span><span class="p">));</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="c1">// Añadir más rutas según sea necesario</span>
+<span class="w">      </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;404 page not found&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">menuDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#menu&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">menuDiv</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">buildMenu</span><span class="p">());</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">containerDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#container&quot;</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#/&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">,</span><span class="w"> </span><span class="nx">containerDiv</span><span class="p">);</span>
+<span class="w">  </span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;hashchange&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">,</span><span class="w"> </span><span class="nx">containerDiv</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Ahora tocaría añadir el resto de rutas para otras búsquedas sobre paises o compañias. También hay que crear el enlace en los botones. Así en la vista, añadimos los eventos a los botones:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">divWrapper</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;button[data-genre]&#39;</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">button</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,()=&gt;{</span>
+<span class="w">      </span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`#/movies/genre/</span><span class="si">${</span><span class="nx">button</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">genre</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">}));</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="documentacion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Documentación en JavaScript</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="typescript.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Typescript</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">Configuración inicial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vite">Vite</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vitest">Vitest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">Estructura del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-basico-con-supabase">Backend básico con Supabase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-el-backend">Búsqueda en el backend</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#router">Router</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
