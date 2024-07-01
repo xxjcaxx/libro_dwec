@@ -14,22 +14,22 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -38,16 +38,16 @@
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -72,27 +72,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -114,8 +110,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -139,6 +140,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -160,7 +163,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -221,7 +224,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -230,14 +233,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -362,10 +365,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -373,14 +376,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -410,6 +413,25 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-basico-con-supabase">Backend básico con Supabase</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-el-backend">Búsqueda en el backend</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#router">Router</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd">CI/CD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linter">Linter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prettier">Prettier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deta">Deta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-actions">Github Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-funcional">Programación funcional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-reactiva">Programación reactiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-reactiva-con-el-servidor">Comunicación reactiva con el servidor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscador-con-observables">Buscador con Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-estado">Gestión del estado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-coverage">Test Coverage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perfiles">Perfiles</a></li>
 </ul>
 </li>
 </ul>
@@ -621,20 +643,18 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">_views</span><span class="p">.</span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">complexArray</span><span class="p">);</span>
 <span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
 <span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">21</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">[</span><span class="mf">9</span><span class="p">]).</span><span class="nx">toBe</span><span class="p">(</span><span class="sb">`Club d&#39;Investissement Média`</span><span class="p">);</span><span class="w"> </span><span class="c1">// El complicado por la &#39;</span>
 <span class="w">    </span><span class="p">});</span>
 <span class="w">  </span><span class="p">});</span>
 </pre></div>
 </div>
 <p>Observemos que <code class="docutils literal notranslate"><span class="pre">&quot;Club</span> <span class="pre">d'Investissement</span> <span class="pre">Média&quot;</span></code> tiene comillas dobles y una comilla simple en medio. Esto complica el JSON.parse.</p>
 <p>Y la función resultante:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">stringToArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">convertedString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;,/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&quot;,&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ &#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; &quot;&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\[&#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[&quot;&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;\]/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&quot;]&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">,</span><span class="w"> </span><span class="nx">convertedString</span><span class="p">);</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">convertedString</span><span class="p">);</span>
-<span class="p">};</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">stringToArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">string</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">S</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">S</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\\[\]&quot;]/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^[ &#39;]+/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;$/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>Puesto que tenemos funciones genéricas para obtener datos y funciones específicas de las películas para transformar los datos, es buena idea separarlas. Por eso, podemos crear un fichero para el <code class="docutils literal notranslate"><span class="pre">modelo</span></code> “movies” y otro para las peticiones http. El primero tendrá esas funciones para transformar las películas en un array válido. Por ejemplo:</p>
@@ -810,6 +830,598 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </div>
 </section>
 </section>
+<section id="ci-cd">
+<h2>CI/CD<a class="headerlink" href="#ci-cd" title="Link to this heading">#</a></h2>
+<p>Este paso lo podríamos haber hecho al principio, pero ahora ya tenemos algo mínimo funcional y seguramente tenemos clara la arquitectura que tendrá i los tests iniciales.</p>
+<p>La metodología de integración continua nos dice que podemos ir sacando versiones del producto incrementalmente. Ya tenemos la primera versión que funciona, así que vamos a implementar algunas herramientas para facilitar el despliegue sin errores.</p>
+<section id="linter">
+<h3>Linter<a class="headerlink" href="#linter" title="Link to this heading">#</a></h3>
+<p>Instalamos <code class="docutils literal notranslate"><span class="pre">Eslint</span></code> según el manual de este mismo libro y lo configuramos como un <code class="docutils literal notranslate"><span class="pre">Hook</span></code> con <code class="docutils literal notranslate"><span class="pre">Husky</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>eslint<span class="w"> </span>--save-dev
+npm<span class="w"> </span>init<span class="w"> </span>@eslint/config@latest
+npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>husky
+npx<span class="w"> </span>husky<span class="w"> </span>init
+</pre></div>
+</div>
+</section>
+<section id="prettier">
+<h3>Prettier<a class="headerlink" href="#prettier" title="Link to this heading">#</a></h3>
+<p>Igualmente, instalamos Prettier:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>--save-exact<span class="w"> </span>prettier
+</pre></div>
+</div>
+<p>Y ahora ponemos los dos scripts en el <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> de <code class="docutils literal notranslate"><span class="pre">Husky</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>eslint
+npx<span class="w"> </span>prettier<span class="w"> </span>.<span class="w"> </span>--write
+npm<span class="w"> </span>run<span class="w"> </span>testrun
+</pre></div>
+</div>
+<p>En este caso testrun está configurado en el <code class="docutils literal notranslate"><span class="pre">package.json</span></code>como:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;testrun&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>Todo esto evitará que se haga un commit si no pasa el Linter o los tests y mejorará el estilo del código con Prettier.</p>
+</section>
+<section id="deta">
+<h3>Deta<a class="headerlink" href="#deta" title="Link to this heading">#</a></h3>
+<p>Como se explica en el manual de este mismo libro, hay que crear un proyecto en <code class="docutils literal notranslate"><span class="pre">Deta</span></code>, poner la carpeta del proyecto <code class="docutils literal notranslate"><span class="pre">Vite</span></code> en su interior y configurar el <code class="docutils literal notranslate"><span class="pre">Spacefile</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">v</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">micros</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projecte2024</span>
+<span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./projecte</span>
+<span class="w">    </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static</span>
+<span class="w">    </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build</span>
+<span class="w">    </span><span class="nt">serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist</span>
+<span class="w">    </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run dev -- --port $PORT</span>
+</pre></div>
+</div>
+</section>
+<section id="github-actions">
+<h3>Github Actions<a class="headerlink" href="#github-actions" title="Link to this heading">#</a></h3>
+<p>En nuestro caso, si lo queremos desplegar en Deta, haremos un <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">Action</span></code> con la siguiente configuración</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub Actions Demo</span>
+<span class="nt">run-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.actor }} is testing out GitHub Actions 🚀</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Test</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-22.04</span>
+<span class="w">        </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">           </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;20.x&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Use Node.js ${{ matrix.node-version }}</span>
+<span class="w">          </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-node@v4</span>
+<span class="w">          </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.node-version }}</span><span class="w">  </span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies frontend</span>
+<span class="w">          </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projecte</span>
+<span class="w">          </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm ci</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmp run test</span>
+<span class="w">          </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projecte</span>
+<span class="w">          </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run test</span>
+<span class="w">  </span><span class="nt">push-to-space</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-22.04</span>
+<span class="w">            </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deta Space Deployment Github Action</span>
+<span class="w">                </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neobrains/space-pipe@v0.5</span>
+<span class="w">                </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">access_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.ACCESS_TOKEN }}</span>
+<span class="w">                  </span><span class="nt">project_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.PROJECT_ID }}</span>
+<span class="w">                  </span><span class="nt">space_push</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                  </span><span class="nt">list_on_discovery</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p>Teniendo los tokens en <code class="docutils literal notranslate"><span class="pre">secrets</span></code> de Github.</p>
+</section>
+</section>
+<section id="programacion-funcional">
+<h2>Programación funcional<a class="headerlink" href="#programacion-funcional" title="Link to this heading">#</a></h2>
+<p>Desde el principio ya hemos aplicado algunos conceptos de programación funcional. Siempre hay que hacer funciones puras y evitar las mutaciones. Pero ahora podemos usar los conceptos de <code class="docutils literal notranslate"><span class="pre">curring</span></code> y <code class="docutils literal notranslate"><span class="pre">composición</span></code>.</p>
+<p>Veamos un ejemplo. La siguiente función es una buena candidata a ser compuesta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">getMovies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parseMovies</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">getSupabase</span><span class="p">(</span><span class="s2">&quot;movies&quot;</span><span class="p">,</span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="nx">search</span><span class="p">)));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">movies</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Antes de nada, hacemos un fichero de utilidades de composición. De momento tiene un objeto literal que actúa de <code class="docutils literal notranslate"><span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">nombres</span></code> con una colección de funciones. Usaremos <code class="docutils literal notranslate"><span class="pre">_</span></code> imitando a la librería <code class="docutils literal notranslate"><span class="pre">Lodash</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">compose</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">asyncCompose</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="k">async</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Las funciones anteriores se pueden componer de manera que la salida de una sea la entrada de la otra:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>getSupabase -&gt; getData -&gt; parseMovies 
+</pre></div>
+</div>
+<p>Pero hay un problema y es que getSupabase no es una función <code class="docutils literal notranslate"><span class="pre">unaria</span></code> y no acepta un solo argumento. El último argumento que acepta es la variable <code class="docutils literal notranslate"><span class="pre">search</span></code>. Para solucionar ese problema, las librerías de programación funcional tienen funciones que currifican funciones. Como no es algo que haremos muchas veces, podemos poner una función flecha que arregle el problema. De esta manera, usando <code class="docutils literal notranslate"><span class="pre">asyncCompose</span></code>, queda:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">getMovies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w">  </span><span class="nx">_</span><span class="p">.</span><span class="nx">asyncCompose</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">parseMovies</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">getData</span><span class="p">,</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">s</span><span class="p">)=&gt;</span><span class="w"> </span><span class="nx">getSupabase</span><span class="p">(</span><span class="s2">&quot;movies&quot;</span><span class="p">,</span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span>
+<span class="w"> </span><span class="p">)(</span><span class="nx">search</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Incluso se puede simplificar, ya que la salida de una función de composición es una función. Así no hace ni falta explicitar que acepta <code class="docutils literal notranslate"><span class="pre">search</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">getMovies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">_</span><span class="p">.</span><span class="nx">asyncCompose</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">parseMovies</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">getData</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">search</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">getSupabase</span><span class="p">(</span><span class="s2">&quot;movies&quot;</span><span class="p">,</span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="nx">search</span><span class="p">)</span><span class="w"> </span>
+<span class="w"> </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Usar la función de composición sólo para ese caso puede ser sobreingeniería, pero veamos otras partes del código que han mejorado con ella:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Original:</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">parseMovies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">movies</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">moviesCopy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">movies</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">moviesCopy</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">m</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">m</span><span class="p">.</span><span class="nx">genre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">genre</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">m</span><span class="p">.</span><span class="nx">companies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">companies</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">m</span><span class="p">.</span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">countries</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">moviesCopy</span><span class="p">;</span>
+<span class="p">}</span><span class="w">  </span>
+
+<span class="c1">// Más funcional:</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">curriedMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">func</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">func</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">parseArrays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">movie</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">movieCopy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">movie</span><span class="p">);</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;genre&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;companies&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;countries&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">movieCopy</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stringToArray</span><span class="p">(</span><span class="nx">movieCopy</span><span class="p">[</span><span class="nx">a</span><span class="p">]));</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">movieCopy</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">parseMovies</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nx">_</span><span class="p">.</span><span class="nx">compose</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">curriedMap</span><span class="p">(</span><span class="nx">parseArrays</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ahora tenemos dos funciones más, <code class="docutils literal notranslate"><span class="pre">curriedMap</span></code> se podría volver a utilizar, así que la dejaremos en el espacio de nombres. La de <code class="docutils literal notranslate"><span class="pre">parseArrays</span></code> está muy relacionada con las películas, así que la dejaremos ahí.</p>
+<blockquote>
+<div><p>Ahora es criterio del programador decidir si esta programación es más conveniente. En esta guía no llegaremos mucho más lejos en cuanto a los criterios de la programación funcional, pero usaremos esas técnicas en adelante siempre que se pueda y mejore el código.</p>
+</div></blockquote>
+</section>
+<section id="programacion-reactiva">
+<h2>Programación reactiva<a class="headerlink" href="#programacion-reactiva" title="Link to this heading">#</a></h2>
+<p>Como pasaba con el CI/CD, la programación reactiva se debe aplicar desde el inicio en un proyecto nuevo si se decide usarla. No obstante, la refactorización también es un buen ejercicio para entenderla.</p>
+<p>Vamos a aplicarla en dos fases. La primera de ellas será refactorizar las funciones de comunicación con Supabase para convertirlas en funciones que manejan Observables. También implementaremos reactivamente el buscador de películas. A continuación nos plantearemos cómo gestional el estado de la aplicación.</p>
+<section id="comunicacion-reactiva-con-el-servidor">
+<h3>Comunicación reactiva con el servidor<a class="headerlink" href="#comunicacion-reactiva-con-el-servidor" title="Link to this heading">#</a></h3>
+<p>De momento, el router actúa de <code class="docutils literal notranslate"><span class="pre">controlador</span></code>, pidiendo al <code class="docutils literal notranslate"><span class="pre">modelo</span></code> los datos y pasándolos a las funciones que crean la vista. Esto es válido si hay una única petición y con esos datos se debe renderizar. Si hay más peticiones la cosa se puede complicar, por eso vamos a repensar toda la arquitectura cambiando lo mínimo para trabajar con <code class="docutils literal notranslate"><span class="pre">Observables</span></code>, de manera que, cuando lleguen las peticiones, se actualice la vista reactivamente.</p>
+<p>Empezaremos instalado RxJS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>rxjs
+</pre></div>
+</div>
+<p>Podemos dejar las funciones básicas de <code class="docutils literal notranslate"><span class="pre">http</span></code> para que sigan trabajando con promesas, pero las funciones del <code class="docutils literal notranslate"><span class="pre">modelo</span></code> las podemos refactorizar. Así queda <code class="docutils literal notranslate"><span class="pre">getMovies</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">getMovies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="nx">getSupabase</span><span class="p">(</span><span class="s2">&quot;movies&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">switchMap</span><span class="p">(</span><span class="nx">getData</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">map</span><span class="p">(</span><span class="nx">parseMovies</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Así queda la versión simple del router para cuando pide las 1000 primeras:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">getMovies</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">movies</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">fillContainer</span><span class="p">(</span><span class="nx">buildMoviesComponent</span><span class="p">(</span><span class="nx">movies</span><span class="p">));</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">         </span><span class="p">...</span>
+</pre></div>
+</div>
+<p>No obstante, no estamos aprovechando la potencia real de los Observables, ya que estamos creando una subscripción cada vez que se cambia la ruta. Además, esto tiene un peligro potencial, y es que cada subscripción no elimina la anterior. Lo que podemos hacer es un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> que usaremos para no crear nuevas subscripciones.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">moviesSubject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subject</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getMovies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="nx">getSupabase</span><span class="p">(</span><span class="s2">&quot;movies&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">switchMap</span><span class="p">(</span><span class="nx">getData</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">map</span><span class="p">(</span><span class="nx">parseMovies</span><span class="p">),</span>
+<span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">movies</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">moviesSubject</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">movies</span><span class="p">);</span><span class="w"> </span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">()});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Así creamos un Subject que nos servirá en un futuro. Veamos cómo nada más obtener las películas, nos desuscribimos del Observable de la petición. Por tanto, esta parte del código no dejará suscripciones en memoria.</p>
+<p>En el programa principal hemos creado una variable global para todas las subscripciones y la desuscribimos cada vez que cambia la ruta para volver a suscribirse con la nueva petición.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">,</span><span class="w"> </span><span class="nx">container</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">subscription</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">fillContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fillElement</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Rutas con expresiones regulares</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/movies\/genre\/.+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">genreID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">3</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">getMovies</span><span class="p">(</span><span class="sb">`genre=ilike.*</span><span class="si">${</span><span class="nx">genreID</span><span class="si">}</span><span class="sb">*`</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">moviesSubject</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">movies</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">fillContainer</span><span class="p">(</span><span class="nx">buildMoviesComponent</span><span class="p">(</span><span class="nx">movies</span><span class="p">));</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">....</span>
+</pre></div>
+</div>
+<p>Hasta ahora, hemos tenido que instalar una librería para hacer lo mismo con más código. Pero ahora está preparado para aprovechar la potencia de los observables.</p>
+</section>
+<section id="buscador-con-observables">
+<h3>Buscador con Observables<a class="headerlink" href="#buscador-con-observables" title="Link to this heading">#</a></h3>
+<p>En el navbar de Bootstrap hay un input y un botón de buscar. Vamos a darle funcionalidad.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">fromEvent</span><span class="p">(</span><span class="nx">divWrapper</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#searchInput&#39;</span><span class="p">),</span><span class="s1">&#39;keyup&#39;</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">map</span><span class="p">((</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">tap</span><span class="p">(</span><span class="nx">text</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">)),</span>
+<span class="w">    </span><span class="nx">distinctUntilChanged</span><span class="p">(),</span><span class="w"> </span><span class="c1">//Para evitar keyups en teclas que no cambian el value</span>
+<span class="w">    </span><span class="nx">debounceTime</span><span class="p">(</span><span class="mf">300</span><span class="p">)</span><span class="w"> </span><span class="c1">// Para no saturar la búsqueda en Supabase</span>
+<span class="w">  </span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">searchText</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">getMovies</span><span class="p">(</span><span class="sb">`title=ilike.*</span><span class="si">${</span><span class="nx">searchText</span><span class="si">}</span><span class="sb">*`</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Tan solo con este código hemos echo un buscador que no satura al servidor, no provoca refresco de la página y aprovecha el Subject que ya teníamos hecho anteriormente.</p>
+</section>
+<section id="gestion-del-estado">
+<h3>Gestión del estado<a class="headerlink" href="#gestion-del-estado" title="Link to this heading">#</a></h3>
+<p>En el caso de esta aplicación, el estado actual no es muy complejo. Por un lado tenemos la ruta que marca el filtro por género, país o compañía. También está el Subject declarado como variable global para estar accesible a todas las rutas y luego está el filtro de búsqueda.</p>
+<p>Si sólo hemos hecho el código en el órden de esta guía, hay un conflicto entre la ruta y la búsqueda, ya que no se acumulan. Si buscamos, invalidamos la ruta. Además, estamos limitando el uso del input a películas. Si tenemos luego otras cosas en la interfaz, no las podemos usar.</p>
+<p>Así que podríamos tener una variable global que indicara todos criterios de búsqueda para cuando se hacen las peticiones.</p>
+<p>Vamos a aprovechar que tenemos Subjects para gestionar el estado.</p>
+<blockquote>
+<div><p>En una aplicación real más sofisticada, podriamos usar <code class="docutils literal notranslate"><span class="pre">Redux</span></code>.</p>
+</div></blockquote>
+<p>Declaramos una variable <code class="docutils literal notranslate"><span class="pre">state</span></code> que es un <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code>. Lo podemos hacer en un fichero a parte al que damos acceso a todos los que tengan que manipular el estado:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Despues, podemos centralizar las peticiones al servidor escuchando los cambios en el estado:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">stateSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">currentState</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">getMovies</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="w"> </span><span class="s1">&#39;criteria&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">currentState</span><span class="p">.</span><span class="nx">route</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">route</span><span class="p">.</span><span class="nx">criteria</span><span class="si">}</span><span class="sb">=ilike.*</span><span class="si">${</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">route</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">*`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="si">}${</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">search</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Las rutas ya no hacen las peticiones, sino que cambian el estado:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">state</span><span class="p">.</span><span class="nx">next</span><span class="p">({</span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="p">{}});</span>
+<span class="w">        </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">moviesSubject</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">movies</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">fillContainer</span><span class="p">(</span><span class="nx">buildMoviesComponent</span><span class="p">(</span><span class="nx">movies</span><span class="p">));</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Y el buscador también:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">fromEvent</span><span class="p">(</span><span class="nx">divWrapper</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#searchInput&quot;</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;keyup&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">((</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">tap</span><span class="p">((</span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">)),</span>
+<span class="w">      </span><span class="nx">distinctUntilChanged</span><span class="p">(),</span><span class="w"> </span><span class="c1">//Para evitar keyups en teclas que no cambian el value</span>
+<span class="w">      </span><span class="nx">debounceTime</span><span class="p">(</span><span class="mf">300</span><span class="p">),</span><span class="w"> </span><span class="c1">// Para no saturar la búsqueda en Supabase</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">searchText</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">next</span><span class="p">({</span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="nx">searchText</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`&amp;title=ilike.*</span><span class="si">${</span><span class="nx">searchText</span><span class="si">}</span><span class="sb">*`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="p">{...</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">getValue</span><span class="p">().</span><span class="nx">route</span><span class="p">}}));</span>
+</pre></div>
+</div>
+<p>Además, hemos añadido un <code class="docutils literal notranslate"><span class="pre">breadcrumb</span></code> de Bootstrap al contenedor:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="sb">`&lt;nav aria-label=&quot;breadcrumb&quot;&gt;</span>
+<span class="sb">  &lt;ol class=&quot;breadcrumb&quot;&gt;</span>
+<span class="sb">    &lt;li class=&quot;breadcrumb-item active&quot; aria-current=&quot;page&quot;&gt;Movies&lt;/li&gt;</span>
+<span class="sb">    </span><span class="si">${</span><span class="s1">&#39;criteria&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w">  </span><span class="nx">state</span><span class="p">.</span><span class="nx">getValue</span><span class="p">().</span><span class="nx">route</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`&lt;li class=&quot;breadcrumb-item active&quot; aria-current=&quot;page&quot;&gt;</span><span class="si">${</span><span class="nx">state</span><span class="p">.</span><span class="nx">getValue</span><span class="p">().</span><span class="nx">route</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;li class=&quot;breadcrumb-item active&quot; aria-current=&quot;page&quot;&gt;All&lt;/li&gt;&#39;</span><span class="w"> </span><span class="si">}</span>
+<span class="sb">    </span><span class="si">${</span><span class="nx">state</span><span class="p">.</span><span class="nx">getValue</span><span class="p">().</span><span class="nx">search</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`&lt;li class=&quot;breadcrumb-item active&quot; aria-current=&quot;page&quot;&gt;</span><span class="si">${</span><span class="nx">state</span><span class="p">.</span><span class="nx">getValue</span><span class="p">().</span><span class="nx">search</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="si">}</span>
+<span class="sb">  &lt;/ol&gt;</span>
+<span class="sb">&lt;/nav&gt;`</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Esta aplicación tiene una gestión del estado a medias entre la url y un Subject. Más adelante también mantendrá un estado permanente con <code class="docutils literal notranslate"><span class="pre">localstorage</span></code> para gestionar el <code class="docutils literal notranslate"><span class="pre">login</span></code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Todos estos cambios suponen también cambios en los tests. Con la metodología TDD se ha pasado de esperar que las funciones retornen Promesas a Observables y hay que testar que los observables funcionan.</p>
+</div></blockquote>
+<p>Observemos un ejemplo de test de un Observable:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;getMovies should return an Observable that returns an array of parsed movies&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">_movies</span><span class="p">.</span><span class="nx">getMovies</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">_movies</span><span class="p">.</span><span class="nx">moviesSubject</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nx">Observable</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">_movies</span><span class="p">.</span><span class="nx">moviesSubject</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">movies</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">movies</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">movies</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">4</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">movies</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">genre</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Hemos cambiado la Promesa del test anterior por un observable.</p>
+</section>
+</section>
+<section id="test-coverage">
+<h2>Test Coverage<a class="headerlink" href="#test-coverage" title="Link to this heading">#</a></h2>
+<p>Si hacemos un test al <code class="docutils literal notranslate"><span class="pre">coverage</span></code> nos dirá cuánto código hay testado y la parte del código que no pasa por ningún test.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    npm run coverage
+    ...
+     % Coverage report from v8
+    -----------------|---------|----------|---------|---------|-------------------
+    File             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+    -----------------|---------|----------|---------|---------|-------------------
+    All files        |   55.16 |    80.76 |   63.63 |   55.16 |                   
+     projecte        |       0 |        0 |       0 |       0 |                   
+      main.js        |       0 |        0 |       0 |       0 | 1-69              
+     projecte/models |   89.23 |    83.33 |      80 |   89.23 |                   
+      http.js        |     100 |       75 |     100 |     100 | 9                 
+      movies.js      |   78.78 |      100 |   66.66 |   78.78 | 27-33             
+      state.js       |     100 |      100 |     100 |     100 |                   
+     projecte/utils  |    90.9 |      100 |   66.66 |    90.9 |                   
+      functionals.js |    90.9 |      100 |   66.66 |    90.9 | 8                 
+     projecte/views  |   63.97 |       75 |      50 |   63.97 |                   
+      views.js       |   63.97 |       75 |      50 |   63.97 | 8-55,132          
+    -----------------|---------|----------|---------|---------|-------------------
+</pre></div>
+</div>
+<p>También genera una web en la carpeta <code class="docutils literal notranslate"><span class="pre">coverage</span></code> donde ver exáctamente las partes del código que fallan.</p>
+<p>Podemos observar que nos faltan todos los tests del <code class="docutils literal notranslate"><span class="pre">main</span></code>. Esto es normal, ya que suele tener las funciones del programa principal, que no son puras ni simples. Otros tienen una mayor coverage, aunque no el 100%.</p>
+<blockquote>
+<div><p>No es preciso tener un 100% de covertura en los tests, a veces es imposible. No obstante, puede ser útil para determinar qué partes del código se nos han podido despistar. Depende del equipo de trabajo, puede ser una medida de calidad y se puede considerar que un código está cubierto a partir de cierto porcentaje.</p>
+</div></blockquote>
+</section>
+<section id="autenticacion">
+<h2>Autenticación<a class="headerlink" href="#autenticacion" title="Link to this heading">#</a></h2>
+<p>Puesto que nuestro proyecto tiene como Backend Supabase, vamos a ver cómo autenticar. Vamos a implementar la autenticación mediante usuario/contraseña.</p>
+<p>Para implementar la autenticación en Supabase hay que seguir unos pasos prévios:</p>
+<ol class="arabic simple">
+<li><p>Habilitar o asegurarse de que está habilitada la autenticación por contraseña.</p></li>
+<li><p>Ir a la parte de <code class="docutils literal notranslate"><span class="pre">SQL</span> <span class="pre">Editor</span></code> y ejecutar el <code class="docutils literal notranslate"><span class="pre">Quickstart</span></code> <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Management</span> <span class="pre">Starter</span></code>. Esto no es preciso para la autenticación, pero prepara la base de datos para mantener los perfiles de los usuarios y sus avatares. Si lo hacemos desde el principio, todos los usuarios funcionarán correctamente.</p></li>
+<li><p>Ir al <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Docs</span></code> y mirar cómo se hace la autenticación por <code class="docutils literal notranslate"><span class="pre">Bash</span></code>.</p></li>
+<li><p>Crear funciones para autenticar y registrar usuarios con el método descrito en el paso anterior.</p></li>
+<li><p>Crear formularios para llamar a esas funciones.</p></li>
+<li><p>Guardar el <code class="docutils literal notranslate"><span class="pre">token</span></code> después de la autenticación en <code class="docutils literal notranslate"><span class="pre">Localstorage</span></code>.</p></li>
+<li><p>Modificar las funciones ya creadas para usar el <code class="docutils literal notranslate"><span class="pre">token</span></code>en cada petición.</p></li>
+<li><p>Modificar las <code class="docutils literal notranslate"><span class="pre">RLS</span></code> de las tablas para protegerlas de las peticiones que no tengan el token.</p></li>
+<li><p>Aplicar funciones para gestionar la duración de las sesiones, el logout…</p></li>
+<li><p>Gestionar los perfiles de usuario como una tabla más llamada <code class="docutils literal notranslate"><span class="pre">profiles</span></code> y un bucket <code class="docutils literal notranslate"><span class="pre">avatars</span></code> creados automáticamente con el <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Management</span> <span class="pre">Starter</span></code>.</p></li>
+</ol>
+<p>Así quedan una posible función de registro:</p>
+<p>Y un ejemplo de cómo puede ser un test de esa función. No necesitamos testar si el servidor funciona bien. Sólo si hacemos la petición correcta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;user management&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">responseOk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="s2">&quot;8662025a-25be-4777-ae54-66cb6e58929e&quot;</span><span class="p">,</span><span class="s2">&quot;aud&quot;</span><span class="o">:</span><span class="s2">&quot;authenticated&quot;</span><span class="p">,</span><span class="s2">&quot;role&quot;</span><span class="o">:</span><span class="s2">&quot;authenticated&quot;</span><span class="p">,</span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="s2">&quot;test@gmail.com&quot;</span><span class="p">,</span><span class="s2">&quot;phone&quot;</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;confirmation_sent_at&quot;</span><span class="o">:</span><span class="s2">&quot;2024-06-28T14:39:09.806587958Z&quot;</span><span class="p">,</span><span class="s2">&quot;app_metadata&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;provider&quot;</span><span class="o">:</span><span class="s2">&quot;email&quot;</span><span class="p">,</span><span class="s2">&quot;providers&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">]},</span><span class="s2">&quot;user_metadata&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="s2">&quot;test@gmail.com&quot;</span><span class="p">,</span><span class="s2">&quot;email_verified&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&quot;phone_verified&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&quot;sub&quot;</span><span class="o">:</span><span class="s2">&quot;8662025a-25be-4777-ae54-66cb6e58929e&quot;</span><span class="p">},</span><span class="s2">&quot;identities&quot;</span><span class="o">:</span><span class="p">[{</span><span class="s2">&quot;identity_id&quot;</span><span class="o">:</span><span class="s2">&quot;209fd965-9ea1-4b16-8e1d-4ce200dfd400&quot;</span><span class="p">,</span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="s2">&quot;8662025a-25be-4777-ae54-66cb6e58929e&quot;</span><span class="p">,</span><span class="s2">&quot;user_id&quot;</span><span class="o">:</span><span class="s2">&quot;8662025a-25be-4777-ae54-66cb6e58929e&quot;</span><span class="p">,</span><span class="s2">&quot;identity_data&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="s2">&quot;test@gmail.com&quot;</span><span class="p">,</span><span class="s2">&quot;email_verified&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&quot;phone_verified&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&quot;sub&quot;</span><span class="o">:</span><span class="s2">&quot;8662025a-25be-4777-ae54-66cb6e58929e&quot;</span><span class="p">},</span><span class="s2">&quot;provider&quot;</span><span class="o">:</span><span class="s2">&quot;email&quot;</span><span class="p">,</span><span class="s2">&quot;last_sign_in_at&quot;</span><span class="o">:</span><span class="s2">&quot;2024-06-28T14:39:09.786271233Z&quot;</span><span class="p">,</span><span class="s2">&quot;created_at&quot;</span><span class="o">:</span><span class="s2">&quot;2024-06-28T14:39:09.786321Z&quot;</span><span class="p">,</span><span class="s2">&quot;updated_at&quot;</span><span class="o">:</span><span class="s2">&quot;2024-06-28T14:39:09.786321Z&quot;</span><span class="p">,</span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="s2">&quot;test@gmail.com&quot;</span><span class="p">}],</span><span class="s2">&quot;created_at&quot;</span><span class="o">:</span><span class="s2">&quot;2024-06-28T14:39:09.756356Z&quot;</span><span class="p">,</span><span class="s2">&quot;updated_at&quot;</span><span class="o">:</span><span class="s2">&quot;2024-06-28T14:39:11.379383Z&quot;</span><span class="p">,</span><span class="s2">&quot;is_anonymous&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">};</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setupServer</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+<span class="w">        </span><span class="s2">&quot;https://ygvtpucoxveebizknhat.supabase.co/auth/v1/signup&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">// eslint-disable-next-line</span>
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="nx">request</span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nx">peticion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+<span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">peticion</span><span class="p">);</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">peticion</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sb">`{&quot;email&quot;:&quot;test@gmail.com&quot;,&quot;password&quot;:&quot;passwd&quot;}`</span><span class="p">){</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">responseOk</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">([</span><span class="sb">`mal`</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="nx">beforeAll</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">onUnhandledRequest</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Unhandled %s %s&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">afterAll</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">server</span><span class="p">.</span><span class="nx">close</span><span class="p">());</span>
+
+<span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;signup should send a valid json with user data&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">signupPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">_http</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="s2">&quot;test@gmail.com&quot;</span><span class="p">,</span><span class="s2">&quot;passwd&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">_http</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">signupPromise</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">responseOk</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Modificamos las peticiones para incluir el token:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span>
+<span class="w">      </span><span class="sb">`https://ygvtpucoxveebizknhat.supabase.co/rest/v1/</span><span class="si">${</span><span class="nx">table</span><span class="si">}</span><span class="sb">?select=</span><span class="si">${</span><span class="nx">columns</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="si">}${</span><span class="nx">search</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`&amp;</span><span class="si">${</span><span class="nx">search</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">apikey</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">...</span>
+</pre></div>
+</div>
+<p>Esto hace uso de localStorage, así que hay que hacer un <code class="docutils literal notranslate"><span class="pre">mock</span></code> del mismo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">beforeAll</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">onUnhandledRequest</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bypass&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlndnRwdWNveHZlZWJpemtuaGF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUzNTA0ODYsImV4cCI6MjAzMDkyNjQ4Nn0.rDdWANw1LN10BunTH8TKeIAfM-EMlWpTaNyxQSbe30k&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Esto funciona porque estamos usando <code class="docutils literal notranslate"><span class="pre">&#64;vitest-environment</span> <span class="pre">jsdom</span></code>. Pero dejará de funcionar en cuanto apliquemos las <code class="docutils literal notranslate"><span class="pre">RLS</span></code>. Como veremos a continuación, hay que hacer ‘login’ antes de los tests.</p>
+<p>Estas son las <code class="docutils literal notranslate"><span class="pre">RLS</span></code> aplicadas a la tabla <code class="docutils literal notranslate"><span class="pre">movies</span></code>:</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">create</span><span class="w"> </span><span class="n">policy</span><span class="w"> </span><span class="ss">&quot;Enable read access for authenticated&quot;</span>
+<span class="k">on</span><span class="w"> </span><span class="ss">&quot;public&quot;</span><span class="p">.</span><span class="ss">&quot;movies&quot;</span>
+<span class="k">as</span><span class="w"> </span><span class="n">PERMISSIVE</span>
+<span class="k">for</span><span class="w"> </span><span class="k">SELECT</span>
+<span class="k">to</span><span class="w"> </span><span class="n">authenticated</span>
+<span class="k">using</span><span class="w"> </span><span class="p">(</span>
+<span class="k">true</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Los tests no fallan porque Supabase falla silenciosamente para no dar pistas, pero retorna un JSON con este contenido: <code class="docutils literal notranslate"><span class="pre">[]</span></code>. Si añadimos este test:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;getSupabase should return some movies&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">getSupabasePromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">_http</span><span class="p">.</span><span class="nx">getSupabase</span><span class="p">(</span><span class="s2">&quot;movies&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getSupabasePromise</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">_http</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">200</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s2">&quot;OK&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBeGreaterThan</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Veremos que falla. Hagamos login antes de hacer los test:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">beforeAll</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">onUnhandledRequest</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bypass&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">_http</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">env</span><span class="p">.</span><span class="nx">EMAIL</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="p">.</span><span class="nx">PASSWORD</span><span class="p">));</span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">env</span></code> es una variable importada de <code class="docutils literal notranslate"><span class="pre">environment.js</span></code>, un fichero que debe estar en <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>. De hecho, vamos a aprovechar para poner el <code class="docutils literal notranslate"><span class="pre">api-key</span></code> y la `urlBase también en env.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Para no alargar demasiado el manual, no vamos a implementar todo lo que se debería. Pero a partir de aquí todo se soluciona con observables, y localStorage. Falta detectar en toda la web si está autenticado y avisar si no lo está. Falta hacer que no sea necesario hacer login si ya se guarda la sesión en localStorage. Falta implementar el logout, entre otras cosas.</p>
+</div></blockquote>
+<section id="perfiles">
+<h3>Perfiles<a class="headerlink" href="#perfiles" title="Link to this heading">#</a></h3>
+<p>Los usuarios, al ser creados, invocan en Supabase una acción que crea también una fila en la tabla <code class="docutils literal notranslate"><span class="pre">profiles</span></code>. Todo esto es así si hemos ejecutado el SQL de  <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Management</span> <span class="pre">Starter</span></code>.</p>
+<p>Si queremos tratar con su avatar, hay que implementar funciones para obtener y subir imágenes:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fileRequest</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">apikey</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;x-upsert&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Necessari per a sobreescriure</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">urlBase</span><span class="si">}${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="nx">headersFile</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">body</span><span class="p">,</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;content-type&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">datos</span><span class="p">.</span><span class="nx">urlAvatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">urlBase</span><span class="si">}${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">datos</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getFileRequest</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">apikey</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="nx">headersFile</span><span class="p">,</span>
+
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;content-type&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">blob</span><span class="p">();</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">datos</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>También para conseguir esa imagen del profile y el resto de datos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">getProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Obtiene el token de acceso del localStorage</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Obtiene el UID del localStorage</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1">// Convierte la promesa devuelta por getSupabase en un observable</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="nx">getSupabase</span><span class="p">(</span><span class="s2">&quot;profiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="w"> </span><span class="sb">`&amp;id=eq.</span><span class="si">${</span><span class="nx">uid</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// Usa switchMap para aplanar el observable y cambiar a un nuevo observable basado en la respuesta</span>
+<span class="w">      </span><span class="nx">switchMap</span><span class="p">(</span><span class="nx">getData</span><span class="p">),</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="c1">// Usa switchMap para manejar el procesamiento del perfil y la carga del avatar</span>
+<span class="w">      </span><span class="nx">switchMap</span><span class="p">((</span><span class="nx">dataProfile</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Extrae la URL del avatar del primer objeto del perfil</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">avatar_url</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dataProfile</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">        </span><span class="c1">// Inicializa avatar_blob a false</span>
+<span class="w">        </span><span class="nx">dataProfile</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">avatar_blob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Si existe una URL de avatar</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">avatar_url</span><span class="w"> </span><span class="o">?</span>
+<span class="w">          </span><span class="c1">// Convierte la promesa de getFileRequest en un observable</span>
+<span class="w">          </span><span class="kr">from</span><span class="p">(</span><span class="nx">getFileRequest</span><span class="p">(</span><span class="nx">avatar_url</span><span class="p">,</span><span class="w"> </span><span class="nx">access_token</span><span class="p">)).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">            </span><span class="c1">// Usa map para transformar el resultado del observable</span>
+<span class="w">            </span><span class="nx">map</span><span class="p">(</span><span class="nx">avatarBlob</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="c1">// Si el avatarBlob es una instancia de Blob, crea una URL para el objeto y asigna a avatar_blob</span>
+<span class="w">              </span><span class="nx">dataProfile</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">avatar_blob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">avatarBlob</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">Blob</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">avatarBlob</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">              </span><span class="c1">// Retorna el perfil actualizado</span>
+<span class="w">              </span><span class="k">return</span><span class="w"> </span><span class="nx">dataProfile</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}))</span>
+<span class="w">          </span><span class="c1">// Si no hay URL de avatar, retorna el perfil sin modificar</span>
+<span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="k">of</span><span class="p">(</span><span class="nx">dataProfile</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La función anterior está comentada línea por línea porque es complicada.</p>
+<p>El formulario de perfil es como cualquier otro formulario, pero es interesante la manera de crearlo y de actualizar los datos de perfil:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">profileForm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">divProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">profileObservable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getProfile</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">profileObservable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">dataProfile</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">dataProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dataProfile</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">divProfile</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;form action=&quot;action_page.php&quot; id=&quot;formProfile&quot; style=&quot;border: 1px solid #ccc&quot;&gt;</span>
+<span class="sb">    &lt;div class=&quot;container&quot;&gt;</span>
+<span class="sb">     </span>
+<span class="sb">     ...</span>
+<span class="sb">     </span>
+<span class="sb">      &lt;img class=&quot;avatar_profile&quot; style=&quot;max-width: 200px&quot; id=&quot;avatar_prev&quot; src=&quot;</span><span class="si">${</span><span class="nx">dataProfile</span><span class="p">.</span><span class="nx">avatar_blob</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">dataProfile</span><span class="p">.</span><span class="nx">avatar_blob</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="sb">&quot;/&gt;</span>
+<span class="sb">&lt;/div&gt;</span>
+<span class="sb">      &lt;label for=&quot;avatar&quot;&gt;&lt;b&gt;Avatar&lt;/b&gt;&lt;/label&gt;</span>
+<span class="sb">      &lt;input</span>
+<span class="sb">        type=&quot;file&quot;</span>
+<span class="sb">        id=&quot;avatar&quot;</span>
+<span class="sb">        name=&quot;avatar&quot;</span>
+<span class="sb">      /&gt;</span>
+
+<span class="sb">     ....</span>
+<span class="sb">    </span>
+<span class="sb">  &lt;/form&gt;`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">divProfile</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#update&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">divProfile</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#formProfile&#39;</span><span class="p">));</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">full_name</span><span class="p">,</span><span class="w"> </span><span class="nx">website</span><span class="p">,</span><span class="w"> </span><span class="nx">avatar</span><span class="p">,</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span><span class="nx">formData</span><span class="p">);</span>
+<span class="w">      </span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">updateProfile</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">full_name</span><span class="p">,</span><span class="w"> </span><span class="nx">website</span><span class="p">,</span><span class="w"> </span><span class="nx">avatar</span><span class="p">,</span>
+<span class="w">      </span><span class="p">}));</span>
+
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#/profile&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">encodeImageFileAsURL</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">element</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">divProfile</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#avatar_prev&#39;</span><span class="p">).</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">divProfile</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#avatar&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">encodeImageFileAsURL</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">divProfile</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -839,7 +1451,7 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -885,6 +1497,25 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-basico-con-supabase">Backend básico con Supabase</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-el-backend">Búsqueda en el backend</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#router">Router</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd">CI/CD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linter">Linter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prettier">Prettier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deta">Deta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-actions">Github Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-funcional">Programación funcional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-reactiva">Programación reactiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-reactiva-con-el-servidor">Comunicación reactiva con el servidor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscador-con-observables">Buscador con Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-estado">Gestión del estado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-coverage">Test Coverage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perfiles">Perfiles</a></li>
 </ul>
 </li>
 </ul>
@@ -935,8 +1566,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
