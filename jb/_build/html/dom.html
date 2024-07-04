@@ -435,6 +435,16 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-validacion-con-expresiones-regulares">Ejemplo de Validación con Expresiones Regulares</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-ficheros-con-un-formulario-tradicional">Envío de ficheros con un formulario tradicional</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-ficheros-utilizando-json">Envío de ficheros utilizando JSON</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-ficheros">Validación de ficheros</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imagenes-en-formularios">Imágenes en formularios</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-ficheros">Otros ficheros</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-objeto-file">El Objeto <code class="docutils literal notranslate"><span class="pre">File</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-objeto-filereader">El objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-y-handlers">Eventos y Handlers</a><ul class="nav section-nav flex-column">
@@ -469,9 +479,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dom">
 <h1>DOM<a class="headerlink" href="#dom" title="Link to this heading">#</a></h1>
-<blockquote>
-<div><p>La versión notebook de este libro no tiene muchos ejemplos ejecutables porque los notebooks se ejecutan en un intérprete de JS como Nodejs o Deno. Estos no tienen DOM.</p>
-</div></blockquote>
 <section id="dom-en-javascript">
 <h2>DOM en JavaScript<a class="headerlink" href="#dom-en-javascript" title="Link to this heading">#</a></h2>
 <p>El DOM (Document Object Model) es una interfaz de programación que permite a los scripts actualizar el contenido, la estructura y el estilo de un documento mientras este se está visualizando en el navegador. A continuación, exploraremos cómo interactuar con el DOM en JavaScript, describiendo su estructura y proporcionando ejemplos prácticos.</p>
@@ -896,7 +903,7 @@ document.write(`
 </section>
 <section id="expresiones-regulares">
 <h3>Expresiones Regulares<a class="headerlink" href="#expresiones-regulares" title="Link to this heading">#</a></h3>
-<p>Las expresiones regulares son una herramienta poderosa para validar campos de formulario, como números de teléfono, correos electrónicos, y otros patrones específicos.</p>
+<p>Las expresiones regulares son una herramienta para validar campos de formulario, como números de teléfono, correos electrónicos, y otros patrones específicos.</p>
 <section id="ejemplo-de-validacion-con-expresiones-regulares">
 <h4>Ejemplo de Validación con Expresiones Regulares<a class="headerlink" href="#ejemplo-de-validacion-con-expresiones-regulares" title="Link to this heading">#</a></h4>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;phone-number&quot;</span><span class="p">&gt;</span>
@@ -912,6 +919,411 @@ document.write(`
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="ficheros-en-formularios">
+<h3>Ficheros en formularios<a class="headerlink" href="#ficheros-en-formularios" title="Link to this heading">#</a></h3>
+<p>Enviar ficheros al servidor mediante un formulario HTML es una tarea común que se realiza utilizando un <code class="docutils literal notranslate"><span class="pre">input</span></code> de tipo <code class="docutils literal notranslate"><span class="pre">file</span></code>. El tratamiento de los ficheros puede diferir del de otros elementos del formulario.</p>
+<blockquote>
+<div><p>Para entender mejor este apartado, también hay que dominar la comunicación <code class="docutils literal notranslate"><span class="pre">fetch</span></code> con el servidor <span class="xref std std-doc">../ajax.ipynb</span></p>
+</div></blockquote>
+<section id="envio-de-ficheros-con-un-formulario-tradicional">
+<h4>Envío de ficheros con un formulario tradicional<a class="headerlink" href="#envio-de-ficheros-con-un-formulario-tradicional" title="Link to this heading">#</a></h4>
+<p>Para enviar un fichero en un formulario tradicional, simplemente se crea un <code class="docutils literal notranslate"><span class="pre">FormData</span></code> a partir del formulario y se envía utilizando un método HTTP como <code class="docutils literal notranslate"><span class="pre">POST</span></code>. Los formularios tradicionales aceptan binarios a través del MIME, lo cual facilita este proceso.</p>
+<p>Aquí hay un ejemplo de cómo hacerlo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fileForm&quot;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&quot;multipart/form-data&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fileInput&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileForm&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/upload&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">formData</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+<span class="w">        </span><span class="p">});</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Se crea un formulario con <code class="docutils literal notranslate"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code> para manejar la subida de ficheros.</p></li>
+<li><p>En el evento <code class="docutils literal notranslate"><span class="pre">submit</span></code> del formulario, se previene el comportamiento por defecto.</p></li>
+<li><p>Se crea un objeto <code class="docutils literal notranslate"><span class="pre">FormData</span></code> a partir del formulario y se envía con <code class="docutils literal notranslate"><span class="pre">fetch</span></code> usando el método <code class="docutils literal notranslate"><span class="pre">POST</span></code>.</p></li>
+</ul>
+</section>
+<section id="envio-de-ficheros-utilizando-json">
+<h4>Envío de ficheros utilizando JSON<a class="headerlink" href="#envio-de-ficheros-utilizando-json" title="Link to this heading">#</a></h4>
+<p>Si queremos enviar los datos con JSON, el proceso es un poco más complejo, ya que JSON no puede manejar binarios directamente. Para resolver esto, se puede convertir el fichero en una cadena en formato <code class="docutils literal notranslate"><span class="pre">Base64</span></code> antes de enviarlo.</p>
+<p>Aquí hay un ejemplo de cómo hacerlo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fileForm&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fileInput&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileForm&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileInput&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+
+<span class="w">            </span><span class="nx">reader</span><span class="p">.</span><span class="nx">onloadend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">base64String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^.+,/</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fileName</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">fileType</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">fileData</span><span class="o">:</span><span class="w"> </span><span class="nx">base64String</span>
+<span class="w">                </span><span class="p">};</span>
+
+<span class="w">                </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/upload-json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">)</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+<span class="w">            </span><span class="p">};</span>
+
+<span class="w">            </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Se crea un formulario sin especificar <code class="docutils literal notranslate"><span class="pre">enctype</span></code>.</p></li>
+<li><p>En el evento <code class="docutils literal notranslate"><span class="pre">submit</span></code>, se previene el comportamiento por defecto.</p></li>
+<li><p>Se obtiene el fichero del input y se utiliza <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> para leer el fichero como una URL de datos.</p></li>
+<li><p>Se convierte la URL de datos en una cadena Base64.</p></li>
+<li><p>Se crea un objeto JSON con el nombre, tipo y datos del fichero en Base64.</p></li>
+<li><p>Se envía el objeto JSON utilizando <code class="docutils literal notranslate"><span class="pre">fetch</span></code> con el método <code class="docutils literal notranslate"><span class="pre">POST</span></code> y el encabezado <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> establecido como <code class="docutils literal notranslate"><span class="pre">application/json</span></code>.</p></li>
+</ul>
+<p>Algunos servicios como supabase aceptan que se les envíe los binarios con el método tradicional y los datos textuales en <code class="docutils literal notranslate"><span class="pre">JSON</span></code>, eso implica dos peticiones. En el apartado de <span class="xref std std-doc">../supabase.ipynb</span> hay ejemplos.</p>
+</section>
+<section id="validacion-de-ficheros">
+<h4>Validación de ficheros<a class="headerlink" href="#validacion-de-ficheros" title="Link to this heading">#</a></h4>
+<p>Los ficheros deben ser validados en el lado del servidor, pero nosotros también podemos validarlos en la parte de cliente para mejorar la usabilidad. Validar los ficheros en el lado del cliente mejora la usabilidad al proporcionar retroalimentación inmediata a los usuarios sobre cualquier problema con sus archivos antes de que intenten subirlos al servidor. Esto puede ahorrar tiempo y frustración tanto para el usuario como para el servidor.</p>
+<p>Aquí hay un ejemplo completo que ilustra cómo realizar estas validaciones en un formulario HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fileForm&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fileInput&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;errorMessage&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;error&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileForm&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileInput&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">errorMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;errorMessage&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">errorMessage</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Validación del tamaño del fichero (por ejemplo, 2MB máximo)</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">maxSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1024</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2MB</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">maxSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">errorMessage</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;El fichero es demasiado grande. El tamaño máximo es de 2MB.&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Validación del tipo de fichero</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">allowedTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;image/png&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;image/gif&#39;</span><span class="p">];</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">allowedTypes</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">errorMessage</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Tipo de fichero no permitido. Solo se permiten imágenes (jpeg, png, gif).&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Validación del nombre del fichero (sin caracteres especiales)</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/^[a-zA-Z0-9_\-\.]+$/</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">errorMessage</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;El nombre del fichero contiene caracteres no permitidos.&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Si todas las validaciones son correctas, proceder a la subida del fichero</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">reader</span><span class="p">.</span><span class="nx">onloadend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">base64String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^.+,/</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fileName</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">fileType</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">fileData</span><span class="o">:</span><span class="w"> </span><span class="nx">base64String</span>
+<span class="w">                </span><span class="p">};</span>
+
+<span class="w">                </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/upload-json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">)</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+<span class="w">            </span><span class="p">};</span>
+
+<span class="w">            </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="imagenes-en-formularios">
+<h4>Imágenes en formularios<a class="headerlink" href="#imagenes-en-formularios" title="Link to this heading">#</a></h4>
+<p>Las imágenes son un tipo interesante de ficheros, ya que se pueden previsualizar.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="kd">function</span><span class="w"> </span><span class="nx">encodeFileAsURL</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">callback</span><span class="p">(</span><span class="nx">fileURL</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;No file provided or file is invalid.&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleFileInputChange</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span><span class="w"> </span><span class="nx">previewElementId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">            </span><span class="nx">encodeFileAsURL</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">fileURL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">previewElementId</span><span class="p">).</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileURL</span><span class="p">;</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">attachFileInputHandler</span><span class="p">(</span><span class="nx">inputElementId</span><span class="p">,</span><span class="w"> </span><span class="nx">previewElementId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">inputElementId</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">handleFileInputChange</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span><span class="w"> </span><span class="nx">previewElementId</span><span class="p">);</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Attach the handler for avatar file input</span>
+<span class="w">        </span><span class="nx">attachFileInputHandler</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;avatar_prev&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Puede que los usuarios envíen imágenes demasiado grandes. Si queremos reducir el tiempo de carga y el espacio en disco del servidor, las podemos reducir antes de enviar. El siguiente ejemplo recoge la imagen, la pone en un canvas virtual y vuelve a recuperar la imágen reducida para enviarla:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>   <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;imageInput&quot;</span> <span class="na">accept</span><span class="o">=</span><span class="s">&quot;image/*&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;imagePreview&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Previsualización de la imagen&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;uploadButton&quot;</span><span class="p">&gt;</span>Subir Imagen<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">resizeImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="p">,</span><span class="w"> </span><span class="nx">maxWidth</span><span class="p">,</span><span class="w"> </span><span class="nx">maxHeight</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">reader</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Image</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">img</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">img</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">img</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">img</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">width</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">width</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">maxWidth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">height</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nx">maxWidth</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">width</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">maxWidth</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">height</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">maxHeight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">width</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nx">maxHeight</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">height</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">maxHeight</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">          </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">width</span><span class="p">;</span>
+<span class="w">          </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">height</span><span class="p">;</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">          </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">toBlob</span><span class="p">(</span><span class="nx">blob</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">blob</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">blob</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Error al redimensionar la imagen&#39;</span><span class="p">));</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">reader</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Error al leer el archivo&#39;</span><span class="p">)));</span>
+<span class="w">      </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="otros-ficheros">
+<h4>Otros ficheros<a class="headerlink" href="#otros-ficheros" title="Link to this heading">#</a></h4>
+<p>Hay muchas cosas que se pueden hacer con otro tipo de ficheros antes de subirlos al servidor, o incluso sin subirlos nunca. Por ejemplo, se puede previsualizar el contenido de un fichero de texto:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">formFileInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileForm</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#formFile&quot;</span><span class="p">);</span>
+<span class="nx">formFileInput</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">formFileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;load&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">fileForm</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#previewFile&quot;</span><span class="p">).</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>O incluso de un fichero PDF:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;divLogin&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;pdfInput&quot;</span> <span class="na">accept</span><span class="o">=</span><span class="s">&quot;application/pdf&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">embed</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;pdfPreview&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/pdf&quot;</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">previewPDF</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span><span class="w"> </span><span class="nx">previewElementId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;application/pdf&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">previewElementId</span><span class="p">).</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileURL</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;El archivo seleccionado no es un PDF.&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>También se puede, gracias a HTML5, reproducir un fichero de audio:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;audioInput&quot;</span> <span class="na">accept</span><span class="o">=</span><span class="s">&quot;audio/*&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">audio</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;audioPreview&quot;</span> <span class="na">controls</span><span class="p">&gt;</span>
+            Tu navegador no soporta el elemento de audio.
+        <span class="p">&lt;/</span><span class="nt">audio</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">previewAudio</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span><span class="w"> </span><span class="nx">previewElementId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;audio/&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">previewElementId</span><span class="p">).</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileURL</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;El archivo seleccionado no es un audio válido.&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="el-objeto-file">
+<h4>El Objeto <code class="docutils literal notranslate"><span class="pre">File</span></code><a class="headerlink" href="#el-objeto-file" title="Link to this heading">#</a></h4>
+<p>Un objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> en JavaScript representa un archivo que se ha seleccionado a través de un elemento <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;file&quot;&gt;</span></code> o que se ha creado mediante la API de archivos. Este objeto hereda de <code class="docutils literal notranslate"><span class="pre">Blob</span></code> y, por lo tanto, tiene todos los atributos y métodos de un <code class="docutils literal notranslate"><span class="pre">Blob</span></code>, además de algunos atributos específicos para los archivos. Aquí tenemos una lista de los atributos principales del objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> y su utilidad:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">name</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: El nombre del archivo, incluido su extensión.</p></li>
+<li><p><strong>Utilidad</strong>: Utilizado para mostrar o manipular el nombre del archivo. Por ejemplo, se puede mostrar al usuario el nombre del archivo que se ha seleccionado o utilizarlo para enviarlo al servidor.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">lastModified</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: El timestamp (en milisegundos desde el 1 de enero de 1970) de la última vez que el archivo fue modificado.</p></li>
+<li><p><strong>Utilidad</strong>: Permite conocer la fecha y hora de la última modificación del archivo. Puede ser útil para sincronización, control de versiones o simplemente para mostrar esta información al usuario.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">lastModifiedDate</span></code></strong> (obsoleto, usar <code class="docutils literal notranslate"><span class="pre">lastModified</span></code> en su lugar)</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Un objeto <code class="docutils literal notranslate"><span class="pre">Date</span></code> que representa la fecha de la última modificación del archivo.</p></li>
+<li><p><strong>Utilidad</strong>: Similar a <code class="docutils literal notranslate"><span class="pre">lastModified</span></code>, pero como un objeto <code class="docutils literal notranslate"><span class="pre">Date</span></code>. Este atributo está obsoleto y no se recomienda su uso.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">size</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: El tamaño del archivo en bytes.</p></li>
+<li><p><strong>Utilidad</strong>: Permite conocer el tamaño del archivo. Es útil para validar si el archivo cumple con los requisitos de tamaño antes de subirlo o para mostrar esta información al usuario.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">type</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: El tipo MIME del archivo (por ejemplo, “image/png” o “application/pdf”).</p></li>
+<li><p><strong>Utilidad</strong>: Utilizado para determinar el tipo de contenido del archivo. Esto es útil para validar el tipo de archivo que se ha seleccionado, para decidir cómo procesarlo o para enviarlo al servidor con el tipo correcto.</p></li>
+</ul>
+</li>
+</ol>
+<p>El objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> también hereda todos los métodos de <code class="docutils literal notranslate"><span class="pre">Blob</span></code>, lo que permite manipular el contenido del archivo de varias maneras. Algunos de estos métodos incluyen:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">slice([start[,</span> <span class="pre">end[,</span> <span class="pre">contentType]]])</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Crea un nuevo <code class="docutils literal notranslate"><span class="pre">Blob</span></code> representando una porción del archivo original.</p></li>
+<li><p><strong>Utilidad</strong>: Permite trabajar con una parte específica del archivo, lo cual puede ser útil para subir archivos en partes o para manipular solo una sección del archivo.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">text()</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Devuelve una promesa que se resuelve con el contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code> como una cadena de texto.</p></li>
+<li><p><strong>Utilidad</strong>: Permite leer el contenido de un archivo como texto, lo que es útil para archivos de texto, CSV, JSON, etc.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">arrayBuffer()</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Devuelve una promesa que se resuelve con el contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code> como un <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code>.</p></li>
+<li><p><strong>Utilidad</strong>: Útil para trabajar con datos binarios de bajo nivel.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">stream()</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Devuelve un <code class="docutils literal notranslate"><span class="pre">ReadableStream</span></code> del contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code>.</p></li>
+<li><p><strong>Utilidad</strong>: Permite trabajar con el contenido del archivo como un flujo de datos, lo que puede ser útil para grandes archivos que necesitan ser procesados por partes.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="el-objeto-filereader">
+<h4>El objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code><a class="headerlink" href="#el-objeto-filereader" title="Link to this heading">#</a></h4>
+<p>El objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> en JavaScript proporciona una forma de leer archivos de forma asíncrona desde el cliente, utilizando el API File de HTML5. Estos son los principales atributos y métodos del objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code>:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">readyState</span></code></strong>:</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Indica el estado actual de la operación de lectura del archivo.</p></li>
+<li><p><strong>Valores posibles</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMPTY</span></code> (0): Objeto recién creado, sin archivo asignado.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOADING</span></code> (1): Archivo está siendo leído.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DONE</span></code> (2): Lectura del archivo completada correctamente.</p></li>
+</ul>
+</li>
+<li><p><strong>Uso</strong>: Puede ser útil para controlar el flujo de trabajo y saber cuándo ha finalizado la lectura del archivo.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result</span></code></strong>:</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Contiene los datos del archivo leído, representados como una cadena de caracteres o como un <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code>, dependiendo del método utilizado para leer el archivo.</p></li>
+<li><p><strong>Uso</strong>: Después de que la lectura del archivo sea exitosa, este atributo contiene los datos del archivo en el formato especificado.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Métodos del objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code></strong></p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsArrayBuffer(file)</span></code></strong>:</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Lee el contenido del archivo como un <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code>.</p></li>
+<li><p><strong>Uso</strong>: Útil cuando se trabaja con datos binarios, como imágenes o archivos PDF.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsBinaryString(file)</span></code></strong>:</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Lee el contenido del archivo como una cadena binaria (<code class="docutils literal notranslate"><span class="pre">String</span></code>).</p></li>
+<li><p><strong>Uso</strong>: Aunque está en desuso, puede ser útil para leer archivos en formatos antiguos que no son compatibles con <code class="docutils literal notranslate"><span class="pre">readAsText</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsDataURL(file)</span></code></strong>:</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Lee el contenido del archivo y devuelve una URL de datos (<code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">URL</span></code>) que representa los datos del archivo.</p></li>
+<li><p><strong>Uso</strong>: Muy común para leer imágenes y otros tipos de archivos que pueden ser representados como URLs de datos en el navegador.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsText(file,</span> <span class="pre">encoding)</span></code></strong>:</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Lee el contenido del archivo como texto (<code class="docutils literal notranslate"><span class="pre">String</span></code>), utilizando una codificación opcional.</p></li>
+<li><p><strong>Uso</strong>: Ideal para archivos de texto como archivos de configuración o documentos de texto plano.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">abort()</span></code></strong>:</p>
+<ul class="simple">
+<li><p><strong>Descripción</strong>: Cancela la operación de lectura del archivo en curso.</p></li>
+<li><p><strong>Uso</strong>: Útil si se desea interrumpir la lectura de un archivo antes de que se complete, por ejemplo, en respuesta a una acción del usuario.</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p><strong>Asincronía</strong>: Todas las operaciones de lectura del <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> son asíncronas, lo que significa que se debe manejar el resultado (o error) en los callbacks adecuados (<code class="docutils literal notranslate"><span class="pre">onload</span></code>, <code class="docutils literal notranslate"><span class="pre">onerror</span></code>).</p></li>
+<li><p><strong>Seguridad</strong>: Debido a las políticas de seguridad del navegador, la lectura de archivos locales puede estar limitada. Es importante entender y respetar estas limitaciones al desarrollar aplicaciones web que interactúan con archivos del cliente.</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -1230,6 +1642,16 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expresiones-regulares">Expresiones Regulares</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-validacion-con-expresiones-regulares">Ejemplo de Validación con Expresiones Regulares</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-ficheros-con-un-formulario-tradicional">Envío de ficheros con un formulario tradicional</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-ficheros-utilizando-json">Envío de ficheros utilizando JSON</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-ficheros">Validación de ficheros</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imagenes-en-formularios">Imágenes en formularios</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-ficheros">Otros ficheros</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-objeto-file">El Objeto <code class="docutils literal notranslate"><span class="pre">File</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-objeto-filereader">El objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code></a></li>
 </ul>
 </li>
 </ul>

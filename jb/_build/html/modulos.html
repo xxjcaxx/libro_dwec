@@ -410,6 +410,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-manuales-con-estado-y-control-de-acceso">Módulos manuales (con estado y control de acceso)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-es6">Módulos ES6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-script-con-modulos">Uso de <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> con módulos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-en-bare-names">Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -496,6 +497,7 @@ document.write(`
 </section>
 <section id="modulos-es6">
 <h2>Módulos ES6<a class="headerlink" href="#modulos-es6" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules</a></p>
 <p>Con la introducción de ES6, JavaScript nativo ahora admite módulos a través de las palabras clave <code class="docutils literal notranslate"><span class="pre">import</span></code> y <code class="docutils literal notranslate"><span class="pre">export</span></code>. Los módulos ES6 no agregan nada al ámbito global, siempre están en modo estricto y requieren un servidor para cargar los archivos a través de HTTP.</p>
 <p><strong>Definición y exportación de módulos ES6:</strong></p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// students.js</span>
@@ -564,6 +566,15 @@ document.write(`
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+</section>
+<section id="importar-en-bare-names">
+<h2>Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code><a class="headerlink" href="#importar-en-bare-names" title="Link to this heading">#</a></h2>
+<p>En <code class="docutils literal notranslate"><span class="pre">Vite</span></code> y otros entornos, no es necesario especificar la extensión de los archivos al importar, incluso si están en <code class="docutils literal notranslate"><span class="pre">node_modules</span></code>no hace falta ni la ruta. Esto es por dos razones:</p>
+<ul class="simple">
+<li><p>Vite usa un sistema de resolución de módulos que resuelve automáticamente las extensiones de archivos. Esto se puede configurar con <code class="docutils literal notranslate"><span class="pre">resolve.extensions</span></code></p></li>
+<li><p>Las bibliotecas instaladas en <code class="docutils literal notranslate"><span class="pre">node_modules</span></code> tienen una referencia en <code class="docutils literal notranslate"><span class="pre">package.json</span></code> y su propio package.json indica cómo se exporta. Vite y otros como Webpack siguen el estándar ESM, pero se necesita un proceso como el que hacen al hacer el <code class="docutils literal notranslate"><span class="pre">build</span></code>que las resuelva.</p></li>
+</ul>
+<p>Si queremos imitar esto sin usa Vite o similar, necesitaríamos <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">maps</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#importing_modules_as_bare_names">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#importing_modules_as_bare_names</a></p>
 </section>
 </section>
 
@@ -637,6 +648,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-manuales-con-estado-y-control-de-acceso">Módulos manuales (con estado y control de acceso)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-es6">Módulos ES6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-script-con-modulos">Uso de <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> con módulos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-en-bare-names">Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code></a></li>
 </ul>
   </nav></div>
 

@@ -404,7 +404,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-async-y-defer-en-la-etiqueta-script">Atributos <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code> en la Etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#async"><code class="docutils literal notranslate"><span class="pre">async</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#defer"><code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#onload-atributo"><code class="docutils literal notranslate"><span class="pre">onload</span></code> Atributo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sin-async-ni-defer">Sin <code class="docutils literal notranslate"><span class="pre">async</span></code> ni <code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobar-que-funciona">Comprobar que funciona</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-el-codigo-javascript">Ocultar el código JavaScript</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-y-evolucion-de-javascript-y-ecmascript">Historia y evolución de JavaScript y ECMAScript</a><ul class="nav section-nav flex-column">
@@ -546,6 +555,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <li><p><a class="reference external" href="https://losapuntesdemajo.vercel.app/">https://losapuntesdemajo.vercel.app/</a></p></li>
 <li><p><a class="reference external" href="https://fullstackopen.com/en/#course-contents">https://fullstackopen.com/en/#course-contents</a></p></li>
 <li><p><a class="reference external" href="https://www.theodinproject.com/">https://www.theodinproject.com/</a></p></li>
+<li><p><a class="reference external" href="https://www.apuntesinformaticafp.com/modulos/dwec.html">https://www.apuntesinformaticafp.com/modulos/dwec.html</a></p></li>
 </ul>
 <section id="integrar-js-en-html">
 <h2>Integrar JS en HTML<a class="headerlink" href="#integrar-js-en-html" title="Link to this heading">#</a></h2>
@@ -569,6 +579,61 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <span class="cm">         para asegurarse de que todo el contenido HTML se haya cargado antes de ejecutar el JavaScript. --&gt;</span>
 </pre></div>
 </div>
+<section id="atributos-async-y-defer-en-la-etiqueta-script">
+<h3>Atributos <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code> en la Etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code><a class="headerlink" href="#atributos-async-y-defer-en-la-etiqueta-script" title="Link to this heading">#</a></h3>
+<p>A partir de HTML5, la etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> admite dos atributos, <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code>, que permiten que los scripts comiencen su descarga inmediatamente sin interrumpir el proceso de parseo del documento HTML.</p>
+<section id="async">
+<h4><code class="docutils literal notranslate"><span class="pre">async</span></code><a class="headerlink" href="#async" title="Link to this heading">#</a></h4>
+<p>El atributo <code class="docutils literal notranslate"><span class="pre">async</span></code> permite que el script se ejecute de manera asíncrona tan pronto como se haya descargado. Esto significa que:</p>
+<ul class="simple">
+<li><p>El script se descargará en paralelo con el parseo del documento.</p></li>
+<li><p>Se ejecutará tan pronto como la descarga haya terminado, sin esperar a que el documento se haya parseado por completo.</p></li>
+<li><p>Los scripts marcados con <code class="docutils literal notranslate"><span class="pre">async</span></code> pueden no ejecutarse en el orden en el que aparecen en el documento HTML, ya que la ejecución depende de cuál script se descargue primero.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span> <span class="na">async</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="defer">
+<h4><code class="docutils literal notranslate"><span class="pre">defer</span></code><a class="headerlink" href="#defer" title="Link to this heading">#</a></h4>
+<p>El atributo <code class="docutils literal notranslate"><span class="pre">defer</span></code> asegura que los scripts se ejecutarán en el orden en el que aparecen en el documento HTML. Las características de <code class="docutils literal notranslate"><span class="pre">defer</span></code> incluyen:</p>
+<ul class="simple">
+<li><p>El script se descarga en paralelo con el parseo del documento, similar a <code class="docutils literal notranslate"><span class="pre">async</span></code>.</p></li>
+<li><p>La ejecución del script se pospone hasta que el documento se haya parseado completamente.</p></li>
+<li><p>La ejecución ocurre justo antes del evento <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>, pero después de que todo el HTML haya sido procesado.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span> <span class="na">defer</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="onload-atributo">
+<h4><code class="docutils literal notranslate"><span class="pre">onload</span></code> Atributo<a class="headerlink" href="#onload-atributo" title="Link to this heading">#</a></h4>
+<p>Ambos atributos <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code> pueden combinarse con el atributo <code class="docutils literal notranslate"><span class="pre">onload</span></code> para especificar un manejador que se ejecutará una vez que el script haya sido completamente cargado. Esto proporciona una manera de realizar acciones adicionales una vez que el script está listo.</p>
+<p>Ejemplo con <code class="docutils literal notranslate"><span class="pre">async</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span> <span class="na">async</span> <span class="na">onload</span><span class="o">=</span><span class="s">&quot;scriptLoaded()&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Ejemplo con <code class="docutils literal notranslate"><span class="pre">defer</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span> <span class="na">defer</span> <span class="na">onload</span><span class="o">=</span><span class="s">&quot;scriptLoaded()&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="sin-async-ni-defer">
+<h4>Sin <code class="docutils literal notranslate"><span class="pre">async</span></code> ni <code class="docutils literal notranslate"><span class="pre">defer</span></code><a class="headerlink" href="#sin-async-ni-defer" title="Link to this heading">#</a></h4>
+<p>Si un script no tiene ninguno de estos atributos, el comportamiento por defecto es que el script se descarga y se ejecuta de manera síncrona. Esto significa que:</p>
+<ul class="simple">
+<li><p>El parseo del documento se pausa hasta que el script haya sido descargado y ejecutado completamente.</p></li>
+<li><p>Los scripts se ejecutan en el orden en que aparecen en el documento.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>En cualquier caso, salvo ocasiones específicas, suele ser más fácil añadir un sólo script, trabajar con módulos y esperar al evento <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
+</section>
+</section>
 </section>
 <section id="comprobar-que-funciona">
 <h2>Comprobar que funciona<a class="headerlink" href="#comprobar-que-funciona" title="Link to this heading">#</a></h2>
@@ -1530,6 +1595,23 @@ Soy una variable de la función padre
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">outside</span></code> retorna la función <code class="docutils literal notranslate"><span class="pre">inside</span></code>, que tiene acceso a la variable <code class="docutils literal notranslate"><span class="pre">x</span></code> de <code class="docutils literal notranslate"><span class="pre">outside</span></code>. Esto permite que <code class="docutils literal notranslate"><span class="pre">inside</span></code> use <code class="docutils literal notranslate"><span class="pre">x</span></code> incluso después de que <code class="docutils literal notranslate"><span class="pre">outside</span></code> haya terminado su ejecución.</p>
 <p>Las closures son difíciles de entender si se viene de programar con C o Java. En estos lenguajes, cualquier variable declarada dentro de una función se elimina cuando esta acaba, ya que forma parte de la pila de la función. La particularidad de Javascript es que puede retornar una función como un objeto más. Estas funciones retornadas puede que hagan uso de variables declaras en el ámbito de la función padre. En este caso, esas variables no dejarán de existir mientras se use la función retornada.</p>
+<p><strong>¿Son las Closures Realmente Útiles?</strong></p>
+<p>Las closures son una característica poderosa en JavaScript. Permiten asociar algunos datos (el entorno) con una función que opera sobre esos datos. Esto tiene claros paralelismos con la programación orientada a objetos, donde los objetos nos permiten asociar algunos datos (las propiedades del objeto) con uno o más métodos.</p>
+<p>En la web, hay situaciones comunes en las que los closures son particularmente útiles. El código JavaScript para la web está basado en eventos. De esta manera, podemos conectar un comportamiento con un evento mediante un callback. Ese call back puede tener una closure.</p>
+<p>Supongamos que queremos contar cuántas veces un usuario hace clic en un botón. Podríamos usar un closure para mantener la cuenta de los clics y asociarla a una función que maneje el evento de clic.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">createClickCounter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Este es el entorno que se asocia con la función de devolución de llamada</span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">count</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">// La función de devolución de llamada opera sobre el entorno</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Button clicked </span><span class="si">${</span><span class="nx">count</span><span class="si">}</span><span class="sb"> times`</span><span class="p">);</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;clickMe&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createClickCounter</span><span class="p">();</span><span class="w"> </span><span class="c1">// Creamos un closure</span>
+<span class="w">    </span><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleClick</span><span class="p">);</span><span class="w"> </span><span class="c1">// Adjuntamos el closure como callback</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="funciones-auto-invocadas">
@@ -2060,7 +2142,16 @@ Soy una variable de la función padre
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-async-y-defer-en-la-etiqueta-script">Atributos <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code> en la Etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#async"><code class="docutils literal notranslate"><span class="pre">async</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#defer"><code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#onload-atributo"><code class="docutils literal notranslate"><span class="pre">onload</span></code> Atributo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sin-async-ni-defer">Sin <code class="docutils literal notranslate"><span class="pre">async</span></code> ni <code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobar-que-funciona">Comprobar que funciona</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-el-codigo-javascript">Ocultar el código JavaScript</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-y-evolucion-de-javascript-y-ecmascript">Historia y evolución de JavaScript y ECMAScript</a><ul class="nav section-nav flex-column">

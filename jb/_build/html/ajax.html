@@ -410,7 +410,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-de-ajax">Beneficios de AJAX</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desafios-de-ajax">Desafíos de AJAX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-ajax">Problemas de AJAX</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apis">APIs</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-apis">Tipos de APIs</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#api-rest">API REST</a></li>
@@ -464,6 +464,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-los-datos">Tratamiento de los Datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-objetos-a-json">Convertir Objetos a JSON</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-json-a-objetos">Convertir JSON a Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-binarios-para-enviar-como-json">Conversión de binarios para enviar como JSON</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-en-el-lado-del-cliente">Almacenamiento en el Lado del Cliente</a><ul class="nav section-nav flex-column">
@@ -498,6 +499,7 @@ document.write(`
 <h1>Comunicación con el servidor<a class="headerlink" href="#comunicacion-con-el-servidor" title="Link to this heading">#</a></h1>
 <section id="ajax-en-javascript">
 <h2>AJAX en JavaScript<a class="headerlink" href="#ajax-en-javascript" title="Link to this heading">#</a></h2>
+<p><strong>Lectura recomendada:</strong> <a class="reference external" href="https://developer.mozilla.org/es/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data">https://developer.mozilla.org/es/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data</a></p>
 <p>AJAX, acrónimo de “Asynchronous JavaScript and XML”, es un conjunto de tecnologías que permite a las aplicaciones web enviar y recibir datos del servidor de manera asíncrona, sin necesidad de recargar la página completa. Esto mejora significativamente el rendimiento y la experiencia del usuario. No obstante tiene unos inconvenientes que también hay que mencionar. De esta manera, originalmente, AJAX se compone de:</p>
 <ol class="arabic simple">
 <li><p><strong>JavaScript</strong>: El lenguaje de programación que controla la interacción y el comportamiento dinámico de la página web.</p></li>
@@ -552,8 +554,8 @@ document.write(`
 <li><p><strong>Experiencia de Usuario Mejorada</strong>: Las actualizaciones dinámicas permiten una interacción más rápida y eficiente.</p></li>
 </ul>
 </section>
-<section id="desafios-de-ajax">
-<h3>Desafíos de AJAX<a class="headerlink" href="#desafios-de-ajax" title="Link to this heading">#</a></h3>
+<section id="problemas-de-ajax">
+<h3>Problemas de AJAX<a class="headerlink" href="#problemas-de-ajax" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>SEO</strong>: Las páginas que utilizan AJAX pueden ser más difíciles de indexar por los motores de búsqueda, ya que gran parte del contenido se carga de manera dinámica.</p></li>
 <li><p><strong>Complejidad en el Desarrollo</strong>: El desarrollo de aplicaciones AJAX puede ser más complicado debido a la necesidad de manejar las solicitudes asíncronas y actualizar el DOM dinámicamente.</p></li>
@@ -1016,6 +1018,14 @@ document.write(`
 </pre></div>
 </div>
 <p>Este ejemplo muestra cómo cargar una imagen en segundo plano y actualizar la fuente de una etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> con la URL del <code class="docutils literal notranslate"><span class="pre">blob</span></code> de la imagen.</p>
+<p>La función URL.createObjectURL(blob) es un método del API de URL en JavaScript que permite crear una URL temporal, de tipo “blob”, que representa un objeto de datos (Blob o File) en el navegador. Esta URL puede ser utilizada para acceder y manipular el contenido del objeto de datos como si fuera un archivo disponible en una URL normal.</p>
+<p><code class="docutils literal notranslate"><span class="pre">URL.createObjectURL(blob)</span></code> crea una URL única que representa el objeto <code class="docutils literal notranslate"><span class="pre">Blob</span></code> (o <code class="docutils literal notranslate"><span class="pre">File</span></code>). Esta URL es válida mientras el documento que la creó esté en memoria, y se puede usar como referencia al contenido del objeto de datos. La URL generada permite acceder y manipular el contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code> como si fuera un archivo remoto. La URL no requiere que los datos sean enviados a un servidor; todo se maneja localmente en el navegador. La URL generada puede ser asignada a elementos HTML, como <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;audio&gt;</span></code>, o cualquier otro elemento que acepte una URL de recursos. También se puede usar para descargar archivos, mostrar previsualizaciones, o procesar datos de archivos de manera local.</p>
+<p>Las URLs creadas con <code class="docutils literal notranslate"><span class="pre">URL.createObjectURL(blob)</span></code> ocupan recursos en el navegador. Para liberar estos recursos cuando ya no se necesite la URL, se debe llamar a <code class="docutils literal notranslate"><span class="pre">URL.revokeObjectURL(url)</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">objectURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="c1">// Usar la URL...</span>
+<span class="nx">URL</span><span class="p">.</span><span class="nx">revokeObjectURL</span><span class="p">(</span><span class="nx">objectURL</span><span class="p">);</span><span class="w"> </span><span class="c1">// Liberar la URL cuando ya no sea necesaria</span>
+</pre></div>
+</div>
 </section>
 <section id="construccion-de-urls">
 <h3>Construcción de URLs<a class="headerlink" href="#construccion-de-urls" title="Link to this heading">#</a></h3>
@@ -1158,6 +1168,40 @@ document.write(`
 <li><p><strong>Imprimimos el objeto JSON y la instancia de <code class="docutils literal notranslate"><span class="pre">Hero</span></code></strong> en la consola.</p></li>
 </ol>
 <p>El resultado en la consola mostrará el objeto plano y la instancia de <code class="docutils literal notranslate"><span class="pre">Hero</span></code> con las propiedades correspondientes.</p>
+</section>
+<section id="conversion-de-binarios-para-enviar-como-json">
+<h3>Conversión de binarios para enviar como JSON<a class="headerlink" href="#conversion-de-binarios-para-enviar-como-json" title="Link to this heading">#</a></h3>
+<p>Si se necesita enviar un binario dentro de un mensaje JSON, podemos convertirlo a Base64:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileForm&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileInput&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;loadend&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">base64String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^.+,/</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">fileName</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">fileType</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">fileData</span><span class="o">:</span><span class="w"> </span><span class="nx">base64String</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/upload-json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">)</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="almacenamiento-en-el-lado-del-cliente">
@@ -1335,7 +1379,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-de-ajax">Beneficios de AJAX</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desafios-de-ajax">Desafíos de AJAX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-ajax">Problemas de AJAX</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apis">APIs</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-apis">Tipos de APIs</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#api-rest">API REST</a></li>
@@ -1389,6 +1433,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-los-datos">Tratamiento de los Datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-objetos-a-json">Convertir Objetos a JSON</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-json-a-objetos">Convertir JSON a Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-binarios-para-enviar-como-json">Conversión de binarios para enviar como JSON</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-en-el-lado-del-cliente">Almacenamiento en el Lado del Cliente</a><ul class="nav section-nav flex-column">
