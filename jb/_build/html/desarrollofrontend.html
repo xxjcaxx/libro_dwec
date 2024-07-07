@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>La Web y el Desarrollo Web &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'desarrollofrontend';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="El lenguaje Javascript" href="lenguajejavascript.html" />
+    <link rel="prev" title="Libro DWEC" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Libro DWEC
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">La Web y el Desarrollo Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fdesarrollofrontend.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/desarrollofrontend.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>La Web y el Desarrollo Web</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-de-la-web">Componentes de la Web</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-desarrollo-web">El Desarrollo Web</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-cliente-servidor">Arquitectura Cliente - Servidor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-camino-del-frontend">El Camino del Frontend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server-side-vs-client-side">Server-side vs Client-side</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-comunes-en-server-side-y-client-side">Tareas comunes en Server-side y Client-side</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-en-el-lado-del-cliente">JavaScript en el lado del cliente</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidad-y-validacion-html">Compatibilidad y Validación HTML</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seguridad-en-javascript">Seguridad en JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entornos-de-programacion-web-para-el-cliente">Entornos de Programación Web para el Cliente</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preparar-el-entorno-de-desarrollo">Preparar el Entorno de Desarrollo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-herramientas">Otras Herramientas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-aplicaciones-web-segun-el-frontend">Tipos de Aplicaciones Web según el Frontend</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-de-las-aplicaciones-web">Evolución de las Aplicaciones Web</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-una-sola-pagina-spa">Aplicaciones de Una Sola Página (SPA)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entre-la-pagina-web-y-la-app">Entre la Página Web y la APP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-bibliotecas">Las Bibliotecas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#los-frameworks">Los Frameworks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-de-los-frameworks">Utilidad de los Frameworks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-bibliotecas-y-frameworks">Obtención de Bibliotecas y Frameworks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modas-y-tendencias">Modas y Tendencias</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poner-la-web-en-produccion">Poner la Web en Producción</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="la-web-y-el-desarrollo-web">
+<h1>La Web y el Desarrollo Web<a class="headerlink" href="#la-web-y-el-desarrollo-web" title="Link to this heading">#</a></h1>
+<p>La Web es uno de los conjuntos de protocolos más exitosos de Internet, y su creación marcó un antes y un después en la forma en que accedemos y compartimos información. Fue inventada por Tim Berners-Lee en el CERN (Organización Europea para la Investigación Nuclear) y ha evolucionado hasta convertirse en una herramienta fundamental en la vida cotidiana y profesional de millones de personas.</p>
+<p>La Web se basa en el concepto de <code class="docutils literal notranslate"><span class="pre">hipertexto</span></code>, una tecnología que permite enlazar diferentes documentos y recursos a través de enlaces o hipervínculos. Esta capacidad de enlazado es lo que permite la navegación entre diferentes páginas y sitios web.</p>
+<p>El World Wide Web Consortium (W3C) es la organización que se encarga de desarrollar estándares para la Web. Su objetivo es garantizar que la Web continúe siendo abierta, accesible y funcional para todos. Estos estándares incluyen tecnologías fundamentales como HTML, CSS y JavaScript.</p>
+<section id="componentes-de-la-web">
+<h2>Componentes de la Web<a class="headerlink" href="#componentes-de-la-web" title="Link to this heading">#</a></h2>
+<p>La Web se compone de varios elementos clave:</p>
+<ul class="simple">
+<li><p><strong>Hipertexto</strong>: Permite la creación de enlaces entre documentos.</p></li>
+<li><p><strong>Protocolo HTTP</strong>: Es el protocolo de comunicación que permite la transferencia de datos en la Web.</p></li>
+<li><p><strong>Servidores y Clientes</strong>: Los servidores alojan los sitios web y los clientes (navegadores web) los solicitan y muestran.</p></li>
+<li><p><strong>DNS (Sistema de Nombres de Dominio)</strong>: Traduce los nombres de dominio legibles por humanos (como <a class="reference external" href="http://www.ejemplo.com">www.ejemplo.com</a>) en direcciones IP que las computadoras pueden entender.</p></li>
+</ul>
+</section>
+<section id="el-desarrollo-web">
+<h2>El Desarrollo Web<a class="headerlink" href="#el-desarrollo-web" title="Link to this heading">#</a></h2>
+<p>El desarrollo web es un campo multidisciplinario que abarca varias áreas y tecnologías. A continuación, se describen las principales áreas profesionales del desarrollo web:</p>
+<p><strong>Contenido</strong></p>
+<p>El contenido se refiere a la organización, semántica, presentación y estructura de la información en la web. El lenguaje fundamental para el contenido web es HTML (HyperText Markup Language), que define la estructura y el contenido de una página web.</p>
+<p><strong>Diseño</strong></p>
+<p>El diseño se centra en el aspecto visual y los elementos gráficos de una página web. Utiliza tecnologías como CSS (Cascading Style Sheets) para definir estilos y plantillas que controlan la apariencia de las páginas.</p>
+<p><strong>Tecnología Frontend</strong></p>
+<p>Las tecnologías frontend son las que se ejecutan en el navegador del usuario y son responsables de los elementos interactivos de una página web. El principal lenguaje de programación frontend es JavaScript, que permite la creación de interfaces dinámicas y reactivas.</p>
+<p><strong>Tecnología Backend</strong></p>
+<p>El backend se encarga de la lógica del servidor, el acceso a bases de datos y el procesamiento de las solicitudes de los usuarios. Los lenguajes comunes de backend incluyen PHP, Python y Node.js, entre otros.</p>
+<p><strong>Distribución</strong></p>
+<p>La distribución se refiere a cómo se despliegan y gestionan los sitios web. Esto incluye tanto el hardware (servidores, máquinas virtuales, contenedores) como el software (servidores web como Apache, IIS y NGINX).</p>
+<p><strong>Propósito</strong></p>
+<p>Las webs se hacen para algo. Definir el propósito puede que no sea la tarea más técnica, pero son necesarios perfiles intermedios que sepan trasladar las necesidades de los clientes a los desarrolladores. O incluso inventar nuevos modelos de negocio basados en tecnologías web.</p>
+<section id="arquitectura-cliente-servidor">
+<h3>Arquitectura Cliente - Servidor<a class="headerlink" href="#arquitectura-cliente-servidor" title="Link to this heading">#</a></h3>
+<p>La arquitectura cliente-servidor es el modelo fundamental en el que se basa la Web. Se divide en dos partes principales:</p>
+<ul class="simple">
+<li><p>Server-side (Lado del servidor)</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Hardware</strong>: Incluye servidores y elementos de red, máquinas virtuales y contenedores.</p></li>
+<li><p><strong>Software</strong>: Involucra servidores web (como Apache, IIS, NGINX) y lenguajes CGI (como Perl, PHP, C). También incluye lenguajes y frameworks con servidores web integrados, como Python, Java, Node.js y C++.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Client-side (Lado del cliente)</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Clientes web</strong>: Los navegadores web como Firefox, Chrome, Vivaldi, Opera, Edge e Internet Explorer.</p></li>
+<li><p><strong>Lenguajes de marcas</strong>: HTML, XHTML, HTML5 y CSS.</p></li>
+<li><p><strong>Lenguajes de programación del entorno Cliente</strong>: Principalmente JavaScript.</p></li>
+</ul>
+</section>
+<section id="el-camino-del-frontend">
+<h3>El Camino del Frontend<a class="headerlink" href="#el-camino-del-frontend" title="Link to this heading">#</a></h3>
+<p>Para más detalles, se puede consultar <a class="reference external" href="https://roadmap.sh/frontend">The Frontend Developer Roadmap</a>.</p>
+</section>
+<section id="server-side-vs-client-side">
+<h3>Server-side vs Client-side<a class="headerlink" href="#server-side-vs-client-side" title="Link to this heading">#</a></h3>
+<p>En el desarrollo web, tanto el lado del servidor (server-side) como el lado del cliente (client-side) juegan roles cruciales. Sin embargo, muchas tareas pueden llevarse a cabo en cualquiera de los dos lados, y la elección de dónde implementar una funcionalidad específica depende de varios factores, como la tecnología adecuada para el caso o la comodidad del desarrollador con una tecnología particular.</p>
+<section id="tareas-comunes-en-server-side-y-client-side">
+<h4>Tareas comunes en Server-side y Client-side<a class="headerlink" href="#tareas-comunes-en-server-side-y-client-side" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Validar formularios</strong>: La validación puede hacerse en el cliente para mejorar la experiencia del usuario, pero debe verificarse nuevamente en el servidor por razones de seguridad.</p></li>
+<li><p><strong>Guardar datos permanentes</strong>: Generalmente se hace en el servidor utilizando bases de datos.</p></li>
+<li><p><strong>Presentación de diapositivas</strong>: Es más común en el lado del cliente, utilizando JavaScript o frameworks de frontend.</p></li>
+<li><p><strong>Eliminar un párrafo</strong>: Esta tarea se realiza típicamente en el cliente, utilizando JavaScript para modificar el DOM (Document Object Model).</p></li>
+<li><p><strong>Calcular datos</strong>: Los cálculos pueden hacerse en ambos lados, dependiendo de la naturaleza del cálculo y los requisitos de seguridad.</p></li>
+<li><p><strong>Acceder a bases de datos</strong>: Esta tarea se realiza en el servidor para mantener la seguridad y la integridad de los datos.</p></li>
+</ul>
+</section>
+</section>
+<section id="javascript-en-el-lado-del-cliente">
+<h3>JavaScript en el lado del cliente<a class="headerlink" href="#javascript-en-el-lado-del-cliente" title="Link to this heading">#</a></h3>
+<p>JavaScript es el lenguaje de programación más utilizado en el lado del cliente. Sin embargo, tiene sus limitaciones y particularidades:</p>
+<ul class="simple">
+<li><p><strong>Limitaciones de JavaScript</strong>:</p>
+<ul>
+<li><p>No puede escribir directamente en el servidor.</p></li>
+<li><p>No todos los navegadores soportan JavaScript y se puede desactivar, por lo que una página web bien diseñada debería funcionar sin él.</p></li>
+<li><p>No puede modificar preferencias del navegador, lanzar aplicaciones, leer o escribir archivos en el cliente, retransmitir streaming, enviar emails, interactuar con lenguajes de servidor, acceder a una web de un dominio diferente, proteger el origen de las imágenes, ni implementar multiprocesos.</p></li>
+</ul>
+</li>
+<li><p><strong>Tecnología asíncrona</strong>:</p>
+<ul>
+<li><p>JavaScript puede solicitar datos al servidor de forma asíncrona utilizando tecnologías como AJAX (Asynchronous JavaScript and XML).</p></li>
+</ul>
+</li>
+<li><p><strong>Usos de JavaScript</strong>:</p>
+<ul>
+<li><p>Hacer que la web reaccione a la interacción del usuario.</p></li>
+<li><p>Proporcionar una interfaz agradable para los datos.</p></li>
+<li><p>Controlar ventanas, marcos y applets en el documento HTML.</p></li>
+<li><p>Preprocesar datos antes de enviarlos al servidor.</p></li>
+<li><p>Modificar el estilo y contenido de manera dinámica en función de la interacción del usuario.</p></li>
+<li><p>Solicitar o enviar archivos al servidor.</p></li>
+</ul>
+</li>
+</ul>
+<section id="compatibilidad-y-validacion-html">
+<h4>Compatibilidad y Validación HTML<a class="headerlink" href="#compatibilidad-y-validacion-html" title="Link to this heading">#</a></h4>
+<p>Para evitar problemas de compatibilidad, es crucial que el código HTML sea válido. Se puede utilizar el validador de HTML del W3C (<a class="reference external" href="https://validator.w3.org/">https://validator.w3.org/</a>) para asegurarse de que el código cumpla con los estándares.</p>
+</section>
+<section id="seguridad-en-javascript">
+<h4>Seguridad en JavaScript<a class="headerlink" href="#seguridad-en-javascript" title="Link to this heading">#</a></h4>
+<p>JavaScript se ejecuta en un entorno seguro sin contacto directo con el sistema operativo del cliente. Implementa una “política del mismo origen”, lo que significa que solo tiene acceso a datos recibidos del mismo servidor desde el que fue cargado.</p>
+</section>
+</section>
+<section id="entornos-de-programacion-web-para-el-cliente">
+<h3>Entornos de Programación Web para el Cliente<a class="headerlink" href="#entornos-de-programacion-web-para-el-cliente" title="Link to this heading">#</a></h3>
+<p>La elección del software para el desarrollo web depende de las necesidades y la complejidad del proyecto:</p>
+<ul class="simple">
+<li><p><strong>Software para modificaciones casuales</strong>:</p>
+<ul>
+<li><p>Editores de texto ligeros y rápidos como Gedit, Nano, Notepad.</p></li>
+</ul>
+</li>
+<li><p><strong>Editores de texto avanzados</strong>:</p>
+<ul>
+<li><p>Herramientas más potentes como Sublime Text, Brackets, Jedit, Visual Studio Code, Vim.</p></li>
+</ul>
+</li>
+<li><p><strong>Entornos de Desarrollo Integrados (IDEs)</strong>:</p>
+<ul>
+<li><p>Soluciones completas como NetBeans, Eclipse, WebStorm.</p></li>
+</ul>
+</li>
+</ul>
+<section id="preparar-el-entorno-de-desarrollo">
+<h4>Preparar el Entorno de Desarrollo<a class="headerlink" href="#preparar-el-entorno-de-desarrollo" title="Link to this heading">#</a></h4>
+<p>En un entorno de desarrollo típico, como una clase de programación web, se puede utilizar Visual Studio Code con las siguientes extensiones:</p>
+<ul class="simple">
+<li><p><strong>Prettier</strong>: Para formatear archivos de manera automática, ya sea manualmente o al guardar.</p></li>
+<li><p><strong>EsLint</strong>: Ayuda a detectar errores de estilo o programación que JavaScript no puede detectar por sí mismo (requiere instalar eslint en el proyecto).</p></li>
+<li><p><strong>Live Server</strong>: Para probar la web en un servidor local de manera rápida y sencilla.</p></li>
+</ul>
+</section>
+<section id="otras-herramientas">
+<h4>Otras Herramientas<a class="headerlink" href="#otras-herramientas" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Tecla F12 en los navegadores</strong>: Accede a las herramientas de desarrollo del navegador.</p></li>
+<li><p><strong>Firefox Developer Edition</strong>: Una versión del navegador Firefox con herramientas avanzadas para desarrolladores web.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="tipos-de-aplicaciones-web-segun-el-frontend">
+<h2>Tipos de Aplicaciones Web según el Frontend<a class="headerlink" href="#tipos-de-aplicaciones-web-segun-el-frontend" title="Link to this heading">#</a></h2>
+<p>El desarrollo de aplicaciones web ha evolucionado significativamente con el tiempo, y hoy en día existen diversas maneras de abordar el frontend. A continuación, exploraremos los diferentes tipos de aplicaciones web según las tecnologías de frontend que se utilicen, así como la evolución de las mismas.</p>
+<ol class="arabic simple">
+<li><p><strong>Con JavaScript ‘Vanilla’</strong>: Se refiere a la utilización de JavaScript puro sin ninguna biblioteca o framework adicional. Es una manera directa y eficiente de programar cuando se trata de aplicaciones pequeñas y sencillas.</p></li>
+<li><p><strong>Con Bibliotecas</strong>:</p>
+<ul class="simple">
+<li><p><strong>JQuery</strong>: Facilita la manipulación del DOM, eventos y AJAX.</p></li>
+<li><p><strong>Prototype</strong>: Simplifica las tareas de programación orientada a objetos en JavaScript.</p></li>
+<li><p><strong>D3.js</strong>: Se utiliza para crear visualizaciones de datos.</p></li>
+<li><p><strong>Bootstrap</strong>: Biblioteca de CSS y JavaScript para diseño responsivo.</p></li>
+<li><p><strong>Vue.js</strong>: Ofrece una manera progresiva de construir interfaces de usuario.</p></li>
+<li><p><strong>React</strong>: Biblioteca para construir interfaces de usuario, principalmente en aplicaciones de una sola página.</p></li>
+</ul>
+</li>
+<li><p><strong>Con Frameworks</strong>:</p>
+<ul class="simple">
+<li><p><strong>Angular</strong>: Framework de JavaScript de Google para construir aplicaciones dinámicas de una sola página.</p></li>
+<li><p><strong>React</strong>: Aunque es una biblioteca, también se utiliza como framework cuando se combina con otras herramientas.</p></li>
+<li><p><strong>Vue.js</strong>: Al igual que React, puede considerarse un framework cuando se utiliza en proyectos más grandes.</p></li>
+<li><p><strong>Phaser</strong>: Framework para el desarrollo de juegos en HTML5.</p></li>
+</ul>
+</li>
+<li><p><strong>Con Frameworks Full Stack</strong>:</p>
+<ul class="simple">
+<li><p><strong>Odoo</strong>: Plataforma de código abierto que proporciona un conjunto completo de aplicaciones empresariales.</p></li>
+<li><p><strong>Blitz</strong>: Framework de React basado en Next.js para aplicaciones de pila completa.</p></li>
+<li><p><strong>Next.js</strong>: Framework de React para aplicaciones de servidor y cliente.</p></li>
+<li><p><strong>SvelteKit</strong>: Framework para construir aplicaciones rápidas y modernas.</p></li>
+</ul>
+</li>
+</ol>
+<section id="evolucion-de-las-aplicaciones-web">
+<h3>Evolución de las Aplicaciones Web<a class="headerlink" href="#evolucion-de-las-aplicaciones-web" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Páginas Web Estáticas</strong>: Las primeras aplicaciones web eran simples páginas estáticas con hipervínculos.</p></li>
+<li><p><strong>Páginas Web Generadas por el Servidor</strong>: Con el tiempo, se introdujo un poco de JavaScript para mejorar la interacción.</p></li>
+<li><p><strong>Single Page Application (SPA)</strong>: Las aplicaciones de una sola página se comunican con el servidor usando JSON o XML, proporcionando una experiencia más fluida.</p></li>
+<li><p><strong>Introducción de AJAX</strong>: Permite cargar o subir datos al servidor de manera asíncrona, mejorando la interactividad sin recargar la página.</p></li>
+</ol>
+<blockquote>
+<div><p>En la actualidad se pueden hacer páginas web de muchas maneras. En este libro, hacia el final, nos enfocamos más en imitar a los frameworks actuales, que suelen estar pensados para SPA con una API. No obstante, se pueden hacer páginas sólo con HTML estático, o generado una vez a partir de Markdown, como este mismo libro (Jekyll, Jupyter Books…), también se puede generar el HTML con PHP, Node, Java… O se puede tener un CMS como Wordpress y programar plugins. Se puede tener un CMS Headless o generada mediante Micro-Frontends. O aplicaciones progresivas PWA o Híbridas con Ionic y Cordova. Respecto a cómo servirlas, tenemos los hostings y servidores tradicionales o “Serverless”, plataformas “Low Code”… La lista no acaba y cada una de estas ideas tiene muchas más opciones.</p>
+</div></blockquote>
+<section id="aplicaciones-de-una-sola-pagina-spa">
+<h4>Aplicaciones de Una Sola Página (SPA)<a class="headerlink" href="#aplicaciones-de-una-sola-pagina-spa" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>SPA como sobreingeniería</strong>: En muchos casos, utilizar SPA puede complicar innecesariamente el desarrollo web. A continuación veremos la justificación para hacer web de esta manera.</p></li>
+<li><p><strong>Frecuencia de uso</strong>: Es importante considerar si la aplicación será utilizada constantemente o esporádicamente. Una aplicación web utilizada esporádicamente no debe ser muy pesada y es mejor que sea generada por el servidor o estática para mejorar el SEO. Si embargo, una aplicación web que el cliente mantiene siempre abierta, puede ser más agradable de usar si es una SPA.</p></li>
+<li><p><strong>Servidor vs Cliente</strong>: Crear el HTML y el estilo en el servidor puede ser menos complicado, pero en aplicaciones grandes, puede sobrecargar el servidor y dificultar la separación de la vista del modelo y controlador.</p></li>
+<li><p><strong>SPA en nuestro módulo</strong>: Optaremos por una SPA debido a que es más adecuado para el módulo que estamos desarrollando. Una SPA requiere saber construir elementos del DOM, comunicarse con el servidor mediante peticiones asíncronas con Javascript y manejar los eventos y la reactividad. Por tanto es la escusa perfecta para impartir nuestros contenidos.</p></li>
+</ul>
+</section>
+</section>
+<section id="entre-la-pagina-web-y-la-app">
+<h3>Entre la Página Web y la APP<a class="headerlink" href="#entre-la-pagina-web-y-la-app" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Páginas Web</strong>: Contenido estático y dinámico accesible a través de navegadores.</p></li>
+<li><p><strong>Aplicaciones Web</strong>: Pueden ser SPA o no.</p></li>
+<li><p><strong>Aplicaciones Web Responsivas</strong>: Diseñadas para adaptarse a diferentes dispositivos.</p></li>
+<li><p><strong>PWA (Progressive Web App)</strong>: Combinan lo mejor de las páginas web y las aplicaciones móviles.</p></li>
+<li><p><strong>Apps Híbridas</strong>: Utilizan frameworks como Ionic para funcionar en múltiples plataformas.</p></li>
+<li><p><strong>Apps Quasi Nativas</strong>: Utilizan tecnologías como React Native o Flutter para acercarse al rendimiento de las aplicaciones nativas.</p></li>
+</ol>
+</section>
+<section id="las-bibliotecas">
+<h3>Las Bibliotecas<a class="headerlink" href="#las-bibliotecas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Funcionalidades</strong>: Aportan funcionalidades específicas al lenguaje de programación.</p></li>
+<li><p><strong>Flexibilidad</strong>: No obligan a cambiar la manera de programar.</p></li>
+<li><p><strong>Simplificación</strong>: Facilitan la programación de tareas concretas.</p></li>
+<li><p><strong>Desventajas</strong>: Pueden crear dependencia en el programador.</p></li>
+<li><p><strong>Reemplazo</strong>: Algunas bibliotecas, como Underscore, Lodash o JQuery, han perdido relevancia con la introducción de ES6.</p></li>
+</ul>
+</section>
+<section id="los-frameworks">
+<h3>Los Frameworks<a class="headerlink" href="#los-frameworks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Modificación</strong>: Cambian completamente la manera de programar.</p></li>
+<li><p><strong>Integración</strong>: Se encargan de plantillas, comunicaciones, enrutamientos, componentes, módulos, etc.</p></li>
+<li><p><strong>Curva de aprendizaje</strong>: Son complejos de aprender.</p></li>
+<li><p><strong>Eficiencia</strong>: Una vez dominados, hacen la programación más ágil y correcta.</p></li>
+<li><p><strong>Inercia</strong>: Pueden dificultar el cambio a otro framework.</p></li>
+<li><p><strong>Obsolescencia</strong>: Si el framework queda obsoleto, la web también.</p></li>
+</ul>
+<section id="utilidad-de-los-frameworks">
+<h4>Utilidad de los Frameworks<a class="headerlink" href="#utilidad-de-los-frameworks" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Aplicaciones específicas</strong>: Son útiles si se desarrollan para una aplicación en particular.</p></li>
+<li><p><strong>Estándares</strong>: Son valiosos si permiten exportar componentes.</p></li>
+<li><p><strong>Valor añadido</strong>: Deben aportar algo único.</p></li>
+<li><p><strong>Aplicaciones no críticas</strong>: Son ideales para aplicaciones que no son críticas.</p></li>
+</ul>
+</section>
+<section id="obtencion-de-bibliotecas-y-frameworks">
+<h4>Obtención de Bibliotecas y Frameworks<a class="headerlink" href="#obtencion-de-bibliotecas-y-frameworks" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Descarga directa</strong>: Descargar un archivo .js o un directorio comprimido de la web oficial y copiarlo al proyecto.</p></li>
+<li><p><strong>CDN</strong>: Utilizar un CDN directamente desde la web oficial.</p></li>
+<li><p><strong>Gestores de paquetes</strong>: Utilizar NPM o Yarn para gestionar dependencias.</p></li>
+</ul>
+</section>
+<section id="modas-y-tendencias">
+<h4>Modas y Tendencias<a class="headerlink" href="#modas-y-tendencias" title="Link to this heading">#</a></h4>
+<p>Las redes sociales están llenas de gente intentando vender su curso. En el mundo profesional hay mucha más gente trabajando silenciosa y eficazmente en productos de calidad y duraderos. Aunque los primeros tengan algo de razón en decir que PHP, JQuery o otros están obsoletos, el mundo laboral a veces dice lo contrario. Es necesario tomar cierta distancia para elegir la mejor tecnología para cada ocasión. (<a class="reference external" href="https://www.bitecode.dev/p/hype-cycles">https://www.bitecode.dev/p/hype-cycles</a>)</p>
+</section>
+</section>
+<section id="poner-la-web-en-produccion">
+<h3>Poner la Web en Producción<a class="headerlink" href="#poner-la-web-en-produccion" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Método tradicional</strong>: Copiar todo el contenido de las carpetas al servidor alrededor del archivo index.html.</p></li>
+<li><p><strong>JavaScript Build Tool</strong>: Utilizar herramientas que compilan el código fuente, lo minifican, unifican, optimizan y comprimen para mejorar la velocidad de carga y evitar incompatibilidades entre navegadores.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Libro DWEC</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lenguajejavascript.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">El lenguaje Javascript</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-de-la-web">Componentes de la Web</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-desarrollo-web">El Desarrollo Web</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-cliente-servidor">Arquitectura Cliente - Servidor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-camino-del-frontend">El Camino del Frontend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server-side-vs-client-side">Server-side vs Client-side</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-comunes-en-server-side-y-client-side">Tareas comunes en Server-side y Client-side</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-en-el-lado-del-cliente">JavaScript en el lado del cliente</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidad-y-validacion-html">Compatibilidad y Validación HTML</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seguridad-en-javascript">Seguridad en JavaScript</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entornos-de-programacion-web-para-el-cliente">Entornos de Programación Web para el Cliente</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preparar-el-entorno-de-desarrollo">Preparar el Entorno de Desarrollo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-herramientas">Otras Herramientas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-aplicaciones-web-segun-el-frontend">Tipos de Aplicaciones Web según el Frontend</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-de-las-aplicaciones-web">Evolución de las Aplicaciones Web</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-una-sola-pagina-spa">Aplicaciones de Una Sola Página (SPA)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entre-la-pagina-web-y-la-app">Entre la Página Web y la APP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-bibliotecas">Las Bibliotecas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#los-frameworks">Los Frameworks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-de-los-frameworks">Utilidad de los Frameworks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-bibliotecas-y-frameworks">Obtención de Bibliotecas y Frameworks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modas-y-tendencias">Modas y Tendencias</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poner-la-web-en-produccion">Poner la Web en Producción</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

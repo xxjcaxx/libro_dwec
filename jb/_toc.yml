@@ -6,6 +6,7 @@ root: intro
 parts:
   - caption: Javascript
     chapters:
+    - file: desarrollofrontend
     - file: lenguajejavascript
     - file: arraysobjetosclases
     - file: dom
