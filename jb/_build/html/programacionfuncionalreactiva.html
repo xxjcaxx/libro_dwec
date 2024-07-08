@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gestión de Errores" href="errores.html" />
-    <link rel="prev" title="tests" href="tests.html" />
+    <link rel="prev" title="Tests" href="tests.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,6 +182,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -191,7 +192,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
@@ -421,7 +422,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formas-de-declarar-funciones">Formas de Declarar Funciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-orden-superior">Funciones de Orden Superior</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-map">Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-map-filter-y-reduce">Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-encadenados">Métodos Encadenados</a></li>
@@ -438,30 +439,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-operator">Pipeline Operator</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajar-con-arrays">Trabajar con Arrays</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-metodos-de-arrays">Ejemplos de Métodos de Arrays</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-y-tuplas">Records y Tuplas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-decorador">Ejemplo de Decorador</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-grandes-funcionales">Proyectos Grandes Funcionales</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-para-proyectos-grandes">Consideraciones para Proyectos Grandes</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-la-programacion-funcional">Problemas de la Programación Funcional</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-grandes-funcionales">Proyectos Grandes Funcionales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-la-programacion-funcional">Problemas de la Programación Funcional</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-reactiva">Programación Reactiva</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-asincrona">Programación Asíncrona</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Programación Reactiva</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pensar-en-reactivo">Pensar en “Reactivo”</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-reactivo">Paradigma Reactivo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-aplicaciones-web-reactivas">Ejemplos de Aplicaciones Web Reactivas</a></li>
 </ul>
@@ -583,11 +573,11 @@ document.write(`
 </ul>
 <p>Es un paradigma, una manera de pensar y escribir código que busca reducir la programación imperativa y la programación orientada a objetos (POO).</p>
 <blockquote>
-<div><p>No es obligatorio seguir absolutamente todos los principios de la programación funcional para programar bien en Javascript. Pero es interesante conocer los principios básicos para mejorar la calidad de código. La immutabilidad y las funciones puras siempre que se puedan aplicar son beneficiosas y permiten hacer programas más fáciles de mantener. No obstante, obsesionarse por la pureza de la programación funcional puede retrasar la programación o, incluso, hacer el código más difícil de leer.</p>
+<div><p>No es obligatorio seguir absolutamente todos los principios de la programación funcional para programar bien en Javascript. Pero es interesante conocer los principios básicos para mejorar la calidad de código. La immutabilidad y las funciones puras siempre que se puedan aplicar son beneficiosas y permiten hacer programas más fáciles de mantener. No obstante, obsesionarse por la pureza de la programación funcional puede retrasar la programación, utilizar más recursos del ordenador o, incluso, hacer el código más difícil de leer.</p>
 </div></blockquote>
 <section id="inmutabilidad">
 <h2>Inmutabilidad<a class="headerlink" href="#inmutabilidad" title="Link to this heading">#</a></h2>
-<p>La inmutabilidad es un principio clave en la programación funcional que implica que los datos no pueden ser modificados una vez creados. Esto ayuda a evitar errores y a mantener el código más predecible.</p>
+<p>La inmutabilidad es un principio clave en la programación funcional que implica que los datos no pueden ser modificados una vez creados. Esto ayuda a evitar errores y a mantener el código más predecible. La inmutabilidad total es imposible en cualquier programa que queremos que haga algo con los datos, pero debe ser controlada y acotada. Sobretodo nos preocuparemos de la mutabilidad del <strong>Estado</strong> de la aplicación.</p>
 <section id="ejemplo-de-mutacion">
 <h3>Ejemplo de Mutación<a class="headerlink" href="#ejemplo-de-mutacion" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -655,10 +645,9 @@ document.write(`
 <li><p><strong>KISS</strong></p></li>
 <li><p><strong>DRY</strong></p></li>
 <li><p><strong>Trabajan sobre datos inmutables</strong></p></li>
-<li><p><strong>Pueden ser “meonizadas”</strong>: Si la función se llama nuevamente con los mismos argumentos, se puede devolver el resultado almacenado en lugar de volver a ejecutar toda la función.</p></li>
 <li><p><strong>Expresan sus dependencias</strong></p></li>
 <li><p><strong>Son testables</strong></p></li>
-<li><p><strong>Transparencia referencial</strong></p></li>
+<li><p><strong>Transparencia referencial</strong>: Una función siempre producirá el mismo resultado dado los mismos argumentos, sin causar efectos secundarios, lo que permite que cualquier expresión con la función pueda ser reemplazada por su valor de resultado sin alterar el comportamiento del programa. Sustituir la llamada a una función por su resultado almacenado en “caché” se llama <code class="docutils literal notranslate"><span class="pre">meonizar</span></code>.</p></li>
 </ul>
 <p>Además de estas condiciones, también es aconsejable seguir estas consideraciones:</p>
 <ul class="simple">
@@ -804,21 +793,40 @@ document.write(`
 Estas son las más importantes y forman parte de los fundamentos de la programación funcional. Estas funciones forman parte del objeto Array.</p>
 <p>Podemos hacer nuestras funciones de órden superior.</p>
 <p>Otras funciones de los objetos Array, algunas no totalmente funcionales, también son de órden superior y muy útiles: <code class="docutils literal notranslate"><span class="pre">forEach</span></code>, <code class="docutils literal notranslate"><span class="pre">some</span></code>, <code class="docutils literal notranslate"><span class="pre">every</span></code>, <code class="docutils literal notranslate"><span class="pre">find</span></code>, <code class="docutils literal notranslate"><span class="pre">findIndex</span></code>, <code class="docutils literal notranslate"><span class="pre">flatMap</span></code>, <code class="docutils literal notranslate"><span class="pre">reduceRight</span></code>…</p>
-<section id="ejemplo-de-map">
-<h3>Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code><a class="headerlink" href="#ejemplo-de-map" title="Link to this heading">#</a></h3>
+<section id="ejemplo-de-map-filter-y-reduce">
+<h3>Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code><a class="headerlink" href="#ejemplo-de-map-filter-y-reduce" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">dobles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dobles</span><span class="p">);</span>
-<span class="c1">// Salida: [2, 4, 6, 8]</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">dobles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dobles</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Salida: [2, 4, 6, 8]</span>
 <span class="p">})();</span>
+<span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">pares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pares</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Salida: [2, 4]</span>
+<span class="p">})();</span>
+<span class="w">  </span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">acc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">suma</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Salida: 10</span>
+<span class="p">})();</span>
+<span class="w">  </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">4</span>, <span class=" -Color -Color-Yellow">6</span>, <span class=" -Color -Color-Yellow">8</span> ]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">4</span> ]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">10</span>
 </pre></div>
 </div>
 </div>
@@ -1017,73 +1025,6 @@ El pasar funciones como referencia a otras es llamado por algunos como <code cla
 </div></blockquote>
 </section>
 </section>
-<section id="trabajar-con-arrays">
-<h2>Trabajar con Arrays<a class="headerlink" href="#trabajar-con-arrays" title="Link to this heading">#</a></h2>
-<p>El trabajo con arrays es fundamental en la programación funcional. Métodos como <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, y <code class="docutils literal notranslate"><span class="pre">reduce</span></code> son esenciales.</p>
-<section id="ejemplos-de-metodos-de-arrays">
-<h3>Ejemplos de Métodos de Arrays<a class="headerlink" href="#ejemplos-de-metodos-de-arrays" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Map</strong>:</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">dobles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dobles</span><span class="p">);</span><span class="w"> </span>
-<span class="w">  </span><span class="c1">// Salida: [2, 4, 6]</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">4</span>, <span class=" -Color -Color-Yellow">6</span> ]
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p><strong>Filter</strong>:</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">pares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pares</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Salida: [2, 4]</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">4</span> ]
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p><strong>Reduce</strong>:</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">acc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">suma</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Salida: 10</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">10</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
 <section id="records-y-tuplas">
 <h2>Records y Tuplas<a class="headerlink" href="#records-y-tuplas" title="Link to this heading">#</a></h2>
 <p>A partir de 2024, JavaScript ha incorporado Records y Tuples, que son estructuras de datos inmutables similares a los objetos y arrays respectivamente.
@@ -1129,32 +1070,30 @@ Las tuplas y records se pueden comparar directamente.</p>
 </div>
 </section>
 </section>
+</section>
 <section id="proyectos-grandes-funcionales">
-<h3>Proyectos Grandes Funcionales<a class="headerlink" href="#proyectos-grandes-funcionales" title="Link to this heading">#</a></h3>
-<p>En proyectos grandes, es difícil mantener todas las funciones puras y evitar la mutabilidad completamente. Sin embargo, la programación funcional ofrece herramientas y técnicas que facilitan la gestión del estado global, la navegación y las peticiones a la API.</p>
-<section id="consideraciones-para-proyectos-grandes">
-<h4>Consideraciones para Proyectos Grandes<a class="headerlink" href="#consideraciones-para-proyectos-grandes" title="Link to this heading">#</a></h4>
+<h2>Proyectos Grandes Funcionales<a class="headerlink" href="#proyectos-grandes-funcionales" title="Link to this heading">#</a></h2>
+<p>En proyectos grandes, es difícil mantener todas las funciones puras y evitar la mutabilidad completamente. Si se requiere trabajar con el paradigma funcional, hay que pensar en cómo hacer funcionalmente:</p>
 <ul class="simple">
-<li><p><strong>Gestión de Peticiones a la API</strong>: Usar técnicas funcionales para manejar peticiones asincrónicas.</p></li>
+<li><p><strong>Gestión de Peticiones a la API</strong>: Las peticiones son por naturaleza impuras, por lo que hay que acotarlas.</p></li>
 <li><p><strong>Gestión del Estado Global</strong>: Utilizar librerías como Redux que están diseñadas con principios funcionales.</p></li>
-<li><p><strong>Gestión de la Navegación</strong>: Aplicar patrones funcionales para manejar la navegación en aplicaciones SPA (Single Page Application).</p></li>
+<li><p><strong>Gestión de la Navegación</strong>: Aplicar patrones funcionales para manejar la navegación en aplicaciones SPA (Single Page Application). Toda función que manipula el DOM es impura y tienden a hacer maś de una cosa al mismo tiempo. Este apartado suele ser el más difícil de hacer con PF y, por tanto, el que requiere más atención a los principios.</p></li>
 </ul>
 </section>
-</section>
 <section id="problemas-de-la-programacion-funcional">
-<h3>Problemas de la Programación Funcional<a class="headerlink" href="#problemas-de-la-programacion-funcional" title="Link to this heading">#</a></h3>
-<p>Aunque la programación funcional tiene muchas ventajas, también presenta algunos desafíos:</p>
+<h2>Problemas de la Programación Funcional<a class="headerlink" href="#problemas-de-la-programacion-funcional" title="Link to this heading">#</a></h2>
+<p>Aunque la programación funcional tiene muchas ventajas, también presenta algunos problemas:</p>
 <ul class="simple">
 <li><p><strong>Complejidad</strong>: Puede ser difícil de entender y aplicar correctamente, especialmente para desarrolladores que no están familiarizados con el paradigma.</p></li>
-<li><p><strong>Rendimiento</strong>: La inmutabilidad y la creación de nuevas estructuras de datos pueden ser menos eficientes en términos de memoria y tiempo de ejecución.</p></li>
+<li><p><strong>Rendimiento</strong>: La inmutabilidad y la creación de nuevas estructuras de datos pueden ser menos eficientes en términos de memoria y tiempo de ejecución. Hay que tener en cuenta que cada copia de arrays y objetos que hagamos permanece en memoria y hacer la copia tiene un coste computacional. Podemos confiar cierta optimización a los motores modernos de Javascript, por lo que muchas veces es mejor programar cómodo y seguro que óptimo.</p></li>
 <li><p><strong>Compatibilidad</strong>: No todos los frameworks o librerías están diseñados con principios funcionales en mente.</p></li>
 <li><p><strong>Concurrencia</strong>: La programación funcional puede ser menos intuitiva para manejar concurrencia en comparación con otros paradigmas.</p></li>
 </ul>
 </section>
 </section>
-</section>
 <section id="programacion-reactiva">
 <h1>Programación Reactiva<a class="headerlink" href="#programacion-reactiva" title="Link to this heading">#</a></h1>
+<p>La programación reactiva se basa en la idea de tener una interfaz que responde a cambios en el estado. Por ejemplo, si cambia el estado de una variable, la interfaz se renderiza nuevamente para reflejar este cambio. Implementar esto en JavaScript puro puede ser complicado, pero no imposible. Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
 <section id="programacion-asincrona">
 <h2>Programación Asíncrona<a class="headerlink" href="#programacion-asincrona" title="Link to this heading">#</a></h2>
 <p>Cualquier llamada a una API del navegador, como <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">fetch</span></code>, o <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code>, se ejecuta de manera asíncrona. Para manejar esta asincronía, se pueden utilizar tres técnicas principales:</p>
@@ -1162,13 +1101,11 @@ Las tuplas y records se pueden comparar directamente.</p>
 <li><p><strong>Callbacks</strong>: Una función se pasa como argumento a otra función y se ejecuta después de que la operación asíncrona se completa.</p></li>
 <li><p><strong>Promesas</strong>: Objetos que representan la eventual finalización (o falla) de una operación asíncrona y su valor resultante.</p></li>
 <li><p><strong>Async/Await</strong>: Sintaxis más reciente que permite escribir código asíncrono de manera más síncrona y legible.</p></li>
+<li><p><strong>Observables</strong>: En este caso necesitamos la librería <code class="docutils literal notranslate"><span class="pre">RxJs</span></code>, pero la sintaxis suele ser mucho más legible para situaciones complejas.</p></li>
 </ol>
 </section>
-<section id="id1">
-<h2>Programación Reactiva<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>La programación reactiva se basa en la idea de tener una interfaz que responde a cambios en el estado. Por ejemplo, si cambia el estado de una variable, la interfaz se renderiza nuevamente para reflejar este cambio. Implementar esto en JavaScript puro puede ser complicado, pero no imposible. Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
-<section id="pensar-en-reactivo">
-<h3>Pensar en “Reactivo”<a class="headerlink" href="#pensar-en-reactivo" title="Link to this heading">#</a></h3>
+<section id="paradigma-reactivo">
+<h2>Paradigma Reactivo<a class="headerlink" href="#paradigma-reactivo" title="Link to this heading">#</a></h2>
 <p>Cuando programamos de manera tradicional, utilizamos paradigmas imperativos, estructurados y orientados a objetos. Con la programación reactiva, aprovechamos técnicas de programación asíncrona y funcional para cambiar nuestra manera de pensar. Se trata de programar con flujos de datos asíncronos.</p>
 <p>Lecturas recomendadas:</p>
 <ul class="simple">
@@ -1176,10 +1113,6 @@ Las tuplas y records se pueden comparar directamente.</p>
 <li><p><a class="reference external" href="https://www.reactivemanifesto.org/">https://www.reactivemanifesto.org/</a></p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Reactive_programming">https://en.wikipedia.org/wiki/Reactive_programming</a></p></li>
 </ul>
-</section>
-</section>
-<section id="paradigma-reactivo">
-<h2>Paradigma Reactivo<a class="headerlink" href="#paradigma-reactivo" title="Link to this heading">#</a></h2>
 <p>En la programación reactiva, todo se convierte en asíncrono: variables, propiedades, estructuras de datos, entrada del usuario, etc. Utilizamos herramientas para crear, combinar y filtrar estos flujos de datos, conocidos como streams.</p>
 <section id="ejemplos-de-aplicaciones-web-reactivas">
 <h3>Ejemplos de Aplicaciones Web Reactivas<a class="headerlink" href="#ejemplos-de-aplicaciones-web-reactivas" title="Link to this heading">#</a></h3>
@@ -2160,7 +2093,7 @@ Las tuplas y records se pueden comparar directamente.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">tests</p>
+        <p class="prev-next-title">Tests</p>
       </div>
     </a>
     <a class="right-next"
@@ -2205,7 +2138,7 @@ Las tuplas y records se pueden comparar directamente.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formas-de-declarar-funciones">Formas de Declarar Funciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-orden-superior">Funciones de Orden Superior</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-map">Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-map-filter-y-reduce">Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-encadenados">Métodos Encadenados</a></li>
@@ -2222,30 +2155,19 @@ Las tuplas y records se pueden comparar directamente.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-operator">Pipeline Operator</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajar-con-arrays">Trabajar con Arrays</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-metodos-de-arrays">Ejemplos de Métodos de Arrays</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-y-tuplas">Records y Tuplas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-decorador">Ejemplo de Decorador</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-grandes-funcionales">Proyectos Grandes Funcionales</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-para-proyectos-grandes">Consideraciones para Proyectos Grandes</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-la-programacion-funcional">Problemas de la Programación Funcional</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-grandes-funcionales">Proyectos Grandes Funcionales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-la-programacion-funcional">Problemas de la Programación Funcional</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-reactiva">Programación Reactiva</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-asincrona">Programación Asíncrona</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Programación Reactiva</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pensar-en-reactivo">Pensar en “Reactivo”</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-reactivo">Paradigma Reactivo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-aplicaciones-web-reactivas">Ejemplos de Aplicaciones Web Reactivas</a></li>
 </ul>

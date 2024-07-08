@@ -182,6 +182,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -191,7 +192,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
@@ -446,7 +447,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-y-copia-de-objetos-en-javascript">Manipulación y Copia de Objetos en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-y-copia-de-objetos">Manipulación y Copia de Objetos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copia-de-objetos">Copia de Objetos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copia-superficial-con-spreading">Copia Superficial con Spreading</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-del-operador-rest">Uso del Operador Rest</a></li>
@@ -524,7 +525,7 @@ document.write(`
 </div>
 <section id="metodos-y-propiedades-de-los-arrays">
 <h3>Métodos y Propiedades de los Arrays<a class="headerlink" href="#metodos-y-propiedades-de-los-arrays" title="Link to this heading">#</a></h3>
-<p>Los arrays en JavaScript tienen varias propiedades y métodos interesantes que facilitan su manipulación. Entre otros:</p>
+<p>Los arrays en JavaScript tienen varias propiedades y métodos interesantes que facilitan su manipulación. A lo largo de este capítulo y en el de programación funcional iremos viendo algunos de ellos. Entre otros:</p>
 <ul class="simple">
 <li><p><strong>length</strong>: Devuelve el número de elementos en el array.</p></li>
 <li><p><strong>sort()</strong>: Ordena los elementos del array.</p></li>
@@ -583,7 +584,11 @@ document.write(`
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>La mejor manera de recorrer los arrays depende de la necesidad. En el primer caso, la sintaxis típica de C, creamos una variable de control del bucle que puede ser útil dentro del bucle. Si es necesaria esa variable o queremos alterar las iteraciones en función de esa variable, puede ser la mejor opción. El caso de <strong>for..of</strong> es uno de los más sencillos, ya que no necesitamos la variable de control y sigue siendo ámbito de bloque. Esta sería la mejor opción en casi todos los casos en los que necesitamos recorrer un array completamente y en órden. <strong>forEach</strong> es como el anterior, pero en este caso creamos una función de callback. Una ventaja es que esta función también acepta el índice y el array. Puede ser útil en programación funcional cuando tenemos una función que ejecutar para cada elemento. El problema es que tiene ámbito de función y podemos tener problemas con el <strong>this</strong> si no usamos correctamente las funciones flecha. El <strong>map</strong> solo se debería usar para retornar una copia modificada del array, como veremos más adelante.</p>
+<p>La mejor manera de recorrer los arrays depende de la necesidad:</p>
+<p>En el primer caso, la sintaxis típica de C, creamos una variable de control del bucle que puede ser útil dentro del bucle. Si es necesaria esa variable o queremos alterar las iteraciones en función de esa variable, puede ser la mejor opción. Se puede detener fácilmente alterando el índice o con <code class="docutils literal notranslate"><span class="pre">break</span></code>.</p>
+<p>El caso de <strong>for..of</strong> es uno de los más sencillos, ya que no necesitamos la variable de control y sigue siendo ámbito de bloque. Esta sería la mejor opción en casi todos los casos en los que necesitamos recorrer un array completamente y en orden. Se puede detener con <code class="docutils literal notranslate"><span class="pre">break</span></code> y no tiene acceso al índice.</p>
+<p><strong>forEach(callback, thisArg)</strong> es como el anterior, pero en este caso creamos una función de callback. Una ventaja es que esta función también acepta el índice y el array. Puede ser útil en programación funcional cuando tenemos una función que ejecutar para cada elemento. El problema es que al pasar una función como callback, el ámbito de la función pasa a ser indefinido y podemos tener problemas con el <code class="docutils literal notranslate"><span class="pre">this</span></code> (<code class="docutils literal notranslate"><span class="pre">this</span></code>no es el array, sino el ámbito en el que se ejecuta, que puede ser un objeto, <code class="docutils literal notranslate"><span class="pre">Window</span></code>, <code class="docutils literal notranslate"><span class="pre">Global</span></code> o <code class="docutils literal notranslate"><span class="pre">undefined</span></code> en modo estricto). Si queremos un ámbito concreto para las funciones de callback se puede usar el argumento <code class="docutils literal notranslate"><span class="pre">thisArg</span></code>. No se puede detener. Normalmente si queremos que se detenga podemos usar <code class="docutils literal notranslate"><span class="pre">.every()</span></code> o <code class="docutils literal notranslate"><span class="pre">.some()</span></code>.</p>
+<p>El <strong>map</strong> solo se debería usar para retornar una copia modificada del array, como veremos más adelante. Tampoco se puede detener.</p>
 </section>
 <section id="busqueda-en-arrays">
 <h3>Búsqueda en Arrays<a class="headerlink" href="#busqueda-en-arrays" title="Link to this heading">#</a></h3>
@@ -842,6 +847,9 @@ document.write(`
 <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;blabla&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span><span class="w"> </span><span class="c1">// false, user.blabla doesn&#39;t exist</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>Además de for..in, podemos usar las funciones estáticas del objeto Object como <code class="docutils literal notranslate"><span class="pre">Object.values()</span></code>, <code class="docutils literal notranslate"><span class="pre">Object.keys()</span></code> o <code class="docutils literal notranslate"><span class="pre">Object.entries()</span></code> para convertirlo en un array e iterar con <code class="docutils literal notranslate"><span class="pre">for..of</span></code>, <code class="docutils literal notranslate"><span class="pre">.map()</span></code>, <code class="docutils literal notranslate"><span class="pre">.forEach()</span></code>…</p>
+</div></blockquote>
 </section>
 <section id="objetos-predefinidos-en-javascript">
 <h3>Objetos Predefinidos en JavaScript<a class="headerlink" href="#objetos-predefinidos-en-javascript" title="Link to this heading">#</a></h3>
@@ -1246,8 +1254,8 @@ document.write(`
 </section>
 </section>
 </section>
-<section id="manipulacion-y-copia-de-objetos-en-javascript">
-<h2>Manipulación y Copia de Objetos en JavaScript<a class="headerlink" href="#manipulacion-y-copia-de-objetos-en-javascript" title="Link to this heading">#</a></h2>
+<section id="manipulacion-y-copia-de-objetos">
+<h2>Manipulación y Copia de Objetos<a class="headerlink" href="#manipulacion-y-copia-de-objetos" title="Link to this heading">#</a></h2>
 <section id="copia-de-objetos">
 <h3>Copia de Objetos<a class="headerlink" href="#copia-de-objetos" title="Link to this heading">#</a></h3>
 <p>En ES6, copiar objetos y arrays se puede realizar de manera sencilla utilizando el operador de propagación (spreading). Este operador permite crear copias superficiales de objetos y arrays.</p>
@@ -2222,7 +2230,7 @@ La desestructuración de Arrays el spread operator, la copia profunda… son té
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-y-copia-de-objetos-en-javascript">Manipulación y Copia de Objetos en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-y-copia-de-objetos">Manipulación y Copia de Objetos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copia-de-objetos">Copia de Objetos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copia-superficial-con-spreading">Copia Superficial con Spreading</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-del-operador-rest">Uso del Operador Rest</a></li>

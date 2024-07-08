@@ -182,6 +182,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -191,7 +192,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Gestión de Errores</a></li>
@@ -404,7 +405,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objecto-error">Objecto Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objeto-error">Objeto Error</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manejar-errores">Manejar Errores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-en-promesas">Errores en Promesas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-en-async-await">Errores en Async/Await</a></li>
@@ -424,8 +425,8 @@ document.write(`
 <h1>Gestión de Errores<a class="headerlink" href="#gestion-de-errores" title="Link to this heading">#</a></h1>
 <p>En JavaScript, es crucial capturar y manejar errores para asegurar que el código continúe funcionando adecuadamente, incluso cuando algo falla. En este capítulo, exploraremos cómo manejar errores utilizando diferentes métodos y técnicas disponibles en JavaScript.</p>
 <p>Cuando algo falla en JavaScript, el hilo de ejecución se detiene y deja de funcionar. Para evitar que esto ocurra, es posible capturar y manejar errores conocidos.</p>
-<section id="objecto-error">
-<h2>Objecto Error<a class="headerlink" href="#objecto-error" title="Link to this heading">#</a></h2>
+<section id="objeto-error">
+<h2>Objeto Error<a class="headerlink" href="#objeto-error" title="Link to this heading">#</a></h2>
 <p>Cuando algo falla, se lanza un objeto Error. Este objeto contiene propiedades específicas como <code class="docutils literal notranslate"><span class="pre">message</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">fileName</span></code>, <code class="docutils literal notranslate"><span class="pre">lineNumber</span></code>, <code class="docutils literal notranslate"><span class="pre">columnNumber</span></code>, y <code class="docutils literal notranslate"><span class="pre">stack</span></code>. Además, tiene un método útil llamado <code class="docutils literal notranslate"><span class="pre">toString()</span></code>.</p>
 <p>Es posible lanzar errores personalizados utilizando el constructor de Error. Aunque <code class="docutils literal notranslate"><span class="pre">Error</span></code> es genérico, también existen errores más específicos como <code class="docutils literal notranslate"><span class="pre">EvalError</span></code>, <code class="docutils literal notranslate"><span class="pre">InternalError</span></code>, <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>, <code class="docutils literal notranslate"><span class="pre">RangeError</span></code>, <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> y <code class="docutils literal notranslate"><span class="pre">URIError</span></code>.</p>
 <div class="cell docutils container">
@@ -659,7 +660,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objecto-error">Objecto Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objeto-error">Objeto Error</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manejar-errores">Manejar Errores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-en-promesas">Errores en Promesas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-en-async-await">Errores en Async/Await</a></li>

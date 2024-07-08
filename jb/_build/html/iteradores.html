@@ -182,6 +182,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -191,7 +192,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
@@ -410,6 +411,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-iterables">Recorrer iterables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-iterativos-de-los-arrays">Métodos Iterativos de los Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-from">Array.from()</a></li>
 </ul>
 </li>
@@ -490,7 +492,7 @@ document.write(`
 </section>
 <section id="recorrer-iterables">
 <h2>Recorrer iterables<a class="headerlink" href="#recorrer-iterables" title="Link to this heading">#</a></h2>
-<p>Hay muchas maneras de recorrer un iterable. También hay muchos tipos de iterables y algunos tienen sus própias maneras de ser recorridos. En todo caso, un iterable debería poder convertirse en un Array y poderse recorrer de la manera estandar.</p>
+<p>Hay muchas maneras de recorrer un iterable. También hay muchos tipos de iterables y algunos tienen sus propias maneras de ser recorridos. En todo caso, un iterable debería poder convertirse en un Array y poderse recorrer de la manera estándar.</p>
 <blockquote>
 <div><p>El método <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> retorna un <code class="docutils literal notranslate"><span class="pre">NodeList</span></code>, que es un objeto que contiene un método <code class="docutils literal notranslate"><span class="pre">forEach</span></code>. Este es un ejemplo de iterable que no es un Array. En este caso el forEach no es el mismo que el de los Arrays y puede inducir a confusión.</p>
 </div></blockquote>
@@ -581,6 +583,38 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="metodos-iterativos-de-los-arrays">
+<h3>Métodos Iterativos de los Arrays<a class="headerlink" href="#metodos-iterativos-de-los-arrays" title="Link to this heading">#</a></h3>
+<p>Los arrays en JavaScript tienen varios métodos iterativos que toman una función de callback como argumento. Esta función de callback se llama secuencialmente y como máximo una vez por cada elemento del array. El valor de retorno de la función de callback determina el valor de retorno del método iterativo. Todos estos métodos comparten la misma firma:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">método</span><span class="p">(</span><span class="nx">callbackFn</span><span class="p">,</span><span class="w"> </span><span class="nx">thisArg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Donde <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code> toma tres argumentos:</p>
+<ol class="arabic simple">
+<li><p><strong>elemento</strong>: El elemento actual que se está procesando en el array.</p></li>
+<li><p><strong>índice</strong>: El índice del elemento actual que se está procesando en el array.</p></li>
+<li><p><strong>array</strong>: El array sobre el cual se llamó el método.</p></li>
+</ol>
+<p>Lo que se espera que <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code> retorne depende del método de array que fue llamado.</p>
+<p>El argumento <code class="docutils literal notranslate"><span class="pre">thisArg</span></code> (que por defecto es <code class="docutils literal notranslate"><span class="pre">undefined</span></code>) se usará como el valor de <code class="docutils literal notranslate"><span class="pre">this</span></code> cuando se llame a <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code>. El valor <code class="docutils literal notranslate"><span class="pre">this</span></code> observable por <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code> se determina según las reglas habituales: si <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code> no es estricta, los valores primitivos de <code class="docutils literal notranslate"><span class="pre">this</span></code> se envuelven en objetos, y <code class="docutils literal notranslate"><span class="pre">undefined</span></code> o <code class="docutils literal notranslate"><span class="pre">null</span></code> se sustituyen con <code class="docutils literal notranslate"><span class="pre">globalThis</span></code>. El argumento <code class="docutils literal notranslate"><span class="pre">thisArg</span></code> es irrelevante para cualquier <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code> definido con una función flecha, ya que las funciones flecha no tienen su propio enlace <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p>
+<p>El argumento <code class="docutils literal notranslate"><span class="pre">array</span></code> pasado a <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code> es útil si se desea leer otro índice durante la iteración, porque puede que no siempre se tenga una variable existente que se refiera al array actual. Generalmente, no se debe mutar el array durante la iteración, pero este argumento también se puede usar para hacerlo. El argumento <code class="docutils literal notranslate"><span class="pre">array</span></code> no es el array que se está construyendo, en el caso de métodos como <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code> y <code class="docutils literal notranslate"><span class="pre">flatMap()</span></code>; no hay forma de acceder al array que se está construyendo desde la función de callback.</p>
+<p>Todos los métodos iterativos son de copia y genéricos, aunque se comportan de manera diferente con los huecos vacíos.</p>
+<p>Los siguientes métodos son iterativos: <code class="docutils literal notranslate"><span class="pre">every()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, <code class="docutils literal notranslate"><span class="pre">find()</span></code>, <code class="docutils literal notranslate"><span class="pre">findIndex()</span></code>, <code class="docutils literal notranslate"><span class="pre">findLast()</span></code>, <code class="docutils literal notranslate"><span class="pre">findLastIndex()</span></code>, <code class="docutils literal notranslate"><span class="pre">flatMap()</span></code>, <code class="docutils literal notranslate"><span class="pre">forEach()</span></code>, <code class="docutils literal notranslate"><span class="pre">map()</span></code>, y <code class="docutils literal notranslate"><span class="pre">some()</span></code>.</p>
+<p>En particular, <code class="docutils literal notranslate"><span class="pre">every()</span></code>, <code class="docutils literal notranslate"><span class="pre">find()</span></code>, <code class="docutils literal notranslate"><span class="pre">findIndex()</span></code>, <code class="docutils literal notranslate"><span class="pre">findLast()</span></code>, <code class="docutils literal notranslate"><span class="pre">findLastIndex()</span></code>, y <code class="docutils literal notranslate"><span class="pre">some()</span></code> no siempre invocan <code class="docutils literal notranslate"><span class="pre">callbackFn</span></code> en cada elemento, ya que detienen la iteración tan pronto como se determina el valor de retorno.</p>
+<p>Los métodos <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> y <code class="docutils literal notranslate"><span class="pre">reduceRight()</span></code> también toman una función de callback y la ejecutan como máximo una vez por cada elemento del array, pero tienen firmas ligeramente diferentes de los métodos iterativos típicos (por ejemplo, no aceptan <code class="docutils literal notranslate"><span class="pre">thisArg</span></code>).</p>
+<p>El método <code class="docutils literal notranslate"><span class="pre">sort()</span></code> también toma una función de callback, pero no es un método iterativo. Muta el array en su lugar, no acepta <code class="docutils literal notranslate"><span class="pre">thisArg</span></code>, y puede invocar la callback múltiples veces en un índice.</p>
+<p>Puntos a tener en cuenta:</p>
+<ol class="arabic simple">
+<li><p>No todos los métodos hacen la prueba <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">in</span> <span class="pre">this</span></code>. Los métodos <code class="docutils literal notranslate"><span class="pre">find</span></code>, <code class="docutils literal notranslate"><span class="pre">findIndex</span></code>, <code class="docutils literal notranslate"><span class="pre">findLast</span></code>, y <code class="docutils literal notranslate"><span class="pre">findLastIndex</span></code> no lo hacen, pero otros métodos sí.</p></li>
+<li><p>La longitud se memoriza antes de que comience el bucle. Esto afecta a cómo se manejan las inserciones y eliminaciones durante la iteración.</p></li>
+<li><p>El método no memoriza el contenido del array, por lo que si algún índice se modifica durante la iteración, se podría observar el nuevo valor.</p></li>
+<li><p>El código anterior itera el array en orden ascendente de índice. Algunos métodos iteran en orden descendente de índice (<code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(let</span> <span class="pre">i</span> <span class="pre">=</span> <span class="pre">length</span> <span class="pre">-</span> <span class="pre">1;</span> <span class="pre">i</span> <span class="pre">&gt;=</span> <span class="pre">0;</span> <span class="pre">i--)</span></code>): <code class="docutils literal notranslate"><span class="pre">reduceRight()</span></code>, <code class="docutils literal notranslate"><span class="pre">findLast()</span></code>, y <code class="docutils literal notranslate"><span class="pre">findLastIndex()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduce</span></code> y <code class="docutils literal notranslate"><span class="pre">reduceRight</span></code> tienen firmas ligeramente diferentes y no siempre comienzan en el primer/último elemento.</p></li>
+</ol>
+<blockquote>
+<div><p>Como se ve, este punto detalla las posibilidades e inconvenientes de usar los métodos iterativos que tienen los arrays. Se recomienda consultar en caso de algún comportamiento inesperado durante el uso avanzado. En todo caso siempre se puede usar la estructura <code class="docutils literal notranslate"><span class="pre">for</span></code> tradicional tipo <code class="docutils literal notranslate"><span class="pre">C</span></code> y hacerlo todo manualmente.</p>
+</div></blockquote>
+</section>
 <section id="array-from">
 <h3>Array.from()<a class="headerlink" href="#array-from" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Array.from()</span></code> puede crear un array a partir de cualquier iterable o “array-like” (objetos que parecen arrays).</p>
@@ -899,6 +933,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-iterables">Recorrer iterables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-iterativos-de-los-arrays">Métodos Iterativos de los Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-from">Array.from()</a></li>
 </ul>
 </li>
