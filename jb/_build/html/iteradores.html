@@ -490,6 +490,7 @@ document.write(`
 </div>
 <ul class="simple">
 <li><p>Ejemplo de Iterador: <a class="reference external" href="https://jsfiddle.net/xxjcaxx/q5zct9w8/10/">https://jsfiddle.net/xxjcaxx/q5zct9w8/10/</a></p></li>
+<li><p>Más ejemplos: <a class="github reference external" href="https://github.com/xxjcaxx/exemples-dwec/blob/master/01-Javascript/iteradors/iterable/iterable.js">xxjcaxx/exemples-dwec</a></p></li>
 </ul>
 </section>
 </section>
@@ -639,6 +640,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Se usa frecuentemente <code class="docutils literal notranslate"><span class="pre">Array.from(htmlCollection);</span></code> aunque actualmente también queda mejor usar <code class="docutils literal notranslate"><span class="pre">[...htmlCollection]</span></code>.</p>
 </section>
 </section>
 <section id="iterables-avanzados">
@@ -646,6 +648,12 @@ document.write(`
 <section id="set">
 <h3>Set<a class="headerlink" href="#set" title="Link to this heading">#</a></h3>
 <p>Un <code class="docutils literal notranslate"><span class="pre">Set</span></code> es un objeto iterable que representa una colección de valores únicos.</p>
+<ul class="simple">
+<li><p>No se pueden repetir los mismos valores o referencias. Elimina la repetición, por lo que es un buen método para eliminar repetidos en arrays.</p></li>
+<li><p>Tiene funciones y atributos como <code class="docutils literal notranslate"><span class="pre">.add(),</span> <span class="pre">.delete(),</span> <span class="pre">clear(),</span> <span class="pre">.size</span> <span class="pre">o</span> <span class="pre">.has()</span></code>.</p></li>
+<li><p>Permite ser recorrido como cualquier iterable.</p></li>
+<li><p>No tiene acceso aleatorio como los arrays porque no tiene índice.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">mySet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">();</span>
@@ -678,6 +686,16 @@ document.write(`
 <section id="map">
 <h3>Map<a class="headerlink" href="#map" title="Link to this heading">#</a></h3>
 <p>Un <code class="docutils literal notranslate"><span class="pre">Map</span></code> es una colección de pares clave-valor donde las claves pueden ser de cualquier tipo.</p>
+<ul class="simple">
+<li><p>Al contrario que los objetos, las claves pueden ser un objeto.</p></li>
+<li><p>Al contrario que los objetos, tiene un atributo <code class="docutils literal notranslate"><span class="pre">.size</span></code>, que indica el tamaño.</p></li>
+<li><p>Se puede iterar en un Map de forma natural.</p></li>
+<li><p>No tienen prototipo.</p></li>
+<li><p>Sus funciones son: <code class="docutils literal notranslate"><span class="pre">clear(),</span> <span class="pre">delete(key),</span> <span class="pre">entries(),</span> <span class="pre">get(),</span> <span class="pre">has(),</span> <span class="pre">keys(),</span> <span class="pre">set(key,value),</span> <span class="pre">values()</span></code>.</p></li>
+<li><p>Son muy útiles con datos obtenidos de una API o con elementos del DOM.</p></li>
+<li><p>Se podrían usar Maps en vez de objetos para colecciones de datos, ya que son más seguros, robustos y rápidos.</p></li>
+</ul>
+<p><a class="reference external" href="https://www.geeksforgeeks.org/introduction-to-map-data-structure-and-algorithm-tutorials/">https://www.geeksforgeeks.org/introduction-to-map-data-structure-and-algorithm-tutorials/</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">myMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span>
@@ -706,6 +724,9 @@ document.write(`
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Ejemplo de Map y DOM: <a class="github reference external" href="https://github.com/xxjcaxx/exemples-dwec/tree/master/01-Javascript/iteradors/maps/maps_dom">xxjcaxx/exemples-dwec</a></p></li>
+</ul>
 </section>
 <section id="weakmap">
 <h3>WeakMap<a class="headerlink" href="#weakmap" title="Link to this heading">#</a></h3>
