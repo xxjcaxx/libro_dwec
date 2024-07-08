@@ -585,7 +585,7 @@ document.write(`
 </pre></div>
 </div>
 <p>La mejor manera de recorrer los arrays depende de la necesidad:</p>
-<p>En el primer caso, la sintaxis típica de C, creamos una variable de control del bucle que puede ser útil dentro del bucle. Si es necesaria esa variable o queremos alterar las iteraciones en función de esa variable, puede ser la mejor opción. Se puede detener fácilmente alterando el índice o con <code class="docutils literal notranslate"><span class="pre">break</span></code>.</p>
+<p>En el primer caso, la sintaxis típica de C, creamos una variable de control del bucle que puede ser útil dentro del bucle. Si es necesaria esa variable o queremos alterar las iteraciones en función de esa variable, puede ser la mejor opción. Se puede detener fácilmente alterando el índice o con <code class="docutils literal notranslate"><span class="pre">break</span></code>. El problema es que esa variable de control hace el código más “sucio” y puede molestar.</p>
 <p>El caso de <strong>for..of</strong> es uno de los más sencillos, ya que no necesitamos la variable de control y sigue siendo ámbito de bloque. Esta sería la mejor opción en casi todos los casos en los que necesitamos recorrer un array completamente y en orden. Se puede detener con <code class="docutils literal notranslate"><span class="pre">break</span></code> y no tiene acceso al índice.</p>
 <p><strong>forEach(callback, thisArg)</strong> es como el anterior, pero en este caso creamos una función de callback. Una ventaja es que esta función también acepta el índice y el array. Puede ser útil en programación funcional cuando tenemos una función que ejecutar para cada elemento. El problema es que al pasar una función como callback, el ámbito de la función pasa a ser indefinido y podemos tener problemas con el <code class="docutils literal notranslate"><span class="pre">this</span></code> (<code class="docutils literal notranslate"><span class="pre">this</span></code>no es el array, sino el ámbito en el que se ejecuta, que puede ser un objeto, <code class="docutils literal notranslate"><span class="pre">Window</span></code>, <code class="docutils literal notranslate"><span class="pre">Global</span></code> o <code class="docutils literal notranslate"><span class="pre">undefined</span></code> en modo estricto). Si queremos un ámbito concreto para las funciones de callback se puede usar el argumento <code class="docutils literal notranslate"><span class="pre">thisArg</span></code>. No se puede detener. Normalmente si queremos que se detenga podemos usar <code class="docutils literal notranslate"><span class="pre">.every()</span></code> o <code class="docutils literal notranslate"><span class="pre">.some()</span></code>.</p>
 <p>El <strong>map</strong> solo se debería usar para retornar una copia modificada del array, como veremos más adelante. Tampoco se puede detener.</p>
@@ -804,6 +804,10 @@ document.write(`
 </tbody>
 </table>
 </div>
+<ul class="simple">
+<li><p>Ejercicios simples con Arrays: <a class="reference external" href="https://jsfiddle.net/xxjcaxx/b6sc85wx/10/">https://jsfiddle.net/xxjcaxx/b6sc85wx/10/</a></p></li>
+<li><p>Ejercicio con Arrays sobre el ajedrez: <a class="reference external" href="https://jsfiddle.net/xxjcaxx/3286hn4L/24/">https://jsfiddle.net/xxjcaxx/3286hn4L/24/</a></p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -1250,6 +1254,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>En cualquier caso es una práctica no recomendada y fácilmente sustituible con técnicas de programación funcional.</p>
 </section>
 </section>
 </section>
@@ -2111,6 +2116,10 @@ document.write(`
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Car.call(this,</span> <span class="pre">&quot;convertible&quot;,</span> <span class="pre">&quot;petrol&quot;)</span></code> establece el contexto de <code class="docutils literal notranslate"><span class="pre">this</span></code> para <code class="docutils literal notranslate"><span class="pre">setBrand</span></code>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Ejercicio de objetos literales y clases sobre Pokemons: <a class="reference external" href="https://jsfiddle.net/xxjcaxx/5hL4my2v/7/">https://jsfiddle.net/xxjcaxx/5hL4my2v/7/</a></p></li>
+<li><p>Ejercicios de clases y <code class="docutils literal notranslate"><span class="pre">this</span></code> sobre Pokemos: <a class="reference external" href="https://jsfiddle.net/xxjcaxx/5jchk6mg/9/">https://jsfiddle.net/xxjcaxx/5jchk6mg/9/</a></p></li>
 </ul>
 </section>
 </section>
