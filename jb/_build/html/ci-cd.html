@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Libro DWEC
+                    Desarrollo Web en Entorno Cliente (DWEC)
                 </a>
             </li>
         </ul>
@@ -454,29 +454,32 @@ document.write(`
 <li><p><strong>Subir los archivos estáticos al servidor:</strong> Transferir los archivos estáticos resultantes del proceso de construcción (bundle) al servidor de producción o a un entorno de pruebas, lo que puede implicar la implementación manual o automatizada de los archivos en el servidor remoto.</p></li>
 <li><p><strong>Poner en producción:</strong> Realizar pruebas finales en el entorno de producción para asegurarse de que la aplicación web funcione como se espera y, si todo está correcto, lanzarla para que los usuarios finales la utilicen.</p></li>
 </ol>
-<p>Como se puede ver, es muy difícil que los programadores lo hagan todo bien todo el tiempo. La parte del despliegue se trata con más profundidad en el módulo de despliegue del ciclo, pero es preciso desplegar rudimentariamente o en alguna plataforma alternativa que simplifique esta tarea. De esta manera se puede ver todo el proceso sin perder demasiado tiempo. Una buena idea puede ser desplegar en Deta, como explico en este manual: Prototipo de proyecto con JS, Bootstrap, Vite, Deta y Supabase.</p>
+<p>Como se puede ver, es muy difícil que los programadores lo hagan todo bien todo el tiempo. La parte del despliegue se trata con más profundidad en el módulo de despliegue del ciclo, pero es preciso desplegar rudimentariamente o en alguna plataforma alternativa que simplifique esta tarea. De esta manera se puede ver todo el proceso sin perder demasiado tiempo. Una buena idea puede ser desplegar en Deta.</p>
 <p>En este manual vamos a explorar algunas técnicas para implementar el CI/CD en clase.</p>
 </section>
 <section id="deta">
 <h2>Deta<a class="headerlink" href="#deta" title="Link to this heading">#</a></h2>
-<p>Deta es una plataforma que permite desplegar y gestionar aplicaciones web de manera sencilla. Este manual tratas el proceso de alta en Deta, la creación de un proyecto con Vite y el despliegue de tu aplicación en la nube utilizando Deta.</p>
+<p>Deta es una plataforma que permite desplegar y gestionar aplicaciones web de manera sencilla. Este manual tratamos el proceso de alta en Deta, la creación de un proyecto con Vite y el despliegue de la aplicación en la nube utilizando Deta.</p>
+<blockquote>
+<div><p>Hay muchas alternativas de este estilo como Vercel, Firebase, Netlify, Heroku…</p>
+</div></blockquote>
 <section id="paso-1-alta-en-deta-y-configuracion-inicial">
 <h3>Paso 1: Alta en Deta y Configuración Inicial<a class="headerlink" href="#paso-1-alta-en-deta-y-configuracion-inicial" title="Link to this heading">#</a></h3>
-<p>Para comenzar, debes registrarte en Deta y obtener un token. Luego, sigue estos pasos para instalar y configurar la CLI de Deta.</p>
+<p>Para comenzar, hay que registrarte en Deta y obtener un token. Luego, seguir estos pasos para instalar y configurar la CLI de Deta.</p>
 <ol class="arabic simple">
-<li><p><strong>Instala la CLI de Deta:</strong></p></li>
+<li><p><strong>Instalar la CLI de Deta:</strong></p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://get.deta.dev/space-cli.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p><strong>Inicia sesión en Deta:</strong></p></li>
+<li><p><strong>Iniciar sesión en Deta:</strong></p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>space<span class="w"> </span>login
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p><strong>Crea un nuevo proyecto:</strong></p></li>
+<li><p><strong>Crear un nuevo proyecto:</strong></p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>space<span class="w"> </span>new
 </pre></div>
@@ -488,8 +491,8 @@ document.write(`
 </section>
 <section id="paso-2-configuracion-del-spacefile">
 <h3>Paso 2: Configuración del Spacefile<a class="headerlink" href="#paso-2-configuracion-del-spacefile" title="Link to this heading">#</a></h3>
-<p>El archivo principal de configuración en Deta es el <code class="docutils literal notranslate"><span class="pre">Spacefile</span></code>. Este archivo define las distintas partes funcionales de tu aplicación web. Vamos a empezar con un frontend mínimo creado con Vite.</p>
-<p>Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">Spacefile</span></code> en la raíz de tu proyecto con el siguiente contenido:</p>
+<p>El archivo principal de configuración en Deta es el <code class="docutils literal notranslate"><span class="pre">Spacefile</span></code>. Este archivo define las distintas partes funcionales de una aplicación web. Vamos a empezar con un frontend mínimo creado con Vite.</p>
+<p>Creamos un archivo llamado <code class="docutils literal notranslate"><span class="pre">Spacefile</span></code> en la raíz del proyecto con el siguiente contenido:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">v</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="nt">micros</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
@@ -516,13 +519,12 @@ document.write(`
 </section>
 <section id="paso-3-crear-el-proyecto-con-vite">
 <h3>Paso 3: Crear el Proyecto con Vite<a class="headerlink" href="#paso-3-crear-el-proyecto-con-vite" title="Link to this heading">#</a></h3>
-<p>Para crear un nuevo proyecto con Vite, ejecuta los siguientes comandos:</p>
+<p>Para crear un nuevo proyecto con Vite, ejecutamos los siguientes comandos:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>create<span class="w"> </span>vite@latest<span class="w"> </span>proyecto
 <span class="nb">cd</span><span class="w"> </span>proyecto
 npm<span class="w"> </span>install
 </pre></div>
 </div>
-<p>Configura tu proyecto según tus necesidades, asegurándote de que el comando <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build</span></code> esté listo para construir el proyecto.</p>
 </section>
 <section id="paso-4-despliegue-en-deta">
 <h3>Paso 4: Despliegue en Deta<a class="headerlink" href="#paso-4-despliegue-en-deta" title="Link to this heading">#</a></h3>
@@ -538,15 +540,15 @@ npm<span class="w"> </span>install
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>space<span class="w"> </span>push
 </pre></div>
 </div>
-<p>Si el despliegue es exitoso, podrás añadir el proyecto a tu Horizon, el escritorio virtual de Deta, y acceder a tu aplicación en su propia URL una vez publicada.</p>
+<p>Si el despliegue es exitoso, se puede añadir el proyecto al <code class="docutils literal notranslate"><span class="pre">Horizon</span></code>, el escritorio virtual de Deta, y acceder a la aplicación en su propia URL una vez publicada.</p>
 </li>
 </ol>
 </section>
 <section id="paso-5-acceso-y-gestion-de-la-aplicacion">
 <h3>Paso 5: Acceso y Gestión de la Aplicación<a class="headerlink" href="#paso-5-acceso-y-gestion-de-la-aplicacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Horizon</strong>: Añade tu proyecto a Horizon para gestionarlo desde un entorno visual.</p></li>
-<li><p><strong>URL Pública</strong>: Una vez desplegada, tu aplicación estará accesible en una URL pública proporcionada por Deta. Aunque sólo accesible mediante copia privada para usuarios de de Deta. Si queremos que sea totalmente accesible, podemos poner <code class="docutils literal notranslate"><span class="pre">public:</span> <span class="pre">true</span></code> en el <code class="docutils literal notranslate"><span class="pre">micro</span></code> de <code class="docutils literal notranslate"><span class="pre">SpaceFile</span></code>.</p></li>
+<li><p><strong>Horizon</strong>: Añadir el proyecto a Horizon para gestionarlo desde un entorno visual.</p></li>
+<li><p><strong>URL Pública</strong>: Una vez desplegada, la aplicación estará accesible en una URL pública proporcionada por Deta. Aunque sólo accesible mediante copia privada para usuarios de de Deta. Si queremos que sea totalmente accesible, podemos poner <code class="docutils literal notranslate"><span class="pre">public:</span> <span class="pre">true</span></code> en el <code class="docutils literal notranslate"><span class="pre">micro</span></code> de <code class="docutils literal notranslate"><span class="pre">SpaceFile</span></code>.</p></li>
 </ul>
 </section>
 </section>
@@ -554,7 +556,7 @@ npm<span class="w"> </span>install
 <h2>Linting y Formatting<a class="headerlink" href="#linting-y-formatting" title="Link to this heading">#</a></h2>
 <p>El linting y el formateo son esenciales para mantener el código consistente y limpio. Cada miembro del equipo debe seguir las mismas reglas y convenciones al escribir código. La consistencia en la base de código es fundamental para:</p>
 <ul class="simple">
-<li><p>No generar confusión sobre cómo escribir un fragmento de código específico en tu aplicación cuando incorporas a un nuevo miembro del equipo.</p></li>
+<li><p>No generar confusión sobre cómo escribir un fragmento de código específico en la aplicación cuando se incorpora un nuevo miembro del equipo.</p></li>
 <li><p>No tener que documentar múltiples formas de hacer lo mismo.</p></li>
 </ul>
 <p>El linter más conocido de Javascript es <a class="reference external" href="https://eslint.org/">ESLint</a>. Para ponerlo en funcionamiento:</p>
