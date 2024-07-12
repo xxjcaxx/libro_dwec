@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -517,6 +517,8 @@ document.write(`
 <p>Los arrays en JavaScript son una estructura de datos utilizada para almacenar múltiples valores en una sola variable. Los arrays se definen utilizando corchetes <code class="docutils literal notranslate"><span class="pre">[]</span></code> y los elementos se separan por comas. A diferencia de otros lenguajes como C o Java, no es necesario definir la longitud del array al declararlo. Además, los arrays pueden contener posiciones vacías (empty), y es posible acceder a sus elementos de manera similar a otros lenguajes, utilizando índices. Por ejemplo:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
 <span class="nx">a</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="c1">// Acceder al último elemento:</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">at</span><span class="p">(</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Un array en JavaScript puede contener cualquier tipo de dato, incluyendo otros arrays, objetos o funciones. Esto le otorga una gran flexibilidad. Además, los arrays son objetos en JavaScript y se pueden construir usando el constructor <code class="docutils literal notranslate"><span class="pre">new</span></code>:</p>
@@ -827,6 +829,11 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">persona</span></code> es un objeto con varias propiedades: <code class="docutils literal notranslate"><span class="pre">nombre</span></code>, <code class="docutils literal notranslate"><span class="pre">edad</span></code>, <code class="docutils literal notranslate"><span class="pre">genero</span></code>, <code class="docutils literal notranslate"><span class="pre">intereses</span></code> y <code class="docutils literal notranslate"><span class="pre">bio</span></code>. La propiedad <code class="docutils literal notranslate"><span class="pre">bio</span></code> es una función (método) que puede acceder a otras propiedades del objeto usando <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p>
+<p>Se puede acceder a las propiedades de un objeto dentro de otro objeto encadenando los puntos o los corchetes:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">descripcion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">alumno</span><span class="p">.</span><span class="nx">ciclo</span><span class="o">?</span><span class="p">.</span><span class="nx">descripcion</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En el ejemplo hemos usado <code class="docutils literal notranslate"><span class="pre">?</span></code> para evitar el error al intentar acceder a un atributo dentro de uno que no existe. El resultado sería <code class="docutils literal notranslate"><span class="pre">undefined</span></code>.</p>
 <section id="iterar-sobre-las-propiedades-de-un-objeto">
 <h3>Iterar sobre las Propiedades de un Objeto<a class="headerlink" href="#iterar-sobre-las-propiedades-de-un-objeto" title="Link to this heading">#</a></h3>
 <p>Para recorrer las propiedades de un objeto, se puede utilizar el bucle <code class="docutils literal notranslate"><span class="pre">for...in</span></code>.</p>
@@ -941,7 +948,7 @@ document.write(`
 <p>Nativos:</p>
 <ul class="simple">
 <li><p><strong>String</strong></p></li>
-<li><p><strong>Number</strong></p></li>
+<li><p><strong>Number</strong>: .isNaN, .parseInt, .parseFloat .isFinite…</p></li>
 <li><p><strong>Boolean</strong></p></li>
 <li><p><strong>Date</strong></p></li>
 <li><p><strong>RegExp</strong></p></li>
