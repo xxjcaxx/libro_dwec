@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -440,6 +440,9 @@ document.write(`
 <section id="iterables-en-javascript">
 <h2>Iterables en JavaScript<a class="headerlink" href="#iterables-en-javascript" title="Link to this heading">#</a></h2>
 <p>En JavaScript, los iterables son estructuras de datos que permiten iterar sobre sus elementos de manera secuencial. Los iterables más comunes son: <code class="docutils literal notranslate"><span class="pre">Array</span></code>, <code class="docutils literal notranslate"><span class="pre">Set</span></code>, <code class="docutils literal notranslate"><span class="pre">Map</span></code> y <code class="docutils literal notranslate"><span class="pre">String</span></code>. Los objetos normales no son iterables por defecto. Para que un objeto sea iterable, debe tener una propiedad <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code> que devuelva un iterador.</p>
+<blockquote>
+<div><p>El iterador más común es de los Arrays, pero no todos los iteradores se pueden expresar o convertir en Arrays. Hay iteradores que son consumidos si es necesario y pueden tener longitud infinita.</p>
+</div></blockquote>
 <section id="propiedad-symbol-iterator">
 <h3>Propiedad <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code><a class="headerlink" href="#propiedad-symbol-iterator" title="Link to this heading">#</a></h3>
 <p>La propiedad <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code> es una función que retorna un objeto con el método <code class="docutils literal notranslate"><span class="pre">next()</span></code>. Este método devuelve un objeto con dos propiedades: <code class="docutils literal notranslate"><span class="pre">value</span></code> y <code class="docutils literal notranslate"><span class="pre">done</span></code>. <code class="docutils literal notranslate"><span class="pre">value</span></code> contiene el siguiente valor en la secuencia y <code class="docutils literal notranslate"><span class="pre">done</span></code> indica si la iteración ha terminado.</p>
@@ -466,10 +469,13 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Si simplemente hacemos un objeto que tenga una propiedad <code class="docutils literal notranslate"><span class="pre">next()</span></code> que retorne <code class="docutils literal notranslate"><span class="pre">{value,</span> <span class="pre">done}</span></code>, estamos haciendo un <code class="docutils literal notranslate"><span class="pre">iterador</span></code>, pero tenemos que usar explícitamente su método <code class="docutils literal notranslate"><span class="pre">next()</span></code>. En cambio, si el método está en <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code>, se pueden usar <code class="docutils literal notranslate"><span class="pre">for..of</span></code> o el <code class="docutils literal notranslate"><span class="pre">spread</span> <span class="pre">operator</span></code>.</p>
 </section>
 <section id="funcion-generadora">
 <h3>Función generadora<a class="headerlink" href="#funcion-generadora" title="Link to this heading">#</a></h3>
-<p>Una función generadora puede ser usada para crear iterables. Una función generadora se define con la sintaxis <code class="docutils literal notranslate"><span class="pre">function*</span></code>.</p>
+<p>Una función generadora puede ser usada para crear iterables. Una función generadora se define con la sintaxis <code class="docutils literal notranslate"><span class="pre">function*</span></code>. Esta retorna un objeto de tipo <code class="docutils literal notranslate"><span class="pre">Generator</span></code>, que ya es un iterable.
+Los Generadores usan la expresión <code class="docutils literal notranslate"><span class="pre">yield</span></code>. Esta para la ejecución y retorna el valor. La siguiente vez que se invoca <code class="docutils literal notranslate"><span class="pre">next()</span></code>, ejecutará hasta el siguiente <code class="docutils literal notranslate"><span class="pre">yield</span></code> o <code class="docutils literal notranslate"><span class="pre">return</span></code>, que finaliza enviando <code class="docutils literal notranslate"><span class="pre">done:</span> <span class="pre">true</span></code>.</p>
+<p>Documentación: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">myIterable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
@@ -484,6 +490,37 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">3</span> ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Ejemplo sacado de: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators#generator_functions</span>
+<span class="kd">function</span><span class="o">*</span><span class="w"> </span><span class="nx">makeRangeIterator</span><span class="p">(</span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">Infinity</span><span class="p">,</span><span class="w"> </span><span class="nx">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">iterationCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">start</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">end</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">step</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">iterationCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">      </span><span class="k">yield</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">iterationCount</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">makeRangeIterator</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="mf">10</span><span class="p">,</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">generator</span><span class="p">.</span><span class="nx">next</span><span class="p">(),</span><span class="nx">generator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([...</span><span class="nx">generator</span><span class="p">]);</span>
+<span class="w">  </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ value: <span class=" -Color -Color-Yellow">0</span>, done: <span class=" -Color -Color-Yellow">false</span> } { value: <span class=" -Color -Color-Yellow">1</span>, done: <span class=" -Color -Color-Yellow">false</span> }
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
+  <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">3</span>, <span class=" -Color -Color-Yellow">4</span>, <span class=" -Color -Color-Yellow">5</span>,
+  <span class=" -Color -Color-Yellow">6</span>, <span class=" -Color -Color-Yellow">7</span>, <span class=" -Color -Color-Yellow">8</span>, <span class=" -Color -Color-Yellow">9</span>
+]
 </pre></div>
 </div>
 </div>
@@ -882,6 +919,22 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</div>
+<p>El siguiente ejemplo de uso utiliza un <code class="docutils literal notranslate"><span class="pre">Map</span></code>para gestionar si una fila de una tabla está seleccionada o no:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">trMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">clickFunction</span><span class="p">(){</span>
+<span class="w">  </span><span class="nx">trMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">trMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">selected</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="nx">trMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">selected</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#F00&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">trs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">table</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">tr</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">trs</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">trMap</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">tr</span><span class="p">,{</span><span class="nx">selected</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">});</span>
+<span class="w">  </span><span class="nx">tr</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="nx">clickFunction</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 </section>
 </section>

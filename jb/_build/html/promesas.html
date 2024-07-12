@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -473,7 +473,7 @@ document.write(`
 <p>El motor de JavaScript dentro del navegador es responsable de compilar y ejecutar el código JavaScript, manejar la pila de funciones (call stack), gestionar el alojamiento de los objetos en memoria (heap) y recolectar la basura de los objetos que ya no se necesitan. Además, proporciona una API con utilidades del navegador, red, funciones asíncronas y más. En este capítulo, exploraremos cómo funciona el motor de JavaScript, incluyendo la ejecución de código síncrono y asíncrono, y los conceptos de contexto de ejecución y pila de llamadas.</p>
 <section id="entorno-de-ejecucion">
 <h3>Entorno de Ejecución<a class="headerlink" href="#entorno-de-ejecucion" title="Link to this heading">#</a></h3>
-<p>JavaScript solo puede tener un hilo de ejecución (en principio). Esto significa que si solicitamos algo al servidor de forma síncrona, toda la web se detendrá hasta que llegue la respuesta. Sin embargo, los navegadores tienen un entorno de ejecución que permite que JavaScript realice solicitudes de forma asíncrona y continúe ejecutando otras tareas. Estas peticiones asíncronas las proporciona las web APIs y sus respuestas pueden ser gestionadas mediante Callbacks, Promesas o Async/Await. Para entender cómo funcionan las peticiones asíncronas en JavaScript, es fundamental comprender los conceptos de Contexto de Ejecución y Pila de Llamadas.</p>
+<p>JavaScript solo puede tener un hilo de ejecución (en principio). Esto significa que si solicitamos algo al servidor de forma síncrona, toda la web se detendrá hasta que llegue la respuesta. Sin embargo, los navegadores tienen un entorno de ejecución que permite que JavaScript realice solicitudes de forma asíncrona y continúe ejecutando otras tareas. Estas peticiones asíncronas las proporciona las <code class="docutils literal notranslate"><span class="pre">web</span> <span class="pre">APIs</span></code> y sus respuestas pueden ser gestionadas mediante Callbacks, Promesas o Async/Await. Para entender cómo funcionan las peticiones asíncronas en JavaScript, es fundamental comprender los conceptos de Contexto de Ejecución y Pila de Llamadas.</p>
 <section id="contexto-de-ejecucion-y-pila-de-llamadas">
 <h4>Contexto de Ejecución y Pila de Llamadas<a class="headerlink" href="#contexto-de-ejecucion-y-pila-de-llamadas" title="Link to this heading">#</a></h4>
 <section id="contexto-de-ejecucion">
@@ -716,7 +716,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1353ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1286ms
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script start
@@ -780,7 +780,7 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 </ol>
 <section id="callbacks-en-operaciones-asincronas">
 <h3>Callbacks en Operaciones Asíncronas<a class="headerlink" href="#callbacks-en-operaciones-asincronas" title="Link to this heading">#</a></h3>
-<p>Los callbacks son especialmente útiles cuando se trabaja con operaciones asíncronas. En el siguiente ejemplo, la función <code class="docutils literal notranslate"><span class="pre">second</span></code> tiene código asíncrono que usa un callback para garantizar que la función <code class="docutils literal notranslate"><span class="pre">third</span></code> se ejecute después de que <code class="docutils literal notranslate"><span class="pre">second</span></code> haya terminado su tarea.</p>
+<p>Los callbacks son útiles cuando se trabaja con operaciones asíncronas. En el siguiente ejemplo, la función <code class="docutils literal notranslate"><span class="pre">second</span></code> tiene código asíncrono que usa un callback para garantizar que la función <code class="docutils literal notranslate"><span class="pre">third</span></code> se ejecute después de que <code class="docutils literal notranslate"><span class="pre">second</span></code> haya terminado su tarea.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -836,7 +836,7 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>En este ejemplo, cada función depende de los datos obtenidos por la función anterior. Esta cadena de dependencias se anida cada vez más profundamente, resultando en un código que es difícil de seguir y mantener.</p>
+<p>En este ejemplo, cada función depende de los datos obtenidos por la función anterior. Esta cadena de dependencias se anida cada vez más profundamente, resultando en un código que es difícil de mantener.</p>
 </section>
 </section>
 <section id="id1">
