@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -431,10 +431,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-tipado">No Tipado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-realidad-es-dinamicamente-tipado">En realidad es Dinámicamente Tipado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipado-debil">Tipado Débil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-soportados">Tipos Soportados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#typeof">typeOf</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-soportados">Tipos Soportados</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typeof">typeOf</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversiones">Conversiones</a><ul class="nav section-nav flex-column">
@@ -547,6 +547,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <li><p><a class="reference external" href="https://fullstackopen.com/en/#course-contents">https://fullstackopen.com/en/#course-contents</a></p></li>
 <li><p><a class="reference external" href="https://www.theodinproject.com/">https://www.theodinproject.com/</a></p></li>
 <li><p><a class="reference external" href="https://www.apuntesinformaticafp.com/modulos/dwec.html">https://www.apuntesinformaticafp.com/modulos/dwec.html</a></p></li>
+<li><p><a class="reference external" href="https://cipfpbatoi.github.io/materials/daw/dwc/01-js/">https://cipfpbatoi.github.io/materials/daw/dwc/01-js/</a></p></li>
 </ul>
 <section id="integrar-js-en-html">
 <h2>Integrar JS en HTML<a class="headerlink" href="#integrar-js-en-html" title="Link to this heading">#</a></h2>
@@ -815,9 +816,8 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </pre></div>
 </div>
 </section>
-</section>
 <section id="tipos-soportados">
-<h2>Tipos Soportados<a class="headerlink" href="#tipos-soportados" title="Link to this heading">#</a></h2>
+<h3>Tipos Soportados<a class="headerlink" href="#tipos-soportados" title="Link to this heading">#</a></h3>
 <p>Estos son los tipos soportados, como se puede ver, hay menos cantidad que en otros lenguajes sin perder la capacidad de representación de la información. El caso de las variables numéricas es interesante porque internamente usa coma flotante de doble precisión para cualquier número.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -854,9 +854,16 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </tbody>
 </table>
 </div>
-<p>Cabe destacar que Javascript tiene los tipos <code class="docutils literal notranslate"><span class="pre">string</span></code>y <code class="docutils literal notranslate"><span class="pre">String</span></code> o <code class="docutils literal notranslate"><span class="pre">number</span></code>y <code class="docutils literal notranslate"><span class="pre">Number</span></code>, así como <code class="docutils literal notranslate"><span class="pre">Boolean</span></code>. Con mayúsculas son objetos especiales que pueden ser usados como primitivos, pero también tienen métodos. Las <code class="docutils literal notranslate"><span class="pre">strings</span></code> siempre se comportan tanto como primitivos como <code class="docutils literal notranslate"><span class="pre">String</span></code></p>
+<p>Cabe destacar que Javascript tiene los tipos <code class="docutils literal notranslate"><span class="pre">string</span></code>y <code class="docutils literal notranslate"><span class="pre">String</span></code> o <code class="docutils literal notranslate"><span class="pre">number</span></code>y <code class="docutils literal notranslate"><span class="pre">Number</span></code>, así como <code class="docutils literal notranslate"><span class="pre">Boolean</span></code>. Con mayúsculas son objetos especiales que pueden ser usados como primitivos, pero también tienen métodos. Las <code class="docutils literal notranslate"><span class="pre">strings</span></code> siempre se comportan tanto como primitivos como <code class="docutils literal notranslate"><span class="pre">String</span></code>.</p>
+<p>Además, soporta valores especiales:</p>
+<ul class="simple">
+<li><p><strong>undefined</strong>: Indica que a la variable no se le ha asignado valor.</p></li>
+<li><p><strong>null</strong>: Valor nulo, se comporta como un objeto vacío.</p></li>
+<li><p><strong>NaN</strong>: Not a Number, se obtiene cuando no se puede convertir a número el resultado de una operación.</p></li>
+<li><p><strong>Inifinity -Infinity</strong>: Demasiado grande o pequeño o el infinito en sí mismo. Por ejemplo, se puede hacer un bucle for de 0 a Infinity.</p></li>
+</ul>
 <section id="typeof">
-<h3>typeOf<a class="headerlink" href="#typeof" title="Link to this heading">#</a></h3>
+<h4>typeOf<a class="headerlink" href="#typeof" title="Link to this heading">#</a></h4>
 <p>Si queremos saber de qué tipo es una variable, podemos preguntar con <em><strong>typeOf():</strong></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -903,6 +910,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section id="conversiones">
@@ -1108,6 +1116,20 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 <p>El orden de los argumentos es crucial. Los argumentos se asignan a los parámetros en el orden en que se pasan.</p>
+<p>Javascript, en las funciones, crea un objeto llamando <code class="docutils literal notranslate"><span class="pre">arguments</span></code> que tiene los argumentos pasados, la posición como clave y la cantidad de argumentos con <code class="docutils literal notranslate"><span class="pre">length</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">a</span><span class="p">(){</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)}</span><span class="w"> </span>
+<span class="nx">a</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Arguments] { <span class=" -Color -Color-Green">&quot;0&quot;</span>: <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Green">&quot;1&quot;</span>: <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Green">&quot;2&quot;</span>: <span class=" -Color -Color-Yellow">3</span> }
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="variables-globales-y-efectos-secundarios">
 <h3>Variables Globales y Efectos Secundarios<a class="headerlink" href="#variables-globales-y-efectos-secundarios" title="Link to this heading">#</a></h3>
@@ -2158,10 +2180,10 @@ Soy una variable de la función padre
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-tipado">No Tipado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-realidad-es-dinamicamente-tipado">En realidad es Dinámicamente Tipado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipado-debil">Tipado Débil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-soportados">Tipos Soportados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#typeof">typeOf</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-soportados">Tipos Soportados</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typeof">typeOf</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversiones">Conversiones</a><ul class="nav section-nav flex-column">

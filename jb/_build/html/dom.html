@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -563,8 +563,40 @@ document.write(`
 <span class="kd">let</span><span class="w"> </span><span class="nx">allElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.exampleClass&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Además, podemos navegar por el DOM utilizando propiedades como <code class="docutils literal notranslate"><span class="pre">.children</span></code>, <code class="docutils literal notranslate"><span class="pre">.firstChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.firstElementChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.lastChild</span></code>, <code class="docutils literal notranslate"><span class="pre">.parentElement</span></code>.</p>
-<p>No hay una manera mejor de encontrar los nodos. Si no queremos fallar se puede usar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> y usar selectores de CSS. De esta manera, cambiar el selector es cambiar la “query”. No obstante, los otros selectores más primitivos puede que sean más rápidos en ciertas ocasiones.</p>
+<p>Además, podemos navegar por el DOM utilizando propiedades como:</p>
+<p>Aquí hay una versión reescrita del texto que mencionaste, manteniendo el mismo significado pero con diferentes palabras:</p>
+<p>A menudo, necesitamos acceder a un nodo específico a partir de uno ya existente en el DOM. Para esto, podemos utilizar los siguientes métodos aplicados a un elemento del árbol DOM:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.parentElement</span></code>: retorna el elemento padre del nodo actual.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.children</span></code>: retorna una colección de todos los elementos hijos del nodo actual (sólo elementos HTML, no incluye comentarios ni nodos de texto).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.childNodes</span></code>: retorna una colección de todos los nodos hijos, incluyendo comentarios y nodos de texto, por lo cual no se usa frecuentemente.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.firstElementChild</span></code>: retorna el primer hijo que es un elemento HTML.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.firstChild</span></code>: retorna el primer nodo hijo, incluyendo nodos de texto o comentarios.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.lastElementChild</span></code>: similar a <code class="docutils literal notranslate"><span class="pre">firstElementChild</span></code>, pero retorna el último hijo elemento HTML.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.lastChild</span></code>: similar a <code class="docutils literal notranslate"><span class="pre">firstChild</span></code>, pero retorna el último nodo hijo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.nextElementSibling</span></code>: retorna el siguiente hermano que es un elemento HTML.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.nextSibling</span></code>: retorna el siguiente nodo hermano, incluyendo nodos de texto o comentarios.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.previousElementSibling</span></code>: similar a <code class="docutils literal notranslate"><span class="pre">nextElementSibling</span></code>, pero retorna el hermano anterior que es un elemento HTML.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.previousSibling</span></code>: similar a <code class="docutils literal notranslate"><span class="pre">nextSibling</span></code>, pero retorna el nodo hermano anterior.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.hasChildNodes()</span></code>: indica si el nodo tiene nodos hijos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.childElementCount</span></code>: retorna el número de elementos hijos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemento.closest(selector)</span></code>: retorna el ancestro más cercano que coincide con el selector dado. Por ejemplo, si el elemento es un <code class="docutils literal notranslate"><span class="pre">&lt;td&gt;</span></code> dentro de una tabla, <code class="docutils literal notranslate"><span class="pre">elemento.closest('table')</span></code> retornará la tabla a la que pertenece.</p></li>
+</ul>
+<p>El DOM proporciona accesos directos (atajos) para obtener elementos comunes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">document.documentElement</span></code>: obtiene el nodo del elemento <code class="docutils literal notranslate"><span class="pre">&lt;html&gt;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.head</span></code>: obtiene el nodo del elemento <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.body</span></code>: obtiene el nodo del elemento <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.title</span></code>: obtiene el nodo del elemento <code class="docutils literal notranslate"><span class="pre">&lt;title&gt;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.links</span></code>: obtiene una colección de todos los hipervínculos del documento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.anchors</span></code>: obtiene una colección de todas las anclas del documento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.forms</span></code>: obtiene una colección de todos los formularios del documento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.images</span></code>: obtiene una colección de todas las imágenes del documento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">document.scripts</span></code>: obtiene una colección de todos los scripts del documento.</p></li>
+</ul>
+<blockquote>
+<div><p>No hay una manera mejor que otras en todas las ocasiones de encontrar los nodos. Si no queremos fallar se puede usar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> y usar selectores de CSS. De esta manera, cambiar el selector es cambiar la “query”. No obstante, los otros selectores más primitivos puede que sean más rápidos en ciertas ocasiones.</p>
+</div></blockquote>
 </section>
 <section id="dom-modificar-nodos">
 <h2>DOM: Modificar Nodos<a class="headerlink" href="#dom-modificar-nodos" title="Link to this heading">#</a></h2>
