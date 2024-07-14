@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Libro DWEC
+                    Desarrollo Web en Entorno Cliente (DWEC)
                 </a>
             </li>
         </ul>
@@ -382,7 +382,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -398,6 +400,27 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-javascript">Problemas de JavaScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion-de-typescript">Transpilación de TypeScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-typescript">Configuración de TypeScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandares-en-typescript">Estándares en TypeScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos">Tipos de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-de-las-funciones-y-valores-de-retorno">Parámetros de las Funciones y Valores de Retorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-flecha-es6-a-es5">Funciones Flecha: ES6 a ES5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-y-tipado-en-typescript">Promesas y Tipado en TypeScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion-a-es6">Transpilación a ES6</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases">Clases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -409,6 +432,244 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="typescript">
 <h1>Typescript<a class="headerlink" href="#typescript" title="Link to this heading">#</a></h1>
+<p>En sus inicios, JavaScript se utilizaba principalmente para la validación de formularios y otras tareas sencillas en el navegador. Sin embargo, a medida que la complejidad de las aplicaciones web aumentó, surgieron bibliotecas como jQuery y frameworks como Angular para facilitar el desarrollo de proyectos más grandes y complejos. También aparecieron herramientas diseñadas para mejorar la disciplina de programación en JavaScript, siendo TypeScript una de las más destacadas.</p>
+<p>TypeScript es un superconjunto tipado de JavaScript que compila a JavaScript plano. Introduce características como el tipado estático, que permite detectar errores en tiempo de escritura, y ofrece autocompletado en función del tipo de variable. Además, permite utilizar métodos estáticos de programación, clases y métodos (antes de ES6).</p>
+<section id="problemas-de-javascript">
+<h2>Problemas de JavaScript<a class="headerlink" href="#problemas-de-javascript" title="Link to this heading">#</a></h2>
+<p>JavaScript, en su forma nativa, presenta varios problemas que pueden dificultar el desarrollo de aplicaciones complejas:</p>
+<ol class="arabic simple">
+<li><p><strong>Errores por variables no definidas</strong>: No declarar una variable puede llevar a errores difíciles de depurar.</p></li>
+<li><p><strong>Propiedades inexistentes en objetos</strong>: Acceder a propiedades que no existen puede causar fallos en tiempo de ejecución.</p></li>
+<li><p><strong>Funciones de terceros</strong>: No siempre se sabe cómo funcionan las funciones importadas, lo que puede generar problemas.</p></li>
+<li><p><strong>Sobrescritura de variables y funciones</strong>: La flexibilidad de JavaScript permite sobrescribir variables y funciones, lo que puede resultar en comportamientos inesperados.</p></li>
+</ol>
+<p>Con la llegada de ES6, muchos de estos problemas se mitigaron, pero TypeScript proporciona una capa adicional de seguridad y eficiencia.</p>
+</section>
+<section id="transpilacion-de-typescript">
+<h2>Transpilación de TypeScript<a class="headerlink" href="#transpilacion-de-typescript" title="Link to this heading">#</a></h2>
+<p>Los navegadores no entienden TypeScript directamente, por lo que es necesario transpilar el código TypeScript a JavaScript. Este proceso se realiza mediante herramientas automáticas que aseguran que el código resultante sea compatible con diferentes navegadores, incluidos los más antiguos.</p>
+<p>Consideremos el siguiente código JavaScript:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">(</span><span class="nx">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s1">&#39;Hola &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hola John</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
+<span class="p">};</span>
+<span class="nx">saludar</span><span class="p">(</span><span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>El código anterior funciona, pero no proporciona garantías de tipo. No se puede asegurar que la función <code class="docutils literal notranslate"><span class="pre">saludar</span></code> siempre reciba un string como argumento.</p>
+<p>Ahora veamos cómo sería el mismo código en TypeScript:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">(</span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s1">&#39;Hola &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span><span class="w"> </span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
+<span class="p">};</span>
+<span class="nx">saludar</span><span class="p">(</span><span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Al cambiar la extensión de <code class="docutils literal notranslate"><span class="pre">.js</span></code> a <code class="docutils literal notranslate"><span class="pre">.ts</span></code>, Visual Studio y otros editores de texto pueden identificar y señalar errores de tipo, proporcionando una experiencia de desarrollo más robusta.</p>
+</section>
+<section id="configuracion-de-typescript">
+<h2>Configuración de TypeScript<a class="headerlink" href="#configuracion-de-typescript" title="Link to this heading">#</a></h2>
+<p>Para transpilar TypeScript a JavaScript, se utiliza el comando <code class="docutils literal notranslate"><span class="pre">tsc</span> <span class="pre">app.ts</span></code>. Sin embargo, podemos configurar TypeScript para que transpile automáticamente cada vez que guardamos un archivo:</p>
+<ol class="arabic simple">
+<li><p><strong>Inicializar TypeScript</strong>: Ejecutar <code class="docutils literal notranslate"><span class="pre">tsc</span> <span class="pre">--init</span></code> crea un archivo <code class="docutils literal notranslate"><span class="pre">tsconfig.json</span></code>, que puede ser utilizado tanto por <code class="docutils literal notranslate"><span class="pre">tsc</span></code> como por Visual Studio.</p></li>
+<li><p><strong>Transpilación Automática</strong>: Ejecutar <code class="docutils literal notranslate"><span class="pre">tsc</span> <span class="pre">-w</span></code> mantiene el proceso en espera de cambios en los archivos <code class="docutils literal notranslate"><span class="pre">.ts</span></code> para transpilar automáticamente.</p></li>
+</ol>
+<p>Frameworks como Angular ya vienen configurados para manejar esta transpilación de manera automática, simplificando aún más el proceso de desarrollo.</p>
+</section>
+<section id="estandares-en-typescript">
+<h2>Estándares en TypeScript<a class="headerlink" href="#estandares-en-typescript" title="Link to this heading">#</a></h2>
+<p>TypeScript, en su archivo <code class="docutils literal notranslate"><span class="pre">tsconfig.json</span></code>, transpila por defecto de TypeScript a JavaScript ES6. Aunque nosotros podemos programar en ES6, ES5 es más compatible con navegadores antiguos y puede realizar las mismas funciones que ES6. Las novedades de ES6, como las clases, <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code>, y las funciones flecha, están diseñadas para mejorar la programación y son más parecidas a las características de TypeScript.</p>
+<p>Transpila este ejemplo sencillo para entender cómo funciona la transpilación de ES6 a ES5:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Joaquin&#39;</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+<span class="w">   </span><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Chimo&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nombre</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">let</span></code> declara variables con ámbito de bloque. Cuando se transpila a ES5, <code class="docutils literal notranslate"><span class="pre">let</span></code> se convierte en <code class="docutils literal notranslate"><span class="pre">var</span></code>, que no tiene ámbito de bloque, lo que puede cambiar el comportamiento del código.</p>
+</section>
+<section id="tipos-de-datos">
+<h2>Tipos de Datos<a class="headerlink" href="#tipos-de-datos" title="Link to this heading">#</a></h2>
+<p>TypeScript asigna un tipo de datos estático en la primera asignación no explícita. Sin embargo, es más recomendable declarar explícitamente los tipos de datos, como en otros lenguajes tipados. Si necesitamos tipado dinámico, podemos usar el tipo <code class="docutils literal notranslate"><span class="pre">any</span></code>, aunque no es recomendable.</p>
+<p>Ejemplos de declaración de tipos en TypeScript:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Joaquin&#39;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numero</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">123</span><span class="p">;</span><span class="w">  </span><span class="c1">// (en minúscula)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">cualquierDato</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">booleano</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">hoy</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">();</span><span class="w">  </span><span class="c1">// Tipo clase</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Pepe&#39;</span><span class="p">,</span>
+<span class="w">   </span><span class="nx">edad</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span>
+<span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">personajes</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">p</span><span class="o">:</span><span class="w"> </span><span class="kt">Array</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+</pre></div>
+</div>
+<p>Si intentamos asignar otros datos al objeto <code class="docutils literal notranslate"><span class="pre">persona</span></code>, TypeScript nos ayudará a detectar errores en tiempo de escritura.</p>
+</section>
+<section id="parametros-de-las-funciones-y-valores-de-retorno">
+<h2>Parámetros de las Funciones y Valores de Retorno<a class="headerlink" href="#parametros-de-las-funciones-y-valores-de-retorno" title="Link to this heading">#</a></h2>
+<p>TypeScript nos permite definir el tipo de los parámetros de las funciones y su valor de retorno. Esto ayuda a prevenir errores y a mejorar la autocompletación en los editores de texto.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sumar</span><span class="p">(</span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este ejemplo, los parámetros <code class="docutils literal notranslate"><span class="pre">a</span></code> y <code class="docutils literal notranslate"><span class="pre">b</span></code> son de tipo <code class="docutils literal notranslate"><span class="pre">number</span></code>, y la función retorna un valor de tipo <code class="docutils literal notranslate"><span class="pre">number</span></code>.</p>
+</section>
+<section id="funciones-flecha-es6-a-es5">
+<h2>Funciones Flecha: ES6 a ES5<a class="headerlink" href="#funciones-flecha-es6-a-es5" title="Link to this heading">#</a></h2>
+<p>Las funciones flecha de ES6 ofrecen una sintaxis más concisa para escribir funciones anónimas y no tienen su propio contexto <code class="docutils literal notranslate"><span class="pre">this</span></code>, lo que puede ser beneficioso en muchos casos. Al transpilar a ES5, estas funciones se convierten en funciones normales.</p>
+<p>Ejemplo de una función flecha:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">saludar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hola &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Transpilado a ES5:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">saludar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hola &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="promesas-y-tipado-en-typescript">
+<h2>Promesas y Tipado en TypeScript<a class="headerlink" href="#promesas-y-tipado-en-typescript" title="Link to this heading">#</a></h2>
+<p>A continuación, se muestra un ejemplo de cómo se pueden usar promesas en TypeScript:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kd">const</span><span class="w"> </span><span class="nx">recogerEsencia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">cantidad</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kd">let</span><span class="w"> </span><span class="nx">cantidadActual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">;</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">cantidad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">cantidadActual</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;No queda&#39;</span><span class="p">);</span>
+<span class="w">           </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="nx">cantidadActual</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nx">cantidad</span><span class="p">;</span>
+<span class="w">               </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">cantidadActual</span><span class="p">);</span>
+<span class="w">           </span><span class="p">}</span>
+<span class="w">       </span><span class="p">});</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="nx">recogerEsencia</span><span class="p">(</span><span class="mf">500</span><span class="p">)</span>
+<span class="w">       </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">cantidadActual</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Queda </span><span class="si">${</span><span class="nx">cantidadActual</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="w">       </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>En este ejemplo, la función <code class="docutils literal notranslate"><span class="pre">recogerEsencia</span></code> retorna una promesa que resuelve con la cantidad actual de esencia si hay suficiente, o rechaza con un mensaje de error si no hay suficiente. La función está tipada para retornar una <code class="docutils literal notranslate"><span class="pre">Promise&lt;number&gt;</span></code>, lo que facilita la comprensión y el mantenimiento del código.</p>
+<section id="transpilacion-a-es6">
+<h3>Transpilación a ES6<a class="headerlink" href="#transpilacion-a-es6" title="Link to this heading">#</a></h3>
+<p>ES5 no soporta promesas de manera nativa, por lo que TypeScript no puede transpilar promesas a ES5. Para solucionar esto, debemos cambiar el objetivo de la transpilación a ES6 en el archivo <code class="docutils literal notranslate"><span class="pre">tsconfig.json</span></code>. Angular ya utiliza bibliotecas que permiten que las promesas funcionen incluso en ES5.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;compilerOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ES6&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="interfaces">
+<h2>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h2>
+<p>Las interfaces en TypeScript nos permiten definir la forma de los objetos, lo que facilita la validación y el autocompletado en tiempo de desarrollo.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kd">function</span><span class="w"> </span><span class="nx">enviar</span><span class="p">(</span><span class="nx">persona</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Problemático</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Enviando a </span><span class="si">${</span><span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="si">}</span><span class="sb"> a Arrakis`</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="kd">let</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Jessica&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">edad</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span><span class="w"> </span><span class="p">};</span>
+<span class="w">   </span><span class="nx">enviar</span><span class="p">(</span><span class="nx">persona</span><span class="p">);</span>
+
+<span class="w">   </span><span class="c1">///////////////////// Interfaces ///////////////////////</span>
+<span class="w">   </span><span class="kd">interface</span><span class="w"> </span><span class="nx">Caracter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">edad</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">familia?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="c1">// opcional</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="kd">let</span><span class="w"> </span><span class="nx">personaInterface</span><span class="o">:</span><span class="w"> </span><span class="kt">Caracter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Hawat&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">edad</span><span class="o">:</span><span class="w"> </span><span class="kt">80</span><span class="w"> </span><span class="p">};</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="kd">function</span><span class="w"> </span><span class="nx">enviarInterface</span><span class="p">(</span><span class="nx">persona</span><span class="o">:</span><span class="w"> </span><span class="kt">Caracter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Más fácil de mantener</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Enviando a </span><span class="si">${</span><span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="si">}</span><span class="sb"> a Arrakis`</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="nx">enviarInterface</span><span class="p">(</span><span class="nx">personaInterface</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>En este ejemplo, la interfaz <code class="docutils literal notranslate"><span class="pre">Caracter</span></code> define la estructura del objeto <code class="docutils literal notranslate"><span class="pre">personaInterface</span></code>. Usar interfaces hace que el código sea más fácil de mantener y refactorizar.</p>
+</section>
+<section id="clases">
+<h2>Clases<a class="headerlink" href="#clases" title="Link to this heading">#</a></h2>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kd">class</span><span class="w"> </span><span class="nx">Recolector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">private</span><span class="w"> </span><span class="nx">piloto</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;fremen&#39;</span><span class="p">;</span>
+<span class="w">       </span><span class="kr">constructor</span><span class="p">(</span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="nx">identificador</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="nx">propietario</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="nx">buenEstado</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">           </span><span class="k">private</span><span class="w"> </span><span class="nx">lugar?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span>
+<span class="w">       </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="kd">let</span><span class="w"> </span><span class="nx">rec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Recolector</span><span class="p">(</span><span class="s1">&#39;1234&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cofradia&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;desierto&#39;</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rec</span><span class="p">.</span><span class="nx">piloto</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>En este ejemplo, la clase <code class="docutils literal notranslate"><span class="pre">Recolector</span></code> tiene propiedades públicas y privadas, y un constructor que inicializa estas propiedades. Además, hay valores por defecto y parámetros opcionales.</p>
+<p>En TypeScript, puedes definir los parámetros del constructor directamente en la lista de parámetros del constructor y usar modificadores de acceso (public, private, protected, readonly). Esto automáticamente crea e inicializa esos atributos en la clase, lo que elimina la necesidad de declarar y asignar manualmente estos parámetros dentro del cuerpo del constructor usando this.</p>
+<p>Si lo transpilamos a <code class="docutils literal notranslate"><span class="pre">ES5</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">Recolector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/** @class */</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">Recolector</span><span class="p">(</span><span class="nx">identificador</span><span class="p">,</span><span class="w"> </span><span class="nx">propietario</span><span class="p">,</span><span class="w"> </span><span class="nx">buenEstado</span><span class="p">,</span><span class="w"> </span><span class="nx">lugar</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">buenEstado</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">buenEstado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">identificador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">identificador</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">propietario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">propietario</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">buenEstado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">buenEstado</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">lugar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lugar</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">Recolector</span><span class="p">;</span>
+<span class="p">}());</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">recolector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Recolector</span><span class="p">(</span><span class="s1">&#39;1234&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cofradia&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;desierto&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="decoradores">
+<h2>Decoradores<a class="headerlink" href="#decoradores" title="Link to this heading">#</a></h2>
+<p>Los decoradores en TypeScript son una característica experimental que se usa extensivamente en Angular para añadir metadatos a clases y sus miembros.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kd">function</span><span class="w"> </span><span class="nx">imprimirConsola</span><span class="p">(</span><span class="nx">constructorClase</span><span class="o">:</span><span class="w"> </span><span class="kt">Function</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">constructorClase</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="kd">@imprimirConsola</span><span class="w">  </span><span class="c1">// Necesita habilitar experimentalDecorators en tsconfig</span>
+<span class="w">   </span><span class="kd">class</span><span class="w"> </span><span class="nx">Recolector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kr">constructor</span><span class="p">(</span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="nx">identificador</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="nx">propietario</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="nx">buenEstado</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">           </span><span class="k">private</span><span class="w"> </span><span class="nx">lugar?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span>
+<span class="w">       </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="kd">let</span><span class="w"> </span><span class="nx">rec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Recolector</span><span class="p">(</span><span class="s1">&#39;1234&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cofradia&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;desierto&#39;</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>Para utilizar decoradores, debemos habilitar <code class="docutils literal notranslate"><span class="pre">experimentalDecorators</span></code> en <code class="docutils literal notranslate"><span class="pre">tsconfig.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;compilerOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;experimentalDecorators&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aunque nosotros no crearemos decoradores, Angular los utiliza ampliamente para definir componentes, servicios, y otros elementos.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -465,6 +726,34 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-javascript">Problemas de JavaScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion-de-typescript">Transpilación de TypeScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-typescript">Configuración de TypeScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandares-en-typescript">Estándares en TypeScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos">Tipos de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-de-las-funciones-y-valores-de-retorno">Parámetros de las Funciones y Valores de Retorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-flecha-es6-a-es5">Funciones Flecha: ES6 a ES5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-y-tipado-en-typescript">Promesas y Tipado en TypeScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion-a-es6">Transpilación a ES6</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases">Clases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
