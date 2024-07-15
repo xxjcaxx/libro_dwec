@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Libro DWEC
+                    Desarrollo Web en Entorno Cliente (DWEC)
                 </a>
             </li>
         </ul>
@@ -197,7 +197,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
@@ -463,6 +463,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejoras-en-objetos-literales-object-literal-enhacement">Mejoras en Objetos Literales (Object Literal enhacement)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#borrar-elementos-de-los-objetos">Borrar elementos de los objetos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-en-javascript-es6">Clases en JavaScript (ES6)</a><ul class="nav section-nav flex-column">
@@ -1500,6 +1501,34 @@ document.write(`
 <section id="mejoras-en-objetos-literales-object-literal-enhacement">
 <h3>Mejoras en Objetos Literales (Object Literal enhacement)<a class="headerlink" href="#mejoras-en-objetos-literales-object-literal-enhacement" title="Link to this heading">#</a></h3>
 <p>En ES6, se introdujo una sintaxis más concisa para definir objetos literales. Cuando el nombre de la variable y la propiedad son iguales, no es necesario repetirlos.</p>
+</section>
+<section id="borrar-elementos-de-los-objetos">
+<h3>Borrar elementos de los objetos<a class="headerlink" href="#borrar-elementos-de-los-objetos" title="Link to this heading">#</a></h3>
+<p>Para eliminar una clave-valor de un objeto se puede usar <code class="docutils literal notranslate"><span class="pre">delete</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="ow">delete</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">password</span>
+</pre></div>
+</div>
+<p>Esta operación muta el objeto, si queremos hacer una copia al mismo tiempo que eliminamos el dato del objeto resultante, se puede usar la desestructuración:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;user&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="kt">32</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1234&#39;</span>
+<span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">password</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">userWithoutPassword</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">user</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">userWithoutPassword</span><span class="p">);</span><span class="w"> </span><span class="c1">// false</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">false</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -2262,6 +2291,7 @@ La desestructuración de Arrays el spread operator, la copia profunda… son té
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejoras-en-objetos-literales-object-literal-enhacement">Mejoras en Objetos Literales (Object Literal enhacement)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#borrar-elementos-de-los-objetos">Borrar elementos de los objetos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-en-javascript-es6">Clases en JavaScript (ES6)</a><ul class="nav section-nav flex-column">

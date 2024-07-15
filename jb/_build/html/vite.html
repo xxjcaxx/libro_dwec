@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Vite (Dev Server) &#8212; Libro DWEC</title>
+    <title>Vite &#8212; Libro DWEC</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Libro DWEC
+                    Desarrollo Web en Entorno Cliente (DWEC)
                 </a>
             </li>
         </ul>
@@ -197,7 +197,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Vite (Dev Server)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
@@ -395,7 +395,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Vite (Dev Server)</h1>
+    <h1>Vite</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -405,6 +405,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frontend-building-systems">Frontend Building Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion">Transpilación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empaquetado-bundle">Empaquetado (bundle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizacion">Minimización</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-de-desarrollo">Herramientas de Desarrollo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-un-dev-server">¿Por qué un Dev Server?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-bibliotecas">Importación de Bibliotecas</a></li>
@@ -422,8 +429,78 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="vite-dev-server">
-<h1>Vite (Dev Server)<a class="headerlink" href="#vite-dev-server" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="vite">
+<h1>Vite<a class="headerlink" href="#vite" title="Link to this heading">#</a></h1>
+<section id="frontend-building-systems">
+<h2>Frontend Building Systems<a class="headerlink" href="#frontend-building-systems" title="Link to this heading">#</a></h2>
+<p>Los desarrolladores escriben JavaScript; los navegadores ejecutan JavaScript. Fundamentalmente, no es necesario un paso de compilación en el desarrollo frontend. Entonces, ¿por qué tenemos un paso de compilación en el frontend moderno?</p>
+<p>A medida que los proyectos de frontend crecen y la ergonomía del desarrollador se vuelve más importante, enviar el código fuente de JavaScript directamente al cliente conduce a dos problemas principales:</p>
+<ol class="arabic simple">
+<li><p><strong>Características del Lenguaje No Soportadas</strong>: Debido a que JavaScript se ejecuta en el navegador, y hay muchos navegadores con distintas versiones, cada característica del lenguaje que se utiliza reduce la cantidad de clientes que pueden ejecutar ese JavaScript. Además, extensiones del lenguaje como JSX no son JavaScript válido y no se ejecutarán en ningún navegador.</p></li>
+<li><p><strong>Rendimiento</strong>: El navegador debe solicitar cada archivo JavaScript individualmente. En un código grande, esto puede resultar en miles de solicitudes HTTP para renderizar una sola página. En el pasado, antes de <code class="docutils literal notranslate"><span class="pre">HTTP/2</span></code>, esto también resultaba en miles de intercambios TLS.</p></li>
+</ol>
+<p>Además, pueden ser necesarios varios viajes de red secuenciales antes de que todo el JavaScript esté cargado. Por ejemplo, si index.js importa page.js y page.js importa button.js, se necesitan tres viajes de red secuenciales para cargar completamente el JavaScript. Esto se llama el problema del “waterfall”.</p>
+<p>Los archivos fuente también pueden ser innecesariamente grandes debido a nombres de variables largos y caracteres de indentación de espacio en blanco, aumentando el uso de ancho de banda y el tiempo de carga de la red.</p>
+<p>Los sistemas de construcción frontend procesan el código fuente y emiten uno o más archivos JavaScript optimizados para enviarlos al navegador. El resultado distribuible suele ser ilegible para los humanos.</p>
+<p>Los sistemas de construcción frontend generalmente incluyen tres pasos: <code class="docutils literal notranslate"><span class="pre">transpilación</span></code>, <code class="docutils literal notranslate"><span class="pre">empaquetado</span></code> y <code class="docutils literal notranslate"><span class="pre">minificación</span></code>.</p>
+<p>Algunas aplicaciones no necesitan los tres pasos. Por ejemplo, las bases de código más pequeñas pueden omitir el empaquetado o la minificación, y los servidores de desarrollo pueden saltarse estos pasos por motivos de rendimiento. Se pueden agregar pasos personalizados adicionales.</p>
+<p>Algunas herramientas implementan múltiples pasos de construcción, como los empaquetadores, que a menudo realizan los tres pasos, siendo suficientes para aplicaciones simples. Las aplicaciones complejas pueden requerir herramientas especializadas para cada paso.</p>
+<section id="transpilacion">
+<h3>Transpilación<a class="headerlink" href="#transpilacion" title="Link to this heading">#</a></h3>
+<p>La transpilación convierte el JavaScript moderno a una versión más antigua para resolver problemas de compatibilidad con navegadores. Un objetivo común es ES6/ES2015.</p>
+<p>Herramientas y frameworks pueden agregar pasos de transpilación. Por ejemplo, JSX debe transpilarsе a JavaScript. Si una biblioteca ofrece un plugin de Babel, generalmente requiere un paso de transpilación. Además, lenguajes como TypeScript, CoffeeScript y Elm deben transpilarsе a JavaScript.</p>
+<p>Los transpiladores comunes son Babel, SWC y TypeScript Compiler.</p>
+<ul class="simple">
+<li><p><strong>Babel (2014)</strong>: Transpilador estándar, escrito en JavaScript, pero lento y difícil de depurar.</p></li>
+<li><p><strong>SWC (2020)</strong>: Transpilador rápido, multi-hilo, escrito en Rust, 20 veces más rápido que Babel, soporta TypeScript y JSX.</p></li>
+<li><p><strong>TypeScript Compiler (tsc)</strong>: Implementación de referencia de TypeScript, soporta TypeScript y JSX, pero es muy lento.</p></li>
+</ul>
+<p>Se puede omitir la transpilación si el código es JavaScript puro y usa ES6 Modules.</p>
+<p>Una alternativa para características no soportadas es el uso de polyfills, que se ejecutan en tiempo de ejecución para implementar características faltantes, aunque esto tiene un coste en rendimiento y no todas las características pueden ser polyfilled.</p>
+<p>Todos los empaquetadores también son transpiladores, ya que analizan múltiples archivos fuente JavaScript y emiten un nuevo archivo empaquetado. Algunos pueden analizar TypeScript y JSX, eliminando la necesidad de un transpilador separado para necesidades de transpilación sencillas.</p>
+</section>
+<section id="empaquetado-bundle">
+<h3>Empaquetado (bundle)<a class="headerlink" href="#empaquetado-bundle" title="Link to this heading">#</a></h3>
+<p>El empaquetado resuelve la necesidad de múltiples solicitudes de red y el problema de cascada. Los empaquetadores combinan múltiples archivos fuente JavaScript en un único archivo, llamado bundle, que se carga eficientemente en una sola solicitud de red.</p>
+<p>Los empaquetadores más usados hoy en día son Webpack, Parcel, Rollup, esbuild y Turbopack.</p>
+<ul class="simple">
+<li><p><strong>Webpack (2014)</strong>: Popular desde 2016, permite transformar archivos fuente mediante “loaders”. Es lento y monohilo, pero altamente configurable.</p></li>
+<li><p><strong>Rollup (2016)</strong>: Optimiza el soporte de ES6 Modules y permite “tree shaking”. Genera tamaños de bundle menores y es ligeramente más rápido que Webpack.</p></li>
+<li><p><strong>Parcel (2018)</strong>: De configuración baja y listo para usar. Es multihilo y más rápido que Webpack y Rollup. Parcel 2 usa SWC.</p></li>
+<li><p><strong>esbuild (2020)</strong>: Escrita en Go, es decenas de veces más rápida que Webpack, Rollup y Parcel. Incluye un transpilador y minificador básicos.</p></li>
+<li><p><strong>Turbopack (2022)</strong>: Escrita en Rust, soporta reconstrucciones incrementales y es actualmente desarrollada por Vercel.</p></li>
+</ul>
+<p>Se puede omitir el empaquetado si se tienen pocos módulos o baja latencia de red (e.g. localhost).</p>
+<p>Un bundle se compone de múltiples módulos, cada uno con una o más exportaciones. A menudo, un bundle solo utiliza un subconjunto de estas exportaciones. El proceso de “tree shaking” elimina las exportaciones no utilizadas, optimizando el tamaño del bundle y mejorando los tiempos de carga y análisis.</p>
+<p>El “tree shaking” se basa en el análisis estático de los archivos fuente, y su eficiencia se ve afectada por dos factores principales:</p>
+<ol class="arabic simple">
+<li><p><strong>Sistema de Módulos</strong>: Los módulos ES6 tienen exportaciones e importaciones estáticas, mientras que los módulos CommonJS tienen exportaciones e importaciones dinámicas. Los bundlers pueden ser más eficientes al hacer “tree shaking” con módulos ES6.</p></li>
+<li><p><strong>Efectos Secundarios</strong>: La propiedad <code class="docutils literal notranslate"><span class="pre">sideEffects</span></code> de <code class="docutils literal notranslate"><span class="pre">package.json</span></code> declara si un módulo tiene efectos secundarios al importarse. Si existen efectos secundarios, los módulos y exportaciones no utilizados pueden no ser eliminados debido a las limitaciones del análisis estático.</p></li>
+</ol>
+<p><strong>Recursos estáticos</strong></p>
+<p>Los recursos estáticos como CSS, imágenes y fuentes se añaden al distribuidor durante la etapa de agrupamiento y pueden ser optimizados en la etapa de minificación.</p>
+<p>Antes de Webpack, los recursos estáticos se construían por separado del código fuente como una tarea independiente. La aplicación tenía que referenciar estos recursos mediante su ruta final en el distribuidor, organizándolos cuidadosamente alrededor de una convención de URL (por ejemplo, <code class="docutils literal notranslate"><span class="pre">/assets/css/banner.jpg</span></code> y <code class="docutils literal notranslate"><span class="pre">/assets/fonts/Inter.woff2</span></code>).</p>
+<p>Los “loaders” de Webpack permitieron importar recursos estáticos desde JavaScript, unificando código y recursos estáticos en un solo grafo de dependencias. Durante el agrupamiento, Webpack reemplaza la importación del recurso estático con su ruta final en el distribuidor, permitiendo que los recursos se organicen junto con sus componentes asociados en el código fuente y habilitando nuevos análisis estáticos, como la detección de recursos inexistentes.</p>
+<p>Es importante notar que la importación de recursos estáticos no es parte del lenguaje JavaScript y requiere un agrupador configurado para soportar ese tipo de recurso. Afortunadamente, los agrupadores posteriores a Webpack también adoptaron el patrón de “loaders”, haciendo común esta característica.</p>
+</section>
+<section id="minimizacion">
+<h3>Minimización<a class="headerlink" href="#minimizacion" title="Link to this heading">#</a></h3>
+<p>La minificación resuelve el problema de archivos innecesariamente grandes. Los minificadores reducen el tamaño de los archivos sin afectar su funcionamiento. Para el código JavaScript y los recursos CSS, los minificadores pueden acortar variables, eliminar espacios en blanco y comentarios, eliminar código muerto y optimizar el uso de las características del lenguaje. Para otros recursos estáticos, los minificadores pueden realizar optimización del tamaño del archivo. Los minificadores generalmente se ejecutan en un paquete al final del proceso de construcción.</p>
+<p>Los minificadores de JavaScript más utilizados hoy en día son Terser, esbuild y SWC.</p>
+<p>Los minificadores de CSS más comunes hoy en día son cssnano, csso y Lightning CSS.</p>
+</section>
+</section>
+<section id="herramientas-de-desarrollo">
+<h2>Herramientas de Desarrollo<a class="headerlink" href="#herramientas-de-desarrollo" title="Link to this heading">#</a></h2>
+<p>El pipeline básico de construcción de frontend descrito anteriormente es suficiente para crear una distribución de producción optimizada. Sin embargo, existen varias clases de herramientas que mejoran la experiencia del desarrollador.</p>
+<p><strong>Meta-Frameworks</strong></p>
+<p>El espacio de frontend es conocido por la dificultad de elegir los paquetes “correctos” para usar. Los meta-frameworks ofrecen conjuntos de paquetes ya seleccionados que se complementan y permiten paradigmas de aplicación especializados.
+En el caso de Vite, este proporciona sistemas de construcción tanto de desarrollo como para producción y no fuerza a un paradigma concreto, como en el caso de Angular.</p>
+<p><strong>Sourcemaps</strong></p>
+<p>Los sourcemaps resuelven el problema de depurar código ilegible en la distribución de producción, al mapear el código distribuido a su ubicación original en el código fuente.</p>
+<p><strong>Recarga en Caliente</strong></p>
+<p>Los servidores de desarrollo a menudo ofrecen la función de recarga en caliente, que reconstruye automáticamente un nuevo paquete al cambiar el código fuente y recarga el navegador.</p>
+</section>
 <section id="por-que-un-dev-server">
 <h2>¿Por qué un Dev Server?<a class="headerlink" href="#por-que-un-dev-server" title="Link to this heading">#</a></h2>
 <p>Un servidor de desarrollo (Dev Server) es fundamental para mejorar la experiencia de desarrollo. Algunas de las ventajas clave incluyen:</p>
@@ -500,6 +577,7 @@ $<span class="w"> </span>npm<span class="w"> </span>install
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vite<span class="w"> </span>build<span class="w"> </span>--base<span class="o">=</span>/my/public/path/
 </pre></div>
 </div>
+<p>Lecturas: <a class="reference external" href="https://sunsetglow.net/posts/frontend-build-systems.html">https://sunsetglow.net/posts/frontend-build-systems.html</a></p>
 </section>
 </section>
 
@@ -567,6 +645,13 @@ $<span class="w"> </span>npm<span class="w"> </span>install
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frontend-building-systems">Frontend Building Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion">Transpilación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empaquetado-bundle">Empaquetado (bundle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizacion">Minimización</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-de-desarrollo">Herramientas de Desarrollo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-un-dev-server">¿Por qué un Dev Server?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-bibliotecas">Importación de Bibliotecas</a></li>

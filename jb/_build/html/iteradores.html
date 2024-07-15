@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Libro DWEC
+                    Desarrollo Web en Entorno Cliente (DWEC)
                 </a>
             </li>
         </ul>
@@ -197,7 +197,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
@@ -690,6 +690,7 @@ Los Generadores usan la expresión <code class="docutils literal notranslate"><s
 <li><p>Tiene funciones y atributos como <code class="docutils literal notranslate"><span class="pre">.add(),</span> <span class="pre">.delete(),</span> <span class="pre">clear(),</span> <span class="pre">.size</span> <span class="pre">o</span> <span class="pre">.has()</span></code>.</p></li>
 <li><p>Permite ser recorrido como cualquier iterable.</p></li>
 <li><p>No tiene acceso aleatorio como los arrays porque no tiene índice.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.has()</span></code> es mucho más rápido que buscar en un array con .includes(), así que para búsquedas es mucho más eficiente.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -719,6 +720,16 @@ Los Generadores usan la expresión <code class="docutils literal notranslate"><s
 </div>
 </div>
 </div>
+<p>El nombre de <code class="docutils literal notranslate"><span class="pre">Set</span></code> es porque, al igual que en Python y otros lenguajes, se trata de una estructura de datos similar al <code class="docutils literal notranslate"><span class="pre">conjunto</span></code> en las matemáticas. Como se trata de conjuntos de datos, se les puede aplicar operaciones del álgebra de conjuntos, como son:</p>
+<ul class="simple">
+<li><p>intersection()</p></li>
+<li><p>union()</p></li>
+<li><p>difference()</p></li>
+<li><p>symmetricDifference(): los elementos que están en cualquiera de los dos conjuntos, pero no el los dos.</p></li>
+<li><p>isSubsetOf(): Si es un subconjunto</p></li>
+<li><p>isSupersetOf(): Si es un conjunto que contiene todos los elementos.</p></li>
+<li><p>isDisjointFrom(): Si no tienen elementos en común.</p></li>
+</ul>
 </section>
 <section id="map">
 <h3>Map<a class="headerlink" href="#map" title="Link to this heading">#</a></h3>

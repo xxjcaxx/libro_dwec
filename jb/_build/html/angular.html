@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Libro DWEC
+                    Desarrollo Web en Entorno Cliente (DWEC)
                 </a>
             </li>
         </ul>
@@ -197,7 +197,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
@@ -889,6 +889,22 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 </ul>
 <p><strong>Modernización a partir de Angular 17:</strong></p>
 <p>A partir de Angular 17, las directivas estructurales <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> se han simplificado y no requieren la importación de ninguna librería adicional. Además, la sintaxis se ha hecho más intuitiva y fácil de leer. Es muy probable que encontremos ejemplos con ngFor, ngIf… Estos todavía funcionan, pero no se recomienda usarlos ya.</p>
+<p><strong>&#64;let</strong></p>
+<p>Con &#64;let podemos crear variables en el entorno de las plantillas. Estas también tienen ámbito de bloque y no pueden ser reasignadas.  Veamos algún ejemplo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@let name = &#39;Frodo&#39;;
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Dashboard for {{name}}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+Hello, {{name}}
+
+<span class="cm">&lt;!-- Use with a template variable referencing an element --&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="err">#</span><span class="na">name</span><span class="p">&gt;</span>
+
+@let greeting = &#39;Hello &#39; + name.value;
+
+<span class="cm">&lt;!-- Use with an async pipe --&gt;</span>
+@let user = user$ | async;
+</pre></div>
+</div>
+<p><a class="reference external" href="https://blog.angular.dev/introducing-let-in-angular-686f9f383f0f">https://blog.angular.dev/introducing-let-in-angular-686f9f383f0f</a></p>
 </section>
 <section id="interfaces">
 <h3>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h3>
