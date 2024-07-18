@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Libro DWEC
+                    Desarrollo Web en Entorno Cliente (DWEC)
                 </a>
             </li>
         </ul>
@@ -197,7 +197,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite (Dev Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
@@ -411,6 +411,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-manuales-con-estado-y-control-de-acceso">Módulos manuales (con estado y control de acceso)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-es6">Módulos ES6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-script-con-modulos">Uso de <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> con módulos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-asincrona">Importación asíncrona</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-en-bare-names">Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code></a></li>
 </ul>
             </nav>
@@ -568,6 +569,16 @@ document.write(`
 </pre></div>
 </div>
 </section>
+<section id="importacion-asincrona">
+<h2>Importación asíncrona<a class="headerlink" href="#importacion-asincrona" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import</a></p>
+<ul class="simple">
+<li><p>Devuelve una promesa (es asíncrono)</p></li>
+<li><p>Se puede importar Javascript en “tiempo real”</p></li>
+<li><p>No está limitado a usar el import al inicio</p></li>
+<li><p>Puede ejecutar código sólo en ciertos casos</p></li>
+</ul>
+</section>
 <section id="importar-en-bare-names">
 <h2>Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code><a class="headerlink" href="#importar-en-bare-names" title="Link to this heading">#</a></h2>
 <p>En <code class="docutils literal notranslate"><span class="pre">Vite</span></code> y otros entornos, no es necesario especificar la extensión de los archivos al importar, incluso si están en <code class="docutils literal notranslate"><span class="pre">node_modules</span></code>no hace falta ni la ruta. Esto es por dos razones:</p>
@@ -649,6 +660,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-manuales-con-estado-y-control-de-acceso">Módulos manuales (con estado y control de acceso)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-es6">Módulos ES6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-script-con-modulos">Uso de <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> con módulos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-asincrona">Importación asíncrona</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-en-bare-names">Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code></a></li>
 </ul>
   </nav></div>

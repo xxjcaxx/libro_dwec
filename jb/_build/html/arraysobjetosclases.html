@@ -409,6 +409,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-y-propiedades-de-los-arrays">Métodos y Propiedades de los Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-arrays">Recorrer Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-arrays">Búsqueda en Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenar-arrays">Ordenar Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-operaciones-en-arrays">Otras Operaciones en Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutabilidad-de-los-arrays">Mutabilidad de los arrays</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-que-mutan-el-array">Métodos que mutan el array</a></li>
@@ -606,7 +607,8 @@ document.write(`
 <p>Ejemplo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">alligator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thick scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;4 foot tail&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rounded snout&quot;</span><span class="p">];</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">alligator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thick scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;4 foot tail&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rounded snout&quot;</span><span class="p">];</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;thick scales&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">12</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;4 foot tail&#39;</span>
@@ -614,6 +616,7 @@ document.write(`
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;rounded snout&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 3</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;rounded snout&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 3</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">alligator</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">80</span><span class="p">));</span><span class="w"> </span><span class="c1">// [80]</span>
+<span class="p">})();</span>
 </pre></div>
 </div>
 </div>
@@ -634,6 +637,116 @@ document.write(`
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">80</span> ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ordenar-arrays">
+<h3>Ordenar Arrays<a class="headerlink" href="#ordenar-arrays" title="Link to this heading">#</a></h3>
+<p>La función <code class="docutils literal notranslate"><span class="pre">sort()</span></code> de los arrays permite ordenarlos. Esta operación muta el array original también lo retorna. Si no queremos mutarlo, podemos usar <code class="docutils literal notranslate"><span class="pre">toSorted()</span></code> o <code class="docutils literal notranslate"><span class="pre">[...array].sort()</span></code>.</p>
+<p>La función sin argumentos ordena alfabéticamente. Veamos el resultado de ordenar un array diverso:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">//[2,3,44,5,&quot;1&quot;,&quot;a&quot;].sort();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para usar un criterio de ordenación personalizado en JavaScript con la función <code class="docutils literal notranslate"><span class="pre">.sort()</span></code>, hay que pasar una función de comparación. Esta función de comparación debe retornar un número:</p>
+<ul class="simple">
+<li><p>Un valor negativo si el primer argumento debe aparecer antes que el segundo.</p></li>
+<li><p>Un valor positivo si el primer argumento debe aparecer después que el segundo.</p></li>
+<li><p>Cero si ambos argumentos son iguales y su posición relativa no cambia.</p></li>
+</ul>
+<p>Aquí hay un ejemplo de cómo funciona:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">];</span>
+
+<span class="c1">// Función de comparación para ordenar de menor a mayor</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span><span class="w"> </span><span class="c1">// [2, 3, 5, 8, 10]</span>
+
+<span class="c1">// Función de comparación para ordenar de mayor a menor</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span><span class="w"> </span><span class="c1">// [10, 8, 5, 3, 2]</span>
+</pre></div>
+</div>
+<p>En este ejemplo, la función de comparación <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span> <span class="pre">=&gt;</span> <span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code> ordena los números de menor a mayor. La función <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span> <span class="pre">=&gt;</span> <span class="pre">b</span> <span class="pre">-</span> <span class="pre">a</span></code> ordena los números de mayor a menor.</p>
+<p>Para ordenar objetos en base a una propiedad específica, la función de comparación puede ser como la siguiente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Pencil&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Notebook&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eraser&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// Ordenar por precio de menor a mayor</span>
+<span class="nx">items</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">price</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+<span class="c1">// [{ name: &#39;Eraser&#39;, price: 1 }, { name: &#39;Pencil&#39;, price: 2 }, { name: &#39;Notebook&#39;, price: 5 }]</span>
+
+<span class="c1">// Ordenar por precio de mayor a menor</span>
+<span class="nx">items</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">price</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+<span class="c1">// [{ name: &#39;Notebook&#39;, price: 5 }, { name: &#39;Pencil&#39;, price: 2 }, { name: &#39;Eraser&#39;, price: 1 }]</span>
+</pre></div>
+</div>
+<p>No obstante, si los elementos del array no son todos números, debemos evitar hacer la resta. En ese caso se puede usar un operador ternario:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/*(()=&gt;{</span>
+<span class="cm">const items = [</span>
+<span class="cm">    { name: &#39;Pencil&#39;, price: 2 },</span>
+<span class="cm">    { name: &#39;Notebook&#39;, price: 5 },</span>
+<span class="cm">    { name: &#39;Eraser&#39;, price: 1 }</span>
+<span class="cm">  ];</span>
+<span class="cm">  </span>
+<span class="cm">  // Ordenar por nombre alfabéticamente</span>
+<span class="cm">  items.sort((a, b) =&gt; {</span>
+<span class="cm">    return a.name &gt; b.name ? 1 : a.name &lt; b.name ? -1 : 0;</span>
+<span class="cm">  });</span>
+<span class="cm">  </span>
+<span class="cm">  console.log(items);</span>
+<span class="cm">  // [{ name: &#39;Eraser&#39;, price: 1 }, { name: &#39;Notebook&#39;, price: 5 }, { name: &#39;Pencil&#39;, price: 2 }]</span>
+<span class="cm">  </span>
+<span class="cm">  // Ordenar por nombre en orden inverso</span>
+<span class="cm">  items.sort((a, b) =&gt; {</span>
+<span class="cm">    return a.name &lt; b.name ? 1 : a.name &gt; b.name ? -1 : 0;</span>
+<span class="cm">  });</span>
+<span class="cm">  </span>
+<span class="cm">  console.log(items);</span>
+<span class="cm">  // [{ name: &#39;Pencil&#39;, price: 2 }, { name: &#39;Notebook&#39;, price: 5 }, { name: &#39;Eraser&#39;, price: 1 }]</span>
+<span class="cm">})();*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos si Javascript nos sabe responder a la clásica pregunta:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="p">[</span><span class="s1">&#39;🥚&#39;</span><span class="p">,</span><span class="s1">&#39;🐤&#39;</span><span class="p">].</span><span class="nx">sort</span><span class="p">();</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="p">[</span><span class="s1">&#39;🦑&#39;</span><span class="p">,</span><span class="s1">&#39;🌱&#39;</span><span class="p">,</span><span class="s1">&#39;🦣&#39;</span><span class="p">,</span><span class="s1">&#39;🫵&#39;</span><span class="p">,</span><span class="s1">&#39;🌍&#39;</span><span class="p">].</span><span class="nx">sort</span><span class="p">();</span>
+<span class="p">})();</span><span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -2237,6 +2350,7 @@ La desestructuración de Arrays el spread operator, la copia profunda… son té
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-y-propiedades-de-los-arrays">Métodos y Propiedades de los Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-arrays">Recorrer Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-en-arrays">Búsqueda en Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenar-arrays">Ordenar Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-operaciones-en-arrays">Otras Operaciones en Arrays</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutabilidad-de-los-arrays">Mutabilidad de los arrays</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-que-mutan-el-array">Métodos que mutan el array</a></li>
