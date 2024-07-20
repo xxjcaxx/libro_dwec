@@ -648,7 +648,12 @@ document.write(`
 <p>La función sin argumentos ordena alfabéticamente. Veamos el resultado de ordenar un array diverso:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">//[2,3,44,5,&quot;1&quot;,&quot;a&quot;].sort();</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">44</span><span class="p">,</span><span class="mf">5</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">].</span><span class="nx">sort</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Green">&quot;1&quot;</span>, <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">3</span>, <span class=" -Color -Color-Yellow">44</span>, <span class=" -Color -Color-Yellow">5</span>, <span class=" -Color -Color-Green">&quot;a&quot;</span> ]
 </pre></div>
 </div>
 </div>
@@ -705,29 +710,45 @@ document.write(`
 <p>No obstante, si los elementos del array no son todos números, debemos evitar hacer la resta. En ese caso se puede usar un operador ternario:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/*(()=&gt;{</span>
-<span class="cm">const items = [</span>
-<span class="cm">    { name: &#39;Pencil&#39;, price: 2 },</span>
-<span class="cm">    { name: &#39;Notebook&#39;, price: 5 },</span>
-<span class="cm">    { name: &#39;Eraser&#39;, price: 1 }</span>
-<span class="cm">  ];</span>
-<span class="cm">  </span>
-<span class="cm">  // Ordenar por nombre alfabéticamente</span>
-<span class="cm">  items.sort((a, b) =&gt; {</span>
-<span class="cm">    return a.name &gt; b.name ? 1 : a.name &lt; b.name ? -1 : 0;</span>
-<span class="cm">  });</span>
-<span class="cm">  </span>
-<span class="cm">  console.log(items);</span>
-<span class="cm">  // [{ name: &#39;Eraser&#39;, price: 1 }, { name: &#39;Notebook&#39;, price: 5 }, { name: &#39;Pencil&#39;, price: 2 }]</span>
-<span class="cm">  </span>
-<span class="cm">  // Ordenar por nombre en orden inverso</span>
-<span class="cm">  items.sort((a, b) =&gt; {</span>
-<span class="cm">    return a.name &lt; b.name ? 1 : a.name &gt; b.name ? -1 : 0;</span>
-<span class="cm">  });</span>
-<span class="cm">  </span>
-<span class="cm">  console.log(items);</span>
-<span class="cm">  // [{ name: &#39;Pencil&#39;, price: 2 }, { name: &#39;Notebook&#39;, price: 5 }, { name: &#39;Eraser&#39;, price: 1 }]</span>
-<span class="cm">})();*/</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Pencil&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Notebook&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eraser&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">];</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1">// Ordenar por nombre alfabéticamente</span>
+<span class="w">  </span><span class="nx">items</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">a.name</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="nx">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// [{ name: &#39;Eraser&#39;, price: 1 }, { name: &#39;Notebook&#39;, price: 5 }, { name: &#39;Pencil&#39;, price: 2 }]</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1">// Ordenar por nombre en orden inverso</span>
+<span class="w">  </span><span class="nx">items</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">a.name</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="nx">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// [{ name: &#39;Pencil&#39;, price: 2 }, { name: &#39;Notebook&#39;, price: 5 }, { name: &#39;Eraser&#39;, price: 1 }]</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
+  { name: <span class=" -Color -Color-Green">&quot;Eraser&quot;</span>, price: <span class=" -Color -Color-Yellow">1</span> },
+  { name: <span class=" -Color -Color-Green">&quot;Notebook&quot;</span>, price: <span class=" -Color -Color-Yellow">5</span> },
+  { name: <span class=" -Color -Color-Green">&quot;Pencil&quot;</span>, price: <span class=" -Color -Color-Yellow">2</span> }
+]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
+  { name: <span class=" -Color -Color-Green">&quot;Pencil&quot;</span>, price: <span class=" -Color -Color-Yellow">2</span> },
+  { name: <span class=" -Color -Color-Green">&quot;Notebook&quot;</span>, price: <span class=" -Color -Color-Yellow">5</span> },
+  { name: <span class=" -Color -Color-Green">&quot;Eraser&quot;</span>, price: <span class=" -Color -Color-Yellow">1</span> }
+]
 </pre></div>
 </div>
 </div>
