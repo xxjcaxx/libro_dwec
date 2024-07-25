@@ -510,10 +510,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejorando-la-visualizacion-en-la-consola">4. Mejorando la visualización en la consola</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals">Template Literals</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tagged-template-literals">Tagged Template Literals</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals">Template Literals</a></li>
 </ul>
             </nav>
         </div>
@@ -1985,108 +1982,13 @@ Soy una variable de la función padre
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`El alumno es: </span><span class="si">${</span><span class="nx">edad</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;menor&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;mayor&#39;</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>También se pueden hacer una funciones especiales llamandas <code class="docutils literal notranslate"><span class="pre">tagged</span> <span class="pre">template</span> <span class="pre">literals</span></code> que explicamos en el capítulo del DOM.</p></li>
+</ul>
 <p>Lectura recomendada:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.digitalocean.com/community/tutorials/understanding-template-literals-in-javascript">https://www.digitalocean.com/community/tutorials/understanding-template-literals-in-javascript</a></p></li>
 </ul>
-<section id="tagged-template-literals">
-<h3>Tagged Template Literals<a class="headerlink" href="#tagged-template-literals" title="Link to this heading">#</a></h3>
-<p>Los “Tagged Template Literals” son una característica de JavaScript que te permite crear funciones que aceptan una plantilla literal y sus interpolaciones. Estas funciones son invocadas de forma muy diferente, ya que no tienen (parentesis) y se entiende que el primer argumento es la plantilla y el resto de argumentos son los distintos valores de las variables interpoladas.</p>
-<p>En lugar de recibir una sola cadena de texto con las interpolaciones <code class="docutils literal notranslate"><span class="pre">${}</span></code>, la función de etiqueta recibe dos argumentos separados: un array de strings y un array con los valores interpolados.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">miTaggedTemplateLiteral</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">values</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">values</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Carlos&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">32</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">miTaggedTemplateLiteral</span><span class="sb">`Hola soy </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb"> y tengo </span><span class="si">${</span><span class="nx">edad</span><span class="si">}</span><span class="sb"> años`</span><span class="p">;</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ &quot;Hola soy &quot;, &quot; y tengo &quot;, &quot; años&quot; ] Carlos 32
-</pre></div>
-</div>
-</div>
-</div>
-<p>En el siguiente ejemplo, extraido de <a class="reference external" href="https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation">https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation</a> se puede ver cómo hacer una función para tagged template literal que personalice una plantilla.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">htmlEscape</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// first!</span>
-<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;gt;&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;lt;&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&quot;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;quot;&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;#39;&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/`/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;#96;&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">html</span><span class="p">(</span><span class="nx">templateObject</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">substs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// Use raw template strings: we don’t want</span>
-<span class="w">  </span><span class="c1">// backslashes (\n etc.) to be interpreted</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">raw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">templateObject</span><span class="p">.</span><span class="nx">raw</span><span class="p">;</span>
-
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nx">substs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">subst</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">// Retrieve the template string preceding</span>
-<span class="w">      </span><span class="c1">// the current substitution</span>
-<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">lit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">raw</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-<span class="w">      </span><span class="c1">// In the example, map() returns an Array:</span>
-<span class="w">      </span><span class="c1">// If `subst` is an Array (and not a string),</span>
-<span class="w">      </span><span class="c1">// we turn it into a string</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">subst</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">subst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">subst</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="w">      </span><span class="p">}</span>
-
-<span class="w">      </span><span class="c1">// If the substitution is preceded by an exclamation</span>
-<span class="w">      </span><span class="c1">// mark, we escape special characters in it</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">lit</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">subst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">htmlEscape</span><span class="p">(</span><span class="nx">subst</span><span class="p">);</span>
-<span class="w">          </span><span class="nx">lit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lit</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">);</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">      </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">lit</span><span class="p">;</span>
-<span class="w">      </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">subst</span><span class="p">;</span>
-<span class="w">  </span><span class="p">});</span>
-<span class="w">  </span><span class="c1">// Take care of last template string</span>
-<span class="w">  </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">raw</span><span class="p">[</span><span class="nx">raw</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// (A)</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">tmpl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addrs</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
-<span class="sb">    &lt;table&gt;</span>
-<span class="sb">    </span><span class="si">${</span><span class="nx">addrs</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">addr</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
-<span class="sb">        &lt;tr&gt;&lt;td&gt;!</span><span class="si">${</span><span class="nx">addr</span><span class="p">.</span><span class="nx">first</span><span class="si">}</span><span class="sb">&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="sb">        &lt;tr&gt;&lt;td&gt;!</span><span class="si">${</span><span class="nx">addr</span><span class="p">.</span><span class="nx">last</span><span class="si">}</span><span class="sb">&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="sb">    `</span><span class="p">)</span><span class="si">}</span>
-<span class="sb">    &lt;/table&gt;</span>
-<span class="sb">`</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;Jane&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">last</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Bond&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lars&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">last</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;Croft&gt;&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="p">];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tmpl</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    &lt;table&gt;
-    
-        &lt;tr&gt;&lt;td&gt;&amp;lt;Jane&amp;gt;&lt;/td&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td&gt;Bond&lt;/td&gt;&lt;/tr&gt;
-    
-        &lt;tr&gt;&lt;td&gt;Lars&lt;/td&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td&gt;&amp;lt;Croft&amp;gt;&lt;/td&gt;&lt;/tr&gt;
-    
-    &lt;/table&gt;
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 </section>
 
@@ -2259,10 +2161,7 @@ Soy una variable de la función padre
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mejorando-la-visualizacion-en-la-consola">4. Mejorando la visualización en la consola</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals">Template Literals</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tagged-template-literals">Tagged Template Literals</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals">Template Literals</a></li>
 </ul>
   </nav></div>
 

@@ -413,8 +413,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-buscar-nodos">DOM: Buscar Nodos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-modificar-nodos">DOM: Modificar Nodos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-estilos">DOM: Estilos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
@@ -636,8 +641,12 @@ document.write(`
 <div><p>ClassName no debería usarse, ya que puede molestar si se usa classList por otro lado. Usaremos classList en todas las ocasiones excepto para eliminar todas las clases.</p>
 </div></blockquote>
 </section>
+<section id="creacion-de-elementos-plantillas">
+<h2>Creación de elementos (plantillas)<a class="headerlink" href="#creacion-de-elementos-plantillas" title="Link to this heading">#</a></h2>
+<p>Se pueden crear elementos totalmente de forma programática. Pero puede ser tedioso. Muchas veces, si sabemos que hay fragmentos de HTML bastante estáticos, podemos usar <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code> y <code class="docutils literal notranslate"><span class="pre">.append()</span></code> con plantillas creadas mediante strings.</p>
+<p>Para crear elementos del DOM mediante plantillas hay muchas formas. Obviaremos las más farragosas y nos centraremos en aquellas que son más rápidas.</p>
 <section id="creacion-de-elementos-template-literal">
-<h2>Creación de Elementos: Template Literal<a class="headerlink" href="#creacion-de-elementos-template-literal" title="Link to this heading">#</a></h2>
+<h3>Creación de Elementos: Template Literal<a class="headerlink" href="#creacion-de-elementos-template-literal" title="Link to this heading">#</a></h3>
 <p>Los template literals y las interpolaciones de cadenas permiten crear contenido dinámico de manera sencilla.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">generateGraphCard</span><span class="p">(</span><span class="nx">graph</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cardTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
@@ -658,8 +667,106 @@ document.write(`
 </pre></div>
 </div>
 </section>
+<section id="creacion-de-elementos-mediante-tagged-template-literals">
+<h3>Creación de elementos mediante Tagged Template Literals<a class="headerlink" href="#creacion-de-elementos-mediante-tagged-template-literals" title="Link to this heading">#</a></h3>
+<p>Los “Tagged Template Literals” son una característica de JavaScript que te permite crear funciones que aceptan una plantilla literal y sus interpolaciones. Estas funciones son invocadas de forma muy diferente, ya que no tienen (parentesis) y se entiende que el primer argumento es la plantilla y el resto de argumentos son los distintos valores de las variables interpoladas.</p>
+<p>En lugar de recibir una sola cadena de texto con las interpolaciones <code class="docutils literal notranslate"><span class="pre">${}</span></code>, la función de etiqueta recibe dos argumentos separados: un array de strings y un array con los valores interpolados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">miTaggedTemplateLiteral</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">values</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">values</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Carlos&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">32</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">miTaggedTemplateLiteral</span><span class="sb">`Hola soy </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb"> y tengo </span><span class="si">${</span><span class="nx">edad</span><span class="si">}</span><span class="sb"> años`</span><span class="p">;</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Green">&quot;Hola soy &quot;</span>, <span class=" -Color -Color-Green">&quot; y tengo &quot;</span>, <span class=" -Color -Color-Green">&quot; años&quot;</span> ] Carlos <span class=" -Color -Color-Yellow">32</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el siguiente ejemplo, extraido de <a class="reference external" href="https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation">https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation</a> se puede ver cómo hacer una función para tagged template literal que personalice una plantilla.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">htmlEscape</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// first!</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;gt;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;lt;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&quot;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;quot;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;#39;&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/`/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&amp;#96;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">html</span><span class="p">(</span><span class="nx">templateObject</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">substs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Use raw template strings: we don’t want</span>
+<span class="w">  </span><span class="c1">// backslashes (\n etc.) to be interpreted</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">raw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">templateObject</span><span class="p">.</span><span class="nx">raw</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">substs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">subst</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Retrieve the template string preceding</span>
+<span class="w">      </span><span class="c1">// the current substitution</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">lit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">raw</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+<span class="w">      </span><span class="c1">// In the example, map() returns an Array:</span>
+<span class="w">      </span><span class="c1">// If `subst` is an Array (and not a string),</span>
+<span class="w">      </span><span class="c1">// we turn it into a string</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">subst</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">subst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">subst</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// If the substitution is preceded by an exclamation</span>
+<span class="w">      </span><span class="c1">// mark, we escape special characters in it</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">lit</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">subst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">htmlEscape</span><span class="p">(</span><span class="nx">subst</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">lit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lit</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">lit</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">subst</span><span class="p">;</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="c1">// Take care of last template string</span>
+<span class="w">  </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">raw</span><span class="p">[</span><span class="nx">raw</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// (A)</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">tmpl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">addrs</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
+<span class="sb">    &lt;table&gt;</span>
+<span class="sb">    </span><span class="si">${</span><span class="nx">addrs</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">addr</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
+<span class="sb">        &lt;tr&gt;&lt;td&gt;!</span><span class="si">${</span><span class="nx">addr</span><span class="p">.</span><span class="nx">first</span><span class="si">}</span><span class="sb">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="sb">        &lt;tr&gt;&lt;td&gt;!</span><span class="si">${</span><span class="nx">addr</span><span class="p">.</span><span class="nx">last</span><span class="si">}</span><span class="sb">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="sb">    `</span><span class="p">)</span><span class="si">}</span>
+<span class="sb">    &lt;/table&gt;</span>
+<span class="sb">`</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;Jane&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">last</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Bond&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lars&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">last</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;Croft&gt;&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tmpl</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    &lt;table&gt;
+    
+        &lt;tr&gt;&lt;td&gt;&amp;lt;Jane&amp;gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Bond&lt;/td&gt;&lt;/tr&gt;
+    
+        &lt;tr&gt;&lt;td&gt;Lars&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&amp;lt;Croft&amp;gt;&lt;/td&gt;&lt;/tr&gt;
+    
+    &lt;/table&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="creacion-de-elementos-interpolaciones-y-wrapper">
-<h2>Creación de Elementos: Interpolaciones y Wrapper<a class="headerlink" href="#creacion-de-elementos-interpolaciones-y-wrapper" title="Link to this heading">#</a></h2>
+<h3>Creación de Elementos: Interpolaciones y Wrapper<a class="headerlink" href="#creacion-de-elementos-interpolaciones-y-wrapper" title="Link to this heading">#</a></h3>
 <p>Podemos usar funciones para extraer e implementar interpolaciones en template literals.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">extractInterpolations</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\{\{([^\{\}]*)\}\}/g</span><span class="p">;</span>
@@ -690,6 +797,65 @@ document.write(`
 </pre></div>
 </div>
 <p>Este ejemplo es un poco más complicado de lo que se espera poder hacer a estas alturas. No obstante, es interesante intentar entender su funcionamiento. En él se usan <code class="docutils literal notranslate"><span class="pre">{{}}</span></code> como interpolaciones como en <code class="docutils literal notranslate"><span class="pre">Angular</span></code>. Esta puede ser una base para hacer un motor de plantillas como tienen los frameworks. Por otro lado, se crea un div que actua de <code class="docutils literal notranslate"><span class="pre">Wrapper</span></code>, és dedir, que envuelve el verdadero elemento para poder trabajar sólo con strings hasta el final, pero retornar un <code class="docutils literal notranslate"><span class="pre">Element</span></code>, gracias a <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>.</p>
+</section>
+<section id="creacion-de-elementos-con-template">
+<h3>Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code><a class="headerlink" href="#creacion-de-elementos-con-template" title="Link to this heading">#</a></h3>
+<p>La etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> es especial. Su interior no se renderiza como el resto, pero queda accesible para ser buscado. La utilidad es crear plantillas en HTML que puedan ser clonadas y rellenadas como se desee.</p>
+<p>Veamos este HTML extraido de la web de referencia: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template:">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template:</a></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;producttable&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>UPC_Code<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Product_Name<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- datos opcionales pueden incluirse aquí opcionalmente --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;productrow&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;record&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Y con este javascript obtenemos el contenido del template, se clona y se rellena las veces que sea necesario:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Test to see if the browser supports the HTML template element by checking</span>
+<span class="c1">// for the presence of the template element&#39;s content attribute.</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;template&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Instantiate the table with the existing HTML tbody</span>
+<span class="w">  </span><span class="c1">// and the row with the template</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">tbody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;tbody&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#productrow&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Clone the new row and insert it into the table</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">td</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">clone</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">td</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1235646565&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">td</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Stuff&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">tbody</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">clone</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Clone the new row and insert it into the table</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">clone2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">td</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">clone2</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">td</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0384928528&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">td</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Acme Kidney Beans 2&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">tbody</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">clone2</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Find another way to add the rows to the table because</span>
+<span class="w">  </span><span class="c1">// the HTML template element is not supported.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Cualquiera de las formas que hemos visto para crear elementos, mediante template literal o funciones tagged, creando nuestras interpolaciones o con templates es válida y combinable. Para lograr lo que los frameworks hacen con sus motores de plantilla hay mucho trecho, porque no se ha hablado deñ <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">DOM</span></code> y otras técnicas avanzadas para lograr plantillas con reactividad. Si logramos hacer un motor de plantillas suficientemente genérico para la aplicación en la que estamos trabajando, el uso de frameworks queda mucho menos justificado.</p>
+</div></blockquote>
+</section>
 </section>
 <section id="esperar-a-que-cargue-el-dom">
 <h2>Esperar a que Cargue el DOM<a class="headerlink" href="#esperar-a-que-cargue-el-dom" title="Link to this heading">#</a></h2>
@@ -1597,16 +1763,16 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "deno"
         },
         kernelOptions: {
-            name: "python3",
+            name: "deno",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'deno'</script>
 
                 </article>
               
@@ -1660,8 +1826,13 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-buscar-nodos">DOM: Buscar Nodos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-modificar-nodos">DOM: Modificar Nodos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-estilos">DOM: Estilos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
