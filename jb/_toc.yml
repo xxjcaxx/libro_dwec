@@ -25,6 +25,7 @@ parts:
     - file: proyectos
     - file: documentacion
     - file: proyectovanilla
+    - file: WebComponents
 
   - caption: Angular
     chapters: 

@@ -1,0 +1,716 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Web Components &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'WebComponents';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Typescript" href="typescript.html" />
+    <link rel="prev" title="Proyecto completo en Javascript" href="proyectovanilla.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2FWebComponents.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/WebComponents.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Web Components</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-iniciales">Conceptos iniciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativas">Alternativas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-elements">Custom Elements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida">Ciclo de vida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registrar-el-elemento-personalizado">Registrar el elemento personalizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-el-elemento-personalizado">Usar el elemento personalizado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="web-components">
+<h1>Web Components<a class="headerlink" href="#web-components" title="Link to this heading">#</a></h1>
+<p>En el capítulo del DOM hemos introducido gran parte de los conocimientos necesarios para este capítulo. No obstante, necesitamos haber trabajado con todos los demás conceptos y haber practicado con proyectos simples para entender la importancia de los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code>.</p>
+<p>Si queremos hacer una SPA que maneje datos obtenidos del servidor y los muestre de manera reactiva, podemos seguir estos pasos:</p>
+<ul class="simple">
+<li><p>El router manda descargar los datos del servidor y los pasa a una función que los aplica a una plantilla.</p></li>
+<li><p>El router se suscribe a un Observable de los datos del servidor y cada vez que llegan nuevos datos los renderiza con una plantilla.</p></li>
+<li><p>El router renderiza una plantilla con “placeholders”, espera los datos del servidor y rellena la plantilla con esos datos.</p></li>
+<li><p>…</p></li>
+</ul>
+<p>En cualquiera de estas opciones, hay problemas para volver a renderizar cuando hay datos nuevos, para mantener a raya a las suscripciones, para gestionar el estado de la aplicación o para mantenerla suficientemente desacoplada. Además, será complicado reutilizar esas funciones en otros proyectos.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> no son una tecnología diferente a las vistas en los capítulos anteriores, se trata de una definición de la W3C para estandarizar lo que comenzaba a ser un aspecto común de los frameworks e intentar hacer componentes reutilizables para todos. Estos componentes se pueden hacer a partir de las mejoras de ES6 y HTML5. En la definición que podemos encontrar en la web de MDN: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">https://developer.mozilla.org/en-US/docs/Web/API/Web_components</a>, no incorpora la reactividad, pero nosotros vamos a incorporarla desde el principio.</p>
+<blockquote>
+<div><p>Llegado el momento de hacer Web Components desde 0 con “vanilla Javascript” nos podemos preguntar si no será mejor usar un framework. Intentemos resistir esa tentación, al menos para aprender, porque esos conocimientos nos permitirán entender profundamente cómo funciona, por ejemplo. Angular.</p>
+</div></blockquote>
+<section id="conceptos-iniciales">
+<h2>Conceptos iniciales<a class="headerlink" href="#conceptos-iniciales" title="Link to this heading">#</a></h2>
+<p>Se pueden crear componentes de muchas maneras, pero la definición oficial parte de la posibilidad de crear <strong>Elementos personalizados</strong> o <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Elements</span></code>. Esto se puede hacer porque Javascript permite heredar de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements</a>. Luego veremos las posibilidades que hay con esto.</p>
+<p>Los elementos personalizados pueden ser diferentes al resto de la aplicación y tener sus propios scripts y estilos. Estos pueden colisionar con una aplicación para la que no fueron creados desde el principio. Una de las necesidades cubiertas por los Web Components es la reutilización del código. Pero Javascript permite encapsular estos elementos en un DOM separado del principal. Esta técnica se llama <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>.</p>
+<p>Para crear elementos personalizados en el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>, se pueden hacer programáticamente o a través del HTML con etiquetas como <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>.</p>
+<p>Por consiguiente, un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> tiene una clase que hereda de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> registrada en el <code class="docutils literal notranslate"><span class="pre">CustomElementRegistry</span></code> para que pueda ser utilizada en cualquier parte. Este elemento tiene un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> (opcional) para que su código y estilos no molesten al resto y se suele usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> para las plantillas. A continuación se puede usar como cualquier etiqueta.</p>
+<section id="alternativas">
+<h3>Alternativas<a class="headerlink" href="#alternativas" title="Link to this heading">#</a></h3>
+<p>Como todo en Javascript, es opcional usar Web components, pero es que también es opcional usar todas las técnicas anteriores. Si no hacemos un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code> no entra en la definición de lo que estamos tratando, pero se puede hacer una función que retorne un elemento con <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> y código personalizado que atiende a los eventos, descarga los datos, se suscribe a Observables… El problema es que perdemos las ventajas del ciclo de vida de los <code class="docutils literal notranslate"><span class="pre">HTMLElements</span></code>.</p>
+<p>Tampoco es necesario siempre hacer <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> si el código o estilo no va a interferir nunca.</p>
+<p>Por otro lado, el uso de <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> puede ser muy farragoso en algunos casos comparado con las <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. En nuestro caso, haremos un uso combinado de los mismos para aprovechar las ventajas de ambas técnicas.</p>
+</section>
+</section>
+<section id="custom-elements">
+<h2>Custom Elements<a class="headerlink" href="#custom-elements" title="Link to this heading">#</a></h2>
+<p>Se trata de elementos HTML que tienen un comportamiento definido por el desarrollador. Una vez registrados, quedan disponibles en el navegador en esa página web.</p>
+<p>Ya existen algunos creados como <code class="docutils literal notranslate"><span class="pre">HTMLImageElement</span></code> o <code class="docutils literal notranslate"><span class="pre">HTMLParagrafElement</span></code> que tienen un comportamiento extendido respecto al estándar de los elementos comunes. Pero a nosotros nos interesa crear nuevos desde cero.</p>
+<p>Para crearlo tan solo hay que extender la clase:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">PopupInfo</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Element functionality written in here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el constructor se inicializa el elemento con valores por defecto, registro de eventos, creación del <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code> y poco más. Dejaremos la creación de elementos hijos o añadir atributos a estos para después, en otras etapas del ciclo de vida.</p>
+<section id="ciclo-de-vida">
+<h3>Ciclo de vida<a class="headerlink" href="#ciclo-de-vida" title="Link to this heading">#</a></h3>
+<p>Los elementos personalizados cuentan con una serie de funciones que pueden ser implementadas y que son invocadas a lo largo de su ciclo de vida. Estas son:</p>
+<ul class="simple">
+<li><p>connectedCallback(): Se llama cada vez que se agrega el elemento al documento. Se recomienda configurar el elemento en este punto, mejor que en el constructor.</p></li>
+<li><p>disconnectedCallback(): Se llama cada vez que se elimina el elemento del documento.</p></li>
+<li><p>adoptedCallback(): Se llama cada vez que se mueve el elemento a un nuevo documento.</p></li>
+<li><p>attributeChangedCallback(): se llama cuando se cambian, agregan, eliminan o reemplazan atributos.</p></li>
+</ul>
+<p>Podemos probar este código en la consola del navegador:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyCustomElement</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="nx">observedAttributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;size&quot;</span><span class="p">];</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Constructor&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Custom element added to page.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">disconnectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Custom element removed from page.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">adoptedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Custom element moved to new page.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">attributeChangedCallback</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">oldValue</span><span class="p">,</span><span class="w"> </span><span class="nx">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Attribute </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> has changed from </span><span class="si">${</span><span class="nx">oldValue</span><span class="si">}</span><span class="sb"> to </span><span class="si">${</span><span class="nx">newValue</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;my-custom-element&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">MyCustomElement</span><span class="p">);</span>
+<span class="c1">// La prueba</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">customElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;my-custom-element&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Creado&#39;</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">customElement</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Añadido&#39;</span><span class="p">);</span>
+<span class="nx">customElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;customClass&#39;</span><span class="p">,</span><span class="s1">&#39;customClass2&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Cambio del atributo class&#39;</span><span class="p">);</span>
+<span class="nx">customElement</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Eliminado&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="registrar-el-elemento-personalizado">
+<h3>Registrar el elemento personalizado<a class="headerlink" href="#registrar-el-elemento-personalizado" title="Link to this heading">#</a></h3>
+<p>Como se puede ver en el ejemplo anterior, lo hemos registrado con:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;my-custom-element&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">MyCustomElement</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Es importante recalcar que el nombre es preciso que tenga <strong>un guión (-)</strong> en medio del nombre para que Javascript no los confunda.</p>
+</section>
+<section id="usar-el-elemento-personalizado">
+<h3>Usar el elemento personalizado<a class="headerlink" href="#usar-el-elemento-personalizado" title="Link to this heading">#</a></h3>
+<p>Se puede usar de forma normal como cualquier etiqueta HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">my-custom-element</span><span class="p">&gt;&lt;/</span><span class="nt">my-custom-element</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="shadow-dom">
+<h2>Shadow DOM<a class="headerlink" href="#shadow-dom" title="Link to this heading">#</a></h2>
+<p>Como ya hemos visto en la introducción, el objetivo del <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> es encapsular el comportamiento del elemento personalizado.</p>
+<p>A partir de la raíz de DOM principal de la página web cuelgan todos los nodos de forma jerárquica. El Shadow DOM permite registrar árboles ocultos a partir de un nodo del árbol principal. Estos árboles empiezan por el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code>. Esta raíz está unida al árbol principal mediante un nodo que actúa de <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Host</span></code>.</p>
+<p>Se pueden crear de forma imperativa mediante Javascript:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#host&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">shadow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">host</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">span</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">);</span>
+<span class="nx">span</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;I&#39;m in the shadow DOM&quot;</span><span class="p">;</span>
+<span class="nx">shadow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">span</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>También se puede crear de forma declarativa mediante HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;host&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">template</span> <span class="na">shadowrootmode</span><span class="o">=</span><span class="s">&quot;open&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>I&#39;m in the shadow DOM<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>La segunda manera permite delegar la creación del <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> al servidor, al enviar este el HTML ya sea dinámica o estáticamente.</p>
+<p>Observemos que en los dos casos tenemos la palabra <code class="docutils literal notranslate"><span class="pre">open</span></code>, esta permite que el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> sea accesible desde la web. Si no ponemos el <code class="docutils literal notranslate"><span class="pre">shadowrootmode</span></code> no se verá, si lo ponemos, ya sea open o close, se verá pero será o no accesible.</p>
+<p>Llegados a este punto, podemos poner esto en práctica copiando y pegando este código en la consola de cualquier web que tengamos abierta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">host</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">shadow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">host</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;closed&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">span</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">);</span>
+<span class="nx">span</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;I&#39;m in the shadow DOM from Javascript&quot;</span><span class="p">;</span>
+<span class="nx">shadow</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">span</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">host2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="nx">host2</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">  &lt;template shadowrootmode=&quot;open&quot;&gt;</span>
+<span class="sb">    &lt;span&gt;I&#39;m in the shadow DOM from HTML&lt;/span&gt;</span>
+<span class="sb">  &lt;/template&gt;</span>
+<span class="sb">`</span><span class="p">;</span>
+<span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">host2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>El segundo no se va a ver porque innerHTML no crea el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code>. Este, por javascript, ha de ser creado explícitamente como en el primer ejemplo. No obstante, aunque no se vea, el template queda accesible y puede ser clonado para incorporarlo más adelante.</p>
+<p>Lecturas:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components:">https://developer.mozilla.org/en-US/docs/Web/API/Web_components:</a> Guia principal de referencia.</p></li>
+<li><p><a class="github reference external" href="https://github.com/mdn/web-components-examples:">mdn/web-components-examples:</a> Ejemplos de Custom Elements de la MDN.</p></li>
+<li><p><a class="reference external" href="https://es.javascript.info/web-components">https://es.javascript.info/web-components</a> Otro muy buen manual.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "deno"
+        },
+        kernelOptions: {
+            name: "deno",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'deno'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="proyectovanilla.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Proyecto completo en Javascript</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="typescript.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Typescript</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-iniciales">Conceptos iniciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativas">Alternativas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-elements">Custom Elements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida">Ciclo de vida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registrar-el-elemento-personalizado">Registrar el elemento personalizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-el-elemento-personalizado">Usar el elemento personalizado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
