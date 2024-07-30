@@ -417,6 +417,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates-y-slots">Templates y Slots</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-con-template-literals">Alternativa con Template Literals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
 </ul>
             </nav>
         </div>
@@ -575,6 +581,91 @@ document.write(`
 </pre></div>
 </div>
 <p>El segundo no se va a ver porque innerHTML no crea el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code>. Este, por javascript, ha de ser creado explícitamente como en el primer ejemplo. No obstante, aunque no se vea, el template queda accesible y puede ser clonado para incorporarlo más adelante.</p>
+</section>
+<section id="templates-y-slots">
+<h2>Templates y Slots<a class="headerlink" href="#templates-y-slots" title="Link to this heading">#</a></h2>
+<p>Ya hemos visto en el apartado anterior que se pueden crear <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code> desde una <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>. En los ejemplos anteriores eran usados con ese propósito, pero la etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> también puede ser usada para hacer plantillas que no se van a ver hasta que se clonen.</p>
+<p>Suponiendo que definimos esta plantilla:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;custom-paragraph&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>My paragraph<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Podemos crear un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> de esta manera:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span>
+<span class="w">  </span><span class="s2">&quot;my-paragraph&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="kd">class</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">super</span><span class="p">();</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;custom-paragraph&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">templateContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">shadowRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">templateContent</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Observemos que estamos extendiendo la clase <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> dentro de la misma función <code class="docutils literal notranslate"><span class="pre">customElements.define()</span></code>, que creamos explícitamente el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code> y que le añadimos un clon de la <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>.</p>
+<p>Es posible crear plantillas con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> que puedan ser modificadas después de ser clonadas. Se puede hacer manualmente buscando dentro de ellas los elementos y cambiando su <code class="docutils literal notranslate"><span class="pre">innerText</span></code> o <code class="docutils literal notranslate"><span class="pre">value</span></code>. Por ejemplo, si tenemos que crear una tabla y poner datos en cada fila, podemos tener una plantilla para las filas y, en este caso, para la última columna:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;tableBodyTR&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>{id}<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{ejemplo}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;lastColumn&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;buttonsCol&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;edit&quot;</span><span class="p">&gt;</span>📝<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;delete&quot;</span><span class="p">&gt;</span>🗑️<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#lastColumn&quot;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">tableBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableBody&quot;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">tableBodyTR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableBodyTR&quot;</span><span class="p">);</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">row</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">datos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableBodyTRRow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tableBodyTR</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;tr&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">tableBodyTRRow</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">columns</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">col</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;td data-col=&quot;</span><span class="si">${</span><span class="nx">col</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">row</span><span class="p">[</span><span class="nx">col</span><span class="p">]</span><span class="si">}</span><span class="sb">&lt;/td&gt;`</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="p">.</span><span class="nx">content</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">lastColumn</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">row</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">tableBodyTRRow</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">lastColumn</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">tableBody</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">tableBodyTRRow</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el ejemplo anterior, la primera columna de la plantilla <code class="docutils literal notranslate"><span class="pre">tableBodyTR</span></code> desaparece por el innerHTML.</p>
+<blockquote>
+<div><p>Para usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> no es necesario estar en un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code>. Se puede usar en cualquier momento, por eso también está explicado en el capítulo del DOM.</p>
+</div></blockquote>
+<section id="slots">
+<h3>Slots<a class="headerlink" href="#slots" title="Link to this heading">#</a></h3>
+<p>En el ejemplo anterior esas sustituciones se hacen manualmente, algunas veces se puede hacer más elegantemente con <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>. La etiqueta debe tener un <code class="docutils literal notranslate"><span class="pre">name</span></code> y permite se sustituida.</p>
+<p>Dentro de la plantilla se puede poner esta etiqueta de esta manera:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;my-text&quot;</span><span class="p">&gt;</span>My default text<span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Y será sustituida en HTML así:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">my-paragraph</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">slot</span><span class="o">=</span><span class="s">&quot;my-text&quot;</span><span class="p">&gt;</span>Let&#39;s have some different text!<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-paragraph</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="alternativa-con-template-literals">
+<h3>Alternativa con Template Literals<a class="headerlink" href="#alternativa-con-template-literals" title="Link to this heading">#</a></h3>
+<p>Usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> implica tener que buscarlo, clonarlo y modificarlo. En ocasiones es mucho más simple el uso de <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. Incluso se puede hacer con <code class="docutils literal notranslate"><span class="pre">Tagged</span> <span class="pre">Template</span> <span class="pre">Literals</span></code> y queda un código más compacto. En el capítulo del DOM hay un ejemplo: <a class="reference external" href="https://xxjcaxx.github.io/libro_dwec/dom.html#creacion-de-elementos-mediante-tagged-template-literals">https://xxjcaxx.github.io/libro_dwec/dom.html#creacion-de-elementos-mediante-tagged-template-literals</a></p>
+</section>
+</section>
+<section id="ejemplo-completo">
+<h2>Ejemplo completo<a class="headerlink" href="#ejemplo-completo" title="Link to this heading">#</a></h2>
+<p>…</p>
 <p>Lecturas:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components:">https://developer.mozilla.org/en-US/docs/Web/API/Web_components:</a> Guia principal de referencia.</p></li>
@@ -659,6 +750,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates-y-slots">Templates y Slots</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-con-template-literals">Alternativa con Template Literals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
 </ul>
   </nav></div>
 
