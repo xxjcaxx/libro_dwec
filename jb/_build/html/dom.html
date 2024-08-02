@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -202,6 +202,7 @@
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="nav bd-sidenav">
@@ -620,6 +621,13 @@ document.write(`
 <span class="nx">element</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;Más contenido&lt;/p&gt;&#39;</span><span class="p">);</span>
 <span class="nx">element</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;Texto adicional&#39;</span><span class="p">);</span>
 <span class="nx">element</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Los elementos suelen tener atributos. Algunos son especiales como el <code class="docutils literal notranslate"><span class="pre">id</span></code> o la <code class="docutils literal notranslate"><span class="pre">class</span></code>. El <code class="docutils literal notranslate"><span class="pre">id</span></code> está accesible directamente como atributo del elemento, así como el <code class="docutils literal notranslate"><span class="pre">className</span></code>, aunque luego veremos que es mejor manipularlo de otra manera. Otros atributos como <code class="docutils literal notranslate"><span class="pre">value</span></code> en los <code class="docutils literal notranslate"><span class="pre">Input</span></code>o <code class="docutils literal notranslate"><span class="pre">scr</span></code> en los <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> también pueden ser leidos y modificados como atributos. Para los atributos que no tienen acceso directo, podemos usar <code class="docutils literal notranslate"><span class="pre">setAttribute()</span></code> <code class="docutils literal notranslate"><span class="pre">getAttribute()</span></code> o <code class="docutils literal notranslate"><span class="pre">removeAttribute()</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">);</span>
+
+<span class="nx">button</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;helloButton&quot;</span><span class="p">);</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;disabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>

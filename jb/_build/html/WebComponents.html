@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -523,6 +523,7 @@ document.write(`
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Eliminado&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>Además de esas funciones del ciclo de vida, se pueden añadir otras. Una típica puede ser la función <code class="docutils literal notranslate"><span class="pre">render()</span></code> que retorna el elemento redibujado. Esto es útil si queremos que el contenido pueda ser actualizado reactivamente.</p>
 </section>
 <section id="registrar-el-elemento-personalizado">
 <h3>Registrar el elemento personalizado<a class="headerlink" href="#registrar-el-elemento-personalizado" title="Link to this heading">#</a></h3>
@@ -665,7 +666,219 @@ document.write(`
 </section>
 <section id="ejemplo-completo">
 <h2>Ejemplo completo<a class="headerlink" href="#ejemplo-completo" title="Link to this heading">#</a></h2>
-<p>…</p>
+<p>En el siguiente ejemplo se muestra la creación de un componente que muestra la tabla <code class="docutils literal notranslate"><span class="pre">profiles</span></code>de <code class="docutils literal notranslate"><span class="pre">Supabase</span></code>. Además de mostrar la tabla, tiene la posibilidad de ocultar columnas y mostrar un formulario para editar cada fila. No está implementada toda la funcionalidad de editar o eliminar, pero el resto funciona. Además, usamos conceptos un poco avanzados como el conseguir la reactividad mediante un <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code> o usar una función de composición.</p>
+<p>En el <code class="docutils literal notranslate"><span class="pre">constructor</span></code> se establecen unos datos estáticos de ejemplo mientras cargan los datos del servidor.</p>
+<p>En la función <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code> se suscribe al <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code>, descarga los datos para que, cuando estén, actualice el <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code>.</p>
+<p>Es importante no dejar cabos sueltos cuando se elimina el componente, por eso se anula la subscripción en <code class="docutils literal notranslate"><span class="pre">disconnectedCallback</span></code>.</p>
+<p>Se ha creado la función <code class="docutils literal notranslate"><span class="pre">render(state)</span></code> que renderiza el estado. Esta es interesante porque, usando una función de composición, vamos aplicando una plantilla hecha con algunos <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>, a continuación se introducen los datos en la plantillas, en la siguiente función de la composición se añaden los eventos y en la siguiente algunos posibles efectos. Con esto hemos conseguido separar, aunque no totalmente, la plantilla de los datos y de los eventos.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomTable</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">();</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="sb">`placeholder`</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="sb">`placeholder2`</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nx">columns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;name&#39;</span><span class="p">]),</span>
+<span class="w">      </span><span class="nx">hiddenColumns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">([]),</span>
+<span class="w">      </span><span class="nx">showHiddenColumns</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">filters</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">firstElementChild</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">state</span><span class="p">));</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">dataPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getDataSupabase</span><span class="p">(</span><span class="s2">&quot;profiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">dataPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">next</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">columns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">columns</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">hiddenColumns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">([]),</span>
+<span class="w">        </span><span class="nx">filters</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">disconnectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="o">?</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">render</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">_</span><span class="p">.</span><span class="nx">compose</span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">div</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Añadir efectos</span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">showHiddenColumns</span><span class="p">){</span>
+<span class="w">          </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#collapseColumnas&#39;</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;show&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#collapseColumnas&#39;</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;show&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">div</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="p">(</span><span class="nx">div</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Añadir eventos</span>
+<span class="w">        </span><span class="nx">div</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;edit&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">tds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">)].</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">tds</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">td</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="kd">let</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">td</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">td</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;input type=&quot;text&quot; name=&quot;</span><span class="si">${</span><span class="nx">td</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">col</span><span class="si">}</span><span class="sb">&quot; value=&quot;</span><span class="si">${</span><span class="nx">content</span><span class="si">}</span><span class="sb">&quot;/&gt;`</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">saveButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">saveButton</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;💾&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">saveButton</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">saveButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tds</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">td</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">td</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">col</span><span class="p">));</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;delete&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">confirm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">confirm</span><span class="p">(</span><span class="s2">&quot;Vas a borrar ¿Estas seguro?&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">confirm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">          </span><span class="k">if</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">column</span><span class="p">){</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">newState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">newState</span><span class="p">.</span><span class="nx">hiddenColumns</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">column</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">newState</span><span class="p">.</span><span class="nx">showHiddenColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">newState</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">div</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">div</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Mostrar datos</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">divColumnas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#divColumnas&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">checkColumnasTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#checkColumnasTemplate&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableHeader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableHeader&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableHeaderTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableHeaderTH&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#lastColumn&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableBody&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableBodyTR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableBodyTR&quot;</span><span class="p">);</span>
+
+<span class="w">      </span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">state</span><span class="p">.</span><span class="nx">columns</span><span class="p">.</span><span class="nx">difference</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">hiddenColumns</span><span class="p">)];</span>
+<span class="w"> </span>
+
+<span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">column</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">columns</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">checkColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">checkColumnasTemplate</span><span class="p">.</span><span class="nx">content</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">checkColumn</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">label</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">column</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">checkColumn</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">hiddenColumns</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">column</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`hideColumn</span><span class="si">${</span><span class="nx">column</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">column</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">label</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;for&#39;</span><span class="p">,</span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">divColumnas</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">checkColumn</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">column</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">columns</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableHeaderTHColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tableHeaderTH</span><span class="p">.</span><span class="nx">content</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;th&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">tableHeaderTHColumn</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">column</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">tableHeader</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">tableHeaderTHColumn</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">tableHeader</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">lastColumn</span><span class="p">);</span>
+
+<span class="w">          </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">row</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableBodyTRRow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tableBodyTR</span><span class="p">.</span><span class="nx">content</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;tr&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">tableBodyTRRow</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">columns</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">col</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;td data-col=&quot;</span><span class="si">${</span><span class="nx">col</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">row</span><span class="p">[</span><span class="nx">col</span><span class="p">]</span><span class="si">}</span><span class="sb">&lt;/td&gt;`</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">lastColumn</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">row</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">tableBodyTRRow</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">lastColumn</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">tableBody</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">tableBodyTRRow</span><span class="p">);</span>
+
+<span class="w">          </span><span class="p">}</span>
+<span class="w">       </span><span class="c1">// });</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">div</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">DOM</span><span class="p">.</span><span class="nx">createDivWithInnerHTML</span><span class="w"> </span><span class="c1">// Genera el div</span>
+<span class="w">    </span><span class="p">)(</span><span class="cm">/* HTML */</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">      &lt;div class=&quot;container bd-gutter mt-3 my-md-4 bd-layout overflow-scroll&quot;&gt;</span>
+<span class="sb">     </span>
+<span class="sb">        &lt;h2 class=&quot;d-inline-flex gap-1&quot;&gt;Alumnos&lt;/h2&gt;</span>
+<span class="sb">  </span>
+<span class="sb">        &lt;p class=&quot;d-inline-flex gap-1&quot;&gt;</span>
+<span class="sb">          &lt;button</span>
+<span class="sb">            class=&quot;btn btn-primary&quot;</span>
+<span class="sb">            type=&quot;button&quot;</span>
+<span class="sb">            data-bs-toggle=&quot;collapse&quot;</span>
+<span class="sb">            data-bs-target=&quot;#collapseColumnas&quot;</span>
+<span class="sb">            aria-expanded=&quot;false&quot;</span>
+<span class="sb">            aria-controls=&quot;collapseColumnas&quot;</span>
+<span class="sb">          &gt;</span>
+<span class="sb">            Columnas</span>
+<span class="sb">          &lt;/button&gt;</span>
+<span class="sb">        &lt;/p&gt;</span>
+<span class="sb">        &lt;div class=&quot;collapse&quot; id=&quot;collapseColumnas&quot;&gt;</span>
+<span class="sb">          &lt;div class=&quot;card card-body&quot; id=&quot;divColumnas&quot;&gt;</span>
+<span class="sb">            &lt;template id=&quot;checkColumnasTemplate&quot;&gt;</span>
+<span class="sb">              &lt;div class=&quot;form-check form-switch&quot;&gt;</span>
+<span class="sb">                &lt;input</span>
+<span class="sb">                  class=&quot;form-check-input&quot;</span>
+<span class="sb">                  type=&quot;checkbox&quot;</span>
+<span class="sb">                  role=&quot;switch&quot;</span>
+<span class="sb">                  id=&quot;columnasSwitchtemplate&quot;</span>
+<span class="sb">                /&gt;</span>
+<span class="sb">                &lt;label class=&quot;form-check-label&quot; for=&quot;columnasSwitchtemplate&quot;</span>
+<span class="sb">                  &gt;Default switch checkbox input&lt;/label</span>
+<span class="sb">                &gt;</span>
+<span class="sb">              &lt;/div&gt;</span>
+<span class="sb">            &lt;/template&gt;</span>
+<span class="sb">          &lt;/div&gt;</span>
+<span class="sb">        &lt;/div&gt;   </span>
+<span class="sb">        &lt;table class=&quot;table table-striped table-hover&quot;&gt;</span>
+<span class="sb">          &lt;thead&gt;</span>
+<span class="sb">            &lt;tr id=&quot;tableHeader&quot;&gt;</span>
+<span class="sb">              &lt;template id=&quot;tableHeaderTH&quot;&gt;</span>
+<span class="sb">                &lt;th scope=&quot;col&quot;&gt;#&lt;/th&gt;</span>
+<span class="sb">              &lt;/template&gt;</span>
+<span class="sb">            &lt;/tr&gt;</span>
+<span class="sb">          &lt;/thead&gt;</span>
+<span class="sb">          &lt;tbody id=&quot;tableBody&quot;&gt;</span>
+<span class="sb">            &lt;template id=&quot;tableBodyTR&quot;&gt;</span>
+<span class="sb">              &lt;tr&gt;</span>
+<span class="sb">                &lt;th scope=&quot;row&quot;&gt;{id}&lt;/th&gt;</span>
+<span class="sb">                &lt;td&gt;{exemple}&lt;/td&gt;</span>
+<span class="sb">              &lt;/tr&gt;</span>
+<span class="sb">            &lt;/template&gt;</span>
+<span class="sb">            &lt;template id=&quot;lastColumn&quot;&gt;</span>
+<span class="sb">            &lt;td class=&quot;buttonsCol&quot;&gt;&lt;span class=&quot;edit&quot;&gt;📝&lt;/span&gt;&lt;span class=&quot;delete&quot;&gt;🗑️&lt;/span&gt;&lt;/td&gt;</span>
+<span class="sb">            &lt;/template&gt;</span>
+<span class="sb">          &lt;/tbody&gt;</span>
+<span class="sb">        &lt;/table&gt;</span>
+<span class="sb">      &lt;/div&gt;</span>
+<span class="sb">    `</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A continuación, el fichero principal de la aplicación importará este <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> y lo registrará para luego poder usarlo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CustomTable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./vistaAdministrador&#39;</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;custom-table&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">CustomTable</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;custom-table&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
 <p>Lecturas:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components:">https://developer.mozilla.org/en-US/docs/Web/API/Web_components:</a> Guia principal de referencia.</p></li>
