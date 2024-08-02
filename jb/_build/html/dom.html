@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -488,7 +488,7 @@ document.write(`
 <h1>DOM<a class="headerlink" href="#dom" title="Link to this heading">#</a></h1>
 <section id="dom-en-javascript">
 <h2>DOM en JavaScript<a class="headerlink" href="#dom-en-javascript" title="Link to this heading">#</a></h2>
-<p>El DOM (Document Object Model) es una interfaz de programación que permite a los scripts actualizar el contenido, la estructura y el estilo de un documento mientras este se está visualizando en el navegador. A continuación, exploraremos cómo interactuar con el DOM en JavaScript, describiendo su estructura y proporcionando ejemplos prácticos.</p>
+<p>El DOM (Document Object Model) es una interfaz de programación que permite a los scripts actualizar el contenido, la estructura y el estilo de un documento mientras este se está visualizando en el navegador.</p>
 <section id="estructura-del-documento-html">
 <h3>Estructura del Documento HTML<a class="headerlink" href="#estructura-del-documento-html" title="Link to this heading">#</a></h3>
 <p>El DOM representa la estructura de un documento HTML y el entorno en el que se ejecuta como una jerarquía de objetos. Los principales componentes son:</p>
@@ -548,6 +548,16 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">setInterval(función,</span> <span class="pre">tiempo)</span></code>: Ejecuta una función repetidamente a intervalos de tiempo especificados.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">clearTimeout(identificador)</span></code>: Cancela un <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> programado.</p></li>
 </ul>
+<p>Estos métodos no suelen invocarse con <code class="docutils literal notranslate"><span class="pre">window.setTimeout()</span></code>, por ejemplo, porque son accesibles directamente al estar en el ámbito global. De hecho, cualquier función o variable <code class="docutils literal notranslate"><span class="pre">var</span></code> declarada en el ámbito global pasa a ser un atributo del objeto window:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">globalVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;I&#39;m global!&quot;</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">globalFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;I&#39;m a global function!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">globalVar</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;I&#39;m global!&quot;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">globalFunction</span><span class="p">();</span><span class="w"> </span><span class="c1">// &quot;I&#39;m a global function!&quot;</span>
+</pre></div>
+</div>
+<p>Esto no ocurre con variables declaradas con <code class="docutils literal notranslate"><span class="pre">let</span></code> o <code class="docutils literal notranslate"><span class="pre">const</span></code>.  La especificación de ECMAScript busca mejorar la claridad y previsibilidad del código. Al evitar que let y const se conviertan en propiedades del objeto window, se fomenta un diseño de código más modular y con menos dependencias globales.</p>
 <blockquote>
 <div><p>Window no está cuando programamos para <code class="docutils literal notranslate"><span class="pre">Node</span></code> o otros intérpretes de servidor. Por esta razón, el Javascript dedicado al DOM debería estar separado de funciones normales, de manera que estas se puedan reaprovechar si parte de la lógica se mueve al servidor.</p>
 </div></blockquote>
@@ -569,8 +579,6 @@ document.write(`
 <span class="kd">let</span><span class="w"> </span><span class="nx">allElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.exampleClass&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Además, podemos navegar por el DOM utilizando propiedades como:</p>
-<p>Aquí hay una versión reescrita del texto que mencionaste, manteniendo el mismo significado pero con diferentes palabras:</p>
 <p>A menudo, necesitamos acceder a un nodo específico a partir de uno ya existente en el DOM. Para esto, podemos utilizar los siguientes métodos aplicados a un elemento del árbol DOM:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">elemento.parentElement</span></code>: retorna el elemento padre del nodo actual.</p></li>
