@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -420,8 +420,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd">CI/CD</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linter">Linter</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prettier">Prettier</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deta">Deta</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-actions">Github Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-funcional">Programación funcional</a></li>
@@ -750,7 +749,7 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="_images/projecte1.png"><img alt="_images/projecte1.png" src="_images/projecte1.png" style="width: 479.5px; height: 403.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Así queda de momento la aplicación</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Así queda de momento la aplicación</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -864,60 +863,9 @@ npm<span class="w"> </span>run<span class="w"> </span>testrun
 </div>
 <p>Todo esto evitará que se haga un commit si no pasa el Linter o los tests y mejorará el estilo del código con Prettier.</p>
 </section>
-<section id="deta">
-<h3>Deta<a class="headerlink" href="#deta" title="Link to this heading">#</a></h3>
-<p>Como se explica en el manual de este mismo libro, hay que crear un proyecto en <code class="docutils literal notranslate"><span class="pre">Deta</span></code>, poner la carpeta del proyecto <code class="docutils literal notranslate"><span class="pre">Vite</span></code> en su interior y configurar el <code class="docutils literal notranslate"><span class="pre">Spacefile</span></code>.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">v</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="nt">micros</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projecte2024</span>
-<span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./projecte</span>
-<span class="w">    </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static</span>
-<span class="w">    </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build</span>
-<span class="w">    </span><span class="nt">serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist</span>
-<span class="w">    </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run dev -- --port $PORT</span>
-</pre></div>
-</div>
-</section>
-<section id="github-actions">
-<h3>Github Actions<a class="headerlink" href="#github-actions" title="Link to this heading">#</a></h3>
-<p>En nuestro caso, si lo queremos desplegar en Deta, haremos un <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">Action</span></code> con la siguiente configuración</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub Actions Demo</span>
-<span class="nt">run-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.actor }} is testing out GitHub Actions 🚀</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">]</span>
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">Test</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-22.04</span>
-<span class="w">        </span><span class="nt">strategy</span><span class="p">:</span>
-<span class="w">         </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">           </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;20.x&#39;</span><span class="p p-Indicator">]</span>
-<span class="w">        </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Use Node.js ${{ matrix.node-version }}</span>
-<span class="w">          </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-node@v4</span>
-<span class="w">          </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.node-version }}</span><span class="w">  </span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies frontend</span>
-<span class="w">          </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projecte</span>
-<span class="w">          </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm ci</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmp run test</span>
-<span class="w">          </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projecte</span>
-<span class="w">          </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run test</span>
-<span class="w">  </span><span class="nt">push-to-space</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-22.04</span>
-<span class="w">            </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deta Space Deployment Github Action</span>
-<span class="w">                </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neobrains/space-pipe@v0.5</span>
-<span class="w">                </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">access_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.ACCESS_TOKEN }}</span>
-<span class="w">                  </span><span class="nt">project_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.PROJECT_ID }}</span>
-<span class="w">                  </span><span class="nt">space_push</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">                  </span><span class="nt">list_on_discovery</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</pre></div>
-</div>
-<p>Teniendo los tokens en <code class="docutils literal notranslate"><span class="pre">secrets</span></code> de Github.</p>
+<section id="vercel">
+<h3>Vercel<a class="headerlink" href="#vercel" title="Link to this heading">#</a></h3>
+<p>Como se explica en el manual de este mismo libro, hay que crear un proyecto en <code class="docutils literal notranslate"><span class="pre">Vercel</span></code>, vincularlo con un <code class="docutils literal notranslate"><span class="pre">Deploy</span></code>y configurar que se quede a la espera de cambios en el proyecto.</p>
 </section>
 </section>
 <section id="programacion-funcional">
@@ -1504,8 +1452,7 @@ npm<span class="w"> </span>run<span class="w"> </span>testrun
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd">CI/CD</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linter">Linter</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prettier">Prettier</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deta">Deta</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-actions">Github Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-funcional">Programación funcional</a></li>
