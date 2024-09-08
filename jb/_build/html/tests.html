@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -512,6 +512,36 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <li><p><a class="reference external" href="https://vitest.dev/api/expect.html">Expect</a></p></li>
 <li><p><a class="reference external" href="https://vitest.dev/api/assert.html">Assert</a></p></li>
 </ul>
+<p>Este sería un ejemplo muy básico para probar una función que está en un módulo ESM:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">describe</span><span class="p">,</span><span class="w"> </span><span class="nx">expect</span><span class="p">,</span><span class="w"> </span><span class="nx">test</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">ex1</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../index.js&quot;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Javascript Básico&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Variables&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Debe retornar un array elementos de los tipo solicitados&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">().</span><span class="nx">map</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">typeof</span><span class="w"> </span><span class="nx">element</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span>
+<span class="w">          </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;undefined&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;function&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">]);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">3</span><span class="p">]</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nb">Array</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">5</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">6</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">undefined</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">(</span><span class="mf">7</span><span class="p">))).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">8</span><span class="p">]</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nb">Function</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En el ejemplo se importa como ex1 todo lo que exporta el <code class="docutils literal notranslate"><span class="pre">index.js</span></code> y se testa la función <code class="docutils literal notranslate"><span class="pre">createArraySomeTypes()</span></code>. Para ello se ha usado <code class="docutils literal notranslate"><span class="pre">describe</span></code> para organizar las suites de pruebas y <code class="docutils literal notranslate"><span class="pre">test</span></code> como función para hacer la prueba.</p>
 </section>
 </section>
 <section id="desarrollo-guiado-por-pruebas-tdd">

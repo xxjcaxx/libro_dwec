@@ -487,28 +487,29 @@ document.write(`
 <h3>Arquitectura Cliente - Servidor<a class="headerlink" href="#arquitectura-cliente-servidor" title="Link to this heading">#</a></h3>
 <p>La arquitectura cliente-servidor es el modelo fundamental en el que se basa la Web. Se divide en dos partes principales:</p>
 <ul class="simple">
-<li><p>Server-side (Lado del servidor)</p></li>
-</ul>
-<ul class="simple">
+<li><p>Server-side (Lado del servidor)</p>
+<ul>
 <li><p><strong>Hardware</strong>: Incluye servidores y elementos de red, máquinas virtuales y contenedores.</p></li>
 <li><p><strong>Software</strong>: Involucra servidores web (como Apache, IIS, NGINX) y lenguajes CGI (como Perl, PHP, C). También incluye lenguajes y frameworks con servidores web integrados, como Python, Java, Node.js y C++.</p></li>
 </ul>
-<ul class="simple">
-<li><p>Client-side (Lado del cliente)</p></li>
-</ul>
-<ul class="simple">
+</li>
+<li><p>Client-side (Lado del cliente)</p>
+<ul>
 <li><p><strong>Clientes web</strong>: Los navegadores web como Firefox, Chrome, Vivaldi, Opera, Edge e Internet Explorer.</p></li>
 <li><p><strong>Lenguajes de marcas</strong>: HTML, XHTML, HTML5 y CSS.</p></li>
 <li><p><strong>Lenguajes de programación del entorno Cliente</strong>: Principalmente JavaScript.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="el-camino-del-frontend">
 <h3>El Camino del Frontend<a class="headerlink" href="#el-camino-del-frontend" title="Link to this heading">#</a></h3>
 <p>Para más detalles, se puede consultar <a class="reference external" href="https://roadmap.sh/frontend">The Frontend Developer Roadmap</a>.</p>
+<p>Este término, extraido de la web anterior, refleja el itinerario formativo recomendado para ser un profesional del desarrollo web en la parte del Frontend. Este módulo no es suficiente para dominarlo todo y es importante ser consciente de que estamos viendo una pequeña parte de las múltiples posibilidades que tenemos a nuestro alcance.</p>
 </section>
 <section id="server-side-vs-client-side">
 <h3>Server-side vs Client-side<a class="headerlink" href="#server-side-vs-client-side" title="Link to this heading">#</a></h3>
-<p>En el desarrollo web, tanto el lado del servidor (server-side) como el lado del cliente (client-side) juegan roles cruciales. Sin embargo, muchas tareas pueden llevarse a cabo en cualquiera de los dos lados, y la elección de dónde implementar una funcionalidad específica depende de varios factores, como la tecnología adecuada para el caso o la comodidad del desarrollador con una tecnología particular.</p>
+<p>En el desarrollo web, tanto el lado del servidor (server-side) como el lado del cliente (client-side) juegan sus propios roles. Sin embargo, muchas tareas pueden llevarse a cabo en cualquiera de los dos lados, y la elección de dónde implementar una funcionalidad específica depende de varios factores, como la tecnología adecuada para el caso o la comodidad del desarrollador con una tecnología particular.</p>
 <section id="tareas-comunes-en-server-side-y-client-side">
 <h4>Tareas comunes en Server-side y Client-side<a class="headerlink" href="#tareas-comunes-en-server-side-y-client-side" title="Link to this heading">#</a></h4>
 <ul class="simple">
@@ -550,7 +551,7 @@ document.write(`
 </ul>
 <section id="compatibilidad-y-validacion-html">
 <h4>Compatibilidad y Validación HTML<a class="headerlink" href="#compatibilidad-y-validacion-html" title="Link to this heading">#</a></h4>
-<p>Para evitar problemas de compatibilidad, es crucial que el código HTML sea válido. Se puede utilizar el validador de HTML del W3C (<a class="reference external" href="https://validator.w3.org/">https://validator.w3.org/</a>) para asegurarse de que el código cumpla con los estándares.</p>
+<p>Para evitar problemas de compatibilidad, el código HTML ha de ser válido. Se puede utilizar el validador de HTML del W3C (<a class="reference external" href="https://validator.w3.org/">https://validator.w3.org/</a>) para asegurarse de que el código cumpla con los estándares.</p>
 </section>
 <section id="seguridad-en-javascript">
 <h4>Seguridad en JavaScript<a class="headerlink" href="#seguridad-en-javascript" title="Link to this heading">#</a></h4>
@@ -585,6 +586,9 @@ document.write(`
 <li><p><strong>EsLint</strong>: Ayuda a detectar errores de estilo o programación que JavaScript no puede detectar por sí mismo (requiere instalar eslint en el proyecto).</p></li>
 <li><p><strong>Live Server</strong>: Para probar la web en un servidor local de manera rápida y sencilla.</p></li>
 </ul>
+<blockquote>
+<div><p>Más adelante iremos instalando alguna extensiones más.</p>
+</div></blockquote>
 </section>
 <section id="otras-herramientas">
 <h4>Otras Herramientas<a class="headerlink" href="#otras-herramientas" title="Link to this heading">#</a></h4>
@@ -599,7 +603,7 @@ document.write(`
 <h2>Tipos de Aplicaciones Web según el Frontend<a class="headerlink" href="#tipos-de-aplicaciones-web-segun-el-frontend" title="Link to this heading">#</a></h2>
 <p>El desarrollo de aplicaciones web ha evolucionado significativamente con el tiempo, y hoy en día existen diversas maneras de abordar el frontend. A continuación, exploraremos los diferentes tipos de aplicaciones web según las tecnologías de frontend que se utilicen, así como la evolución de las mismas.</p>
 <ol class="arabic simple">
-<li><p><strong>Con JavaScript ‘Vanilla’</strong>: Se refiere a la utilización de JavaScript puro sin ninguna biblioteca o framework adicional. Es una manera directa y eficiente de programar cuando se trata de aplicaciones pequeñas y sencillas.</p></li>
+<li><p><strong>Con JavaScript ‘Vanilla’</strong>: Se refiere a la utilización de JavaScript puro sin ninguna biblioteca o framework adicional. Es una manera directa y eficiente de programar sobretodo cuando se trata de aplicaciones pequeñas y sencillas.</p></li>
 <li><p><strong>Con Bibliotecas</strong>:</p>
 <ul class="simple">
 <li><p><strong>JQuery</strong>: Facilita la manipulación del DOM, eventos y AJAX.</p></li>
@@ -632,9 +636,15 @@ document.write(`
 <ol class="arabic simple">
 <li><p><strong>Páginas Web Estáticas</strong>: Las primeras aplicaciones web eran simples páginas estáticas con hipervínculos.</p></li>
 <li><p><strong>Páginas Web Generadas por el Servidor</strong>: Con el tiempo, se introdujo un poco de JavaScript para mejorar la interacción.</p></li>
-<li><p><strong>Single Page Application (SPA)</strong>: Las aplicaciones de una sola página se comunican con el servidor usando JSON o XML, proporcionando una experiencia más fluida.</p></li>
 <li><p><strong>Introducción de AJAX</strong>: Permite cargar o subir datos al servidor de manera asíncrona, mejorando la interactividad sin recargar la página.</p></li>
+<li><p><strong>Single Page Application (SPA)</strong>: Las aplicaciones de una sola página se comunican con el servidor usando JSON o XML, proporcionando una experiencia más fluida.</p></li>
 </ol>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="_images/evolucionweb.png"><img alt="_images/evolucionweb.png" src="_images/evolucionweb.png" style="width: 338.0px; height: 145.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Evolución de las aplicaciones web.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <blockquote>
 <div><p>En la actualidad se pueden hacer páginas web de muchas maneras. En este libro, hacia el final, nos enfocamos más en imitar a los frameworks actuales, que suelen estar pensados para SPA con una API. No obstante, se pueden hacer páginas sólo con HTML estático, o generado una vez a partir de Markdown, como este mismo libro (Jekyll, Jupyter Books…), también se puede generar el HTML con PHP, Node, Java… O se puede tener un CMS como Wordpress y programar plugins. Se puede tener un CMS Headless o generada mediante Micro-Frontends. O aplicaciones progresivas PWA o Híbridas con Ionic y Cordova. Respecto a cómo servirlas, tenemos los hostings y servidores tradicionales o “Serverless”, plataformas “Low Code”… La lista no acaba y cada una de estas ideas tiene muchas más opciones.</p>
 </div></blockquote>
@@ -703,10 +713,12 @@ document.write(`
 </section>
 <section id="poner-la-web-en-produccion">
 <h3>Poner la Web en Producción<a class="headerlink" href="#poner-la-web-en-produccion" title="Link to this heading">#</a></h3>
+<p>Para que una web con HTML, CSS y Javascript funcione tan solo necesitamos un servidor web que sirva <code class="docutils literal notranslate"><span class="pre">estáticamente</span></code> estos ficheros cuando se le haga una petición HTTP. Este servidor suele estar accesible por Internet mediante SFTP, SSH o cualquier protocolo. Estos HTML, CSS y JS puede ser tratados de dos maneras:</p>
 <ol class="arabic simple">
 <li><p><strong>Método tradicional</strong>: Copiar todo el contenido de las carpetas al servidor alrededor del archivo index.html.</p></li>
 <li><p><strong>JavaScript Build Tool</strong>: Utilizar herramientas que compilan el código fuente, lo minifican, unifican, optimizan y comprimen para mejorar la velocidad de carga y evitar incompatibilidades entre navegadores.</p></li>
 </ol>
+<p>Más adelante, en el capítulo del CI/CD, hablaremos de una metodología para automatizar todo el proceso. Con esta metodología podremos centrarnos en escribir código cómodamente mientras que nuestras herramientas lo prueban todo y lo ponen en producción.</p>
 </section>
 </section>
 </section>
