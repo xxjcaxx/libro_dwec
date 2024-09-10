@@ -434,16 +434,13 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-interceptar-submit-con-javascript">Ejemplo de Interceptar Submit con JavaScript</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-formularios">Eventos en Formularios</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-evento-onsubmit">Ejemplo de Evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-formulario-por-javascript">Enviar Formulario por JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-envio-por-javascript">Ejemplo de Envío por JavaScript</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expresiones-regulares">Expresiones Regulares</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-validacion-con-expresiones-regulares">Ejemplo de Validación con Expresiones Regulares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-formularios">Validación de formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expresiones-regulares">Expresiones Regulares</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-y-estilo">Validación y estilo</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en formularios</a><ul class="nav section-nav flex-column">
@@ -938,10 +935,11 @@ document.write(`
 <blockquote>
 <div><p>De hecho, la única validación estrictamente necesaria se debe hacer en el servidor para evitar peticiones ilegales por clientes como postman o curl.</p>
 </div></blockquote>
+<p>Pero se puede usar Javascript para mucho más que validar formularios. Por ejemplo, nos puede ayudar a autocompletar campos, descargar datos en segundo plano o tratar con imágenes o datos complejos antes de enviar al servidor.</p>
 <section id="atributos-de-formularios">
 <h3>Atributos de Formularios<a class="headerlink" href="#atributos-de-formularios" title="Link to this heading">#</a></h3>
 <p>El contenido de los campos de entrada en un formulario se puede visualizar y modificar utilizando el atributo <code class="docutils literal notranslate"><span class="pre">value</span></code>. Otros elementos del formulario, como los botones de opción (radio button) y las casillas de verificación (checkbox), deben tener un <code class="docutils literal notranslate"><span class="pre">name</span></code> común y también utilizan los atributos <code class="docutils literal notranslate"><span class="pre">value</span></code> y <code class="docutils literal notranslate"><span class="pre">checked</span></code>. Para los elementos <code class="docutils literal notranslate"><span class="pre">select</span></code>, se utilizan los atributos <code class="docutils literal notranslate"><span class="pre">options</span></code> y <code class="docutils literal notranslate"><span class="pre">selectedIndex</span></code>.</p>
-<p>Observa el ejemplo a continuación:</p>
+<p>Observa el ejemplo a continuación, que usa la manera (obsoleta) de asociar eventos <code class="docutils literal notranslate"><span class="pre">onclick</span></code> para ejecutar una función que informe de los valores de los inputs del formulario:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -1087,6 +1085,7 @@ document.write(`
 <p>Podemos interceptar y detener el ciclo por defecto de un formulario para validarlo y enviarlo utilizando JavaScript. De esta manera, podemos evitar tener un botón <code class="docutils literal notranslate"><span class="pre">submit</span></code> y controlar completamente el proceso de envío. Si el formulario envía datos al servidor y se refresca, JavaScript pierde el control del programa. Para evitar esto, podemos utilizar <code class="docutils literal notranslate"><span class="pre">preventDefault()</span></code> dentro del evento <code class="docutils literal notranslate"><span class="pre">submit</span></code> o devolver <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 <section id="ejemplo-de-interceptar-submit-con-javascript">
 <h4>Ejemplo de Interceptar Submit con JavaScript<a class="headerlink" href="#ejemplo-de-interceptar-submit-con-javascript" title="Link to this heading">#</a></h4>
+<p>Podemos manejar eventos de formularios para personalizar su comportamiento. Un ejemplo común es el uso del evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code> para ejecutar una función de validación antes de enviar el formulario. Si la función de validación devuelve <code class="docutils literal notranslate"><span class="pre">true</span></code>, el formulario se envía; de lo contrario, se cancela el envío.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;formulario&quot;</span> <span class="na">onsubmit</span><span class="o">=</span><span class="s">&quot;return validar();&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;phone-number&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -1101,18 +1100,6 @@ document.write(`
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">phoneResult</span><span class="p">;</span><span class="w"> </span><span class="c1">// Retorna true si es válido, de lo contrario false</span>
 <span class="p">}</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="eventos-en-formularios">
-<h3>Eventos en Formularios<a class="headerlink" href="#eventos-en-formularios" title="Link to this heading">#</a></h3>
-<p>Podemos manejar eventos de formularios para personalizar su comportamiento. Un ejemplo común es el uso del evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code> para ejecutar una función de validación antes de enviar el formulario. Si la función de validación devuelve <code class="docutils literal notranslate"><span class="pre">true</span></code>, el formulario se envía; de lo contrario, se cancela el envío.</p>
-<section id="ejemplo-de-evento-onsubmit">
-<h4>Ejemplo de Evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code><a class="headerlink" href="#ejemplo-de-evento-onsubmit" title="Link to this heading">#</a></h4>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">onsubmit</span><span class="o">=</span><span class="s">&quot;return validar();&quot;</span><span class="p">&gt;</span>
-  <span class="cm">&lt;!-- Campos del formulario --&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -1132,13 +1119,25 @@ document.write(`
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<p>Pero si no nos vale con enviar el formulario con <code class="docutils literal notranslate"><span class="pre">submit()</span></code> y queremos manipular sus datos antes de enviar o enviar a una API por POST manualmente, obtendremos el contenido input por input o con <code class="docutils literal notranslate"><span class="pre">FormData</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#buttonSubmit&quot;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">newProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">)).</span><span class="nx">entries</span><span class="p">());</span>
+<span class="w">      </span><span class="nx">updateCurrentProfile</span><span class="p">(</span><span class="nx">newProfile</span><span class="p">);</span><span class="w"> </span><span class="c1">// Le pasamos un objeto. Aunque en una petición POST tradicional podemos enviar un FormData directamente con fetch</span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Mirar el capítulo de comunicación con el servidor para más información y ejemplos con `FormData</p>
+</div></blockquote>
 </section>
 </section>
+<section id="validacion-de-formularios">
+<h3>Validación de formularios<a class="headerlink" href="#validacion-de-formularios" title="Link to this heading">#</a></h3>
+<p>Puesto que podemos interceptar el ciclo del formulario o atender a cualquier evento y leer y escribir el <code class="docutils literal notranslate"><span class="pre">value</span></code> de los <code class="docutils literal notranslate"><span class="pre">inputs</span></code>, validar el formulario es sencillo. No obstante, cuando hay que hacer muchos formularios o muy grandes, el código puede resultar farragoso. En ese caso, hay técnicas como crear funciones validadoras que hacen el código más sencillo y fácil de mantener.</p>
 <section id="expresiones-regulares">
-<h3>Expresiones Regulares<a class="headerlink" href="#expresiones-regulares" title="Link to this heading">#</a></h3>
+<h4>Expresiones Regulares<a class="headerlink" href="#expresiones-regulares" title="Link to this heading">#</a></h4>
 <p>Las expresiones regulares son una herramienta para validar campos de formulario, como números de teléfono, correos electrónicos, y otros patrones específicos.</p>
-<section id="ejemplo-de-validacion-con-expresiones-regulares">
-<h4>Ejemplo de Validación con Expresiones Regulares<a class="headerlink" href="#ejemplo-de-validacion-con-expresiones-regulares" title="Link to this heading">#</a></h4>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;phone-number&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;validate()&quot;</span><span class="p">&gt;</span>Validar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 
@@ -1156,12 +1155,16 @@ document.write(`
 <li><p>Ejercicio sobre formularios tradicionales vs con Javascript: <a class="reference external" href="https://jsfiddle.net/xxjcaxx/L2q8vzgn/10/">https://jsfiddle.net/xxjcaxx/L2q8vzgn/10/</a></p></li>
 </ul>
 </section>
+<section id="validacion-y-estilo">
+<h4>Validación y estilo<a class="headerlink" href="#validacion-y-estilo" title="Link to this heading">#</a></h4>
+<p>En caso de que un campo no sea válido, se puede manipular las clases CSS o mostrar un mensaje de error. Aquí entra el tema de la usabilidad. Estamos muy acostumbrados a un comportamiento de los formularios que nos informe de si estamos haciendo las cosas bien. Por ejemplo: un <code class="docutils literal notranslate"><span class="pre">input</span></code> que no haya sido manipulado de momento, no debería mostrarse como erróneo. Pero si ya se ha escrito algo en él y saltamos de <code class="docutils literal notranslate"><span class="pre">input</span></code>, ya debería mostrarse como erróneo. Esto también puede ser farragoso y siempre es mejor separar por funciones puras la validación y la aplicación de estilos.</p>
+</section>
 </section>
 <section id="ficheros-en-formularios">
 <h3>Ficheros en formularios<a class="headerlink" href="#ficheros-en-formularios" title="Link to this heading">#</a></h3>
 <p>Enviar ficheros al servidor mediante un formulario HTML es una tarea común que se realiza utilizando un <code class="docutils literal notranslate"><span class="pre">input</span></code> de tipo <code class="docutils literal notranslate"><span class="pre">file</span></code>. El tratamiento de los ficheros puede diferir del de otros elementos del formulario.</p>
 <blockquote>
-<div><p>Para entender mejor este apartado, también hay que dominar la comunicación <code class="docutils literal notranslate"><span class="pre">fetch</span></code> con el servidor <span class="xref std std-doc">../ajax.ipynb</span></p>
+<div><p>Para entender mejor este apartado, también hay que dominar la comunicación <code class="docutils literal notranslate"><span class="pre">fetch</span></code> con el servidor que tratamos en el capítulo de comunicación con el servidor.</p>
 </div></blockquote>
 <section id="envio-de-ficheros-con-un-formulario-tradicional">
 <h4>Envío de ficheros con un formulario tradicional<a class="headerlink" href="#envio-de-ficheros-con-un-formulario-tradicional" title="Link to this heading">#</a></h4>
@@ -1880,16 +1883,13 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-interceptar-submit-con-javascript">Ejemplo de Interceptar Submit con JavaScript</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-formularios">Eventos en Formularios</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-evento-onsubmit">Ejemplo de Evento <code class="docutils literal notranslate"><span class="pre">onsubmit</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-formulario-por-javascript">Enviar Formulario por JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-envio-por-javascript">Ejemplo de Envío por JavaScript</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expresiones-regulares">Expresiones Regulares</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-validacion-con-expresiones-regulares">Ejemplo de Validación con Expresiones Regulares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-formularios">Validación de formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expresiones-regulares">Expresiones Regulares</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-y-estilo">Validación y estilo</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en formularios</a><ul class="nav section-nav flex-column">
