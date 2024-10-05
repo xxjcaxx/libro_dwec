@@ -447,7 +447,7 @@ document.write(`
 <li><p>El router renderiza una plantilla con “placeholders”, espera los datos del servidor y rellena la plantilla con esos datos.</p></li>
 <li><p>…</p></li>
 </ul>
-<p>En cualquiera de estas opciones, hay problemas para volver a renderizar cuando hay datos nuevos, para mantener a raya a las suscripciones, para gestionar el estado de la aplicación o para mantenerla suficientemente desacoplada. Además, será complicado reutilizar esas funciones en otros proyectos.</p>
+<p>En cualquiera de estas opciones, hay problemas para volver a renderizar cuando hay datos nuevos, para mantener a raya a las suscripciones, para gestionar el estado de la aplicación o para mantenerla suficientemente desacoplada. También es complicado reutilizar esas funciones en otros proyectos.</p>
 <p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> no son una tecnología diferente a las vistas en los capítulos anteriores, se trata de una definición de la W3C para estandarizar lo que comenzaba a ser un aspecto común de los frameworks e intentar hacer componentes reutilizables para todos. Estos componentes se pueden hacer a partir de las mejoras de ES6 y HTML5. En la definición que podemos encontrar en la web de MDN: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">https://developer.mozilla.org/en-US/docs/Web/API/Web_components</a>, no incorpora la reactividad, pero nosotros vamos a incorporarla para hacerlos más útiles en el curso.</p>
 <blockquote>
 <div><p>Llegado el momento de hacer Web Components desde 0 con “vanilla Javascript” nos podemos preguntar si no será mejor usar un framework. Intentemos resistir esa tentación, al menos para aprender, porque esos conocimientos nos permitirán entender profundamente cómo funciona, por ejemplo, Angular o React.</p>
@@ -455,7 +455,7 @@ document.write(`
 <section id="conceptos-iniciales">
 <h2>Conceptos iniciales<a class="headerlink" href="#conceptos-iniciales" title="Link to this heading">#</a></h2>
 <p>Se pueden crear componentes de muchas maneras, pero la definición oficial parte de la posibilidad de crear <strong>Elementos personalizados</strong> o <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Elements</span></code>. Esto se puede hacer porque Javascript permite heredar de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements</a>. Luego veremos las posibilidades que hay con esto.</p>
-<p>Los elementos personalizados pueden ser diferentes al resto de la aplicación y tener sus propios scripts y estilos. Estos pueden colisionar con una aplicación para la que no fueron creados desde el principio. Una de las necesidades cubiertas por los Web Components es la reutilización del código. Pero Javascript permite encapsular estos elementos en un DOM separado del principal. Esta técnica se llama <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>.</p>
+<p>Una de las necesidades cubiertas por los Web Components es la reutilización del código.  Los elementos personalizados pueden ser diferentes al resto de la aplicación y tener sus propios scripts y estilos. Estos pueden colisionar con una aplicación para la que no fueron creados desde el principio. Pero Javascript permite encapsular estos elementos en un DOM separado del principal. Esta técnica se llama <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>.</p>
 <p>Para crear elementos personalizados en el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>, se pueden hacer programáticamente o a través del HTML con etiquetas como <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>.</p>
 <p>Por consiguiente, un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> tiene una clase que hereda de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> registrada en el <code class="docutils literal notranslate"><span class="pre">CustomElementRegistry</span></code> para que pueda ser utilizada en cualquier parte. Este elemento tiene un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> (opcional) para que su código y estilos no molesten al resto y se suele usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> para las plantillas. A continuación se puede usar como cualquier etiqueta.</p>
 <section id="alternativas">
@@ -527,6 +527,9 @@ document.write(`
 </pre></div>
 </div>
 <p>Además de esas funciones del ciclo de vida, se pueden añadir otras. Una típica puede ser la función <code class="docutils literal notranslate"><span class="pre">render()</span></code> que retorna el elemento redibujado. Esto es útil si queremos que el contenido pueda ser actualizado reactivamente.</p>
+<blockquote>
+<div><p><strong>Elementos HTML nativos</strong> (como <code class="docutils literal notranslate"><span class="pre">div</span></code>, <code class="docutils literal notranslate"><span class="pre">span</span></code>, etc.) no tienen métodos del ciclo de vida de los Web Components, por lo que asignar <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code> o otras manualmente no funcionará.</p>
+</div></blockquote>
 </section>
 <section id="registrar-el-elemento-personalizado">
 <h3>Registrar el elemento personalizado<a class="headerlink" href="#registrar-el-elemento-personalizado" title="Link to this heading">#</a></h3>
@@ -595,8 +598,9 @@ document.write(`
 </div>
 <section id="estilos-en-shadow-dom">
 <h3>Estilos en shadow DOM<a class="headerlink" href="#estilos-en-shadow-dom" title="Link to this heading">#</a></h3>
-<p>Para dar estilo a un shadow DOM se puede hacer modificando <code class="docutils literal notranslate"><span class="pre">.style...</span></code> en los elementos hijos, poniendo la etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> y escribiendo el CSS ahí mismo o importando los ficheros CSS:</p>
-<p>Los estilos generales no se aplican a los elementos dentro del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code>. Pero si queremos que sí lo hagan todos, podemos usar un código como este:</p>
+<p>Para dar estilo a un shadow DOM se puede hacer modificando <code class="docutils literal notranslate"><span class="pre">.style...</span></code> en los elementos hijos, poniendo la etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> y escribiendo el CSS ahí mismo o importando los ficheros CSS.</p>
+<p>Los estilos generales no se aplican a los elementos dentro del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code>.  En general es positivo que los estilos del DOM principal no afecten a los Web components. Esto los hace más robustos para poderlos reutilizar y que siempre se vean igual. También hace que sus estilos no puedan contaminar los de la web principal. No obstante, si estamos usando, por ejemplo, <code class="docutils literal notranslate"><span class="pre">Boostrap</span></code> tanto en el componente como en la web en general, podemos aplicar alguna de las técnicas que explicaremos a continuación:</p>
+<p>Podemos usar un código como este en la creación del componente para que adopte las reglas del documento:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span><span class="w">        </span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">rules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">].</span><span class="nx">flatMap</span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">s</span><span class="p">.</span><span class="nx">cssRules</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">cssText</span><span class="p">)).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
 <span class="nx">adoptedStyleSheets</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">rules</span><span class="p">);</span>
@@ -604,8 +608,8 @@ document.write(`
 </pre></div>
 </div>
 <p>Aquí se ha obtenido la lista de reglas de todas las hojas de estilo y se han añadido al <code class="docutils literal notranslate"><span class="pre">shadow</span></code>. Para ello hay que transformar mediante flatMap y demás la lista de estilos, dentro de ellos las reglas y dentro las reglas en string, crear un <code class="docutils literal notranslate"><span class="pre">CSSStyleSheet</span></code> personalizado y añadir todas las reglas.</p>
-<p>También se podrian buscar solo las reglas de un determinado tipo, una regla en concreto o las que vienen en un fichero.</p>
-<p>En el caso de usar Vite y Bootstrap, podemos importar el css con <code class="docutils literal notranslate"><span class="pre">?inline</span></code>, lo cual importa el texto del css y no lo inyecta en la web (<a class="reference external" href="https://vitejs.dev/guide/features#disabling-css-injection-into-the-page">https://vitejs.dev/guide/features#disabling-css-injection-into-the-page</a>). Luego ese texto se puede usar tal cual en la plantilla. Observa el ejemplo:</p>
+<p>También se podrían buscar solo las reglas de un determinado tipo, una regla en concreto o las que vienen en un fichero.</p>
+<p>En el caso de usar <code class="docutils literal notranslate"><span class="pre">Vite</span> <span class="pre">y</span> <span class="pre">Bootstrap</span></code>, podemos importar el css con <code class="docutils literal notranslate"><span class="pre">?inline</span></code>, lo cual importa el texto del css y no lo inyecta en la web (<a class="reference external" href="https://vitejs.dev/guide/features#disabling-css-injection-into-the-page">https://vitejs.dev/guide/features#disabling-css-injection-into-the-page</a>). Luego ese texto se puede usar tal cual en la plantilla. Observa el ejemplo:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">bootstrap</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;bootstrap&#39;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;./styles.scss&#39;</span>
 <span class="k">import</span><span class="w"> </span><span class="nx">styles</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./styles.scss?inline&quot;</span>
@@ -698,7 +702,7 @@ document.write(`
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;my-text&quot;</span><span class="p">&gt;</span>My default text<span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Y será sustituida en HTML así:</p>
+<p>Y será incorporada en la plantilla en HTML así:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">my-paragraph</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">span</span> <span class="na">slot</span><span class="o">=</span><span class="s">&quot;my-text&quot;</span><span class="p">&gt;</span>Let&#39;s have some different text!<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">my-paragraph</span><span class="p">&gt;</span>
@@ -712,226 +716,191 @@ document.write(`
 </section>
 <section id="ejemplo-completo">
 <h2>Ejemplo completo<a class="headerlink" href="#ejemplo-completo" title="Link to this heading">#</a></h2>
-<p>En el siguiente ejemplo se muestra la creación de un componente que muestra la tabla <code class="docutils literal notranslate"><span class="pre">profiles</span></code>de <code class="docutils literal notranslate"><span class="pre">Supabase</span></code>. Además de mostrar la tabla, tiene la posibilidad de ocultar columnas y mostrar un formulario para editar cada fila. No está implementada toda la funcionalidad de editar o eliminar, pero el resto funciona. Además, usamos conceptos un poco avanzados como el conseguir la reactividad mediante un <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code> o usar una función de composición.</p>
-<p>En el <code class="docutils literal notranslate"><span class="pre">constructor</span></code> se establecen unos datos estáticos de ejemplo mientras cargan los datos del servidor.</p>
-<p>En la función <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code> se suscribe al <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code>, descarga los datos para que, cuando estén, actualice el <code class="docutils literal notranslate"><span class="pre">BehaviorSubject</span></code>.</p>
-<p>Es importante no dejar cabos sueltos cuando se elimina el componente, por eso se anula la subscripción en <code class="docutils literal notranslate"><span class="pre">disconnectedCallback</span></code>.</p>
-<p>Se ha creado la función <code class="docutils literal notranslate"><span class="pre">render(state)</span></code> que renderiza el estado. Esta es interesante porque, usando una función de composición, vamos aplicando una plantilla hecha con algunos <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>, a continuación se introducen los datos en la plantillas, en la siguiente función de la composición se añaden los eventos y en la siguiente algunos posibles efectos. Con esto hemos conseguido separar, aunque no totalmente, la plantilla de los datos y de los eventos.</p>
-<p>En este caso se ha optado por no usar <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> porque interesaba poder usar sin problemas los estilos y javascript de boostrap que tenemos en la aplicación principal.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomTable</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<p>Presuponemos un proyecto usando <code class="docutils literal notranslate"><span class="pre">Vite</span></code>, <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code> y <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>.</p>
+<p>La idea es crear un formulario reactivo como un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code>. Para ello vamos a utilizar todas las técnicas explicadas, aunque alguna la podríamos omitir. En primer lugar, podemos crear una plantilla para el formulario con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> y <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">plantillaFormulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;div class=&quot;container mt-5&quot;&gt;</span>
+<span class="sb">      &lt;h2 class=&quot;mb-4&quot;&gt;</span>
+<span class="sb">      &lt;slot name=&quot;titulo&quot;&gt;Formulario reactivo&lt;/slot&gt;</span>
+<span class="sb">      &lt;/h2&gt;</span>
+<span class="sb">      &lt;form id=&quot;formularioReactivo&quot;&gt;</span>
+<span class="sb">        &lt;!-- Campo de texto --&gt;</span>
+<span class="sb">        &lt;div class=&quot;mb-3&quot;&gt;</span>
+<span class="sb">          &lt;label for=&quot;nombre&quot; class=&quot;form-label&quot;&gt;Nombre&lt;/label&gt;</span>
+<span class="sb">          &lt;input</span>
+<span class="sb">            type=&quot;text&quot;</span>
+<span class="sb">            class=&quot;form-control&quot;</span>
+<span class="sb">            id=&quot;nombre&quot;</span>
+<span class="sb">            placeholder=&quot;Ingresa tu nombre&quot;</span>
+<span class="sb">            required</span>
+<span class="sb">            name=&quot;nombre&quot;</span>
+<span class="sb">          /&gt;</span>
+<span class="sb">        &lt;/div&gt;</span>
 
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">();</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="p">({</span>
-<span class="w">      </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="sb">`placeholder`</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="sb">`placeholder2`</span><span class="w"> </span><span class="p">}</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nx">columns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;name&#39;</span><span class="p">]),</span>
-<span class="w">      </span><span class="nx">hiddenColumns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">([]),</span>
-<span class="w">      </span><span class="nx">showHiddenColumns</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">filters</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="sb">        &lt;!-- Campo de correo electrónico --&gt;</span>
+<span class="sb">        &lt;div class=&quot;mb-3&quot;&gt;</span>
+<span class="sb">          &lt;label for=&quot;email&quot; class=&quot;form-label&quot;&gt;Correo Electrónico&lt;/label&gt;</span>
+<span class="sb">          &lt;input</span>
+<span class="sb">            type=&quot;email&quot;</span>
+<span class="sb">            class=&quot;form-control&quot;</span>
+<span class="sb">            id=&quot;email&quot;</span>
+<span class="sb">            placeholder=&quot;Ingresa tu correo electrónico&quot;</span>
+<span class="sb">            required</span>
+<span class="sb">            name=&quot;correo&quot;</span>
+<span class="sb">          /&gt;</span>
+<span class="sb">        &lt;/div&gt;</span>
 
-<span class="w">    </span><span class="p">});</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">value</span><span class="p">));</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">firstElementChild</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">state</span><span class="p">));</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">dataPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getDataSupabase</span><span class="p">(</span><span class="s2">&quot;profiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">dataPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">next</span><span class="p">({</span>
-<span class="w">        </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">columns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">columns</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">hiddenColumns</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">([]),</span>
-<span class="w">        </span><span class="nx">filters</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
-<span class="w">      </span><span class="p">})</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">disconnectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="o">?</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">render</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">_</span><span class="p">.</span><span class="nx">compose</span><span class="p">(</span>
-<span class="w">      </span><span class="p">(</span><span class="nx">div</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Añadir efectos</span>
-
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">showHiddenColumns</span><span class="p">){</span>
-<span class="w">          </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#collapseColumnas&#39;</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;show&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#collapseColumnas&#39;</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;show&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">div</span><span class="p">;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span>
-<span class="w">      </span><span class="p">(</span><span class="nx">div</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Añadir eventos</span>
-<span class="w">        </span><span class="nx">div</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;edit&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">tds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">)].</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">tds</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">td</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="kd">let</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">td</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
-<span class="w">              </span><span class="nx">td</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;input type=&quot;text&quot; name=&quot;</span><span class="si">${</span><span class="nx">td</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">col</span><span class="si">}</span><span class="sb">&quot; value=&quot;</span><span class="si">${</span><span class="nx">content</span><span class="si">}</span><span class="sb">&quot;/&gt;`</span>
-<span class="w">            </span><span class="p">});</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">saveButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">saveButton</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;💾&#39;</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">saveButton</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">saveButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tds</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">td</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">td</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">col</span><span class="p">));</span>
-<span class="w">            </span><span class="p">});</span>
-<span class="w">          </span><span class="p">}</span>
-
-<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;delete&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">confirm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">confirm</span><span class="p">(</span><span class="s2">&quot;Vas a borrar ¿Estas seguro?&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">confirm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">}</span>
-
-<span class="w">          </span><span class="k">if</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">column</span><span class="p">){</span>
-<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">newState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">newState</span><span class="p">.</span><span class="nx">hiddenColumns</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">column</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">newState</span><span class="p">.</span><span class="nx">showHiddenColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubject</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">newState</span><span class="p">);</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">div</span><span class="p">;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="p">(</span><span class="nx">div</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Mostrar datos</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">divColumnas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#divColumnas&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">checkColumnasTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#checkColumnasTemplate&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableHeader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableHeader&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableHeaderTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableHeaderTH&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#lastColumn&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableBody&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableBodyTR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#tableBodyTR&quot;</span><span class="p">);</span>
-
-<span class="w">      </span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">state</span><span class="p">.</span><span class="nx">columns</span><span class="p">.</span><span class="nx">difference</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">hiddenColumns</span><span class="p">)];</span>
-<span class="w"> </span>
-
-<span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">column</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">columns</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">checkColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">checkColumnasTemplate</span><span class="p">.</span><span class="nx">content</span>
-<span class="w">              </span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="w">              </span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">checkColumn</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">label</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">column</span><span class="p">;</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">checkColumn</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">hiddenColumns</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">column</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`hideColumn</span><span class="si">${</span><span class="nx">column</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">column</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">label</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;for&#39;</span><span class="p">,</span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">divColumnas</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">checkColumn</span><span class="p">);</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">column</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">columns</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableHeaderTHColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tableHeaderTH</span><span class="p">.</span><span class="nx">content</span>
-<span class="w">              </span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="w">              </span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;th&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">tableHeaderTHColumn</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">column</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">tableHeader</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">tableHeaderTHColumn</span><span class="p">);</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
-<span class="w">          </span><span class="nx">tableHeader</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">lastColumn</span><span class="p">);</span>
-
-<span class="w">          </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">row</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">tableBodyTRRow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tableBodyTR</span><span class="p">.</span><span class="nx">content</span>
-<span class="w">              </span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="w">              </span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;tr&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">tableBodyTRRow</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">columns</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">col</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;td data-col=&quot;</span><span class="si">${</span><span class="nx">col</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">row</span><span class="p">[</span><span class="nx">col</span><span class="p">]</span><span class="si">}</span><span class="sb">&lt;/td&gt;`</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastColumnTemplate</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">lastColumn</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">row</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">tableBodyTRRow</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">lastColumn</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">tableBody</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">tableBodyTRRow</span><span class="p">);</span>
-
-<span class="w">          </span><span class="p">}</span>
-<span class="w">       </span><span class="c1">// });</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">div</span><span class="p">;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nx">DOM</span><span class="p">.</span><span class="nx">createDivWithInnerHTML</span><span class="w"> </span><span class="c1">// Genera el div</span>
-<span class="w">    </span><span class="p">)(</span><span class="cm">/* HTML */</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">      &lt;div class=&quot;container bd-gutter mt-3 my-md-4 bd-layout overflow-scroll&quot;&gt;</span>
-<span class="sb">     </span>
-<span class="sb">        &lt;h2 class=&quot;d-inline-flex gap-1&quot;&gt;Alumnos&lt;/h2&gt;</span>
-<span class="sb">  </span>
-<span class="sb">        &lt;p class=&quot;d-inline-flex gap-1&quot;&gt;</span>
-<span class="sb">          &lt;button</span>
-<span class="sb">            class=&quot;btn btn-primary&quot;</span>
-<span class="sb">            type=&quot;button&quot;</span>
-<span class="sb">            data-bs-toggle=&quot;collapse&quot;</span>
-<span class="sb">            data-bs-target=&quot;#collapseColumnas&quot;</span>
-<span class="sb">            aria-expanded=&quot;false&quot;</span>
-<span class="sb">            aria-controls=&quot;collapseColumnas&quot;</span>
-<span class="sb">          &gt;</span>
-<span class="sb">            Columnas</span>
-<span class="sb">          &lt;/button&gt;</span>
+<span class="sb">        &lt;!-- Botón de enviar --&gt;</span>
+<span class="sb">        &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Enviar&lt;/button&gt;</span>
+<span class="sb">      &lt;/form&gt;</span>
+<span class="sb">      &lt;div&gt;</span>
+<span class="sb">        &lt;p&gt;&lt;strong&gt;Valor Nombre:&lt;/strong&gt; </span>
+<span class="sb">        &lt;span id=&quot;nombre-output&quot;&gt;&lt;/span&gt;</span>
 <span class="sb">        &lt;/p&gt;</span>
-<span class="sb">        &lt;div class=&quot;collapse&quot; id=&quot;collapseColumnas&quot;&gt;</span>
-<span class="sb">          &lt;div class=&quot;card card-body&quot; id=&quot;divColumnas&quot;&gt;</span>
-<span class="sb">            &lt;template id=&quot;checkColumnasTemplate&quot;&gt;</span>
-<span class="sb">              &lt;div class=&quot;form-check form-switch&quot;&gt;</span>
-<span class="sb">                &lt;input</span>
-<span class="sb">                  class=&quot;form-check-input&quot;</span>
-<span class="sb">                  type=&quot;checkbox&quot;</span>
-<span class="sb">                  role=&quot;switch&quot;</span>
-<span class="sb">                  id=&quot;columnasSwitchtemplate&quot;</span>
-<span class="sb">                /&gt;</span>
-<span class="sb">                &lt;label class=&quot;form-check-label&quot; for=&quot;columnasSwitchtemplate&quot;</span>
-<span class="sb">                  &gt;Default switch checkbox input&lt;/label</span>
-<span class="sb">                &gt;</span>
-<span class="sb">              &lt;/div&gt;</span>
-<span class="sb">            &lt;/template&gt;</span>
-<span class="sb">          &lt;/div&gt;</span>
-<span class="sb">        &lt;/div&gt;   </span>
-<span class="sb">        &lt;table class=&quot;table table-striped table-hover&quot;&gt;</span>
-<span class="sb">          &lt;thead&gt;</span>
-<span class="sb">            &lt;tr id=&quot;tableHeader&quot;&gt;</span>
-<span class="sb">              &lt;template id=&quot;tableHeaderTH&quot;&gt;</span>
-<span class="sb">                &lt;th scope=&quot;col&quot;&gt;#&lt;/th&gt;</span>
-<span class="sb">              &lt;/template&gt;</span>
-<span class="sb">            &lt;/tr&gt;</span>
-<span class="sb">          &lt;/thead&gt;</span>
-<span class="sb">          &lt;tbody id=&quot;tableBody&quot;&gt;</span>
-<span class="sb">            &lt;template id=&quot;tableBodyTR&quot;&gt;</span>
-<span class="sb">              &lt;tr&gt;</span>
-<span class="sb">                &lt;th scope=&quot;row&quot;&gt;{id}&lt;/th&gt;</span>
-<span class="sb">                &lt;td&gt;{exemple}&lt;/td&gt;</span>
-<span class="sb">              &lt;/tr&gt;</span>
-<span class="sb">            &lt;/template&gt;</span>
-<span class="sb">            &lt;template id=&quot;lastColumn&quot;&gt;</span>
-<span class="sb">            &lt;td class=&quot;buttonsCol&quot;&gt;&lt;span class=&quot;edit&quot;&gt;📝&lt;/span&gt;&lt;span class=&quot;delete&quot;&gt;🗑️&lt;/span&gt;&lt;/td&gt;</span>
-<span class="sb">            &lt;/template&gt;</span>
-<span class="sb">          &lt;/tbody&gt;</span>
-<span class="sb">        &lt;/table&gt;</span>
+<span class="sb">        &lt;p&gt;</span>
+<span class="sb">          &lt;strong&gt;Valor Correo Electrónico:&lt;/strong&gt;</span>
+<span class="sb">          &lt;span id=&quot;email-output&quot;&gt;&lt;/span&gt;</span>
+<span class="sb">        &lt;/p&gt;</span>
 <span class="sb">      &lt;/div&gt;</span>
-<span class="sb">    `</span><span class="p">);</span>
+<span class="sb">    &lt;/div&gt;</span>
+<span class="sb">`</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En la tercera línea hay <code class="docutils literal notranslate"> <span class="pre">&lt;slot</span> <span class="pre">name=&quot;titulo&quot;&gt;Formulario</span> <span class="pre">reactivo&lt;/slot&gt;</span></code> que luego será reemplazado. Por lo demás, es un formulario normal.</p>
+<p>Para crear el <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> vamos a usar una función. De esta manera, se puede reutilizar un poco más el código y se aproxima más a la programación funcional:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">createCustomFormComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="c1">// Object destructuring</span>
+<span class="w">  </span><span class="nx">tag</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">keyUpFunction</span><span class="p">,</span><span class="w"> </span>
+<span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">class</span><span class="w"> </span><span class="nx">customComponent</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">super</span><span class="p">();</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">dataSubject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subject</span><span class="p">();</span><span class="w"> </span><span class="c1">// La manera de obtener datos del padre</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">templateComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;template&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">templateComponent</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">template</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">shadowRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;closed&quot;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">      </span><span class="c1">// Este paso es redundante e innecesario en este caso ya que estamos creando la plantilla dinámicamente</span>
+<span class="w">      </span><span class="c1">// Lo dejamos para dejar la referencia a las funciones en un mismo ejemplo.</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">contentFragment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">templateComponent</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">contentFragment</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">tag</span><span class="p">,</span><span class="w"> </span><span class="nx">customComponent</span><span class="p">);</span>
+<span class="p">};</span>
 </pre></div>
 </div>
-<p>A continuación, el fichero principal de la aplicación importará este <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> y lo registrará para luego poder usarlo:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CustomTable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./vistaAdministrador&#39;</span><span class="p">;</span>
-<span class="p">...</span>
-<span class="nb">window</span><span class="p">.</span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;custom-table&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">CustomTable</span><span class="p">);</span>
-<span class="p">...</span>
-<span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;custom-table&#39;</span><span class="p">));</span>
+<p>En este caso es un componente para crear diversos formularios reactivos. Necesita para ser inicializado el <code class="docutils literal notranslate"><span class="pre">tag</span></code>, una plantilla del formulario que tenga inputs con el atributo <code class="docutils literal notranslate"><span class="pre">name</span></code> y una función para indicar qué hacer cuando ocurra un cambio en el formulario.
+Esta función ya registra el componente.</p>
+<p>Al <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code> le añadiremos las subscipciones necesarias para implementar la reactividad interna y externa:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">templateComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;template&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">templateComponent</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">template</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">shadowRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;closed&quot;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Este paso es redundante e innecesario en este caso ya que estamos creando la plantilla dinámicamente</span>
+<span class="w">        </span><span class="c1">// Lo dejamos para dejar la referencia a las funciones en un mismo ejemplo. </span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">contentFragment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">templateComponent</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">contentFragment</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// El evento de keyup tratado de forma reactiva </span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">keyUpSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fromEvent</span><span class="p">(</span><span class="nx">shadowRoot</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;keyup&#39;</span><span class="p">)</span>
+<span class="w">          </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">map</span><span class="p">((</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">))),</span>
+<span class="w">            </span><span class="nx">distinctUntilChanged</span><span class="p">(</span>
+<span class="w">              </span><span class="p">(</span><span class="nx">previous</span><span class="p">,</span><span class="w"> </span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">                </span><span class="p">[...</span><span class="nx">previous</span><span class="p">.</span><span class="nx">entries</span><span class="p">()]</span>
+<span class="w">                  </span><span class="p">.</span><span class="nx">every</span><span class="p">(</span>
+<span class="w">                    </span><span class="p">([</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">],</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">                      </span><span class="nx">value</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="p">[...</span><span class="nx">current</span><span class="p">.</span><span class="nx">entries</span><span class="p">()][</span><span class="nx">index</span><span class="p">][</span><span class="mf">1</span><span class="p">]</span>
+<span class="w">                  </span><span class="p">)),</span>
+<span class="w">            </span><span class="nx">debounceTime</span><span class="p">(</span><span class="mf">200</span><span class="p">)</span>
+<span class="w">          </span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">values</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Evento para informar al componente padre de un cambio</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">customEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CustomEvent</span><span class="p">(</span><span class="s1">&#39;formChanged&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">bubbles</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">              </span><span class="nx">detail</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Form changed&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">customEvent</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Implementar la reactividad en el mismo formulario</span>
+<span class="w">            </span><span class="nx">keyUpFunction</span><span class="p">(</span><span class="nx">shadowRoot</span><span class="p">)(</span><span class="nx">values</span><span class="p">);</span>
+<span class="w">          </span><span class="p">});</span>
+
+<span class="w">          </span><span class="c1">// Atender a los datos externos</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">dataSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">dataSubject</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="p">[...</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)]</span>
+<span class="w">          </span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">input</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="nx">input</span><span class="p">.</span><span class="nx">name</span><span class="p">]);</span>
+<span class="w">          </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">KeyboardEvent</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">));</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">      </span><span class="p">}</span>
 </pre></div>
 </div>
+<p>En este caso, nos interesa atender a los eventos <code class="docutils literal notranslate"><span class="pre">keyup</span></code> que modifiquen el formulario (<code class="docutils literal notranslate"><span class="pre">distinctUntilChanged</span></code>) con un cierto <code class="docutils literal notranslate"><span class="pre">debounceTime</span></code> para no saturar con cambios al componente padre. Cuando esto ocurre emitimos un evento personalizado, que es la manera de comunicar los cambios al componente padre. Luego se ejecuta la <code class="docutils literal notranslate"><span class="pre">keyUpFunction</span></code> tanto con el contenedor como con los últimos valores para que haga lo que se considere necesario. Esta función pasada como parámetros podría validad el formulario o, como en el caso que nos ocupa, mostrar los datos en otro sitio dentro del formulario.</p>
+<p>Es importante quitar todas las suscripciones a observables si se elimina el componente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">disconnectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">keyUpSubscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">dataSubscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Para crear el componente invocaremos a la función:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">createCustomFormComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="p">{</span><span class="w">  </span><span class="c1">// Al pasar un objeto como parámetro, podemos asignar los nombres de los atributos y desordenarlos.</span>
+<span class="w">      </span><span class="nx">tag</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;custom-formularioreactivo&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="nx">plantillaFormulario</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">keyUpFunction</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">shadowRoot</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">values</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">[...</span><span class="nx">values</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(([</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">-output`</span><span class="p">).</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Como se puede ver, la <code class="docutils literal notranslate"><span class="pre">keyUpFunction</span></code> usará los valores del formulario para cambiar el contenido de ciertos elementos de la <code class="docutils literal notranslate"><span class="pre">plantillaFormulario</span></code></p>
+<p>Luego lo incorporamos a la web, por ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">customFormulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;custom-formularioreactivo&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Crear el span con el slot=&quot;titulo&quot;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">spanTitulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">spanTitulo</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;slot&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;titulo&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">spanTitulo</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Formulario reactivo con el titulo en slot&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Añadir el span al custom element</span>
+<span class="w">  </span><span class="nx">customFormulario</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">spanTitulo</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Insertar el custom element en el DOM</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#reactividad&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">customFormulario</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ahora podemos comprobar que realmente es reactivo. Si modificamos inputs del formulario se ven los cambios. Pero también informa de los cambios al componente padre:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Atender al evento </span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#reactividad&quot;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;formChanged&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Con este código vemos que los cambios internos son devueltos como eventos personalizados.</p>
+<p>Y el componente personalizado también se puede actualizar</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">interval</span><span class="p">(</span><span class="mf">1000</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">map</span><span class="p">(</span><span class="nx">i</span><span class="p">=&gt;({</span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">i</span><span class="p">}))</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">customFormulario</span><span class="p">.</span><span class="nx">dataSubject</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código suscribe el subject interno del componente a un observable externo y esto provoca todos los cambios reactivamente.</p>
 <p>Lecturas:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components:">https://developer.mozilla.org/en-US/docs/Web/API/Web_components:</a> Guia principal de referencia.</p></li>
 <li><p><a class="github reference external" href="https://github.com/mdn/web-components-examples:">mdn/web-components-examples:</a> Ejemplos de Custom Elements de la MDN.</p></li>
 <li><p><a class="reference external" href="https://es.javascript.info/web-components">https://es.javascript.info/web-components</a> Otro muy buen manual.</p></li>
 <li><p><a class="reference external" href="https://learn-wcs.com/?active-item=why-web-components">https://learn-wcs.com/?active-item=why-web-components</a> Colección de enlaces muy buena.</p></li>
+<li><p><a class="reference external" href="https://positive-intentions.com/blog/dim-functional-webcomponents/">https://positive-intentions.com/blog/dim-functional-webcomponents/</a> Un ejemplo de programación funcional y reactiva con Web Components</p></li>
 </ul>
 </section>
 </section>
