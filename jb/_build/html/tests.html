@@ -416,19 +416,16 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-red-green-refactor">Ciclo Red - Green - Refactor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matchers">Matchers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-pruebas-de-promesas">Ejemplo de Pruebas de Promesas</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-de-la-pruebas">Sintaxis de la pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matchers">Matchers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-fake-dummy">Mocking, Stubs, Fake, Dummy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-variables">Mocking de Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-funciones">Mocking de Funciones</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-mocking-de-funciones">Ejemplo de Mocking de Funciones</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-funciones">Mocking de Funciones</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-la-red">Mocking de la Red</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-mocking-de-la-red">Ejemplo de Mocking de la Red</a></li>
 </ul>
@@ -561,8 +558,13 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </ol>
 <p>Una vez completado el ciclo, comenzamos de nuevo con el siguiente requisito. En cada ciclo se pueden redefinir o agregar nuevos requisitos.</p>
 </section>
+</section>
+<section id="sintaxis-de-la-pruebas">
+<h2>Sintaxis de la pruebas<a class="headerlink" href="#sintaxis-de-la-pruebas" title="Link to this heading">#</a></h2>
+<p>Una vez visto lo fundamental en cuanto a qué son los tests, vamos a detallar algunos aspectos técnicos para hacerlos. Lo mejor es ir directamente a la documentación de <code class="docutils literal notranslate"><span class="pre">Vitest</span></code>, pero puede resultar complicada en un principio.</p>
 <section id="matchers">
 <h3>Matchers<a class="headerlink" href="#matchers" title="Link to this heading">#</a></h3>
+<p>Lo primero que debemos dominar son las diversas manera que tienen las suites de tests para comprobar si el resultado es el esperado. Para ello se usan funciones <code class="docutils literal notranslate"><span class="pre">matchers</span></code> que son más cómodas que probar las cosas artesanalmente y que retornan un error interpretable por el test.</p>
 <p>Algunos matchers importantes que podemos usar en nuestras pruebas son:</p>
 <ul class="simple">
 <li><p><strong>not:</strong> <code class="docutils literal notranslate"><span class="pre">expect(something).not.toBe(true);</span></code></p></li>
@@ -574,12 +576,19 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <li><p><strong>toEqual:</strong> <code class="docutils literal notranslate"><span class="pre">expect(bigObject).toEqual({&quot;foo&quot;:</span> <span class="pre">['bar',</span> <span class="pre">'baz']});</span></code></p></li>
 <li><p><strong>toMatch:</strong> <code class="docutils literal notranslate"><span class="pre">expect(&quot;my</span> <span class="pre">string&quot;).toMatch(/string$/);</span></code></p></li>
 </ul>
+<p>Con pocos podemos funcionar en la mayoría de las ocasiones, pero hay otros muy específicos como, por ejemplo, <code class="docutils literal notranslate"><span class="pre">toHaveProperty()</span></code> que comprueba que un objeto tiene una propiedad determinada. Cuanto más específico sea el <code class="docutils literal notranslate"><span class="pre">matcher</span></code> mejor, por ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Esto:</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">toHaveProperty</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+<span class="c1">// Es lo mismo que esto:</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">user</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">30</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En el ejemplo, el primero es más conciso y el error resultante se entiende mejor.</p>
 </section>
 <section id="pruebas-de-promesas">
 <h3>Pruebas de Promesas<a class="headerlink" href="#pruebas-de-promesas" title="Link to this heading">#</a></h3>
-<p>Para probar funciones asíncronas, solo necesitamos agregar <code class="docutils literal notranslate"><span class="pre">async</span></code> / <code class="docutils literal notranslate"><span class="pre">await</span></code> en la función de callback de <code class="docutils literal notranslate"><span class="pre">it</span></code>.</p>
-<section id="ejemplo-de-pruebas-de-promesas">
-<h4>Ejemplo de Pruebas de Promesas<a class="headerlink" href="#ejemplo-de-pruebas-de-promesas" title="Link to this heading">#</a></h4>
+<p>Para probar funciones asíncronas, solo necesitamos agregar <code class="docutils literal notranslate"><span class="pre">async</span></code> / <code class="docutils literal notranslate"><span class="pre">await</span></code> en la función de callback de <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Test Promesas&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;incrementar decrementar&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;should return the number +1&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -594,7 +603,12 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <span class="p">});</span>
 </pre></div>
 </div>
-</section>
+<p>Hay un problema con las promesas, si no se cumplen nunca, el test no acaba y tampoco falla. En caso de que pueda pasar eso, se puede usar <code class="docutils literal notranslate"><span class="pre">setTimeOut</span></code> con un tiempo razonable y dar fallo si no se cumple en ese plazo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Timeout exceeded&#39;</span><span class="p">)),</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span><span class="nx">incrementar</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="nx">timeout</span><span class="p">(</span><span class="mf">5000</span><span class="p">)]);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="mocking-stubs-fake-dummy">
@@ -633,14 +647,52 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">vi.fn()</span></code></strong>: Crea una función simulada.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">vi.spyOn()</span></code></strong>: Añade un espía a una función de un objeto.</p></li>
 </ul>
-<section id="ejemplo-de-mocking-de-funciones">
-<h4>Ejemplo de Mocking de Funciones<a class="headerlink" href="#ejemplo-de-mocking-de-funciones" title="Link to this heading">#</a></h4>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">myFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
-<span class="nx">myFunction</span><span class="p">();</span>
-<span class="nx">expect</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">).</span><span class="nx">toHaveBeenCalled</span><span class="p">();</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;ensureOneCall debe llamar sólo una vez a la función&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nb">window</span><span class="p">.</span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span><span class="s1">&#39;sum&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">onceSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ensureOneCall</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">sum</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onceSum</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="mf">4</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">9</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">callback</span><span class="p">).</span><span class="nx">toHaveBeenCalled</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onceSum</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="mf">3</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">callback</span><span class="p">).</span><span class="nx">toHaveBeenCalledTimes</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
 </pre></div>
 </div>
-</section>
+<p>También se puede ‘mockear’ el funcionamiento de la función:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;sendForm debe enviar por post datos a un servidor&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">formExample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">formExample</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;form&gt;</span>
+<span class="sb">            &lt;label for=&quot;login&quot;&gt;Login:&lt;/label&gt;</span>
+<span class="sb">            &lt;input type=&quot;text&quot; id=&quot;login&quot; name=&quot;login&quot; value=&quot;usuario&quot;&gt;</span>
+<span class="sb">            &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;</span>
+<span class="sb">            &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; value=&quot;1234&quot;&gt;</span>
+<span class="sb">            &lt;button type=&quot;submit&quot;&gt;Iniciar sesión&lt;/button&gt;</span>
+<span class="sb">          &lt;/form&gt;`</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">opciones</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">formExample</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// Con mockImplementation modificamos el comportamiento de fetch</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">spyFetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;fetch&#39;</span><span class="p">).</span><span class="nx">mockImplementation</span><span class="p">((</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span>
+<span class="w">                    </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">),</span><span class="w"> </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">statusText</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;OK&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">postForm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">sendForm</span><span class="p">(</span><span class="nx">formExample</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;http://localhost/fakeServer&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">postForm</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Promise</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">postForm</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">data</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="sb">`{&quot;name&quot;:&quot;usuario&quot;,&quot;password&quot;:&quot;1234&quot;}`</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">spyFetch</span><span class="p">).</span><span class="nx">toHaveBeenCalled</span><span class="p">();</span>
+<span class="w">            </span><span class="c1">// En este caso, comprobamos que se han enviado bien los datos. </span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">spyFetch</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="s1">&#39;http://localhost/fakeServer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">opciones</span><span class="p">);</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">// Restauramos la función anterior</span>
+<span class="w">            </span><span class="nx">spyFetch</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+</pre></div>
+</div>
 </section>
 <section id="mocking-de-la-red">
 <h3>Mocking de la Red<a class="headerlink" href="#mocking-de-la-red" title="Link to this heading">#</a></h3>
@@ -651,9 +703,25 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">setupServer</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;msw/node&#39;</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setupServer</span><span class="p">(</span>
-<span class="w">  </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://test.com/rest/v1/fallo&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">error</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}),</span>
+<span class="w">    </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;liga.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">liga</span><span class="p">));</span><span class="w"> </span><span class="c1">// Mock de respuesta exitosa</span>
+<span class="w">    </span><span class="p">}),</span>
+<span class="w">     </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;JavaScript-logo.png&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">blob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createMockBlob</span><span class="p">(</span><span class="nx">logo</span><span class="p">);</span><span class="w"> </span><span class="c1">// Crear el blob desde la imagen importada</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">(</span>
+<span class="w">          </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;image/png&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">// Especificar el tipo de contenido</span>
+<span class="w">          </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">body</span><span class="p">(</span><span class="nx">blob</span><span class="p">)</span><span class="w">  </span><span class="c1">// Devolver el blob como respuesta</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">      </span><span class="p">}),</span>
+<span class="w">     </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://dominioquenoexiste.noexiste/liga.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">networkError</span><span class="p">(</span><span class="s1">&#39;Error de red&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mock de error de red</span>
+<span class="w">    </span><span class="p">}),</span>
+<span class="w">     </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;noexiste.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">),</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Error en el servidor&#39;</span><span class="w"> </span><span class="p">}));</span><span class="w"> </span><span class="c1">// Mock de error en servidor</span>
+<span class="w">    </span><span class="p">}),</span>
+<span class="w">     </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;jsonMalo.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">body</span><span class="p">(</span><span class="s1">&#39;This is not valid JSON&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// Mock de JSON malo</span>
+<span class="w">    </span><span class="p">})</span>
 <span class="p">);</span>
 </pre></div>
 </div>
@@ -683,7 +751,7 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <h3>Pruebas End-to-End (E2E) y QA<a class="headerlink" href="#pruebas-end-to-end-e2e-y-qa" title="Link to this heading">#</a></h3>
 <p>Para pruebas de extremo a extremo, podemos utilizar herramientas como Cypress. Vitest proporciona una metodología más tradicional tipo “scripted testing”.</p>
 <ul class="simple">
-<li><p>Ejercicios de todo tipo con tests que los evalúan: <a class="github reference external" href="https://github.com/xxjcaxx/actividades_javascript">xxjcaxx/actividades_javascript</a> Están hechos en <code class="docutils literal notranslate"><span class="pre">Jasmine</span></code>, pero el código de los tests sería  compatible con <code class="docutils literal notranslate"><span class="pre">Vitest</span></code>.</p></li>
+<li><p>Ejercicios de todo tipo con tests que los evalúan: <a class="github reference external" href="https://github.com/xxjcaxx/actividades_javascript">xxjcaxx/actividades_javascript</a></p></li>
 </ul>
 </section>
 </section>
@@ -698,16 +766,16 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "deno"
         },
         kernelOptions: {
-            name: "python3",
+            name: "deno",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'deno'</script>
 
                 </article>
               
@@ -763,19 +831,16 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-red-green-refactor">Ciclo Red - Green - Refactor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matchers">Matchers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-pruebas-de-promesas">Ejemplo de Pruebas de Promesas</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-de-la-pruebas">Sintaxis de la pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matchers">Matchers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-fake-dummy">Mocking, Stubs, Fake, Dummy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-variables">Mocking de Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-funciones">Mocking de Funciones</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-mocking-de-funciones">Ejemplo de Mocking de Funciones</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-funciones">Mocking de Funciones</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-la-red">Mocking de la Red</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-mocking-de-la-red">Ejemplo de Mocking de la Red</a></li>
 </ul>
