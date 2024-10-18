@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Promesas &#8212; Libro DWEC</title>
+    <title>Asincronía y Promesas &#8212; Libro DWEC</title>
   
   
   
@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Promesas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -396,7 +396,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Promesas</h1>
+    <h1>Asincronía y Promesas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -435,7 +435,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#callback-hell-infierno-de-callbacks">Callback Hell (Infierno de Callbacks)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas">Promesas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-de-las-promesas">Estados de las Promesas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-promesas">Uso de Promesas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-sincronas-y-asincronas">Promesas Síncronas y Asíncronas</a></li>
@@ -463,8 +463,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="promesas">
-<h1>Promesas<a class="headerlink" href="#promesas" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="asincronia-y-promesas">
+<h1>Asincronía y Promesas<a class="headerlink" href="#asincronia-y-promesas" title="Link to this heading">#</a></h1>
 <blockquote>
 <div><p>Parece ser que la salida de los scripts en Jupyter Notebook no funciona correctamente con la asincronía. Puede que alguna salida no sea totalmente correcta en los ejemplos. Se recomienda probarlos en un navegador.</p>
 </div></blockquote>
@@ -629,10 +629,10 @@ document.write(`
 <p>JavaScript gestiona las operaciones asíncronas utilizando varias colas de tareas, cada una con una prioridad diferente. Estas colas incluyen la <strong>cola de macrotareas</strong> y la <strong>cola de microtareas</strong>.</p>
 <section id="cola-de-macrotareas-y-microtareas">
 <h5>Cola de Macrotareas y Microtareas<a class="headerlink" href="#cola-de-macrotareas-y-microtareas" title="Link to this heading">#</a></h5>
-<figure class="align-right" id="id2">
+<figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="_images/microtasks.png"><img alt="_images/microtasks.png" src="_images/microtasks.png" style="width: 441.0px; height: 469.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Ilustración de microtareas y macrotareas</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Ilustración de microtareas y macrotareas</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Las <strong>macrotareas</strong> incluyen operaciones como los eventos del DOM, <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">setInterval</span></code> y otras operaciones asíncronas. Las macrotareas se gestionan en la “cola de macrotareas” y se procesan una por una.</p>
@@ -717,7 +717,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1323ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1257ms
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script start
@@ -950,8 +950,8 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 <p>Como se puede ver, mantener este código puede ser complicado. Después lo volveremos a escribir con <code class="docutils literal notranslate"><span class="pre">fetch</span></code> y con promesas y la sintaxi <code class="docutils literal notranslate"><span class="pre">async/await</span></code>y se demostrará que el código queda más límpio.</p>
 </section>
 </section>
-<section id="id1">
-<h2>Promesas<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="promesas">
+<h2>Promesas<a class="headerlink" href="#promesas" title="Link to this heading">#</a></h2>
 <p>Las promesas en JavaScript son objetos que representan la eventual finalización (o falla) de una operación asíncrona y su valor resultante. Proporcionan una forma de manejar operaciones asíncronas de manera más manejable y predecible, evitando los problemas del “callback hell”. A continuación, exploraremos cómo funcionan las promesas y cómo pueden ser utilizadas en diferentes contextos.</p>
 <p>Una promesa se crea (manualmente) utilizando el constructor <code class="docutils literal notranslate"><span class="pre">Promise</span></code>, que acepta una función ejecutora como argumento. Esta función ejecutora recibe dos funciones como parámetros: <code class="docutils literal notranslate"><span class="pre">resolve</span></code> y <code class="docutils literal notranslate"><span class="pre">reject</span></code>.</p>
 <div class="cell docutils container">
@@ -1197,11 +1197,6 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result for item 2: Processed 2
-</pre></div>
-</div>
-</div>
 </div>
 <ol class="arabic">
 <li><p><strong>Definición de la función <code class="docutils literal notranslate"><span class="pre">async</span></code></strong>:</p>
@@ -1284,11 +1279,6 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <span class="w">   </span><span class="p">}</span>
 <span class="w">   </span><span class="nx">fetchData</span><span class="p">();</span>
 <span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result for item 3: Processed 3
 </pre></div>
 </div>
 </div>
@@ -1476,7 +1466,7 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#callback-hell-infierno-de-callbacks">Callback Hell (Infierno de Callbacks)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas">Promesas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-de-las-promesas">Estados de las Promesas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-promesas">Uso de Promesas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-sincronas-y-asincronas">Promesas Síncronas y Asíncronas</a></li>

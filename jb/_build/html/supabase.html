@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -406,35 +406,32 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select">Select</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post">POST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patch">PATCH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activacion-de-rls-row-level-security">Activación de RLS (Row Level Security)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-por-email-y-contrasena">Autenticación por Email y Contraseña</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-por-email-y-contrasena">Autenticación por Email y Contraseña</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-tiempo-de-sesion">Gestión del Tiempo de Sesión</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-usuarios">Registro de Usuarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-tiempo-de-sesion">Gestión del Tiempo de Sesión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-manejo-de-perfiles">Ejemplo de Manejo de Perfiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-subida-de-imagenes">Ejemplo de Subida de Imágenes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funcionalidades">Otras Funcionalidades</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cantidad-count">Cantidad (Count)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-con-or-logico">Consultas con OR Lógico</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websocket">WebSocket</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-comunicacion-broadcast">Ejemplo de Comunicación “Broadcast”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-chat-con-mensajes-guardados">Ejemplo de Chat con Mensajes Guardados</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-chat-con-mensajes-guardados">Ejemplo de Chat con Mensajes Guardados</a></li>
 </ul>
             </nav>
         </div>
@@ -452,12 +449,12 @@ document.write(`
 <p>Supabase utiliza PostgreSQL como su motor de base de datos, permitiendo a los desarrolladores aprovechar todas las capacidades de esta robusta base de datos relacional.</p>
 <p>Ofrece varios tipos de <code class="docutils literal notranslate"><span class="pre">APIs</span></code> y un <code class="docutils literal notranslate"><span class="pre">SDK</span></code> que facilita la interacción con el backend desde el cliente. También soporta el almacenamiento de archivos estáticos y permite la ejecución de funciones definidas por el usuario a través de RPC (Remote Procedure Call).</p>
 <blockquote>
-<div><p>Puesto que hay que ser capaz de usar cualquier <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Rest</span></code>, no usaremos el SDK de Supabase inicialmente.</p>
+<div><p>Supabase será útil en este curso porque nos permite tener un Backend sin programarlo. Lo configuraremos mínimamente para usar su <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">REST</span></code> y crear aplicaciones <code class="docutils literal notranslate"><span class="pre">SPA</span></code>. Puesto que hay que ser capaz de usar cualquier <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Rest</span></code>, no usaremos el SDK de Supabase inicialmente.</p>
 </div></blockquote>
 <section id="gestion-de-tablas-y-api">
 <h2>Gestión de Tablas y API<a class="headerlink" href="#gestion-de-tablas-y-api" title="Link to this heading">#</a></h2>
 <p>Cuando se crea una tabla en Supabase, se genera automáticamente una API para interactuar con ella. Puedes ver la API generada en el SDK o en Bash. Aquí utilizaremos ejemplos en Bash para evitar la instalación del SDK.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s1">&#39;https://bqhnvwfovmcxrqrsmfxr.supabase.co/rest/v1/graphs?select=id&#39;</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s1">&#39;https://bqhnvwfovmcxfxr.supabase.co/rest/v1/graphs?select=id&#39;</span><span class="w"> </span><span class="se">\</span>
 -H<span class="w"> </span><span class="s2">&quot;apikey: tu_apikey&quot;</span><span class="w"> </span><span class="se">\</span>
 -H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer tu_token&quot;</span>
 </pre></div>
@@ -467,7 +464,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://bqhnvwfovmcxrqrsmfxr.supabase.co/rest/v1/graphs&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://bqhnvwfovmcxfxr.supabase.co/rest/v1/graphs&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tu_apikey&quot;</span><span class="p">,</span>
@@ -479,11 +476,68 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Al igual que el ‘verbo’ <code class="docutils literal notranslate"><span class="pre">GET</span></code> se pueden usar todos los demás de <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> para crear, actualizar, o borrar registros en la base de datos. Cómo usarlos está documentado en la <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Docs</span></code> autogenerada por Supabase para cada tabla. Algunas operaciones más complejas como filtros avanzados no las documentan automáticamente, pero se pueden consultar en la documentación genérica.</p>
+<section id="select">
+<h3>Select<a class="headerlink" href="#select" title="Link to this heading">#</a></h3>
+<p>Si no queremos todas las columnas o queremos los datos con otro formato, podemos pedir que realice un <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, al fin y al cabo es una base de datos relacional. La sintaxis se puede ver en estos ejemplos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">	</span><span class="nx">https</span><span class="o">:</span><span class="c1">//bqhnvwfovmcxfxr.supabase.co/rest/v1/profiles?select=username,telefono,avatar_url,empresa:empresas(*),id</span>
+</pre></div>
+</div>
+<p>En este ejemplo obtenemos algunos datos típicos de un <code class="docutils literal notranslate"><span class="pre">profile</span></code> y todos los datos de la empresa, la cual está relacionada con una clave que Supabase conoce. Esto producirá una subconsulta y no solo retornará el <code class="docutils literal notranslate"><span class="pre">id</span></code>, que es lo que hay en la columna <code class="docutils literal notranslate"><span class="pre">empresa</span></code>, si no también otros datos.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">https</span><span class="o">:</span><span class="c1">//bqhnvwfovmcxfxr.supabase.co/rest/v1/empresas?select=nombre,dirección,telefono,c_postal,localidad,cif,email,web,presidente,coordinadores:coordinacion_empresa(profiles(id,username)),socios:empresas_socios(socios(id,nombre)),id</span>
+</pre></div>
+</div>
+<p>En este ejemplo hay un <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> complejo en el que se piden datos que están en la tabla, pero luego hay una subconsulta en la que se piden los coordinadores de esa empresa, que están en una tabla intermedia <code class="docutils literal notranslate"><span class="pre">coordinacion_empresa</span></code>. Como Supabase conoce las claves ajenas, retorna los <code class="docutils literal notranslate"><span class="pre">profiles</span></code> que están en esa relación muchos a muchos. Además, de estos extrae el <code class="docutils literal notranslate"><span class="pre">id</span></code>y el <code class="docutils literal notranslate"><span class="pre">username</span></code>. Lo mismo para con los <code class="docutils literal notranslate"><span class="pre">socios</span></code>, la tabla intermedia <code class="docutils literal notranslate"><span class="pre">empresas_socios</span></code> y la tabla <code class="docutils literal notranslate"><span class="pre">socios</span></code>, de la que queremos el id y el nombre.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">https</span><span class="o">:</span><span class="c1">//bqhnvwfovmcxfxr.supabase.co/rest/v1/profiles?select=*&amp;id=eq.8662025a-25be-4777-ae54-66cb6111129e</span>
+</pre></div>
+</div>
+<p>En este ejemplo ponemos una condición simple de búsqueda, lo que será el <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> en la consulta. En ella pedimos que el <code class="docutils literal notranslate"><span class="pre">id</span></code> cumpla la condición de ser igual (<code class="docutils literal notranslate"><span class="pre">eq</span></code>) que un <code class="docutils literal notranslate"><span class="pre">uuid</span></code> determinado separado por un punto.</p>
+<p>Se pueden poner condiciones más complejas. En ese caso es mejor consultar la documentación, pero aquí tenemos algún ejemplo:</p>
+<ul class="simple">
+<li><p><strong>Pedir la cantidad (count)</strong>:  Método <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> y <code class="docutils literal notranslate"><span class="pre">prefer:</span> <span class="pre">count=exact</span></code> en el header. El resultado se recibe en el header <code class="docutils literal notranslate"><span class="pre">content-range</span></code>.</p></li>
+<li><p><strong>Consultas con “like”</strong>: <code class="docutils literal notranslate"><span class="pre">products?select=*&amp;identifier=like.%AX%</span></code></p></li>
+<li><p><strong>Consultas con OR lógico</strong>:  <code class="docutils literal notranslate"><span class="pre">select=*&amp;or=(id.eq.464,</span> <span class="pre">id.eq.466)</span></code></p></li>
+</ul>
+<p>En cualquier caso, si queremos saber cómo se traduce una petición en la API REST, podemos usar esta herramienta: <a class="reference external" href="https://supabase.com/docs/guides/api/sql-to-rest">https://supabase.com/docs/guides/api/sql-to-rest</a></p>
+</section>
+<section id="post">
+<h3>POST<a class="headerlink" href="#post" title="Link to this heading">#</a></h3>
+<p>Sirve para crear nuevos registros en una tabla. En la URL se pone la tabla, el verbo <code class="docutils literal notranslate"><span class="pre">POST</span></code> y en el <code class="docutils literal notranslate"><span class="pre">BODY</span></code> se ponen los datos en formato <code class="docutils literal notranslate"><span class="pre">JSON</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://bqhnvwfovmcxfxr.supabase.co/rest/v1/movies`</span><span class="p">,{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="sb">`POST`</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="s2">&quot;Authorization&quot;</span><span class="w"> </span><span class="o">:</span><span class="s2">&quot;Bearer &quot;</span><span class="o">+</span><span class="nx">token</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Prefer&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;return=representation&quot;</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="patch">
+<h3>PATCH<a class="headerlink" href="#patch" title="Link to this heading">#</a></h3>
+<p>Funciona igual que el <code class="docutils literal notranslate"><span class="pre">POST</span></code>,pero hay que indicar en la URL el <code class="docutils literal notranslate"><span class="pre">id</span></code> o otro campo de filtro para modificar los que cumplan esa condición:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://bqhnvwfovmcxfxr.supabase.co/rest/v1/movies?id=eq.</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">,{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="sb">`PATCH`</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="s2">&quot;Authorization&quot;</span><span class="w"> </span><span class="o">:</span><span class="s2">&quot;Bearer &quot;</span><span class="o">+</span><span class="nx">token</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Prefer&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;return=representation&quot;</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Además, tenemos <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> con la sintaxis de <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> para eliminar.</p>
 </section>
 <section id="almacenamiento-de-json">
-<h2>Almacenamiento de JSON<a class="headerlink" href="#almacenamiento-de-json" title="Link to this heading">#</a></h2>
+<h3>Almacenamiento de JSON<a class="headerlink" href="#almacenamiento-de-json" title="Link to this heading">#</a></h3>
 <p>En Supabase, el primer nivel de los objetos se guarda como columnas en la tabla. Si los objetos tienen subniveles o se realizan consultas a otras tablas, se guardan en formato JSON como texto.</p>
 <p><a class="reference external" href="https://supabase.com/docs/guides/database/json">https://supabase.com/docs/guides/database/json</a></p>
+</section>
 </section>
 <section id="autenticacion">
 <h2>Autenticación<a class="headerlink" href="#autenticacion" title="Link to this heading">#</a></h2>
@@ -504,44 +558,46 @@ document.write(`
 <section id="activacion-de-rls-row-level-security">
 <h3>Activación de RLS (Row Level Security)<a class="headerlink" href="#activacion-de-rls-row-level-security" title="Link to this heading">#</a></h3>
 <p>Primero, es necesario activar RLS en las tablas y crear políticas para controlar el acceso. Por ejemplo, podemos permitir que solo los usuarios autenticados puedan leer y escribir en una tabla.</p>
+<blockquote>
+<div><p>Las <code class="docutils literal notranslate"><span class="pre">RLS</span></code> son muy interesantes y, por si solas casi permiten configurar el comportamiento de un backend completo. No obstante, por cuestión de tiempo y enfoque,  para el curso las haremos simples y permisivas para todos los usuarios con la única condición de que estén autenticados.</p>
+</div></blockquote>
 </section>
 <section id="autenticacion-por-email-y-contrasena">
 <h3>Autenticación por Email y Contraseña<a class="headerlink" href="#autenticacion-por-email-y-contrasena" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=pi33WDrgfpI">https://www.youtube.com/watch?v=pi33WDrgfpI</a></p>
 <p>Podemos invitar usuarios a través de la interfaz o crear un formulario de inscripción. En cualquier caso, es necesario que el usuario confirme su email.</p>
 <p>En el caso de la invitación, la redirección por defecto es a <code class="docutils literal notranslate"><span class="pre">localhost:3000</span></code>, pero esto se puede modificar. Una vez confirmado, el usuario recibirá un token que se puede probar en <a class="reference external" href="https://jwt.io">jwt.io</a>. Este token se usará en la cabecera <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>.</p>
-</section>
-</section>
-<section id="registro-de-usuarios">
-<h2>Registro de Usuarios<a class="headerlink" href="#registro-de-usuarios" title="Link to this heading">#</a></h2>
-<p>En la documentación autogenerada de la API se explica qué datos enviar en Bash para registrar usuarios. Al iniciar sesión, nos quedaremos con el atributo <code class="docutils literal notranslate"><span class="pre">access_token</span></code> de la respuesta para utilizarlo en futuras peticiones.</p>
-</section>
+<p>El token lo podemos guardar en <code class="docutils literal notranslate"><span class="pre">localstorage</span></code>para recuperar cada vez que se haga una petición.</p>
 <section id="gestion-del-tiempo-de-sesion">
-<h2>Gestión del Tiempo de Sesión<a class="headerlink" href="#gestion-del-tiempo-de-sesion" title="Link to this heading">#</a></h2>
+<h4>Gestión del Tiempo de Sesión<a class="headerlink" href="#gestion-del-tiempo-de-sesion" title="Link to this heading">#</a></h4>
 <p>Después de iniciar sesión, guardamos el token en <code class="docutils literal notranslate"><span class="pre">LocalStorage</span></code> para realizar peticiones. Cada inicio de sesión retorna un tiempo de expiración (<code class="docutils literal notranslate"><span class="pre">expires_in</span></code> y <code class="docutils literal notranslate"><span class="pre">expires_at</span></code>). Podemos calcular la fecha de expiración y evitar confiar en el token después de esta fecha.</p>
 </section>
+</section>
 <section id="gestion-de-perfiles-de-usuario">
-<h2>Gestión de Perfiles de Usuario<a class="headerlink" href="#gestion-de-perfiles-de-usuario" title="Link to this heading">#</a></h2>
+<h3>Gestión de Perfiles de Usuario<a class="headerlink" href="#gestion-de-perfiles-de-usuario" title="Link to this heading">#</a></h3>
 <p>Es común que los usuarios necesiten gestionar información personal como avatar, dirección, teléfono, etc. Para ello, Supabase proporciona un script SQL (<code class="docutils literal notranslate"><span class="pre">Quickstart</span></code> <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Management</span> <span class="pre">Starter</span></code>) que crea una tabla de perfiles de usuario y asocia la información correspondiente. Este script crea unos <code class="docutils literal notranslate"><span class="pre">triggers</span></code> en la base de datos para crear una fila en <code class="docutils literal notranslate"><span class="pre">profiles</span></code> cada vez que un usuario se registra.</p>
-<section id="ejemplo-de-manejo-de-perfiles">
-<h3>Ejemplo de Manejo de Perfiles<a class="headerlink" href="#ejemplo-de-manejo-de-perfiles" title="Link to this heading">#</a></h3>
 <p>Cuando un usuario inicia sesión, obtenemos sus datos de perfil y los almacenamos en <code class="docutils literal notranslate"><span class="pre">LocalStorage</span></code>:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">dataLogin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">loginSupabase</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="p">);</span>
-<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;access_token&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">access_token</span><span class="p">);</span>
-<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;uid&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;mail&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">email</span><span class="p">);</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">dataProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="sb">`profiles?id=eq.</span><span class="si">${</span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="nx">dataLogin</span><span class="p">.</span><span class="nx">access_token</span><span class="p">);</span>
-<span class="nx">dataProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dataProfile</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
-<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;dataProfile&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">dataProfile</span><span class="p">));</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getProfile</span><span class="p">(){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">responseGet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="sb">`profiles?id=eq.</span><span class="si">${</span><span class="nx">uid</span><span class="si">}</span><span class="sb">&amp;select=*`</span><span class="p">,</span><span class="nx">access_token</span><span class="p">);</span><span class="w">  </span><span class="c1">// Función que simplifica el fetch</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">avatar_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">responseGet</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">avatar_url</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">responseGet</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">avatar_blob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">avatar_url</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">imageBlob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getFileRequest</span><span class="p">(</span><span class="nx">avatar_url</span><span class="p">,</span><span class="nx">access_token</span><span class="p">);</span><span class="w"> </span><span class="c1">// Función que simplifica el fetch a un bucket. </span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">imageBlob</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">imageBlob</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">Blob</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">responseGet</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">avatar_blob</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="w"> </span><span class="nx">imageBlob</span><span class="w"> </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">responseGet</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</section>
-</section>
+<p>Esta función, además, pide el fichero del avatar.</p>
 <section id="gestion-de-avatares">
-<h2>Gestión de Avatares<a class="headerlink" href="#gestion-de-avatares" title="Link to this heading">#</a></h2>
+<h4>Gestión de Avatares<a class="headerlink" href="#gestion-de-avatares" title="Link to this heading">#</a></h4>
 <p>Los avatares se guardan en “Storage”. Es necesario crear un bucket con permisos de escritura y actualización para los usuarios autenticados. Para subir imágenes, se realiza un POST con un <code class="docutils literal notranslate"><span class="pre">FormData</span></code> que contiene la imagen.</p>
-<section id="ejemplo-de-subida-de-imagenes">
-<h3>Ejemplo de Subida de Imágenes<a class="headerlink" href="#ejemplo-de-subida-de-imagenes" title="Link to this heading">#</a></h3>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">updateProfile</span><span class="p">(</span><span class="nx">profile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">);</span>
@@ -556,7 +612,7 @@ document.write(`
 </div>
 </section>
 <section id="subida-de-una-imagen-a-storage">
-<h3>Subida de una Imagen a Storage<a class="headerlink" href="#subida-de-una-imagen-a-storage" title="Link to this heading">#</a></h3>
+<h4>Subida de una Imagen a Storage<a class="headerlink" href="#subida-de-una-imagen-a-storage" title="Link to this heading">#</a></h4>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
@@ -578,9 +634,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-</section>
 <section id="descarga-de-una-imagen">
-<h2>Descarga de una Imagen<a class="headerlink" href="#descarga-de-una-imagen" title="Link to this heading">#</a></h2>
+<h4>Descarga de una Imagen<a class="headerlink" href="#descarga-de-una-imagen" title="Link to this heading">#</a></h4>
 <p>Si no se necesita autorización, se puede utilizar un bucket público y la URL proporcionada. Si se requiere autorización, se debe enviar la API key y el token.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
@@ -602,15 +657,6 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="otras-funcionalidades">
-<h2>Otras Funcionalidades<a class="headerlink" href="#otras-funcionalidades" title="Link to this heading">#</a></h2>
-<section id="cantidad-count">
-<h3>Cantidad (Count)<a class="headerlink" href="#cantidad-count" title="Link to this heading">#</a></h3>
-<p>Para obtener la cantidad de registros, se usa el método HEAD y la preferencia <code class="docutils literal notranslate"><span class="pre">count=exact</span></code>. El resultado se encuentra en el header <code class="docutils literal notranslate"><span class="pre">content-range</span></code>.</p>
-</section>
-<section id="consultas-con-or-logico">
-<h3>Consultas con OR Lógico<a class="headerlink" href="#consultas-con-or-logico" title="Link to this heading">#</a></h3>
-<p>En la URL se puede usar la consulta <code class="docutils literal notranslate"><span class="pre">select=*&amp;or=(id.eq.464,id.eq.466)</span></code>.</p>
 </section>
 </section>
 <section id="websocket">
@@ -681,9 +727,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-</section>
 <section id="ejemplo-de-chat-con-mensajes-guardados">
-<h2>Ejemplo de Chat con Mensajes Guardados<a class="headerlink" href="#ejemplo-de-chat-con-mensajes-guardados" title="Link to this heading">#</a></h2>
+<h3>Ejemplo de Chat con Mensajes Guardados<a class="headerlink" href="#ejemplo-de-chat-con-mensajes-guardados" title="Link to this heading">#</a></h3>
 <p>Supabase facilita la implementación de un sistema de chat donde los mensajes se guardan en la base de datos. Puedes modificar el chat para mantener la sesión del usuario en cookies.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">supabase</span><span class="p">.</span><span class="nx">createClient</span><span class="p">(</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">);</span>
 
@@ -733,7 +778,7 @@ document.write(`
 <span class="w">  </span><span class="p">})</span>
 </pre></div>
 </div>
-<p>Supabase es una poderosa herramienta que facilita el desarrollo de aplicaciones web del lado del cliente, proporcionando un backend completo y fácil de usar. Sus características avanzadas de autenticación, almacenamiento, y tiempo real lo convierten en una opción robusta para desarrolladores que buscan una solución BaaS eficiente.</p>
+</section>
 </section>
 </section>
 
@@ -801,35 +846,32 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-tablas-y-api">Gestión de Tablas y API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select">Select</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post">POST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patch">PATCH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-json">Almacenamiento de JSON</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activacion-de-rls-row-level-security">Activación de RLS (Row Level Security)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-por-email-y-contrasena">Autenticación por Email y Contraseña</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-por-email-y-contrasena">Autenticación por Email y Contraseña</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-tiempo-de-sesion">Gestión del Tiempo de Sesión</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-usuarios">Registro de Usuarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-del-tiempo-de-sesion">Gestión del Tiempo de Sesión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-manejo-de-perfiles">Ejemplo de Manejo de Perfiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-subida-de-imagenes">Ejemplo de Subida de Imágenes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funcionalidades">Otras Funcionalidades</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cantidad-count">Cantidad (Count)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-con-or-logico">Consultas con OR Lógico</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websocket">WebSocket</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-comunicacion-broadcast">Ejemplo de Comunicación “Broadcast”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-chat-con-mensajes-guardados">Ejemplo de Chat con Mensajes Guardados</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-chat-con-mensajes-guardados">Ejemplo de Chat con Mensajes Guardados</a></li>
 </ul>
   </nav></div>
 
