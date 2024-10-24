@@ -480,7 +480,7 @@ document.write(`
 <section id="select">
 <h3>Select<a class="headerlink" href="#select" title="Link to this heading">#</a></h3>
 <p>Si no queremos todas las columnas o queremos los datos con otro formato, podemos pedir que realice un <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, al fin y al cabo es una base de datos relacional. La sintaxis se puede ver en estos ejemplos:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">	</span><span class="nx">https</span><span class="o">:</span><span class="c1">//bqhnvwfovmcxfxr.supabase.co/rest/v1/profiles?select=username,telefono,avatar_url,empresa:empresas(*),id</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">https</span><span class="o">:</span><span class="c1">//bqhnvwfovmcxfxr.supabase.co/rest/v1/profiles?select=username,telefono,avatar_url,empresa:empresas(*),id</span>
 </pre></div>
 </div>
 <p>En este ejemplo obtenemos algunos datos típicos de un <code class="docutils literal notranslate"><span class="pre">profile</span></code> y todos los datos de la empresa, la cual está relacionada con una clave que Supabase conoce. Esto producirá una subconsulta y no solo retornará el <code class="docutils literal notranslate"><span class="pre">id</span></code>, que es lo que hay en la columna <code class="docutils literal notranslate"><span class="pre">empresa</span></code>, si no también otros datos.</p>

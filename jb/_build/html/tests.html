@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -410,8 +410,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-de-pruebas">Frameworks de Pruebas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-vitest">Instalación de Vitest</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-en-package-json">Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maneras-de-ejecutar-las-pruebas">Maneras de Ejecutar las Pruebas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-de-las-pruebas">Sintaxis de las Pruebas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">
@@ -423,14 +421,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-fake-dummy">Mocking, Stubs, Fake, Dummy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-variables">Mocking de Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-funciones">Mocking de Funciones</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-la-red">Mocking de la Red</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-mocking-de-la-red">Ejemplo de Mocking de la Red</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-del-navegador">Mocking del Navegador</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-spies-fake-dummy">Mocking, Stubs, Spies, Fake, Dummy…</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-prueba-de-variables">Datos de prueba de Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-y-spy-de-funciones">Mocking y spy de Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stub-de-la-red">Mocking (stub) de la Red</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-fake-del-navegador">Mocking (fake) del Navegador</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-jsdom">Instalación de JSDOM</a></li>
 </ul>
 </li>
@@ -483,6 +478,7 @@ document.write(`
 </section>
 <section id="configuracion-en-package-json">
 <h3>Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code><a class="headerlink" href="#configuracion-en-package-json" title="Link to this heading">#</a></h3>
+<p>Vitest acepta muchas opciones en sus comandos, estas se pueden escribir directamente en la terminal o guardar en <code class="docutils literal notranslate"><span class="pre">package.json</span></code>.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
@@ -491,19 +487,50 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="maneras-de-ejecutar-las-pruebas">
-<h3>Maneras de Ejecutar las Pruebas<a class="headerlink" href="#maneras-de-ejecutar-las-pruebas" title="Link to this heading">#</a></h3>
 <p>Podemos ejecutar las pruebas y obtener informes de cobertura de código con los siguientes comandos:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
 npm<span class="w"> </span>run<span class="w"> </span>coverage
 npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </pre></div>
 </div>
+<p>El ejemplo anterior sería el mínimo que se puede hacer, pero hay muchas más opciones, como las siguientes:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;testrun&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;webtest&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest --ui&quot;</span><span class="p">,</span><span class="w">  </span>
+<span class="w">        </span><span class="nt">&quot;coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run --coverage&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;webtest:basic&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest spec/basic_spec.test.js --ui&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;webtest:functional&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest spec/functional_spec.test.js --ui&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Como se ve, los nombres de los scripts son arbitrarios. <code class="docutils literal notranslate"><span class="pre">testrun</span></code> ejecuta los tests una vez y no se queda a la espera de cambios en los ficheros. Esto puede ser útil para los tests en un proceso <code class="docutils literal notranslate"><span class="pre">CI/CD</span></code>. <code class="docutils literal notranslate"><span class="pre">webtest</span></code> abre un navegador con los tests. <code class="docutils literal notranslate"><span class="pre">coverage</span></code> informa del % de código que tiene tests. <code class="docutils literal notranslate"><span class="pre">webtest:basic</span></code> fuerza a testar solo con un fichero de tests específico.</p>
 <p>También podemos agregar Vitest como una extensión en Visual Studio Code desde el siguiente enlace: <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=vitest.explorer">Vitest Explorer</a>.</p>
 </section>
-<section id="sintaxis-de-las-pruebas">
-<h3>Sintaxis de las Pruebas<a class="headerlink" href="#sintaxis-de-las-pruebas" title="Link to this heading">#</a></h3>
+</section>
+<section id="desarrollo-guiado-por-pruebas-tdd">
+<h2>Desarrollo Guiado por Pruebas (TDD)<a class="headerlink" href="#desarrollo-guiado-por-pruebas-tdd" title="Link to this heading">#</a></h2>
+<p>El TDD es parte de la metodología de Extreme Programming y se basa en realizar pruebas unitarias. Sigue tres leyes fundamentales:</p>
+<ol class="arabic simple">
+<li><p>No escribirás código de producción sin antes escribir una prueba que falle.</p></li>
+<li><p>No escribirás más de una prueba unitaria suficiente para fallar (y no compilar es fallar).</p></li>
+<li><p>No escribirás más código del necesario para hacer pasar la prueba.</p></li>
+</ol>
+<section id="ciclo-red-green-refactor">
+<h3>Ciclo Red - Green - Refactor<a class="headerlink" href="#ciclo-red-green-refactor" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Red:</strong> Escribir una prueba que falle antes de implementar la funcionalidad.</p></li>
+<li><p><strong>Green:</strong> Implementar el código mínimo necesario para que la prueba pase.</p></li>
+<li><p><strong>Refactor:</strong> Mejorar el código una vez que la prueba pase.</p></li>
+</ol>
+<p>Una vez completado el ciclo, comenzamos de nuevo con el siguiente requisito. En cada ciclo se pueden redefinir o agregar nuevos requisitos.</p>
+<p>Otro aspecto a tener en cuenta en los tests es la cobertura, es decir, el porcentaje de código que cubren los tests. Suele ser muy difícil tener el 100% salvo en librerías implementadas con funciones puras. En entornos reales, los métodos privados no pueden tener un test unitario y hay muchas funciones con efectos colaterales muy difíciles de testar. En vitest se hace con <code class="docutils literal notranslate"><span class="pre">--coverage</span></code> y retorna un HTML con esa información para poderlo compartir.</p>
+</section>
+</section>
+<section id="sintaxis-de-la-pruebas">
+<h2>Sintaxis de la pruebas<a class="headerlink" href="#sintaxis-de-la-pruebas" title="Link to this heading">#</a></h2>
 <p>Vitest acepta pruebas similares a las de Mocha-Chai, Jasmine o Jest. Podemos usar <code class="docutils literal notranslate"><span class="pre">test</span></code> o <code class="docutils literal notranslate"><span class="pre">it</span></code> para definir pruebas, y <code class="docutils literal notranslate"><span class="pre">expect</span></code> o <code class="docutils literal notranslate"><span class="pre">assert</span></code> para realizar afirmaciones. Aquí algunos enlaces útiles:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://vitest.dev/api/expect.html">Expect</a></p></li>
@@ -539,28 +566,6 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </pre></div>
 </div>
 <p>En el ejemplo se importa como ex1 todo lo que exporta el <code class="docutils literal notranslate"><span class="pre">index.js</span></code> y se testa la función <code class="docutils literal notranslate"><span class="pre">createArraySomeTypes()</span></code>. Para ello se ha usado <code class="docutils literal notranslate"><span class="pre">describe</span></code> para organizar las suites de pruebas y <code class="docutils literal notranslate"><span class="pre">test</span></code> como función para hacer la prueba.</p>
-</section>
-</section>
-<section id="desarrollo-guiado-por-pruebas-tdd">
-<h2>Desarrollo Guiado por Pruebas (TDD)<a class="headerlink" href="#desarrollo-guiado-por-pruebas-tdd" title="Link to this heading">#</a></h2>
-<p>El TDD es parte de la metodología de Extreme Programming y se basa en realizar pruebas unitarias. Sigue tres leyes fundamentales:</p>
-<ol class="arabic simple">
-<li><p>No escribirás código de producción sin antes escribir una prueba que falle.</p></li>
-<li><p>No escribirás más de una prueba unitaria suficiente para fallar (y no compilar es fallar).</p></li>
-<li><p>No escribirás más código del necesario para hacer pasar la prueba.</p></li>
-</ol>
-<section id="ciclo-red-green-refactor">
-<h3>Ciclo Red - Green - Refactor<a class="headerlink" href="#ciclo-red-green-refactor" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Red:</strong> Escribir una prueba que falle antes de implementar la funcionalidad.</p></li>
-<li><p><strong>Green:</strong> Implementar el código mínimo necesario para que la prueba pase.</p></li>
-<li><p><strong>Refactor:</strong> Mejorar el código una vez que la prueba pase.</p></li>
-</ol>
-<p>Una vez completado el ciclo, comenzamos de nuevo con el siguiente requisito. En cada ciclo se pueden redefinir o agregar nuevos requisitos.</p>
-</section>
-</section>
-<section id="sintaxis-de-la-pruebas">
-<h2>Sintaxis de la pruebas<a class="headerlink" href="#sintaxis-de-la-pruebas" title="Link to this heading">#</a></h2>
 <p>Una vez visto lo fundamental en cuanto a qué son los tests, vamos a detallar algunos aspectos técnicos para hacerlos. Lo mejor es ir directamente a la documentación de <code class="docutils literal notranslate"><span class="pre">Vitest</span></code>, pero puede resultar complicada en un principio.</p>
 <section id="matchers">
 <h3>Matchers<a class="headerlink" href="#matchers" title="Link to this heading">#</a></h3>
@@ -611,11 +616,20 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </div>
 </section>
 </section>
-<section id="mocking-stubs-fake-dummy">
-<h2>Mocking, Stubs, Fake, Dummy<a class="headerlink" href="#mocking-stubs-fake-dummy" title="Link to this heading">#</a></h2>
-<p>A veces necesitamos datos ficticios para realizar pruebas. Esto puede ser útil para no afectar la base de datos en producción o para tener más control sobre los datos que se están probando.</p>
-<section id="mocking-de-variables">
-<h3>Mocking de Variables<a class="headerlink" href="#mocking-de-variables" title="Link to this heading">#</a></h3>
+<section id="mocking-stubs-spies-fake-dummy">
+<h2>Mocking, Stubs, Spies, Fake, Dummy…<a class="headerlink" href="#mocking-stubs-spies-fake-dummy" title="Link to this heading">#</a></h2>
+<p>A veces necesitamos datos, funciones o servicios ficticios para realizar pruebas. Esto puede ser útil para no afectar la base de datos en producción o para tener más control sobre los datos que se están probando.</p>
+<p>Los términos enunciados en el título de esta sección se refieren a esas técnicas para aislar totalmente los tests de los datos y servicios en producción.</p>
+<p>Así, llamamos <code class="docutils literal notranslate"><span class="pre">stub</span></code> a un servicio al que pueden consultar las funciones de una manera más sencilla, de manera que siempre retorna los datos conocidos y controlados (funciona o falla a nuestra elección). Los <code class="docutils literal notranslate"><span class="pre">stub</span></code> sustituyen a la función original. Un <code class="docutils literal notranslate"><span class="pre">mock</span></code> es un término más genérico. En términos de funciones, se suele usar para simular una función y observar si ha sido invocada o cuantas veces se llama. Los <code class="docutils literal notranslate"><span class="pre">mock</span></code> no sustituyen una función que debe funcionar.</p>
+<p>Otra herramienta son los <code class="docutils literal notranslate"><span class="pre">spies</span></code>, que en el caso de <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> se invocan con funciones como <code class="docutils literal notranslate"><span class="pre">vi.spyOn()</span></code>. Estos no cambian para nada el comportamiento, pero espian a las funciones para ver si son invocadas.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Fake</span></code> son objetos, funciones o otras cosas que tienen una estructura como la real, pero que creamos específicamente para los tests. Si no tienen una estructura compleja o comportamiento propio, les llamamos <code class="docutils literal notranslate"><span class="pre">Datos</span> <span class="pre">de</span> <span class="pre">prueba</span></code> o <code class="docutils literal notranslate"><span class="pre">fixtures</span></code>.</p>
+<p>Por otro lado, llamamos <code class="docutils literal notranslate"><span class="pre">Dummies</span></code> a variables o funciones que no importan, pero que deben estar ahí para que no falle el test. Son objetos o funciones ficticios que no importa lo que hagan mientras sean sintacticamente correctos.</p>
+<blockquote>
+<div><p>En cualquier caso, mucha gente usar el término genérico <code class="docutils literal notranslate"><span class="pre">mock</span></code> para todo.</p>
+</div></blockquote>
+<section id="datos-de-prueba-de-variables">
+<h3>Datos de prueba de Variables<a class="headerlink" href="#datos-de-prueba-de-variables" title="Link to this heading">#</a></h3>
+<p>En el siguiente ejemplo creamos tres constantes que sirven para ver si los resultados de las funciones son los esperables. Esto es muy habitual en los tests:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">initial_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]];</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">example_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]];</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">full_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">],[</span><span class="mf">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">],[</span><span class="mf">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">]];</span>
@@ -640,9 +654,9 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </pre></div>
 </div>
 </section>
-<section id="mocking-de-funciones">
-<h3>Mocking de Funciones<a class="headerlink" href="#mocking-de-funciones" title="Link to this heading">#</a></h3>
-<p>A veces queremos saber si una función se ejecutó, aunque no siempre nos interesa su retorno. Vitest proporciona la utilidad <code class="docutils literal notranslate"><span class="pre">vi</span></code> para este propósito.</p>
+<section id="mocking-y-spy-de-funciones">
+<h3>Mocking y spy de Funciones<a class="headerlink" href="#mocking-y-spy-de-funciones" title="Link to this heading">#</a></h3>
+<p>A veces queremos saber si una función se ejecutó (espiar), aunque no siempre nos interesa su retorno. Vitest proporciona la utilidad <code class="docutils literal notranslate"><span class="pre">vi</span></code> para este propósito.</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">vi.fn()</span></code></strong>: Crea una función simulada.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">vi.spyOn()</span></code></strong>: Añade un espía a una función de un objeto.</p></li>
@@ -658,7 +672,7 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <span class="w">        </span><span class="p">});</span>
 </pre></div>
 </div>
-<p>También se puede ‘mockear’ el funcionamiento de la función:</p>
+<p>También se puede ‘mockear’ el funcionamiento de la función al mismo tiempo que se espía:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;sendForm debe enviar por post datos a un servidor&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">formExample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span>
 <span class="w">            </span><span class="nx">formExample</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;form&gt;</span>
@@ -694,11 +708,9 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </pre></div>
 </div>
 </section>
-<section id="mocking-de-la-red">
-<h3>Mocking de la Red<a class="headerlink" href="#mocking-de-la-red" title="Link to this heading">#</a></h3>
+<section id="mocking-stub-de-la-red">
+<h3>Mocking (stub) de la Red<a class="headerlink" href="#mocking-stub-de-la-red" title="Link to this heading">#</a></h3>
 <p>Vitest recomienda utilizar <a class="reference external" href="https://mswjs.io/">msw</a> para interceptar peticiones y crear respuestas falsas.</p>
-<section id="ejemplo-de-mocking-de-la-red">
-<h4>Ejemplo de Mocking de la Red<a class="headerlink" href="#ejemplo-de-mocking-de-la-red" title="Link to this heading">#</a></h4>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">http</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;msw&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">setupServer</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;msw/node&#39;</span><span class="p">;</span>
 
@@ -725,10 +737,10 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <span class="p">);</span>
 </pre></div>
 </div>
+<p>Es más correcto llamarlo <code class="docutils literal notranslate"><span class="pre">stub</span></code> porque sustituye el comportamiento real de un servicio por uno falso y controlado. Pero no es estrictamente un <code class="docutils literal notranslate"><span class="pre">mock</span></code> nos interesa “espiar” al servicio.</p>
 </section>
-</section>
-<section id="mocking-del-navegador">
-<h3>Mocking del Navegador<a class="headerlink" href="#mocking-del-navegador" title="Link to this heading">#</a></h3>
+<section id="mocking-fake-del-navegador">
+<h3>Mocking (fake) del Navegador<a class="headerlink" href="#mocking-fake-del-navegador" title="Link to this heading">#</a></h3>
 <p>Vitest se ejecuta a través de la terminal, en Node.js. Para simular un navegador, se recomienda usar JSDOM.</p>
 <section id="instalacion-de-jsdom">
 <h4>Instalación de JSDOM<a class="headerlink" href="#instalacion-de-jsdom" title="Link to this heading">#</a></h4>
@@ -825,8 +837,6 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-de-pruebas">Frameworks de Pruebas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-vitest">Instalación de Vitest</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-en-package-json">Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maneras-de-ejecutar-las-pruebas">Maneras de Ejecutar las Pruebas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-de-las-pruebas">Sintaxis de las Pruebas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">
@@ -838,14 +848,11 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-fake-dummy">Mocking, Stubs, Fake, Dummy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-variables">Mocking de Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-funciones">Mocking de Funciones</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-de-la-red">Mocking de la Red</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-mocking-de-la-red">Ejemplo de Mocking de la Red</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-del-navegador">Mocking del Navegador</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-spies-fake-dummy">Mocking, Stubs, Spies, Fake, Dummy…</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-prueba-de-variables">Datos de prueba de Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-y-spy-de-funciones">Mocking y spy de Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stub-de-la-red">Mocking (stub) de la Red</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-fake-del-navegador">Mocking (fake) del Navegador</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-jsdom">Instalación de JSDOM</a></li>
 </ul>
 </li>
