@@ -420,14 +420,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">Templates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">Templates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-con-template-literals">Alternativa con Template Literals</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-datos-al-componente">Pasar datos al componente</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><code class="docutils literal notranslate"><span class="pre">data-</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-con-template-literals">Alternativa con Template Literals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
@@ -700,6 +702,10 @@ document.write(`
 <blockquote>
 <div><p>Para usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> no es necesario estar en un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code>. Se puede usar en cualquier momento, por eso también está explicado en el capítulo del DOM.</p>
 </div></blockquote>
+<section id="alternativa-con-template-literals">
+<h3>Alternativa con Template Literals<a class="headerlink" href="#alternativa-con-template-literals" title="Link to this heading">#</a></h3>
+<p>Usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> implica tener que buscarlo, clonarlo y modificarlo. En ocasiones es mucho más simple el uso de <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. Incluso se puede hacer con <code class="docutils literal notranslate"><span class="pre">Tagged</span> <span class="pre">Template</span> <span class="pre">Literals</span></code> y queda un código más compacto. En el capítulo del DOM hay un ejemplo: <a class="reference external" href="https://xxjcaxx.github.io/libro_dwec/dom.html#creacion-de-elementos-mediante-tagged-template-literals">https://xxjcaxx.github.io/libro_dwec/dom.html#creacion-de-elementos-mediante-tagged-template-literals</a></p>
+</section>
 </section>
 <section id="pasar-datos-al-componente">
 <h2>Pasar datos al componente<a class="headerlink" href="#pasar-datos-al-componente" title="Link to this heading">#</a></h2>
@@ -808,10 +814,6 @@ document.write(`
 <span class="p">&lt;/</span><span class="nt">my-paragraph</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-</section>
-<section id="alternativa-con-template-literals">
-<h3>Alternativa con Template Literals<a class="headerlink" href="#alternativa-con-template-literals" title="Link to this heading">#</a></h3>
-<p>Usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> implica tener que buscarlo, clonarlo y modificarlo. En ocasiones es mucho más simple el uso de <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. Incluso se puede hacer con <code class="docutils literal notranslate"><span class="pre">Tagged</span> <span class="pre">Template</span> <span class="pre">Literals</span></code> y queda un código más compacto. En el capítulo del DOM hay un ejemplo: <a class="reference external" href="https://xxjcaxx.github.io/libro_dwec/dom.html#creacion-de-elementos-mediante-tagged-template-literals">https://xxjcaxx.github.io/libro_dwec/dom.html#creacion-de-elementos-mediante-tagged-template-literals</a></p>
 </section>
 </section>
 <section id="ejemplo-completo">
@@ -1083,14 +1085,16 @@ Esta función ya registra el componente.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">Templates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">Templates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-con-template-literals">Alternativa con Template Literals</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-datos-al-componente">Pasar datos al componente</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><code class="docutils literal notranslate"><span class="pre">data-</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-con-template-literals">Alternativa con Template Literals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>

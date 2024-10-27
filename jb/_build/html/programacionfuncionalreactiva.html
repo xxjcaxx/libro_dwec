@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -624,6 +624,22 @@ document.write(`
 </div>
 </div>
 <p>También se puede usar el <code class="docutils literal notranslate"><span class="pre">spread</span> <span class="pre">operator</span></code> ([…xs]).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">xs</span><span class="p">];</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newArr</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ <span class=" -Color -Color-Yellow">1</span>, <span class=" -Color -Color-Yellow">2</span>, <span class=" -Color -Color-Yellow">3</span>, <span class=" -Color -Color-Yellow">4</span>, <span class=" -Color -Color-Yellow">5</span> ]
+</pre></div>
+</div>
+</div>
+</div>
 <p>Para evitar la mutabilidad de las variables se puede:</p>
 <ul class="simple">
 <li><p>Usar <code class="docutils literal notranslate"><span class="pre">const</span></code> (sólo funciona con variables primitivas, ya que los arrays son mutables internamente)</p></li>
@@ -656,7 +672,7 @@ document.write(`
 <li><p>Si la función acepta un número indeterminado de argumentos es mejor aceptar un objeto o un array.</p>
 <ul>
 <li><p>También se puede aceptar un número indeterminado y poner <code class="docutils literal notranslate"><span class="pre">...args</span></code> para convertirlos en un array dentro de la función.</p></li>
-<li><p>Más avanzado puede ser hacer <a class="github reference external" href="https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch2.md/#parameter-destructuring">getify/Functional-Light-JS</a></p></li>
+<li><p>Más avanzado puede ser hacer <code class="docutils literal notranslate"><span class="pre">Parameter</span> <span class="pre">Destructuring</span></code> <a class="github reference external" href="https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch2.md/#parameter-destructuring">getify/Functional-Light-JS</a></p></li>
 </ul>
 </li>
 <li><p>Evitar que una función retorne más de un valor. Esto rompe el flujo y las hace más difíciles de leer.</p></li>
@@ -793,7 +809,10 @@ document.write(`
 <h2>Funciones de Orden Superior<a class="headerlink" href="#funciones-de-orden-superior" title="Link to this heading">#</a></h2>
 <p>Las funciones de orden superior son aquellas que aceptan o retornan otras funciones. En JavaScript, métodos como <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code> son funciones de orden superior.
 Estas son las más importantes y forman parte de los fundamentos de la programación funcional. Estas funciones forman parte del objeto Array.</p>
-<p>Podemos hacer nuestras funciones de órden superior.</p>
+<blockquote>
+<div><p>En el capítulo de Iteradores tratamos su sintaxis con más detalle.</p>
+</div></blockquote>
+<p>Podemos hacer nuestras propias funciones de órden superior.</p>
 <p>Otras funciones de los objetos Array, algunas no totalmente funcionales, también son de órden superior y muy útiles: <code class="docutils literal notranslate"><span class="pre">forEach</span></code>, <code class="docutils literal notranslate"><span class="pre">some</span></code>, <code class="docutils literal notranslate"><span class="pre">every</span></code>, <code class="docutils literal notranslate"><span class="pre">find</span></code>, <code class="docutils literal notranslate"><span class="pre">findIndex</span></code>, <code class="docutils literal notranslate"><span class="pre">flatMap</span></code>, <code class="docutils literal notranslate"><span class="pre">reduceRight</span></code>…</p>
 <section id="ejemplo-de-map-filter-y-reduce">
 <h3>Ejemplo de <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> y <code class="docutils literal notranslate"><span class="pre">reduce</span></code><a class="headerlink" href="#ejemplo-de-map-filter-y-reduce" title="Link to this heading">#</a></h3>
@@ -837,8 +856,10 @@ Estas son las más importantes y forman parte de los fundamentos de la programac
 </section>
 <section id="metodos-encadenados">
 <h2>Métodos Encadenados<a class="headerlink" href="#metodos-encadenados" title="Link to this heading">#</a></h2>
-<p>Los métodos encadenados permiten ejecutar múltiples métodos en una secuencia en una sola línea de código. Aunque no es 100% funcional (debido a los métodos prototípicos que pueden mutar el objeto original), los métodos encadenados facilitan la lectura y escritura del código.</p>
-<p>No se aconseja añadir métodos encadenables a los prototipos de Array o similares, ya no por los principios de la programación funcional, sino por los problemas que pueden derivar de ellos.</p>
+<p>Los métodos encadenados permiten ejecutar múltiples métodos en una secuencia en una sola línea de código. Aunque no es 100% funcional (debido a los métodos prototípicos que pueden mutar el objeto original), los métodos encadenados facilitan la lectura y escritura del código. Estos métodos funcionan porque retornan un objeto del mismo tipo que el original o al menos con otros métodos encadenables.</p>
+<blockquote>
+<div><p>No se aconseja añadir métodos encadenables a los prototipos de Array o similares, ya no por los principios de la programación funcional, sino por los problemas que pueden derivar de ellos.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello World&#39;</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
@@ -995,6 +1016,26 @@ Estas son las más importantes y forman parte de los fundamentos de la programac
 <p>En este ejemplo se usa la composición varias veces y funciones puras muy breves que descomponen la tarea. Como se ve, si las funciones son unarias y retornan algo, pueden ser compuestas.
 La función de fetch no es pura porque conecta con el exterior y la función consoleLog tampoco porque no retorna nada y provoca un efecto colateral, pero las tenemos controladas.
 El pasar funciones como referencia a otras es llamado por algunos como <code class="docutils literal notranslate"><span class="pre">point</span> <span class="pre">free</span> <span class="pre">style</span></code>. En este ejemplo se concatenan muchas funciones dentro de compose sin indicar los argumentos con los que serán invocadas.</p>
+<p>Algunas funciones importantes no son unarias y puede ser una buena idea convertirlas en funciones currificadas para usarlas en la composición. Por ejemplo, si queremos aplicar un <code class="docutils literal notranslate"><span class="pre">map</span></code> a un array en una función de composición, lo podemos hacer así:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">compose</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">arr</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;li&gt;</span><span class="si">${</span><span class="nx">e</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">arr</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">e</span><span class="o">*</span><span class="mf">2</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Pero si creamos una función currificada como esta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">MAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>La podemos escribir más elegantemente asi:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">compose</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">MAP</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;li&gt;</span><span class="si">${</span><span class="nx">e</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">MAP</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">e</span><span class="o">*</span><span class="mf">2</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="pipeline-operator">
@@ -1126,7 +1167,7 @@ Las tuplas y records se pueden comparar directamente.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">14</span>, imperative: <span class=" -Color -Color-Yellow">11</span> }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">14</span>, imperative: <span class=" -Color -Color-Yellow">10</span> }
 </pre></div>
 </div>
 </div>
