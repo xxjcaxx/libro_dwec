@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -731,6 +731,7 @@ document.write(`
 </section>
 <section id="data">
 <h3><code class="docutils literal notranslate"><span class="pre">data-</span></code><a class="headerlink" href="#data" title="Link to this heading">#</a></h3>
+<p>Es como los atributos pero más centralizado y accesible por <code class="docutils literal notranslate"><span class="pre">.dataset</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">my</span><span class="o">-</span><span class="nx">component</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">nombre</span><span class="o">=</span><span class="s2">&quot;María&quot;</span><span class="o">&gt;&lt;</span><span class="err">/my-component&gt;</span>
 <span class="p">...</span>
 <span class="w">  </span><span class="kd">class</span><span class="w"> </span><span class="nx">MyComponent</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
@@ -742,10 +743,18 @@ document.write(`
 <span class="w">  </span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">MyComponent</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>Problemas de pasar datos como atributos o en el dataset:</p>
+<ul class="simple">
+<li><p>No se pueden para más que datos primitivos como string.</p></li>
+<li><p>Si queremos pasar al componente un objeto complejo hay que serializarlo con <code class="docutils literal notranslate"><span class="pre">JSON.stringify()</span></code>.</p></li>
+<li><p>Objetos complejos como Maps o Sets hay que convertirlos a Objects o Arrays antes de serializar.</p></li>
+<li><p>Incluso si las string tienen comillas simples o dobles por el medio dan problemas tanto como atributos primitivos como dentro de objetos al serializar.</p></li>
+<li><p>No es posible pasar funciones como atributos.</p></li>
+</ul>
 </section>
 <section id="propiedades">
 <h3>Propiedades<a class="headerlink" href="#propiedades" title="Link to this heading">#</a></h3>
-<p>En este caso, los datos se pasan como propiedades de la instancia del componente en JavaScript. Las propiedades permiten una interacción más directa entre el componente y el código JavaScript que lo maneja.</p>
+<p>En este caso, los datos se pasan como propiedades de la instancia del componente en JavaScript. Las propiedades permiten una interacción más directa entre el componente y el código JavaScript que lo maneja.  Las propiedades no son visibles en el código HTML y pueden ser objetos más complejos que simples <code class="docutils literal notranslate"><span class="pre">strings</span></code> como, Sets, Maps, funciones o Observables.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">my</span><span class="o">-</span><span class="nx">component</span><span class="o">&gt;&lt;</span><span class="err">/my-component&gt;</span>
 <span class="p">...</span>
 
@@ -760,7 +769,7 @@ document.write(`
 <span class="w">  </span><span class="nx">myComponent</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Carlos&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">// Establecemos la propiedad desde JS</span>
 </pre></div>
 </div>
-<p>En este ejemplo se usa un <code class="docutils literal notranslate"><span class="pre">Setter</span></code>, ya que el componente existirá antes de tener la propiedad. Pero si lo creamos por Javascript, podemos atender a esa propiedad en el <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code>. Las propiedades no son visibles en el código HTML y pueden ser objetos más complejos que simples <code class="docutils literal notranslate"><span class="pre">strings</span></code>.</p>
+<p>En este ejemplo se usa un <code class="docutils literal notranslate"><span class="pre">Setter</span></code>, ya que el componente existirá antes de tener la propiedad. Pero si lo creamos por Javascript, podemos atender a esa propiedad en el <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code>.</p>
 </section>
 <section id="observables">
 <h3>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h3>
