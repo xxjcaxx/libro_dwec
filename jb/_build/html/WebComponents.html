@@ -936,12 +936,19 @@ document.write(`
 </section>
 <section id="mantener-el-estado-de-la-aplicacion-con-componentes">
 <h2>Mantener el estado de la aplicación con componentes<a class="headerlink" href="#mantener-el-estado-de-la-aplicacion-con-componentes" title="Link to this heading">#</a></h2>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/alternativasestado.png"><img alt="_images/alternativasestado.png" src="_images/alternativasestado.png" style="width: 423.0px; height: 273.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Decidiendo entre dos posibles gestiones del estado global.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Mantener el estado es complejo. Podemos hechar mano de patrones de diseño. Por ejemplo, podemos centralizar el estado en un <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> Observable y que todos los componentes se suscriban. Esto los hace muy acoplados con el estado global y puede ser complejo de gestionar en aplicaciones grandes. Por otro lado, podemos hacer que el estado se comunique entre componentes hijos y padres a través de atributos o propiedades (de padres a hijos) o eventos (de hijos a padres). Este enfoque tiene el problema de tener que pasar atributos que no necesitan los hijos intermedios.</p>
 <p>Para evitar lo que en <code class="docutils literal notranslate"><span class="pre">react</span></code> llaman el <code class="docutils literal notranslate"><span class="pre">Prop</span> <span class="pre">Drilling</span></code> podemos centralizar el estado de alguna manera (Objetos, Sets, Maps, Observables, Redux…) y hacerlo accesible desde un componente que los contenga a todos.</p>
 <p>Para hacer que algo que está en el primer nivel del DOM pueda compartir el estado con cualquier hijo se puede hacer con eventos y callblacks. El elemento hijo que necesite consultar el estado, puede enviar un evento y en el mensaje del evento incorporar un callback. El elemento que lo atienda, ejecutará ese callback  así le pasará el estado al elemento que ha lanzado el evento.</p>
-<figure class="align-right" id="id1">
-<a class="reference internal image-reference" href="_images/estadocomponentes.png"><img alt="_images/estadocomponentes.png" src="_images/estadocomponentes.png" style="width: 379.5px; height: 271.0px;" /></a>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/estadocomponentes.png"><img alt="_images/estadocomponentes.png" src="_images/estadocomponentes.png" style="width: 569.25px; height: 406.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Diagrama de la petición y paso del contexto</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Diagrama de la petición y paso del contexto</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>En el siguiente ejemplo, el <code class="docutils literal notranslate"><span class="pre">CustomInput</span></code> emite un evento informando de su función para inicializar su <code class="docutils literal notranslate"><span class="pre">Observable</span></code> que atenderá a los cambios en el <code class="docutils literal notranslate"><span class="pre">context</span></code>. El componente <code class="docutils literal notranslate"><span class="pre">CustomApp</span></code> atiende a ese tipo de eventos ejecutando la función de <code class="docutils literal notranslate"><span class="pre">callback</span></code> que le ha enviado. Esta función, en este caso, se subscribe al <code class="docutils literal notranslate"><span class="pre">Subject</span></code> que le ha pasado y a partir de ahí se actualizará cada vez que cambie ese dato en el <code class="docutils literal notranslate"><span class="pre">context</span></code>. De esta manera, el estado global de la aplicación queda centralizado en un Map accesible para cualquier otro componente.</p>
