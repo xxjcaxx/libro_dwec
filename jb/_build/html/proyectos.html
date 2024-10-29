@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -443,6 +443,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-aplicacion">Estado de la Aplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-esta-el-estado">Dónde está el estado</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-del-estado">Separación del Estado</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centralizacion-del-control-del-estado">Centralización del Control del Estado</a></li>
@@ -1036,7 +1037,19 @@ document.write(`
 </section>
 <section id="estado-de-la-aplicacion">
 <h3>Estado de la Aplicación<a class="headerlink" href="#estado-de-la-aplicacion" title="Link to this heading">#</a></h3>
-<p>El estado de la aplicación es un concepto crucial en el desarrollo de aplicaciones web modernas. Controlar y gestionar correctamente el estado puede hacer la diferencia entre una aplicación mantenible y una que sea difícil de manejar y propensa a errores.</p>
+<p>El estado de la aplicación es un concepto complicado en el desarrollo de aplicaciones web modernas. Controlar y gestionar correctamente el estado puede hacer la diferencia entre una aplicación mantenible y una que sea difícil de manejar y propensa a errores.</p>
+<section id="donde-esta-el-estado">
+<h4>Dónde está el estado<a class="headerlink" href="#donde-esta-el-estado" title="Link to this heading">#</a></h4>
+<p>Si estamos separando las páginas y, dentro de estas, hacemos componentes independientes, estos pueden tener su propio estado. Pueden ser autocontenidos, lo cual puede llevar a varios problemas:</p>
+<ul class="simple">
+<li><p><strong>Estados compartidos</strong>: Puede que varios componentes tengan un estado que se ha de actualizar a la vez. En ese caso, es mejor unirlos en una única variable.</p></li>
+<li><p><strong>Contradicciones en el estado</strong>: Puede que el estado está estructurado de forma que se contradiga.</p></li>
+<li><p><strong>Redundancias</strong>: Puede que un componente padre tenga una información y también la tengan los hijos y al mismo tiempo esté en otro sitio. El problema es actualizar a la vez todos esos datos.</p></li>
+<li><p><strong>Estados anidados</strong>: Puede que unos componentes padres tengan parte del estado y los hijos mantengan otra parte, si es muy profundo ese estado jerárquico es mejor “aplanarlo”.</p></li>
+<li><p><strong>Pasar datos profundamente</strong>: Pasar datos de unos componentes a otros mediante propiedades, atributos… puede ser conveniente. El problema es cuando para por muchos niveles que no hacen nada con los datos a parte de enviarlos a sus componentes hijos. Este anti patrón se llama <code class="docutils literal notranslate"><span class="pre">Prop</span> <span class="pre">Drilling</span></code> y hay que evitarlo. En React, por ejemplo, lo evitan con el concepto de <code class="docutils literal notranslate"><span class="pre">context</span></code>, un objeto que tiene el estado y es accesible desde todos los componentes.
+Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/">https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/</a></p></li>
+</ul>
+</section>
 <section id="inmutabilidad">
 <h4>Inmutabilidad<a class="headerlink" href="#inmutabilidad" title="Link to this heading">#</a></h4>
 <p>Trabajar con datos inmutables significa que, una vez creados, los datos no pueden cambiar. En lugar de modificar un objeto o array existente, se crea una nueva versión del mismo con las modificaciones requeridas. Este enfoque ofrece varios beneficios:</p>
@@ -1051,7 +1064,7 @@ document.write(`
 <p>Es importante separar el estado en dos categorías:</p>
 <ol class="arabic simple">
 <li><p><strong>Estado del Servidor:</strong> Datos que se obtienen y almacenan en el servidor, como información de usuarios, productos, etc.</p></li>
-<li><p><strong>Estado del Cliente:</strong> Datos que solo existen en el cliente, como la interfaz de usuario, configuraciones temporales, etc.</p></li>
+<li><p><strong>Estado del Cliente:</strong> Datos que solo existen en el cliente, como la interfaz de usuario, configuraciones temporales, credenciales…</p></li>
 </ol>
 </section>
 <section id="centralizacion-del-control-del-estado">
@@ -1341,6 +1354,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-aplicacion">Estado de la Aplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-esta-el-estado">Dónde está el estado</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-del-estado">Separación del Estado</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centralizacion-del-control-del-estado">Centralización del Control del Estado</a></li>

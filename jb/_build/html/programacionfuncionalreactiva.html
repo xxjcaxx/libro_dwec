@@ -1120,7 +1120,9 @@ Las tuplas y records se pueden comparar directamente.</p>
 <ul class="simple">
 <li><p><strong>Gestión de Peticiones a la API</strong>: Las peticiones son por naturaleza impuras, por lo que hay que acotarlas.</p></li>
 <li><p><strong>Gestión del Estado Global</strong>: Utilizar librerías como Redux que están diseñadas con principios funcionales.</p></li>
-<li><p><strong>Gestión de la Navegación</strong>: Aplicar patrones funcionales para manejar la navegación en aplicaciones SPA (Single Page Application). Toda función que manipula el DOM es impura y tienden a hacer maś de una cosa al mismo tiempo. Este apartado suele ser el más difícil de hacer con PF y, por tanto, el que requiere más atención a los principios.</p></li>
+<li><p><strong>Gestión de la Navegación</strong>: Aplicar patrones funcionales para manejar la navegación en aplicaciones SPA (Single Page Application).</p></li>
+<li><p><strong>Gestión del DOM</strong>: Toda función que manipula el DOM es impura y tienden a hacer maś de una cosa al mismo tiempo. Este apartado suele ser el más difícil de hacer con PF y, por tanto, el que requiere más atención a los principios.</p></li>
+<li><p><strong>Web Components</strong>: Puesto que están hechos con clases y métodos, no cumplen estrictamente con los paradigmas, pero internamente y con la forma de crearlas se puede cumplir.</p></li>
 </ul>
 </section>
 <section id="problemas-de-la-programacion-funcional">
@@ -1159,15 +1161,13 @@ Las tuplas y records se pueden comparar directamente.</p>
 <span class="w">  </span><span class="nx">resultI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resultI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">n</span>
 <span class="p">}</span>
 <span class="nx">times</span><span class="p">.</span><span class="nx">imperative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="o">-</span><span class="nx">start</span><span class="p">;</span>
-
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">times</span><span class="p">);</span>
-
 <span class="p">})();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">14</span>, imperative: <span class=" -Color -Color-Yellow">10</span> }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">10</span>, imperative: <span class=" -Color -Color-Yellow">6</span> }
 </pre></div>
 </div>
 </div>
@@ -1177,7 +1177,9 @@ Las tuplas y records se pueden comparar directamente.</p>
 </section>
 <section id="programacion-reactiva">
 <h1>Programación Reactiva<a class="headerlink" href="#programacion-reactiva" title="Link to this heading">#</a></h1>
-<p>La programación reactiva se basa en la idea de tener una interfaz que responde a cambios en el estado. Por ejemplo, si cambia el estado de una variable, la interfaz se renderiza nuevamente para reflejar este cambio. Implementar esto en JavaScript puro puede ser complicado, pero no imposible. Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
+<p>La programación reactiva se basa en la idea de tener una interfaz que responde a cambios en el estado. Por ejemplo, si cambia el estado de una variable, la interfaz se renderiza nuevamente para reflejar este cambio.
+Implementar esto en JavaScript puro puede ser complicado, pero no imposible.
+Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
 <section id="programacion-asincrona">
 <h2>Programación Asíncrona<a class="headerlink" href="#programacion-asincrona" title="Link to this heading">#</a></h2>
 <p>Cualquier llamada a una API del navegador, como <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">fetch</span></code>, o <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code>, se ejecuta de manera asíncrona. Para manejar esta asincronía, se pueden utilizar tres técnicas principales:</p>
@@ -1206,7 +1208,7 @@ Las tuplas y records se pueden comparar directamente.</p>
 <li><p>Crear una caja de búsqueda reactiva.</p></li>
 <li><p>Validar formularios de manera reactiva.</p></li>
 <li><p>Implementar un chat en tiempo real.</p></li>
-<li><p>Crear un Sudoku multijugador.</p></li>
+<li><p>Crear un juego multijugador.</p></li>
 </ol>
 </section>
 </section>
@@ -1301,7 +1303,7 @@ Las tuplas y records se pueden comparar directamente.</p>
 <div><p>Imaginemos un escenario en el que generamos un elemento del DOM que emite eventos y, al mismo tiempo, creamos un Observable y un suscriptor a ese evento. Si luego se elimina del DOM ese elemento, la subscripción no habrá desaparecido. Aunque nunca más se produzca el evento, el suscriptor está ocupando memoria. Con observables más activos como un <code class="docutils literal notranslate"><span class="pre">interval</span></code>, este problema es aún más grave, ya que se solaparán.</p>
 </div></blockquote>
 <blockquote>
-<div><p>En Angular, los componentes tienen un ciclo de vida y en el momento de la destrucción del componente se ejecutan funciones que eliminan las subscripciones a los observables que forman la reactividad. Aún así, es importante implementar OnDestroy para desuscribir las subscripciones que no acaban por si mismas.</p>
+<div><p>En Angular, los componentes tienen un ciclo de vida y en el momento de la destrucción del componente se ejecutan funciones que eliminan las subscripciones a los observables que forman la reactividad. Aún así, es importante implementar <code class="docutils literal notranslate"><span class="pre">OnDestroy</span></code> para desuscribir las subscripciones que no acaban por si mismas.</p>
 </div></blockquote>
 </section>
 <section id="operadores">

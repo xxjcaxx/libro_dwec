@@ -428,10 +428,15 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><code class="docutils literal notranslate"><span class="pre">data-</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos">Métodos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-elementos-del-dom-como-hijos-del-web-component">Pasar elementos del DOM como hijos del Web Component</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-de-la-aplicacion-con-componentes">Mantener el estado de la aplicación con componentes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
 </ul>
             </nav>
@@ -461,10 +466,27 @@ document.write(`
 </div></blockquote>
 <section id="conceptos-iniciales">
 <h2>Conceptos iniciales<a class="headerlink" href="#conceptos-iniciales" title="Link to this heading">#</a></h2>
+<p>Antes de comenzar con los detalles, hay que destacar los tres pilares de los Web Components:</p>
+<ul class="simple">
+<li><p><strong>Custom Elements</strong></p></li>
+<li><p><strong>Shadow DOM</strong></p></li>
+<li><p><strong>Templates</strong></p></li>
+</ul>
 <p>Se pueden crear componentes de muchas maneras, pero la definición oficial parte de la posibilidad de crear <strong>Elementos personalizados</strong> o <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Elements</span></code>. Esto se puede hacer porque Javascript permite heredar de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements</a>. Luego veremos las posibilidades que hay con esto.</p>
 <p>Una de las necesidades cubiertas por los Web Components es la reutilización del código.  Los elementos personalizados pueden ser diferentes al resto de la aplicación y tener sus propios scripts y estilos. Estos pueden colisionar con una aplicación para la que no fueron creados desde el principio. Pero Javascript permite encapsular estos elementos en un DOM separado del principal. Esta técnica se llama <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>.</p>
 <p>Para crear elementos personalizados en el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>, se pueden hacer programáticamente o a través del HTML con etiquetas como <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>.</p>
 <p>Por consiguiente, un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> tiene una clase que hereda de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> registrada en el <code class="docutils literal notranslate"><span class="pre">CustomElementRegistry</span></code> para que pueda ser utilizada en cualquier parte. Este elemento tiene un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> (opcional) para que su código y estilos no molesten al resto y se suele usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> para las plantillas. A continuación se puede usar como cualquier etiqueta.</p>
+<p>Veamos un ‘hola mundo’:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">HelloWorldComponent</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hello world!&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;x-hello-world&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">HelloWorldComponent</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">helloComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;x-hello-world&#39;</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">helloComponent</span><span class="p">);</span>
+</pre></div>
+</div>
 <section id="alternativas">
 <h3>Alternativas<a class="headerlink" href="#alternativas" title="Link to this heading">#</a></h3>
 <p>Como todo en Javascript, es opcional usar Web components, pero es que también es opcional usar todas las técnicas anteriores. Si no hacemos un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code> no entra en la definición de lo que estamos tratando, pero se puede hacer una función que retorne un elemento con <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> y código personalizado que atiende a los eventos, descarga los datos, se suscribe a Observables… El problema es que perdemos las ventajas del ciclo de vida de los <code class="docutils literal notranslate"><span class="pre">HTMLElements</span></code>.</p>
@@ -566,7 +588,7 @@ document.write(`
 <span class="nx">shadow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">span</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>También se puede crear de forma declarativa mediante HTML:</p>
+<p>También se puede crear de forma declarativa (desde el servidor) mediante HTML:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;host&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">template</span> <span class="na">shadowrootmode</span><span class="o">=</span><span class="s">&quot;open&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>I&#39;m in the shadow DOM<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
@@ -714,8 +736,9 @@ document.write(`
 <li><p>Mediante atributos</p></li>
 <li><p>Mediante <code class="docutils literal notranslate"><span class="pre">data-</span></code></p></li>
 <li><p>Mediante <code class="docutils literal notranslate"><span class="pre">slots</span></code></p></li>
-<li><p>Mediante propiedades</p></li>
+<li><p>Mediante propiedades o métodos.</p></li>
 <li><p>Mediante Observables (RxJS).</p></li>
+<li><p>Elementos hijos con <slot></p></li>
 </ul>
 <section id="atributos">
 <h3>Atributos<a class="headerlink" href="#atributos" title="Link to this heading">#</a></h3>
@@ -734,6 +757,22 @@ document.write(`
 <blockquote>
 <div><p>Hay que tener en cuenta que los atributos no son accesibles antes de que se añada al DOM. Por eso hay que acceder a ellos en en <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code>.</p>
 </div></blockquote>
+<p>Se puede lograr un comportamiento reactivo con los atributos, ya que tenemos <code class="docutils literal notranslate"><span class="pre">observedAttributes</span></code> y <code class="docutils literal notranslate"><span class="pre">attributeChangedCallback</span></code> que permite atender a los cambios en los atributos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="nx">observedAttributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;alt&#39;</span><span class="p">];</span>
+
+<span class="nx">attributeChangedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">img</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">img</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">img</span><span class="p">.</span><span class="nx">alt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;avatar&#39;</span><span class="p">;</span><span class="w">    </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="data">
 <h3><code class="docutils literal notranslate"><span class="pre">data-</span></code><a class="headerlink" href="#data" title="Link to this heading">#</a></h3>
@@ -777,6 +816,15 @@ document.write(`
 </div>
 <p>En este ejemplo se usa un <code class="docutils literal notranslate"><span class="pre">Setter</span></code>, ya que el componente existirá antes de tener la propiedad. Pero si lo creamos por Javascript, podemos atender a esa propiedad en el <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code>.</p>
 </section>
+<section id="metodos">
+<h3>Métodos<a class="headerlink" href="#metodos" title="Link to this heading">#</a></h3>
+<p>Muy parecido a las propiedades, en este caso hacemos que una propiedad sea un método al que le pasamos los datos y este, por ejemplo, actualiza el componente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">update</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;ul&gt;</span><span class="si">${</span><span class="nx">list</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;li&gt;</span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/ul&gt;`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="observables">
 <h3>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h3>
 <p>Utilitzando RxJS, se puede hacer que un componente sea reactivo a los cambios de datos pasados como flujos de eventos (Observables). Esto es útil para gestionar flujos asíncronos de datos.</p>
@@ -814,7 +862,172 @@ document.write(`
 <span class="p">&lt;/</span><span class="nt">my-paragraph</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<section id="pasar-elementos-del-dom-como-hijos-del-web-component">
+<h4>Pasar elementos del DOM como hijos del Web Component<a class="headerlink" href="#pasar-elementos-del-dom-como-hijos-del-web-component" title="Link to this heading">#</a></h4>
+<p>El comportamiento por defecto es aceptar elementos dentro de la etiqueta. No obstante, si dentro del código del componente padre ponemos algo como <code class="docutils literal notranslate"><span class="pre">this.innerHTML</span> <span class="pre">=</span> <span class="pre">...</span></code> el componente hijo se sobrescribirá.</p>
+<p>Veamos cómo crear un <code class="docutils literal notranslate"><span class="pre">badge</span></code> para que se muestre en la parte superior de una imagen:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">customBadge</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">#</span><span class="nx">contentDiv</span><span class="p">;</span><span class="w"> </span><span class="c1">// Esto será inicializado</span>
+
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="nx">observedAttributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">contentDiv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">contentDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">contentDiv</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;badge&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">shadowRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;closed&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">style</span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">style</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            .badge-container {</span>
+<span class="sb">                position: relative;</span>
+<span class="sb">                display: inline-block;</span>
+<span class="sb">            }</span>
+<span class="sb">            .badge {</span>
+<span class="sb">                position: absolute;</span>
+<span class="sb">                top: 0;</span>
+<span class="sb">                right: 0;</span>
+<span class="sb">                background-color: red;</span>
+<span class="sb">                color: white;</span>
+<span class="sb">                border-radius: 50%;</span>
+<span class="sb">                padding: 0.2em 0.5em;</span>
+<span class="sb">                font-size: 0.75em;</span>
+<span class="sb">                font-weight: bold;</span>
+<span class="sb">            }</span>
+<span class="sb">    `</span>
+<span class="w">    </span><span class="c1">// Insertamos antes de los hijos que ya tiene, en vez de innerHTML</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">badgeContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">badgeContainer</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;badge-container&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">slot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;slot&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">badgeContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">slot</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">contentDiv</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">badgeContainer</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">attributeChangedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">contentDiv</span><span class="p">)</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">contentDiv</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;custom-badge&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">customBadge</span><span class="p">);</span>
+
+<span class="nx">interval</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">numero</span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;custom-badge&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span><span class="nx">numero</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En este ejemplo hemos creado un badge que acepta un elemento hijo. Por un lado, tenemos un <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code> que incorpora tanto el estilo como el badge como los elementos hijos declararos explícitamente en el HTML. Para aceptar un elemento hijo, en este caso, usamos un slot que recogerá la imagen y la añadirá al <code class="docutils literal notranslate"><span class="pre">badgeContainer</span></code> y posteriormente al <code class="docutils literal notranslate"><span class="pre">shadowRoot</span></code>.</p>
+<p>Este es un ejemplo de cómo añadirlo al HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">custom-badge</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;6&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascript.svg&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 100px; height: 100px;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">custom-badge</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 </section>
+</section>
+</section>
+<section id="mantener-el-estado-de-la-aplicacion-con-componentes">
+<h2>Mantener el estado de la aplicación con componentes<a class="headerlink" href="#mantener-el-estado-de-la-aplicacion-con-componentes" title="Link to this heading">#</a></h2>
+<p>Para evitar lo que en <code class="docutils literal notranslate"><span class="pre">react</span></code> llaman el <code class="docutils literal notranslate"><span class="pre">Prop</span> <span class="pre">Drilling</span></code> podemos centralizar el estado de alguna manera (Objetos, Sets, Maps, Observables, Redux…) y hacerlo accesible desde un componente que los contenga a todos.</p>
+<p>Para hacer que algo que está en el primer nivel del DOM pueda compartir el estado con cualquier hijo se puede hacer con eventos y callblacks. El elemento hijo que necesite consultar el estado, puede enviar un evento y en el mensaje del evento incorporar un callback. El elemento que lo atienda, ejecutará ese callback  así le pasará el estado al elemento que ha lanzado el evento.</p>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="_images/estadocomponentes.png"><img alt="_images/estadocomponentes.png" src="_images/estadocomponentes.png" style="width: 379.5px; height: 271.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Diagrama de la petición y paso del contexto</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>En el siguiente ejemplo, el <code class="docutils literal notranslate"><span class="pre">CustomInput</span></code> emite un evento informando de su función para inicializar su <code class="docutils literal notranslate"><span class="pre">Observable</span></code> que atenderá a los cambios en el <code class="docutils literal notranslate"><span class="pre">context</span></code>. El componente <code class="docutils literal notranslate"><span class="pre">CustomApp</span></code> atiende a ese tipo de eventos ejecutando la función de <code class="docutils literal notranslate"><span class="pre">callback</span></code> que le ha enviado. Esta función, en este caso, se subscribe al <code class="docutils literal notranslate"><span class="pre">Subject</span></code> que le ha pasado y a partir de ahí se actualizará cada vez que cambie ese dato en el <code class="docutils literal notranslate"><span class="pre">context</span></code>. De esta manera, el estado global de la aplicación queda centralizado en un Map accesible para cualquier otro componente.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomInput</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">super</span><span class="p">();</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newValue</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">requestAnimationFrame</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
+<span class="w">          </span><span class="ow">new</span><span class="w"> </span><span class="nx">CustomEvent</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">bubbles</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">detail</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">setObservable</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newValue</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">);</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nx">requestedValue</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">name</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">          </span><span class="p">})</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shadowContainer</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">shadowRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowContainer</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;closed&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">disconnectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">stateSubscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;custom-input&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">CustomInput</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomApp</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">super</span><span class="p">();</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">$context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">);</span>
+
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">initSubscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fromEvent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">          </span><span class="nx">withLatestFrom</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$context</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">map</span><span class="p">(([</span><span class="nx">event</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">newContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">context</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span>
+<span class="w">              </span><span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">requestedValue</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Initial Value&quot;</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">newContext</span><span class="p">;</span>
+<span class="w">          </span><span class="p">}),</span>
+<span class="w">          </span><span class="nx">tap</span><span class="p">((</span><span class="nx">newContext</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">setObservable</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$context</span><span class="p">))</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">c</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">$context</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">c</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">disconnectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">initSubscription</span><span class="o">?</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;custom-app&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">CustomApp</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Código HTML para usarlos:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>   <span class="p">&lt;</span><span class="nt">custom-app</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Ejemplo del contexto<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">custom-div</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">custom-input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;ejemploInput&quot;</span><span class="p">&gt;</span>
+            
+          <span class="p">&lt;/</span><span class="nt">custom-input</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">custom-div</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">custom-app</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>En este artículo lo explican con detalle sin usar RxJS: <a class="reference external" href="https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/">https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/</a></p>
 </section>
 <section id="ejemplo-completo">
 <h2>Ejemplo completo<a class="headerlink" href="#ejemplo-completo" title="Link to this heading">#</a></h2>
@@ -1093,10 +1306,15 @@ Esta función ya registra el componente.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><code class="docutils literal notranslate"><span class="pre">data-</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos">Métodos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slots">Slots</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-elementos-del-dom-como-hijos-del-web-component">Pasar elementos del DOM como hijos del Web Component</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-de-la-aplicacion-con-componentes">Mantener el estado de la aplicación con componentes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
 </ul>
   </nav></div>
