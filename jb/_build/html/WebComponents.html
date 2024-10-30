@@ -425,6 +425,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-datos-al-componente">Pasar datos al componente</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor-de-los-componentes">Constructor de los componentes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><code class="docutils literal notranslate"><span class="pre">data-</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
@@ -460,7 +461,10 @@ document.write(`
 <li><p>…</p></li>
 </ul>
 <p>En cualquiera de estas opciones, hay problemas para volver a renderizar cuando hay datos nuevos, para mantener a raya a las suscripciones, para gestionar el estado de la aplicación o para mantenerla suficientemente desacoplada. También es complicado reutilizar esas funciones en otros proyectos.</p>
-<p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> no son una tecnología diferente a las vistas en los capítulos anteriores, se trata de una definición de la W3C para estandarizar lo que comenzaba a ser un aspecto común de los frameworks e intentar hacer componentes reutilizables para todos. Estos componentes se pueden hacer a partir de las mejoras de ES6 y HTML5. En la definición que podemos encontrar en la web de MDN: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">https://developer.mozilla.org/en-US/docs/Web/API/Web_components</a>, no incorpora la reactividad, pero nosotros vamos a incorporarla para hacerlos más útiles en el curso.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> son una definición de la W3C para estandarizar lo que comenzaba a ser un aspecto común de los frameworks e intentar hacer componentes reutilizables para todos. Estos componentes se pueden hacer a partir de las mejoras de ES6 y HTML5.</p>
+<blockquote>
+<div><p>En la definición que podemos encontrar en la web de MDN: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">https://developer.mozilla.org/en-US/docs/Web/API/Web_components</a>, no incorpora la reactividad, pero nosotros vamos a incorporarla para hacerlos más útiles en el curso.</p>
+</div></blockquote>
 <blockquote>
 <div><p>Llegado el momento de hacer Web Components desde 0 con “vanilla Javascript” nos podemos preguntar si no será mejor usar un framework. Intentemos resistir esa tentación, al menos para aprender, porque esos conocimientos nos permitirán entender profundamente cómo funciona, por ejemplo, Angular o React.</p>
 </div></blockquote>
@@ -487,11 +491,15 @@ document.write(`
 <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">helloComponent</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>A parte de insertar el componente por javascript, también podemos incluirlo directamente en el HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">x-hello-world</span><span class="p">&gt;&lt;/</span><span class="nt">x-hello-world</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <section id="alternativas">
 <h3>Alternativas<a class="headerlink" href="#alternativas" title="Link to this heading">#</a></h3>
 <p>Como todo en Javascript, es opcional usar Web components, pero es que también es opcional usar todas las técnicas anteriores. Si no hacemos un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code> no entra en la definición de lo que estamos tratando, pero se puede hacer una función que retorne un elemento con <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> y código personalizado que atiende a los eventos, descarga los datos, se suscribe a Observables… El problema es que perdemos las ventajas del ciclo de vida de los <code class="docutils literal notranslate"><span class="pre">HTMLElements</span></code>.</p>
 <p>Tampoco es necesario siempre hacer <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> si el código o estilo no va a interferir nunca.</p>
-<p>Por otro lado, el uso de <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> puede ser muy farragoso en algunos casos comparado con las <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. En nuestro caso, haremos un uso combinado de los mismos para aprovechar las ventajas de ambas técnicas.</p>
+<p>Por otro lado, el uso de <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> puede ser farragoso en algunos casos comparado con las <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. En nuestro caso, haremos un uso combinado de los mismos para aprovechar las ventajas de ambas técnicas.</p>
 </section>
 </section>
 <section id="custom-elements">
@@ -570,7 +578,7 @@ document.write(`
 </section>
 <section id="usar-el-elemento-personalizado">
 <h3>Usar el elemento personalizado<a class="headerlink" href="#usar-el-elemento-personalizado" title="Link to this heading">#</a></h3>
-<p>Se puede usar de forma normal como cualquier etiqueta HTML:</p>
+<p>Se puede usar con <code class="docutils literal notranslate"><span class="pre">document.createElement()</span></code> y como cualquier etiqueta HTML:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">my-custom-element</span><span class="p">&gt;&lt;/</span><span class="nt">my-custom-element</span><span class="p">&gt;</span>
 </pre></div>
 </div>
@@ -733,6 +741,7 @@ document.write(`
 <h2>Pasar datos al componente<a class="headerlink" href="#pasar-datos-al-componente" title="Link to this heading">#</a></h2>
 <p>En los Web Components, a menudo hay que inicializarlos con algunos datos. Depende del propósito y cómo se añadan al DOM, se puede hacer de varias formas:</p>
 <ul class="simple">
+<li><p>Mediante el constructor</p></li>
 <li><p>Mediante atributos</p></li>
 <li><p>Mediante <code class="docutils literal notranslate"><span class="pre">data-</span></code></p></li>
 <li><p>Mediante <code class="docutils literal notranslate"><span class="pre">slots</span></code></p></li>
@@ -740,6 +749,27 @@ document.write(`
 <li><p>Mediante Observables (RxJS).</p></li>
 <li><p>Elementos hijos con <slot></p></li>
 </ul>
+<section id="constructor-de-los-componentes">
+<h3>Constructor de los componentes<a class="headerlink" href="#constructor-de-los-componentes" title="Link to this heading">#</a></h3>
+<p>Como se trata de una clase, tiene constructor. Si lo creamos con <code class="docutils literal notranslate"><span class="pre">new</span></code>, podemos pasarle parámetros por ahí. Esta forma excluye el uso de la etiqueta en un HTML. La forma de crear un Web Component sería la siguente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyComponent</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">dataService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">dataService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dataService</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">dataService</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;p&gt;</span><span class="si">${</span><span class="nx">data</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">dataService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DataService</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">myComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MyComponent</span><span class="p">(</span><span class="nx">dataService</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">myComponent</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Como veremos más adelante, este método se llama <code class="docutils literal notranslate"><span class="pre">inyección</span> <span class="pre">de</span> <span class="pre">dependencias</span></code>.</p>
+</section>
 <section id="atributos">
 <h3>Atributos<a class="headerlink" href="#atributos" title="Link to this heading">#</a></h3>
 <p>Los atributos se pueden usar directamente en el HTML del componente para pasar datos. Se acceden dentro del componente con this.getAttribute().</p>
@@ -931,6 +961,70 @@ document.write(`
     <span class="p">&lt;/</span><span class="nt">custom-badge</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<p>Como hay muchas opciones, podemos ver esta tabla comparativa:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Método</strong></p></th>
+<th class="head"><p><strong>Facilidad de uso en HTML</strong></p></th>
+<th class="head"><p><strong>Soporte para objetos complejos o funciones</strong></p></th>
+<th class="head"><p><strong>Facilidad de modificar durante ejecución</strong></p></th>
+<th class="head"><p><strong>Usable antes de estar en el DOM</strong></p></th>
+<th class="head"><p><strong>Posibilidad de que el componente tenga hijos</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Constructor</strong></p></td>
+<td><p>No es usable directamente en HTML</p></td>
+<td><p>Permite pasar cualquier tipo de dato</p></td>
+<td><p>Permite modificar al crear el componente en JS</p></td>
+<td><p>Datos accesibles desde la creación</p></td>
+<td><p>Puede tener <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code> o hijos sin problema</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Atributos</strong></p></td>
+<td><p>Fácil de definir en HTML</p></td>
+<td><p>Solo soporta valores de tipo cadena (también JSON)</p></td>
+<td><p>Modificable con <code class="docutils literal notranslate"><span class="pre">setAttribute</span></code> o <code class="docutils literal notranslate"><span class="pre">attributeChangedCallback</span></code></p></td>
+<td><p>Valores accesibles antes de conectar al DOM</p></td>
+<td><p>Puede tener hijos o <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">data-*</span></code> Atributos</strong></p></td>
+<td><p>Simple de usar en HTML</p></td>
+<td><p>Solo soporta valores de tipo cadena aunque más organizados. (también JSON)</p></td>
+<td><p>Modificable con <code class="docutils literal notranslate"><span class="pre">dataset</span></code> o <code class="docutils literal notranslate"><span class="pre">setAttribute</span></code></p></td>
+<td><p>Accesible antes de estar en el DOM</p></td>
+<td><p>Puede tener hijos o <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Slots</strong></p></td>
+<td><p>Requiere estructura HTML específica</p></td>
+<td><p>Puede enviar texto o HTML</p></td>
+<td><p>Baja. Cambiar el contenido del slot requiere manipulación del DOM</p></td>
+<td><p>No. El contenido no está disponible hasta la conexión al DOM</p></td>
+<td><p>Perfecto para componentes con estructura y contenido de hijos</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Propiedades o Métodos</strong></p></td>
+<td><p>Usable solo en JavaScript</p></td>
+<td><p>Permite pasar objetos y funciones</p></td>
+<td><p>Las propiedades se pueden modificar directamente en el JS</p></td>
+<td><p>Valores configurables antes y después de conectar</p></td>
+<td><p>Permite tener hijos o <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Observables (RxJS)</strong></p></td>
+<td><p>Requiere suscripción</p></td>
+<td><p>Puede manejar cualquier tipo de dato</p></td>
+<td><p>Cambios reflejados en tiempo real con <code class="docutils literal notranslate"><span class="pre">subscribe</span></code></p></td>
+<td><p>Sí, pero depende de la suscripción (mejor después de conectar)</p></td>
+<td><p>Ideal para componentes con actualizaciones en vivo</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Elementos Hijos (<code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>)</strong></p></td>
+<td><p>Fácil de usar en HTML</p></td>
+<td><p>Media-Alta. Permite estructuras complejas usando HTML o Custom Elements</p></td>
+<td><p>Media. Cambios requieren manipulación del DOM o redefinir el contenido</p></td>
+<td><p>No. Solo disponible después de conexión al DOM</p></td>
+<td><p>Sí. Permite diseñar estructuras de componente con hijos o <code class="docutils literal notranslate"><span class="pre">slot</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 </section>
 </section>
@@ -942,9 +1036,10 @@ document.write(`
 <p><span class="caption-number">Fig. 8 </span><span class="caption-text">Decidiendo entre dos posibles gestiones del estado global.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Mantener el estado es complejo. Podemos hechar mano de patrones de diseño. Por ejemplo, podemos centralizar el estado en un <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> Observable y que todos los componentes se suscriban. Esto los hace muy acoplados con el estado global y puede ser complejo de gestionar en aplicaciones grandes. Por otro lado, podemos hacer que el estado se comunique entre componentes hijos y padres a través de atributos o propiedades (de padres a hijos) o eventos (de hijos a padres). Este enfoque tiene el problema de tener que pasar atributos que no necesitan los hijos intermedios.</p>
+<p>Mantener el estado es complejo. Podemos hechar mano de patrones de diseño. Por ejemplo, podemos centralizar el estado en un <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> Observable y que todos los componentes se suscriban. Esto los hace muy acoplados con el estado global y puede ser complejo de gestionar en aplicaciones grandes. La solución puede ser usar la inyección de dependencias al construir el componente y así seguir manteniendo la aplicación desacoplada. Si optamos por esa alternativa sólo podemos crear los componentes por Javascript, ya que necesitamos usar el <code class="docutils literal notranslate"><span class="pre">constructor</span></code>.</p>
+<p>Por otro lado, podemos hacer que el estado se comunique entre componentes hijos y padres a través de atributos o propiedades (de padres a hijos) o eventos (de hijos a padres). Este enfoque tiene el problema de tener que pasar atributos que no necesitan los hijos intermedios.</p>
 <p>Para evitar lo que en <code class="docutils literal notranslate"><span class="pre">react</span></code> llaman el <code class="docutils literal notranslate"><span class="pre">Prop</span> <span class="pre">Drilling</span></code> podemos centralizar el estado de alguna manera (Objetos, Sets, Maps, Observables, Redux…) y hacerlo accesible desde un componente que los contenga a todos.</p>
-<p>Para hacer que algo que está en el primer nivel del DOM pueda compartir el estado con cualquier hijo se puede hacer con eventos y callblacks. El elemento hijo que necesite consultar el estado, puede enviar un evento y en el mensaje del evento incorporar un callback. El elemento que lo atienda, ejecutará ese callback  así le pasará el estado al elemento que ha lanzado el evento.</p>
+<p>Para hacer que algo que está en el primer nivel del DOM pueda compartir el estado con cualquier hijo se puede hacer con eventos y callblacks. El elemento hijo que necesite consultar el estado, puede enviar un evento y en el mensaje del evento incorporar un callback. El elemento que lo atienda (<code class="docutils literal notranslate"><span class="pre">context</span> <span class="pre">provider</span></code>), ejecutará ese callback  así le pasará el estado al elemento que ha lanzado el evento.</p>
 <figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="_images/estadocomponentes.png"><img alt="_images/estadocomponentes.png" src="_images/estadocomponentes.png" style="width: 569.25px; height: 406.5px;" /></a>
 <figcaption>
@@ -1035,11 +1130,74 @@ document.write(`
 </pre></div>
 </div>
 <p>En este artículo lo explican con detalle sin usar RxJS: <a class="reference external" href="https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/">https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/</a></p>
+<p>Veamos esta tabla comparativa:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Característica</p></th>
+<th class="head"><p><strong>Inyección de Dependencias (DI)</strong></p></th>
+<th class="head"><p><strong>Servicio Global</strong></p></th>
+<th class="head"><p><strong>Context Provider</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Desacoplamiento</strong></p></td>
+<td><p>Alto. Los componentes dependen de la interfaz del servicio, no de su implementación.</p></td>
+<td><p>Bajo. Los componentes dependen del contexto global, lo que los acopla a la estructura global de la app.</p></td>
+<td><p>Medio. Los componentes dependen del contenedor pero no directamente del servicio.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Facilidad de uso en HTML</strong></p></td>
+<td><p>Baja. La inyección en el constructor impide instanciación directa en HTML. Requiere inyección manual (constructor o setters).</p></td>
+<td><p>Alta. No hay restricciones para la instanciación en HTML.</p></td>
+<td><p>Alta. Los componentes pueden instanciarse en HTML dentro del contenedor.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Escalabilidad</strong></p></td>
+<td><p>Alta. Facilita agregar o cambiar servicios sin modificar componentes.</p></td>
+<td><p>Baja. El uso de servicios globales tiende a ser más difícil de gestionar en aplicaciones grandes.</p></td>
+<td><p>Media-Alta. Escalable para componentes anidados, pero puede ser confuso con varios contextos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Pruebas Unitarias</strong></p></td>
+<td><p>Alta. Facilita el uso de mocks/stubs en lugar del servicio real, mejorando pruebas unitarias.</p></td>
+<td><p>Baja. El servicio global está acoplado, lo que dificulta el uso de mocks/stubs en pruebas.</p></td>
+<td><p>Media. Es fácil sustituir el <code class="docutils literal notranslate"><span class="pre">ContextProvider</span></code> o inyectar el servicio en pruebas.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Persistencia de Estado</strong></p></td>
+<td><p>Alta. Cada componente tiene su instancia inyectada, manteniendo el estado donde sea necesario.</p></td>
+<td><p>Alta. El estado es global, compartido y persistente en toda la aplicación.</p></td>
+<td><p>Alta. Los datos pueden persistir mientras el contenedor esté activo, ofreciendo un “estado local compartido”.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Flexibilidad para Reemplazar Servicios</strong></p></td>
+<td><p>Alta. La dependencia puede reemplazarse fácilmente al inyectarla, permitiendo alternar entre implementaciones.</p></td>
+<td><p>Baja. Reemplazar un servicio global afecta toda la aplicación y necesita cuidado adicional.</p></td>
+<td><p>Media. El contexto puede ser reemplazado cambiando el proveedor, sin modificar los componentes.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Propenso a Errores en Tiempo de Ejecución</strong></p></td>
+<td><p>Medio. Requiere asegurar que el servicio esté inyectado antes de usarlo.</p></td>
+<td><p>Alto. Cualquier cambio en el servicio global afecta toda la aplicación, propenso a efectos colaterales.</p></td>
+<td><p>Medio. Hay que asegurarse de que los hijos estén dentro del proveedor de contexto, sino no recibirán el servicio.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Mantenimiento</strong></p></td>
+<td><p>Alto. Buen mantenimiento en aplicaciones grandes, especialmente con servicios independientes y bien definidos.</p></td>
+<td><p>Bajo. El uso excesivo de servicios globales aumenta el acoplamiento y la dificultad de mantener la estructura.</p></td>
+<td><p>Medio-Alto. Adecuado para componentes hijos, pero puede ser complejo con muchos contextos anidados.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Rendimiento</strong></p></td>
+<td><p>Medio. Cada componente que recibe el servicio inyectado tiene su propia referencia, sin problemas significativos de rendimiento.</p></td>
+<td><p>Alto. El servicio es accesible en todo momento, sin sobrecarga en inyección o propagación.</p></td>
+<td><p>Medio. Algunos eventos adicionales pueden afectar el rendimiento si hay muchas actualizaciones de contexto.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Inyección de Dependencias (DI)</strong>: Ideal para aplicaciones donde el desacoplamiento es crucial, como en proyectos medianos o grandes con muchos componentes reutilizables. La DI es especialmente útil cuando quieres que los componentes sean fáciles de probar y de mantener con configuraciones dinámicas de servicios.</p></li>
+<li><p><strong>Servicio Global</strong>: Útil en aplicaciones pequeñas donde la simplicidad es más importante que la modularidad o el desacoplamiento. Es un buen enfoque si el servicio es fundamental para toda la aplicación (por ejemplo, un usuario autenticado) y se usará de manera uniforme en todos los componentes.</p></li>
+<li><p><strong>Context Provider</strong>: Aporta un buen equilibrio entre desacoplamiento y accesibilidad en aplicaciones con jerarquías complejas de componentes. Es adecuado cuando varios componentes deben compartir un estado, pero solo dentro de una sección de la aplicación (por ejemplo, el estado de un tema visual en una subaplicación).</p></li>
+</ul>
 </section>
 <section id="ejemplo-completo">
 <h2>Ejemplo completo<a class="headerlink" href="#ejemplo-completo" title="Link to this heading">#</a></h2>
 <p>Presuponemos un proyecto usando <code class="docutils literal notranslate"><span class="pre">Vite</span></code>, <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code> y <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>.</p>
-<p>La idea es crear un formulario reactivo como un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code>. Para ello vamos a utilizar todas las técnicas explicadas, aunque alguna la podríamos omitir. En primer lugar, podemos crear una plantilla para el formulario con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> y <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>:</p>
+<p>La idea es crear un formulario reactivo como un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code>. Para ello vamos a utilizar muchas de las técnicas explicadas, aunque alguna la podríamos omitir. En primer lugar, podemos crear una plantilla para el formulario con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> y <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">plantillaFormulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
 <span class="sb">    &lt;div class=&quot;container mt-5&quot;&gt;</span>
 <span class="sb">      &lt;h2 class=&quot;mb-4&quot;&gt;</span>
@@ -1310,6 +1468,7 @@ Esta función ya registra el componente.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-datos-al-componente">Pasar datos al componente</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor-de-los-componentes">Constructor de los componentes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><code class="docutils literal notranslate"><span class="pre">data-</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
