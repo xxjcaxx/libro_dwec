@@ -426,6 +426,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso">Ejemplo de uso</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-tipados">Arrays tipados</a></li>
 </ul>
             </nav>
         </div>
@@ -1025,6 +1026,97 @@ Los Generadores usan la expresión <code class="docutils literal notranslate"><s
 </div>
 </section>
 </section>
+<section id="arrays-tipados">
+<h2>Arrays tipados<a class="headerlink" href="#arrays-tipados" title="Link to this heading">#</a></h2>
+<p>Los <strong>arrays tipados</strong> permiten manejar y manipular eficientemente datos binarios y números en diferentes formatos, particularmente en aplicaciones que requieren un uso intensivo de datos. Todos estos arrays tipados heredan de una clase base llamada <code class="docutils literal notranslate"><span class="pre">TypedArray</span></code>, que proporciona una API común para la manipulación de datos en buffers binarios.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>Rango de valores</p></th>
+<th class="head"><p>Tamaño en bytes</p></th>
+<th class="head"><p>Tipo en Web IDL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Int8Array</strong></p></td>
+<td><p>-128 a 127</p></td>
+<td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">byte</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Uint8Array</strong></p></td>
+<td><p>0 a 255</p></td>
+<td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">octet</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Uint8ClampedArray</strong></p></td>
+<td><p>0 a 255 (sin valores negativos, clampa valores fuera de rango a 0 o 255)</p></td>
+<td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">octet</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Int16Array</strong></p></td>
+<td><p>-32,768 a 32,767</p></td>
+<td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">short</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Uint16Array</strong></p></td>
+<td><p>0 a 65,535</p></td>
+<td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">short</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Int32Array</strong></p></td>
+<td><p>-2,147,483,648 a 2,147,483,647</p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">long</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Uint32Array</strong></p></td>
+<td><p>0 a 4,294,967,295</p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Float16Array</strong></p></td>
+<td><p>-65,504 a 65,504 (aproximado)</p></td>
+<td><p>2</p></td>
+<td><p>N/A (no estandarizado en Web IDL)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Float32Array</strong></p></td>
+<td><p>-3.4 × 10³⁸ a 3.4 × 10³⁸</p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unrestricted</span> <span class="pre">float</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Float64Array</strong></p></td>
+<td><p>-1.8 × 10³⁰⁸ a 1.8 × 10³⁰⁸</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unrestricted</span> <span class="pre">double</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>BigInt64Array</strong></p></td>
+<td><p>-2⁶³ a 2⁶³ - 1</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bigint</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>BigUint64Array</strong></p></td>
+<td><p>0 a 2⁶⁴ - 1</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bigint</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Al especificar el tipo y tamaño de cada valor en el array, permiten el acceso y manipulación eficiente de datos sin necesidad de validación de tipo en cada operación, lo que mejora significativamente la velocidad en aplicaciones intensivas como:</p>
+<ul class="simple">
+<li><p><strong>Gráficos y juegos</strong>: Usados en WebGL para renderizar gráficos 3D en la web.</p></li>
+<li><p><strong>Manipulación de audio y video</strong>: Útiles en la decodificación de archivos multimedia.</p></li>
+<li><p><strong>Ciencia de datos</strong>: Para procesamiento numérico y simulaciones.</p></li>
+<li><p><strong>Aplicaciones de red</strong>: Para manejar datos binarios en comunicación de bajo nivel, como sockets de WebRTC.</p></li>
+</ul>
+<p>Un array tipado se crea utilizando el constructor correspondiente, como <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Int16Array(length)</span></code>, donde <code class="docutils literal notranslate"><span class="pre">length</span></code> es el número de elementos del array. También puede crearse desde un <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code> para trabajar con un bloque de datos binarios compartidos entre varios arrays tipados.</p>
+<p>Por ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">intArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Int16Array</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+<span class="nx">intArray</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">12345</span><span class="p">;</span>
+<span class="nx">intArray</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">12345</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">intArray</span><span class="p">);</span><span class="w"> </span><span class="c1">// Int16Array [12345, -12345, 0, 0, ..., 0]</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1111,6 +1203,7 @@ Los Generadores usan la expresión <code class="docutils literal notranslate"><s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso">Ejemplo de uso</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-tipados">Arrays tipados</a></li>
 </ul>
   </nav></div>
 

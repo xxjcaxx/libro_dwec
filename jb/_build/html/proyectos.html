@@ -434,20 +434,16 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#controlador">Controlador</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-opcionales">Servicios (Opcionales)</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-routers-en-aplicaciones-spa">Rutas (Routers) en Aplicaciones SPA</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-web">Componentes Web</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-componente-web-en-javascript-vanilla">Crear un Componente Web en JavaScript Vanilla</a></li>
-</ul>
-</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-web">Componentes Web</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-aplicacion">Estado de la Aplicación</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-esta-el-estado">Dónde está el estado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-del-estado">Separación del Estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centralizacion-del-control-del-estado">Centralización del Control del Estado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-getters-y-setters">Uso de Getters y Setters</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-del-uso-de-redux">Beneficios del Uso de Redux</a></li>
 </ul>
 </li>
@@ -463,7 +459,6 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lazy-loading-en-vanilla-javascript">Ejemplo de Lazy Loading en Vanilla JavaScript</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-de-una-buena-arquitectura">Beneficios de una Buena Arquitectura</a></li>
 </ul>
 </li>
 </ul>
@@ -706,7 +701,7 @@ document.write(`
 </section>
 <section id="arquitectura">
 <h3>Arquitectura<a class="headerlink" href="#arquitectura" title="Link to this heading">#</a></h3>
-<p>La arquitectura de una aplicación frontend se basa en la separación de responsabilidades para lograr un código más limpio, mantenible y escalable. Esta separación permite que los diferentes componentes de la aplicación interactúen de manera organizada y eficiente. A continuación, se describen los elementos básicos que deben separarse y su función dentro de la arquitectura de una aplicación frontend.</p>
+<p>La arquitectura de una aplicación frontend se basa en la separación de responsabilidades para lograr un código más limpio, mantenible y escalable. Esta separación permite que los diferentes componentes de la aplicación interactúen de manera organizada. A continuación, se describen los elementos básicos que deben separarse y su función:</p>
 <ol class="arabic simple">
 <li><p><strong>Interfaz de Usuario (Vista y Controlador)</strong></p>
 <ul class="simple">
@@ -771,7 +766,6 @@ document.write(`
 <ul class="simple">
 <li><p><strong>Funcionalidad del Controlador:</strong></p>
 <ul>
-<li><p>No actúa como intermediario.</p></li>
 <li><p>Gestiona la interacción del usuario y modifica el modelo.</p></li>
 </ul>
 </li>
@@ -967,71 +961,7 @@ document.write(`
 <li><p><strong>HTML Templates:</strong> Permiten definir fragmentos de HTML que se pueden reutilizar.</p></li>
 <li><p><strong>ES Modules:</strong> Proporcionan una manera de organizar y cargar código JavaScript de manera modular.</p></li>
 </ol>
-<section id="crear-un-componente-web-en-javascript-vanilla">
-<h6>Crear un Componente Web en JavaScript Vanilla<a class="headerlink" href="#crear-un-componente-web-en-javascript-vanilla" title="Link to this heading">#</a></h6>
-<p>A continuación, vamos a crear un componente web básico utilizando JavaScript Vanilla.</p>
-<p>Primero, definimos una clase que extiende <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>. Esta clase contendrá toda la lógica de nuestro componente.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyComponent</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">super</span><span class="p">();</span>
-<span class="w">        </span><span class="c1">// Crear un shadow DOM</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;open&#39;</span><span class="w"> </span><span class="p">});</span>
-
-<span class="w">        </span><span class="c1">// Crear un contenedor para el contenido del componente</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
-<span class="w">        </span><span class="nx">container</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">            &lt;style&gt;</span>
-<span class="sb">                .my-component {</span>
-<span class="sb">                    font-family: Arial, sans-serif;</span>
-<span class="sb">                    padding: 20px;</span>
-<span class="sb">                    border: 1px solid #ccc;</span>
-<span class="sb">                }</span>
-<span class="sb">            &lt;/style&gt;</span>
-<span class="sb">            &lt;div class=&quot;my-component&quot;&gt;</span>
-<span class="sb">                &lt;h1&gt;Hola, soy un componente web&lt;/h1&gt;</span>
-<span class="sb">                &lt;button id=&quot;myButton&quot;&gt;Haga clic aquí&lt;/button&gt;</span>
-<span class="sb">            &lt;/div&gt;</span>
-<span class="sb">        `</span><span class="p">;</span>
-
-<span class="w">        </span><span class="c1">// Adjuntar el contenedor al shadow DOM</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Agregar un manejador de eventos al botón</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#myButton&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">handleClick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Botón clicado en el componente web&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">MyComponent</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Una vez que hemos definido nuestro componente, podemos usarlo en cualquier parte de nuestro HTML como cualquier otro elemento HTML estándar.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Ejemplo de Componente Web<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">my-component</span><span class="p">&gt;&lt;/</span><span class="nt">my-component</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;path/to/my-component.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><strong>Definición de la Clase:</strong> Creamos una clase <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> que extiende <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>. Esta clase define la estructura y comportamiento del componente.</p></li>
-<li><p><strong>Shadow DOM:</strong> Usamos <code class="docutils literal notranslate"><span class="pre">attachShadow</span></code> para crear un Shadow DOM, que encapsula el contenido y estilo del componente, evitando colisiones con el resto de la página.</p></li>
-<li><p><strong>Template HTML:</strong> Definimos el contenido HTML y CSS dentro de un contenedor y lo adjuntamos al Shadow DOM.</p></li>
-<li><p><strong>Manejadores de Eventos:</strong> Agregamos un manejador de eventos para el botón dentro del componente. El método <code class="docutils literal notranslate"><span class="pre">handleClick</span></code> define la acción a realizar cuando se hace clic en el botón.</p></li>
-<li><p><strong>Definición del Elemento Personalizado:</strong> Usamos <code class="docutils literal notranslate"><span class="pre">customElements.define</span></code> para registrar el nuevo elemento personalizado <code class="docutils literal notranslate"><span class="pre">my-component</span></code>, que puede ser utilizado en el HTML.</p></li>
-</ul>
-</section>
+<p>En el capítulo de Web Component se explican de forma técnica.</p>
 </section>
 </section>
 </section>
@@ -1050,15 +980,6 @@ document.write(`
 Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/">https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/</a></p></li>
 </ul>
 </section>
-<section id="inmutabilidad">
-<h4>Inmutabilidad<a class="headerlink" href="#inmutabilidad" title="Link to this heading">#</a></h4>
-<p>Trabajar con datos inmutables significa que, una vez creados, los datos no pueden cambiar. En lugar de modificar un objeto o array existente, se crea una nueva versión del mismo con las modificaciones requeridas. Este enfoque ofrece varios beneficios:</p>
-<ul class="simple">
-<li><p><strong>Facilidad de Depuración:</strong> Si los datos no cambian, es más fácil rastrear de dónde provienen los errores.</p></li>
-<li><p><strong>Predictibilidad:</strong> Las funciones puras y los datos inmutables hacen que el comportamiento de la aplicación sea más predecible.</p></li>
-<li><p><strong>Evitar Efectos Colaterales:</strong> Al no modificar directamente los objetos, se evitan efectos colaterales que puedan afectar otras partes de la aplicación.</p></li>
-</ul>
-</section>
 <section id="separacion-del-estado">
 <h4>Separación del Estado<a class="headerlink" href="#separacion-del-estado" title="Link to this heading">#</a></h4>
 <p>Es importante separar el estado en dos categorías:</p>
@@ -1067,17 +988,24 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
 <li><p><strong>Estado del Cliente:</strong> Datos que solo existen en el cliente, como la interfaz de usuario, configuraciones temporales, credenciales…</p></li>
 </ol>
 </section>
+<section id="inmutabilidad">
+<h4>Inmutabilidad<a class="headerlink" href="#inmutabilidad" title="Link to this heading">#</a></h4>
+<p>Trabajar con datos inmutables significa que, una vez creados, los datos no pueden cambiar. En lugar de modificar un objeto o array existente, se crea una nueva versión del mismo con las modificaciones requeridas. Este enfoque ofrece varios beneficios:</p>
+<ul class="simple">
+<li><p><strong>Facilidad de Depuración:</strong> Si los datos no cambian, es más fácil rastrear de dónde provienen los errores.</p></li>
+<li><p><strong>Predictibilidad:</strong> Las funciones puras y los datos inmutables hacen que el comportamiento de la aplicación sea más predecible.</p></li>
+<li><p><strong>Evitar Efectos Colaterales:</strong> Al no modificar directamente los objetos, se evitan efectos colaterales que puedan afectar otras partes de la aplicación.</p></li>
+</ul>
+<p>El estado debe tener métodos para acceder (getters) y modificar (setters) sus valores. No se debe modificar el estado directamente, ya que esto puede llevar a inconsistencias y errores difíciles de rastrear.</p>
+</section>
 <section id="centralizacion-del-control-del-estado">
 <h4>Centralización del Control del Estado<a class="headerlink" href="#centralizacion-del-control-del-estado" title="Link to this heading">#</a></h4>
 <p>Centralizar el control del estado significa tener un único lugar donde se maneja el estado de la aplicación. Esto facilita su gestión y mejora la coherencia en cómo se accede y modifica el estado. Algunos enfoques para centralizar el estado incluyen:</p>
 <ul class="simple">
-<li><p><strong>Espacio de Nombres:</strong> Utilizar un objeto global para guardar el estado. Aunque es una solución simple, puede volverse inmanejable a medida que la aplicación crece.</p></li>
+<li><p><strong>Espacio de Nombres:</strong> Utilizar un objeto global para guardar el estado. Aunque es una solución simple, puede volverse inmanejable a medida que la aplicación crece. Este espacio de nombres puede estar en un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> de <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>, por ejemplo, para conseguir reactividad.</p></li>
+<li><p><strong>Servicios:</strong> Los servicios centralizan la gestión del estado y pueden ser accesible mediante funciones importadas. Para no hacer que los componentes estén demasiado acoplados a los servicios se puede usar el patrón de <code class="docutils literal notranslate"><span class="pre">Inyección</span> <span class="pre">de</span> <span class="pre">dependencias</span></code>.</p></li>
 <li><p><strong>Redux:</strong> Una biblioteca para manejar el estado de manera predecible en aplicaciones JavaScript.</p></li>
 </ul>
-</section>
-<section id="uso-de-getters-y-setters">
-<h4>Uso de Getters y Setters<a class="headerlink" href="#uso-de-getters-y-setters" title="Link to this heading">#</a></h4>
-<p>El estado debe tener métodos para acceder (getters) y modificar (setters) sus valores. No se debe modificar el estado directamente, ya que esto puede llevar a inconsistencias y errores difíciles de rastrear.</p>
 </section>
 <section id="beneficios-del-uso-de-redux">
 <h4>Beneficios del Uso de Redux<a class="headerlink" href="#beneficios-del-uso-de-redux" title="Link to this heading">#</a></h4>
@@ -1240,15 +1168,6 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
 <p>Tanto en JavaScript Vanilla como en frameworks modernos, implementar Lazy Loading es una práctica recomendada para gestionar aplicaciones complejas y de gran escala.</p>
 </section>
 </section>
-<section id="beneficios-de-una-buena-arquitectura">
-<h4>Beneficios de una Buena Arquitectura<a class="headerlink" href="#beneficios-de-una-buena-arquitectura" title="Link to this heading">#</a></h4>
-<ol class="arabic simple">
-<li><p><strong>Mantenibilidad:</strong> La separación de responsabilidades facilita la localización y corrección de errores, así como la implementación de nuevas funcionalidades.</p></li>
-<li><p><strong>Escalabilidad:</strong> Permite que la aplicación crezca de manera ordenada y controlada, sin que aumente excesivamente la complejidad.</p></li>
-<li><p><strong>Reutilización:</strong> Los componentes bien definidos y desacoplados pueden reutilizarse en diferentes partes de la aplicación o en otros proyectos.</p></li>
-<li><p><strong>Facilidad de Pruebas:</strong> La división en módulos claros facilita la escritura de pruebas unitarias y de integración.</p></li>
-</ol>
-</section>
 </section>
 </section>
 </section>
@@ -1345,20 +1264,16 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#controlador">Controlador</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-opcionales">Servicios (Opcionales)</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-routers-en-aplicaciones-spa">Rutas (Routers) en Aplicaciones SPA</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-web">Componentes Web</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-componente-web-en-javascript-vanilla">Crear un Componente Web en JavaScript Vanilla</a></li>
-</ul>
-</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-web">Componentes Web</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-aplicacion">Estado de la Aplicación</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-esta-el-estado">Dónde está el estado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-del-estado">Separación del Estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centralizacion-del-control-del-estado">Centralización del Control del Estado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-getters-y-setters">Uso de Getters y Setters</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-del-uso-de-redux">Beneficios del Uso de Redux</a></li>
 </ul>
 </li>
@@ -1374,7 +1289,6 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lazy-loading-en-vanilla-javascript">Ejemplo de Lazy Loading en Vanilla JavaScript</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-de-una-buena-arquitectura">Beneficios de una Buena Arquitectura</a></li>
 </ul>
 </li>
 </ul>
