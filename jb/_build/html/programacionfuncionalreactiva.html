@@ -440,24 +440,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-operator">Pipeline Operator</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-y-tuplas">Records y Tuplas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-decorador">Ejemplo de Decorador</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-grandes-funcionales">Proyectos Grandes Funcionales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-la-programacion-funcional">Problemas de la Programación Funcional</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-reactiva">Programación Reactiva</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-asincrona">Programación Asíncrona</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-reactivo">Paradigma Reactivo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-aplicaciones-web-reactivas">Ejemplos de Aplicaciones Web Reactivas</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streams">Streams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-reactivo">Paradigma Reactivo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rxjs">RxJS</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismo-unificado">Mecanismo Unificado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico">Ejemplo Básico</a></li>
@@ -466,7 +455,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observadores">Observadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-suscripciones">Múltiples Suscripciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-desuscripcion">La desuscripción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-desuscripcion">La desuscripción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desuscripciones-en-componentes-en-una-spa">Desuscripciones en componentes en una SPA</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipe">Pipe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-comunes">Operadores Comunes</a><ul class="nav section-nav flex-column">
@@ -1068,52 +1060,6 @@ El pasar funciones como referencia a otras es llamado por algunos como <code cla
 </div></blockquote>
 </section>
 </section>
-<section id="records-y-tuplas">
-<h2>Records y Tuplas<a class="headerlink" href="#records-y-tuplas" title="Link to this heading">#</a></h2>
-<p>A partir de 2024, JavaScript ha incorporado Records y Tuples, que son estructuras de datos inmutables similares a los objetos y arrays respectivamente.
-Las tuplas y records se pueden comparar directamente.</p>
-<p>Tampoco funciona en todos los navegadores.</p>
-<p><a class="reference external" href="https://tc39.es/proposal-record-tuple/tutorial/">https://tc39.es/proposal-record-tuple/tutorial/</a></p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">debitCard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">#</span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Visa&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">number</span><span class="o">:</span><span class="w"> </span><span class="mf">4242424242424242</span><span class="p">,</span>
-<span class="p">};</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">#</span><span class="p">[</span>
-<span class="w">    </span><span class="nx">drivingLicence</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">creditCard</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">debitCard</span><span class="p">,</span>
-<span class="p">];</span>
-</pre></div>
-</div>
-<section id="decoradores">
-<h3>Decoradores<a class="headerlink" href="#decoradores" title="Link to this heading">#</a></h3>
-<p>Otra funcionalidad añadida a JavaScript en 2024 son los decoradores. Permiten modificar el comportamiento de clases, métodos, atributos y parámetros de manera más flexible y menos intrusiva que la herencia.</p>
-<section id="ejemplo-de-decorador">
-<h4>Ejemplo de Decorador<a class="headerlink" href="#ejemplo-de-decorador" title="Link to this heading">#</a></h4>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">readonly</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span><span class="w"> </span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">descriptor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">descriptor</span><span class="p">.</span><span class="nx">writable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">descriptor</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="err">@</span><span class="nx">readonly</span>
-<span class="w">    </span><span class="nx">getName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>
-<span class="c1">// Salida: &quot;Alice&quot;</span>
-</pre></div>
-</div>
-</section>
-</section>
-</section>
 <section id="proyectos-grandes-funcionales">
 <h2>Proyectos Grandes Funcionales<a class="headerlink" href="#proyectos-grandes-funcionales" title="Link to this heading">#</a></h2>
 <p>En proyectos grandes, es difícil mantener todas las funciones puras y evitar la mutabilidad completamente. Si se requiere trabajar con el paradigma funcional, hay que pensar en cómo hacer funcionalmente:</p>
@@ -1200,8 +1146,7 @@ Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Reactive_programming">https://en.wikipedia.org/wiki/Reactive_programming</a></p></li>
 </ul>
 <p>En la programación reactiva, todo se convierte en asíncrono: variables, propiedades, estructuras de datos, entrada del usuario, etc. Utilizamos herramientas para crear, combinar y filtrar estos flujos de datos, conocidos como streams.</p>
-<section id="ejemplos-de-aplicaciones-web-reactivas">
-<h3>Ejemplos de Aplicaciones Web Reactivas<a class="headerlink" href="#ejemplos-de-aplicaciones-web-reactivas" title="Link to this heading">#</a></h3>
+<p>Ejemplos de Aplicaciones Web Reactivas:</p>
 <ol class="arabic simple">
 <li><p>Cambiar la apariencia de la web en función del scroll.</p></li>
 <li><p>Implementar un mecanismo de drag&amp;drop gestionando la secuencia de eventos del ratón.</p></li>
@@ -1210,19 +1155,15 @@ Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
 <li><p>Implementar un chat en tiempo real.</p></li>
 <li><p>Crear un juego multijugador.</p></li>
 </ol>
-</section>
-</section>
-<section id="streams">
-<h2>Streams<a class="headerlink" href="#streams" title="Link to this heading">#</a></h2>
-<p>Un stream es una sucesión de eventos ordenados en el tiempo. Estos eventos pueden devolver un valor, un error o indicar el cierre del stream. Los eventos se capturan mediante funciones que se suscriben al stream. Estas funciones se llaman observadores (Observers).</p>
-<p>En RxJS, los streams se denominan Observables.</p>
+<p>Un <code class="docutils literal notranslate"><span class="pre">stream</span></code> es una sucesión de eventos ordenados en el tiempo. Estos eventos pueden devolver un valor, un error o indicar el cierre del stream. Los eventos se capturan mediante funciones que se suscriben al stream. Estas funciones se llaman observadores (Observers).</p>
+<p>En RxJS, los streams se denominan <code class="docutils literal notranslate"><span class="pre">Observables</span></code>.</p>
 </section>
 <section id="rxjs">
 <h2>RxJS<a class="headerlink" href="#rxjs" title="Link to this heading">#</a></h2>
 <p>RxJS (Reactive Extensions for JavaScript) permite manejar la asincronía utilizando el patrón de diseño <code class="docutils literal notranslate"><span class="pre">Observable</span></code>. Con RxJS, se pueden crear Observables a partir de cualquier evento posible. Un Observable emite valores cuando algún Observador se suscribe. Cada suscripción es independiente y tiene su propio contexto de ejecución. RxJS ofrece muchas formas de crear, filtrar y consumir Observables.</p>
 <section id="mecanismo-unificado">
 <h3>Mecanismo Unificado<a class="headerlink" href="#mecanismo-unificado" title="Link to this heading">#</a></h3>
-<p>RxJS unifica varios mecanismos asincrónicos bajo un solo modelo:</p>
+<p>RxJS unifica varios mecanismos asincrónos bajo un solo modelo:</p>
 <ul class="simple">
 <li><p>Promesas</p></li>
 <li><p>Callbacks</p></li>
@@ -1305,10 +1246,124 @@ Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
 <blockquote>
 <div><p>En Angular, los componentes tienen un ciclo de vida y en el momento de la destrucción del componente se ejecutan funciones que eliminan las subscripciones a los observables que forman la reactividad. Aún así, es importante implementar <code class="docutils literal notranslate"><span class="pre">OnDestroy</span></code> para desuscribir las subscripciones que no acaban por si mismas.</p>
 </div></blockquote>
+<section id="desuscripciones-en-componentes-en-una-spa">
+<h3>Desuscripciones en componentes en una SPA<a class="headerlink" href="#desuscripciones-en-componentes-en-una-spa" title="Link to this heading">#</a></h3>
+<p>Si vamos a hacer una aplicación reactiva con un paradigma relativamente funcional, tendremos funciones que retornarán elementos. Podemos decidir hacer una suscripción dentro de esa función para que el elemento se actualice cuando el Observable emite un nuevo valor. El problema es que esa suscripción permanece dentro de la <code class="docutils literal notranslate"><span class="pre">closure</span></code>. Para forzar una desuscripción cuando ese elemento se elimina o es sustituido por otro, podemos adoptar varias estrategias:</p>
+<ol class="arabic simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">MutationObserver</span></code>:</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">createReactiveElement</span><span class="p">(</span><span class="nx">observable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">observable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Valor actual: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MutationObserver</span><span class="p">(</span><span class="nx">mutations</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">mutations</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">mutation</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mutation</span><span class="p">.</span><span class="nx">removedNodes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">node</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="c1">// Desuscribimos el observable cuando el elemento es eliminado</span>
+<span class="w">          </span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">          </span><span class="nx">observer</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">();</span><span class="w"> </span><span class="c1">// Detenemos el observer</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="c1">// Configuramos el observer para observar el padre del elemento</span>
+<span class="w">  </span><span class="nx">observer</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">childList</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">subtree</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">element</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este caso el observer escucha cuando se elimina ese elemento y fuerza su desuscripción.</p>
+<ol class="arabic simple" start="2">
+<li><p>Manualmente mediante una función:</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">createReactiveElement</span><span class="p">(</span><span class="nx">observable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">observable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Valor actual: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">element</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">dispose</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span><span class="w"> </span><span class="c1">// Desuscribimos el observable</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">element</span><span class="p">,</span><span class="w"> </span><span class="nx">dispose</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createReactiveElement</span><span class="p">(</span><span class="nx">myObservable</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+
+<span class="c1">// Luego, eliminamos el elemento y llamamos a dispose para desuscribirnos</span>
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">dispose</span><span class="p">();</span><span class="w"> </span><span class="c1">// Cancelamos la suscripción</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lo malo de esa opción és que hay que recordar ejecutar la función.</p>
+<ol class="arabic simple" start="3">
+<li><p>Eventos personalizados</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">createReactiveElement</span><span class="p">(</span><span class="nx">observable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">observable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Valor actual: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// Escuchar el evento personalizado para desuscribirse</span>
+<span class="w">  </span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;dispose&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">element</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Crear y añadir el elemento reactivo al DOM</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">reactiveElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createReactiveElement</span><span class="p">(</span><span class="nx">myObservable</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">reactiveElement</span><span class="p">);</span>
+
+<span class="c1">// Enviar el evento &#39;dispose&#39; antes de eliminar el elemento</span>
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">reactiveElement</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;dispose&#39;</span><span class="p">));</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">reactiveElement</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En este caso, aún siendo más flexible, hay que ejecutar dos funciones para eliminar un elemento.</p>
+<ol class="arabic simple" start="4">
+<li><p>Web Components</p></li>
+</ol>
+<p>Con los Web Components no hace falta saber cuando ni como se va a eliminar un elemento. Cambia mucho la forma de trabajar, pero es la más limpia:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">ReactiveElement</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">();</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;open&#39;</span><span class="w"> </span><span class="p">});</span><span class="w"> </span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;div&gt;Valor actual: --&lt;/div&gt;`</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Se llama cuando el componente es agregado al DOM</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">myObservable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Valor actual: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">disconnectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Se llama cuando el componente es removido del DOM</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span><span class="w"> </span><span class="c1">// Cancelamos la suscripción</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="operadores">
 <h2>Operadores<a class="headerlink" href="#operadores" title="Link to this heading">#</a></h2>
-<p>Los operadores en RxJS son funciones puras que toman un Observable, manipulan sus emisiones y devuelven otro Observable. Estos operadores permiten transformar y combinar Observables de manera sencilla y poderosa.</p>
+<p>Los operadores en RxJS son funciones puras que toman un Observable, manipulan sus emisiones y devuelven otro Observable. Estos operadores permiten transformar y combinar Observables de manera sencilla.</p>
 </section>
 <section id="pipe">
 <h2>Pipe<a class="headerlink" href="#pipe" title="Link to this heading">#</a></h2>
@@ -2256,24 +2311,13 @@ Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-operator">Pipeline Operator</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-y-tuplas">Records y Tuplas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoradores">Decoradores</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-decorador">Ejemplo de Decorador</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-grandes-funcionales">Proyectos Grandes Funcionales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-la-programacion-funcional">Problemas de la Programación Funcional</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-reactiva">Programación Reactiva</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-asincrona">Programación Asíncrona</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-reactivo">Paradigma Reactivo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-aplicaciones-web-reactivas">Ejemplos de Aplicaciones Web Reactivas</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streams">Streams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-reactivo">Paradigma Reactivo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rxjs">RxJS</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismo-unificado">Mecanismo Unificado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico">Ejemplo Básico</a></li>
@@ -2282,7 +2326,10 @@ Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observadores">Observadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-suscripciones">Múltiples Suscripciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-desuscripcion">La desuscripción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-desuscripcion">La desuscripción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desuscripciones-en-componentes-en-una-spa">Desuscripciones en componentes en una SPA</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipe">Pipe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-comunes">Operadores Comunes</a><ul class="nav section-nav flex-column">

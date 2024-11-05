@@ -414,11 +414,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-comunes-en-server-side-y-client-side">Tareas comunes en Server-side y Client-side</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-en-el-lado-del-cliente">JavaScript en el lado del cliente</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidad-y-validacion-html">Compatibilidad y Validación HTML</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seguridad-en-javascript">Seguridad en JavaScript</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-en-el-lado-del-cliente">JavaScript en el lado del cliente</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entornos-de-programacion-web-para-el-cliente">Entornos de Programación Web para el Cliente</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preparar-el-entorno-de-desarrollo">Preparar el Entorno de Desarrollo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-herramientas">Otras Herramientas</a></li>
@@ -427,18 +423,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-aplicaciones-web-segun-el-frontend">Tipos de Aplicaciones Web según el Frontend</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-de-las-aplicaciones-web">Evolución de las Aplicaciones Web</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-una-sola-pagina-spa">Aplicaciones de Una Sola Página (SPA)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-de-las-aplicaciones-web">Evolución de las Aplicaciones Web</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entre-la-pagina-web-y-la-app">Entre la Página Web y la APP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-bibliotecas">Las Bibliotecas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#los-frameworks">Los Frameworks</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-de-los-frameworks">Utilidad de los Frameworks</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-bibliotecas-y-frameworks">Obtención de Bibliotecas y Frameworks</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modas-y-tendencias">Modas y Tendencias</a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poner-la-web-en-produccion">Poner la Web en Producción</a></li>
 </ul>
 </li>
@@ -549,14 +535,10 @@ document.write(`
 </ul>
 </li>
 </ul>
-<section id="compatibilidad-y-validacion-html">
-<h4>Compatibilidad y Validación HTML<a class="headerlink" href="#compatibilidad-y-validacion-html" title="Link to this heading">#</a></h4>
-<p>Para evitar problemas de compatibilidad, el código HTML ha de ser válido. Se puede utilizar el validador de HTML del W3C (<a class="reference external" href="https://validator.w3.org/">https://validator.w3.org/</a>) para asegurarse de que el código cumpla con los estándares.</p>
-</section>
-<section id="seguridad-en-javascript">
-<h4>Seguridad en JavaScript<a class="headerlink" href="#seguridad-en-javascript" title="Link to this heading">#</a></h4>
 <p>JavaScript se ejecuta en un entorno seguro sin contacto directo con el sistema operativo del cliente. Implementa una “política del mismo origen”, lo que significa que solo tiene acceso a datos recibidos del mismo servidor desde el que fue cargado.</p>
-</section>
+<blockquote>
+<div><p>Para evitar problemas de compatibilidad, el código HTML ha de ser válido. Se puede utilizar el validador de HTML del W3C (<a class="reference external" href="https://validator.w3.org/">https://validator.w3.org/</a>) para asegurarse de que el código cumpla con los estándares.</p>
+</div></blockquote>
 </section>
 <section id="entornos-de-programacion-web-para-el-cliente">
 <h3>Entornos de Programación Web para el Cliente<a class="headerlink" href="#entornos-de-programacion-web-para-el-cliente" title="Link to this heading">#</a></h3>
@@ -603,9 +585,11 @@ document.write(`
 <section id="tipos-de-aplicaciones-web-segun-el-frontend">
 <h2>Tipos de Aplicaciones Web según el Frontend<a class="headerlink" href="#tipos-de-aplicaciones-web-segun-el-frontend" title="Link to this heading">#</a></h2>
 <p>El desarrollo de aplicaciones web ha evolucionado significativamente con el tiempo, y hoy en día existen diversas maneras de abordar el frontend. A continuación, exploraremos los diferentes tipos de aplicaciones web según las tecnologías de frontend que se utilicen, así como la evolución de las mismas.</p>
-<ol class="arabic simple">
-<li><p><strong>Con JavaScript ‘Vanilla’</strong>: Se refiere a la utilización de JavaScript puro sin ninguna biblioteca o framework adicional. Es una manera directa y eficiente de programar sobretodo cuando se trata de aplicaciones pequeñas y sencillas.</p></li>
+<ol class="arabic">
+<li><p><strong>Con JavaScript ‘Vanilla’</strong>: Se refiere a la utilización de JavaScript puro sin ninguna biblioteca o framework adicional. Es una manera directa de programar sobretodo cuando se trata de aplicaciones pequeñas.</p></li>
 <li><p><strong>Con Bibliotecas</strong>:</p>
+<p>Puede que no cambien la manera de programar y facilitan muchas tareas tediosas. Pero nos pueden mal acostumbrar. Hay muchas bibliotecas para cosas específicas que se convierten casi en imprescindibles en tareas complejas. Con ES6 algunas como JQuery o Lodash perdieron su importancia.</p>
+<p>Algunos ejemplos:</p>
 <ul class="simple">
 <li><p><strong>JQuery</strong>: Facilita la manipulación del DOM, eventos y AJAX.</p></li>
 <li><p><strong>Prototype</strong>: Simplifica las tareas de programación orientada a objetos en JavaScript.</p></li>
@@ -616,6 +600,7 @@ document.write(`
 </ul>
 </li>
 <li><p><strong>Con Frameworks</strong>:</p>
+<p>Facilitan mucho la programación rápida de páginas web. Cambian totalmente el paradigma de programación. Provocan una gran inercia al cambio y hacen las aplicaciones web dependientes del framework. Son muy utilizados hoy en dia por su eficiencia en temas como los componentes, rutas, comunicación con el servidor, motores de plantillas y, sobretodo, la reactividad:</p>
 <ul class="simple">
 <li><p><strong>Angular</strong>: Framework de JavaScript de Google para construir aplicaciones dinámicas de una sola página.</p></li>
 <li><p><strong>React</strong>: Aunque es una biblioteca, también se utiliza como framework cuando se combina con otras herramientas.</p></li>
@@ -624,6 +609,7 @@ document.write(`
 </ul>
 </li>
 <li><p><strong>Con Frameworks Full Stack</strong>:</p>
+<p>Se encargan tanto del backend como del frontend. Algunos implementan un backend que proporciona una API con un frontend tipo SPA y otras generan el HTML en el servidor y luego lo <code class="docutils literal notranslate"><span class="pre">hidratan</span></code> con javascript en el cliente. Este proceso de hidratación permite que las aplicaciones sean interactivas y respondan a la entrada del usuario sin necesidad de recargar la página completa.</p>
 <ul class="simple">
 <li><p><strong>Odoo</strong>: Plataforma de código abierto que proporciona un conjunto completo de aplicaciones empresariales.</p></li>
 <li><p><strong>Blitz</strong>: Framework de React basado en Next.js para aplicaciones de pila completa.</p></li>
@@ -632,32 +618,35 @@ document.write(`
 </ul>
 </li>
 </ol>
+<p>Tanto las bibliotecas como los frameworks se pueden obtener de varias maneras, algunas las veremos como ejemplos durante el libro:</p>
+<ul class="simple">
+<li><p><strong>Descarga directa</strong>: Descargar un archivo .js o un directorio comprimido de la web oficial y copiarlo al proyecto.</p></li>
+<li><p><strong>CDN</strong>: Utilizar un CDN directamente desde la web oficial.</p></li>
+<li><p><strong>Gestores de paquetes</strong>: Utilizar NPM o Yarn para gestionar dependencias.</p></li>
+</ul>
 <section id="evolucion-de-las-aplicaciones-web">
 <h3>Evolución de las Aplicaciones Web<a class="headerlink" href="#evolucion-de-las-aplicaciones-web" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Páginas Web Estáticas</strong>: Las primeras aplicaciones web eran simples páginas estáticas con hipervínculos.</p></li>
-<li><p><strong>Páginas Web Generadas por el Servidor</strong>: Con el tiempo, se introdujo un poco de JavaScript para mejorar la interacción.</p></li>
-<li><p><strong>Introducción de AJAX</strong>: Permite cargar o subir datos al servidor de manera asíncrona, mejorando la interactividad sin recargar la página.</p></li>
-<li><p><strong>Single Page Application (SPA)</strong>: Las aplicaciones de una sola página se comunican con el servidor usando JSON o XML, proporcionando una experiencia más fluida.</p></li>
-</ol>
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="_images/evolucionweb.png"><img alt="_images/evolucionweb.png" src="_images/evolucionweb.png" style="width: 338.0px; height: 145.0px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Evolución de las aplicaciones web.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<blockquote>
-<div><p>En la actualidad se pueden hacer páginas web de muchas maneras. En este libro, hacia el final, nos enfocamos más en imitar a los frameworks actuales, que suelen estar pensados para SPA con una API. No obstante, se pueden hacer páginas sólo con HTML estático, o generado una vez a partir de Markdown, como este mismo libro (Jekyll, Jupyter Books…), también se puede generar el HTML con PHP, Node, Java… O se puede tener un CMS como Wordpress y programar plugins. Se puede tener un CMS Headless o generada mediante Micro-Frontends. O aplicaciones progresivas PWA o Híbridas con Ionic y Cordova. Respecto a cómo servirlas, tenemos los hostings y servidores tradicionales o “Serverless”, plataformas “Low Code”… La lista no acaba y cada una de estas ideas tiene muchas más opciones.</p>
-</div></blockquote>
-<section id="aplicaciones-de-una-sola-pagina-spa">
-<h4>Aplicaciones de Una Sola Página (SPA)<a class="headerlink" href="#aplicaciones-de-una-sola-pagina-spa" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Páginas Web Estáticas</strong>: Las primeras aplicaciones web eran simples páginas estáticas con hipervínculos.</p></li>
+<li><p><strong>Páginas Web Generadas por el Servidor</strong>: Con el tiempo, se introdujo un poco de JavaScript para mejorar la interacción.</p></li>
+<li><p><strong>Introducción de AJAX</strong>: Permite cargar o subir datos al servidor de manera asíncrona, mejorando la interactividad sin recargar la página.</p></li>
+<li><p><strong>Single Page Application (SPA)</strong>: Las aplicaciones de una sola página se comunican con el servidor usando JSON o XML, proporcionando una experiencia más fluida.</p></li>
+</ol>
 <ul class="simple">
 <li><p><strong>SPA como sobreingeniería</strong>: En muchos casos, utilizar SPA puede complicar innecesariamente el desarrollo web. A continuación veremos la justificación para hacer web de esta manera.</p></li>
 <li><p><strong>Frecuencia de uso</strong>: Es importante considerar si la aplicación será utilizada constantemente o esporádicamente. Una aplicación web utilizada esporádicamente no debe ser muy pesada y es mejor que sea generada por el servidor o estática para mejorar el SEO. Si embargo, una aplicación web que el cliente mantiene siempre abierta, puede ser más agradable de usar si es una SPA.</p></li>
 <li><p><strong>Servidor vs Cliente</strong>: Crear el HTML y el estilo en el servidor puede ser menos complicado, pero en aplicaciones grandes, puede sobrecargar el servidor y dificultar la separación de la vista del modelo y controlador.</p></li>
 <li><p><strong>SPA en nuestro módulo</strong>: Optaremos por una SPA debido a que es más adecuado para el módulo que estamos desarrollando. Una SPA requiere saber construir elementos del DOM, comunicarse con el servidor mediante peticiones asíncronas con Javascript y manejar los eventos y la reactividad. Por tanto es la escusa perfecta para impartir nuestros contenidos.</p></li>
 </ul>
-</section>
+<blockquote>
+<div><p>En la actualidad se pueden hacer páginas web de muchas maneras. En este libro, hacia el final, nos enfocamos más en imitar a los frameworks actuales, que suelen estar pensados para SPA con una API. No obstante, se pueden hacer páginas sólo con HTML estático, o generado una vez a partir de Markdown, como este mismo libro (Jekyll, Jupyter Books…), también se puede generar el HTML con PHP, Node, Java… O se puede tener un CMS como Wordpress y programar plugins. Se puede tener un CMS Headless o generada mediante Micro-Frontends. O aplicaciones progresivas PWA o Híbridas con Ionic y Cordova. Respecto a cómo servirlas, tenemos los hostings y servidores tradicionales o “Serverless”, plataformas “Low Code”… La lista no acaba y cada una de estas ideas tiene muchas más opciones.</p>
+</div></blockquote>
 </section>
 <section id="entre-la-pagina-web-y-la-app">
 <h3>Entre la Página Web y la APP<a class="headerlink" href="#entre-la-pagina-web-y-la-app" title="Link to this heading">#</a></h3>
@@ -670,56 +659,17 @@ document.write(`
 <li><p><strong>Apps Quasi Nativas</strong>: Utilizan tecnologías como React Native o Flutter para acercarse al rendimiento de las aplicaciones nativas.</p></li>
 </ol>
 </section>
-<section id="las-bibliotecas">
-<h3>Las Bibliotecas<a class="headerlink" href="#las-bibliotecas" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Funcionalidades</strong>: Aportan funcionalidades específicas al lenguaje de programación.</p></li>
-<li><p><strong>Flexibilidad</strong>: No obligan a cambiar la manera de programar.</p></li>
-<li><p><strong>Simplificación</strong>: Facilitan la programación de tareas concretas.</p></li>
-<li><p><strong>Desventajas</strong>: Pueden crear dependencia en el programador.</p></li>
-<li><p><strong>Reemplazo</strong>: Algunas bibliotecas, como Underscore, Lodash o JQuery, han perdido relevancia con la introducción de ES6.</p></li>
-</ul>
-</section>
-<section id="los-frameworks">
-<h3>Los Frameworks<a class="headerlink" href="#los-frameworks" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Modificación</strong>: Cambian completamente la manera de programar.</p></li>
-<li><p><strong>Integración</strong>: Se encargan de plantillas, comunicaciones, enrutamientos, componentes, módulos, etc.</p></li>
-<li><p><strong>Curva de aprendizaje</strong>: Son complejos de aprender.</p></li>
-<li><p><strong>Eficiencia</strong>: Una vez dominados, hacen la programación más ágil y correcta.</p></li>
-<li><p><strong>Inercia</strong>: Pueden dificultar el cambio a otro framework.</p></li>
-<li><p><strong>Obsolescencia</strong>: Si el framework queda obsoleto, la web también.</p></li>
-</ul>
-<section id="utilidad-de-los-frameworks">
-<h4>Utilidad de los Frameworks<a class="headerlink" href="#utilidad-de-los-frameworks" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>Aplicaciones específicas</strong>: Son útiles si se desarrollan para una aplicación en particular.</p></li>
-<li><p><strong>Estándares</strong>: Son valiosos si permiten exportar componentes.</p></li>
-<li><p><strong>Valor añadido</strong>: Deben aportar algo único.</p></li>
-<li><p><strong>Aplicaciones no críticas</strong>: Son ideales para aplicaciones que no son críticas.</p></li>
-</ul>
-</section>
-<section id="obtencion-de-bibliotecas-y-frameworks">
-<h4>Obtención de Bibliotecas y Frameworks<a class="headerlink" href="#obtencion-de-bibliotecas-y-frameworks" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>Descarga directa</strong>: Descargar un archivo .js o un directorio comprimido de la web oficial y copiarlo al proyecto.</p></li>
-<li><p><strong>CDN</strong>: Utilizar un CDN directamente desde la web oficial.</p></li>
-<li><p><strong>Gestores de paquetes</strong>: Utilizar NPM o Yarn para gestionar dependencias.</p></li>
-</ul>
-</section>
-<section id="modas-y-tendencias">
-<h4>Modas y Tendencias<a class="headerlink" href="#modas-y-tendencias" title="Link to this heading">#</a></h4>
-<p>Las redes sociales están llenas de gente intentando vender su curso. En el mundo profesional hay mucha más gente trabajando silenciosa y eficazmente en productos de calidad y duraderos. Aunque los primeros tengan algo de razón en decir que PHP, JQuery o otros están obsoletos, el mundo laboral a veces dice lo contrario. Es necesario tomar cierta distancia para elegir la mejor tecnología para cada ocasión. (<a class="reference external" href="https://www.bitecode.dev/p/hype-cycles">https://www.bitecode.dev/p/hype-cycles</a>)</p>
-</section>
-</section>
 <section id="poner-la-web-en-produccion">
 <h3>Poner la Web en Producción<a class="headerlink" href="#poner-la-web-en-produccion" title="Link to this heading">#</a></h3>
 <p>Para que una web con HTML, CSS y Javascript funcione tan solo necesitamos un servidor web que sirva <code class="docutils literal notranslate"><span class="pre">estáticamente</span></code> estos ficheros cuando se le haga una petición HTTP. Este servidor suele estar accesible por Internet mediante SFTP, SSH o cualquier protocolo. Estos HTML, CSS y JS puede ser tratados de dos maneras:</p>
 <ol class="arabic simple">
 <li><p><strong>Método tradicional</strong>: Copiar todo el contenido de las carpetas al servidor alrededor del archivo index.html.</p></li>
-<li><p><strong>JavaScript Build Tool</strong>: Utilizar herramientas que compilan el código fuente, lo minifican, unifican, optimizan y comprimen para mejorar la velocidad de carga y evitar incompatibilidades entre navegadores.</p></li>
+<li><p><strong>JavaScript Build Tool</strong>: Utilizar herramientas que compilan el código fuente, lo minifican, unifican, optimizan y comprimen para mejorar la velocidad de carga y evitar incompatibilidades entre navegadores. Nosotros veremos <code class="docutils literal notranslate"><span class="pre">Vite</span></code>, pero es muy conocido <code class="docutils literal notranslate"><span class="pre">Webpack</span></code> también.</p></li>
 </ol>
 <p>Más adelante, en el capítulo del CI/CD, hablaremos de una metodología para automatizar todo el proceso. Con esta metodología podremos centrarnos en escribir código cómodamente mientras que nuestras herramientas lo prueban todo y lo ponen en producción.</p>
+<blockquote>
+<div><p>Las redes sociales están llenas de gente intentando vender su curso. En el mundo profesional hay mucha más gente trabajando silenciosa y eficazmente en productos de calidad y duraderos. Aunque los primeros tengan algo de razón en decir que PHP, JQuery o otros están obsoletos, el mundo laboral a veces dice lo contrario. Es necesario tomar cierta distancia para elegir la mejor tecnología para cada ocasión. (<a class="reference external" href="https://www.bitecode.dev/p/hype-cycles">https://www.bitecode.dev/p/hype-cycles</a>)</p>
+</div></blockquote>
 </section>
 </section>
 </section>
@@ -796,11 +746,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-comunes-en-server-side-y-client-side">Tareas comunes en Server-side y Client-side</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-en-el-lado-del-cliente">JavaScript en el lado del cliente</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidad-y-validacion-html">Compatibilidad y Validación HTML</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seguridad-en-javascript">Seguridad en JavaScript</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-en-el-lado-del-cliente">JavaScript en el lado del cliente</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entornos-de-programacion-web-para-el-cliente">Entornos de Programación Web para el Cliente</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preparar-el-entorno-de-desarrollo">Preparar el Entorno de Desarrollo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-herramientas">Otras Herramientas</a></li>
@@ -809,18 +755,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-aplicaciones-web-segun-el-frontend">Tipos de Aplicaciones Web según el Frontend</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-de-las-aplicaciones-web">Evolución de las Aplicaciones Web</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-una-sola-pagina-spa">Aplicaciones de Una Sola Página (SPA)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-de-las-aplicaciones-web">Evolución de las Aplicaciones Web</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entre-la-pagina-web-y-la-app">Entre la Página Web y la APP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-bibliotecas">Las Bibliotecas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#los-frameworks">Los Frameworks</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-de-los-frameworks">Utilidad de los Frameworks</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-bibliotecas-y-frameworks">Obtención de Bibliotecas y Frameworks</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modas-y-tendencias">Modas y Tendencias</a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poner-la-web-en-produccion">Poner la Web en Producción</a></li>
 </ul>
 </li>

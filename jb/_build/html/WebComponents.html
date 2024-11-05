@@ -466,7 +466,7 @@ document.write(`
 <div><p>En la definición que podemos encontrar en la web de MDN: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">https://developer.mozilla.org/en-US/docs/Web/API/Web_components</a>, no incorpora la reactividad, pero nosotros vamos a incorporarla para hacerlos más útiles en el curso.</p>
 </div></blockquote>
 <blockquote>
-<div><p>Llegado el momento de hacer Web Components desde 0 con “vanilla Javascript” nos podemos preguntar si no será mejor usar un framework. Intentemos resistir esa tentación, al menos para aprender, porque esos conocimientos nos permitirán entender profundamente cómo funciona, por ejemplo, Angular o React.</p>
+<div><p>Llegado el momento de hacer Web Components desde 0 con “vanilla Javascript” nos podemos preguntar si no será mejor usar un framework. Intentemos resistir esa tentación, al menos para aprender, porque esos conocimientos nos permitirán entender profundamente cómo funciona, por ejemplo, Angular o React. También hay frameworks especializados en crear Web Components como Lit: <a class="reference external" href="https://lit.dev/">https://lit.dev/</a></p>
 </div></blockquote>
 <section id="conceptos-iniciales">
 <h2>Conceptos iniciales<a class="headerlink" href="#conceptos-iniciales" title="Link to this heading">#</a></h2>
@@ -731,6 +731,9 @@ document.write(`
 <p>En el ejemplo anterior, la primera columna de la plantilla <code class="docutils literal notranslate"><span class="pre">tableBodyTR</span></code> desaparece por el innerHTML.</p>
 <blockquote>
 <div><p>Para usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> no es necesario estar en un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code>. Se puede usar en cualquier momento, por eso también está explicado en el capítulo del DOM.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> tiene mucho más sentido si parte del HTML se genera en el servidor. Este puede enviar las plantillas dentro del documento y estas ser extraidas y utilizadas en el cliente. Si hacemos una SPA totalmente generada en el cliente, puede que sea más rápido usar las funciones del DOM o <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">Literals</span></code>.</p>
 </div></blockquote>
 <section id="alternativa-con-template-literals">
 <h3>Alternativa con Template Literals<a class="headerlink" href="#alternativa-con-template-literals" title="Link to this heading">#</a></h3>

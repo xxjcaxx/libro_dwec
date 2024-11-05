@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -406,6 +406,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-los-pasos">Resumen de los pasos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">Configuración inicial</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vite">Vite</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vitest">Vitest</a></li>
@@ -453,6 +454,32 @@ document.write(`
 <blockquote>
 <div><p>El orden en que se realizan los pasos de este proyecto puede ser alterado. De hecho, el orden es un poco arbitrario porque es el que podríamos seguir en clase, no en un proyecto real. En clase se puede ir mejorando incrementalmente y hacer y deshacer. En un proyecto real comenzaríamos instalando todas las librerías, configurando los tests, linters, hooks, github actions y el despliegue automatizado antes de hacer la primera línea de código para ser más eficientes. También empezaríamos directamente con programación funcional y reactiva. Pero puede que todo ese entorno resulte demasiado denso para el alumnado que empieza. Así que comenzaremos con una configuración mínima y refactorizaremos en algunas ocasiones.</p>
 </div></blockquote>
+<section id="resumen-de-los-pasos">
+<h2>Resumen de los pasos<a class="headerlink" href="#resumen-de-los-pasos" title="Link to this heading">#</a></h2>
+<p>Es imposible establecer una guía universal para hacer proyectos. Pero estos pasos en este orden puede ser un buen punto de partida para no olvidar nada.</p>
+<ul class="simple">
+<li><p>Crear un repositorio GIT y un proyecto en alguna herramienta de gestión de proyectos como <code class="docutils literal notranslate"><span class="pre">Trello</span></code> o <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">Projects</span></code>.</p></li>
+<li><p>Crear una carpeta local y dentro clonar o configurar el repositorio.</p></li>
+<li><p>Suponiendo que ya tenemos un análisis de requisitos y un diseño de la base de datos: Configurar el backend, en nuestro caso <code class="docutils literal notranslate"><span class="pre">Supabase</span></code>. Crear todas las tablas y algunas RLS básicas.</p></li>
+<li><p>Crear un proyecto <code class="docutils literal notranslate"><span class="pre">Vite</span></code> y con la configuración requerida.</p></li>
+<li><p>Instalar <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> y configurarlo.</p></li>
+<li><p>Configurar <code class="docutils literal notranslate"><span class="pre">Vercel</span></code> para probar la puesta en producción.</p></li>
+<li><p>Configurar el repositorio, por ejemplo en <code class="docutils literal notranslate"><span class="pre">Github</span></code> con <code class="docutils literal notranslate"><span class="pre">Vercel</span></code> para comenzar con la integración continua desde el primer momento. (Se puede retrasar a cuando ya tengamos una primera versión)</p></li>
+<li><p>Configurar <code class="docutils literal notranslate"><span class="pre">Eslint</span></code>, <code class="docutils literal notranslate"><span class="pre">Prettier</span></code> y <code class="docutils literal notranslate"><span class="pre">Husky</span></code> junto a <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> para respetar el estilo y los tests en cada commit.</p></li>
+<li><p>Configurar una herramienta de integración continua como <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">Action</span></code> para testar en cada <code class="docutils literal notranslate"><span class="pre">Pull</span> <span class="pre">Request</span></code>.</p></li>
+<li><p>Comenzar a escribir los <code class="docutils literal notranslate"><span class="pre">springs</span></code> como <code class="docutils literal notranslate"><span class="pre">issues</span></code> del proyecto, en el caso de <code class="docutils literal notranslate"><span class="pre">Github</span></code>. De esta manera el equipo puede repartirse el trabajo, asignarse tareas y crear una rama para cada tarea.</p></li>
+<li><p>En este momento se empieza a programar. Podemos seguir este orden, en casa paso hay que escribir los test primero, opcionalmente siguiendo la metodología <code class="docutils literal notranslate"><span class="pre">TDD</span></code>:</p></li>
+<li><p>Creación de la definición de los modelos, es decir, estructuras de datos que representen los datos de la base de datos, las filas y las columnas. (En typescript las <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code>)</p></li>
+<li><p>Creación de las utilidades de comunicación con el backend y autenticación.</p></li>
+<li><p>Creación del HTML principal y de los componentes que tienen HTML casi estático como los menús, pies o la página inicial.</p></li>
+<li><p>Creación del <code class="docutils literal notranslate"><span class="pre">Router</span></code> y los componentes que representarán a las páginas.</p></li>
+<li><p>Creación de los componentes que serán las vistas de la aplicación.</p></li>
+<li><p>Creación de un gestor del estado de la aplicación. En nuestro caso podemos crear servicios que ‘inyectaremos’ en los componentes y usando <code class="docutils literal notranslate"><span class="pre">Subjects</span></code> de RxJS.</p></li>
+<li><p>Empezar a relacionar las vistas con los datos del servidor. Para ello se desarrollarán controladores que relacionarán las rutas y los eventos con peticiones al servidor y posterior actualización de las vistas.</p></li>
+<li><p>Antes o después se puede implementar la reactividad. Las vistas se suscriben a los servicios mediante <code class="docutils literal notranslate"><span class="pre">Observables</span></code> y se actualizan bidireccionalmente.</p></li>
+<li><p>Implementar la lógica de la aplicación en los servicios.</p></li>
+</ul>
+</section>
 <section id="configuracion-inicial">
 <h2>Configuración inicial<a class="headerlink" href="#configuracion-inicial" title="Link to this heading">#</a></h2>
 <p>En realidad, para empezar a hacer algo en Javascript en el frontend, tan solo necesitamos un archivo HTML y uno JS. Se puede empezar por ahí e ir incorporando las distintas librerias, bundlers y demás. También se puede empezar con el esqueleto del CI/CD completo y luego empezar a programar. Empezaremos de una manera “mixta”, configurando <code class="docutils literal notranslate"><span class="pre">Vite</span></code> y los archivos y servicios que nos afectan a la programación desde el principio e iremos instalando y configurando conforme sea necesario.</p>
@@ -1438,6 +1465,7 @@ npm<span class="w"> </span>run<span class="w"> </span>testrun
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-los-pasos">Resumen de los pasos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">Configuración inicial</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vite">Vite</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vitest">Vitest</a></li>
