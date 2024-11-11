@@ -417,7 +417,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#css-scopes-shadow-parts">CSS Scopes / Shadow Parts</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">Templates</a><ul class="nav section-nav flex-column">
@@ -435,10 +438,20 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-elementos-del-dom-como-hijos-del-web-component">Pasar elementos del DOM como hijos del Web Component</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mediante-eventos">Mediante Eventos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-de-la-aplicacion-con-componentes">Mantener el estado de la aplicación con componentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-de-la-aplicacion-con-componentes">Mantener el estado de la aplicación con componentes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-con-inyeccion-de-dependencias">Mantener el estado con Inyección de dependencias</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-la-inyeccion-de-dependencias">Introducción a la inyección de dependencias</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#di-en-web-components">DI en Web Components</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-con-un-context-provider">Mantener el estado con un Context Provider</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
 </ul>
             </nav>
         </div>
@@ -461,7 +474,7 @@ document.write(`
 <li><p>…</p></li>
 </ul>
 <p>En cualquiera de estas opciones, hay problemas para volver a renderizar cuando hay datos nuevos, para mantener a raya a las suscripciones, para gestionar el estado de la aplicación o para mantenerla suficientemente desacoplada. También es complicado reutilizar esas funciones en otros proyectos.</p>
-<p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> son una definición de la W3C para estandarizar lo que comenzaba a ser un aspecto común de los frameworks e intentar hacer componentes reutilizables para todos. Estos componentes se pueden hacer a partir de las mejoras de ES6 y HTML5.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> son una definición de la W3C para estandarizar lo que comenzaba a ser un aspecto común de los frameworks e intentar hacer componentes reutilizables para todos. Estos componentes se pueden hacer a partir de las mejoras de ES6 y HTML5. Se trata de una tecnología base que no depende de ningúna librería o framework. Aunque las librerías y frameworks pueden hacer uso de ellos para ampliarlos o mejorar la facilidad de uso.</p>
 <blockquote>
 <div><p>En la definición que podemos encontrar en la web de MDN: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">https://developer.mozilla.org/en-US/docs/Web/API/Web_components</a>, no incorpora la reactividad, pero nosotros vamos a incorporarla para hacerlos más útiles en el curso.</p>
 </div></blockquote>
@@ -636,10 +649,12 @@ document.write(`
 <section id="estilos-en-shadow-dom">
 <h3>Estilos en shadow DOM<a class="headerlink" href="#estilos-en-shadow-dom" title="Link to this heading">#</a></h3>
 <p>Para dar estilo a un shadow DOM se puede hacer modificando <code class="docutils literal notranslate"><span class="pre">.style...</span></code> en los elementos hijos, poniendo la etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> y escribiendo el CSS ahí mismo o importando los ficheros CSS.</p>
-<p>Los estilos generales no se aplican a los elementos dentro del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code>.  En general es positivo que los estilos del DOM principal no afecten a los Web components. Esto los hace más robustos para poderlos reutilizar y que siempre se vean igual. También hace que sus estilos no puedan contaminar los de la web principal. No obstante, si estamos usando, por ejemplo, <code class="docutils literal notranslate"><span class="pre">Boostrap</span></code> tanto en el componente como en la web en general, podemos aplicar alguna de las técnicas que explicaremos a continuación:</p>
+<p>Los estilos generales no se aplican a los elementos dentro del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code>. En general es positivo que los estilos del DOM principal no afecten a los Web components. Esto los hace más robustos para poderlos reutilizar y que siempre se vean igual. También hace que sus estilos no puedan contaminar los de la web principal. No obstante, si estamos usando, por ejemplo, <code class="docutils literal notranslate"><span class="pre">Boostrap</span></code> tanto en el componente como en la web en general, podemos aplicar alguna de las técnicas que explicaremos a continuación:</p>
 <p>Podemos usar un código como este en la creación del componente para que adopte las reglas del documento:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span><span class="w">        </span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">rules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">].</span><span class="nx">flatMap</span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">s</span><span class="p">.</span><span class="nx">cssRules</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">cssText</span><span class="p">)).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">rules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">]</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">s</span><span class="p">.</span><span class="nx">cssRules</span><span class="p">].</span><span class="nx">map</span><span class="p">((</span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">cssText</span><span class="p">))</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">);</span>
 <span class="nx">adoptedStyleSheets</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">rules</span><span class="p">);</span>
 <span class="nx">shadow</span><span class="p">.</span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">adoptedStyleSheets</span><span class="p">];</span>
 </pre></div>
@@ -647,9 +662,9 @@ document.write(`
 <p>Aquí se ha obtenido la lista de reglas de todas las hojas de estilo y se han añadido al <code class="docutils literal notranslate"><span class="pre">shadow</span></code>. Para ello hay que transformar mediante flatMap y demás la lista de estilos, dentro de ellos las reglas y dentro las reglas en string, crear un <code class="docutils literal notranslate"><span class="pre">CSSStyleSheet</span></code> personalizado y añadir todas las reglas.</p>
 <p>También se podrían buscar solo las reglas de un determinado tipo, una regla en concreto o las que vienen en un fichero.</p>
 <p>En el caso de usar <code class="docutils literal notranslate"><span class="pre">Vite</span> <span class="pre">y</span> <span class="pre">Bootstrap</span></code>, podemos importar el css con <code class="docutils literal notranslate"><span class="pre">?inline</span></code>, lo cual importa el texto del css y no lo inyecta en la web (<a class="reference external" href="https://vitejs.dev/guide/features#disabling-css-injection-into-the-page">https://vitejs.dev/guide/features#disabling-css-injection-into-the-page</a>). Luego ese texto se puede usar tal cual en la plantilla. Observa el ejemplo:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">bootstrap</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;bootstrap&#39;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;./styles.scss&#39;</span>
-<span class="k">import</span><span class="w"> </span><span class="nx">styles</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./styles.scss?inline&quot;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">bootstrap</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;./styles.scss&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">styles</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./styles.scss?inline&quot;</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#host&quot;</span><span class="p">);</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">shadow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">host</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="w"> </span><span class="p">});</span>
@@ -668,6 +683,34 @@ document.write(`
 <span class="nx">shadow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">span</span><span class="p">);</span>
 </pre></div>
 </div>
+<section id="css-scopes-shadow-parts">
+<h4>CSS Scopes / Shadow Parts<a class="headerlink" href="#css-scopes-shadow-parts" title="Link to this heading">#</a></h4>
+<p>Si usamos en css la etiqueta en concreto si les afecta el css:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">custom-element</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Para acceder desde dentro del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code> al elemento que lo contiene, que es el <code class="docutils literal notranslate"><span class="pre">custom</span> <span class="pre">element</span></code> se puede usar <code class="docutils literal notranslate"><span class="pre">:host</span></code>, <code class="docutils literal notranslate"><span class="pre">host()</span></code> y <code class="docutils literal notranslate"><span class="pre">:host-context()</span></code>:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="nd">host</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">span</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="w">  </span><span class="k">vertical-align</span><span class="p">:</span><span class="w"> </span><span class="kc">super</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="kc">small</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 <section id="templates">
@@ -751,6 +794,7 @@ document.write(`
 <li><p>Mediante propiedades o métodos.</p></li>
 <li><p>Mediante Observables (RxJS).</p></li>
 <li><p>Elementos hijos con <slot></p></li>
+<li><p>Custom Events</p></li>
 </ul>
 <section id="constructor-de-los-componentes">
 <h3>Constructor de los componentes<a class="headerlink" href="#constructor-de-los-componentes" title="Link to this heading">#</a></h3>
@@ -964,6 +1008,12 @@ document.write(`
     <span class="p">&lt;/</span><span class="nt">custom-badge</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="mediante-eventos">
+<h3>Mediante Eventos<a class="headerlink" href="#mediante-eventos" title="Link to this heading">#</a></h3>
+<p>Puesto que los componentes pueden emitir eventos, esto se puede usar para crear eventos personalizados para enviar información a los componentes padres. Incluso se puede hacer que un Web Component escuche los eventos en <code class="docutils literal notranslate"><span class="pre">document</span></code> para enviar información de unos componentes a otros.</p>
+<p>Veremos un ejemplo en el apartado de mantener el estado de la aplicación.</p>
 <p>Como hay muchas opciones, podemos ver esta tabla comparativa:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1025,10 +1075,16 @@ document.write(`
 <td><p>No. Solo disponible después de conexión al DOM</p></td>
 <td><p>Sí. Permite diseñar estructuras de componente con hijos o <code class="docutils literal notranslate"><span class="pre">slot</span></code></p></td>
 </tr>
+<tr class="row-odd"><td><p><strong>Eventos personalizados</strong></p></td>
+<td><p>Fácil de usar en HTML</p></td>
+<td><p>Media-Alta. Permite estructuras complejas usando HTML o Custom Elements</p></td>
+<td><p>Media. Hay que implementar los eventos y escuchar otros eventos</p></td>
+<td><p>No.</p></td>
+<td><p>Sí.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
-</section>
 </section>
 </section>
 <section id="mantener-el-estado-de-la-aplicacion-con-componentes">
@@ -1040,6 +1096,153 @@ document.write(`
 </figcaption>
 </figure>
 <p>Mantener el estado es complejo. Podemos hechar mano de patrones de diseño. Por ejemplo, podemos centralizar el estado en un <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> Observable y que todos los componentes se suscriban. Esto los hace muy acoplados con el estado global y puede ser complejo de gestionar en aplicaciones grandes. La solución puede ser usar la inyección de dependencias al construir el componente y así seguir manteniendo la aplicación desacoplada. Si optamos por esa alternativa sólo podemos crear los componentes por Javascript, ya que necesitamos usar el <code class="docutils literal notranslate"><span class="pre">constructor</span></code>.</p>
+<section id="mantener-el-estado-con-inyeccion-de-dependencias">
+<h3>Mantener el estado con Inyección de dependencias<a class="headerlink" href="#mantener-el-estado-con-inyeccion-de-dependencias" title="Link to this heading">#</a></h3>
+<p>El framework <code class="docutils literal notranslate"><span class="pre">Angular</span></code> utiliza servicios que inyecta en los componentes. Con Javascript vanilla se puede conseguir algo similar.</p>
+<section id="introduccion-a-la-inyeccion-de-dependencias">
+<h4>Introducción a la inyección de dependencias<a class="headerlink" href="#introduccion-a-la-inyeccion-de-dependencias" title="Link to this heading">#</a></h4>
+<p>Dejemos por un momento los Web Components para explicar la base teórica de la <code class="docutils literal notranslate"><span class="pre">DI</span></code> (Dependency injection). Supongamos que tenemos estas dos clases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nx">Api</span><span class="p">{</span>
+<span class="w">        </span><span class="kr">constructor</span><span class="p">(){}</span>
+<span class="w">        </span><span class="nx">post</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Api post&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nx">Order</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">constructor</span><span class="p">(){</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Api</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">makeOrder</span><span class="p">(){</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Order</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">order</span><span class="p">.</span><span class="nx">makeOrder</span><span class="p">();</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Api post
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los problemas de este enfoque son: dificultad para hacer pruebas (habrá que simular o interceptar métodos de la API antes de las llamadas reales) y poca flexibilidad. Si la clase de API se usa en varios servicios (como pedidos, carrito, usuario), reemplazarla por otra (por ejemplo, para cambiar de HTTP a WebSockets) implicaría modificar cada parte del código que la usa. La inyección de dependencias y un contenedor DI resolverían estos problemas al permitir una configuración declarativa que especifica las dependencias que cada clase debe usar.</p>
+<p>La siguiente aproximación puede ser:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nx">Api</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="nx">post</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Api post&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nx">Order</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">api</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">makeOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Order</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Api</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">order</span><span class="p">.</span><span class="nx">makeOrder</span><span class="p">();</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Api post
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso, la clase order ya no gestiona la creación de su dependencia. El siguiente problema es que se pueden crear muchas instancias de la Api por distintos componentes y si el servicio mantiene el estado puede ser un problema tener varios estados. Mediante el patrón <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> se consigue tener un sólo estado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nx">Api</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">        </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">Api</span><span class="p">.</span><span class="nx">instance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">Api</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">Api</span><span class="p">.</span><span class="nx">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">post</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Api post&quot;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nx">Order</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">api</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">makeOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Order</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Api</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">order</span><span class="p">.</span><span class="nx">makeOrder</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">order2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Order</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Api</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">order2</span><span class="p">.</span><span class="nx">makeOrder</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">order</span><span class="p">.</span><span class="nx">makeOrder</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">order2</span><span class="p">.</span><span class="nx">makeOrder</span><span class="p">();</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Api post <span class=" -Color -Color-Yellow">1</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Api post <span class=" -Color -Color-Yellow">2</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Api post <span class=" -Color -Color-Yellow">3</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Api post <span class=" -Color -Color-Yellow">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aún tenemos el problema de tener que ir construyendo <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Api()</span></code> en muchos sitios. En caso de que el constructor de <code class="docutils literal notranslate"><span class="pre">Api</span></code>necesite parámetros, hay que ir repitiendo por todo el código y es difícil de mantener. Para solucionar este problema podemos recurrir al patrón <code class="docutils literal notranslate"><span class="pre">Factory</span></code> y centralizar la creación de objetos o usar técnicas más avanzadas como <code class="docutils literal notranslate"><span class="pre">proxies</span></code> (tutorial con proxies: <a class="reference external" href="https://medium.com/&#64;sasha.kub95/dependency-injection-di-and-di-container-with-vanilla-javascript-adb888498bd">https://medium.com/&#64;sasha.kub95/dependency-injection-di-and-di-container-with-vanilla-javascript-adb888498bd</a> )</p>
+</section>
+<section id="di-en-web-components">
+<h4>DI en Web Components<a class="headerlink" href="#di-en-web-components" title="Link to this heading">#</a></h4>
+<p>En los Web Components contamos con una dificultad extra. Puesto que podemos necesitar crearlos sin javascript directamente en HTML, no podemos llamar a su constructor explícitamente para inyectarle las dependencias.</p>
+<p>Una de las posibles soluciones es usar un contenedor global de dependencias. Este puede estar disponible para todos los componentes. Los componentes dependen del contenedor para acceder a sus servicios. Si bien el contenedor centraliza las dependencias y simplifica la gestión, esto puede crear un acoplamiento con el propio contenedor, haciéndolo menos flexible si se necesita cambiar la estrategia de inyección.</p>
+<p>Ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">contenedorDependencias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">apiService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ApiService</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">logService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">LogService</span><span class="p">();</span>
+
+<span class="nx">contenedorDependencias</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;apiService&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">apiService</span><span class="p">);</span>
+<span class="nx">contenedorDependencias</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;logService&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">logService</span><span class="p">);</span>
+
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">ComponenteUsuario</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Obtenemos el servicio necesario del contenedor</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">apiService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">contenedorDependencias</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">api_service</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">logService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">contenedorDependencias</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">log_service</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
+
+<span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;componente-usuario&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">ComponenteUsuario</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">componente-usuario</span> <span class="na">data-api_service</span><span class="o">=</span><span class="s">&quot;apiService&quot;</span> <span class="na">data-log_service</span><span class="o">=</span><span class="s">&quot;logService&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">componente-usuario</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Este enfoque te permite manejar las dependencias de manera flexible y desacoplada usando un contenedor <code class="docutils literal notranslate"><span class="pre">Map</span></code>. Al utilizar <code class="docutils literal notranslate"><span class="pre">dataset</span></code> para especificar las claves de dependencia en HTML, se puede reutilizar el componente <code class="docutils literal notranslate"><span class="pre">ComponenteUsuario</span></code> en diferentes contextos sin modificar su código interno.</p>
+</section>
+</section>
+<section id="mantener-el-estado-con-un-context-provider">
+<h3>Mantener el estado con un Context Provider<a class="headerlink" href="#mantener-el-estado-con-un-context-provider" title="Link to this heading">#</a></h3>
 <p>Por otro lado, podemos hacer que el estado se comunique entre componentes hijos y padres a través de atributos o propiedades (de padres a hijos) o eventos (de hijos a padres). Este enfoque tiene el problema de tener que pasar atributos que no necesitan los hijos intermedios.</p>
 <p>Para evitar lo que en <code class="docutils literal notranslate"><span class="pre">react</span></code> llaman el <code class="docutils literal notranslate"><span class="pre">Prop</span> <span class="pre">Drilling</span></code> podemos centralizar el estado de alguna manera (Objetos, Sets, Maps, Observables, Redux…) y hacerlo accesible desde un componente que los contenga a todos.</p>
 <p>Para hacer que algo que está en el primer nivel del DOM pueda compartir el estado con cualquier hijo se puede hacer con eventos y callblacks. El elemento hijo que necesite consultar el estado, puede enviar un evento y en el mensaje del evento incorporar un callback. El elemento que lo atienda (<code class="docutils literal notranslate"><span class="pre">context</span> <span class="pre">provider</span></code>), ejecutará ese callback  así le pasará el estado al elemento que ha lanzado el evento.</p>
@@ -1133,6 +1336,7 @@ document.write(`
 </pre></div>
 </div>
 <p>En este artículo lo explican con detalle sin usar RxJS: <a class="reference external" href="https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/">https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/</a></p>
+<p>En el ejemplo no es necesario porque el evento es enviado desde fuera del shadow dom, pero si queremos que el evento de dentro se expanda, hay que añadir <code class="docutils literal notranslate"><span class="pre">composed:</span> <span class="pre">true</span></code> y eso hará que salga del shadow dom.</p>
 <p>Veamos esta tabla comparativa:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1196,6 +1400,7 @@ document.write(`
 <li><p><strong>Servicio Global</strong>: Útil en aplicaciones pequeñas donde la simplicidad es más importante que la modularidad o el desacoplamiento. Es un buen enfoque si el servicio es fundamental para toda la aplicación (por ejemplo, un usuario autenticado) y se usará de manera uniforme en todos los componentes.</p></li>
 <li><p><strong>Context Provider</strong>: Aporta un buen equilibrio entre desacoplamiento y accesibilidad en aplicaciones con jerarquías complejas de componentes. Es adecuado cuando varios componentes deben compartir un estado, pero solo dentro de una sección de la aplicación (por ejemplo, el estado de un tema visual en una subaplicación).</p></li>
 </ul>
+</section>
 </section>
 <section id="ejemplo-completo">
 <h2>Ejemplo completo<a class="headerlink" href="#ejemplo-completo" title="Link to this heading">#</a></h2>
@@ -1377,6 +1582,14 @@ Esta función ya registra el componente.</p>
 </pre></div>
 </div>
 <p>Este código suscribe el subject interno del componente a un observable externo y esto provoca todos los cambios reactivamente.</p>
+</section>
+<section id="conclusiones">
+<h2>Conclusiones<a class="headerlink" href="#conclusiones" title="Link to this heading">#</a></h2>
+<p>Como se ve en todo este capítulo, hay muchas opciones para hacer Web Components. En la práctica se vuelve casi imprescindible para proyectos grandes y para reutilizar dentro del mismo proyecto o en otros. Se han mencionado alternativas a todo y ventajas y desventajas, pero no una guía definitiva porque no la hay, depende del tipo de proyecto. Así que vamos a hacer una breve reseña de cada técnica y el tipo de web adecuado:</p>
+<p>Para una web estática en HTML que necesite Web Components se puede usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>. En cuanto a la comunicación y el estado de la aplicación, como se supone que vienen del servidor no hace falta mucha sofisticación. Tal vez pasar los datos por atributos o dataset. Puede ser útil hacer Web Components con Shadow DOM que se puedan reutilizar en otras webs.</p>
+<p>Para una web generada en el servidor con PHP, Python, Java, Node… y “hidratada” con javascript, también se puede usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> generados por el servidor. En este caso ya puede ser que necesitemos usar propiedades o observables para lograr la reactividad. También hay que plantearse si gestionar el estado de forma sofisticada.</p>
+<p>Para una SPA que consume los datos en formato JSON de una API, sería mejor usar <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">literals</span></code> o <code class="docutils literal notranslate"><span class="pre">document.createElement</span></code> y el resto de funciones para generar dinámicamente los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code>. Puesto que no es necesario que se pongan en el HTML, lo podemos crear diréctamente en JS y así poder asignarle propiedades más que atributos o data. También hay que mantener muy bien el estado de la aplicación. Para ello o usamos servicios con inyección de dependencias o context providers.</p>
+<p>En cuanto a los estilos, ya depende de la reusabilidad de los componentes la decisión de implementar <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Dom</span></code> o depender de estilos globales.</p>
 <p>Lecturas:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components:">https://developer.mozilla.org/en-US/docs/Web/API/Web_components:</a> Guia principal de referencia.</p></li>
@@ -1463,7 +1676,10 @@ Esta función ya registra el componente.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#css-scopes-shadow-parts">CSS Scopes / Shadow Parts</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">Templates</a><ul class="nav section-nav flex-column">
@@ -1481,10 +1697,20 @@ Esta función ya registra el componente.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pasar-elementos-del-dom-como-hijos-del-web-component">Pasar elementos del DOM como hijos del Web Component</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mediante-eventos">Mediante Eventos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-de-la-aplicacion-con-componentes">Mantener el estado de la aplicación con componentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-de-la-aplicacion-con-componentes">Mantener el estado de la aplicación con componentes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-con-inyeccion-de-dependencias">Mantener el estado con Inyección de dependencias</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-la-inyeccion-de-dependencias">Introducción a la inyección de dependencias</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#di-en-web-components">DI en Web Components</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-el-estado-con-un-context-provider">Mantener el estado con un Context Provider</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
 </ul>
   </nav></div>
 

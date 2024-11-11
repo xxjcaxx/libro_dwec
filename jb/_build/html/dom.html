@@ -188,7 +188,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -421,7 +421,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
 </ul>
 </li>
@@ -571,7 +571,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">getElementsByTagName(tag)</span></code>: Encuentra todos los elementos con un nombre de etiqueta específico.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">getElementsByName(name)</span></code>: Encuentra todos los elementos con un nombre especificado.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">querySelector(selector)</span></code>: Devuelve el primer elemento que coincide con un selector CSS.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">querySelectorAll(selector)</span></code>: Devuelve todos los elementos que coinciden con un selector CSS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">querySelectorAll(selector)</span></code>: Devuelve un <code class="docutils literal notranslate"><span class="pre">Nodelist</span></code> de todos los elementos que coinciden con un selector CSS.</p></li>
 </ul>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;exampleId&#39;</span><span class="p">);</span>
 <span class="kd">let</span><span class="w"> </span><span class="nx">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
@@ -580,6 +580,7 @@ document.write(`
 <span class="kd">let</span><span class="w"> </span><span class="nx">allElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.exampleClass&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>El resultado de los métodos que encuentran más de un nodo es un <code class="docutils literal notranslate"><span class="pre">HTMLCollection</span></code> o un <code class="docutils literal notranslate"><span class="pre">NodeList</span></code> . Si queremos tratarlo como un array hay que convertirlo con <code class="docutils literal notranslate"><span class="pre">Array.from()</span></code> o <code class="docutils literal notranslate"><span class="pre">[...HTMLCollection]</span></code>.</p>
 <p>A menudo, necesitamos acceder a un nodo específico a partir de uno ya existente en el DOM. Para esto, podemos utilizar los siguientes métodos aplicados a un elemento del árbol DOM:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">elemento.parentElement</span></code>: retorna el elemento padre del nodo actual.</p></li>
@@ -618,7 +619,7 @@ document.write(`
 <p>Una vez que hemos encontrado los nodos, podemos modificarlos. Algunos métodos útiles incluyen:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.innerHTML</span></code>, <code class="docutils literal notranslate"><span class="pre">.innerText</span></code>, <code class="docutils literal notranslate"><span class="pre">.outerHTML</span></code>: Para cambiar el contenido HTML o texto de un elemento.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.insertAdjacentHTML(position,</span> <span class="pre">text)</span></code>: Inserta texto HTML en una posición específica.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.insertAdjacentHTML(position,</span> <span class="pre">text)</span></code>: Inserta texto HTML en una posición específica. <a class="reference external" href="https://lenguajejs.com/dom/crear/insertadjacent-api/">https://lenguajejs.com/dom/crear/insertadjacent-api/</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.append(content,</span> <span class="pre">element)</span></code>, <code class="docutils literal notranslate"><span class="pre">.prepend(content,</span> <span class="pre">element)</span></code>: Añade contenido al principio o al final de un elemento.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.after()</span></code>, <code class="docutils literal notranslate"><span class="pre">.before()</span></code>: Inserta un elemento antes o después del elemento actual.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.cloneNode(deep)</span></code>: Clona un nodo, con o sin sus hijos.</p></li>
@@ -796,8 +797,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="creacion-de-elementos-interpolaciones-y-wrapper">
-<h3>Creación de Elementos: Interpolaciones y Wrapper<a class="headerlink" href="#creacion-de-elementos-interpolaciones-y-wrapper" title="Link to this heading">#</a></h3>
+<section id="creacion-de-elementos-interpolaciones-wrapper-fragments">
+<h3>Creación de Elementos: Interpolaciones, Wrapper, fragments<a class="headerlink" href="#creacion-de-elementos-interpolaciones-wrapper-fragments" title="Link to this heading">#</a></h3>
 <p>Podemos usar funciones para extraer e implementar interpolaciones en template literals.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">extractInterpolations</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\{\{([^\{\}]*)\}\}/g</span><span class="p">;</span>
@@ -828,6 +829,36 @@ document.write(`
 </pre></div>
 </div>
 <p>Este ejemplo es un poco más complicado de lo que se espera poder hacer a estas alturas. No obstante, es interesante intentar entender su funcionamiento. En él se usan <code class="docutils literal notranslate"><span class="pre">{{}}</span></code> como interpolaciones como en <code class="docutils literal notranslate"><span class="pre">Angular</span></code>. Esta puede ser una base para hacer un motor de plantillas como tienen los frameworks. Por otro lado, se crea un div que actua de <code class="docutils literal notranslate"><span class="pre">Wrapper</span></code>, és dedir, que envuelve el verdadero elemento para poder trabajar sólo con strings hasta el final, pero retornar un <code class="docutils literal notranslate"><span class="pre">Element</span></code>, gracias a <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>.</p>
+<p>Como mejora al ejemplo anterior, el <code class="docutils literal notranslate"><span class="pre">Wrapper</span></code> puede ser un <code class="docutils literal notranslate"><span class="pre">fragment</span></code>. Este tiene mejor rendimiento, no solo permite sacar el primer elemento hijo, por lo que no necesitamos un div que los contenga y no genera un nodo adicional. Es muy eficiente insertando múltiples nodos, para insertar en bucle.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">renderComments</span><span class="p">(</span><span class="nx">comments</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fragment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createDocumentFragment</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">comments</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">comment</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">commentElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">commentElement</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;comment&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">commentElement</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            &lt;h4&gt;</span><span class="si">${</span><span class="nx">comment</span><span class="p">.</span><span class="nx">author</span><span class="si">}</span><span class="sb">&lt;/h4&gt;</span>
+<span class="sb">            &lt;p&gt;</span><span class="si">${</span><span class="nx">comment</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span><span class="sb">&lt;/p&gt;</span>
+<span class="sb">            &lt;time&gt;</span><span class="si">${</span><span class="nx">comment</span><span class="p">.</span><span class="nx">date</span><span class="si">}</span><span class="sb">&lt;/time&gt;</span>
+<span class="sb">        `</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">fragment</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">commentElement</span><span class="p">);</span><span class="w"> </span><span class="c1">// Añadir cada comentario al fragmento, no al DOM</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="nx">fragment</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Datos de ejemplo</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">comments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;¡Buen artículo!&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-11-11&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Gracias por la información.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-11-10&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Marta&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Me ha resultado muy útil.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-11-09&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// Llamada a la función para renderizar los comentarios</span>
+<span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;comments-section&#39;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">renderComments</span><span class="p">(</span><span class="nx">comments</span><span class="p">));</span><span class="w"> </span>
+<span class="w"> </span><span class="c1">// Insertar todos los comentarios a la vez;</span>
+</pre></div>
+</div>
 </section>
 <section id="creacion-de-elementos-con-template">
 <h3>Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code><a class="headerlink" href="#creacion-de-elementos-con-template" title="Link to this heading">#</a></h3>
@@ -1871,7 +1902,7 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-y-wrapper">Creación de Elementos: Interpolaciones y Wrapper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
 </ul>
 </li>
