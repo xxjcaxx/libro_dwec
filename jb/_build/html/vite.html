@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -434,14 +434,14 @@ document.write(`
 <h1>Vite<a class="headerlink" href="#vite" title="Link to this heading">#</a></h1>
 <section id="frontend-building-systems">
 <h2>Frontend Building Systems<a class="headerlink" href="#frontend-building-systems" title="Link to this heading">#</a></h2>
-<p>Los desarrolladores escriben JavaScript; los navegadores ejecutan JavaScript. Fundamentalmente, no es necesario un paso de compilación en el desarrollo frontend. Entonces, ¿por qué tenemos un paso de compilación en el frontend moderno?</p>
+<p>Los/as desarrolladores/as escriben JavaScript; los navegadores ejecutan JavaScript. Fundamentalmente, no es necesario un paso de compilación en el desarrollo frontend. Entonces, ¿por qué tenemos un paso de compilación en el frontend moderno?</p>
 <p>A medida que los proyectos de frontend crecen y la ergonomía del desarrollador se vuelve más importante, enviar el código fuente de JavaScript directamente al cliente conduce a dos problemas principales:</p>
 <ol class="arabic simple">
 <li><p><strong>Características del Lenguaje No Soportadas</strong>: Debido a que JavaScript se ejecuta en el navegador, y hay muchos navegadores con distintas versiones, cada característica del lenguaje que se utiliza reduce la cantidad de clientes que pueden ejecutar ese JavaScript. Además, extensiones del lenguaje como JSX no son JavaScript válido y no se ejecutarán en ningún navegador.</p></li>
 <li><p><strong>Rendimiento</strong>: El navegador debe solicitar cada archivo JavaScript individualmente. En un código grande, esto puede resultar en miles de solicitudes HTTP para renderizar una sola página. En el pasado, antes de <code class="docutils literal notranslate"><span class="pre">HTTP/2</span></code>, esto también resultaba en miles de intercambios TLS.</p></li>
 </ol>
-<p>Además, pueden ser necesarios varios viajes de red secuenciales antes de que todo el JavaScript esté cargado. Por ejemplo, si index.js importa page.js y page.js importa button.js, se necesitan tres viajes de red secuenciales para cargar completamente el JavaScript. Esto se llama el problema del “waterfall”.</p>
-<p>Los archivos fuente también pueden ser innecesariamente grandes debido a nombres de variables largos y caracteres de indentación de espacio en blanco, aumentando el uso de ancho de banda y el tiempo de carga de la red.</p>
+<p>Además, pueden ser necesarios varias transferencias secuenciales antes de que todo el JavaScript esté cargado. Por ejemplo, si index.js importa page.js y page.js importa button.js, se necesitan tres transferencias para cargar completamente el JavaScript. Esto se llama el problema del “waterfall”.</p>
+<p>Los archivos fuente también pueden ser innecesariamente grandes debido a nombres de variables largos y caracteres de indentación, aumentando el tiempo de carga de la red.</p>
 <p>Los sistemas de construcción frontend procesan el código fuente y emiten uno o más archivos JavaScript optimizados para enviarlos al navegador. El resultado distribuible suele ser ilegible para los humanos.</p>
 <p>Los sistemas de construcción frontend generalmente incluyen tres pasos: <code class="docutils literal notranslate"><span class="pre">transpilación</span></code>, <code class="docutils literal notranslate"><span class="pre">empaquetado</span></code> y <code class="docutils literal notranslate"><span class="pre">minificación</span></code>.</p>
 <p>Algunas aplicaciones no necesitan los tres pasos. Por ejemplo, las bases de código más pequeñas pueden omitir el empaquetado o la minificación, y los servidores de desarrollo pueden saltarse estos pasos por motivos de rendimiento. Se pueden agregar pasos personalizados adicionales.</p>

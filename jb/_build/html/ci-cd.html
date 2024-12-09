@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="promesas.html">Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
@@ -407,7 +407,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-tipicos-en-el-desarrollo-web">Pasos Típicos en el Desarrollo Web</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-mediante-linea-de-comandos">Vercel mediante Línea de comandos</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-y-formatting">Linting y Formatting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit Testing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-los-tests">Instalar los tests</a></li>
@@ -465,12 +468,26 @@ document.write(`
 <div><p>Hay muchas alternativas de este estilo como Firebase, Netlify, Heroku…</p>
 </div></blockquote>
 <p>Es muy sencillo darse de alta con el usuario de Github. De esta manera, también se queda enlazado después.</p>
-<p>A continuación hay que instalar el CLI y dar de alta el proyecto:</p>
+<p>Para el tipo de proyectos sencillos se puede asociar el proyecto al repositorio via web de forma automática.</p>
+<blockquote>
+<div><p>Para que funcione la forma totalmente automática, has de ser propietario tanto del repositorio como del despliegue. Lo que hace es instalar Vercel como una <code class="docutils literal notranslate"><span class="pre">application</span></code> permitida por tu usuario para determinados repositorios. Esta App estará pendiente de los cambios para hacer despliegues.</p>
+</div></blockquote>
+<section id="vercel-mediante-linea-de-comandos">
+<h3>Vercel mediante Línea de comandos<a class="headerlink" href="#vercel-mediante-linea-de-comandos" title="Link to this heading">#</a></h3>
+<p>Si se quiere administrar via línea de comandos, procedemos a instalar el CLI y dar de alta el proyecto:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>npm<span class="w"> </span>i<span class="w"> </span>-g<span class="w"> </span>vercel
-vercel<span class="w"> </span>--cwd<span class="w"> </span>&lt;nombre&gt;
+vercel<span class="w"> </span>--cwd<span class="w"> </span>&lt;carpeta<span class="w"> </span>del<span class="w"> </span>proyecto&gt;
 </pre></div>
 </div>
 <p>Aquí muestra un asistente que hay que seguir cuidadosamente. En un momento del asistente pide hacer login con Github y los comandos para hacer el build. En principio puede que los detecte, si no, ponemos los típicos de <code class="docutils literal notranslate"><span class="pre">Vite</span></code>.</p>
+<p>De esta manera, cada vez que queramos desplegar hay que ejecutar</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vercel<span class="w"> </span>--prod
+</pre></div>
+</div>
+<blockquote>
+<div><p>Esta opción requiere un paso más en el apartado de <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>. Ahí lo explicamos.</p>
+</div></blockquote>
+</section>
 </section>
 <section id="linting-y-formatting">
 <h2>Linting y Formatting<a class="headerlink" href="#linting-y-formatting" title="Link to this heading">#</a></h2>
@@ -604,6 +621,41 @@ npx<span class="w"> </span>husky<span class="w"> </span>init
 <h2>Build and Deploy<a class="headerlink" href="#build-and-deploy" title="Link to this heading">#</a></h2>
 <p>Esta tarea la podemos hacer con GitHub Actions, al igual que los test unitarios. En otros casos, esta tarea es simplificada por el servicio en el que hacemos el deploy.</p>
 <p>En el caso de Vercel, se puede configurar para que se mantenga actualizado cuando se realiza push en Github.</p>
+<p>Si en Vercel no hemos podido instalar su <code class="docutils literal notranslate"><span class="pre">app</span></code> en el repositorio, hay que crear un Github Action para ello:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Vercel</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span><span class="w">  </span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Node.js</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-node@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm install</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build project</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Vercel</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">VERCEL_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.VERCEL_TOKEN }}</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npx vercel --prod --yes --token=$VERCEL_TOKEN --project=mi-proyecto</span>
+</pre></div>
+</div>
+<p>Se necesita guardar en <code class="docutils literal notranslate"><span class="pre">secrets</span></code> de Github el token generado en la web de Vercel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--project</span></code> puede que no sea ni necesario si ya se ha hecho un primer despliegue desde local.</p>
 </section>
 </section>
 
@@ -672,7 +724,10 @@ npx<span class="w"> </span>husky<span class="w"> </span>init
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-tipicos-en-el-desarrollo-web">Pasos Típicos en el Desarrollo Web</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-mediante-linea-de-comandos">Vercel mediante Línea de comandos</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-y-formatting">Linting y Formatting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit Testing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-los-tests">Instalar los tests</a></li>

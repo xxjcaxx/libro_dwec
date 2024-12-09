@@ -958,32 +958,29 @@ Estas son las más importantes y forman parte de los fundamentos de la programac
 </pre></div>
 </div>
 <p>Esta función es igual que la anterior. Merece la pena dedicar un momento a leerla e intentar entender su funcionamiento.</p>
-</section>
-<section id="funcion-pipe">
-<h4>Función <code class="docutils literal notranslate"><span class="pre">pipe</span></code><a class="headerlink" href="#funcion-pipe" title="Link to this heading">#</a></h4>
-<p>La función <code class="docutils literal notranslate"><span class="pre">pipe</span></code> es similar a <code class="docutils literal notranslate"><span class="pre">compose</span></code>, pero ejecuta las funciones en el orden en que se pasan, de izquierda a derecha.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">);</span>
-</pre></div>
-</div>
 <p>Aquí vemos un ejemplo simple del uso de la composición:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">);</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">toUpperCase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">exclaim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="p">;</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">shout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">compose</span><span class="p">(</span><span class="nx">exclaim</span><span class="p">,</span><span class="w"> </span><span class="nx">toUpperCase</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shout</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">));</span>
-<span class="c1">// Salida: &quot;HELLO!&quot;</span>
-<span class="p">})();</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">toUpperCase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">exclaim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">addEmoji</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; 🎉&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">repeat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">str</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">replaceHello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/hello/gi</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">shout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">compose</span><span class="p">(</span><span class="nx">addEmoji</span><span class="p">,</span><span class="w"> </span><span class="nx">repeat</span><span class="p">,</span><span class="w"> </span><span class="nx">exclaim</span><span class="p">,</span><span class="w"> </span><span class="nx">toUpperCase</span><span class="p">,</span><span class="w"> </span><span class="nx">replaceHello</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shout</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// Salida: &quot;HI! HI! 🎉&quot;</span>
+<span class="w">  </span><span class="p">})();</span>
+<span class="w">  </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HELLO!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HI! HI! 🎉
 </pre></div>
 </div>
 </div>
@@ -1026,6 +1023,13 @@ El pasar funciones como referencia a otras es llamado por algunos como <code cla
 <span class="w">    </span><span class="nx">MAP</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">e</span><span class="o">*</span><span class="mf">2</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="funcion-pipe">
+<h4>Función <code class="docutils literal notranslate"><span class="pre">pipe</span></code><a class="headerlink" href="#funcion-pipe" title="Link to this heading">#</a></h4>
+<p>La función <code class="docutils literal notranslate"><span class="pre">pipe</span></code> es similar a <code class="docutils literal notranslate"><span class="pre">compose</span></code>, pero ejecuta las funciones en el orden en que se pasan, de izquierda a derecha.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">fns</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fns</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">x</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -1113,7 +1117,7 @@ El pasar funciones como referencia a otras es llamado por algunos como <code cla
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">10</span>, imperative: <span class=" -Color -Color-Yellow">6</span> }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">15</span>, imperative: <span class=" -Color -Color-Yellow">9</span> }
 </pre></div>
 </div>
 </div>
