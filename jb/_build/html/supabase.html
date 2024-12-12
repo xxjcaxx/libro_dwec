@@ -610,27 +610,25 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>En el ejemplo anterior se supone que hay una función que sube la imagen. Lo que nos interesa es que la subida genera una url que será la que se guarde en la columna de avatar, en vez de la imagen.</p>
 </section>
 <section id="subida-de-una-imagen-a-storage">
 <h4>Subida de una Imagen a Storage<a class="headerlink" href="#subida-de-una-imagen-a-storage" title="Link to this heading">#</a></h4>
+<p>Aquí hay un ejemplo de cómo podemos subir una imagen a storage. Veamos que añadimos <code class="docutils literal notranslate"><span class="pre">&quot;x-upsert&quot;:</span> <span class="pre">true</span></code> para permitir reescribir. Luego añadimos la imagen a un <code class="docutils literal notranslate"><span class="pre">formData</span></code>, ya que supabase la necesita como de un formulario. Finalmente se sube a la url correpondiente con el bucket y el nombre.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;x-upsert&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="p">};</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">urlBase</span><span class="si">}${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="nx">headersFile</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">formImg</span>
-<span class="p">});</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;content-type&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-<span class="w">        </span><span class="nx">datos</span><span class="p">.</span><span class="nx">urlAvatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">urlBase</span><span class="si">}${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">datos</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
-<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">();</span>
+<span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageBlob</span><span class="p">,</span><span class="w"> </span><span class="nx">fileName</span><span class="p">);</span>
+<span class="w">          </span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">responseSupa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://</span><span class="si">${</span><span class="nx">urlProject</span><span class="si">}</span><span class="sb">.supabase.co/storage/v1/object/</span><span class="si">${</span><span class="nx">bucket</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">fileName</span><span class="si">}</span><span class="sb">.png`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="nx">headersFile</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">formData</span>
+<span class="w">    </span><span class="p">});</span>
 </pre></div>
 </div>
 </section>
