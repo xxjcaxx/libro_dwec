@@ -421,10 +421,13 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage">Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websocket">WebSocket</a><ul class="nav section-nav flex-column">
@@ -492,13 +495,19 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo ponemos una condición simple de búsqueda, lo que será el <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> en la consulta. En ella pedimos que el <code class="docutils literal notranslate"><span class="pre">id</span></code> cumpla la condición de ser igual (<code class="docutils literal notranslate"><span class="pre">eq</span></code>) que un <code class="docutils literal notranslate"><span class="pre">uuid</span></code> determinado separado por un punto.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">https</span><span class="o">:</span><span class="c1">//bqhnvwfovmcxfxr.supabase.co/rest/v1/teams?select=*,players(*,goals(*))&amp;team_id=eq.50124</span>
+</pre></div>
+</div>
+<p>En el ejemplo anterior obtenemos el equipo con una condición y aprovechamos que <code class="docutils literal notranslate"><span class="pre">players</span></code> tiene una clave ajena a <code class="docutils literal notranslate"><span class="pre">teams</span></code>, al igual que <code class="docutils literal notranslate"><span class="pre">goals</span></code> con <code class="docutils literal notranslate"><span class="pre">players</span></code> para conseguir todos los datos de los <code class="docutils literal notranslate"><span class="pre">players</span></code> y <code class="docutils literal notranslate"><span class="pre">goals</span></code> de ese equipo. Esta consulta funciona siempre que las relaciones están bien establecidas en las tablas.</p>
 <p>Se pueden poner condiciones más complejas. En ese caso es mejor consultar la documentación, pero aquí tenemos algún ejemplo:</p>
 <ul class="simple">
 <li><p><strong>Pedir la cantidad (count)</strong>:  Método <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> y <code class="docutils literal notranslate"><span class="pre">prefer:</span> <span class="pre">count=exact</span></code> en el header. El resultado se recibe en el header <code class="docutils literal notranslate"><span class="pre">content-range</span></code>.</p></li>
 <li><p><strong>Consultas con “like”</strong>: <code class="docutils literal notranslate"><span class="pre">products?select=*&amp;identifier=like.%AX%</span></code></p></li>
 <li><p><strong>Consultas con OR lógico</strong>:  <code class="docutils literal notranslate"><span class="pre">select=*&amp;or=(id.eq.464,</span> <span class="pre">id.eq.466)</span></code></p></li>
 </ul>
-<p>En cualquier caso, si queremos saber cómo se traduce una petición en la API REST, podemos usar esta herramienta: <a class="reference external" href="https://supabase.com/docs/guides/api/sql-to-rest">https://supabase.com/docs/guides/api/sql-to-rest</a></p>
+<blockquote>
+<div><p>En cualquier caso, si queremos saber cómo se traduce una petición en la API REST, podemos usar esta herramienta: <a class="reference external" href="https://supabase.com/docs/guides/api/sql-to-rest">https://supabase.com/docs/guides/api/sql-to-rest</a></p>
+</div></blockquote>
 </section>
 <section id="post">
 <h3>POST<a class="headerlink" href="#post" title="Link to this heading">#</a></h3>
@@ -612,8 +621,12 @@ document.write(`
 </div>
 <p>En el ejemplo anterior se supone que hay una función que sube la imagen. Lo que nos interesa es que la subida genera una url que será la que se guarde en la columna de avatar, en vez de la imagen.</p>
 </section>
+</section>
+</section>
+<section id="storage">
+<h2>Storage<a class="headerlink" href="#storage" title="Link to this heading">#</a></h2>
 <section id="subida-de-una-imagen-a-storage">
-<h4>Subida de una Imagen a Storage<a class="headerlink" href="#subida-de-una-imagen-a-storage" title="Link to this heading">#</a></h4>
+<h3>Subida de una Imagen a Storage<a class="headerlink" href="#subida-de-una-imagen-a-storage" title="Link to this heading">#</a></h3>
 <p>Aquí hay un ejemplo de cómo podemos subir una imagen a storage. Veamos que añadimos <code class="docutils literal notranslate"><span class="pre">&quot;x-upsert&quot;:</span> <span class="pre">true</span></code> para permitir reescribir. Luego añadimos la imagen a un <code class="docutils literal notranslate"><span class="pre">formData</span></code>, ya que supabase la necesita como de un formulario. Finalmente se sube a la url correpondiente con el bucket y el nombre.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
@@ -633,7 +646,7 @@ document.write(`
 </div>
 </section>
 <section id="descarga-de-una-imagen">
-<h4>Descarga de una Imagen<a class="headerlink" href="#descarga-de-una-imagen" title="Link to this heading">#</a></h4>
+<h3>Descarga de una Imagen<a class="headerlink" href="#descarga-de-una-imagen" title="Link to this heading">#</a></h3>
 <p>Si no se necesita autorización, se puede utilizar un bucket público y la URL proporcionada. Si se requiere autorización, se debe enviar la API key y el token.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">headersFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;apiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">,</span>
@@ -656,14 +669,14 @@ document.write(`
 </div>
 </section>
 </section>
-</section>
 <section id="websocket">
 <h2>WebSocket<a class="headerlink" href="#websocket" title="Link to this heading">#</a></h2>
-<p>Supabase ofrece una función llamada Realtime para manejar WebSockets. Se debe agregar en la sección de Database &gt; Replication las tablas que queremos monitorear. Es muy recomendable utilizar las librerías proporcionadas por Supabase para esto.</p>
+<p>Supabase ofrece una función llamada Realtime para manejar WebSockets. Es una buena manera de practicar con un servidor capaz de manejarlos. Permite varias formas como <code class="docutils literal notranslate"><span class="pre">Broadcast</span></code> para enviar mensajes entre clientes, <code class="docutils literal notranslate"><span class="pre">Presence</span></code> para sincronizar estados entre clientes o <code class="docutils literal notranslate"><span class="pre">Postgres</span> <span class="pre">Changes</span></code> para escuchar cambios en tablas de la base de datos. Si quisiéramos hacer un juego, por ejemplo, podemos usar las dos primeras opciones, y para tener <code class="docutils literal notranslate"><span class="pre">websocket</span></code> pero con persistencia usaríamos la tercera opción.</p>
+<p>Para reaccionar a los cambios en la base de datos o publicar datos en tiempo real se debe agregar en la sección de <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">&gt;</span> <span class="pre">Publications</span></code> las tablas que queremos monitorear. Es muy recomendable utilizar las librerías proporcionadas por Supabase para esto.</p>
 <p><a class="reference external" href="https://supabase.com/docs/guides/realtime/postgres-changes">https://supabase.com/docs/guides/realtime/postgres-changes</a></p>
 <section id="ejemplo-de-comunicacion-broadcast">
 <h3>Ejemplo de Comunicación “Broadcast”<a class="headerlink" href="#ejemplo-de-comunicacion-broadcast" title="Link to this heading">#</a></h3>
-<p>Supabase permite la comunicación directa con otros usuarios o la notificación de cambios en las tablas mediante WebSockets.</p>
+<p>En este ejemplo se puede observar cómo Supabase permite la notificación de cambios en las tablas mediante WebSockets.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">supabaseRealTimeClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">supabase</span><span class="p">.</span><span class="nx">createClient</span><span class="p">(</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">SUPABASE_KEY</span><span class="p">);</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">currentUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
@@ -859,10 +872,13 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-perfiles-de-usuario">Gestión de Perfiles de Usuario</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-avatares">Gestión de Avatares</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage">Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subida-de-una-imagen-a-storage">Subida de una Imagen a Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-una-imagen">Descarga de una Imagen</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websocket">WebSocket</a><ul class="nav section-nav flex-column">
