@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -37,10 +39,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -65,6 +68,7 @@
     <link rel="prev" title="Typescript" href="typescript.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,21 +148,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Libro DWEC - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -219,9 +208,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -365,24 +359,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -428,7 +414,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-estructurales">Directivas estructurales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-flujo-en-plantillas">Control de flujo en plantillas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida-de-los-componentes">Ciclo de vida de los componentes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">ngOnInit</a></li>
@@ -605,7 +591,7 @@ sudo<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> <
 <p><strong>Alternativas:</strong></p>
 <p>Es importante destacar que el desarrollo web no se limita únicamente al uso de frameworks. La opción de trabajar con JavaScript puro (“Vanilla JS”) junto con librerías puntuales como JQuery, Lodash, Ramda, Mocha o RxJS sigue siendo una alternativa viable para muchos proyectos.</p>
 <p><a class="reference external" href="https://javarome.medium.com/design-noframework-bbc00a02d9b3">https://javarome.medium.com/design-noframework-bbc00a02d9b3</a></p>
-<p>Antes de embarcarse en el desarrollo con Angular, es crucial evaluar cuidadosamente las necesidades del proyecto, las habilidades del equipo y las implicaciones a largo plazo de adoptar un framework.</p>
+<p>Antes de embarcarse en el desarrollo con Angular hay que evaluar cuidadosamente las necesidades del proyecto, las habilidades del equipo y las implicaciones a largo plazo de adoptar un framework.</p>
 </section>
 </section>
 <section id="primeros-pasos-con-angular-hola-mundo">
@@ -722,7 +708,7 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 </section>
 <section id="componentes-en-angular">
 <h2>Componentes en Angular<a class="headerlink" href="#componentes-en-angular" title="Link to this heading">#</a></h2>
-<p>Cada componente encapsula una parte específica de la interfaz de usuario (UI) y su funcionalidad asociada, promoviendo la modularidad y la reutilización de código. A modo de bloques de construcción, los componentes se ensamblan para crear aplicaciones web dinámicas y escalables.</p>
+<p>Cada componente encapsula una parte específica de la interfaz de usuario (UI) y su funcionalidad asociada, promoviendo la modularidad y la reutilización de código. A modo de bloques de construcción, los componentes se ensamblan para crear aplicaciones web escalables.</p>
 <p><strong>Importando el decorador fundamental:</strong></p>
 <p>Para declarar un componente, es necesario importar el decorador <code class="docutils literal notranslate"><span class="pre">Component</span></code> desde el paquete <code class="docutils literal notranslate"><span class="pre">&#64;angular/core</span></code>. Este decorador proporciona metadatos esenciales sobre el componente, como su selector, plantilla y estilos.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
@@ -739,6 +725,9 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 <p><strong>Componentes Standalone:</strong></p>
 <p>En Angular, los componentes pueden existir de dos maneras: como parte de un módulo o como componentes Standalone. Los componentes Standalone no requieren de un módulo para funcionar y se definen de forma independiente. Para declarar un componente Standalone, se utiliza la propiedad <code class="docutils literal notranslate"><span class="pre">standalone</span></code> del decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> y se establece en <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 <p>El los próximos puntos, vamos a explorar cómo hacer componentes dinámicos y reactivos y cómo comunicar componentes y los componentes con otros elementos del framework.</p>
+<blockquote>
+<div><p>A partir de las versiones 16 y 17 se ha evolucionado hacia un estilo de programación con Angular no basado en módulos y más orientado a componentes Standalone. No significa que se abandonen los módulos, pero quedan para separar grandes secciones de proyectos grandes o para hacer librerías para Angular.</p>
+</div></blockquote>
 <section id="reactividad">
 <h3>Reactividad<a class="headerlink" href="#reactividad" title="Link to this heading">#</a></h3>
 <p>La reactividad web permite simplificar la manera en la que se actualizan los datos entre la interfaz y el estado de la aplicación. Esta gestión de la reactividad, en Angular está basada en <code class="docutils literal notranslate"><span class="pre">RxJS</span></code> y actualmente también en <code class="docutils literal notranslate"><span class="pre">Signals</span></code>. En ocasiones usaremos los elementos de RxJS de forma explícita, pero en el caso de las plantillas de los componentes, se hace de forma mucho más simplificada mediante interpolaciones.</p>
@@ -825,11 +814,11 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 </div>
 </section>
 </section>
-<section id="directivas-estructurales">
-<h3>Directivas estructurales<a class="headerlink" href="#directivas-estructurales" title="Link to this heading">#</a></h3>
-<p>Las directivas estructurales en Angular permiten controlar el flujo condicional de las plantillas HTML, mostrando o ocultando contenido en función de diversos criterios.</p>
-<p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>:</strong></p>
-<p>La directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> funciona similar a la instrucción <code class="docutils literal notranslate"><span class="pre">if</span></code> en JavaScript, permitiendo mostrar o esconder contenido en base a una condición booleana. Su sintaxis es la siguiente:</p>
+<section id="control-de-flujo-en-plantillas">
+<h3>Control de flujo en plantillas<a class="headerlink" href="#control-de-flujo-en-plantillas" title="Link to this heading">#</a></h3>
+<p>Los motores de plantillas como el de Angular necesitan interpolar datos, pero algunos datos necesitan un tratamiento para ser mostrados, como por ejemplo iterar sobre una lista o decidir si se muestra un dato o no en función de una condición. Esto hacer que las plantillas necesiten un control de flujo como cualquier lenguaje de programación. Así, usamos &#64;if, &#64;for …</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> funciona similar a la instrucción <code class="docutils literal notranslate"><span class="pre">if</span></code> en JavaScript, permitiendo mostrar o esconder contenido en base a una condición booleana. Su sintaxis es la siguiente:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@if (expresiónBooleana) {
   } else {
   }
@@ -838,15 +827,17 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 <p><strong>Ejemplo:</strong></p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@if (names.length &gt; 0) {
   <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">li</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let name of names&quot;</span><span class="p">&gt;</span>{{ name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    @for (name of name; trackBy clave) {
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    }
   <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 } else {
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>No hay nombres para mostrar<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 }
 </pre></div>
 </div>
-<p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code>:</strong></p>
-<p>La directiva <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> itera sobre una colección de datos, mostrando un elemento HTML por cada elemento de la colección. Su sintaxis es la siguiente:</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">&#64;for</span></code>:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> itera sobre una colección de datos, mostrando un elemento HTML por cada elemento de la colección. Su sintaxis es la siguiente:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (elemento of colección; trackBy clave) {
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ elemento }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 }
@@ -858,8 +849,8 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 }
 </pre></div>
 </div>
-<p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code>:</strong></p>
-<p>La directiva <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> funciona como la instrucción <code class="docutils literal notranslate"><span class="pre">switch</span></code> en JavaScript, permitiendo mostrar o esconder contenido en función de una expresión que puede tener varios valores. Su sintaxis es la siguiente:</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code>:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> funciona como la instrucción <code class="docutils literal notranslate"><span class="pre">switch</span></code> en JavaScript, permitiendo mostrar o esconder contenido en función de una expresión que puede tener varios valores. Su sintaxis es la siguiente:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@switch (expresión) {
   case valor1:
     break;
@@ -882,14 +873,12 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 }
 </pre></div>
 </div>
-<p><strong>Directivas <code class="docutils literal notranslate"><span class="pre">&#64;empty</span></code> y <code class="docutils literal notranslate"><span class="pre">trackBy</span></code>:</strong></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">&#64;empty</span></code> y <code class="docutils literal notranslate"><span class="pre">trackBy</span></code>:</strong></p>
 <p>Las directivas <code class="docutils literal notranslate"><span class="pre">&#64;empty</span></code> y <code class="docutils literal notranslate"><span class="pre">trackBy</span></code> son opcionales y proporcionan funcionalidades adicionales:</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">&#64;empty</span></code>:</strong> Define el contenido a mostrar cuando la colección de datos está vacía.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">trackBy</span></code>:</strong> Especifica un valor único para cada elemento de la colección, lo que optimiza la actualización del DOM al iterar sobre la colección.</p></li>
 </ul>
-<p><strong>Modernización a partir de Angular 17:</strong></p>
-<p>A partir de Angular 17, las directivas estructurales <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> se han simplificado y no requieren la importación de ninguna librería adicional. Además, la sintaxis se ha hecho más intuitiva y fácil de leer. Es muy probable que encontremos ejemplos con ngFor, ngIf… Estos todavía funcionan, pero no se recomienda usarlos ya.</p>
 <p><strong>&#64;let</strong></p>
 <p>Con &#64;let podemos crear variables en el entorno de las plantillas. Estas también tienen ámbito de bloque y no pueden ser reasignadas.  Veamos algún ejemplo:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@let name = &#39;Frodo&#39;;
@@ -906,6 +895,9 @@ Hello, {{name}}
 </pre></div>
 </div>
 <p><a class="reference external" href="https://blog.angular.dev/introducing-let-in-angular-686f9f383f0f">https://blog.angular.dev/introducing-let-in-angular-686f9f383f0f</a></p>
+<blockquote>
+<div><p>A partir de Angular 17, las directivas estructurales <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> se han simplificado y no requieren la importación de ninguna librería adicional. Además, la sintaxis se ha hecho más intuitiva y fácil de leer. Es muy probable que encontremos ejemplos con ngFor, ngIf… Estos todavía funcionan, pero no se recomienda usarlos ya.</p>
+</div></blockquote>
 </section>
 <section id="interfaces">
 <h3>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h3>
@@ -1872,7 +1864,8 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1903,7 +1896,7 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-estructurales">Directivas estructurales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-flujo-en-plantillas">Control de flujo en plantillas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida-de-los-componentes">Ciclo de vida de los componentes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">ngOnInit</a></li>
@@ -2025,8 +2018,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
