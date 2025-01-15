@@ -34,3 +34,5 @@ parts:
     - file: httpangular
     - file: rutasangular
     - file: formulariosangular
+    - file: proyectoangular
+
