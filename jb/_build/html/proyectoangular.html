@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Proyecto Angular &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'proyectoangular';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Libro DWEC - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fproyectoangular.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/proyectoangular.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Proyecto Angular</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">Configuración inicial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-con-datos-de-ejemplo">Componentes con datos de ejemplo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz-irecipe">Interfaz IRecipe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-recetas">Lista de recetas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-con-las-tarjetas">@Input con las tarjetas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output-de-las-tarjetas-a-la-vista">@Output de las tarjetas a la vista</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-tabla-de-recetas">La tabla de recetas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios">Servicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configurar-supabase">Configurar Supabase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-supabase-sdk-en-observables">Convertir Supabase SDK en Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-los-datos-en-la-lista-de-recetas">Mostrar los datos en la lista de recetas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-con-parametros">Rutas con parámetros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-e-invocar-rutas-con-parametros">Crear e invocar rutas con parámetros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aceptar-los-parametros-en-las-rutas">Aceptar los parámetros en las rutas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-y-mostrar-la-receta">Obtener y mostrar la receta</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-en-supabaseservice-para-obtener-una-receta">Función en SupabaseService para obtener una receta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-el-observable-en-ngoninit">Obtener el Observable en ngOnInit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-la-receta-en-la-plantilla">Mostrar la receta en la plantilla</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-register-login-logout">Funciones de Register, Login, Logout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-para-el-registro-y-acceso">Componentes para el registro y acceso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-sesion">Estado de la sesión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-menus">Ocultar menús</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guards">Guards</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios">Formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validadores">Validadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar datos en el formulario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulario-dinamico">Formulario dinámico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-supabase-para-crear-y-editar-recetas">Funciones Supabase para crear y editar recetas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-en-tiempo-real">Aplicación en tiempo real</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supabase-realtime">Supabase Realtime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-sdk">Websockets con SDK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-a-observables">Websockets a Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz">Interfaz</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-estilos-personalizados-de-bootstrap">Extra: Estilos personalizados de Bootstrap</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="proyecto-angular">
+<h1>Proyecto Angular<a class="headerlink" href="#proyecto-angular" title="Link to this heading">#</a></h1>
+<p>Otra forma de entender un framework es poniendo en práctica los conceptos. Haremos un proycto sencillo con la mayor parte de lo aprendido.</p>
+<p>En el curso hemos hecho una aplicación para compartir recetas. Documentaremos algunas partes para este artículo, evitando las tareas repetitivas.</p>
+<section id="configuracion-inicial">
+<h2>Configuración inicial<a class="headerlink" href="#configuracion-inicial" title="Link to this heading">#</a></h2>
+<p>Como en todo proyecto, hay una tarea prévia de configuración. No es necesario explicar todos los pasos o el porqué, ya que está en apartados anteiores, pero vamos a enumerarlos. Algunos pasos, lógicamente, no son necesarios en todos los proyectos:</p>
+<ul class="simple">
+<li><p>Creación de un repositorio de Git y las ramas, issues, etc.</p></li>
+<li><p>Instalación de Angular CLI y creación del proyecto Angular:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@angular/cli<span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+ng<span class="w"> </span>new<span class="w"> </span>recipes
+<span class="nb">cd</span><span class="w"> </span>recipes<span class="w"> </span>
+ng<span class="w"> </span>serve<span class="w"> </span>-o
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Creación de todos los componentes, interfaces y servicios que se han decidido durante la etapa del análisis:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>components/header
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>components/footer
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>components/home
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>components/login
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>recipes/recipe-card
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>recipes/recipe-detail
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>recipes/recipe-table-row
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>recipes/recipe-table
+ng<span class="w"> </span>g<span class="w"> </span>component<span class="w"> </span>recipes/recipe-list
+...
+ng<span class="w"> </span>g<span class="w"> </span>service<span class="w"> </span>recipes/supabase
+ng<span class="w"> </span>g<span class="w"> </span>interface<span class="w"> </span>recipes/i-recipe
+...
+</pre></div>
+</div>
+<blockquote>
+<div><p>Es buena idea crear todos los componentes que sepamos al principio para tener más claro la estructura y para no tener que reiniciar cada vez.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Creación de la estructura básica de la web en <code class="docutils literal notranslate"><span class="pre">app.component.html</span></code>:</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">app-header</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">router-outlet</span><span class="p">&gt;&lt;/</span><span class="nt">router-outlet</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">app-footer</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Creación de las rutas y testeo manual en <code class="docutils literal notranslate"><span class="pre">app.routes.ts</span></code>:</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="nx">Routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="nx">HomeComponent</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;main&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="nx">RecipeListComponent</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;table&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="nx">RecipeTableComponent</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;recipes/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="nx">RecipeDetailComponent</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">pathMatch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;full&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">redirectTo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="p">}</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>En <code class="docutils literal notranslate"><span class="pre">app.config.ts</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w">  </span><span class="nx">withHashLocation</span><span class="p">()),</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Instalación de <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>bootstrap
+npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>@types/bootstrap
+</pre></div>
+</div>
+<p>en <code class="docutils literal notranslate"><span class="pre">angular.json</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;styles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s2">&quot;node_modules/bootstrap/dist/css/bootstrap.min.css&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;src/styles.scss&quot;</span>
+<span class="p">],</span>
+<span class="s2">&quot;scripts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s2">&quot;node_modules/bootstrap/dist/js/bootstrap.bundle.min.js&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Creación de un <code class="docutils literal notranslate"><span class="pre">Navbar</span></code> de Bootstrap para el menú dentro del componente <code class="docutils literal notranslate"><span class="pre">header</span></code>. Cada ruta se indicará así:</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-link&quot;</span> <span class="na">aria-current</span><span class="o">=</span><span class="s">&quot;page&quot;</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;</span><span class="na">home</span><span class="err">&#39;]&quot;</span> <span class="err">[</span><span class="na">routerLinkActive</span><span class="err">]=&quot;[&#39;</span><span class="na">active</span><span class="err">&#39;]&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Creación del HTML estático de secciones como el <code class="docutils literal notranslate"><span class="pre">footer</span></code> o <code class="docutils literal notranslate"><span class="pre">home</span></code>.</p></li>
+</ul>
+<p>Así tendremos la estructura mínima con rutas de la <code class="docutils literal notranslate"><span class="pre">SPA</span></code> y ya podemos empezar a trabajar en la funcionalidad y la vista de la web.</p>
+<blockquote>
+<div><p>Los pasos anteriores no detallan la importación de los módulos en los archivos y otros pasos. Todo esto está explicado en apartados anteriores de este libro.</p>
+</div></blockquote>
+</section>
+<section id="componentes-con-datos-de-ejemplo">
+<h2>Componentes con datos de ejemplo<a class="headerlink" href="#componentes-con-datos-de-ejemplo" title="Link to this heading">#</a></h2>
+<p>Empezaremos dando contenido a los componentes. Un buen ejemplo puede ser la lista de recetas.</p>
+<section id="interfaz-irecipe">
+<h3>Interfaz IRecipe<a class="headerlink" href="#interfaz-irecipe" title="Link to this heading">#</a></h3>
+<p>Aquí tenemos un fragmento de la interfaz, que se corresponde con las columnas de la tabla en la base de datos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kr">interface</span><span class="w"> </span><span class="nx">IRecipe</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">idMeal</span><span class="o">:</span><span class="w">                      </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strMeal</span><span class="o">:</span><span class="w">                     </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strDrinkAlternate</span><span class="o">:</span><span class="w">           </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strCategory</span><span class="o">:</span><span class="w">                 </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strArea</span><span class="o">:</span><span class="w">                     </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strInstructions</span><span class="o">:</span><span class="w">             </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strMealThumb</span><span class="o">:</span><span class="w">                </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strTags</span><span class="o">:</span><span class="w">                     </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strYoutube</span><span class="o">:</span><span class="w">                  </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strIngredient1</span><span class="o">:</span><span class="w">              </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strIngredient2</span><span class="o">:</span><span class="w">              </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="p">...</span>
+</pre></div>
+</div>
+</section>
+<section id="lista-de-recetas">
+<h3>Lista de recetas<a class="headerlink" href="#lista-de-recetas" title="Link to this heading">#</a></h3>
+<p>El componente <code class="docutils literal notranslate"><span class="pre">RecipesListComponent</span></code> debe tener algo que mostrar. Al principo es posible hacer un <code class="docutils literal notranslate"><span class="pre">mock</span></code>de los datos creando un array de recetas que respeta la interfaz creada anteriormente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IRecipe</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../i-recipe&quot;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">recipes</span><span class="o">:</span><span class="w"> </span><span class="nx">IRecipe</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;idMeal&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;52878&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;strMeal&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Beef and Oyster pie&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;strDrinkAlternate&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;strCategory&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Beef&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>Este mock será descartado cuando tengamos los datos de la base de datos, pero puede servir mientras tanto para crear los componentes.</p>
+<p>El primer componente será <code class="docutils literal notranslate"><span class="pre">RecipesListComponent</span></code>. Aquí un extracto del código relevante:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">recipes</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./recipes_exemples&quot;</span>
+
+<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-recipes-list&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">CommonModule</span><span class="p">,</span><span class="w"> </span><span class="nx">RecipeCardComponent</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./recipes-list.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./recipes-list.component.css&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">RecipesListComponent</span><span class="w"> </span><span class="kr">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">,</span><span class="w"> </span><span class="nx">OnDestroy</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kr">public</span><span class="w"> </span><span class="nx">recipes</span><span class="o">:</span><span class="w"> </span><span class="nx">IRecipe</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">recipes</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En el HTML podemos hacer un <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> para ir creando los <code class="docutils literal notranslate"><span class="pre">&lt;app-recipe-card&gt;</span></code> para cada receta:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (recipe of recipes; track $index) {
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">app-recipe-card</span> <span class="err">[</span><span class="na">recipe</span><span class="err">]=&quot;</span><span class="na">recipe</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">app-recipe-card</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+}
+</pre></div>
+</div>
+<section id="input-con-las-tarjetas">
+<h4>&#64;Input con las tarjetas<a class="headerlink" href="#input-con-las-tarjetas" title="Link to this heading">#</a></h4>
+<p>Como se ve, en cada <code class="docutils literal notranslate"><span class="pre">&lt;app-recipe-card&gt;</span></code> se añade <code class="docutils literal notranslate"><span class="pre">[recipe]=&quot;recipe&quot;</span></code> para pasar ese objeto por <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> al componente hijo. Este lo recibe así:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="err">@</span><span class="nx">Input</span><span class="p">({</span><span class="w"> </span><span class="nx">required</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="nx">recipe</span><span class="o">!:</span><span class="w"> </span><span class="nx">IRecipe</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Le hemos llamado tarjetas porque las podemos hacer con un <code class="docutils literal notranslate"><span class="pre">card</span></code> de Bootstrap:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 18rem;&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">{{recipe.strMealThumb}}</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-img-top&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">{{recipe.strMeal}}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{recipe ? recipe.strMeal : &quot;Sin titulo&quot;}}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{recipe.strInstructions}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">a</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;/</span><span class="na">recipes</span><span class="err">&#39;,</span><span class="na">recipe</span><span class="err">.</span><span class="na">idMeal</span><span class="err">]&quot;</span>  <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Detail<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="output-de-las-tarjetas-a-la-vista">
+<h4>&#64;Output de las tarjetas a la vista<a class="headerlink" href="#output-de-las-tarjetas-a-la-vista" title="Link to this heading">#</a></h4>
+<p>Vamos a poner algún tipo de retroacción a las tarjetas para demostrar el funcionamiento de <code class="docutils literal notranslate"><span class="pre">&#64;Output</span></code> y lo dejaremos listo para cuando podamos guardarla de forma persistente en la base de datos.</p>
+</section>
+</section>
+<section id="la-tabla-de-recetas">
+<h3>La tabla de recetas<a class="headerlink" href="#la-tabla-de-recetas" title="Link to this heading">#</a></h3>
+<p>En el caso de la tabla hemos hecho el componente <code class="docutils literal notranslate"><span class="pre">RecipeTableComponent</span></code> que contendrá los componentes <code class="docutils literal notranslate"><span class="pre">RecipeTableRowComponent</span></code>. El funcionamiento es igual que con las card, pero el problema es que <code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code> debe tener siempre <code class="docutils literal notranslate"><span class="pre">&lt;tr&gt;</span></code> inmediatamente dentro. Por eso no podemos crear una etiqueta para el componente <code class="docutils literal notranslate"><span class="pre">RecipeTableRowComponent</span></code>. Para solucionarlo usaremos un selector por atributo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[app-recipe-table-row]&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./recipe-table-row.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./recipe-table-row.component.css&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Y lo añadiremos como atributo de los tr:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (recipe of recipes; track $index) {
+<span class="p">&lt;</span><span class="nt">tr</span> <span class="na">app-recipe-table-row</span> <span class="err">[</span><span class="na">recipe</span><span class="err">]=&quot;</span><span class="na">recipe</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="servicios">
+<h2>Servicios<a class="headerlink" href="#servicios" title="Link to this heading">#</a></h2>
+<p>Necesitamos servicios para gestionar la comunicación con Supabase de los distintos componentes.</p>
+<section id="configurar-supabase">
+<h3>Configurar Supabase<a class="headerlink" href="#configurar-supabase" title="Link to this heading">#</a></h3>
+<p>En este caso vamos a usar el <code class="docutils literal notranslate"><span class="pre">SDK</span></code> de Supabase por simplificar. Este SDK es genérico y no totalmente enfocado a la metodología <code class="docutils literal notranslate"><span class="pre">Angular</span></code> de usar el <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> y <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Por eso vamos a adaptar las peticiones a Observables.</p>
+<p>Como se ve en el apartado de Supabase y Angular, hay que crear el <code class="docutils literal notranslate"><span class="pre">environment</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>generate<span class="w"> </span>environments<span class="w"> </span>
+</pre></div>
+</div>
+<p>Y añadir los datos de conexión con Supabase:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">production</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">supabaseUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_SUPABASE_URL&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">supabaseKey</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_SUPABASE_KEY&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Luego en el servicio haremos las peticiones:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="nx">Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">supabase</span><span class="o">:</span><span class="w"> </span><span class="nx">SupabaseClient</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createClient</span><span class="p">(</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseKey</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">// Función genérica para Supabase</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">table</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">// Adaptador de las promesas a Observables</span>
+<span class="w">  </span><span class="nx">getDataObservable</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">// Función que hace la petición a una tabla en concreto</span>
+<span class="w">  </span><span class="nx">getMeals</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">IRecipe</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getDataObservable</span><span class="p">(</span><span class="s1">&#39;meals&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="convertir-supabase-sdk-en-observables">
+<h3>Convertir Supabase SDK en Observables<a class="headerlink" href="#convertir-supabase-sdk-en-observables" title="Link to this heading">#</a></h3>
+<p>Con las promesas resultantes haremos un Observable:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Adaptador de las promesas a Observables</span>
+<span class="w">  </span><span class="nx">getDataObservable</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">// Función que hace la petición a una tabla en concreto</span>
+<span class="w">  </span><span class="nx">getMeals</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">IRecipe</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getDataObservable</span><span class="p">(</span><span class="s1">&#39;meals&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="mostrar-los-datos-en-la-lista-de-recetas">
+<h3>Mostrar los datos en la lista de recetas<a class="headerlink" href="#mostrar-los-datos-en-la-lista-de-recetas" title="Link to this heading">#</a></h3>
+<p>Puesto que <code class="docutils literal notranslate"><span class="pre">getMeals</span></code> retorna una Observable de listas de recetas, en el componente <code class="docutils literal notranslate"><span class="pre">RecipesListComponent</span></code> nos suscribimos y quitamos las recetas de ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">RecipesListComponent</span><span class="w"> </span><span class="kr">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">,</span><span class="w"> </span><span class="nx">OnDestroy</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span><span class="w"> </span><span class="nx">supabaseService</span><span class="o">:</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="p">){}</span>
+
+<span class="w">  </span><span class="kr">public</span><span class="w"> </span><span class="nx">recipes</span><span class="o">:</span><span class="w"> </span><span class="nx">IRecipe</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabaseService</span><span class="p">.</span><span class="nx">getMeals</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="nx">meals</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">this</span><span class="p">.</span><span class="nx">recipes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">meals</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="rutas-con-parametros">
+<h2>Rutas con parámetros<a class="headerlink" href="#rutas-con-parametros" title="Link to this heading">#</a></h2>
+<p>Antes ya hemos configurado el router para tener rutas con parámetros a una receta en particular:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;recipes/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="nx">RecipeDetailComponent</span><span class="p">},</span>
+</pre></div>
+</div>
+<section id="crear-e-invocar-rutas-con-parametros">
+<h3>Crear e invocar rutas con parámetros<a class="headerlink" href="#crear-e-invocar-rutas-con-parametros" title="Link to this heading">#</a></h3>
+<p>Ahora hay que saber llamar a esas recetas. En el componente <code class="docutils literal notranslate"><span class="pre">RecipeCardComponent</span></code> hemos puesto un botón con este enlace:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;/</span><span class="na">recipes</span><span class="err">&#39;,</span><span class="na">recipe</span><span class="err">.</span><span class="na">idMeal</span><span class="err">]&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Detail<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="aceptar-los-parametros-en-las-rutas">
+<h3>Aceptar los parámetros en las rutas<a class="headerlink" href="#aceptar-los-parametros-en-las-rutas" title="Link to this heading">#</a></h3>
+<p>La manera de aceptar los parámetros en las rutas puede ser mediante <code class="docutils literal notranslate"><span class="pre">withComponentInputBinding</span></code>. En <code class="docutils literal notranslate"><span class="pre">app.config.ts</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w">  </span><span class="nx">withHashLocation</span><span class="p">(),</span><span class="w"> </span><span class="nx">withComponentInputBinding</span><span class="p">()),</span>
+</pre></div>
+</div>
+<p>Y luego en el componente <code class="docutils literal notranslate"><span class="pre">RecipeDetailComponent</span></code> las aceptamos como <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="nx">Input</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">recipeID</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="obtener-y-mostrar-la-receta">
+<h3>Obtener y mostrar la receta<a class="headerlink" href="#obtener-y-mostrar-la-receta" title="Link to this heading">#</a></h3>
+<p>Una vez hecho esto, hay que pedir la receta, así que necesitamos:</p>
+<section id="funcion-en-supabaseservice-para-obtener-una-receta">
+<h4>Función en SupabaseService para obtener una receta<a class="headerlink" href="#funcion-en-supabaseservice-para-obtener-una-receta" title="Link to this heading">#</a></h4>
+<p>En este caso lo que hemos hecho es modificar las funciones para hacerlas más genéricas y añadir la posibilidad de pedir más de un dato:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="o">?:</span><span class="w"> </span><span class="nb">Object</span><span class="p">,</span><span class="w"> </span><span class="nx">ids</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span><span class="p">[],</span><span class="w"> </span><span class="nx">idField</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">table</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">query</span><span class="o">?</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">search</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ids</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">idField</span><span class="p">);</span>
+
+<span class="w">      </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">query</span><span class="o">?</span><span class="p">.</span><span class="ow">in</span><span class="p">(</span><span class="nx">idField</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">idField</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">ids</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">query</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="nx">getDataObservable</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="o">?:</span><span class="w"> </span><span class="nb">Object</span><span class="p">,</span><span class="w"> </span><span class="nx">ids</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span><span class="p">[],</span><span class="w"> </span><span class="nx">idField</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">T</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="p">,</span><span class="w"> </span><span class="nx">ids</span><span class="p">,</span><span class="w"> </span><span class="nx">idField</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="nx">getIngredients</span><span class="p">(</span><span class="nx">ids</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="p">)[])</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Ingredient</span><span class="o">&gt;</span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getDataObservable</span><span class="o">&lt;</span><span class="nx">Ingredient</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">undefined</span><span class="p">,</span><span class="w"> </span><span class="nx">ids</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">id</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">string</span><span class="p">[],</span><span class="w"> </span><span class="s1">&#39;idIngredient&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">mergeMap</span><span class="p">(</span><span class="nx">ingredients</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="nx">ingredients</span><span class="p">)),</span>
+<span class="w">      </span><span class="nx">mergeMap</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="nx">ingredient</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">storage</span>
+<span class="w">              </span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;recipes&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">download</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">ingredient</span><span class="p">.</span><span class="nx">strStorageimg</span><span class="si">}</span><span class="sb">?rand=</span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">ingredient</span><span class="p">.</span><span class="nx">blobimg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">ingredient</span><span class="p">;</span>
+<span class="w">          </span><span class="p">})</span>
+<span class="w">        </span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>El operador mergeMap se utiliza en este caso para procesar de manera asíncrona cada ingrediente y emitir cada uno tan pronto como se haya completado el procesamiento.</p>
+<p>El primer <code class="docutils literal notranslate"><span class="pre">mergeMap</span></code> Toma el array de ingredientes emitido por getDataObservable y se lo pasa al <code class="docutils literal notranslate"><span class="pre">from</span></code>. Cuando el código de dentro emita Observables los aplanará en un único Observable.
+El <code class="docutils literal notranslate"><span class="pre">from</span></code> descompone el array para ir trabajando con todos por separado. Genera un Observable que emite cada uno de los valores. El segundo <code class="docutils literal notranslate"><span class="pre">mergeMap</span></code> convierte las promesas de la descarga de cada imagen en un Observable. Al final se retornan los ingredientes con la imagen dentro de un flujo en el que cada ingrediente va saliendo conforme se completa.</p>
+</section>
+<section id="obtener-el-observable-en-ngoninit">
+<h4>Obtener el Observable en ngOnInit<a class="headerlink" href="#obtener-el-observable-en-ngoninit" title="Link to this heading">#</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabaseService</span><span class="p">.</span><span class="nx">getMeals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipeID</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="nx">meals</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">this</span><span class="p">.</span><span class="nx">recipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">meals</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">supabaseService</span><span class="p">.</span><span class="nx">getIngredients</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipe</span><span class="o">?</span><span class="p">.</span><span class="nx">idIngredients</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="nx">ingredients</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">ingredients</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">ingredients</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Así se van incorporando los ingredientes cuando van llegando.</p>
+</section>
+<section id="mostrar-la-receta-en-la-plantilla">
+<h4>Mostrar la receta en la plantilla<a class="headerlink" href="#mostrar-la-receta-en-la-plantilla" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-md-6&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{recipe?.strMeal}}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Instructions<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{recipe?.strInstructions}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Ingredients<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row row-cols-1 row-cols-md-3 g-4&quot;</span><span class="p">&gt;</span>
+        @for (ingredient of ingredients; track $index) { @if (ingredient) {
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">app-ingredient</span> <span class="err">[</span><span class="na">ingredient</span><span class="err">]=&quot;</span><span class="na">ingredient</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">app-ingredient</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        } }
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-md-6&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">img</span>
+        <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{recipe?.strMealThumb}}&quot;</span>
+        <span class="na">alt</span><span class="o">=</span><span class="s">&quot;{{recipe?.strMeal}}&quot;</span>
+        <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-fluid&quot;</span>
+      <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="autenticacion">
+<h2>Autenticación<a class="headerlink" href="#autenticacion" title="Link to this heading">#</a></h2>
+<p>Puesto que el SDK tiene su propia manera de autenticar y mantener la sesión, no vamos a necesitar guardar el token en <code class="docutils literal notranslate"><span class="pre">LocalStorage</span></code> ni otros métodos manuales. No obstante, hay que crear un <code class="docutils literal notranslate"><span class="pre">Guard</span></code> para evitar las rutas no permitidas. Tampoco hace falta el <code class="docutils literal notranslate"><span class="pre">Interceptor</span></code>, ya que todas las peticiones se hacen con el SDK y ya tienen un mecanismo equivalente.</p>
+<section id="funciones-de-register-login-logout">
+<h3>Funciones de Register, Login, Logout<a class="headerlink" href="#funciones-de-register-login-logout" title="Link to this heading">#</a></h3>
+</section>
+<section id="componentes-para-el-registro-y-acceso">
+<h3>Componentes para el registro y acceso<a class="headerlink" href="#componentes-para-el-registro-y-acceso" title="Link to this heading">#</a></h3>
+</section>
+<section id="estado-de-la-sesion">
+<h3>Estado de la sesión<a class="headerlink" href="#estado-de-la-sesion" title="Link to this heading">#</a></h3>
+</section>
+<section id="ocultar-menus">
+<h3>Ocultar menús<a class="headerlink" href="#ocultar-menus" title="Link to this heading">#</a></h3>
+</section>
+<section id="guards">
+<h3>Guards<a class="headerlink" href="#guards" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="formularios">
+<h2>Formularios<a class="headerlink" href="#formularios" title="Link to this heading">#</a></h2>
+<p>En el apartado de autenticación hemos usado un formulario de plantilla y en este vamos a usar uno <code class="docutils literal notranslate"><span class="pre">Reactivo</span></code>.</p>
+<section id="validadores">
+<h3>Validadores<a class="headerlink" href="#validadores" title="Link to this heading">#</a></h3>
+</section>
+<section id="cargar-datos-en-el-formulario">
+<h3>Cargar datos en el formulario<a class="headerlink" href="#cargar-datos-en-el-formulario" title="Link to this heading">#</a></h3>
+</section>
+<section id="formulario-dinamico">
+<h3>Formulario dinámico<a class="headerlink" href="#formulario-dinamico" title="Link to this heading">#</a></h3>
+</section>
+<section id="funciones-supabase-para-crear-y-editar-recetas">
+<h3>Funciones Supabase para crear y editar recetas<a class="headerlink" href="#funciones-supabase-para-crear-y-editar-recetas" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="aplicacion-en-tiempo-real">
+<h2>Aplicación en tiempo real<a class="headerlink" href="#aplicacion-en-tiempo-real" title="Link to this heading">#</a></h2>
+<section id="supabase-realtime">
+<h3>Supabase Realtime<a class="headerlink" href="#supabase-realtime" title="Link to this heading">#</a></h3>
+</section>
+<section id="websockets-con-sdk">
+<h3>Websockets con SDK<a class="headerlink" href="#websockets-con-sdk" title="Link to this heading">#</a></h3>
+</section>
+<section id="websockets-a-observables">
+<h3>Websockets a Observables<a class="headerlink" href="#websockets-a-observables" title="Link to this heading">#</a></h3>
+</section>
+<section id="interfaz">
+<h3>Interfaz<a class="headerlink" href="#interfaz" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="extra-estilos-personalizados-de-bootstrap">
+<h2>Extra: Estilos personalizados de Bootstrap<a class="headerlink" href="#extra-estilos-personalizados-de-bootstrap" title="Link to this heading">#</a></h2>
+<p>Supongamos que estamos usando Bootstrap y queremos unos colores personalizados para toda la aplicación. Puesto que funciona con <code class="docutils literal notranslate"><span class="pre">Sass</span></code>, podemos modificar el valor de variables y maps.</p>
+<p>Quitaremos la referencia a Bootstrap de <code class="docutils literal notranslate"><span class="pre">angular.json</span></code> y la añadiremos al <code class="docutils literal notranslate"><span class="pre">styles.scss</span></code>:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="w"> </span><span class="nt">Definir</span><span class="w"> </span><span class="nt">colores</span><span class="w"> </span><span class="nt">personalizados</span>
+
+<span class="p">@</span><span class="k">use</span><span class="w"> </span><span class="s2">&quot;sass:map&quot;</span><span class="p">;</span>
+<span class="o">$</span><span class="nt">primary</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">25408f</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">secondary</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">8f5325</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">success</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">3e8d63</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">info</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">13101c</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">warning</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">945707</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">danger</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">d62518</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">light</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">061625</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">dark</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">343a40</span><span class="o">;</span>
+
+
+<span class="o">$</span><span class="nt">theme-colors</span><span class="o">:</span><span class="w"> </span><span class="o">(</span>
+<span class="w">  </span><span class="nt">primary</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">primary</span><span class="o">,</span>
+<span class="w">  </span><span class="nt">secondary</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">secondary</span><span class="o">,</span>
+<span class="w">  </span><span class="nt">success</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">success</span><span class="o">,</span>
+<span class="w">  </span><span class="nt">info</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">info</span><span class="o">,</span>
+<span class="w">  </span><span class="nt">warning</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">warning</span><span class="o">,</span>
+<span class="w">  </span><span class="nt">danger</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">danger</span><span class="o">,</span>
+<span class="w">  </span><span class="nt">light</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">light</span><span class="o">,</span>
+<span class="w">  </span><span class="nt">dark</span><span class="o">:</span><span class="w"> </span><span class="o">$</span><span class="nt">dark</span><span class="o">,</span>
+<span class="o">);</span>
+
+
+
+<span class="o">//</span><span class="w"> </span><span class="nt">definir</span><span class="w"> </span><span class="nt">colores</span><span class="w"> </span><span class="nt">customizados</span>
+<span class="o">$</span><span class="nt">custom-colors</span><span class="o">:</span><span class="w"> </span><span class="o">(</span>
+<span class="w">  </span><span class="s2">&quot;brand-blue&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">2EC4B6</span><span class="o">,</span>
+<span class="w">  </span><span class="s2">&quot;brand-orange&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">FF9F1C</span><span class="o">,</span>
+<span class="w">  </span><span class="s2">&quot;brand-orange-light&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">FFBF69</span><span class="o">,</span>
+<span class="w">  </span><span class="s2">&quot;brand-blue-light&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">CBF3F0</span>
+
+<span class="o">);</span>
+
+<span class="o">//</span><span class="w"> </span><span class="nt">Combina</span><span class="w"> </span><span class="nt">las</span><span class="w"> </span><span class="nt">paletas</span>
+<span class="o">$</span><span class="nt">theme-colors</span><span class="o">:</span><span class="w"> </span><span class="nt">map</span><span class="p">.</span><span class="nc">merge</span><span class="o">($</span><span class="nt">theme-colors</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">custom-colors</span><span class="o">);</span>
+
+
+<span class="o">//</span><span class="w"> </span><span class="nt">importar</span><span class="w"> </span><span class="nt">finalmente</span><span class="w"> </span><span class="nt">Bootstrap</span><span class="w"> </span><span class="nt">para</span><span class="w"> </span><span class="nt">todo</span><span class="w"> </span><span class="nt">lo</span><span class="w"> </span><span class="nt">demás</span><span class="o">.</span>
+<span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;../node_modules/bootstrap/scss/bootstrap&quot;</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Luego podemos usar esos colores personalizados en otras partes, como en el <code class="docutils literal notranslate"><span class="pre">navbar</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">nav</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar navbar-expand-lg bg-brand-blue&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Los colores customizados los hemos obtenido de esta paleta: <a class="reference external" href="https://coolors.co/palette/ff9f1c-ffbf69-ffffff-cbf3f0-2ec4b6">https://coolors.co/palette/ff9f1c-ffbf69-ffffff-cbf3f0-2ec4b6</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">Configuración inicial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-con-datos-de-ejemplo">Componentes con datos de ejemplo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz-irecipe">Interfaz IRecipe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-recetas">Lista de recetas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-con-las-tarjetas">@Input con las tarjetas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output-de-las-tarjetas-a-la-vista">@Output de las tarjetas a la vista</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-tabla-de-recetas">La tabla de recetas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios">Servicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configurar-supabase">Configurar Supabase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-supabase-sdk-en-observables">Convertir Supabase SDK en Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-los-datos-en-la-lista-de-recetas">Mostrar los datos en la lista de recetas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-con-parametros">Rutas con parámetros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-e-invocar-rutas-con-parametros">Crear e invocar rutas con parámetros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aceptar-los-parametros-en-las-rutas">Aceptar los parámetros en las rutas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-y-mostrar-la-receta">Obtener y mostrar la receta</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-en-supabaseservice-para-obtener-una-receta">Función en SupabaseService para obtener una receta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-el-observable-en-ngoninit">Obtener el Observable en ngOnInit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-la-receta-en-la-plantilla">Mostrar la receta en la plantilla</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion">Autenticación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-register-login-logout">Funciones de Register, Login, Logout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-para-el-registro-y-acceso">Componentes para el registro y acceso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-sesion">Estado de la sesión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-menus">Ocultar menús</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guards">Guards</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios">Formularios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validadores">Validadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar datos en el formulario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulario-dinamico">Formulario dinámico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-supabase-para-crear-y-editar-recetas">Funciones Supabase para crear y editar recetas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-en-tiempo-real">Aplicación en tiempo real</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supabase-realtime">Supabase Realtime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-sdk">Websockets con SDK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-a-observables">Websockets a Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz">Interfaz</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-estilos-personalizados-de-bootstrap">Extra: Estilos personalizados de Bootstrap</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

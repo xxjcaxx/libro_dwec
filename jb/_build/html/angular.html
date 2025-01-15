@@ -709,9 +709,21 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 <section id="componentes-en-angular">
 <h2>Componentes en Angular<a class="headerlink" href="#componentes-en-angular" title="Link to this heading">#</a></h2>
 <p>Cada componente encapsula una parte específica de la interfaz de usuario (UI) y su funcionalidad asociada, promoviendo la modularidad y la reutilización de código. A modo de bloques de construcción, los componentes se ensamblan para crear aplicaciones web escalables.</p>
+<p>En Angular, si comparamos con otros frameworks Modelo-Vista-Controlador, un componente sería un controlador de una vista asociada (HTML). Los componentes
+son entidades independientes y reutilizables en diferentes partes de una aplicación (u otras aplicaciones). También se pueden anidar (relación padre-hijo). Los componentes representan las diferentes partes en las que dividimos la aplicación.</p>
 <p><strong>Importando el decorador fundamental:</strong></p>
-<p>Para declarar un componente, es necesario importar el decorador <code class="docutils literal notranslate"><span class="pre">Component</span></code> desde el paquete <code class="docutils literal notranslate"><span class="pre">&#64;angular/core</span></code>. Este decorador proporciona metadatos esenciales sobre el componente, como su selector, plantilla y estilos.</p>
+<p>Para declarar un componente, es necesario importar el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> desde el paquete <code class="docutils literal notranslate"><span class="pre">&#64;angular/core</span></code>. Este decorador proporciona metadatos esenciales sobre el componente, como su selector, plantilla y estilos.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-recipe-card&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./recipe-card.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./recipe-card.component.css&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">RecipeCardComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="p">...</span>
 </pre></div>
 </div>
 <p><strong>Estructura de un componente:</strong></p>
@@ -723,10 +735,10 @@ ng<span class="w"> </span>serve<span class="w"> </span>-o
 <li><p><strong>Lógica del componente:</strong> El código TypeScript que define el comportamiento del componente, como propiedades, métodos y eventos. Este código se escribe dentro de la clase del componente.</p></li>
 </ul>
 <p><strong>Componentes Standalone:</strong></p>
-<p>En Angular, los componentes pueden existir de dos maneras: como parte de un módulo o como componentes Standalone. Los componentes Standalone no requieren de un módulo para funcionar y se definen de forma independiente. Para declarar un componente Standalone, se utiliza la propiedad <code class="docutils literal notranslate"><span class="pre">standalone</span></code> del decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> y se establece en <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>En Angular, los componentes pueden existir de dos maneras: como parte de un módulo o como componentes Standalone. Los componentes Standalone no requieren de un módulo para funcionar y se definen de forma independiente. Para declarar un componente Standalone explícitamente, se utiliza la propiedad <code class="docutils literal notranslate"><span class="pre">standalone</span></code> del decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> y se establece en <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 <p>El los próximos puntos, vamos a explorar cómo hacer componentes dinámicos y reactivos y cómo comunicar componentes y los componentes con otros elementos del framework.</p>
 <blockquote>
-<div><p>A partir de las versiones 16 y 17 se ha evolucionado hacia un estilo de programación con Angular no basado en módulos y más orientado a componentes Standalone. No significa que se abandonen los módulos, pero quedan para separar grandes secciones de proyectos grandes o para hacer librerías para Angular.</p>
+<div><p>A partir de las versiones 16 y 17 se ha evolucionado hacia un estilo de programación con Angular no basado en módulos y más orientado a componentes Standalone. No significa que se abandonen los módulos, pero quedan para separar grandes secciones de proyectos grandes o para hacer librerías para Angular. Los componentes son, por defecto, Standalone.</p>
 </div></blockquote>
 <section id="reactividad">
 <h3>Reactividad<a class="headerlink" href="#reactividad" title="Link to this heading">#</a></h3>
@@ -948,7 +960,7 @@ Hello, {{name}}
 <p><span class="caption-number">Fig. 10 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Los componentes son elementos reutilizables por naturaleza. Se pueden importar y utilizar en otros componentes, promoviendo la modularidad y evitando la duplicación de código. Esto facilita la creación de interfaces de usuario consistentes y escalables.</p>
+<p>Los componentes son elementos reutilizables por naturaleza. Se pueden importar y utilizar en otros componentes, promoviendo la modularidad y evitando la duplicación de código.</p>
 <p>Los componentes tienen un ciclo de vida definido por una serie de métodos que se llaman en diferentes momentos de su existencia. Algunos de los métodos más importantes son:</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">constructor</span></code>:</strong> Se llama cuando se crea una instancia del componente. El constructor se utiliza para inyectar dependencias y configurar valores iniciales. No se recomienda colocar lógica de inicialización aquí porque puede ejecutarse antes de que las propiedades de entrada estén configuradas.</p></li>
@@ -996,7 +1008,7 @@ Hello, {{name}}
 </section>
 <section id="comunicacion-entre-componentes">
 <h3>Comunicación entre componentes<a class="headerlink" href="#comunicacion-entre-componentes" title="Link to this heading">#</a></h3>
-<p>Los componentes se pueden anidar en una estructura jerárquica, lo que permite crear interfaces de usuario complejas y modulares. Un componente padre puede contener uno o más componentes hijos, y cada componente hijo puede contener a su vez otros componentes hijos. Todo esto se hace importando el componente y usando la etiqueta HTML definida en la propiedad <code class="docutils literal notranslate"><span class="pre">selector</span></code>.</p>
+<p>Los componentes se pueden anidar en una estructura jerárquica. Un componente padre puede contener uno o más componentes hijos, y cada componente hijo puede contener a su vez otros componentes hijos. Todo esto se hace importando el componente y usando la etiqueta HTML definida en la propiedad <code class="docutils literal notranslate"><span class="pre">selector</span></code>.</p>
 <p>Los componentes pueden comunicarse entre sí mediante diferentes mecanismos, como:</p>
 <ul class="simple">
 <li><p><strong>Entrada y salida de datos:</strong> Los componentes pueden intercambiar datos a través de propiedades de entrada y salida &#64;Input y &#64;Output.</p></li>
@@ -1042,7 +1054,7 @@ Hello, {{name}}
 <li><p>La propiedad <code class="docutils literal notranslate"><span class="pre">p</span></code> está decorada con <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code>, lo que permite que este componente reciba un valor desde su componente padre.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">p!:</span> <span class="pre">Product</span></code> indica que <code class="docutils literal notranslate"><span class="pre">p</span></code> es una propiedad obligatoria de tipo <code class="docutils literal notranslate"><span class="pre">Product</span></code>. El <code class="docutils literal notranslate"><span class="pre">!</span></code> es una aserción de no nulo/no indefinido, lo que le dice a TypeScript que confíe en que <code class="docutils literal notranslate"><span class="pre">p</span></code> será inicializada correctamente.</p></li>
 </ul>
-<p>El decorador <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> en Angular se utiliza para marcar una propiedad de un componente como pública, permitiendo que este reciba datos desde un componente padre, lo cual es esencial para la comunicación entre componentes en Angular y facilita el flujo de datos de padres a hijos. Este enfoque promueve la <strong>modularidad</strong> al facilitar la creación de componentes reutilizables y modulares, mejora la <strong>claridad</strong> al hacer explícito qué datos necesita un componente para funcionar y optimiza el <strong>mantenimiento</strong> al separar claramente la lógica de la presentación de datos, lo que resulta en un código más limpio y fácil de gestionar en aplicaciones complejas.</p>
+<p>El decorador <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> en Angular se utiliza para marcar una propiedad de un componente como pública, permitiendo que este reciba datos desde un componente padre.</p>
 <p>Existen varias opciones y formas de usar <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code>, cada una con sus características y beneficios.</p>
 <p><strong>Ejemplo 1: <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> Requerido</strong></p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Input</span><span class="p">({</span><span class="w"> </span><span class="nx">required</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
@@ -1102,8 +1114,8 @@ Hello, {{name}}
 </section>
 <section id="output">
 <h4>&#64;Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h4>
-<p>En Angular, el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Output</span></code> se utiliza para permitir que un componente hijo emita eventos personalizados que puedan ser capturados por su componente padre. Esto es útil para la comunicación de eventos y datos desde un componente hijo hacia su padre, facilitando la interacción entre componentes.</p>
-<p>El uso del decorador <code class="docutils literal notranslate"><span class="pre">&#64;Output</span></code> en Angular permite una comunicación eficaz entre componentes hijo y padre mediante eventos personalizados.  Al emitir eventos desde el hijo y capturarlos en el padre, se puede gestionar fácilmente la lógica de la aplicación y mantener una separación clara de responsabilidades entre los componentes.</p>
+<p>En Angular, el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Output</span></code> se utiliza para permitir que un componente hijo emita eventos personalizados que puedan ser capturados por su componente padre. Esto es útil para la comunicación de eventos y datos desde un componente hijo hacia su padre.</p>
+<p>Al emitir eventos desde el hijo y capturarlos en el padre, se puede gestionar fácilmente la lógica de la aplicación y mantener una separación clara de responsabilidades entre los componentes.</p>
 <p>En este ejemplo, un componente hijo emite un evento personalizado cuando se produce un cambio en la puntuación (<code class="docutils literal notranslate"><span class="pre">ratting</span></code>). El componente padre escucha este evento y actúa en consecuencia.</p>
 <section id="paso-1-configuracion-en-el-componente-hijo">
 <h5>Paso 1: Configuración en el Componente Hijo<a class="headerlink" href="#paso-1-configuracion-en-el-componente-hijo" title="Link to this heading">#</a></h5>
@@ -1174,7 +1186,8 @@ Hello, {{name}}
 <li><p><code class="docutils literal notranslate"><span class="pre">date</span></code>: Formatea una fecha según el formato especificado.</p></li>
 </ul>
 <p>Aquí hay un ejemplo de cómo usar algunos de estos pipes predefinidos en una tabla que muestra una lista de productos:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let product of products&quot;</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (product of products; track $index) {
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">img</span> <span class="err">[</span><span class="na">src</span><span class="err">]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">imageUrl</span><span class="err">&quot;</span> 
              <span class="err">*</span><span class="na">ngIf</span><span class="o">=</span><span class="s">&quot;showImage&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;&quot;</span>
@@ -1184,6 +1197,7 @@ Hello, {{name}}
     <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.price | currency:&#39;EUR&#39;:&#39;symbol&#39;}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.available | date:&#39;dd/MM/y&#39; }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+}
 </pre></div>
 </div>
 <p>En este ejemplo:</p>
@@ -1227,11 +1241,13 @@ Hello, {{name}}
 </ul>
 </li>
 <li><p><strong>Usar el Pipe Personalizado</strong>: Aplicar el pipe en la plantilla para filtrar los productos según el criterio de búsqueda.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let product of products | productFilter: filter&quot;</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (product of products | productFilter: filter; track $index) {
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.name }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.price | currency:&#39;EUR&#39;:&#39;symbol&#39; }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.available | date:&#39;dd/MM/y&#39; }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+}
 </pre></div>
 </div>
 </li>
@@ -1241,7 +1257,7 @@ Hello, {{name}}
 </section>
 <section id="directivas-en-angular">
 <h2>Directivas en Angular<a class="headerlink" href="#directivas-en-angular" title="Link to this heading">#</a></h2>
-<p>Las directivas en Angular son un mecanismo potente para manipular el DOM de manera declarativa. Pueden modificar elementos HTML y su comportamiento en función de la lógica de la aplicación. Existen tres tipos principales de directivas en Angular:</p>
+<p>Las directivas en Angular son un mecanismo para manipular el DOM de manera declarativa. Pueden modificar elementos HTML y su comportamiento en función de la lógica de la aplicación. Existen tres tipos principales de directivas en Angular:</p>
 <ol class="arabic simple">
 <li><p><strong>Directivas de componente:</strong> Se definen mediante el selector en el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> y son las que hemos creado hasta ahora.</p></li>
 <li><p><strong>Directivas de atributo:</strong> Modifican el comportamiento de un elemento. Ejemplos comunes son <code class="docutils literal notranslate"><span class="pre">NgClass</span></code> y <code class="docutils literal notranslate"><span class="pre">NgStyle</span></code>.</p></li>
