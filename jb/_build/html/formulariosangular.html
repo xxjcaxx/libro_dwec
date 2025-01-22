@@ -64,6 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'formulariosangular';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyecto Angular" href="proyectoangular.html" />
     <link rel="prev" title="Rutas en Angular" href="rutasangular.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -199,6 +200,7 @@
 <li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
 </ul>
 
     </div>
@@ -822,41 +824,94 @@
 <section id="formularios-dinamicos">
 <h3>Formularios Dinámicos<a class="headerlink" href="#formularios-dinamicos" title="Link to this heading">#</a></h3>
 <p>Los <code class="docutils literal notranslate"><span class="pre">FormArray</span></code> permiten crear formularios dinámicos donde los controles pueden añadirse o eliminarse en tiempo de ejecución.</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">production</span><span class="o">:</span><span class="w"> </span><span class="kt">this.formBuilder.array</span><span class="p">([</span><span class="k">this</span><span class="p">.</span><span class="nx">getProductionControl</span><span class="p">()])</span>
-<span class="p">});</span>
+<p>Para funcionar necesitamos crear un <code class="docutils literal notranslate"><span class="pre">formArray</span></code> dentro del <code class="docutils literal notranslate"><span class="pre">formGroup</span></code> del formulario. En el ejemplo lo hacemos con <code class="docutils literal notranslate"><span class="pre">formBuilder.array</span></code>. Para generar nuevos <code class="docutils literal notranslate"><span class="pre">formControl</span></code> dentro de ese array, en este caso hemos creado dos funciones <code class="docutils literal notranslate"><span class="pre">getIngredientControl</span></code> y <code class="docutils literal notranslate"> <span class="pre">generateIngredientControl</span></code> que crean un control de forma menos concisa que con los <code class="docutils literal notranslate"><span class="pre">formBuilder</span></code>.</p>
+<p>Hemos hecho funciones para crear nuevos controles y borrarlos, así como la función que rellena el formulario y crea tantos controles como elementos tenga el array. Puesto que un <code class="docutils literal notranslate"><span class="pre">formArray</span></code> es un tipo especial de <code class="docutils literal notranslate"><span class="pre">formControl</span></code>, hay que castearlo cuando se obtiene por <code class="docutils literal notranslate"><span class="pre">get</span></code> y tiene funciones útiles como <code class="docutils literal notranslate"><span class="pre">push</span></code> o <code class="docutils literal notranslate"><span class="pre">removeAt</span></code>. Observemos cómo las usamos en el ejemplo.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">@Input</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">recipeID?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">mealForm</span><span class="o">:</span><span class="w"> </span><span class="kt">FormGroup</span><span class="p">;</span>
 
-<span class="nx">getProductionControl</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormControl</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">control</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
-<span class="w">  </span><span class="nx">control</span><span class="p">.</span><span class="nx">setValidators</span><span class="p">(</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mf">100</span><span class="p">));</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">control</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">supaService</span><span class="o">:</span><span class="w"> </span><span class="kt">SupabaseService</span><span class="p">,</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">formBuilder</span><span class="o">:</span><span class="w"> </span><span class="kt">FormBuilder</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">strMeal</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]],</span>
+<span class="w">      </span><span class="nx">strInstructions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]],</span>
+<span class="w">      </span><span class="nx">ingredients</span><span class="o">:</span><span class="w"> </span><span class="kt">this.formBuilder.array</span><span class="p">([]),</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="nx">get</span><span class="w"> </span><span class="nx">productionArray</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormArray</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w"> </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipeID</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// suponiendo que tenemos supabase como backend</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">supaService</span><span class="p">.</span><span class="nx">getMeals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipeID</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">meals</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="nx">meals</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">          </span><span class="nx">meals</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">idIngredients</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span><span class="p">=&gt;{</span><span class="w">  </span><span class="c1">// idIngredients es un array de ids</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="p">){</span>
+<span class="w">              </span><span class="p">(</span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">)).</span><span class="nx">push</span><span class="p">(</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">generateIngredientControl</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="w">             </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">      </span>
+<span class="w">          </span><span class="p">})</span>
+<span class="w">     </span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="nx">addProduction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">productionArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getProductionControl</span><span class="p">());</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nx">getIngredientControl</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormControl</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">control</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">control</span><span class="p">.</span><span class="nx">setValidators</span><span class="p">(</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">control</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="nx">delProduction</span><span class="p">(</span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">productionArray</span><span class="p">.</span><span class="nx">removeAt</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nx">generateIngredientControl</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">FormControl</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">control</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">control</span><span class="p">.</span><span class="nx">setValidators</span><span class="p">(</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">control</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">get</span><span class="w"> </span><span class="nx">IngredientsArray</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormArray</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">addIngredient</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">)).</span><span class="nx">push</span><span class="p">(</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">getIngredientControl</span><span class="p">()</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">delIngredient</span><span class="p">(</span><span class="nx">i</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="p">(</span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">)).</span><span class="nx">removeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>Y en el HTML:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row row-cols-6 g-3&quot;</span> <span class="na">formArrayName</span><span class="o">=</span><span class="s">&quot;production&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let prod of productionArray.controls; let i=index&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control col&quot;</span> <span class="err">[</span><span class="na">formControlName</span><span class="err">]=&quot;</span><span class="na">i</span><span class="err">&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Production {{i}}&quot;</span> 
-      <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{</span>
-        <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">valid</span> <span class="err">&amp;&amp;</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">touched</span><span class="err">,</span>
-        <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">invalid</span> <span class="err">&amp;&amp;</span> <span class="na">productionArray</span><span class="err">.</span><span class="na">controls</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">touched</span>
-      <span class="err">}&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col btn btn-outline-danger&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">delProduction</span><span class="err">(</span><span class="na">i</span><span class="err">)&quot;</span><span class="p">&gt;</span>🗑<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col btn btn-primary&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">addProduction</span><span class="err">()&quot;</span><span class="p">&gt;</span>Add Production<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<p>Y en el HTML hay que crear un contenedor con el atributo <code class="docutils literal notranslate"><span class="pre">formArrayName</span></code> en el que podemos hacer un <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> para recorrer el <code class="docutils literal notranslate"><span class="pre">formArray</span></code> obtenido por el <code class="docutils literal notranslate"><span class="pre">getter</span></code> creado anteriormente. Este tiene un interable <code class="docutils literal notranslate"><span class="pre">.controls</span></code> que contiene la información del control. El input debe tener <code class="docutils literal notranslate"><span class="pre">formControName</span></code> al índice del <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code>.</p>
+<p>En el ejemplo tenemos botones para añadir o borrar elementos del <code class="docutils literal notranslate"><span class="pre">formArray</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">formArrayName</span><span class="o">=</span><span class="s">&quot;ingredients&quot;</span><span class="p">&gt;</span>
+      @for (ingredient of IngredientsArray.controls; track $index) {
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;input-group mb-3&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span>
+          <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+          <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+          <span class="na">id</span><span class="o">=</span><span class="s">&quot;ingredient{{ $index }}&quot;</span>
+          <span class="na">name</span><span class="o">=</span><span class="s">&quot;ingredient{{ $index }}&quot;</span>
+          <span class="err">[</span><span class="na">formControlName</span><span class="err">]=&quot;$</span><span class="na">index</span><span class="err">&quot;</span>
+          <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;ingredient&quot;</span>
+          <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{</span>
+            <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">ingredient</span><span class="err">.</span><span class="na">valid</span> <span class="err">&amp;&amp;</span> <span class="na">ingredient</span><span class="err">.</span><span class="na">touched</span><span class="err">,</span>
+            <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">ingredient</span><span class="err">.</span><span class="na">invalid</span> <span class="err">&amp;&amp;</span> <span class="na">ingredient</span><span class="err">.</span><span class="na">touched</span>
+          <span class="err">}&quot;</span>
+        <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-outline-danger&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">delIngredient</span><span class="err">($</span><span class="na">index</span><span class="err">)&quot;</span><span class="p">&gt;</span>
+          Borrar
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">addIngredient</span><span class="err">()&quot;</span><span class="p">&gt;</span>
+        Añadir ingrediente
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -901,6 +956,15 @@
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Rutas en Angular</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="proyectoangular.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyecto Angular</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

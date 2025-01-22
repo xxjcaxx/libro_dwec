@@ -430,9 +430,8 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios">Formularios</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validadores">Validadores</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar datos en el formulario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulario-dinamico">Formulario dinámico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-supabase-para-crear-y-editar-recetas">Funciones Supabase para crear y editar recetas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar datos en el formulario</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-en-tiempo-real">Aplicación en tiempo real</a><ul class="nav section-nav flex-column">
@@ -1087,17 +1086,148 @@ El <code class="docutils literal notranslate"><span class="pre">from</span></cod
 <section id="formularios">
 <h2>Formularios<a class="headerlink" href="#formularios" title="Link to this heading">#</a></h2>
 <p>En el apartado de autenticación hemos usado un formulario de plantilla y en este vamos a usar uno <code class="docutils literal notranslate"><span class="pre">Reactivo</span></code>.</p>
+<p>Hacemos un formulario para crear recetas o editar recetas existentes. El formulario será capaz de crear y de editar.</p>
+<p><strong>Configuración previa para Crear recetas</strong>
+Podemos crear un menú que nos envíe al formulario de creación:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-item&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-link&quot;</span>  <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;</span><span class="na">create_recipe</span><span class="err">&#39;]&quot;</span>  <span class="err">[</span><span class="na">routerLinkActive</span><span class="err">]=&quot;[&#39;</span><span class="na">active</span><span class="err">&#39;]&quot;</span><span class="p">&gt;</span>Create<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Además, necesitamos una nueva ruta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;create_recipe&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="nx">CreateRecipeComponent</span><span class="p">},</span>
+</pre></div>
+</div>
+<p><strong>Configuración previa para Editar recetas</strong>
+Podemos crear un botón en el componente que muestra el detalle de la receta para acceder al formulario de edición:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>      <span class="p">&lt;</span><span class="nt">a</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;/</span><span class="na">edit_recipe</span><span class="err">&#39;,</span><span class="na">recipe</span><span class="err">?.</span><span class="na">idMeal</span><span class="err">]&quot;</span>  <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-brand-orange&quot;</span><span class="p">&gt;</span>Edit<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Y la ruta correspondiente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;edit_recipe/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="nx">CreateRecipeComponent</span><span class="p">},</span>
+</pre></div>
+</div>
+<p>Esta ruta será atendida por un <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> en el componente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="err">@</span><span class="nx">Input</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">recipeID</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Componente y plantilla</strong>
+Creamos el componente y añadimos un formulario al HTML, aquí un extracto:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">form</span> <span class="err">[</span><span class="na">formGroup</span><span class="err">]=&quot;</span><span class="na">mealForm</span><span class="err">&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-3&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;strMeal&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-label&quot;</span><span class="p">&gt;</span>Nom<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span>
+        <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+        <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+        <span class="na">id</span><span class="o">=</span><span class="s">&quot;strMeal&quot;</span>
+        <span class="na">aria-describedby</span><span class="o">=</span><span class="s">&quot;strMeal&quot;</span>
+        <span class="na">name</span><span class="o">=</span><span class="s">&quot;strMeal&quot;</span>
+        <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;strMeal&quot;</span>
+        <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{</span>
+          <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">strMealValid</span><span class="err">,</span>
+          <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span><span class="na">:</span> <span class="err">!</span><span class="na">strMealValid</span>
+        <span class="err">}&quot;</span>
+      <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-3&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;strInstructions&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-label&quot;</span><span class="p">&gt;</span>Instruccions<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">textarea</span>
+        <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span>
+        <span class="na">id</span><span class="o">=</span><span class="s">&quot;strInstructions&quot;</span>
+        <span class="na">name</span><span class="o">=</span><span class="s">&quot;strInstructions&quot;</span>
+        <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;strInstructions&quot;</span>
+      <span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Crear<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Este formulario es reactivo, así que crearemos el <code class="docutils literal notranslate"><span class="pre">formGroup</span></code> por código:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">mealForm</span><span class="o">:</span><span class="w"> </span><span class="nx">FormGroup</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span>
+<span class="w">    </span><span class="kr">private</span><span class="w"> </span><span class="nx">supaService</span><span class="o">:</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="p">,</span>
+<span class="w">    </span><span class="kr">private</span><span class="w"> </span><span class="nx">formBuilder</span><span class="o">:</span><span class="w"> </span><span class="nx">FormBuilder</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">strMeal</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]],</span>
+<span class="w">      </span><span class="nx">strInstructions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]],</span>
+<span class="w">      </span><span class="nx">ingredients</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">array</span><span class="p">([]),</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
 <section id="validadores">
 <h3>Validadores<a class="headerlink" href="#validadores" title="Link to this heading">#</a></h3>
-</section>
-<section id="cargar-datos-en-el-formulario">
-<h3>Cargar datos en el formulario<a class="headerlink" href="#cargar-datos-en-el-formulario" title="Link to this heading">#</a></h3>
+<p>Puesto que estamos usando validadores que ya están en <code class="docutils literal notranslate"><span class="pre">Validators</span></code>, lo mejor es hacer un <code class="docutils literal notranslate"><span class="pre">getter</span></code> para saber si un campo es válido:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">get</span><span class="w"> </span><span class="nx">strMealValid</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;strMeal&#39;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">valid</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;strMeal&#39;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">touched</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Si quisieramos hacer nuestos propios validadores podriamos hacer una función. Hay un ejemplo en la parte del registro.</p>
 </section>
 <section id="formulario-dinamico">
 <h3>Formulario dinámico<a class="headerlink" href="#formulario-dinamico" title="Link to this heading">#</a></h3>
+<p>Los ingredientes se pueden añadir o quitar del formulario, así que los añadiremos en un <code class="docutils literal notranslate"><span class="pre">arrayForm</span></code>, como se ve en el <code class="docutils literal notranslate"><span class="pre">formBuilder</span></code>.</p>
+<p>Además, necesitamos funciones para obtener el array y para modificarlo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">getIngredientControl</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormControl</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">control</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">control</span><span class="p">.</span><span class="nx">setValidators</span><span class="p">(</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">control</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">generateIngredientControl</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">FormControl</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formBuilder</span><span class="p">.</span><span class="nx">control</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">control</span><span class="p">.</span><span class="nx">setValidators</span><span class="p">(</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">control</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">get</span><span class="w"> </span><span class="nx">IngredientsArray</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">FormArray</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">addIngredient</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">)).</span><span class="nx">push</span><span class="p">(</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">getIngredientControl</span><span class="p">()</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">delIngredient</span><span class="p">(</span><span class="nx">i</span><span class="o">:</span><span class="w"> </span><span class="nx">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="p">(</span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">)).</span><span class="nx">removeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
-<section id="funciones-supabase-para-crear-y-editar-recetas">
-<h3>Funciones Supabase para crear y editar recetas<a class="headerlink" href="#funciones-supabase-para-crear-y-editar-recetas" title="Link to this heading">#</a></h3>
+<section id="cargar-datos-en-el-formulario">
+<h3>Cargar datos en el formulario<a class="headerlink" href="#cargar-datos-en-el-formulario" title="Link to this heading">#</a></h3>
+<p>En caso de que llegue un id por la ruta, debemos descargar los datos en el <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipeID</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// falta demanar tots els ingredients (id, nom)</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">supaService</span><span class="p">.</span><span class="nx">getMeals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipeID</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">meals</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="nx">meals</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">          </span><span class="nx">meals</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">idIngredients</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span><span class="p">=&gt;{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="p">){</span>
+<span class="w">              </span><span class="p">(</span><span class="o">&lt;</span><span class="nx">FormArray</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">mealForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ingredients&#39;</span><span class="p">)).</span><span class="nx">push</span><span class="p">(</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">generateIngredientControl</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="w">             </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">})</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>En este caso, es especialmente interesante porque rellenamos también el <code class="docutils literal notranslate"><span class="pre">arrayForm</span></code></p>
 </section>
 </section>
 <section id="aplicacion-en-tiempo-real">
@@ -1264,9 +1394,8 @@ El <code class="docutils literal notranslate"><span class="pre">from</span></cod
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios">Formularios</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validadores">Validadores</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar datos en el formulario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulario-dinamico">Formulario dinámico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-supabase-para-crear-y-editar-recetas">Funciones Supabase para crear y editar recetas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar datos en el formulario</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-en-tiempo-real">Aplicación en tiempo real</a><ul class="nav section-nav flex-column">
