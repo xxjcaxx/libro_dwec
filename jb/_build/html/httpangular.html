@@ -16,21 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -39,11 +37,10 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="Introducción a Angular" href="angular.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -200,6 +211,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Comunicación con el servidor en Angular</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
 <li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
 </ul>
 
     </div>
@@ -208,14 +220,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,16 +366,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -423,6 +438,10 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-como-observables">Variables como Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets">Websockets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-rxjs">Websockets con <code class="docutils literal notranslate"><span class="pre">RxJS</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
 </ul>
@@ -466,7 +485,7 @@
 <p>Si el servicio se declara con <code class="docutils literal notranslate"><span class="pre">providedIn:</span> <span class="pre">'root'</span></code>, no es necesario agregarlo a <code class="docutils literal notranslate"><span class="pre">providers</span></code> porque Angular se encargará de su inyección automáticamente en toda la aplicación.</p>
 <section id="inyeccion-de-dependencias">
 <h4>Inyección de Dependencias<a class="headerlink" href="#inyeccion-de-dependencias" title="Link to this heading">#</a></h4>
-<p>En Angular, la inyección de dependencias (DI) es una técnica poderosa que permite a los componentes solicitar servicios de manera eficiente. En lugar de crear instancias de servicios con <code class="docutils literal notranslate"><span class="pre">new</span></code>, Angular maneja la creación y provisión de servicios mediante el constructor:</p>
+<p>En Angular, la inyección de dependencias (DI) permite a los componentes solicitar servicios de manera eficiente. En lugar de crear instancias de servicios con <code class="docutils literal notranslate"><span class="pre">new</span></code>, Angular maneja la creación y provisión de servicios mediante el constructor:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.service&#39;</span><span class="p">;</span>
 
@@ -479,7 +498,11 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Este enfoque hace que el código sea más legible y fácil de mantener. Además, permite que Angular gestione la creación de servicios como Singletons, asegurando que todos los componentes utilicen la misma instancia del servicio.</p>
+<p>Este enfoque hace que el código sea más legible y fácil de mantener. Además, permite que Angular gestione la creación de servicios como <code class="docutils literal notranslate"><span class="pre">Singletons</span></code>, asegurando que todos los componentes utilicen la misma instancia del servicio.</p>
+<p>En el ejemplo, se utiliza la inyección de dependencias en el constructor de una clase, en caso de necesitarlo en una función, podemos usar <code class="docutils literal notranslate"><span class="pre">inject</span></code>, como en el ejemplo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="httpclientmodule">
@@ -715,20 +738,78 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Para utilizar este interceptor, se debe proporcionar en el módulo principal:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">provide</span><span class="o">:</span><span class="w"> </span><span class="kt">HTTP_INTERCEPTORS</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">useClass</span><span class="o">:</span><span class="w"> </span><span class="kt">AuthInterceptorService</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">multi</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="p">],</span>
+<p>El método <code class="docutils literal notranslate"><span class="pre">clone()</span></code> se utiliza para crear una copia exacta de una solicitud HTTP (<code class="docutils literal notranslate"><span class="pre">HttpRequest</span></code>) en Angular. Esto es necesario porque los objetos de tipo <code class="docutils literal notranslate"><span class="pre">HttpRequest</span></code> son <strong>inmutables</strong>.. Al clonarlos, se puede crear una nueva instancia basada en la original y agregar, eliminar o modificar partes de la solicitud, como encabezados, parámetros, cuerpo o URL.</p>
+<p>El método acepta un objeto de opciones donde se puede especificar qué partes de la solicitud  cambiar. Algunos de los campos más comunes son:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">setHeaders</span></code></strong>: Agregar o sobrescribir encabezados.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">setParams</span></code></strong>: Agregar o sobrescribir parámetros de consulta (query params).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">body</span></code></strong>: Modificar el cuerpo de la solicitud (útil para solicitudes <code class="docutils literal notranslate"><span class="pre">POST</span></code> o <code class="docutils literal notranslate"><span class="pre">PUT</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">url</span></code></strong>: Cambiar la URL de la solicitud.</p></li>
+</ul>
+<p>Para utilizar este interceptor, se debe proporcionar en el componente principal:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">bootstrapApplication</span><span class="p">(</span><span class="nx">AppComponent</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nx">provideHttpClient</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">withInterceptors</span><span class="p">([</span><span class="nx">AuthInterceptorService</span><span class="p">]),</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">]});</span>
+</pre></div>
+</div>
+<p>El interceptor anterior añade un token a la URL, pero el comando clone puede servir para manipular cualquier cosa de una petición. Aquí vemos un ejemplo en el que se añaden los datos típicos que necesita Supabase al header:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">HttpEvent</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">HttpHandler</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">HttpInterceptor</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">HttpRequest</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">()</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AuthInterceptor</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">HttpInterceptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;tu-api-key-aquí&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">authentication</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Bearer tu-token-de-autenticación&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">intercept</span><span class="p">(</span><span class="nx">req</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpRequest</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpHandler</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">HttpEvent</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Clonar la solicitud y agregar los encabezados</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">clonedRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">clone</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">setHeaders</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">apiKey</span><span class="o">:</span><span class="w"> </span><span class="kt">this.apiKey</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="kt">this.authentication</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Continuar con la solicitud clonada</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">next</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="nx">clonedRequest</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En algunos proyectos no es necesario interceptar todas las peticiones. Esto se puede conseguir poniendo alguna condición. Por ejemplo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;https://api.mi-dominio.com&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">clonedRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">clone</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">setHeaders</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">apiKey</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;mi-clave-api&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Bearer mi-token&#39;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="guards">
 <h3>Guards<a class="headerlink" href="#guards" title="Link to this heading">#</a></h3>
 <p>Los guards son servicios que permiten o deniegan el acceso a ciertas rutas en una aplicación Angular. El guard <code class="docutils literal notranslate"><span class="pre">CanActivate</span></code> se utiliza para proteger rutas y asegurar que solo usuarios autenticados puedan acceder a ellas.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Guards</span></code> pueden ser una clase o una función. En caso de ser una clase, debe implementar <code class="docutils literal notranslate"><span class="pre">CanActivate</span></code> y en caso de ser una función debe ser una función del tipo <code class="docutils literal notranslate"><span class="pre">CanActivateFn</span></code>. Es mucho más sencillo con funciones, así que esa será nuestra elección:</p>
+<p><strong>Ejemplo de Guard <code class="docutils literal notranslate"><span class="pre">CanActivateFn</span></code></strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">supabaseLoginGuard</span><span class="o">:</span><span class="w"> </span><span class="kt">CanActivateFn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">,</span><span class="w"> </span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">supabaseService</span><span class="o">:</span><span class="w"> </span><span class="kt">SupabaseService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">SupabaseService</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">urlTree</span><span class="o">:</span><span class="w"> </span><span class="kt">UrlTree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">.</span><span class="nx">parseUrl</span><span class="p">(</span><span class="s1">&#39;./main&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">supabaseService</span><span class="p">.</span><span class="nx">loggedSubject</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">true</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">urlTree</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Se puede ver cómo hemos inyectado el router y el servicio de autenticación con <code class="docutils literal notranslate"><span class="pre">inject</span></code>. El router sirve para redirigir en caso de que el usuario no tenga la sesión iniciada.</p>
 <p><strong>Ejemplo de Guard <code class="docutils literal notranslate"><span class="pre">CanActivate</span></code>:</strong></p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CanActivate</span><span class="p">,</span><span class="w"> </span><span class="nx">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">RouterStateSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">UrlTree</span><span class="p">,</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
@@ -814,6 +895,57 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="websockets">
+<h2>Websockets<a class="headerlink" href="#websockets" title="Link to this heading">#</a></h2>
+<p>No es posible establecer directamente una conexión WebSocket utilizando <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code>. Esto se debe a que HttpClient está diseñado específicamente para manejar solicitudes HTTP basadas en el protocolo HTTP/HTTPS, mientras que WebSocket utiliza un protocolo diferente.</p>
+<p>Para trabajar con WebSockets en Angular, podemos usar directamente la API nativa de WebSocket de JavaScript o bibliotecas como RxJS para integrar la funcionalidad de WebSocket de manera reactiva.</p>
+<section id="websockets-con-rxjs">
+<h3>Websockets con <code class="docutils literal notranslate"><span class="pre">RxJS</span></code><a class="headerlink" href="#websockets-con-rxjs" title="Link to this heading">#</a></h3>
+<p>Esta librería simplifica mucho la gestión de los sockets i permite trabajar directamente con <code class="docutils literal notranslate"><span class="pre">Observables</span></code>.</p>
+<p>Aquí tenemos un ejemplo de cómo usar un Websocket:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WebSocketSubject</span><span class="p">,</span><span class="w"> </span><span class="nx">webSocket</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/webSocket&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">WebSocketService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">socket$</span><span class="o">:</span><span class="w"> </span><span class="kt">WebSocketSubject</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w"> </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">socket$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">webSocket</span><span class="p">(</span><span class="s1">&#39;ws://your-websocket-url&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Send a message to the server</span>
+<span class="w">  </span><span class="nx">sendMessage</span><span class="p">(</span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">socket$</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Receive messages from the server</span>
+<span class="w">  </span><span class="nx">getMessages</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">socket$</span><span class="p">.</span><span class="nx">asObservable</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Close the WebSocket connection</span>
+<span class="w">  </span><span class="nx">closeConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">socket$</span><span class="p">.</span><span class="nx">complete</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La clase <code class="docutils literal notranslate"><span class="pre">WebSocketSubject</span></code> y <code class="docutils literal notranslate"><span class="pre">webSocket</span></code> admiten la url y permiten tratar esa comunicación como un <code class="docutils literal notranslate"><span class="pre">Subject</span></code>. <a class="reference external" href="https://rxjs.dev/api/webSocket/webSocket">https://rxjs.dev/api/webSocket/webSocket</a></p>
+<blockquote>
+<div><p>Puesto que los websockets no se cierran inmediatamente, hay que recordar la desuscripción en el <code class="docutils literal notranslate"><span class="pre">ngOnDestroy</span></code> de los componentes que se suscriban a este servicio</p>
+</div></blockquote>
+<blockquote>
+<div><p>Esta solución no contempla las posibles desconexiones, errores o la autenticación.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Tutorial interesante con más detalles: <a class="reference external" href="https://medium.com/&#64;saranipeiris17/websockets-in-angular-a-comprehensive-guide-e92ca33f5d67">https://medium.com/&#64;saranipeiris17/websockets-in-angular-a-comprehensive-guide-e92ca33f5d67</a></p></li>
+</ul>
+</section>
 </section>
 <section id="integracion-de-angular-con-supabase">
 <h2>Integración de Angular con Supabase<a class="headerlink" href="#integracion-de-angular-con-supabase" title="Link to this heading">#</a></h2>
@@ -1010,8 +1142,7 @@
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1051,6 +1182,10 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-como-observables">Variables como Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets">Websockets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-rxjs">Websockets con <code class="docutils literal notranslate"><span class="pre">RxJS</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
 </ul>
@@ -1103,8 +1238,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
