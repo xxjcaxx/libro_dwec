@@ -450,11 +450,11 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-en-tiempo-real">Aplicación en tiempo real</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supabase-realtime">Supabase Realtime</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-sdk">Websockets con SDK</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-a-observables">Websockets a Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-sdk-a-observables">Websockets con SDK a Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz">Interfaz</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue">Despliegue</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-estilos-personalizados-de-bootstrap">Extra: Estilos personalizados de Bootstrap</a></li>
 </ul>
             </nav>
@@ -1254,16 +1254,96 @@ Creamos el componente y añadimos un formulario al HTML, aquí un extracto:</p>
 <p>Como se explica en el artículo de Supabase hay 3 tipos de comunicación con <code class="docutils literal notranslate"><span class="pre">Realtime</span></code>. A nosotros nos interesa la opción de <code class="docutils literal notranslate"><span class="pre">Postgres</span> <span class="pre">Changes</span></code> para ir enviando y consultando los mensajes con persistencia en la base de datos.</p>
 <p>Para ello, iremos a <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">&gt;</span> <span class="pre">Publications</span></code> para dar de alta la tabla que queremos conectar con <code class="docutils literal notranslate"><span class="pre">websockets</span></code>.</p>
 </section>
-<section id="websockets-con-sdk">
-<h3>Websockets con SDK<a class="headerlink" href="#websockets-con-sdk" title="Link to this heading">#</a></h3>
+<section id="websockets-con-sdk-a-observables">
+<h3>Websockets con SDK a Observables<a class="headerlink" href="#websockets-con-sdk-a-observables" title="Link to this heading">#</a></h3>
 <p>El <code class="docutils literal notranslate"><span class="pre">SDK</span></code> simplifica mucho la conexión al websocket. La idea es crear un <code class="docutils literal notranslate"><span class="pre">Channel</span></code> que escuche los cambios en una tabla de la base de datos. Esos cambios pueden filtrarse por tipo de evento o por filtros como el un <code class="docutils literal notranslate"><span class="pre">select</span></code>. Este canal tiene la función <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code>, que no es igual que la de los <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Esta función activa el <code class="docutils literal notranslate"><span class="pre">Websocket</span></code> y ejecuta la función que indiquemos en la función <code class="docutils literal notranslate"><span class="pre">on()</span></code>.</p>
-</section>
-<section id="websockets-a-observables">
-<h3>Websockets a Observables<a class="headerlink" href="#websockets-a-observables" title="Link to this heading">#</a></h3>
+<p>En nuestro código lo que vamos a hacer es crear un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> y proporcionarle nuevos datos con <code class="docutils literal notranslate"><span class="pre">next</span></code> cuando el <code class="docutils literal notranslate"><span class="pre">Websocket</span></code> nos lo genere con la función de <code class="docutils literal notranslate"><span class="pre">Callback</span></code> que recibe el <code class="docutils literal notranslate"><span class="pre">payload</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">getsharedRecipesChannel</span><span class="p">(</span><span class="nx">recipe</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sharedRecipesSubject</span><span class="o">:</span><span class="w"> </span><span class="kt">Subject</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subject</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">channel</span><span class="p">(</span><span class="s1">&#39;shared_recipes_events_change&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">on</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;postgres_changes&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">schema</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;public&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;shared_recipes_events&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">filter</span><span class="o">:</span><span class="w"> </span><span class="sb">`shared_recipe=eq.</span><span class="si">${</span><span class="nx">recipe</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">(</span><span class="nx">payload</span><span class="o">:</span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">sharedRecipesSubject</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="c1">// Función de Callback</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">();</span><span class="w"> </span><span class="c1">// Este no es un observable</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">sharedRecipesSubject</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="interfaz">
 <h3>Interfaz<a class="headerlink" href="#interfaz" title="Link to this heading">#</a></h3>
+<p>Para mostrar esto nos suscribimos al <code class="docutils literal notranslate"><span class="pre">Subject</span></code> y generamos los datos conforme lleguen.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">supabasewebsocketService</span><span class="p">.</span><span class="nx">getsharedRecipesChannel</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipe</span><span class="o">?</span><span class="p">.</span><span class="nx">id</span><span class="p">)).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">startWith</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="c1">// Para que tenga un valor inicial si fuera necesario</span>
+<span class="w">      </span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">events</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">events</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">recipe</span><span class="o">!</span><span class="p">.</span><span class="nx">shared_recipes_events</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">events</span><span class="p">.</span><span class="ow">new</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
+</section>
+<section id="despliegue">
+<h2>Despliegue<a class="headerlink" href="#despliegue" title="Link to this heading">#</a></h2>
+<p>En el caso de este proyecto se ha decidido desplegar mediante integración continua desde <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">Actions</span></code> a un <code class="docutils literal notranslate"><span class="pre">VPS</span></code> en <code class="docutils literal notranslate"><span class="pre">Azure</span></code>. Este es el <code class="docutils literal notranslate"><span class="pre">yml</span></code> del action en el que ser instalan las dependencias necesarias, se ejecuta en <code class="docutils literal notranslate"><span class="pre">build</span></code> y se sube mediante scp al servidor:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and Deploy Angular App</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">09-angular/2425/myrecipes/**</span><span class="w"> </span><span class="c1"># Ejecuta solo cuando se modifique algo en esta carpeta</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-and-deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Node.js</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-node@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;20&#39;</span>
+
+<span class="w">   </span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">09-angular/2425/myrecipes</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm install</span>
+
+<span class="w">    </span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Angular App</span>
+<span class="w">      </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">09-angular/2425/myrecipes</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build</span>
+
+<span class="w">    </span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Copy build to remote server</span>
+<span class="w">      </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">REMOTE_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.REMOTE_USER }}</span>
+<span class="w">        </span><span class="nt">REMOTE_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.REMOTE_HOST }}</span>
+<span class="w">        </span><span class="nt">REMOTE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.REMOTE_PASSWORD }}</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">sudo apt-get update</span>
+<span class="w">        </span><span class="no">sudo apt-get install -y sshpass</span>
+<span class="w">        </span><span class="no">mkdir -p ~/.ssh</span>
+<span class="w">        </span><span class="no">ssh-keyscan -H ${{ secrets.REMOTE_HOST }} &gt;&gt; ~/.ssh/known_hosts</span>
+<span class="w">        </span><span class="no">echo &quot;Added ${{ secrets.REMOTE_HOST }} to known_hosts.&quot;</span>
+<span class="w">        </span><span class="no">sshpass -p &quot;${REMOTE_PASSWORD}&quot; scp -r 09-angular/2425/myrecipes/dist/myrecipes/browser/* ${REMOTE_USER}@${REMOTE_HOST}:/var/www/html</span>
+</pre></div>
+</div>
 </section>
 <section id="extra-estilos-personalizados-de-bootstrap">
 <h2>Extra: Estilos personalizados de Bootstrap<a class="headerlink" href="#extra-estilos-personalizados-de-bootstrap" title="Link to this heading">#</a></h2>
@@ -1419,11 +1499,11 @@ Creamos el componente y añadimos un formulario al HTML, aquí un extracto:</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-en-tiempo-real">Aplicación en tiempo real</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supabase-realtime">Supabase Realtime</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-sdk">Websockets con SDK</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-a-observables">Websockets a Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-sdk-a-observables">Websockets con SDK a Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz">Interfaz</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue">Despliegue</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-estilos-personalizados-de-bootstrap">Extra: Estilos personalizados de Bootstrap</a></li>
 </ul>
   </nav></div>

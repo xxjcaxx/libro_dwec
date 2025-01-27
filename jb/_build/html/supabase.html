@@ -791,6 +791,16 @@ document.write(`
 <span class="w">  </span><span class="p">})</span>
 </pre></div>
 </div>
+<p>El objeto <code class="docutils literal notranslate"><span class="pre">payload</span></code> contiene información relevante sobre el evento de cambio, y típicamente incluye las siguientes propiedades:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">new</span></code></strong>: Los datos completos de la fila después de la operación.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">old</span></code></strong>: Los datos completos de la fila antes de la operación (solo disponible para operaciones como <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> o <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">schema</span></code></strong>: El esquema en el que ocurrió el evento (generalmente <code class="docutils literal notranslate"><span class="pre">public</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">table</span></code></strong>: El nombre de la tabla en la que ocurrió el evento.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">eventType</span></code></strong>: El tipo de evento (<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, o <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">commit_timestamp</span></code></strong>: Marca de tiempo de cuando ocurrió el evento.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">errors</span></code></strong>: Cualquier error relacionado con el evento (si los hay).</p></li>
+</ol>
 </section>
 </section>
 </section>
