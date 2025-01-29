@@ -4,9 +4,11 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Javascript
+  - caption: Introducción
     chapters:
     - file: desarrollofrontend
+  - caption: Javascript
+    chapters:
     - file: lenguajejavascript
     - file: arraysobjetosclases
     - file: dom
@@ -14,19 +16,20 @@ parts:
     - file: modulos
     - file: promesas
     - file: ajax
-    - file: supabase
-    - file: npm
-    - file: tests
     - file: programacionfuncionalreactiva
     - file: errores
     - file: webworkers
+    - file: WebComponents
+  - caption: Desarrollo de proyectos fronted
+    chapters:
+    - file: supabase
+    - file: npm
+    - file: tests
     - file: vite
     - file: ci-cd
     - file: proyectos
     - file: documentacion
     - file: proyectovanilla
-    - file: WebComponents
-
   - caption: Angular
     chapters: 
     - file: typescript

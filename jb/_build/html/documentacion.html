@@ -180,9 +180,12 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
-<ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -190,19 +193,22 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="nav bd-sidenav">
@@ -414,6 +420,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-un-proyecto-completo">Documentación de un proyecto completo</a></li>
 </ul>
             </nav>
         </div>
@@ -427,7 +434,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="documentacion-en-javascript">
 <h1>Documentación en JavaScript<a class="headerlink" href="#documentacion-en-javascript" title="Link to this heading">#</a></h1>
-<p>La documentación en JavaScript es crucial para asegurar que otros programadores puedan entender y utilizar eficazmente tu código. En este capítulo, exploraremos cómo documentar correctamente tus funciones y clases utilizando comentarios y JSDoc, una herramienta popular para generar documentación automática.</p>
+<p>En este capítulo, exploraremos cómo documentar correctamente tus funciones y clases utilizando comentarios y JSDoc, una herramienta popular para generar documentación automática.</p>
 <section id="comentarios-en-javascript">
 <h2>Comentarios en JavaScript<a class="headerlink" href="#comentarios-en-javascript" title="Link to this heading">#</a></h2>
 <p>Los comentarios en JavaScript son textos especiales que no afectan la ejecución del programa, pero son útiles para documentar el código y hacerlo más comprensible. Hay varios estilos de comentarios, pero los más relevantes para la documentación son los comentarios de bloque con <code class="docutils literal notranslate"><span class="pre">/**</span> <span class="pre">...</span> <span class="pre">*/</span></code>, que son reconocidos por herramientas como JSDoc para generar documentación.</p>
@@ -499,6 +506,10 @@ document.write(`
 <p>Visual Studio Code tiene soporte integrado para JSDoc, lo que significa que cuando comienzas a escribir <code class="docutils literal notranslate"><span class="pre">/**</span></code> encima de una función o método, automáticamente te genera un esqueleto básico de comentarios JSDoc que puedes completar.</p>
 </section>
 </section>
+</section>
+<section id="documentacion-de-un-proyecto-completo">
+<h2>Documentación de un proyecto completo<a class="headerlink" href="#documentacion-de-un-proyecto-completo" title="Link to this heading">#</a></h2>
+<p>JSDoc es muy útil para documentar el código. si queremos documentar todo un proyecto, al margen del código o hacer el manual de usuario, por ejemplo, podemos recurrir a herramientas de generación de sitios estáticos a partir de <code class="docutils literal notranslate"><span class="pre">MarkDown</span></code>. Por ejemplo, este libro está hecho con Jupyter Notebook, pero hay otras muchas opciones como Docusaurus o Jekyll. Estos sitios estáticos se pueden subir a Github Pages, Vercel o cualquier servidor web y el resultado es muy parecido a cualquier manual que se pueda encontrar actualmente por Internet, como este libro, por ejemplo.</p>
 </section>
 </section>
 
@@ -573,6 +584,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-un-proyecto-completo">Documentación de un proyecto completo</a></li>
 </ul>
   </nav></div>
 

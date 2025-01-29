@@ -180,9 +180,12 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -190,19 +193,22 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="current nav bd-sidenav">
@@ -459,9 +465,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="comunicacion-con-el-servidor-en-angular">
 <h1>Comunicación con el servidor en Angular<a class="headerlink" href="#comunicacion-con-el-servidor-en-angular" title="Link to this heading">#</a></h1>
+<p>En Javascript vanilla podemos usar <code class="docutils literal notranslate"><span class="pre">fetch</span></code> para comunicarnos con el servidor o librerias de terceros como <code class="docutils literal notranslate"><span class="pre">Axios</span></code> o <code class="docutils literal notranslate"><span class="pre">JQuery</span></code>. En Angular no se prohibe usar esas herramientas, pero su ecosistema está más preparado para usar su servicio <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> porque se integra con los <code class="docutils literal notranslate"><span class="pre">Observables</span></code>, los <code class="docutils literal notranslate"><span class="pre">Interceptores</span></code>, serialización de datos, gestión de errores y tests unitarios.</p>
+<p>Antes de ver cómo usar ese servicio veamos lo que es un servicio.</p>
 <section id="servicios-en-angular">
 <h2>Servicios en Angular<a class="headerlink" href="#servicios-en-angular" title="Link to this heading">#</a></h2>
-<p>En Angular, los servicios son componentes fundamentales que proporcionan datos y funcionalidades reutilizables a lo largo de la aplicación. Generalmente, los servicios manejan operaciones CRUD (Create, Read, Update, Delete) y permiten mantener la lógica de negocio y la gestión de datos de forma centralizada y persistente.</p>
+<p>En Angular, los servicios son componentes que proporcionan datos y funcionalidades reutilizables a lo largo de la aplicación. Generalmente, los servicios manejan operaciones CRUD (Create, Read, Update, Delete) y permiten mantener la lógica de negocio y la gestión de datos de forma centralizada y persistente.</p>
 <ul class="simple">
 <li><p><strong>Provisión de Información</strong>: Los servicios proporcionan datos a los componentes que los soliciten.</p></li>
 <li><p><strong>Operaciones CRUD</strong>: Realizan operaciones básicas de creación, lectura, actualización y eliminación.</p></li>
