@@ -180,9 +180,12 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -190,19 +193,22 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="current nav bd-sidenav">
@@ -432,6 +438,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar Datos en el Formulario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-cambios">Detección de Cambios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-dinamicos">Formularios Dinámicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
 </ul>
 </li>
 </ul>
@@ -929,6 +936,29 @@ document.write(`
 </pre></div>
 </div>
 </section>
+<section id="ficheros-en-formularios">
+<h3>Ficheros en Formularios<a class="headerlink" href="#ficheros-en-formularios" title="Link to this heading">#</a></h3>
+<p>Si ponemos un input de tipo <code class="docutils literal notranslate"><span class="pre">file</span></code>, lo podemos tratar como en el ejemplo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">selectedFile</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="nx">onFileSelected</span><span class="p">(</span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">selectedFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="nx">onSubmit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">selectedFile</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">uploadService</span><span class="p">.</span><span class="nx">uploadForm</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">selectedFile</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">email</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Subida exitosa:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">response</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error al subir:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Todos los campos son obligatorios&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Siendo onFileSelected y onSubmit los manejadores de los eventos <code class="docutils literal notranslate"><span class="pre">&lt;form</span> <span class="pre">(submit)=&quot;onSubmit()&quot;&gt;</span></code> y <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;file&quot;</span> <span class="pre">(change)=&quot;onFileSelected($event)&quot;</span> <span class="pre">required</span> <span class="pre">/&gt;</span></code></p>
+</section>
 </section>
 </section>
 
@@ -1021,6 +1051,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar Datos en el Formulario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-cambios">Detección de Cambios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-dinamicos">Formularios Dinámicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
 </ul>
 </li>
 </ul>

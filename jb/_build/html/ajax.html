@@ -61,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ajax';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Supabase: (Backend como Servicio)" href="supabase.html" />
+    <link rel="next" title="Programación Funcional, Asíncrona y Reactiva en JavaScript" href="programacionfuncionalreactiva.html" />
     <link rel="prev" title="Asincronía y Promesas" href="promesas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,9 +180,12 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
-<ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -190,19 +193,22 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Comunicación con el servidor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="nav bd-sidenav">
@@ -931,6 +937,13 @@ document.write(`
 </section>
 <section id="enviar-datos-con-fetch">
 <h3>Enviar Datos con Fetch<a class="headerlink" href="#enviar-datos-con-fetch" title="Link to this heading">#</a></h3>
+<p>En el desarrollo web, al interactuar con APIs o al enviar datos a un servidor, es común utilizar diferentes tipos de formatos de envío. Tres de los más utilizados son <strong>multipart/form-data</strong>, <strong>x-www-form-urlencoded</strong> y <strong>JSON</strong>. Cada uno tiene sus características y se usa según el tipo de datos que necesitemos enviar.</p>
+<ul class="simple">
+<li><p><strong>Multipart/form-data</strong> es el formato ideal para enviar archivos junto con otros datos, ya que permite dividir los datos en partes y manejar de manera eficiente archivos binarios como imágenes o documentos.</p></li>
+<li><p><strong>x-www-form-urlencoded</strong> es un formato de texto simple en el que los datos se envían en pares de clave-valor, muy utilizado en formularios HTML tradicionales, pero sin soporte para archivos binarios.</p></li>
+<li><p><strong>JSON</strong> es un formato ligero y ampliamente utilizado para intercambiar datos estructurados entre el cliente y el servidor. Es ideal para enviar información de texto, pero no maneja archivos directamente.</p></li>
+</ul>
+<p>En esta explicación, veremos cómo y cuándo usar cada uno de estos formatos según las necesidades de tu aplicación web.</p>
 <section id="usar-el-metodo-post">
 <h4>Usar el método POST<a class="headerlink" href="#usar-el-metodo-post" title="Link to this heading">#</a></h4>
 <p>Para enviar datos a un servidor, se puede usar el método <code class="docutils literal notranslate"><span class="pre">POST</span></code> con <code class="docutils literal notranslate"><span class="pre">fetch</span></code>.</p>
@@ -951,6 +964,22 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo, se envían datos codificados en la URL (formato de formulario) al servidor.</p>
+<p>En el siguiente ejemplo se usa <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code> para poder adjuntar ficheros:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;fileInput&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"> </span><span class="c1">// Obtiene el archivo seleccionado</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;archivo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;archivo&quot; es el nombre del campo</span>
+
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://ejemplo.com/upload&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">formData</span><span class="p">,</span><span class="w"> </span><span class="c1">// Enviamos el FormData con el archivo</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Archivo subido:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+</pre></div>
+</div>
 </section>
 <section id="enviar-json">
 <h4>Enviar JSON<a class="headerlink" href="#enviar-json" title="Link to this heading">#</a></h4>
@@ -1453,11 +1482,11 @@ También ofrece un manejo centralizado de errores, permite implementar reconexio
       </div>
     </a>
     <a class="right-next"
-       href="supabase.html"
+       href="programacionfuncionalreactiva.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Supabase: (Backend como Servicio)</p>
+        <p class="prev-next-title">Programación Funcional, Asíncrona y Reactiva en JavaScript</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

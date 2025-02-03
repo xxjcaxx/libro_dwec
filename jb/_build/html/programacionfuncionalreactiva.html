@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gestión de Errores" href="errores.html" />
-    <link rel="prev" title="Tests" href="tests.html" />
+    <link rel="prev" title="Comunicación con el servidor" href="ajax.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,9 +180,12 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
-<ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -190,19 +193,22 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="nav bd-sidenav">
@@ -1120,7 +1126,7 @@ El pasar funciones como referencia a otras es llamado por algunos como <code cla
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">13</span>, imperative: <span class=" -Color -Color-Yellow">7</span> }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ functional: <span class=" -Color -Color-Yellow">10</span>, imperative: <span class=" -Color -Color-Yellow">9</span> }
 </pre></div>
 </div>
 </div>
@@ -2272,12 +2278,12 @@ Frameworks y librerías como Redux y RxJS facilitan esta tarea.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="tests.html"
+       href="ajax.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tests</p>
+        <p class="prev-next-title">Comunicación con el servidor</p>
       </div>
     </a>
     <a class="right-next"

@@ -420,7 +420,10 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
@@ -448,6 +451,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-rxjs">Websockets con <code class="docutils literal notranslate"><span class="pre">RxJS</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sse">SSE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
 </ul>
@@ -572,6 +576,26 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">login</span></code> envía credenciales de usuario al servidor utilizando una solicitud HTTP POST. Se configuran las cabeceras HTTP para especificar que el contenido es JSON.</p>
+<section id="envio-de-datos-con-post-multipart">
+<h5>Envio de datos con POST Multipart<a class="headerlink" href="#envio-de-datos-con-post-multipart" title="Link to this heading">#</a></h5>
+<p>En este caso es más sencillo incluso, ya que es el comportamiento por defecto de <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">UploadService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">apiUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.ejemplo.com/upload&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reemplazar con la URL real</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">uploadForm</span><span class="p">(</span><span class="nx">documento</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="p">,</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;documento&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">documento</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;documento&quot; es el nombre del campo en el backend</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;nombre&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">formData</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 <section id="datos-asincronos">
@@ -955,6 +979,68 @@ document.write(`
 </ul>
 </section>
 </section>
+<section id="sse">
+<h2>SSE<a class="headerlink" href="#sse" title="Link to this heading">#</a></h2>
+<p>Además de los <strong>WebSockets</strong>, existe la posibilidad de establecer una conexión unidireccional desde el servidor hacia el cliente mediante <strong>Server-Sent Events (SSE)</strong>. A diferencia de WebSockets, que permiten una comunicación bidireccional, los <code class="docutils literal notranslate"><span class="pre">SSE</span></code> facilitan una transmisión de datos solo en una dirección, desde el servidor al cliente. Esta comunicación se realiza sobre HTTP y está basada en el estándar de eventos del navegador, específicamente el objeto <code class="docutils literal notranslate"><span class="pre">EventSource</span></code>.</p>
+<p><strong>Server-Sent Events (SSE)</strong>:</p>
+<ul class="simple">
+<li><p>A diferencia de los WebSockets, los SSE son un mecanismo unidireccional que solo permite que el servidor envíe datos al cliente. Esta tecnología también se basa en HTTP, pero usa una conexión persistente para transmitir datos al cliente de manera continua, como si fueran “eventos”.</p></li>
+<li><p>La principal ventaja de los SSE es su simplicidad y la integración directa con los navegadores que soportan esta tecnología mediante el objeto <code class="docutils literal notranslate"><span class="pre">EventSource</span></code>, sin la necesidad de utilizar bibliotecas externas o un protocolo adicional como WebSockets.</p></li>
+<li><p>Los SSE son ideales para situaciones donde el servidor necesita enviar actualizaciones periódicas al cliente, como notificaciones en tiempo real, actualizaciones de precios o información de estado, pero sin la necesidad de recibir información desde el cliente.</p></li>
+<li><p><strong>SSE</strong> Utiliza HTTP estándar (<code class="docutils literal notranslate"><span class="pre">http://</span></code> o <code class="docutils literal notranslate"><span class="pre">https://</span></code>) para mantener una conexión persistente de tipo “event-stream”. A diferencia de <strong>WebSockets</strong> que Utiliza su propio protocolo (<code class="docutils literal notranslate"><span class="pre">ws://</span></code> o <code class="docutils literal notranslate"><span class="pre">wss://</span></code>) después del “handshake” inicial HTTP.</p></li>
+<li><p>Perfecto para escenarios donde solo el servidor necesita enviar datos al cliente de manera continua o periódica, como actualizaciones de feeds, notificaciones o dashboards en tiempo real.</p></li>
+</ul>
+<p>En un entorno como Angular, SSE puede ser fácilmente transformado a <strong>Observables</strong> para aprovechar las características reactivas del framework. El cliente se suscribe a este Observable para recibir actualizaciones a medida que el servidor envía nuevos eventos, de forma similar a como se gestionan los WebSockets. Esto permite que los eventos SSE se manejen de manera reactiva dentro de la aplicación, facilitando el flujo de datos en tiempo real.</p>
+<p>No existe como con los WebSockets, una función específica de RxJS, pero se puede crear un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> y actualizar manualmente en los eventos <code class="docutils literal notranslate"><span class="pre">onmessage</span></code> y <code class="docutils literal notranslate"><span class="pre">onerror</span></code>.</p>
+<p>Así quedaría un servicio que se conecta a SSE</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Subject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SseService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">eventSource</span><span class="o">:</span><span class="w"> </span><span class="kt">EventSource</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">messagesSubject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subject</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// Observable para los mensajes SSE</span>
+<span class="w">  </span><span class="nx">messages$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">messagesSubject</span><span class="p">.</span><span class="nx">asObservable</span><span class="p">();</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="c1">// Método para conectar al servidor SSE</span>
+<span class="w">  </span><span class="nx">connectToSse</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span><span class="w">  </span><span class="c1">// Cerrar conexión previa si existe</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Crear una nueva conexión SSE</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;http://localhost:8081/events&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Manejar los mensajes recibidos</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="p">.</span><span class="nx">onmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">//console.log(event);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">messagesSubject</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span><span class="w"> </span><span class="c1">// Emitir el mensaje recibido</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// Manejo de errores</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="p">.</span><span class="nx">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error SSE:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="o">?</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Método para cerrar la conexión SSE</span>
+<span class="w">  </span><span class="nx">disconnectFromSse</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">eventSource</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Conexión SSE cerrada&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="integracion-de-angular-con-supabase">
 <h2>Integración de Angular con Supabase<a class="headerlink" href="#integracion-de-angular-con-supabase" title="Link to this heading">#</a></h2>
 <p>Supabase es una plataforma de backend como servicio (BaaS) que ofrece una variedad de servicios para aplicaciones web y móviles, como bases de datos en tiempo real, autenticación y almacenamiento. Supabase es compatible con TypeScript, lo que facilita su integración con aplicaciones Angular. En este capítulo, veremos cómo configurar y utilizar Supabase en una aplicación Angular.</p>
@@ -1166,7 +1252,10 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
@@ -1194,6 +1283,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-con-rxjs">Websockets con <code class="docutils literal notranslate"><span class="pre">RxJS</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sse">SSE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
 </ul>
