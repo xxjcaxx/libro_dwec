@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Arrays Objetos y clases" href="arraysobjetosclases.html" />
-    <link rel="prev" title="La Web y el Desarrollo Web" href="desarrollofrontend.html" />
+    <link rel="prev" title="Historia y evolución de JavaScript y ECMAScript" href="jsenhtml.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -186,6 +186,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jsenhtml.html">Historia y evolución de JavaScript y ECMAScript</a></li>
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -413,26 +417,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-async-y-defer-en-la-etiqueta-script">Atributos <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code> en la Etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#async"><code class="docutils literal notranslate"><span class="pre">async</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#defer"><code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sin-async-ni-defer">Sin <code class="docutils literal notranslate"><span class="pre">async</span></code> ni <code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobar-que-funciona">Comprobar que funciona</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-el-codigo-javascript">Ocultar el código JavaScript</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-y-evolucion-de-javascript-y-ecmascript">Historia y evolución de JavaScript y ECMAScript</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#origenes-de-javascript">Orígenes de JavaScript</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estandar-ecmascript">Estándar ECMAScript</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-y-influencias">Sintaxis y Influencias</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versiones-importantes-de-ecmascript">Versiones Importantes de ECMAScript</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios">Comentarios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-variables">Tipos de Variables</a><ul class="nav section-nav flex-column">
@@ -552,192 +536,6 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <li><p><a class="reference external" href="https://www.apuntesinformaticafp.com/modulos/dwec.html">https://www.apuntesinformaticafp.com/modulos/dwec.html</a></p></li>
 <li><p><a class="reference external" href="https://cipfpbatoi.github.io/materials/daw/dwc/01-js/">https://cipfpbatoi.github.io/materials/daw/dwc/01-js/</a></p></li>
 </ul>
-<section id="integrar-js-en-html">
-<h2>Integrar JS en HTML<a class="headerlink" href="#integrar-js-en-html" title="Link to this heading">#</a></h2>
-<p>En primer lugar, veamos cómo integrar Javascript en el HTML para que se ejecute en el navegador:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>     <span class="cm">&lt;!-- Integración de JavaScript directamente en el HTML --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
-<span class="w">        </span><span class="c1">// Este es un bloque de código JavaScript embebido directamente en el documento HTML.</span>
-<span class="w">        </span><span class="c1">// Funciona para pequeños bloques en webs tradicionales. No recomendable en SPAs</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hola, este es un mensaje desde JavaScript embebido.&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-
-    <span class="cm">&lt;!-- Integración de un archivo JavaScript externo --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-
-    <span class="cm">&lt;!-- Mensaje para navegadores que no soportan JavaScript --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Tu navegador no soporta JavaScript o está desactivado.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
-
-    <span class="cm">&lt;!-- Comentario: Muchas veces, los desarrolladores colocan los scripts al final del documento para asegurarse de que todo el contenido HTML se haya cargado antes de ejecutar el JavaScript. --&gt;</span>
-</pre></div>
-</div>
-<section id="atributos-async-y-defer-en-la-etiqueta-script">
-<h3>Atributos <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code> en la Etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code><a class="headerlink" href="#atributos-async-y-defer-en-la-etiqueta-script" title="Link to this heading">#</a></h3>
-<p>A partir de HTML5, la etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> admite dos atributos, <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code>, que permiten que los scripts comiencen su descarga inmediatamente sin interrumpir el proceso de parseo del documento HTML.</p>
-<figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="_images/asyncdefer.jpeg"><img alt="_images/asyncdefer.jpeg" src="_images/asyncdefer.jpeg" style="width: 752.0px; height: 376.0px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Diagrama del funcionamiento de Async o Defer.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<section id="async">
-<h4><code class="docutils literal notranslate"><span class="pre">async</span></code><a class="headerlink" href="#async" title="Link to this heading">#</a></h4>
-<p>El atributo <code class="docutils literal notranslate"><span class="pre">async</span></code> permite que el script se ejecute de manera asíncrona tan pronto como se haya descargado. Esto significa que:</p>
-<ul class="simple">
-<li><p>El script se descargará en paralelo con el parseo del documento.</p></li>
-<li><p>Se ejecutará tan pronto como la descarga haya terminado, sin esperar a que el documento se haya parseado por completo.</p></li>
-<li><p>Los scripts marcados con <code class="docutils literal notranslate"><span class="pre">async</span></code> pueden no ejecutarse en el orden en el que aparecen en el documento HTML, ya que la ejecución depende de cuál script se descargue primero.</p></li>
-</ul>
-<p>Ejemplo:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span> <span class="na">async</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</section>
-<section id="defer">
-<h4><code class="docutils literal notranslate"><span class="pre">defer</span></code><a class="headerlink" href="#defer" title="Link to this heading">#</a></h4>
-<p>El atributo <code class="docutils literal notranslate"><span class="pre">defer</span></code> asegura que los scripts se ejecutarán en el orden en el que aparecen en el documento HTML. Las características de <code class="docutils literal notranslate"><span class="pre">defer</span></code> incluyen:</p>
-<ul class="simple">
-<li><p>El script se descarga en paralelo con el parseo del documento, similar a <code class="docutils literal notranslate"><span class="pre">async</span></code>.</p></li>
-<li><p>La ejecución del script se pospone hasta que el documento se haya parseado completamente.</p></li>
-<li><p>La ejecución ocurre justo antes del evento <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>, pero después de que todo el HTML haya sido procesado.</p></li>
-</ul>
-<p>Ejemplo:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span> <span class="na">defer</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</section>
-<section id="sin-async-ni-defer">
-<h4>Sin <code class="docutils literal notranslate"><span class="pre">async</span></code> ni <code class="docutils literal notranslate"><span class="pre">defer</span></code><a class="headerlink" href="#sin-async-ni-defer" title="Link to this heading">#</a></h4>
-<p>Si un script no tiene ninguno de estos atributos, el comportamiento por defecto es que el script se descarga y se ejecuta de manera síncrona. Esto significa que:</p>
-<ul class="simple">
-<li><p>El parseo del documento se pausa hasta que el script haya sido descargado y ejecutado completamente.</p></li>
-<li><p>Los scripts se ejecutan en el orden en que aparecen en el documento.</p></li>
-</ul>
-<p>Ejemplo:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;scripts.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<p>En cualquier caso, salvo ocasiones específicas, suele ser más fácil añadir un sólo script, trabajar con módulos y esperar al evento <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
-</section>
-</section>
-</section>
-<section id="comprobar-que-funciona">
-<h2>Comprobar que funciona<a class="headerlink" href="#comprobar-que-funciona" title="Link to this heading">#</a></h2>
-<p>Los navegadores modernos vienen con una consola de depuración muy avanzada que permite interactuar con el DOM, el CSS, el JS, la red, entre otras cosas. La abriremos con F12 o el botón derecho y la mantendremos abierta casi todo el tiempo.</p>
-<figure class="align-center" id="id2">
-<a class="reference internal image-reference" href="_images/f12.png"><img alt="_images/f12.png" src="_images/f12.png" style="width: 835.5px; height: 221.25px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Lo que se ve si pulsamos F12.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Podemos ejecutar algo como:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hola mundo&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hola mundo
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="ocultar-el-codigo-javascript">
-<h2>Ocultar el código JavaScript<a class="headerlink" href="#ocultar-el-codigo-javascript" title="Link to this heading">#</a></h2>
-<p><strong>No es posible ocultar completamente el código JavaScript.</strong> El código que se ejecuta en el lado del cliente (es decir, en el navegador web) siempre puede ser visto por los usuarios, ya que se descarga junto con el resto del contenido de la página web.</p>
-<p>Aunque no se puede ocultar el código, sí se pueden utilizar técnicas para <strong>ofuscar</strong> y <strong>comprimir</strong> el código JavaScript. Estas técnicas dificultan la lectura y comprensión del código por parte de personas, aunque no lo hacen completamente inaccesible.</p>
-<p>Tal vez, por eso, muchos proyectos de JS son directamente publicados como <strong>Open Source</strong></p>
-<p>El siguiente código es un ejemplo:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">_0x47a0</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;log&#39;</span><span class="p">,</span><span class="s1">&#39;Hello\x20World!&#39;</span><span class="p">];</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">_0x558f55</span><span class="p">,</span><span class="nx">_0x47a08a</span><span class="p">){</span><span class="kd">var</span><span class="w"> </span><span class="nx">_0x257f99</span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">_0x256ed6</span><span class="p">)</span><span class="w"> </span>
-<span class="p">{</span><span class="k">while</span><span class="p">(</span><span class="o">--</span><span class="nx">_0x256ed6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="nx">_0x558f55</span><span class="p">[</span><span class="s1">&#39;push&#39;</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="nx">_0x558f55</span><span class="p">[</span><span class="s1">&#39;shift&#39;</span><span class="p">]());</span><span class="w"> </span><span class="p">}};</span><span class="nx">_0x257f99</span><span class="p">(</span><span class="o">++</span><span class="nx">_0x47a08a</span><span class="p">);}</span>
-<span class="p">(</span><span class="nx">_0x47a0</span><span class="p">,</span><span class="mh">0x1cb</span><span class="p">));</span><span class="kd">var</span><span class="w"> </span><span class="nx">_0x257f</span><span class="w"> </span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">_0x558f55</span><span class="p">,</span><span class="nx">_0x47a08a</span><span class="p">){</span><span class="nx">_0x558f55</span><span class="o">=</span><span class="nx">_0x558f55</span><span class="o">-</span><span class="mh">0x0</span><span class="p">;</span>
-<span class="kd">var</span><span class="w"> </span><span class="nx">_0x257f99</span><span class="o">=</span><span class="nx">_0x47a0</span><span class="p">[</span><span class="nx">_0x558f55</span><span class="p">];</span><span class="k">return</span><span class="w"> </span><span class="nx">_0x257f99</span><span class="p">;};</span><span class="kd">function</span><span class="w"> </span><span class="nx">hi</span><span class="p">(){</span><span class="nx">console</span><span class="p">[</span><span class="nx">_0x257f</span><span class="p">(</span><span class="s1">&#39;0x1&#39;</span><span class="p">)](</span><span class="nx">_0x257f</span><span class="p">(</span><span class="s1">&#39;0x0&#39;</span><span class="p">));}</span><span class="nx">hi</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World!
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="historia-y-evolucion-de-javascript-y-ecmascript">
-<h2>Historia y evolución de JavaScript y ECMAScript<a class="headerlink" href="#historia-y-evolucion-de-javascript-y-ecmascript" title="Link to this heading">#</a></h2>
-<section id="origenes-de-javascript">
-<h3>Orígenes de JavaScript<a class="headerlink" href="#origenes-de-javascript" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Mocha</strong>:</p>
-<ul class="simple">
-<li><p>JavaScript se inició bajo el nombre de <strong>Mocha</strong>. Fue desarrollado por Brendan Eich en Netscape Communications en 1995. Mocha fue el nombre original durante las primeras etapas de desarrollo.</p></li>
-</ul>
-</li>
-<li><p><strong>LiveScript</strong>:</p>
-<ul class="simple">
-<li><p>Antes de ser conocido como JavaScript, el lenguaje fue renombrado a <strong>LiveScript</strong>. Este nombre se utilizó durante un breve período en 1995.</p></li>
-</ul>
-</li>
-<li><p><strong>JavaScript</strong>:</p>
-<ul class="simple">
-<li><p>Finalmente, en diciembre de 1995, el lenguaje fue renombrado a <strong>JavaScript</strong>. Este cambio de nombre se debió a una estrategia de marketing para asociarlo con el popular lenguaje de programación Java, a pesar de que JavaScript y Java son muy diferentes en su diseño y propósito.</p></li>
-</ul>
-</li>
-</ol>
-</section>
-<section id="estandar-ecmascript">
-<h3>Estándar ECMAScript<a class="headerlink" href="#estandar-ecmascript" title="Link to this heading">#</a></h3>
-<p>A partir de 1997, el <strong>World Wide Web Consortium (W3C)</strong> y <strong>ECMA International</strong> comenzaron a definir las especificaciones del lenguaje JavaScript bajo el nombre de <strong>ECMAScript</strong>. Este estándar asegura la interoperabilidad y la compatibilidad del lenguaje en distintos navegadores y plataformas. El W3C se encarga también de otros protocolos y lenguajes estándar, incluso de principios éticos: <a class="reference external" href="https://www.w3.org/TR/ethical-web-principles/">https://www.w3.org/TR/ethical-web-principles/</a></p>
-<section id="sintaxis-y-influencias">
-<h4>Sintaxis y Influencias<a class="headerlink" href="#sintaxis-y-influencias" title="Link to this heading">#</a></h4>
-<p>La sintaxis de JavaScript se inspira en lenguajes como <strong>C</strong> y <strong>Java</strong>. Sin embargo, JavaScript es fundamentalmente diferente en su propósito y funcionalidad:</p>
-<ul class="simple">
-<li><p><strong>C</strong>: Influye en la estructura básica y la sintaxis de control (bucles, condiciones).</p></li>
-<li><p><strong>Java</strong>: Inspira la sintaxis de los objetos y la programación orientada a objetos.</p></li>
-</ul>
-</section>
-</section>
-<section id="versiones-importantes-de-ecmascript">
-<h3>Versiones Importantes de ECMAScript<a class="headerlink" href="#versiones-importantes-de-ecmascript" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>ECMAScript 5th Edition (ES5)</strong>:</p>
-<ul class="simple">
-<li><p>Publicada en diciembre de 2009.</p></li>
-<li><p>Esta versión es <strong>soportada por todos los navegadores actuales</strong>.</p></li>
-<li><p>Introdujo características clave como el “strict mode”, métodos de array adicionales (como <code class="docutils literal notranslate"><span class="pre">forEach</span></code>, <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>), y mejoras en el manejo de objetos.</p></li>
-</ul>
-</li>
-<li><p><strong>ECMAScript 2015 (ES6)</strong>:</p>
-<ul class="simple">
-<li><p>También conocida como <strong>ES6</strong>, fue publicada en junio de 2015.</p></li>
-<li><p>Es una de las actualizaciones más importantes del lenguaje, incorporando muchas características nuevas que facilitan y modernizan el desarrollo en JavaScript:</p>
-<ul>
-<li><p><strong>Clases</strong>: Simplifican la sintaxis para la programación orientada a objetos.</p></li>
-<li><p><strong>Módulos</strong>: Permiten la importación y exportación de bloques de código, mejorando la modularidad y reutilización.</p></li>
-<li><p><strong>Iteradores y Generadores</strong>: Facilitan el manejo de datos iterables.</p></li>
-<li><p><strong>Funciones Flecha</strong>: Proveen una sintaxis más corta para las funciones y cambian el comportamiento del <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p></li>
-<li><p><strong>Declaraciones <code class="docutils literal notranslate"><span class="pre">let</span></code> y <code class="docutils literal notranslate"><span class="pre">const</span></code></strong>: Introducen alcance de bloque y constantes.</p></li>
-<li><p><strong>Promesas</strong>: Manejan la asincronía de manera más efectiva y legible.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>ECMAScript 2024</strong>:</p>
-<ul class="simple">
-<li><p>Es la <strong>última especificación</strong> y trae consigo las actualizaciones más recientes.</p></li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<div><p>En este libro se introducen instrucciones y conceptos posteriores al ES6, el cual debería ser el estándard mínimo con el que trabajaremos. Hay código ES6 que no se puede ejecutar ni transpilar fácilmente a ES5.</p>
-</div></blockquote>
-</section>
-</section>
 <section id="comentarios">
 <h2>Comentarios<a class="headerlink" href="#comentarios" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -2021,12 +1819,12 @@ Soy una variable de la función padre
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="desarrollofrontend.html"
+       href="jsenhtml.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">La Web y el Desarrollo Web</p>
+        <p class="prev-next-title">Historia y evolución de JavaScript y ECMAScript</p>
       </div>
     </a>
     <a class="right-next"
@@ -2054,26 +1852,6 @@ Soy una variable de la función padre
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-js-en-html">Integrar JS en HTML</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-async-y-defer-en-la-etiqueta-script">Atributos <code class="docutils literal notranslate"><span class="pre">async</span></code> y <code class="docutils literal notranslate"><span class="pre">defer</span></code> en la Etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#async"><code class="docutils literal notranslate"><span class="pre">async</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#defer"><code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sin-async-ni-defer">Sin <code class="docutils literal notranslate"><span class="pre">async</span></code> ni <code class="docutils literal notranslate"><span class="pre">defer</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobar-que-funciona">Comprobar que funciona</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocultar-el-codigo-javascript">Ocultar el código JavaScript</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-y-evolucion-de-javascript-y-ecmascript">Historia y evolución de JavaScript y ECMAScript</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#origenes-de-javascript">Orígenes de JavaScript</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estandar-ecmascript">Estándar ECMAScript</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-y-influencias">Sintaxis y Influencias</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versiones-importantes-de-ecmascript">Versiones Importantes de ECMAScript</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios">Comentarios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-variables">Tipos de Variables</a><ul class="nav section-nav flex-column">

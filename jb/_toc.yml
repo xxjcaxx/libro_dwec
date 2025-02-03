@@ -9,6 +9,7 @@ parts:
     - file: desarrollofrontend
   - caption: Javascript
     chapters:
+    - file: jsenhtml
     - file: lenguajejavascript
     - file: arraysobjetosclases
     - file: dom
