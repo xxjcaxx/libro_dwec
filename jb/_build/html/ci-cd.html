@@ -180,9 +180,12 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
-<ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -190,19 +193,22 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="nav bd-sidenav">
@@ -443,9 +449,9 @@ document.write(`
 <li><p><strong>Crear el proyecto:</strong> Iniciar un nuevo proyecto web utilizando herramientas como npm, lo que establece la estructura inicial del proyecto y crea el archivo <code class="docutils literal notranslate"><span class="pre">package.json</span></code> que contiene la información del proyecto y sus dependencias.</p></li>
 <li><p><strong>Instalar dependencias:</strong> Utilizar npm o yarn para instalar las dependencias necesarias para el desarrollo del proyecto, tanto las dependencias de desarrollo (por ejemplo, herramientas de construcción, linters, pruebas) como las dependencias específicas del proyecto (por ejemplo, frameworks o librerías JavaScript).</p></li>
 <li><p><strong>Instalar y configurar frameworks o librerías:</strong> Instalar y configurar cualquier framework o librería adicional necesaria para el desarrollo de la aplicación web, como React, Vue.js o Angular, junto con cualquier complemento o biblioteca asociada.</p></li>
-<li><p><strong>Escribir código correcto:</strong> Desarrollar el código de la aplicación web siguiendo las mejores prácticas y estándares de codificación, lo que implica escribir código limpio, modular y mantenible que cumpla con los requisitos del proyecto.</p></li>
+<li><p><strong>Escribir código correcto:</strong> Desarrollar el código de la aplicación web siguiendo las mejores prácticas. Para ello nos podemos ayudar en los <code class="docutils literal notranslate"><span class="pre">Linters</span></code> y <code class="docutils literal notranslate"><span class="pre">Tests</span></code>.</p></li>
 <li><p><strong>Utilizar linters:</strong> Configurar y utilizar linters como ESLint para asegurar que el código JavaScript cumpla con las convenciones de estilo y las reglas de calidad definidas, ayudando a detectar y corregir errores, así como a mantener la coherencia en el código base.</p></li>
-<li><p><strong>Escribir pruebas (Test-Driven Development - TDD):</strong> Implementar pruebas unitarias y de integración para validar el comportamiento del código y garantizar su correcto funcionamiento, utilizando el enfoque de desarrollo guiado por pruebas (TDD) para mejorar la calidad del software y su mantenibilidad.</p></li>
+<li><p><strong>Escribir pruebas (Test-Driven Development - TDD):</strong> Implementar pruebas unitarias y de integración para validar el comportamiento del código y garantizar su correcto funcionamiento, utilizando el enfoque de desarrollo guiado por pruebas (TDD) para mejorar la calidad del software.</p></li>
 <li><p><strong>Crear el repositorio git y gestionarlo:</strong> Inicializar un repositorio git para controlar el historial de cambios en el código fuente y facilitar la colaboración entre miembros del equipo, utilizando comandos git para crear commits, ramas y fusiones según sea necesario.</p></li>
 <li><p><strong>Realizar pruebas de integración:</strong> Ejecutar pruebas de integración para asegurar que los diferentes componentes de la aplicación funcionen correctamente juntos y que no se produzcan conflictos o errores de interoperabilidad.</p></li>
 <li><p><strong>Crear el bundle:</strong> Utilizar herramientas de construcción como Vite, Webpack o Parcel para crear un bundle optimizado de los activos de la aplicación, incluidos los archivos HTML, CSS, JavaScript y recursos estáticos.</p></li>
@@ -456,7 +462,7 @@ document.write(`
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="_images/pasosproyecto.png"><img alt="_images/pasosproyecto.png" src="_images/pasosproyecto.png" style="width: 785.0px; height: 348.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Proceso de un proyecto de Frontend</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Proceso de un proyecto de Frontend</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Como se puede ver, es muy difícil que los programadores lo hagan todo bien todo el tiempo. La parte del despliegue se trata con más profundidad en el módulo de despliegue del ciclo, pero es preciso desplegar rudimentariamente o en alguna plataforma alternativa que simplifique esta tarea. De esta manera se puede ver todo el proceso sin perder demasiado tiempo. La integración continua es una metodología que se apoya en unas tecnologías muy diversas. Vamos a explorar las tecnologías y poco a poco ir configurando todas las herramientas de un proyecto para automatizar las tareas descritas.</p>

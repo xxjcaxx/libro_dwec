@@ -61,8 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'WebComponents';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Typescript" href="typescript.html" />
-    <link rel="prev" title="Proyecto completo en Javascript" href="proyectovanilla.html" />
+    <link rel="next" title="Supabase: (Backend como Servicio)" href="supabase.html" />
+    <link rel="prev" title="Web Workers" href="webworkers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,9 +180,12 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
-<ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
@@ -190,19 +193,22 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Web Components</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
 <ul class="nav bd-sidenav">
@@ -1093,7 +1099,7 @@ document.write(`
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="_images/alternativasestado.png"><img alt="_images/alternativasestado.png" src="_images/alternativasestado.png" style="width: 423.0px; height: 273.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Decidiendo entre dos posibles gestiones del estado global.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Decidiendo entre dos posibles gestiones del estado global.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Mantener el estado es complejo. Podemos hechar mano de patrones de diseño. Por ejemplo, podemos centralizar el estado en un <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> Observable y que todos los componentes se suscriban. Esto los hace muy acoplados con el estado global y puede ser complejo de gestionar en aplicaciones grandes. La solución puede ser usar la inyección de dependencias al construir el componente y así seguir manteniendo la aplicación desacoplada. Si optamos por esa alternativa sólo podemos crear los componentes por Javascript, ya que necesitamos usar el <code class="docutils literal notranslate"><span class="pre">constructor</span></code>.</p>
@@ -1250,7 +1256,7 @@ document.write(`
 <figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="_images/estadocomponentes.png"><img alt="_images/estadocomponentes.png" src="_images/estadocomponentes.png" style="width: 569.25px; height: 406.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Diagrama de la petición y paso del contexto</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Diagrama de la petición y paso del contexto</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>En el siguiente ejemplo, el <code class="docutils literal notranslate"><span class="pre">CustomInput</span></code> emite un evento informando de su función para inicializar su <code class="docutils literal notranslate"><span class="pre">Observable</span></code> que atenderá a los cambios en el <code class="docutils literal notranslate"><span class="pre">context</span></code>. El componente <code class="docutils literal notranslate"><span class="pre">CustomApp</span></code> atiende a ese tipo de eventos ejecutando la función de <code class="docutils literal notranslate"><span class="pre">callback</span></code> que le ha enviado. Esta función, en este caso, se subscribe al <code class="docutils literal notranslate"><span class="pre">Subject</span></code> que le ha pasado y a partir de ahí se actualizará cada vez que cambie ese dato en el <code class="docutils literal notranslate"><span class="pre">context</span></code>. De esta manera, el estado global de la aplicación queda centralizado en un Map accesible para cualquier otro componente.</p>
@@ -1633,20 +1639,20 @@ Esta función ya registra el componente.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="proyectovanilla.html"
+       href="webworkers.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Proyecto completo en Javascript</p>
+        <p class="prev-next-title">Web Workers</p>
       </div>
     </a>
     <a class="right-next"
-       href="typescript.html"
+       href="supabase.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Typescript</p>
+        <p class="prev-next-title">Supabase: (Backend como Servicio)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
