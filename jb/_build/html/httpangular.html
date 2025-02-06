@@ -16,31 +16,34 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -65,6 +68,7 @@
     <link rel="prev" title="Introducción a Angular" href="angular.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,21 +148,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Libro DWEC - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -227,9 +216,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -373,24 +367,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -419,26 +405,28 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inyeccion-de-dependencias">Inyección de Dependencias</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
@@ -455,6 +443,16 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sse">SSE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-y-recepcion-de-ficheros-con-angular">Envío y recepción de ficheros con Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-ficheros-con-formdata">Enviar ficheros con FormData</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-una-barra-de-progreso">Mostrar una barra de progreso</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-ficheros-con-json">Enviar ficheros con JSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recibir-ficheros-binarios">Recibir ficheros binarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recibir-ficheros-en-base64">Recibir ficheros en Base64</a></li>
 </ul>
 </li>
 </ul>
@@ -518,15 +516,16 @@ document.write(`
 </div>
 </section>
 </section>
+</section>
 <section id="httpclientmodule">
-<h3>HttpClientModule<a class="headerlink" href="#httpclientmodule" title="Link to this heading">#</a></h3>
+<h2>HttpClientModule<a class="headerlink" href="#httpclientmodule" title="Link to this heading">#</a></h2>
 <p>Los servicios en Angular a menudo obtienen datos de un servidor a través de HTTP. Para hacer esto, se debe importar <code class="docutils literal notranslate"><span class="pre">HttpClientModule</span></code>:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
 <span class="p">....</span>
 </pre></div>
 </div>
 <section id="servicios-como-clientes-http">
-<h4>Servicios como Clientes HTTP<a class="headerlink" href="#servicios-como-clientes-http" title="Link to this heading">#</a></h4>
+<h3>Servicios como Clientes HTTP<a class="headerlink" href="#servicios-como-clientes-http" title="Link to this heading">#</a></h3>
 <p>Los servicios pueden utilizar <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code> para realizar solicitudes HTTP. Esto se logra mediante la inyección de dependencias. Aquí hay un ejemplo de un servicio que obtiene productos de un servidor:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
@@ -551,10 +550,9 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">getProducts</span></code> realiza una solicitud HTTP GET para obtener una lista de productos. Utiliza <code class="docutils literal notranslate"><span class="pre">map</span></code> de RxJS para transformar la respuesta antes de devolverla como un <code class="docutils literal notranslate"><span class="pre">Observable</span></code>.</p>
-</section>
 <section id="envio-de-datos-con-post">
 <h4>Envío de Datos con POST<a class="headerlink" href="#envio-de-datos-con-post" title="Link to this heading">#</a></h4>
-<p>Para enviar datos al servidor, se utiliza el método <code class="docutils literal notranslate"><span class="pre">post</span></code> de <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code>. Aquí se muestra cómo hacerlo:</p>
+<p>Para enviar datos al servidor, se utiliza el método <code class="docutils literal notranslate"><span class="pre">post</span></code> de <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code>:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
 
 <span class="kd">@Injectable</span><span class="p">({</span>
@@ -599,11 +597,12 @@ document.write(`
 </section>
 </section>
 </section>
+</section>
 <section id="datos-asincronos">
-<h3>Datos asíncronos<a class="headerlink" href="#datos-asincronos" title="Link to this heading">#</a></h3>
+<h2>Datos asíncronos<a class="headerlink" href="#datos-asincronos" title="Link to this heading">#</a></h2>
 <p>En Angular utiliza la librería RxJS para implementar una versión avanzada de manejo de datos asíncronos conocida como Observables, que ofrece capacidades más robustas en comparación con las Promesas tradicionales de JavaScript.</p>
 <section id="promesas-vs-observables">
-<h4>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h4>
+<h3>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h3>
 <p>Aunque se puede trabajar con promesas para obtener datos, Angular utiliza por defecto los Observables de RxJS debido a sus ventajas:</p>
 <ul class="simple">
 <li><p><strong>Valores Múltiples</strong>: Mientras que una promesa retorna un solo valor o un error, un Observable puede emitir múltiples valores a lo largo del tiempo.</p></li>
@@ -613,7 +612,7 @@ document.write(`
 </ul>
 </section>
 <section id="uso-de-operadores-en-observables">
-<h4>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h4>
+<h3>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h3>
 <p>Los operadores en RxJS son funciones que permiten transformar, filtrar y combinar flujos de datos de observables. Aquí hay un ejemplo de cómo se utilizan los operadores <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">filter</span></code>:</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">map</span></code></strong>: Manipula los datos y los retorna.</p></li>
@@ -637,7 +636,7 @@ document.write(`
 </div>
 </section>
 <section id="procesamiento-de-respuestas-de-observables">
-<h4>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h4>
+<h3>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h3>
 <p>Un observable puede tener múltiples suscriptores y sólo comienza a emitir datos cuando alguien se suscribe a él. El método <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code> acepta tres funciones como parámetros:</p>
 <ol class="arabic simple">
 <li><p><strong>Función de éxito</strong>: Se ejecuta cuando el observable emite un valor.</p></li>
@@ -659,7 +658,7 @@ document.write(`
 </div>
 </section>
 <section id="mostrar-datos-asincronos">
-<h4>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h4>
+<h3>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h3>
 <p>La carga de datos asíncronos puede retrasarse, lo que puede causar errores si Angular intenta acceder a datos que aún no están disponibles. Para manejar esto, se pueden utilizar varias técnicas:</p>
 <ul class="simple">
 <li><p><strong>Objetos Vacíos</strong>: Crear un objeto con datos vacíos para evitar errores.</p></li>
@@ -668,7 +667,7 @@ document.write(`
 </ul>
 </section>
 <section id="signals">
-<h4>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h4>
+<h3>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h3>
 <p>Las señales (<code class="docutils literal notranslate"><span class="pre">signals</span></code>) son una opción más simple y menos potente que los observables para tareas reactivas básicas. Desde Angular 17, se consideran una buena opción para tareas reactivas simples.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(){</span>
 <span class="w">  </span><span class="nx">effect</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Valor de num: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
@@ -679,8 +678,9 @@ document.write(`
 </pre></div>
 </div>
 </section>
+</section>
 <section id="resolver">
-<h4>Resolver<a class="headerlink" href="#resolver" title="Link to this heading">#</a></h4>
+<h2>Resolver<a class="headerlink" href="#resolver" title="Link to this heading">#</a></h2>
 <p>A veces es necesario obtener datos del servidor antes de acceder a una ruta específica. Para esto, se utiliza un tipo especial de servicio llamado Resolver.</p>
 <p>Un Resolver es un servicio que implementa el método <code class="docutils literal notranslate"><span class="pre">resolve</span></code>, el cual obtiene los datos antes de que la ruta se cargue:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
@@ -710,7 +710,7 @@ document.write(`
 </div>
 <p>Este resolver utiliza el servicio real para obtener los productos y maneja cualquier error redirigiendo al usuario a una ruta segura.</p>
 <section id="configuracion-de-rutas-con-resolver">
-<h5>Configuración de Rutas con Resolver<a class="headerlink" href="#configuracion-de-rutas-con-resolver" title="Link to this heading">#</a></h5>
+<h3>Configuración de Rutas con Resolver<a class="headerlink" href="#configuracion-de-rutas-con-resolver" title="Link to this heading">#</a></h3>
 <p>Las rutas pueden configurarse para utilizar un resolver, asegurando que los datos necesarios estén disponibles antes de cargar el componente:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="kt">Routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;product/edit/:id&#39;</span><span class="p">,</span>
@@ -723,8 +723,6 @@ document.write(`
 <span class="p">];</span>
 </pre></div>
 </div>
-</section>
-</section>
 </section>
 </section>
 <section id="autenticacion-con-angular">
@@ -1180,6 +1178,191 @@ document.write(`
 </div>
 </section>
 </section>
+<section id="envio-y-recepcion-de-ficheros-con-angular">
+<h2>Envío y recepción de ficheros con Angular<a class="headerlink" href="#envio-y-recepcion-de-ficheros-con-angular" title="Link to this heading">#</a></h2>
+<p>En Angular, el manejo de ficheros implica tanto el envío como la recepción de archivos. Este punto cubre diferentes enfoques para trabajar con archivos en Angular, desde el envío con <code class="docutils literal notranslate"><span class="pre">FormData</span></code>, que es la forma recomendada cuando el servidor acepta <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code>, hasta la conversión a <code class="docutils literal notranslate"><span class="pre">Base64</span></code> en caso de que los datos se envíen en formato JSON. Además, se explica cómo recibir ficheros en formato binario y mostrarlos en un <code class="docutils literal notranslate"><span class="pre">&lt;embed&gt;</span></code>, cómo descargar archivos desde el servidor y cómo manejar archivos codificados en <code class="docutils literal notranslate"><span class="pre">Base64</span></code>, convirtiéndolos en <code class="docutils literal notranslate"><span class="pre">Blob</span></code> para optimizar su visualización.</p>
+<section id="enviar-ficheros-con-formdata">
+<h3>Enviar ficheros con FormData<a class="headerlink" href="#enviar-ficheros-con-formdata" title="Link to this heading">#</a></h3>
+<p>Esta es la manera recomendada en caso de que el servidor acepte ficheros <code class="docutils literal notranslate"><span class="pre">multipart</span></code>. Es la más sencilla:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">UploadService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">apiUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.ejemplo.com/upload&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reemplazar con la URL real</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">uploadForm</span><span class="p">(</span><span class="nx">documento</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="p">,</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;documento&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">documento</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;documento&quot; es el nombre del campo en el backend</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;nombre&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">formData</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="mostrar-una-barra-de-progreso">
+<h4>Mostrar una barra de progreso<a class="headerlink" href="#mostrar-una-barra-de-progreso" title="Link to this heading">#</a></h4>
+<p>El siguiente código implementa la subida de un archivo en usando <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code> y <strong>RxJS Observables</strong> para proporcionar actualizaciones de progreso. Primero, crea un <code class="docutils literal notranslate"><span class="pre">FormData</span></code> y adjunta el archivo recibido como parámetro. Luego, envía una petición <code class="docutils literal notranslate"><span class="pre">POST</span></code> a <code class="docutils literal notranslate"><span class="pre">this.uploadUrl</span></code>, configurando <code class="docutils literal notranslate"><span class="pre">reportProgress:</span> <span class="pre">true</span></code> y <code class="docutils literal notranslate"><span class="pre">observe:</span> <span class="pre">'events'</span></code> para recibir eventos del proceso. Mediante <code class="docutils literal notranslate"><span class="pre">pipe(map())</span></code>, evalúa el tipo de evento: si es <code class="docutils literal notranslate"><span class="pre">HttpEventType.UploadProgress</span></code>, calcula el porcentaje de progreso (<code class="docutils literal notranslate"><span class="pre">loaded</span> <span class="pre">/</span> <span class="pre">total</span> <span class="pre">*</span> <span class="pre">100</span></code>); si es <code class="docutils literal notranslate"><span class="pre">HttpEventType.Response</span></code>, indica que la subida ha finalizado devolviendo <code class="docutils literal notranslate"><span class="pre">100</span></code>. Finalmente, devuelve un <code class="docutils literal notranslate"><span class="pre">Observable&lt;number&gt;</span></code> que emite el progreso en tiempo real.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">uploadFile</span><span class="p">(</span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="nx">HttpEvent</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">uploadUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">formData</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">reportProgress</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">observe</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;events&#39;</span>
+<span class="w">    </span><span class="p">}).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="kr">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="nx">HttpEventType.UploadProgress</span><span class="o">:</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">((</span><span class="nx">event</span><span class="p">.</span><span class="nx">loaded</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">total</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="mf">1</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// Porcentaje de progreso</span>
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="nx">HttpEventType.Response</span><span class="o">:</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// Completado</span>
+<span class="w">          </span><span class="nx">default</span><span class="o">:</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Luego para mostrarlo, en el componente:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">uploadFile</span><span class="p">(</span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">uploadProgress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Inicializa la barra de progreso</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">fileUploadService</span><span class="p">.</span><span class="nx">uploadFile</span><span class="p">(</span><span class="nx">file</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">progress</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">uploadProgress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">progress</span><span class="p">;</span><span class="w"> </span><span class="c1">// Actualiza el progreso</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Después ya se puede mostrar, por ejemplo con <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;progress&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> 
+    <span class="na">class</span><span class="o">=</span><span class="s">&quot;progress-bar progress-bar-striped progress-bar-animated&quot;</span> 
+    <span class="na">role</span><span class="o">=</span><span class="s">&quot;progressbar&quot;</span> 
+    <span class="err">[</span><span class="na">style</span><span class="err">.</span><span class="na">width</span><span class="err">.%]=&quot;</span><span class="na">uploadProgress</span><span class="err">&quot;</span> 
+    <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&quot;{{ uploadProgress }}&quot;</span> 
+    <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&quot;0&quot;</span> 
+    <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&quot;100&quot;</span><span class="p">&gt;</span>
+    {{ uploadProgress }}%
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="enviar-ficheros-con-json">
+<h3>Enviar ficheros con JSON<a class="headerlink" href="#enviar-ficheros-con-json" title="Link to this heading">#</a></h3>
+<p>Para enviar con JSON es más complejo, ya que no acepta datos binarios, hay que convertir a <code class="docutils literal notranslate"><span class="pre">Base64</span></code>. Para ello usaremos un <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> y sus eventos.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">assignPDF</span><span class="p">(</span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="p">,</span><span class="w"> </span><span class="nx">recipe</span><span class="o">:</span><span class="w"> </span><span class="kt">IRecipe</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">fromEvent</span><span class="p">(</span><span class="nx">reader</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;load&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">map</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">base64String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="kt">string</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mf">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// Quitar &quot;data:mimeType;base64,&quot;</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">base64</span><span class="o">:</span><span class="w"> </span><span class="kt">base64String</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">mimeType</span><span class="o">:</span><span class="w"> </span><span class="kt">file.type</span><span class="p">,</span>
+<span class="w">          </span><span class="p">};</span>
+<span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fileData</span><span class="p">);</span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="nx">fileData</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="nx">switchMap</span><span class="p">((</span><span class="nx">fileData</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span>
+<span class="w">              </span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;meals&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="w"> </span><span class="nx">pdf</span><span class="o">:</span><span class="w"> </span><span class="kt">fileData.base64</span><span class="p">,</span><span class="w"> </span><span class="nx">mimepdf</span><span class="o">:</span><span class="w"> </span><span class="kt">fileData.mimeType</span><span class="w"> </span><span class="p">})</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;idMeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">recipe</span><span class="p">.</span><span class="nx">idMeal</span><span class="p">)</span>
+<span class="w">              </span><span class="p">.</span><span class="nx">select</span><span class="p">()</span>
+<span class="w">          </span><span class="p">);</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>El código convierte un archivo en <strong>Base64</strong> y lo sube a una base de datos usando <strong>Observables</strong> de RxJS. Primero, crea un <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> para leer el archivo y usa <code class="docutils literal notranslate"><span class="pre">fromEvent</span></code> para convertir su evento <code class="docutils literal notranslate"><span class="pre">'load'</span></code> en un <strong>Observable</strong>. Luego, con <code class="docutils literal notranslate"><span class="pre">map()</span></code>, extrae la cadena <strong>Base64</strong> quitando el prefijo <code class="docutils literal notranslate"><span class="pre">&quot;data:mimeType;base64,&quot;</span></code> y la estructura en un objeto con el tipo MIME. Con <code class="docutils literal notranslate"><span class="pre">switchMap()</span></code>, transforma ese objeto en una petición asíncrona a Supabase usando <code class="docutils literal notranslate"><span class="pre">.update()</span></code> para guardar el PDF y su MIME en la tabla <code class="docutils literal notranslate"><span class="pre">meals</span></code>, filtrando por <code class="docutils literal notranslate"><span class="pre">idMeal</span></code>. Finalmente, <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code> ejecuta la operación, y <code class="docutils literal notranslate"><span class="pre">reader.readAsDataURL(file)</span></code> inicia la conversión.</p>
+</section>
+<section id="recibir-ficheros-binarios">
+<h3>Recibir ficheros binarios<a class="headerlink" href="#recibir-ficheros-binarios" title="Link to this heading">#</a></h3>
+<p>Se pueden recibir binarios y crear la URL temporal para poder insertarlos en un <code class="docutils literal notranslate"><span class="pre">&lt;embed&gt;</span></code> o similar:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">getPDF</span><span class="p">(</span><span class="nx">recipe</span><span class="o">:</span><span class="w"> </span><span class="kt">IRecipe</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;recipes&#39;</span><span class="p">).</span><span class="nx">download</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">recipe</span><span class="p">.</span><span class="nx">pdf</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+<span class="w">    </span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">(({</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">blobimg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">blobimg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">blobimg</span><span class="p">;</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>También se podrían recibir i hacer que el navegador ofrezca descargar el fichero:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">downloadPDF</span><span class="p">(</span><span class="nx">recipe</span><span class="o">:</span><span class="w"> </span><span class="kt">IRecipe</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">from</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;recipes&#39;</span><span class="p">).</span><span class="nx">download</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">recipe</span><span class="p">.</span><span class="nx">pdf</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">(({</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">blobUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">a</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">blobUrl</span><span class="p">;</span>
+<span class="w">          </span><span class="nx">a</span><span class="p">.</span><span class="nx">download</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">recipe</span><span class="p">.</span><span class="nx">pdf</span><span class="p">;</span><span class="w"> </span><span class="c1">// Nombre del archivo a descargar</span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="w">          </span><span class="nx">URL</span><span class="p">.</span><span class="nx">revokeObjectURL</span><span class="p">(</span><span class="nx">blobUrl</span><span class="p">);</span><span class="w"> </span><span class="c1">// Liberar memoria</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="recibir-ficheros-en-base64">
+<h3>Recibir ficheros en Base64<a class="headerlink" href="#recibir-ficheros-en-base64" title="Link to this heading">#</a></h3>
+<p>Cuando tratamos con <code class="docutils literal notranslate"><span class="pre">Base64</span></code>, lo que recibimos es un string. Suponiendo que ha llegado junto a otros datos de la misma tabla obtenidos ya, el servicio puede hacer que se vea, por ejemplo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">getPDFBase64</span><span class="p">(</span><span class="nx">recipe</span><span class="o">:</span><span class="w"> </span><span class="kt">IRecipe</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`data:application/pdf;base64,</span><span class="si">${</span><span class="nx">recipe</span><span class="p">.</span><span class="nx">pdf</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>En este caso se supone que <code class="docutils literal notranslate"><span class="pre">recipe.pdf</span></code> está en <code class="docutils literal notranslate"><span class="pre">Base64</span></code>. Esto se puede insertar en una <code class="docutils literal notranslate"><span class="pre">src</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">loadPDFBase64</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">PDFbase64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sanitizer</span><span class="p">.</span><span class="nx">bypassSecurityTrustResourceUrl</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">supabaseService</span><span class="p">.</span><span class="nx">getPDFBase64</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recipe</span><span class="o">!</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Hay que <code class="docutils literal notranslate"><span class="pre">sanitizar</span></code> la URL.</p>
+<p>Luego en la plantilla lo podemos poner así:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">embed</span> <span class="err">[</span><span class="na">src</span><span class="err">]=&quot;</span><span class="na">PDFbase64</span><span class="err">&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/pdf&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Esta solución no siempre es la mejor. Si los ficheros son muy grandes es más eficiente convertir en un <code class="docutils literal notranslate"><span class="pre">Blob</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">getPDFBase64blob</span><span class="p">(</span><span class="nx">recipe</span><span class="o">:</span><span class="w"> </span><span class="kt">IRecipe</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">byteCharacters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">atob</span><span class="p">(</span><span class="nx">recipe</span><span class="p">.</span><span class="nx">pdf</span><span class="o">!</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">byteNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="nx">byteCharacters</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">byteCharacters</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">byteNumbers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">byteCharacters</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">byteArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Uint8Array</span><span class="p">(</span><span class="nx">byteNumbers</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span>
+<span class="w">      </span><span class="ow">new</span><span class="w"> </span><span class="nx">Blob</span><span class="p">([</span><span class="nx">byteArray</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="nx">recipe</span><span class="p">.</span><span class="nx">mimepdf</span><span class="o">!</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Este código es preciso, ya que los <code class="docutils literal notranslate"><span class="pre">Blob</span></code> aceptan binarios y hay que convertir el <code class="docutils literal notranslate"><span class="pre">string</span></code> en un Arrray de enteros <code class="docutils literal notranslate"><span class="pre">Uint8Array</span></code>.</p>
+<p>Tutorial: <a class="reference external" href="https://www.geeksforgeeks.org/how-to-convert-base64-to-file-in-javascript/">https://www.geeksforgeeks.org/how-to-convert-base64-to-file-in-javascript/</a></p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1237,7 +1420,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1251,26 +1435,28 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inyeccion-de-dependencias">Inyección de Dependencias</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
@@ -1287,6 +1473,16 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sse">SSE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-y-recepcion-de-ficheros-con-angular">Envío y recepción de ficheros con Angular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-ficheros-con-formdata">Enviar ficheros con FormData</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-una-barra-de-progreso">Mostrar una barra de progreso</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-ficheros-con-json">Enviar ficheros con JSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recibir-ficheros-binarios">Recibir ficheros binarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recibir-ficheros-en-base64">Recibir ficheros en Base64</a></li>
 </ul>
 </li>
 </ul>
@@ -1337,8 +1533,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
