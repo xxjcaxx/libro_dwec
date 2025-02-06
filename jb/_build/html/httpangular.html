@@ -413,6 +413,7 @@
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
 </ul>
 </li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
 </ul>
@@ -595,6 +596,42 @@
 </pre></div>
 </div>
 </section>
+</section>
+<section id="gestion-de-errores-de-comunicacion">
+<h4>Gestión de errores de comunicación<a class="headerlink" href="#gestion-de-errores-de-comunicacion" title="Link to this heading">#</a></h4>
+<p>Los errores al comunicarse con el servidor son por dos causas principales: Error del servidor (400, 500…) o error de la red o de la URL. <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> genera <code class="docutils literal notranslate"><span class="pre">Observables</span></code> que emiten la función <code class="docutils literal notranslate"><span class="pre">error</span></code> de los <code class="docutils literal notranslate"><span class="pre">Observers</span></code> en caso de fallo. Estos errores hay que tratarlos antes de enviar datos a los componentes que están suscritos al servicio.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">getData</span><span class="p">(</span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">catchError</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">handleError</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}),</span>
+
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">handleError</span><span class="p">(</span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpErrorResponse</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">never</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">errorMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Ocurrió un error desconocido&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">error</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">ErrorEvent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Error de red o del cliente (URL mal escrita, sin conexión, etc.)</span>
+<span class="w">      </span><span class="nx">errorMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Error de red: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Error del servidor (códigos 400, 500, etc.)</span>
+<span class="w">      </span><span class="nx">errorMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Error del servidor </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">errorMessage</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">throwError</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">errorMessage</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este caso capturamos el error dentro del <code class="docutils literal notranslate"><span class="pre">pipe</span></code> con <code class="docutils literal notranslate"><span class="pre">catchError</span></code> y lo tratamos. La función <code class="docutils literal notranslate"><span class="pre">handleError</span></code> acepta un <code class="docutils literal notranslate"><span class="pre">HttpErrorResponse</span></code> y retorna un <code class="docutils literal notranslate"><span class="pre">Observable&lt;never&gt;</span></code> que en TypeScript y RxJS indica que el observable nunca emitirá un valor exitoso.</p>
+<p>Aquí se manejan varios tipos específicos de error: <code class="docutils literal notranslate"><span class="pre">HttpErrorResponse</span></code> es una respuesta que da el HTTPClient cuando algo no va bien. Esta respuesta siempre la da si falla. Su contenido <code class="docutils literal notranslate"><span class="pre">.error</span></code> puede ser <code class="docutils literal notranslate"><span class="pre">ErrorEvent</span></code> o otro específico. Si es <code class="docutils literal notranslate"><span class="pre">ErrorEvent</span></code> indica que es un error de red. Además, el <code class="docutils literal notranslate"><span class="pre">throwError</span></code> emite un <code class="docutils literal notranslate"><span class="pre">Error</span></code> que es más genérico.</p>
+<p>Algunos servidores envían una respuesta 200, pero con un mensaje en su interior que indica un error. En ese caso, se puede capturar el mensaje con un operador <code class="docutils literal notranslate"><span class="pre">map</span></code> y lanzar el error. En el ejemplo, en caso de que no falle la red, pasará al <code class="docutils literal notranslate"><span class="pre">map</span></code> que lanzará el error dependiendo del contenido.</p>
 </section>
 </section>
 </section>
@@ -1122,19 +1159,7 @@
 <section id="conversion-de-promesas-a-observables">
 <h3>Conversión de Promesas a Observables<a class="headerlink" href="#conversion-de-promesas-a-observables" title="Link to this heading">#</a></h3>
 <p>El SDK de Supabase funciona con promesas, pero en Angular es común trabajar con Observables para aprovechar las capacidades de programación reactiva de RxJS. Podemos convertir promesas a observables utilizando el operador <code class="docutils literal notranslate"><span class="pre">from</span></code> de RxJS.</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">from</span><span class="p">,</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
-
-<span class="kd">@Injectable</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">supabase</span><span class="o">:</span><span class="w"> </span><span class="kt">SupabaseClient</span><span class="p">;</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createClient</span><span class="p">(</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseKey</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">getDataObservable</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">getDataObservable</span><span class="p">(</span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">table</span><span class="p">));</span>
 <span class="w">  </span><span class="p">}</span>
 
@@ -1145,25 +1170,11 @@
 <span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>En el componente, podemos suscribirnos al Observable para obtener los datos:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SupabaseService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../supabase.service&#39;</span><span class="p">;</span>
-
-<span class="kd">@Component</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-data&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./data.component.html&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">styleUrls</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;./data.component.css&#39;</span><span class="p">],</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">DataComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">supabaseService</span><span class="o">:</span><span class="w"> </span><span class="kt">SupabaseService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
-
-<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">supabaseService</span><span class="p">.</span><span class="nx">getDataObservable</span><span class="p">(</span><span class="s1">&#39;your_table_name&#39;</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span>
 <span class="w">      </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
@@ -1173,7 +1184,26 @@
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+</pre></div>
+</div>
+<p>Hay que tener en cuenta que <code class="docutils literal notranslate"><span class="pre">Supabase</span></code> en su <code class="docutils literal notranslate"><span class="pre">SDK</span></code> ya maneja cualquier error de comunicación. Así que la promesa se cumplirá y emitirá un objeto com <code class="docutils literal notranslate"><span class="pre">data</span></code> o <code class="docutils literal notranslate"><span class="pre">error</span></code>. Con el <code class="docutils literal notranslate"><span class="pre">throw</span></code>estamos emitiendo un reject que se convertirá en un <code class="docutils literal notranslate"><span class="pre">error</span></code> dentro del <code class="docutils literal notranslate"><span class="pre">Observable</span></code>. Aunque se puede tratar dentro de un <code class="docutils literal notranslate"><span class="pre">pipe</span></code>, como en este ejemplo con el <code class="docutils literal notranslate"><span class="pre">login</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">login</span><span class="p">(</span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">loginResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">signInWithPassword</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">email</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="p">,</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">map</span><span class="p">(({</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}),</span>
+<span class="w">      </span><span class="nx">tap</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">isLogged</span><span class="p">()),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">loginResult</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -1443,6 +1473,7 @@
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
 </ul>
 </li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
 </ul>
