@@ -425,9 +425,9 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar Datos en el Formulario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-cambios">Detección de Cambios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-dinamicos">Formularios Dinámicos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
 </ul>
             </nav>
         </div>
@@ -923,8 +923,9 @@
 </pre></div>
 </div>
 </section>
+</section>
 <section id="ficheros-en-formularios">
-<h3>Ficheros en Formularios<a class="headerlink" href="#ficheros-en-formularios" title="Link to this heading">#</a></h3>
+<h2>Ficheros en Formularios<a class="headerlink" href="#ficheros-en-formularios" title="Link to this heading">#</a></h2>
 <p>Si ponemos un input de tipo <code class="docutils literal notranslate"><span class="pre">file</span></code>, lo podemos tratar como en el ejemplo:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">selectedFile</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
 
@@ -945,7 +946,9 @@
 </pre></div>
 </div>
 <p>Siendo onFileSelected y onSubmit los manejadores de los eventos <code class="docutils literal notranslate"><span class="pre">&lt;form</span> <span class="pre">(submit)=&quot;onSubmit()&quot;&gt;</span></code> y <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;file&quot;</span> <span class="pre">(change)=&quot;onFileSelected($event)&quot;</span> <span class="pre">required</span> <span class="pre">/&gt;</span></code></p>
-</section>
+<blockquote>
+<div><p>Cuando hay ficheros, no importa que se trate de formularios reactivos o de plantilla, ya que los <code class="docutils literal notranslate"><span class="pre">FormControl</span></code> no manejar ficheros. Hay que atender al evento de subida del fichero y tratarlo por separado del <code class="docutils literal notranslate"><span class="pre">FormGroup</span></code>.</p>
+</div></blockquote>
 </section>
 </section>
 
@@ -1039,9 +1042,9 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-datos-en-el-formulario">Cargar Datos en el Formulario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-cambios">Detección de Cambios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-dinamicos">Formularios Dinámicos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
 </ul>
   </nav></div>
 
