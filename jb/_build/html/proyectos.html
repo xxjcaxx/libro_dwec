@@ -801,7 +801,7 @@
 <li><p><strong>Gestión del Estado:</strong> Permiten gestionar el estado de la aplicación a través de la URL, haciendo posible volver a estados previos o específicos.</p></li>
 <li><p><strong>Modularidad:</strong> Ayudan a mantener el código modular y organizado, separando claramente la lógica de navegación de la lógica de presentación y negocio.</p></li>
 </ol>
-<p>Para ilustrar cómo se puede implementar un router básico en JavaScript Vanilla, consideremos el siguiente ejemplo:</p>
+<p>El siguiente ejemplo no es la mejor opción por motivos que iremos desgranando más adelante, pero es muy fácil de implementar y de entender inicialmente:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Establecer una ruta inicial</span>
 <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#/login&quot;</span><span class="p">;</span>
 
@@ -938,7 +938,23 @@
 </ul>
 </li>
 </ol>
-<p>Implementar routers en JavaScript Vanilla es una técnica esencial para desarrollar aplicaciones SPA. Muchos frameworks modernos como React, Vue y Angular ya incluyen sistemas de enrutamiento avanzados.</p>
+<p><em><strong>Mejoras en el router</strong></em></p>
+<p>Para mejorar este router podemo usar el objeto <code class="docutils literal notranslate"><span class="pre">URL</span></code> y no usar rutas con <code class="docutils literal notranslate"><span class="pre">hash</span></code>.</p>
+<blockquote>
+<div><p>Si usamos rutas sin hash y queremos desplegar en Apache o otros servidores hay que configurarlos específicamente para que no busquen esas rutas en los directorios. Con el <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">dev</span></code> o en <code class="docutils literal notranslate"><span class="pre">Live</span> <span class="pre">Server</span></code> en tiempo de desarrollo no tendremos ese problema.</p>
+</div></blockquote>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">routeURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="nx">route</span><span class="p">);</span><span class="w">  </span><span class="c1">// Objeto URL </span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">routeURL</span><span class="p">.</span><span class="nx">pathname</span><span class="p">;</span><span class="w">   </span><span class="c1">// Lo que está detrás de la /</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">(</span><span class="nx">routeURL</span><span class="p">.</span><span class="nx">search</span><span class="p">);</span><span class="w">  </span><span class="c1">// Lo que está detrás de ? en una estructura parecida al Map()</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">search</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span><span class="w">     </span><span class="c1">// Se obtiene id si la ruta tenía ?id=</span>
+</pre></div>
+</div>
+<p>Al usar tanto <code class="docutils literal notranslate"><span class="pre">paths</span></code> como parámetros con ? y &amp; (<code class="docutils literal notranslate"><span class="pre">search</span></code>), ya no vale el <code class="docutils literal notranslate"><span class="pre">haschange</span></code>, ahora hay que atender a <code class="docutils literal notranslate"><span class="pre">popstate</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;popstate&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
 </section>
 <section id="componentes-web">
 <h5>Componentes Web<a class="headerlink" href="#componentes-web" title="Link to this heading">#</a></h5>
