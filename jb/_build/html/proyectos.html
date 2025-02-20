@@ -16,21 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -39,11 +37,10 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="Integración y Despliegue Continuo (CI/CD)" href="ci-cd.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -218,14 +229,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -369,16 +375,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -411,7 +425,6 @@
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-la-deuda-tecnica">Características de la Deuda Técnica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-la-deuda-tecnica">Gestión de la Deuda Técnica</a></li>
 </ul>
 </li>
 </ul>
@@ -424,7 +437,7 @@
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">Componentes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos">Elementos</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-modelos">Utilización de Modelos</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#vistas">Vistas</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#controlador">Controlador</a></li>
@@ -501,22 +514,18 @@
 <section id="evitar-el-codigo-espagueti">
 <h4>Evitar el Código Espagueti<a class="headerlink" href="#evitar-el-codigo-espagueti" title="Link to this heading">#</a></h4>
 <p>El código espagueti es difícil de leer, entender y mantener. Aquí hay algunas prácticas para evitarlo:</p>
-<ul>
+<ul class="simple">
 <li><p><strong>Refactoriza pronto y con frecuencia:</strong> No esperes a que el código se vuelva inmanejable. Realiza pequeños ajustes continuamente.</p></li>
 <li><p><strong>Separa la vista del estado:</strong> Mantén la lógica de la interfaz de usuario separada de la lógica del estado de la aplicación.</p></li>
 <li><p><strong>Utiliza módulos:</strong> Divide tu código en módulos para mantenerlo organizado y reutilizable.</p></li>
 <li><p><strong>Exporta pocas cosas:</strong> Los módulos deben exportar solo lo necesario para mantener una interfaz clara y concisa.</p></li>
-<li><p><strong>Variable global para la aplicación:</strong> Si necesitas variables globales y no quieres usar algo sofisticado como <code class="docutils literal notranslate"><span class="pre">Redux</span></code>, considera usar un objeto global para encapsularlas:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
-</pre></div>
-</div>
-</li>
+<li><p><strong>Estado de la aplicación:</strong> Mantener el estado centralizado es una de las tareas más complejas e importantes en el frontend. Se recomienda usar alguna solución reactiva como RxJS o Redux o al menos una única variable global immutable.</p></li>
 </ul>
 </section>
 </section>
 <section id="deuda-tecnica">
 <h3>Deuda Técnica<a class="headerlink" href="#deuda-tecnica" title="Link to this heading">#</a></h3>
-<p>La <strong>deuda técnica</strong> es un concepto crítico en el desarrollo de software que se refiere a la cantidad de trabajo adicional que es necesario realizar para modificar un programa debido a la elección de soluciones fáciles o rápidas en lugar de las adecuadas o más sostenibles a largo plazo. En otras palabras, es el costo acumulado de tomar atajos o soluciones temporales que, si bien pueden permitir un desarrollo más rápido inicialmente, generan una mayor carga de trabajo en el futuro.</p>
+<p>La <strong>deuda técnica</strong> es un concepto del desarrollo de software que se refiere a la cantidad de trabajo adicional que es necesario realizar para modificar un programa debido a la elección de soluciones fáciles o rápidas en lugar de las adecuadas o más sostenibles a largo plazo. En otras palabras, es el costo acumulado de tomar atajos o soluciones temporales que, si bien pueden permitir un desarrollo más rápido inicialmente, generan una mayor carga de trabajo en el futuro.</p>
 <section id="caracteristicas-de-la-deuda-tecnica">
 <h4>Características de la Deuda Técnica<a class="headerlink" href="#caracteristicas-de-la-deuda-tecnica" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
@@ -532,17 +541,14 @@
 </li>
 <li><p><strong>Impacto Negativo:</strong> La deuda técnica puede hacer que el desarrollo sea más lento, más costoso y más propenso a errores. También puede dificultar la implementación de nuevas funcionalidades y la corrección de errores existentes.</p></li>
 </ol>
-</section>
-<section id="gestion-de-la-deuda-tecnica">
-<h4>Gestión de la Deuda Técnica<a class="headerlink" href="#gestion-de-la-deuda-tecnica" title="Link to this heading">#</a></h4>
-<p>Gestionar la deuda técnica es crucial para mantener la salud y la sostenibilidad de un proyecto de software. Aquí hay algunas estrategias efectivas:</p>
+<p>Para mantener la salud y la sostenibilidad de un proyecto de software hay que gestionar esta deuda. Aquí hay algunas estrategias:</p>
 <ol class="arabic simple">
-<li><p><strong>Identificación y Monitoreo:</strong> Es importante identificar y documentar la deuda técnica desde el inicio. Utilizar herramientas de análisis estático y revisiones de código puede ayudar a detectar áreas problemáticas.</p></li>
-<li><p><strong>Priorización:</strong> No toda la deuda técnica necesita ser pagada de inmediato. Priorizar las áreas que tienen el mayor impacto en el rendimiento y la mantenibilidad del software es esencial.</p></li>
-<li><p><strong>Refactorización Continua:</strong> Refactorizar el código regularmente ayuda a reducir la deuda técnica. La refactorización implica reestructurar el código existente sin cambiar su comportamiento externo, mejorando así su estructura y claridad.</p></li>
+<li><p><strong>Identificación y Monitoreo:</strong> Es importante identificar y documentar la deuda técnica desde el inicio. Utilizar herramientas de análisis estático y revisiones de código puede ayudar a detectar áreas problemáticas. Estas herramientas son, entre otras cosas, los <code class="docutils literal notranslate"><span class="pre">Linters</span></code>.</p></li>
+<li><p><strong>Priorización:</strong> No toda la deuda técnica necesita ser pagada de inmediato.</p></li>
+<li><p><strong>Refactorización Continua:</strong> Refactorizar el código regularmente ayuda a reducir la deuda técnica.</p></li>
 <li><p><strong>Compromiso del Equipo:</strong> Todo el equipo de desarrollo debe estar comprometido con la gestión de la deuda técnica. Esto incluye los desarrolladores, los gerentes de proyecto y los stakeholders.</p></li>
 <li><p><strong>Automatización de Pruebas:</strong> Implementar una suite de pruebas automatizadas puede ayudar a detectar problemas temprano y reducir la acumulación de deuda técnica relacionada con la calidad del código.</p></li>
-<li><p><strong>Desarrollo Ágil:</strong> Las metodologías ágiles promueven la entrega continua y la adaptación al cambio, lo cual puede ayudar a gestionar la deuda técnica de manera más efectiva.</p></li>
+<li><p><strong>Desarrollo Ágil:</strong> Las metodologías ágiles promueven la entrega continua y la adaptación al cambio.</p></li>
 </ol>
 </section>
 </section>
@@ -727,11 +733,11 @@
 </ul>
 </li>
 </ol>
-<section id="componentes">
-<h4>Componentes<a class="headerlink" href="#componentes" title="Link to this heading">#</a></h4>
+<section id="elementos">
+<h4>Elementos<a class="headerlink" href="#elementos" title="Link to this heading">#</a></h4>
 <section id="utilizacion-de-modelos">
 <h5>Utilización de Modelos<a class="headerlink" href="#utilizacion-de-modelos" title="Link to this heading">#</a></h5>
-<p>Es crucial separar el Document Object Model (DOM) de los datos de la aplicación. Entre los datos recibidos en formato JSON y los mostrados en HTML, es necesario tener objetos que gestionen esos datos, conocidos como modelos.</p>
+<p>Siempre hay que separar el Document Object Model (DOM) de los datos de la aplicación. Entre los datos recibidos en formato JSON y los mostrados en HTML, es necesario tener objetos que gestionen esos datos, conocidos como modelos.</p>
 <ul class="simple">
 <li><p><strong>Funcionalidad de los Modelos:</strong></p>
 <ul>
@@ -1239,8 +1245,7 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1258,7 +1263,6 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-la-deuda-tecnica">Características de la Deuda Técnica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-la-deuda-tecnica">Gestión de la Deuda Técnica</a></li>
 </ul>
 </li>
 </ul>
@@ -1271,7 +1275,7 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">Componentes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos">Elementos</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-modelos">Utilización de Modelos</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#vistas">Vistas</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#controlador">Controlador</a></li>
@@ -1354,8 +1358,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
