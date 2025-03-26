@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -37,10 +39,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -65,6 +68,7 @@
     <link rel="prev" title="Arrays Objetos y clases" href="arraysobjetosclases.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,21 +148,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Libro DWEC - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -194,6 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 
@@ -230,9 +220,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -376,24 +371,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -421,25 +408,28 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-documento-html">Estructura del Documento HTML</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-window">DOM: Window</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-nodos">Crear Nodos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-nodos">Buscar Nodos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-nodos">Modificar Nodos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos">Estilos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-eficiente-del-dom">Manipulación eficiente del DOM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window">Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document">Document</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-nodos">Crear Nodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-nodos">Buscar Nodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-nodos">Modificar Nodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos">Estilos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-eficiente-del-dom">Manipulación eficiente del DOM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-formularios">Atributos de Formularios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-tradicional-del-formulario">Ciclo Tradicional del Formulario</a></li>
@@ -553,8 +543,8 @@ document.write(`
 </ol>
 </section>
 </section>
-<section id="dom-window">
-<h2>DOM: Window<a class="headerlink" href="#dom-window" title="Link to this heading">#</a></h2>
+<section id="window">
+<h2>Window<a class="headerlink" href="#window" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Window</span></code> es un objeto predefinido en los navegadores web que representa la ventana en la que se muestra el documento. Algunos métodos importantes de <code class="docutils literal notranslate"><span class="pre">window</span></code> incluyen:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">alert()</span></code>, <code class="docutils literal notranslate"><span class="pre">prompt()</span></code>: Métodos para mostrar diálogos.</p></li>
@@ -576,12 +566,42 @@ document.write(`
 <div><p>Window no está cuando programamos para <code class="docutils literal notranslate"><span class="pre">Node</span></code> o otros intérpretes de servidor. Por esta razón, el Javascript dedicado al DOM debería estar separado de funciones normales, de manera que estas se puedan reaprovechar si parte de la lógica se mueve al servidor.</p>
 </div></blockquote>
 </section>
+<section id="document">
+<h2>Document<a class="headerlink" href="#document" title="Link to this heading">#</a></h2>
+<p>Este Objeto representa el documento HTML resultante de interpretar el HTML estático con las modificaciones que haya hecho javascript sobre él. Este Objeto también tiene métodos para manipular los elementos del DOM. Estos elementos están organizados en forma de árbol a partir de un nodo <code class="docutils literal notranslate"><span class="pre">HTML</span></code> del cual parten <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> y <code class="docutils literal notranslate"><span class="pre">BODY</span></code>.</p>
+<p>Muchos nodos son <code class="docutils literal notranslate"><span class="pre">Element</span></code>y otros son nodos de texto. Por tanto, en ocasiones hay que distinguir entre cualquier nodo o los que son <code class="docutils literal notranslate"><span class="pre">Element</span></code>, que parten de una etiqueta HTML.</p>
+<section id="esperar-a-que-cargue-el-dom">
+<h3>Esperar a que Cargue el DOM<a class="headerlink" href="#esperar-a-que-cargue-el-dom" title="Link to this heading">#</a></h3>
+<p>Podemos asegurarnos de que el DOM esté completamente cargado antes de ejecutar nuestro script utilizando <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">number</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>También podemos colocar nuestro script al final del cuerpo (<code class="docutils literal notranslate"><span class="pre">body</span></code>) del documento HTML.</p>
+<p>Si, además, añadimos el atributo <code class="docutils literal notranslate"><span class="pre">defer</span></code>a un script, este se descargará de manera asíncrona y se ejecutará cuando el HTML haya sido totalmente interpretado y justo antes que <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
+<p>Si es necesario esperar a que carge también todo el CSS, es decir el <code class="docutils literal notranslate"><span class="pre">CSSOM</span></code>, podemos recurrir al evento <code class="docutils literal notranslate"><span class="pre">load</span></code>, que espera a cargar e interpretar todo el CSS. Pero si no es necesario, es mejor esperar sólo al DOM. Esto es porque hay recursos muy pesados como imágenes o vídeos que puede incluso que no lleguen a cargar.</p>
+<blockquote>
+<div><p>En general, recomendaremos usar <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code> en vez de poner el script al final o <code class="docutils literal notranslate"><span class="pre">load</span></code> porque al ser ejecutado al principio, ya hay cosas que se puede ir ejecutando sin necesidad de DOM antes de que cargue totalmente. En cualquier caso, los script en <em><strong>Módulos</strong></em> siempre se ejecutan en modo <code class="docutils literal notranslate"><span class="pre">defer</span></code>.</p>
+</div></blockquote>
+</section>
 <section id="crear-nodos">
-<h2>Crear Nodos<a class="headerlink" href="#crear-nodos" title="Link to this heading">#</a></h2>
+<h3>Crear Nodos<a class="headerlink" href="#crear-nodos" title="Link to this heading">#</a></h3>
 <p>Normalmente se crean nodos con <code class="docutils literal notranslate"><span class="pre">document.createElement()</span></code> y similares. También se crean implícitamente cuando cambiamos el <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code> de un nodo o usando <code class="docutils literal notranslate"><span class="pre">.append()</span></code> con código HTML.</p>
+<p>Además de esas técnicas, existen otras formas de crear nodos en el DOM. Una alternativa es <code class="docutils literal notranslate"><span class="pre">document.createDocumentFragment()</span></code>, que permite construir múltiples nodos en memoria antes de agregarlos al DOM, mejorando el rendimiento. También se pueden usar plantillas <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>, que facilitan la creación de contenido estructurado sin insertarlo inmediatamente en el documento.</p>
+<p>En cuanto a las mejores prácticas, es recomendable evitar la manipulación excesiva del DOM porque puede afectar el rendimiento. Si se usa <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>, hay que tener cuidado con la seguridad, ya que puede introducir vulnerabilidades como XSS. También es preferible crear y modificar nodos en memoria antes de insertarlos en el DOM, para reducir el número de reflujo y repintado. Además, el uso de APIs modernas como <code class="docutils literal notranslate"><span class="pre">cloneNode()</span></code> y <code class="docutils literal notranslate"><span class="pre">importNode()</span></code> puede ser útil para manejar estructuras de manera eficiente.</p>
+<p>Al crear un nodo se crea un objeto a partir del prototipo <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> que puede ser manipulado como cualquier otro objeto, puede ser clonado con <code class="docutils literal notranslate"><span class="pre">cloneNode()</span></code> y puede ser insertado con <code class="docutils literal notranslate"><span class="pre">append()</span></code> en otros elementos.</p>
 </section>
 <section id="buscar-nodos">
-<h2>Buscar Nodos<a class="headerlink" href="#buscar-nodos" title="Link to this heading">#</a></h2>
+<h3>Buscar Nodos<a class="headerlink" href="#buscar-nodos" title="Link to this heading">#</a></h3>
 <p>Para manipular elementos del DOM, primero debemos encontrarlos. Los métodos más comunes son:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">document.getElementById(id)</span></code>: Encuentra un elemento por su ID.</p></li>
@@ -632,7 +652,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="modificar-nodos">
-<h2>Modificar Nodos<a class="headerlink" href="#modificar-nodos" title="Link to this heading">#</a></h2>
+<h3>Modificar Nodos<a class="headerlink" href="#modificar-nodos" title="Link to this heading">#</a></h3>
 <p>Una vez que hemos encontrado los nodos, podemos modificarlos. Algunos métodos útiles incluyen:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.innerHTML</span></code>, <code class="docutils literal notranslate"><span class="pre">.innerText</span></code>, <code class="docutils literal notranslate"><span class="pre">.outerHTML</span></code>: Para cambiar el contenido HTML o texto de un elemento.</p></li>
@@ -653,7 +673,7 @@ document.write(`
 </div>
 <p>Lo que más habitualmente se hace es crear nodos y sustituir contenidos. Podemos distinguir dos metodologías diferenciadas que suelen mezclarse en proyectos reales. Un es crear todo con <code class="docutils literal notranslate"><span class="pre">document.createElement()</span></code> y la otra ir generando una <code class="docutils literal notranslate"><span class="pre">string</span></code> con código <code class="docutils literal notranslate"><span class="pre">HTML</span></code> y insertarlo en un elemento existente con <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>. Luego veremos técnicas más sofisticadas como las <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">literals</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code>. Para cambiar el contenido de un nodo existente se pueden añadir o quitar nodos hijos con las funciones vistas anteriormente. Si se quiere limpiar totalmente un elemento podemos usar <code class="docutils literal notranslate"><span class="pre">innerHTML=''</span></code> o mejor <code class="docutils literal notranslate"><span class="pre">.replaceChildren()</span></code>.</p>
 <section id="atributos">
-<h3>Atributos<a class="headerlink" href="#atributos" title="Link to this heading">#</a></h3>
+<h4>Atributos<a class="headerlink" href="#atributos" title="Link to this heading">#</a></h4>
 <p>Los elementos suelen tener atributos. Algunos son especiales como el <code class="docutils literal notranslate"><span class="pre">id</span></code> o la <code class="docutils literal notranslate"><span class="pre">class</span></code>. El <code class="docutils literal notranslate"><span class="pre">id</span></code> está accesible directamente como atributo del elemento, así como el <code class="docutils literal notranslate"><span class="pre">className</span></code>, aunque luego veremos que es mejor manipularlo de otra manera. Otros atributos como <code class="docutils literal notranslate"><span class="pre">value</span></code> en los <code class="docutils literal notranslate"><span class="pre">Input</span></code>o <code class="docutils literal notranslate"><span class="pre">scr</span></code> en los <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> también pueden ser leidos y modificados como propiedades. Se trata de los atributos <strong>estándar</strong>.</p>
 <p>Para los atributos que no tienen acceso directo porque no son estándar, podemos usar <code class="docutils literal notranslate"><span class="pre">setAttribute()</span></code> <code class="docutils literal notranslate"><span class="pre">getAttribute()</span></code>, <code class="docutils literal notranslate"><span class="pre">hasAttribute()</span></code> o <code class="docutils literal notranslate"><span class="pre">removeAttribute()</span></code>:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">);</span>
@@ -664,7 +684,7 @@ document.write(`
 </div>
 </section>
 <section id="propiedades">
-<h3>Propiedades<a class="headerlink" href="#propiedades" title="Link to this heading">#</a></h3>
+<h4>Propiedades<a class="headerlink" href="#propiedades" title="Link to this heading">#</a></h4>
 <p>Puesto que los elementos HTML al ser parseados y convertidos al DOM se convierten en objetos, estos son manipulables como cualquier objeto, pudiendo añadir o modificar propiedades, incluso aquellas que vienen en el HTML como atributos estándar.</p>
 <blockquote>
 <div><p>Atributos como <code class="docutils literal notranslate"><span class="pre">id</span></code> se sincronizan perfectamente con la propiedad. Otros como <code class="docutils literal notranslate"><span class="pre">value</span></code> no se sincronizan directamente: <a class="reference external" href="https://es.javascript.info/dom-attributes-and-properties#sincronizacion-de-propiedad-y-atributo">https://es.javascript.info/dom-attributes-and-properties#sincronizacion-de-propiedad-y-atributo</a></p>
@@ -674,7 +694,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="estilos">
-<h3>Estilos<a class="headerlink" href="#estilos" title="Link to this heading">#</a></h3>
+<h4>Estilos<a class="headerlink" href="#estilos" title="Link to this heading">#</a></h4>
 <p>Para manipular los estilos de un elemento, podemos usar propiedades de estilo y clases CSS.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.style.property</span></code>: Modifica un estilo CSS directamente.</p></li>
@@ -692,7 +712,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="manipulacion-eficiente-del-dom">
-<h3>Manipulación eficiente del DOM<a class="headerlink" href="#manipulacion-eficiente-del-dom" title="Link to this heading">#</a></h3>
+<h4>Manipulación eficiente del DOM<a class="headerlink" href="#manipulacion-eficiente-del-dom" title="Link to this heading">#</a></h4>
 <p>Para ser más eficiente hay que tener en cuenta que cada modificación provoca un reflujo y un repaint que pueden ser costosos. Así que, en general, evitaremos hacer muchas modificaciones juntas.</p>
 <ul class="simple">
 <li><p>Evitar cambios múltiples de estilos.</p></li>
@@ -706,11 +726,11 @@ document.write(`
 </section>
 </section>
 <section id="creacion-de-elementos-plantillas">
-<h2>Creación de elementos (plantillas)<a class="headerlink" href="#creacion-de-elementos-plantillas" title="Link to this heading">#</a></h2>
+<h3>Creación de elementos (plantillas)<a class="headerlink" href="#creacion-de-elementos-plantillas" title="Link to this heading">#</a></h3>
 <p>Se pueden crear elementos totalmente de forma programática. Pero puede ser tedioso. Muchas veces, si sabemos que hay fragmentos de HTML bastante estáticos, podemos usar <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code> y <code class="docutils literal notranslate"><span class="pre">.append()</span></code> con plantillas creadas mediante strings.</p>
 <p>Para crear elementos del DOM mediante plantillas hay muchas formas. Obviaremos las más farragosas y nos centraremos en aquellas que son más rápidas.</p>
 <section id="creacion-de-elementos-template-literal">
-<h3>Creación de Elementos: Template Literal<a class="headerlink" href="#creacion-de-elementos-template-literal" title="Link to this heading">#</a></h3>
+<h4>Creación de Elementos: Template Literal<a class="headerlink" href="#creacion-de-elementos-template-literal" title="Link to this heading">#</a></h4>
 <p>Los template literals y las interpolaciones de cadenas permiten crear contenido dinámico de manera sencilla.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">generateGraphCard</span><span class="p">(</span><span class="nx">graph</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cardTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
@@ -732,7 +752,7 @@ document.write(`
 </div>
 </section>
 <section id="creacion-de-elementos-mediante-tagged-template-literals">
-<h3>Creación de elementos mediante Tagged Template Literals<a class="headerlink" href="#creacion-de-elementos-mediante-tagged-template-literals" title="Link to this heading">#</a></h3>
+<h4>Creación de elementos mediante Tagged Template Literals<a class="headerlink" href="#creacion-de-elementos-mediante-tagged-template-literals" title="Link to this heading">#</a></h4>
 <p>Los “Tagged Template Literals” son una característica de JavaScript que te permite crear funciones que aceptan una plantilla literal y sus interpolaciones. Estas funciones son invocadas de forma muy diferente, ya que no tienen (parentesis) y se entiende que el primer argumento es la plantilla y el resto de argumentos son los distintos valores de las variables interpoladas.</p>
 <p>En lugar de recibir una sola cadena de texto con las interpolaciones <code class="docutils literal notranslate"><span class="pre">${}</span></code>, la función de etiqueta recibe dos argumentos separados: un array de strings y un array con los valores interpolados.</p>
 <div class="cell docutils container">
@@ -830,7 +850,7 @@ document.write(`
 </div>
 </section>
 <section id="creacion-de-elementos-interpolaciones-wrapper-fragments">
-<h3>Creación de Elementos: Interpolaciones, Wrapper, fragments<a class="headerlink" href="#creacion-de-elementos-interpolaciones-wrapper-fragments" title="Link to this heading">#</a></h3>
+<h4>Creación de Elementos: Interpolaciones, Wrapper, fragments<a class="headerlink" href="#creacion-de-elementos-interpolaciones-wrapper-fragments" title="Link to this heading">#</a></h4>
 <p>Podemos usar funciones para extraer e implementar interpolaciones en template literals.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">extractInterpolations</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\{\{([^\{\}]*)\}\}/g</span><span class="p">;</span>
@@ -893,7 +913,7 @@ document.write(`
 </div>
 </section>
 <section id="creacion-de-elementos-con-template">
-<h3>Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code><a class="headerlink" href="#creacion-de-elementos-con-template" title="Link to this heading">#</a></h3>
+<h4>Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code><a class="headerlink" href="#creacion-de-elementos-con-template" title="Link to this heading">#</a></h4>
 <p>La etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> es especial. Su interior no se renderiza como el resto, pero queda accesible para ser buscado. La utilidad es crear plantillas en HTML que puedan ser clonadas y rellenadas como se desee.</p>
 <p>Veamos este HTML extraido de la web de referencia: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template:">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template:</a></p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;producttable&quot;</span><span class="p">&gt;</span>
@@ -951,31 +971,8 @@ document.write(`
 </div></blockquote>
 </section>
 </section>
-<section id="esperar-a-que-cargue-el-dom">
-<h2>Esperar a que Cargue el DOM<a class="headerlink" href="#esperar-a-que-cargue-el-dom" title="Link to this heading">#</a></h2>
-<p>Podemos asegurarnos de que el DOM esté completamente cargado antes de ejecutar nuestro script utilizando <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">number</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-<p>También podemos colocar nuestro script al final del cuerpo (<code class="docutils literal notranslate"><span class="pre">body</span></code>) del documento HTML.</p>
-<p>Si, además, añadimos el atributo <code class="docutils literal notranslate"><span class="pre">defer</span></code>a un script, este se descargará de manera asíncrona y se ejecutará cuando el HTML haya sido totalmente interpretado y justo antes que <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
-<p>Si es necesario esperar a que carge también todo el CSS, es decir el <code class="docutils literal notranslate"><span class="pre">CSSOM</span></code>, podemos recurrir al evento <code class="docutils literal notranslate"><span class="pre">load</span></code>, que espera a cargar e interpretar todo el CSS. Pero si no es necesario, es mejor esperar sólo al DOM. Esto es porque hay recursos muy pesados como imágenes o vídeos que puede incluso que no lleguen a cargar.</p>
-<blockquote>
-<div><p>En general, recomendaremos usar <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code> en vez de poner el script al final o <code class="docutils literal notranslate"><span class="pre">load</span></code> porque al ser ejecutado al principio, ya hay cosas que se puede ir ejecutando sin necesidad de DOM antes de que cargue totalmente. En cualquier caso, los script en <em><strong>Módulos</strong></em> siempre se ejecutan en modo <code class="docutils literal notranslate"><span class="pre">defer</span></code>.</p>
-</div></blockquote>
-</section>
 <section id="atributos-de-datos">
-<h2>Atributos de Datos<a class="headerlink" href="#atributos-de-datos" title="Link to this heading">#</a></h2>
+<h3>Atributos de Datos<a class="headerlink" href="#atributos-de-datos" title="Link to this heading">#</a></h3>
 <p>HTML5 permite agregar atributos personalizados no visuales a las etiquetas utilizando <code class="docutils literal notranslate"><span class="pre">data-*</span></code>. Estos atributos pueden ser accesibles a través de JavaScript usando <code class="docutils literal notranslate"><span class="pre">dataset</span></code>.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">article</span>
     <span class="na">id</span><span class="o">=</span><span class="s">&quot;electriccars&quot;</span>
@@ -996,8 +993,10 @@ document.write(`
 </pre></div>
 </div>
 </section>
+</section>
 <section id="formularios-en-javascript">
 <h2>Formularios en JavaScript<a class="headerlink" href="#formularios-en-javascript" title="Link to this heading">#</a></h2>
+<p>En cursos anteriores de HTML se explica cómo hacer correctamente un formulario. Desde el punto de vista de la programación en Javascript, lo interesante es el tratamiento de los datos, la interacción con el usuario, validación del formulario y el posible envío de los datos al servidor.</p>
 <p>En una aplicación web, la validación de los formularios se realiza tanto en el lado del cliente como en el del servidor.</p>
 <blockquote>
 <div><p>De hecho, la única validación estrictamente necesaria se debe hacer en el servidor para evitar peticiones ilegales por clientes como postman o curl.</p>
@@ -1080,7 +1079,7 @@ document.write(`
     <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;styles.css&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;validationForm&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;validationForm&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;validar.php&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="p">&gt;</span>Nombre:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;name&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span> <span class="na">required</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
         
@@ -1146,6 +1145,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Este ejemplo demuestra cómo utilizar pseudo-clases CSS para estilizar formularios con validación interna en HTML.</p>
+<p>Otra cosa a observar es que el form tiene <code class="docutils literal notranslate"><span class="pre">action=&quot;https://ejemplo.com/api&quot;</span> <span class="pre">method=&quot;POST&quot;</span></code>. Esto es el ciclo tradicional, el cual se evita en el ejemplo con el <code class="docutils literal notranslate"><span class="pre">preventDefault()</span></code> que está en la parte del código Javascript.</p>
 </section>
 <section id="ciclo-del-formulario-con-javascript">
 <h3>Ciclo del Formulario con JavaScript<a class="headerlink" href="#ciclo-del-formulario-con-javascript" title="Link to this heading">#</a></h3>
@@ -1169,6 +1169,9 @@ document.write(`
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>Esta solución está a medio camino entre el control total por JS y el control por HTML tradicional. Puede ser útil si usamos JS para su uso</p>
+</div></blockquote>
 </section>
 </section>
 <section id="enviar-formulario-por-javascript">
@@ -1914,7 +1917,8 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1927,25 +1931,28 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-documento-html">Estructura del Documento HTML</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dom-window">DOM: Window</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-nodos">Crear Nodos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-nodos">Buscar Nodos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-nodos">Modificar Nodos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos">Estilos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-eficiente-del-dom">Manipulación eficiente del DOM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window">Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document">Document</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-nodos">Crear Nodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-nodos">Buscar Nodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-nodos">Modificar Nodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos">Estilos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-eficiente-del-dom">Manipulación eficiente del DOM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-formularios">Atributos de Formularios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-tradicional-del-formulario">Ciclo Tradicional del Formulario</a></li>
@@ -2041,8 +2048,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -17,6 +17,7 @@ parts:
     - file: modulos
     - file: promesas
     - file: ajax
+    - file: webstorage
     - file: programacionfuncionalreactiva
     - file: errores
     - file: webworkers

@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -37,10 +39,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -61,10 +64,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ajax';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Programación Funcional, Asíncrona y Reactiva en JavaScript" href="programacionfuncionalreactiva.html" />
+    <link rel="next" title="Almacenamiento en el Lado del Cliente" href="webstorage.html" />
     <link rel="prev" title="Asincronía y Promesas" href="promesas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,21 +148,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Libro DWEC - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -194,6 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
 
 
@@ -230,9 +220,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -376,24 +371,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -480,23 +467,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-objetos-a-json">Convertir Objetos a JSON</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-json-a-objetos">Convertir JSON a Objetos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-binarios-para-enviar-como-json">Conversión de binarios para enviar como JSON</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-en-el-lado-del-cliente">Almacenamiento en el Lado del Cliente</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cookies">Cookies</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipular-cookies">Manipular Cookies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#localstorage">LocalStorage</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexeddb">IndexedDB</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-indexeddb">Características de IndexedDB</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-indexeddb">Ejemplo Básico de IndexedDB</a></li>
 </ul>
 </li>
 </ul>
@@ -843,6 +813,15 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fetch Error :  TypeError: error sending request for url (http://127.0.0.1:5500/datos.json): client error (Connect): tcp connect error: Connection refused (os error 111): Connection refused (os error 111)
+    at async mainFetch (ext:deno_fetch/26_fetch.js:190:12)
+    at async fetch (ext:deno_fetch/26_fetch.js:454:11) {
+  code: <span class=" -Color -Color-Green">&quot;ECONNREFUSED&quot;</span>
+}
+</pre></div>
+</div>
+</div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">fetch</span></code> solicita un archivo JSON. Si la respuesta tiene un estado diferente de 200 (OK), se imprime un mensaje de error. Si la respuesta es correcta, se convierte a JSON y se imprime.</p>
 <section id="objeto-response">
@@ -860,13 +839,6 @@ document.write(`
 <span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
 <span class="p">});</span>
 <span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fetch Error :  TypeError: error sending request for url (http://127.0.0.1:5500/datos.json): error trying to connect: tcp connect error: Connection refused (os error 111)
-    at async mainFetch (ext:deno_fetch/26_fetch.js:170:12)
-    at async fetch (ext:deno_fetch/26_fetch.js:391:7)
 </pre></div>
 </div>
 </div>
@@ -927,10 +899,10 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Request failed:  TypeError: Invalid URL: &#39;datos.json&#39;
     at getSerialization (ext:deno_url/00_url.js:98:11)
     at new URL (ext:deno_url/00_url.js:405:27)
-    at new Request (ext:deno_fetch/23_request.js:329:25)
-    at ext:deno_fetch/26_fetch.js:319:27
+    at new Request (ext:deno_fetch/23_request.js:335:25)
+    at ext:deno_fetch/26_fetch.js:371:29
     at new Promise (&lt;anonymous&gt;)
-    at fetch (ext:deno_fetch/26_fetch.js:315:18)
+    at fetch (ext:deno_fetch/26_fetch.js:367:20)
     at &lt;anonymous&gt;:12:3
     at &lt;anonymous&gt;:17:3
 </pre></div>
@@ -1341,109 +1313,6 @@ También ofrece un manejo centralizado de errores, permite implementar reconexio
 </div>
 </section>
 </section>
-<section id="almacenamiento-en-el-lado-del-cliente">
-<h2>Almacenamiento en el Lado del Cliente<a class="headerlink" href="#almacenamiento-en-el-lado-del-cliente" title="Link to this heading">#</a></h2>
-<section id="cookies">
-<h3>Cookies<a class="headerlink" href="#cookies" title="Link to this heading">#</a></h3>
-<p>Las cookies son pequeños fragmentos de datos almacenados en el navegador del usuario. Son útiles para almacenar información persistente que debe enviarse con cada solicitud HTTP al servidor, como sesiones de usuario.</p>
-<section id="ejemplo">
-<h4>Ejemplo<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h4>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;username=John Doe; expires=Thu, 18 Dec 2021 12:00:00 UTC; path=/;&quot;</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>En este ejemplo:</p>
-<ol class="arabic simple">
-<li><p><strong>Creamos una cookie</strong> llamada <code class="docutils literal notranslate"><span class="pre">username</span></code> con el valor <code class="docutils literal notranslate"><span class="pre">John</span> <span class="pre">Doe</span></code>.</p></li>
-<li><p><strong>Establecemos una fecha de expiración</strong> para la cookie.</p></li>
-<li><p><strong>Definimos el <code class="docutils literal notranslate"><span class="pre">path</span></code></strong> para especificar la ruta en la que la cookie está disponible.</p></li>
-</ol>
-</section>
-</section>
-<section id="manipular-cookies">
-<h3>Manipular Cookies<a class="headerlink" href="#manipular-cookies" title="Link to this heading">#</a></h3>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">;</span><span class="w">  </span><span class="c1">// Leer todas las cookies</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;username=John Smith; expires=Thu, 18 Dec 2021 12:00:00 UTC; path=/;&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// Modificar una cookie</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// Borrar una cookie</span>
-</pre></div>
-</div>
-<p>En este ejemplo:</p>
-<ol class="arabic simple">
-<li><p><strong>Leemos todas las cookies</strong> disponibles.</p></li>
-<li><p><strong>Modificamos la cookie <code class="docutils literal notranslate"><span class="pre">username</span></code></strong>.</p></li>
-<li><p><strong>Borramos la cookie <code class="docutils literal notranslate"><span class="pre">username</span></code></strong> estableciendo una fecha de expiración pasada.</p></li>
-</ol>
-<p>Para una gestión más avanzada de cookies, se recomienda utilizar las funciones proporcionadas por la W3C: <a class="reference external" href="https://www.w3schools.com/js/js_cookies.asp">W3Schools - Cookies</a>.</p>
-</section>
-<section id="localstorage">
-<h3>LocalStorage<a class="headerlink" href="#localstorage" title="Link to this heading">#</a></h3>
-<p>LocalStorage permite almacenar datos en el navegador de forma persistente. Los datos persisten incluso después de cerrar el navegador.</p>
-<section id="id1">
-<h4>Ejemplo<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Guardar</span>
-<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;lastname&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Smith&quot;</span><span class="p">);</span>
-<span class="c1">// Obtener</span>
-<span class="kd">var</span><span class="w"> </span><span class="nx">lastname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">&quot;lastname&quot;</span><span class="p">);</span>
-<span class="c1">// Borrar</span>
-<span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="s2">&quot;lastname&quot;</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>En este ejemplo:</p>
-<ol class="arabic simple">
-<li><p><strong>Guardamos un valor</strong> con la clave <code class="docutils literal notranslate"><span class="pre">lastname</span></code> en LocalStorage.</p></li>
-<li><p><strong>Recuperamos el valor</strong> almacenado usando la clave <code class="docutils literal notranslate"><span class="pre">lastname</span></code>.</p></li>
-<li><p><strong>Eliminamos el valor</strong> asociado a la clave <code class="docutils literal notranslate"><span class="pre">lastname</span></code>.</p></li>
-</ol>
-</section>
-</section>
-<section id="indexeddb">
-<h3>IndexedDB<a class="headerlink" href="#indexeddb" title="Link to this heading">#</a></h3>
-<p>IndexedDB es una API de bajo nivel para almacenar grandes cantidades de datos estructurados. Es una base de datos transaccional y asíncrona que permite almacenar archivos y realizar búsquedas avanzadas.</p>
-<section id="caracteristicas-de-indexeddb">
-<h4>Características de IndexedDB<a class="headerlink" href="#caracteristicas-de-indexeddb" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>Hasta 50MB</strong> de almacenamiento.</p></li>
-<li><p><strong>API asíncrona</strong> para operaciones de lectura y escritura.</p></li>
-<li><p><strong>Transaccional</strong> para garantizar la integridad de los datos.</p></li>
-<li><p><strong>Más compleja</strong> que LocalStorage.</p></li>
-</ul>
-</section>
-</section>
-<section id="ejemplo-basico-de-indexeddb">
-<h3>Ejemplo Básico de IndexedDB<a class="headerlink" href="#ejemplo-basico-de-indexeddb" title="Link to this heading">#</a></h3>
-<p>IndexedDB es más compleja de manejar que LocalStorage o cookies, pero ofrece muchas más capacidades. Aquí presentamos un ejemplo muy básico para ilustrar su uso:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">indexedDB</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;myDatabase&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
-
-<span class="nx">request</span><span class="p">.</span><span class="nx">onupgradeneeded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">objectStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">createObjectStore</span><span class="p">(</span><span class="s2">&quot;customers&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">keyPath</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="p">});</span>
-<span class="w">  </span><span class="nx">objectStore</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">unique</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">});</span>
-<span class="w">  </span><span class="nx">objectStore</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">unique</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span>
-<span class="p">};</span>
-
-<span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">transaction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">transaction</span><span class="p">([</span><span class="s2">&quot;customers&quot;</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;readwrite&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">objectStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">transaction</span><span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">&quot;customers&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">objectStore</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="w"> </span><span class="p">});</span>
-
-<span class="w">  </span><span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Customer added to the database&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">};</span>
-
-<span class="w">  </span><span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Error adding customer: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-<p>En este ejemplo:</p>
-<ol class="arabic simple">
-<li><p><strong>Abrimos una conexión a IndexedDB</strong> y, si es la primera vez, se crea o actualiza la base de datos.</p></li>
-<li><p><strong>Definimos un <code class="docutils literal notranslate"><span class="pre">objectStore</span></code></strong> para almacenar datos de clientes con un índice para <code class="docutils literal notranslate"><span class="pre">name</span></code> y <code class="docutils literal notranslate"><span class="pre">email</span></code>.</p></li>
-<li><p><strong>Añadimos un cliente</strong> a la base de datos dentro de una transacción y manejamos los eventos de éxito y error.</p></li>
-</ol>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1486,11 +1355,11 @@ También ofrece un manejo centralizado de errores, permite implementar reconexio
       </div>
     </a>
     <a class="right-next"
-       href="programacionfuncionalreactiva.html"
+       href="webstorage.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Programación Funcional, Asíncrona y Reactiva en JavaScript</p>
+        <p class="prev-next-title">Almacenamiento en el Lado del Cliente</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1501,7 +1370,8 @@ También ofrece un manejo centralizado de errores, permite implementar reconexio
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1575,23 +1445,6 @@ También ofrece un manejo centralizado de errores, permite implementar reconexio
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-binarios-para-enviar-como-json">Conversión de binarios para enviar como JSON</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-en-el-lado-del-cliente">Almacenamiento en el Lado del Cliente</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cookies">Cookies</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipular-cookies">Manipular Cookies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#localstorage">LocalStorage</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexeddb">IndexedDB</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-indexeddb">Características de IndexedDB</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-indexeddb">Ejemplo Básico de IndexedDB</a></li>
-</ul>
-</li>
 </ul>
   </nav></div>
 
@@ -1640,8 +1493,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
