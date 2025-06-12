@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Vite &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vite';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Integración y Despliegue Continuo (CI/CD)" href="ci-cd.html" />
+    <link rel="prev" title="Tests" href="tests.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jsenhtml.html">Javascript en el navegador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Vite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fvite.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/vite.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Vite</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frontend-building-systems">Frontend Building Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion">Transpilación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empaquetado-bundle">Empaquetado (bundle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizacion">Minimización</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-de-desarrollo">Herramientas de Desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-un-dev-server">¿Por qué un Dev Server?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-bibliotecas">Importación de Bibliotecas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-css-e-imagenes">Importar CSS e Imágenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vite-bootstrap">Vite + Bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-for-production">Build for Production</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="vite">
+<h1>Vite<a class="headerlink" href="#vite" title="Link to this heading">#</a></h1>
+<section id="frontend-building-systems">
+<h2>Frontend Building Systems<a class="headerlink" href="#frontend-building-systems" title="Link to this heading">#</a></h2>
+<p>Los/as desarrolladores/as escriben JavaScript; los navegadores ejecutan JavaScript. Fundamentalmente, no es necesario un paso de compilación en el desarrollo frontend. Entonces, ¿por qué tenemos un paso de compilación en el frontend moderno?</p>
+<p>A medida que los proyectos de frontend crecen y la ergonomía del desarrollador se vuelve más importante, enviar el código fuente de JavaScript directamente al cliente conduce a dos problemas principales:</p>
+<ol class="arabic simple">
+<li><p><strong>Características del Lenguaje No Soportadas</strong>: Debido a que JavaScript se ejecuta en el navegador, y hay muchos navegadores con distintas versiones, cada característica del lenguaje que se utiliza reduce la cantidad de clientes que pueden ejecutar ese JavaScript. Además, extensiones del lenguaje como JSX no son JavaScript válido y no se ejecutarán en ningún navegador.</p></li>
+<li><p><strong>Rendimiento</strong>: El navegador debe solicitar cada archivo JavaScript individualmente. En un código grande, esto puede resultar en miles de solicitudes HTTP para renderizar una sola página. En el pasado, antes de <code class="docutils literal notranslate"><span class="pre">HTTP/2</span></code>, esto también resultaba en miles de intercambios TLS.</p></li>
+</ol>
+<p>Además, pueden ser necesarios varias transferencias secuenciales antes de que todo el JavaScript esté cargado. Por ejemplo, si index.js importa page.js y page.js importa button.js, se necesitan tres transferencias para cargar completamente el JavaScript. Esto se llama el problema del “waterfall”.</p>
+<p>Los archivos fuente también pueden ser innecesariamente grandes debido a nombres de variables largos y caracteres de indentación, aumentando el tiempo de carga de la red.</p>
+<p>Los sistemas de construcción frontend procesan el código fuente y emiten uno o más archivos JavaScript optimizados para enviarlos al navegador. El resultado distribuible suele ser ilegible para los humanos.</p>
+<p>Los sistemas de construcción frontend generalmente incluyen tres pasos: <code class="docutils literal notranslate"><span class="pre">transpilación</span></code>, <code class="docutils literal notranslate"><span class="pre">empaquetado</span></code> y <code class="docutils literal notranslate"><span class="pre">minificación</span></code>.</p>
+<p>Algunas aplicaciones no necesitan los tres pasos. Por ejemplo, las bases de código más pequeñas pueden omitir el empaquetado o la minificación, y los servidores de desarrollo pueden saltarse estos pasos por motivos de rendimiento. Se pueden agregar pasos personalizados adicionales.</p>
+<p>Algunas herramientas implementan múltiples pasos de construcción, como los empaquetadores, que a menudo realizan los tres pasos, siendo suficientes para aplicaciones simples. Las aplicaciones complejas pueden requerir herramientas especializadas para cada paso.</p>
+<section id="transpilacion">
+<h3>Transpilación<a class="headerlink" href="#transpilacion" title="Link to this heading">#</a></h3>
+<p>La transpilación convierte el JavaScript moderno a una versión más antigua para resolver problemas de compatibilidad con navegadores. Un objetivo común es ES6/ES2015.</p>
+<p>Herramientas y frameworks pueden agregar pasos de transpilación. Por ejemplo, JSX debe transpilarsе a JavaScript. Si una biblioteca ofrece un plugin de Babel, generalmente requiere un paso de transpilación. Además, lenguajes como TypeScript, CoffeeScript y Elm deben transpilarsе a JavaScript.</p>
+<p>Los transpiladores comunes son Babel, SWC y TypeScript Compiler.</p>
+<ul class="simple">
+<li><p><strong>Babel (2014)</strong>: Transpilador estándar, escrito en JavaScript, pero lento y difícil de depurar.</p></li>
+<li><p><strong>SWC (2020)</strong>: Transpilador rápido, multi-hilo, escrito en Rust, 20 veces más rápido que Babel, soporta TypeScript y JSX.</p></li>
+<li><p><strong>TypeScript Compiler (tsc)</strong>: Implementación de referencia de TypeScript, soporta TypeScript y JSX, pero es muy lento.</p></li>
+</ul>
+<p>Se puede omitir la transpilación si el código es JavaScript puro y usa ES6 Modules.</p>
+<p>Una alternativa para características no soportadas es el uso de polyfills, que se ejecutan en tiempo de ejecución para implementar características faltantes, aunque esto tiene un coste en rendimiento y no todas las características pueden ser polyfilled.</p>
+<p>Todos los empaquetadores también son transpiladores, ya que analizan múltiples archivos fuente JavaScript y emiten un nuevo archivo empaquetado. Algunos pueden analizar TypeScript y JSX, eliminando la necesidad de un transpilador separado para necesidades de transpilación sencillas.</p>
+</section>
+<section id="empaquetado-bundle">
+<h3>Empaquetado (bundle)<a class="headerlink" href="#empaquetado-bundle" title="Link to this heading">#</a></h3>
+<p>El empaquetado resuelve la necesidad de múltiples solicitudes de red y el problema de cascada. Los empaquetadores combinan múltiples archivos fuente JavaScript en un único archivo, llamado bundle, que se carga eficientemente en una sola solicitud de red.</p>
+<p>Los empaquetadores más usados hoy en día son Webpack, Parcel, Rollup, esbuild y Turbopack.</p>
+<ul class="simple">
+<li><p><strong>Webpack (2014)</strong>: Popular desde 2016, permite transformar archivos fuente mediante “loaders”. Es lento y monohilo, pero altamente configurable.</p></li>
+<li><p><strong>Rollup (2016)</strong>: Optimiza el soporte de ES6 Modules y permite “tree shaking”. Genera tamaños de bundle menores y es ligeramente más rápido que Webpack.</p></li>
+<li><p><strong>Parcel (2018)</strong>: De configuración baja y listo para usar. Es multihilo y más rápido que Webpack y Rollup. Parcel 2 usa SWC.</p></li>
+<li><p><strong>esbuild (2020)</strong>: Escrita en Go, es decenas de veces más rápida que Webpack, Rollup y Parcel. Incluye un transpilador y minificador básicos.</p></li>
+<li><p><strong>Turbopack (2022)</strong>: Escrita en Rust, soporta reconstrucciones incrementales y es actualmente desarrollada por Vercel.</p></li>
+</ul>
+<p>Se puede omitir el empaquetado si se tienen pocos módulos o baja latencia de red (e.g. localhost).</p>
+<p>Un bundle se compone de múltiples módulos, cada uno con una o más exportaciones. A menudo, un bundle solo utiliza un subconjunto de estas exportaciones. El proceso de “tree shaking” elimina las exportaciones no utilizadas, optimizando el tamaño del bundle y mejorando los tiempos de carga y análisis.</p>
+<p>El “tree shaking” se basa en el análisis estático de los archivos fuente, y su eficiencia se ve afectada por dos factores principales:</p>
+<ol class="arabic simple">
+<li><p><strong>Sistema de Módulos</strong>: Los módulos ES6 tienen exportaciones e importaciones estáticas, mientras que los módulos CommonJS tienen exportaciones e importaciones dinámicas. Los bundlers pueden ser más eficientes al hacer “tree shaking” con módulos ES6.</p></li>
+<li><p><strong>Efectos Secundarios</strong>: La propiedad <code class="docutils literal notranslate"><span class="pre">sideEffects</span></code> de <code class="docutils literal notranslate"><span class="pre">package.json</span></code> declara si un módulo tiene efectos secundarios al importarse. Si existen efectos secundarios, los módulos y exportaciones no utilizados pueden no ser eliminados debido a las limitaciones del análisis estático.</p></li>
+</ol>
+<p><strong>Recursos estáticos</strong></p>
+<p>Los recursos estáticos como CSS, imágenes y fuentes se añaden al distribuidor durante la etapa de agrupamiento y pueden ser optimizados en la etapa de minificación.</p>
+<p>Antes de Webpack, los recursos estáticos se construían por separado del código fuente como una tarea independiente. La aplicación tenía que referenciar estos recursos mediante su ruta final en el distribuidor, organizándolos cuidadosamente alrededor de una convención de URL (por ejemplo, <code class="docutils literal notranslate"><span class="pre">/assets/css/banner.jpg</span></code> y <code class="docutils literal notranslate"><span class="pre">/assets/fonts/Inter.woff2</span></code>).</p>
+<p>Los “loaders” de Webpack permitieron importar recursos estáticos desde JavaScript, unificando código y recursos estáticos en un solo grafo de dependencias. Durante el agrupamiento, Webpack reemplaza la importación del recurso estático con su ruta final en el distribuidor, permitiendo que los recursos se organicen junto con sus componentes asociados en el código fuente y habilitando nuevos análisis estáticos, como la detección de recursos inexistentes.</p>
+<p>Es importante notar que la importación de recursos estáticos no es parte del lenguaje JavaScript y requiere un agrupador configurado para soportar ese tipo de recurso. Afortunadamente, los agrupadores posteriores a Webpack también adoptaron el patrón de “loaders”, haciendo común esta característica.</p>
+</section>
+<section id="minimizacion">
+<h3>Minimización<a class="headerlink" href="#minimizacion" title="Link to this heading">#</a></h3>
+<p>La minificación resuelve el problema de archivos innecesariamente grandes. Los minificadores reducen el tamaño de los archivos sin afectar su funcionamiento. Para el código JavaScript y los recursos CSS, los minificadores pueden acortar variables, eliminar espacios en blanco y comentarios, eliminar código muerto y optimizar el uso de las características del lenguaje. Para otros recursos estáticos, los minificadores pueden realizar optimización del tamaño del archivo. Los minificadores generalmente se ejecutan en un paquete al final del proceso de construcción.</p>
+<p>Los minificadores de JavaScript más utilizados hoy en día son Terser, esbuild y SWC.</p>
+<p>Los minificadores de CSS más comunes hoy en día son cssnano, csso y Lightning CSS.</p>
+</section>
+</section>
+<section id="herramientas-de-desarrollo">
+<h2>Herramientas de Desarrollo<a class="headerlink" href="#herramientas-de-desarrollo" title="Link to this heading">#</a></h2>
+<p>El pipeline básico de construcción de frontend descrito anteriormente es suficiente para crear una distribución de producción optimizada. Sin embargo, existen varias clases de herramientas que mejoran la experiencia del desarrollador.</p>
+<p><strong>Meta-Frameworks</strong></p>
+<p>El espacio de frontend es conocido por la dificultad de elegir los paquetes “correctos” para usar. Los meta-frameworks ofrecen conjuntos de paquetes ya seleccionados que se complementan y permiten paradigmas de aplicación especializados.
+En el caso de Vite, este proporciona sistemas de construcción tanto de desarrollo como para producción y no fuerza a un paradigma concreto, como en el caso de Angular.</p>
+<p><strong>Sourcemaps</strong></p>
+<p>Los sourcemaps resuelven el problema de depurar código ilegible en la distribución de producción, al mapear el código distribuido a su ubicación original en el código fuente.</p>
+<p><strong>Recarga en Caliente</strong></p>
+<p>Los servidores de desarrollo a menudo ofrecen la función de recarga en caliente, que reconstruye automáticamente un nuevo paquete al cambiar el código fuente y recarga el navegador.</p>
+</section>
+<section id="por-que-un-dev-server">
+<h2>¿Por qué un Dev Server?<a class="headerlink" href="#por-que-un-dev-server" title="Link to this heading">#</a></h2>
+<p>Un servidor de desarrollo (Dev Server) es fundamental para mejorar la experiencia de desarrollo. Algunas de las ventajas clave incluyen:</p>
+<p>🚀 <strong>Mejora en la Experiencia de Desarrollo</strong>: Proporciona una experiencia de desarrollo fluida y rápida.</p>
+<p>🔄 <strong>Carga de Módulos en Tiempo Real</strong>: Permite la recarga de módulos sin necesidad de recargar toda la página.</p>
+<p>🌐 <strong>Soporte ESM (ECMAScript Modules)</strong>: Facilita el uso de módulos ECMAScript nativos.</p>
+<p>🛠️ <strong>Entorno de Desarrollo Rápido</strong>: Acelera el ciclo de desarrollo con herramientas modernas y eficientes.</p>
+<p>Los bundlers, como Vite, agrupan y gestionan múltiples archivos JavaScript, CSS y otros recursos, permitiendo una mejor organización y mantenimiento. Vite utiliza <a class="reference external" href="https://rollupjs.org/">Rollup</a>, en comparación con otra alternativa famosa como <a class="reference external" href="https://esbuild.github.io/">esbuild</a>.</p>
+<p>Vite reduce el tamaño total de los archivos mediante técnicas como la minificación y la compresión.</p>
+<p>Ofrece soporte para funcionalidades modernas con compatibilidad en navegadores antiguos.</p>
+<p>Automatiza tareas como la transpilación de TypeScript a JavaScript, la transpilación de SCSS o SASS a CSS, minificación, ofuscación y la generación de rutas de archivos.</p>
+</section>
+<section id="configuracion">
+<h2>Configuración<a class="headerlink" href="#configuracion" title="Link to this heading">#</a></h2>
+<p>Para iniciar un proyecto con Vite:</p>
+<ol class="arabic">
+<li><p>Crear un nuevo proyecto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>create<span class="w"> </span>vite@latest<span class="w"> </span>my-app<span class="w"> </span>--<span class="w"> </span>--template<span class="w"> </span>vanilla
+</pre></div>
+</div>
+</li>
+<li><p>Instalar las dependencias:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-app
+$<span class="w"> </span>npm<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+<li><p>Ejecutar el servidor de desarrollo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>dev
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Mover los archivos y las importaciones innecesarias al directorio <code class="docutils literal notranslate"><span class="pre">./src/</span></code> permite mantener una estructura de proyecto limpia y organizada.</p>
+</section>
+<section id="importacion-de-bibliotecas">
+<h2>Importación de Bibliotecas<a class="headerlink" href="#importacion-de-bibliotecas" title="Link to this heading">#</a></h2>
+<p>Para importar bibliotecas en Vite, se usa <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>lodash
+</pre></div>
+</div>
+<p>Luego, en tu archivo JavaScript:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;lodash&quot;</span><span class="p">;</span>
+<span class="nx">_</span><span class="p">.</span><span class="nx">join</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Vite utiliza una técnica llamada “bare module imports”, que funciona también en TypeScript y Angular, lo cual elimina la necesidad de importar desde <code class="docutils literal notranslate"><span class="pre">../node_modules…</span></code> y de añadir <code class="docutils literal notranslate"><span class="pre">.js</span></code> al final del archivo.</p>
+</section>
+<section id="importar-css-e-imagenes">
+<h2>Importar CSS e Imágenes<a class="headerlink" href="#importar-css-e-imagenes" title="Link to this heading">#</a></h2>
+<p>Para importar CSS y trabajar con imágenes en Vite:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;./style.css&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">javascriptLogo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./javascript.svg&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">viteLogo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;/vite.svg&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">logoHtml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;img src=&quot;</span><span class="si">${</span><span class="nx">viteLogo</span><span class="si">}</span><span class="sb">&quot; class=&quot;logo&quot; alt=&quot;Vite logo&quot; /&gt;`</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">logoHtml</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El CSS se incluye directamente en el bundle, mientras que las imágenes no se importan directamente, pero sus nombres son modificados en el build. Trabajar con variables permite modificar dinámicamente el nombre de las imágenes.</p>
+<p>Vite también permite importar JSON y otros tipos de archivos.</p>
+</section>
+<section id="vite-bootstrap">
+<h2>Vite + Bootstrap<a class="headerlink" href="#vite-bootstrap" title="Link to this heading">#</a></h2>
+<p>Para usar Bootstrap con Vite, sigue los pasos proporcionados en la <a class="reference external" href="https://getbootstrap.com/docs/5.2/getting-started/vite/">documentación oficial de Bootstrap</a>. Puede que no necesites seguir todos los pasos si ya tienes un proyecto en marcha.</p>
+</section>
+<section id="build-for-production">
+<h2>Build for Production<a class="headerlink" href="#build-for-production" title="Link to this heading">#</a></h2>
+<p>Para crear una versión de producción del proyecto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vite<span class="w"> </span>build
+</pre></div>
+</div>
+<p>Si necesitas desplegar tu aplicación en una subcarpeta:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vite<span class="w"> </span>build<span class="w"> </span>--base<span class="o">=</span>/my/public/path/
+</pre></div>
+</div>
+<p>Lecturas: <a class="reference external" href="https://sunsetglow.net/posts/frontend-build-systems.html">https://sunsetglow.net/posts/frontend-build-systems.html</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tests.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tests</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ci-cd.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Integración y Despliegue Continuo (CI/CD)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frontend-building-systems">Frontend Building Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpilacion">Transpilación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empaquetado-bundle">Empaquetado (bundle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizacion">Minimización</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-de-desarrollo">Herramientas de Desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-un-dev-server">¿Por qué un Dev Server?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-bibliotecas">Importación de Bibliotecas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-css-e-imagenes">Importar CSS e Imágenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vite-bootstrap">Vite + Bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-for-production">Build for Production</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
