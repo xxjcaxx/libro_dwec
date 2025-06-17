@@ -514,6 +514,10 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#micro-frontend">Micro Frontend</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-un-componente-angular-en-un-micro-frontend">Integrar un componente Angular en un Micro Frontend</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -983,7 +987,7 @@ Hello, {{name}}
 <figure class="align-right" id="id2">
 <a class="reference internal image-reference" href="_images/components.png"><img alt="_images/components.png" src="_images/components.png" style="width: 291.5px; height: 224.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Los componentes son elementos reutilizables por naturaleza. Se pueden importar y utilizar en otros componentes, promoviendo la modularidad y evitando la duplicación de código.</p>
@@ -1047,7 +1051,7 @@ Hello, {{name}}
 <figure class="align-right" id="id3">
 <a class="reference internal image-reference" href="_images/inputoutputparentchild.png"><img alt="_images/inputoutputparentchild.png" src="_images/inputoutputparentchild.png" style="width: 318.5px; height: 120.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Diagrama de comunicación entre componentes padres e hijos.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Diagrama de comunicación entre componentes padres e hijos.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Los componentes padres pueden enviar datos a sus componentes hijos mediante propiedades de entrada, y los componentes hijos pueden emitir eventos que sus componentes padres pueden escuchar.</p>
@@ -1849,6 +1853,76 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 </section>
 </section>
 </section>
+<section id="micro-frontend">
+<h2>Micro Frontend<a class="headerlink" href="#micro-frontend" title="Link to this heading">#</a></h2>
+<p>Los <strong>micro frontends</strong> son una arquitectura que traslada los principios de los <code class="docutils literal notranslate"><span class="pre">microservicios</span></code> al mundo del frontend. En lugar de construir una sola aplicación monolítica con un único código, repositorio y pipeline, se divide la interfaz en módulos independientes. Cada módulo puede estar desarrollado con una tecnología distinta (React, Angular, Vue, Vanilla JS), tiene su propio ciclo de despliegue, y está gestionado por un equipo autónomo. Esto permite escalar mejor en proyectos grandes, mantener independencia entre equipos, integrar distintas tecnologías y desplegar partes de la aplicación sin afectar al resto.</p>
+<p>Esta arquitectura se vuelve cada vez más popular por sus ventajas: despliegues independientes, autonomía total de los equipos, facilidad para hacer migraciones incrementales, agnosticismo tecnológico y una mayor escalabilidad.</p>
+<p>No tiene porqué ser la mejor opción, ya que presenta muchos problemas sólo al prepararlo, pero es necesario al menor conocerlos.</p>
+<p>Las formas de enforcar el <code class="docutils literal notranslate"><span class="pre">micro</span> <span class="pre">frontend</span></code> son muy variadas, desde el <code class="docutils literal notranslate"><span class="pre">iframe</span></code> a soluciones específicas como los <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">federation</span></code> de <code class="docutils literal notranslate"><span class="pre">webpack</span></code>. Pero si no queremos depender de esas soluciones específicas ni del problemático <code class="docutils literal notranslate"><span class="pre">iframe</span></code>, podemos hacerlo con <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code>.</p>
+<blockquote>
+<div><p>Se recomienda leer todas las opciones descritas en el artículo <a class="reference external" href="https://www.freecodecamp.org/news/complete-micro-frontends-guide/">https://www.freecodecamp.org/news/complete-micro-frontends-guide/</a> y otros sitios. Como en todo, en estos apuntes se opta por una opción por sus ventajas y por ser coherente con lo que ya se ha visto.</p>
+</div></blockquote>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> tienen un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code> y sus propios estilos y pueden ser totalmente independientes entre ellos. Además se pueden comunicar entre ellos por eventos, atributos, propiedades o servicios comunes.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/microfrontendwebcomponents.png"><img alt="_images/microfrontendwebcomponents.png" src="_images/microfrontendwebcomponents.png" style="width: 1152.0px; height: 768.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Una única aplicación web con varias aplicaciones relacionadas.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="integrar-un-componente-angular-en-un-micro-frontend">
+<h3>Integrar un componente Angular en un Micro Frontend<a class="headerlink" href="#integrar-un-componente-angular-en-un-micro-frontend" title="Link to this heading">#</a></h3>
+<p>En el caso de Angular, se puede convertir un <code class="docutils literal notranslate"><span class="pre">component</span></code> en un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code>. Inicialmente no es lo mismo, ya que Angular tiene su propio método de hacer componentes que no es el estándar. Para ello se necesita la librería <code class="docutils literal notranslate"><span class="pre">elements</span></code>: <a class="reference external" href="https://angular.dev/guide/elements">https://angular.dev/guide/elements</a></p>
+<p>El paquete &#64;angular/elements de Angular ofrece la función createCustomElement(), que actúa como puente entre los componentes de Angular y la API del DOM nativo. Al transformar un componente en un elemento personalizado, Angular expone toda su infraestructura (detección de cambios, enlace de datos, etc.) al navegador, conectando automáticamente la vista del componente con el sistema de renderizado y comportamiento de HTML.</p>
+<p>Hay una serie de cambios que hay que realizar, los podremos ver en el ejemplo a continuación:</p>
+<ul class="simple">
+<li><p>Evitar <code class="docutils literal notranslate"><span class="pre">polyfills</span></code> externos al main: Esto se hace añadiendo <code class="docutils literal notranslate"><span class="pre">zone.js</span></code> en el <code class="docutils literal notranslate"><span class="pre">main.ts</span></code>.</p></li>
+<li><p>No es necesario construir una aplicación entera, sólo “exportar” un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code>, por lo que no pondremos <code class="docutils literal notranslate"><span class="pre">bootstrapApplication</span></code> sino <code class="docutils literal notranslate"><span class="pre">createApplication</span></code> en el <code class="docutils literal notranslate"><span class="pre">main.ts</span></code>.</p></li>
+<li><p>En el <code class="docutils literal notranslate"><span class="pre">then</span></code> del <code class="docutils literal notranslate"><span class="pre">createApplication</span></code> es donde usaremos <code class="docutils literal notranslate"><span class="pre">createCustomElement</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">&#64;angular/elements</span></code>. Luego usaremos la función estándar <code class="docutils literal notranslate"><span class="pre">customElements.define()</span></code> para dar de alta el <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code>.</p></li>
+<li><p>Eliminaremos <code class="docutils literal notranslate"><span class="pre">&quot;outputHashing&quot;:</span> <span class="pre">&quot;all&quot;</span></code> del <code class="docutils literal notranslate"><span class="pre">angular.json</span></code> para evitar los hashes en el nombre del fichero de salida y que siempre sea <code class="docutils literal notranslate"><span class="pre">main.js</span></code>.</p></li>
+</ul>
+<p>Así, imaginado que ya tenemos un componente <code class="docutils literal notranslate"><span class="pre">LikeButtonComponent</span></code>, instalaremos el paquete <code class="docutils literal notranslate"><span class="pre">elements</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>@angular/elements<span class="w"> </span>--save
+</pre></div>
+</div>
+<p>El <code class="docutils literal notranslate"><span class="pre">main.ts</span></code> quedar así:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createApplication</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/platform-browser&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// En vez de bootstrapApplication</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createCustomElement</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/elements&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// El paquete instalado</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">LikeButtonComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./app/like-button/like-button.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;zone.js&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Obligatorio para Angular, añade compatibilidad con navegadores y evitar la necesidad de polyfills.js</span>
+<span class="c1">// También se podría añadir el script de polyfills después. </span>
+
+<span class="nx">createApplication</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">app</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">LikeButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createCustomElement</span><span class="p">(</span><span class="nx">LikeButtonComponent</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">injector</span><span class="o">:</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">injector</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;like-button&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">LikeButton</span><span class="p">);</span>
+<span class="p">})</span>
+<span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Después ejecutaríamos el <code class="docutils literal notranslate"><span class="pre">build</span></code> y lo importamos en el html de una aplicación <code class="docutils literal notranslate"><span class="pre">vite</span></code>, por ejemplo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Vite App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;angularwebcomponent/dist/angularwebcomponent/browser/main.js&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">like-button</span> <span class="na">message</span><span class="o">=</span><span class="s">&quot;Hola desde Vite&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">like-button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/src/main.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>En este caso, el proyecto Angular está en una subcarpeta. No pasa nada, porque el Vite tan solo importará el <code class="docutils literal notranslate"><span class="pre">main.js</span></code> de Angular y en el <code class="docutils literal notranslate"><span class="pre">build</span></code>de Vite no quedará rastro del resto del proyecto Angular.</p>
+<p>Veamos que he puesto un atributo <code class="docutils literal notranslate"><span class="pre">message</span></code>. Este puede ser usado como cualquiera con <code class="docutils literal notranslate"><span class="pre">input()</span></code> o <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code>.</p>
+<blockquote>
+<div><p>Para entenderlo todo y poder hacer cosas más sofisticadas hay dos lecturas recomendadas: Un tutorial: <a class="reference external" href="https://javascript.plainenglish.io/web-components-with-angular-18-incredibly-easy-4d968ab1d052">https://javascript.plainenglish.io/web-components-with-angular-18-incredibly-easy-4d968ab1d052</a>  Y la documentación oficial: <a class="reference external" href="https://angular.dev/guide/elements">https://angular.dev/guide/elements</a></p>
+</div></blockquote>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2009,6 +2083,10 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Uso</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#micro-frontend">Micro Frontend</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-un-componente-angular-en-un-micro-frontend">Integrar un componente Angular en un Micro Frontend</a></li>
 </ul>
 </li>
 </ul>
