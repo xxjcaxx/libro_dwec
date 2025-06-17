@@ -420,11 +420,14 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterables-en-javascript">Iterables en JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-symbol-iterator">Propiedad <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-iterable">Crear un iterable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-de-los-iterator">Utilidad de los “Iterator”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-generadora">Función generadora</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-iterables">Recorrer iterables</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-iterativos-de-los-arrays">Métodos Iterativos de los Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterator-helpers">Iterator Helpers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-from">Array.from()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterar-en-strings">Iterar en Strings</a></li>
 </ul>
@@ -456,7 +459,7 @@ document.write(`
 <h2>Iterables en JavaScript<a class="headerlink" href="#iterables-en-javascript" title="Link to this heading">#</a></h2>
 <p>En JavaScript, los iterables son estructuras de datos que permiten iterar sobre sus elementos de manera secuencial. Los iterables más comunes son: <code class="docutils literal notranslate"><span class="pre">Array</span></code>, <code class="docutils literal notranslate"><span class="pre">Set</span></code>, <code class="docutils literal notranslate"><span class="pre">Map</span></code> y <code class="docutils literal notranslate"><span class="pre">String</span></code>. Los objetos normales no son iterables por defecto. Para que un objeto sea iterable, debe tener una propiedad <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code> que devuelva un iterador.</p>
 <blockquote>
-<div><p>El iterador más común es de los Arrays, pero no todos los iteradores se pueden expresar o convertir en Arrays. Hay iteradores que son consumidos si es necesario y pueden tener longitud infinita.</p>
+<div><p>El iterable más común es de los Arrays, pero no todos los iterables se pueden expresar o convertir en Arrays. Hay iterables que son consumidos si es necesario y pueden tener longitud infinita.</p>
 </div></blockquote>
 <section id="propiedad-symbol-iterator">
 <h3>Propiedad <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code><a class="headerlink" href="#propiedad-symbol-iterator" title="Link to this heading">#</a></h3>
@@ -485,11 +488,55 @@ document.write(`
 </div>
 </div>
 <p>Si simplemente hacemos un objeto que tenga una propiedad <code class="docutils literal notranslate"><span class="pre">next()</span></code> que retorne <code class="docutils literal notranslate"><span class="pre">{value,</span> <span class="pre">done}</span></code>, estamos haciendo un <code class="docutils literal notranslate"><span class="pre">iterador</span></code>, pero tenemos que usar explícitamente su método <code class="docutils literal notranslate"><span class="pre">next()</span></code>. En cambio, si el método está en <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code>, se pueden usar <code class="docutils literal notranslate"><span class="pre">for..of</span></code> o el <code class="docutils literal notranslate"><span class="pre">spread</span> <span class="pre">operator</span></code>.</p>
+<p>Los iterables tienen un <code class="docutils literal notranslate"><span class="pre">iterator</span></code> para simplificar su lectura con <code class="docutils literal notranslate"><span class="pre">...</span></code> o <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">..</span> <span class="pre">of</span></code>. Esta es la manera cómo de trabajar, aunque se podria hacer un <code class="docutils literal notranslate"><span class="pre">iterator</span></code> si estar dentro del <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code> de un iterable.</p>
+</section>
+<section id="crear-un-iterable">
+<h3>Crear un iterable<a class="headerlink" href="#crear-un-iterable" title="Link to this heading">#</a></h3>
+<p>Aquí veremos un ejemplo de iterable simple y cómo se accede a sus elementos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">nameIterable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">[</span><span class="nb">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="w">      </span>
+<span class="w">            </span><span class="nx">next</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="kd">const</span><span class="w"> </span><span class="nx">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;josep&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;joan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;núria&quot;</span><span class="p">];</span>
+<span class="w">              </span><span class="k">this</span><span class="p">.</span><span class="nx">index</span><span class="o">++</span><span class="p">;</span>
+<span class="w">      </span>
+<span class="w">              </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">names.at</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span><span class="p">),</span>
+<span class="w">                </span><span class="nx">done</span><span class="o">:</span><span class="w"> </span><span class="kt">this.index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+<span class="w">              </span><span class="p">};</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">          </span><span class="p">};</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(...</span><span class="nx">nameIterable</span><span class="p">);</span>
+<span class="p">})()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>josep joan ana núria
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="utilidad-de-los-iterator">
+<h3>Utilidad de los “Iterator”<a class="headerlink" href="#utilidad-de-los-iterator" title="Link to this heading">#</a></h3>
+<p>Si ya existen los <code class="docutils literal notranslate"><span class="pre">Array</span></code>, <code class="docutils literal notranslate"><span class="pre">Map</span></code>, <code class="docutils literal notranslate"><span class="pre">Set</span></code>… no podemos preguntar para qué crear nuestros propios <code class="docutils literal notranslate"><span class="pre">iterables</span></code>. En el ejemplo anterior no tiene sentido, pero imaginemos que calcular cada nombre nos cuesta unos segundos, o que cada nombre necesita una conexión al servidor para ser retornado. En ese caso, si usamos arrays, necesitamos llenarlo antes de ser consumido. En ocasiones el iterable podría ser infinito, como un streaming. En ese caso está justificado crear objetos <code class="docutils literal notranslate"><span class="pre">iterables</span></code> con <code class="docutils literal notranslate"><span class="pre">iterator</span></code>.</p>
+<p><a class="reference external" href="https://macarthur.me/posts/generators/">https://macarthur.me/posts/generators/</a></p>
 </section>
 <section id="funcion-generadora">
 <h3>Función generadora<a class="headerlink" href="#funcion-generadora" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>Anteriormente hemos visto a bajo nivel cómo hacer iterables con <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code>. A continuación veremos una forma de hacer esto más ergonómico.</p>
+</div></blockquote>
 <p>Una función generadora puede ser usada para crear iterables. Una función generadora se define con la sintaxis <code class="docutils literal notranslate"><span class="pre">function*</span></code>. Esta retorna un objeto de tipo <code class="docutils literal notranslate"><span class="pre">Generator</span></code>, que ya es un iterable.
-Los Generadores usan la expresión <code class="docutils literal notranslate"><span class="pre">yield</span></code>. Esta para la ejecución y retorna el valor. La siguiente vez que se invoca <code class="docutils literal notranslate"><span class="pre">next()</span></code>, ejecutará hasta el siguiente <code class="docutils literal notranslate"><span class="pre">yield</span></code> o <code class="docutils literal notranslate"><span class="pre">return</span></code>, que finaliza enviando <code class="docutils literal notranslate"><span class="pre">done:</span> <span class="pre">true</span></code>.</p>
+Los Generadores usan la expresión <code class="docutils literal notranslate"><span class="pre">yield</span></code>. Esta, para la ejecución y retorna el valor. La siguiente vez que se invoca <code class="docutils literal notranslate"><span class="pre">next()</span></code>, ejecutará hasta el siguiente <code class="docutils literal notranslate"><span class="pre">yield</span></code> o <code class="docutils literal notranslate"><span class="pre">return</span></code>, que finaliza enviando <code class="docutils literal notranslate"><span class="pre">done:</span> <span class="pre">true</span></code>.</p>
 <p>Documentación: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -670,6 +717,17 @@ Los Generadores usan la expresión <code class="docutils literal notranslate"><s
 <blockquote>
 <div><p>Como se ve, este punto detalla las posibilidades e inconvenientes de usar los métodos iterativos que tienen los arrays. Se recomienda consultar en caso de algún comportamiento inesperado durante el uso avanzado. En todo caso siempre se puede usar la estructura <code class="docutils literal notranslate"><span class="pre">for</span></code> tradicional tipo <code class="docutils literal notranslate"><span class="pre">C</span></code> y hacerlo todo manualmente.</p>
 </div></blockquote>
+</section>
+<section id="iterator-helpers">
+<h3>Iterator Helpers<a class="headerlink" href="#iterator-helpers" title="Link to this heading">#</a></h3>
+<p>Los métodos iterativos pueden ser muy costosos porque siempre generan un nuevo array para no mutar el original. En 2024 añadieron los <code class="docutils literal notranslate"><span class="pre">Iterator</span> <span class="pre">Helpers</span></code> para hacer estos algoritmos más eficientes.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">10</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">values</span><span class="p">().</span><span class="nx">drop</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">take</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">10</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">5</span><span class="p">).</span><span class="nx">toArray</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>El segundo ejemplo es mucho maś eficiente en cuanto a memoria porque no hacer una copia de cada array cada vez.</p>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator#iterator_helper_methods">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator#iterator_helper_methods</a></p>
+<p><a class="reference external" href="https://waspdev.com/articles/2025-04-06/features-that-every-js-developer-must-know-in-2025#iterator_helpers">https://waspdev.com/articles/2025-04-06/features-that-every-js-developer-must-know-in-2025#iterator_helpers</a></p>
 </section>
 <section id="array-from">
 <h3>Array.from()<a class="headerlink" href="#array-from" title="Link to this heading">#</a></h3>
@@ -1197,11 +1255,14 @@ Los Generadores usan la expresión <code class="docutils literal notranslate"><s
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterables-en-javascript">Iterables en JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-symbol-iterator">Propiedad <code class="docutils literal notranslate"><span class="pre">Symbol.iterator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-iterable">Crear un iterable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-de-los-iterator">Utilidad de los “Iterator”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-generadora">Función generadora</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-iterables">Recorrer iterables</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-iterativos-de-los-arrays">Métodos Iterativos de los Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterator-helpers">Iterator Helpers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-from">Array.from()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterar-en-strings">Iterar en Strings</a></li>
 </ul>

@@ -646,19 +646,20 @@ document.write(`
 </figcaption>
 </figure>
 <ol class="arabic simple">
-<li><p><strong>Páginas Web Estáticas</strong>: Las primeras aplicaciones web eran simples páginas estáticas con hipervínculos.</p></li>
-<li><p><strong>Páginas Web Generadas por el Servidor</strong>: Con el tiempo, se introdujo un poco de JavaScript para mejorar la interacción.</p></li>
+<li><p><strong>Páginas Web Estáticas</strong>: Las primeras aplicaciones web eran simples páginas HTML estáticas con hipervínculos.</p></li>
+<li><p><strong>Páginas Web Generadas por el Servidor</strong>: Uno de los primeros lenguajes exitosos fue PHP y ahora se puede programar en el servidor con cualquier lenguaje. Estos generan HTML en el servidor atendiendo a peticiones HTTP. Con el tiempo, se introdujo un poco de JavaScript para mejorar la interacción.</p></li>
 <li><p><strong>Introducción de AJAX</strong>: Permite cargar o subir datos al servidor de manera asíncrona, mejorando la interactividad sin recargar la página.</p></li>
 <li><p><strong>Single Page Application (SPA)</strong>: Las aplicaciones de una sola página se comunican con el servidor usando JSON o XML, proporcionando una experiencia más fluida.</p></li>
 </ol>
+<p>En nuestro módulo optaremos por una SPA debido a que es más adecuado para el módulo que estamos desarrollando. Una SPA requiere saber construir elementos del DOM, comunicarse con el servidor mediante peticiones asíncronas con Javascript y manejar los eventos y la reactividad. Por tanto es la escusa perfecta para impartir nuestros contenidos.</p>
+<p>No obstante, las SPA tienen ciertos inconvenientes (como todas las opciones) en entornos reales:</p>
 <ul class="simple">
 <li><p><strong>SPA como sobreingeniería</strong>: En muchos casos, utilizar SPA puede complicar innecesariamente el desarrollo web. A continuación veremos la justificación para hacer web de esta manera.</p></li>
 <li><p><strong>Frecuencia de uso</strong>: Es importante considerar si la aplicación será utilizada constantemente o esporádicamente. Una aplicación web utilizada esporádicamente no debe ser muy pesada y es mejor que sea generada por el servidor o estática para mejorar el SEO. Si embargo, una aplicación web que el cliente mantiene siempre abierta, puede ser más agradable de usar si es una SPA.</p></li>
 <li><p><strong>Servidor vs Cliente</strong>: Crear el HTML y el estilo en el servidor puede ser menos complicado, pero en aplicaciones grandes, puede sobrecargar el servidor y dificultar la separación de la vista del modelo y controlador.</p></li>
-<li><p><strong>SPA en nuestro módulo</strong>: Optaremos por una SPA debido a que es más adecuado para el módulo que estamos desarrollando. Una SPA requiere saber construir elementos del DOM, comunicarse con el servidor mediante peticiones asíncronas con Javascript y manejar los eventos y la reactividad. Por tanto es la escusa perfecta para impartir nuestros contenidos.</p></li>
 </ul>
 <blockquote>
-<div><p>En la actualidad se pueden hacer páginas web de muchas maneras. En este libro, hacia el final, nos enfocamos más en imitar a los frameworks actuales, que suelen estar pensados para SPA con una API. No obstante, se pueden hacer páginas sólo con HTML estático, o generado una vez a partir de Markdown, como este mismo libro (Jekyll, Jupyter Books…), también se puede generar el HTML con PHP, Node, Java… O se puede tener un CMS como Wordpress y programar plugins. Se puede tener un CMS Headless o generada mediante Micro-Frontends. O aplicaciones progresivas PWA o Híbridas con Ionic y Cordova. Respecto a cómo servirlas, tenemos los hostings y servidores tradicionales o “Serverless”, plataformas “Low Code”… La lista no acaba y cada una de estas ideas tiene muchas más opciones.</p>
+<div><p>El mundo de la programación web oscila constantemente por las “modas”. Las SPA puras han resultado ser ineficientes en algunos casos. Esto, unido a que la gente se ha acostumbrado a programar frontend, hace que se tienda a usar frameworks inicialmente de frontend pero para generar HTML en el backend. Puesto que el backend puede ser <code class="docutils literal notranslate"><span class="pre">Node</span></code>, puede ejecutar código <code class="docutils literal notranslate"><span class="pre">Angular</span></code> o <code class="docutils literal notranslate"><span class="pre">React</span></code> en la parte del servidor. Este se denomina Server Side Rendering o SSR. Puede ser totalmente SSR o híbrido. Utilizan técnicas como la <code class="docutils literal notranslate"><span class="pre">Hydration</span></code> para continuar siendo dinámicos en la parte del cliente.</p>
 </div></blockquote>
 </section>
 <section id="entre-la-pagina-web-y-la-app">
@@ -671,6 +672,9 @@ document.write(`
 <li><p><strong>Apps Híbridas</strong>: Utilizan frameworks como Ionic para funcionar en múltiples plataformas.</p></li>
 <li><p><strong>Apps Quasi Nativas</strong>: Utilizan tecnologías como React Native o Flutter para acercarse al rendimiento de las aplicaciones nativas.</p></li>
 </ol>
+<blockquote>
+<div><p>En la actualidad se pueden hacer páginas web de muchas maneras. En este libro, hacia el final, nos enfocamos más en imitar a los frameworks actuales, que suelen estar pensados para SPA con una API. No obstante, se pueden hacer páginas sólo con HTML estático, o generado una vez a partir de Markdown, como este mismo libro (Jekyll, Jupyter Books…), también se puede generar el HTML con PHP, Node, Java… O se puede tener un CMS como Wordpress y programar plugins. Se puede tener un CMS Headless o generada mediante Micro-Frontends. O aplicaciones progresivas PWA o Híbridas con Ionic y Cordova. Respecto a cómo servirlas, tenemos los hostings y servidores tradicionales o “Serverless”, plataformas “Low Code”… La lista no acaba y cada una de estas ideas tiene muchas más opciones.</p>
+</div></blockquote>
 </section>
 <section id="poner-la-web-en-produccion">
 <h3>Poner la Web en Producción<a class="headerlink" href="#poner-la-web-en-produccion" title="Link to this heading">#</a></h3>

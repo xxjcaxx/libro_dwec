@@ -420,24 +420,21 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-generales">Consejos generales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escribir-codigo-facil-de-leer">Escribir Código Fácil de Leer</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-de-los-comentarios">Importancia de los Comentarios</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estilo">Guía de Estilo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-el-codigo-espagueti">Evitar el Código Espagueti</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-la-deuda-tecnica">Características de la Deuda Técnica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-propuesta-de-proyecto">Estructura Propuesta de Proyecto</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-estructura">Arquitectura y estructura</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-de-arquitectura">Principios de arquitectura</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsular-el-codigo">Encapsular el código</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acoplamiento">Acoplamiento</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cohesion">Cohesión</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura">Estructura</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos">Elementos</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-modelos">Utilización de Modelos</a></li>
@@ -492,17 +489,14 @@ document.write(`
 <h2>Consejos generales<a class="headerlink" href="#consejos-generales" title="Link to this heading">#</a></h2>
 <section id="escribir-codigo-facil-de-leer">
 <h3>Escribir Código Fácil de Leer<a class="headerlink" href="#escribir-codigo-facil-de-leer" title="Link to this heading">#</a></h3>
-<p>El código se lee muchas más veces de las que se escribe. Si te conviertes en un ‘hacker’ demasiado sofisticado, tendrás que encargarte del proyecto tú solo porque los demás no entenderán tu código. Incluso tú mismo olvidarás cómo has hecho tu código con el tiempo. Por eso, es crucial seguir buenas prácticas para escribir código fácil de leer y mantener.</p>
+<p>El código se lee muchas más veces de las que se escribe. Si te conviertes en un ‘hacker’ demasiado sofisticado, tendrás que encargarte del proyecto tú solo porque los demás no entenderán tu código. Incluso tú mismo olvidarás cómo has hecho tu código con el tiempo.</p>
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="_images/comic-years.webp"><img alt="_images/comic-years.webp" src="_images/comic-years.webp" style="width: 363.75px; height: 363.75px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text"><a class="reference external" href="https://workchronicles.substack.com/p/comic-as-the-years-go-by">https://workchronicles.substack.com/p/comic-as-the-years-go-by</a></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text"><a class="reference external" href="https://workchronicles.substack.com/p/comic-as-the-years-go-by">https://workchronicles.substack.com/p/comic-as-the-years-go-by</a></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<section id="importancia-de-los-comentarios">
-<h4>Importancia de los Comentarios<a class="headerlink" href="#importancia-de-los-comentarios" title="Link to this heading">#</a></h4>
 <p>Los comentarios son esenciales para explicar por qué se hace algo, no solo cómo. Sin embargo, los comentarios no pueden reemplazar un código que ya sea legible por sí mismo. Usa comentarios para agregar contexto o explicar decisiones complejas, pero asegúrate de que el código sea lo más claro y autoexplicativo posible.</p>
-</section>
 <section id="guia-de-estilo">
 <h4>Guía de Estilo<a class="headerlink" href="#guia-de-estilo" title="Link to this heading">#</a></h4>
 <p>Seguir una guía de estilo es fundamental para mantener la coherencia y legibilidad del código en un equipo de trabajo. Algunas de las guías de estilo más recomendadas son:</p>
@@ -511,7 +505,7 @@ document.write(`
 <li><p><strong>Guía de Estilo de Google:</strong> <a class="reference external" href="https://google.github.io/styleguide/jsguide.html">Google JavaScript Style Guide</a></p></li>
 </ul>
 <p>Es importante leer varias guías y llegar a un consenso en el equipo de trabajo sobre cuál seguir. También puedes consultar la guía de código limpio para JavaScript de <a class="reference external" href="https://github.com/devictoribero/clean-code-javascript">devictoribero</a>.</p>
-<p>Si queremos que la guía de estilo nos condiciones permanentemente, podemos usar un linter como <code class="docutils literal notranslate"><span class="pre">EsLint</span></code>.</p>
+<p>Si queremos que la guía de estilo nos condicione permanentemente, podemos usar un linter como <code class="docutils literal notranslate"><span class="pre">EsLint</span></code>.</p>
 </section>
 <section id="evitar-el-codigo-espagueti">
 <h4>Evitar el Código Espagueti<a class="headerlink" href="#evitar-el-codigo-espagueti" title="Link to this heading">#</a></h4>
@@ -528,60 +522,18 @@ document.write(`
 <section id="deuda-tecnica">
 <h3>Deuda Técnica<a class="headerlink" href="#deuda-tecnica" title="Link to this heading">#</a></h3>
 <p>La <strong>deuda técnica</strong> es un concepto del desarrollo de software que se refiere a la cantidad de trabajo adicional que es necesario realizar para modificar un programa debido a la elección de soluciones fáciles o rápidas en lugar de las adecuadas o más sostenibles a largo plazo. En otras palabras, es el costo acumulado de tomar atajos o soluciones temporales que, si bien pueden permitir un desarrollo más rápido inicialmente, generan una mayor carga de trabajo en el futuro.</p>
-<section id="caracteristicas-de-la-deuda-tecnica">
-<h4>Características de la Deuda Técnica<a class="headerlink" href="#caracteristicas-de-la-deuda-tecnica" title="Link to this heading">#</a></h4>
-<ol class="arabic simple">
-<li><p><strong>Es Inevitable:</strong> Es prácticamente imposible desarrollar software sin incurrir en algún nivel de deuda técnica. Las presiones de tiempo, las limitaciones de recursos y los cambios en los requisitos del proyecto contribuyen a la acumulación de deuda técnica.</p></li>
-<li><p><strong>Tipos de Deuda Técnica:</strong></p>
-<ul class="simple">
-<li><p><strong>Intencional:</strong> Cuando se toman decisiones conscientes de priorizar la velocidad sobre la calidad, sabiendo que habrá que corregirlo más adelante.</p></li>
-<li><p><strong>Inadvertida:</strong> Surge cuando los desarrolladores no se dan cuenta de que están acumulando deuda, debido a la falta de conocimiento o experiencia.</p></li>
-<li><p><strong>Deuda de Arquitectura:</strong> Relacionada con la estructura general del software.</p></li>
-<li><p><strong>Deuda de Código:</strong> Relacionada con la calidad del código escrito.</p></li>
-<li><p><strong>Deuda de Pruebas:</strong> Falta de pruebas suficientes o adecuadas.</p></li>
-</ul>
-</li>
-<li><p><strong>Impacto Negativo:</strong> La deuda técnica puede hacer que el desarrollo sea más lento, más costoso y más propenso a errores. También puede dificultar la implementación de nuevas funcionalidades y la corrección de errores existentes.</p></li>
-</ol>
-<p>Para mantener la salud y la sostenibilidad de un proyecto de software hay que gestionar esta deuda. Aquí hay algunas estrategias:</p>
-<ol class="arabic simple">
-<li><p><strong>Identificación y Monitoreo:</strong> Es importante identificar y documentar la deuda técnica desde el inicio. Utilizar herramientas de análisis estático y revisiones de código puede ayudar a detectar áreas problemáticas. Estas herramientas son, entre otras cosas, los <code class="docutils literal notranslate"><span class="pre">Linters</span></code>.</p></li>
-<li><p><strong>Priorización:</strong> No toda la deuda técnica necesita ser pagada de inmediato.</p></li>
-<li><p><strong>Refactorización Continua:</strong> Refactorizar el código regularmente ayuda a reducir la deuda técnica.</p></li>
-<li><p><strong>Compromiso del Equipo:</strong> Todo el equipo de desarrollo debe estar comprometido con la gestión de la deuda técnica. Esto incluye los desarrolladores, los gerentes de proyecto y los stakeholders.</p></li>
-<li><p><strong>Automatización de Pruebas:</strong> Implementar una suite de pruebas automatizadas puede ayudar a detectar problemas temprano y reducir la acumulación de deuda técnica relacionada con la calidad del código.</p></li>
-<li><p><strong>Desarrollo Ágil:</strong> Las metodologías ágiles promueven la entrega continua y la adaptación al cambio.</p></li>
-</ol>
+<p>La deuda técnica es una realidad inevitable en el desarrollo de software. Factores como las presiones de tiempo, los cambios en los requisitos y las limitaciones de recursos pueden llevar a la acumulación de compromisos que impactan la calidad del código. Existen distintos tipos de deuda técnica, desde la <strong>intencional</strong>, cuando se prioriza la velocidad sobre la calidad con conocimiento de sus consecuencias, hasta la <strong>inadvertida</strong>, que surge por falta de experiencia o desconocimiento. También se puede clasificar según su impacto en la arquitectura del software, la calidad del código o la ausencia de pruebas adecuadas. Si no se gestiona correctamente, la deuda técnica ralentiza el desarrollo, encarece el mantenimiento y aumenta el riesgo de errores, dificultando la evolución del producto.</p>
+<p>Para mitigar estos efectos, es fundamental adoptar estrategias de gestión como La identificación, monitoreo y refactorización temprano, con herramientas como linters y revisiones de código. La priorización es clave, ya que no toda la deuda necesita ser resuelta de inmediato. Lo mínimo que un proyecto debe tener son <strong>tests</strong>.</p>
 </section>
 </section>
-</section>
-<section id="estructura-propuesta-de-proyecto">
-<h2>Estructura Propuesta de Proyecto<a class="headerlink" href="#estructura-propuesta-de-proyecto" title="Link to this heading">#</a></h2>
-<p>Una estructura bien organizada facilita la navegación y el mantenimiento del código. Aquí hay una estructura propuesta:</p>
-<ul class="simple">
-<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">models</span></code>:</strong> Contiene los modelos de datos.</p></li>
-<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">pages</span></code>:</strong> Contiene las vistas organizadas por URL.</p></li>
-<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">views</span></code>:</strong> Contiene los componentes de la vista.</p></li>
-<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">helpers</span></code>:</strong> Contiene utilidades reutilizables.</p></li>
-<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">forms</span></code>:</strong> Contiene los formularios.</p></li>
-<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">app.js</span></code>:</strong> Archivo principal de la aplicación.</p></li>
-<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">router.js</span></code>:</strong> Contiene la lógica de enrutamiento.</p></li>
-<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">libraries</span></code>:</strong> Contiene bibliotecas externas como jQuery.</p></li>
-<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">templates.js</span></code>:</strong> Contiene plantillas de código.</p></li>
-</ul>
-<p>Esta estructura no es rígida y puede ajustarse según las necesidades del proyecto, pero proporciona un buen punto de partida para organizar tu código de manera lógica y eficiente.</p>
+<section id="arquitectura-y-estructura">
+<h2>Arquitectura y estructura<a class="headerlink" href="#arquitectura-y-estructura" title="Link to this heading">#</a></h2>
 <section id="principios-de-arquitectura">
 <h3>Principios de arquitectura<a class="headerlink" href="#principios-de-arquitectura" title="Link to this heading">#</a></h3>
 <section id="encapsular-el-codigo">
 <h4>Encapsular el código<a class="headerlink" href="#encapsular-el-codigo" title="Link to this heading">#</a></h4>
-<p>Encapsular el código es una práctica esencial en el desarrollo de software que implica restringir el acceso a ciertos componentes del código y sólo exponer lo que es necesario. Esto ayuda a mantener el código organizado, modular y más fácil de mantener. Si utilizas módulos correctamente, ya has logrado una encapsulación básica. Sin embargo, hay más técnicas y prácticas que puedes aplicar para mejorar aún más esta encapsulación. Estos son algunos de los motivos por los que buscar la encapsulación:</p>
-<ol class="arabic simple">
-<li><p><strong>Evita la Contaminación del Ámbito Global:</strong> Encapsular el código impide que las variables y funciones se definan en el ámbito global, reduciendo el riesgo de conflictos de nombres y mejorando la seguridad del código.</p></li>
-<li><p><strong>Mantenimiento Más Fácil:</strong> Al encapsular, puedes modificar internamente las funciones y variables sin preocuparte por afectar otras partes del código, siempre y cuando la interfaz pública permanezca constante.</p></li>
-<li><p><strong>Modularidad:</strong> Encapsular fomenta la creación de módulos independientes, lo que facilita la reutilización y prueba de componentes individuales del código.</p></li>
-<li><p><strong>Claridad y Legibilidad:</strong> Una estructura clara y organizada dentro de cada módulo o función mejora la legibilidad del código, haciendo que sea más fácil de entender y seguir para otros desarrolladores.</p></li>
-<li><p><strong>Seguridad:</strong> Al limitar el acceso a los componentes internos del módulo, se minimizan los riesgos de manipulación no deseada o acceso no autorizado, aumentando la seguridad del código.</p></li>
-</ol>
+<p>Encapsular el código implica restringir el acceso a ciertos componentes del código y sólo exponer lo que es necesario. Si se utilizan módulos correctamente, ya hay una encapsulación básica. Sin embargo, hay más técnicas y prácticas que puedes aplicar para mejorar aún más esta encapsulación. Estos son algunos de los motivos por los que buscar la encapsulación:</p>
+<p>Una buena encapsulación evita la contaminación del ámbito global, reduciendo conflictos de nombres y mejorando la seguridad del código. Además, facilita el mantenimiento, permitiendo modificaciones internas sin afectar otras partes mientras la interfaz pública se mantiene estable. También promueve la modularidad, haciendo que los componentes sean reutilizables y fáciles de probar, además de mejorar la claridad y legibilidad del código. Finalmente, al limitar el acceso a elementos internos, se minimizan riesgos de manipulación no deseada, lo que refuerza la seguridad del sistema.</p>
 <p>Formas de encapsular en Javascript:</p>
 <ul class="simple">
 <li><p><strong>Encapsulación con IIFE (Immediately Invoked Function Expression)</strong>: Una técnica eficaz para encapsular el código es utilizar una IIFE (Immediately Invoked Function Expression). Una IIFE es una función que se define y se ejecuta inmediatamente. Esto se hace para crear un ámbito local y evitar la contaminación del ámbito global.</p></li>
@@ -590,12 +542,6 @@ document.write(`
 <li><p><strong>Espacios de Nombres</strong>: se trata de crear objetos literales donde añadir atributos.</p></li>
 <li><p><strong>Clases ES6</strong>: Mediante clases se pueden encapsular partes del código. Luego con closures o atributos privados se pueden ocultar cosas al exterior.</p></li>
 </ul>
-<p>Dentro de cada función o archivo, es útil seguir una estructura clara y organizada, similar a la utilizada en lenguajes de programación más antiguos. Esta estructura generalmente sigue el orden:</p>
-<ol class="arabic simple">
-<li><p>Variables</p></li>
-<li><p>Métodos o funciones</p></li>
-<li><p>Eventos</p></li>
-</ol>
 </section>
 <section id="acoplamiento">
 <h4>Acoplamiento<a class="headerlink" href="#acoplamiento" title="Link to this heading">#</a></h4>
@@ -696,12 +642,23 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo, cada módulo tiene una única responsabilidad claramente definida, indicando alta cohesión.</p>
-<ul class="simple">
-<li><p><strong>Mantenibilidad:</strong> Es más fácil hacer cambios en un sistema cuando los módulos están bien definidos y tienen poca interdependencia.</p></li>
-<li><p><strong>Reusabilidad:</strong> Los módulos cohesivos y con bajo acoplamiento pueden ser reutilizados en diferentes contextos.</p></li>
-<li><p><strong>Facilidad de prueba:</strong> Los módulos con alta cohesión y bajo acoplamiento son más fáciles de probar de forma independiente.</p></li>
-</ul>
 </section>
+</section>
+<section id="estructura">
+<h3>Estructura<a class="headerlink" href="#estructura" title="Link to this heading">#</a></h3>
+<p>Una estructura bien organizada facilita la navegación y el mantenimiento del código. Aquí hay una estructura propuesta (el nombre de las carpetas es opcional):</p>
+<ul class="simple">
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">models</span></code>:</strong> Contiene los modelos de datos.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">pages</span></code>:</strong> Contiene las vistas organizadas por URL.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">views</span></code>:</strong> Contiene los componentes de la vista.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">helpers</span></code>:</strong> Contiene utilidades reutilizables.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">forms</span></code>:</strong> Contiene los formularios.</p></li>
+<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">app.js</span></code>:</strong> Archivo principal de la aplicación.</p></li>
+<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">router.js</span></code>:</strong> Contiene la lógica de enrutamiento.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">libraries</span></code>:</strong> Contiene bibliotecas externas como jQuery.</p></li>
+<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">templates.js</span></code>:</strong> Contiene plantillas de código.</p></li>
+</ul>
+<p>Esta estructura no es rígida y puede ajustarse según las necesidades del proyecto, pero proporciona un buen punto de partida.</p>
 </section>
 <section id="arquitectura">
 <h3>Arquitectura<a class="headerlink" href="#arquitectura" title="Link to this heading">#</a></h3>
@@ -1258,24 +1215,21 @@ Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/artic
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-generales">Consejos generales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escribir-codigo-facil-de-leer">Escribir Código Fácil de Leer</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-de-los-comentarios">Importancia de los Comentarios</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estilo">Guía de Estilo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-el-codigo-espagueti">Evitar el Código Espagueti</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-de-la-deuda-tecnica">Características de la Deuda Técnica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-propuesta-de-proyecto">Estructura Propuesta de Proyecto</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-estructura">Arquitectura y estructura</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-de-arquitectura">Principios de arquitectura</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsular-el-codigo">Encapsular el código</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acoplamiento">Acoplamiento</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cohesion">Cohesión</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura">Estructura</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos">Elementos</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-modelos">Utilización de Modelos</a></li>

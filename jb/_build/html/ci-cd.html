@@ -432,6 +432,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-tests">Integration Tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-2-end-testing">End 2 End Testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-deploy">Build and Deploy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-de-desarrollo">Backend de desarrollo</a></li>
 </ul>
             </nav>
         </div>
@@ -467,7 +468,7 @@ document.write(`
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="_images/pasosproyecto.png"><img alt="_images/pasosproyecto.png" src="_images/pasosproyecto.png" style="width: 785.0px; height: 348.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Proceso de un proyecto de Frontend</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Proceso de un proyecto de Frontend</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Como se puede ver, es muy difícil que los programadores lo hagan todo bien todo el tiempo. La parte del despliegue se trata con más profundidad en el módulo de despliegue del ciclo, pero es preciso desplegar rudimentariamente o en alguna plataforma alternativa que simplifique esta tarea. De esta manera se puede ver todo el proceso sin perder demasiado tiempo. La integración continua es una metodología que se apoya en unas tecnologías muy diversas. Vamos a explorar las tecnologías y poco a poco ir configurando todas las herramientas de un proyecto para automatizar las tareas descritas.</p>
@@ -669,6 +670,17 @@ npx<span class="w"> </span>husky<span class="w"> </span>init
 <p>Se necesita guardar en <code class="docutils literal notranslate"><span class="pre">secrets</span></code> de Github el token generado en la web de Vercel.</p>
 <p><code class="docutils literal notranslate"><span class="pre">--project</span></code> puede que no sea ni necesario si ya se ha hecho un primer despliegue desde local.</p>
 </section>
+<section id="backend-de-desarrollo">
+<h2>Backend de desarrollo<a class="headerlink" href="#backend-de-desarrollo" title="Link to this heading">#</a></h2>
+<p>No queremos trabajar sobre datos reales de producción cuando estamos desarrollando o modificando una web. Si nuestro cliente web se conecta a un servidor y necesitamos probar a escribir o crear, necesitamos estar seguros de que no se va a romper nada. Además, no siempre se tiene un backend perfectamente funcional al inicio del desarrollo del frontend.</p>
+<p>Hay muchos métodos para tener backend de desarrollo diferenciado del de producción. Uno de los más sencillos es <code class="docutils literal notranslate"><span class="pre">json-server</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>json-server
+npx<span class="w"> </span>json-server<span class="w"> </span>db.json
+</pre></div>
+</div>
+<p>Tan solo hay que llenar db.json con un objeto JSON y lo servirá como una API REST, modificando incluso el fichero si se le hace POST o PATCH.</p>
+<p>Si además queremos autenticación se puede usar <code class="docutils literal notranslate"><span class="pre">json-serve-auth</span></code>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -749,6 +761,7 @@ npx<span class="w"> </span>husky<span class="w"> </span>init
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-tests">Integration Tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-2-end-testing">End 2 End Testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-deploy">Build and Deploy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-de-desarrollo">Backend de desarrollo</a></li>
 </ul>
   </nav></div>
 

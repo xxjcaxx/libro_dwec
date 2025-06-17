@@ -454,6 +454,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encadenar-promesas">Encadenar Promesas</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-errores">Manejo de Errores</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-all">Promise.all()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#withresolvers">withResolvers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-y-promesas">Arrays y promesas</a></li>
 </ul>
 </li>
@@ -462,6 +463,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-javascript">Async/Await en JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-await">Top-Level Await</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-async-await">Ventajas de <code class="docutils literal notranslate"><span class="pre">async</span></code>/<code class="docutils literal notranslate"><span class="pre">await</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-interables">Async Await en interables</a></li>
 </ul>
 </li>
 </ul>
@@ -730,7 +732,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1195ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1185ms
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script start
@@ -751,6 +753,7 @@ SetTimeout
 <li><p>Finalmente, la función de <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se ejecuta, imprimiendo ‘SetTimeout’.</p></li>
 </ol>
 <p>Este mecanismo de tareas y microtareas permite que JavaScript gestione de manera eficiente las operaciones asíncronas, asegurando que el código se ejecute de manera ordenada y que las tareas con mayor prioridad (microtareas) se completen antes de procesar tareas menos prioritarias (macrotareas).</p>
+<p><a class="reference external" href="https://www.deepintodev.com/blog/how-javascript-works-behind-the-scenes">https://www.deepintodev.com/blog/how-javascript-works-behind-the-scenes</a></p>
 </section>
 </section>
 </section>
@@ -1091,6 +1094,30 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">Promise.all</span></code> espera a que todas las promesas se resuelvan y luego imprime los valores resueltos en un array.</p>
 </section>
+<section id="withresolvers">
+<h4>withResolvers<a class="headerlink" href="#withresolvers" title="Link to this heading">#</a></h4>
+<p>Puede que poder manejar las funciones de <code class="docutils literal notranslate"><span class="pre">resolve</span></code> y <code class="docutils literal notranslate"><span class="pre">reject</span></code> fuera de la declaración de la promesa sea más cómodo. Para ello podemos usar <code class="docutils literal notranslate"><span class="pre">withResolvers()</span></code></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">promise</span><span class="p">,</span><span class="w"> </span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">withResolvers</span><span class="p">();</span>
+
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Resolved!&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;Rejected!&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+
+<span class="nx">promise</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">resolvedValue</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resolvedValue</span><span class="p">);</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">rejectedValue</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">rejectedValue</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://frontendmasters.com/blog/control-javascript-promises-from-anywhere-using-promise-withresolvers/">https://frontendmasters.com/blog/control-javascript-promises-from-anywhere-using-promise-withresolvers/</a></p>
+</section>
 <section id="arrays-y-promesas">
 <h4>Arrays y promesas<a class="headerlink" href="#arrays-y-promesas" title="Link to this heading">#</a></h4>
 <p>En ocasiones es necesario recorrer un array y generar una promesa con cada elemento del array. Las situaciones pueden ser distintas, por ejemplo:</p>
@@ -1276,11 +1303,6 @@ Se pueden usar bloques <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result for item 5: Processed 5
-</pre></div>
-</div>
-</div>
 </div>
 <p>En este ejemplo, cualquier error que ocurra dentro de la función <code class="docutils literal notranslate"><span class="pre">getUser</span></code> será capturado y manejado en el bloque <code class="docutils literal notranslate"><span class="pre">catch</span></code>.</p>
 <ol class="arabic simple" start="3">
@@ -1388,6 +1410,44 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 </div>
 <p>El código de las funciones no se ha complicado demasiado. De hecho, el código de la del fetch es mucho más sencillo. Estas funciones retornan una promesa a la que podemos esperar dentro de una función <code class="docutils literal notranslate"><span class="pre">async</span></code> con un <code class="docutils literal notranslate"><span class="pre">await</span></code> y hemos reducido los callback a 1, el del evento del click.</p>
 </section>
+<section id="async-await-en-interables">
+<h3>Async Await en interables<a class="headerlink" href="#async-await-en-interables" title="Link to this heading">#</a></h3>
+<p>Cuando estamos creando y consumiendo iterables que trabajan de forma asíncrona, el uso de <code class="docutils literal notranslate"><span class="pre">funciones</span> <span class="pre">generadoras</span></code> y <code class="docutils literal notranslate"><span class="pre">async/await</span></code> simplifica el trabajo. En el siguiente ejemplo tenemos un función asíncrona que simular una petición a un servidor. A continuación, una función generadora asíncrona que pide la temperatura y espera 1 segundo a retornarla. Después la consumimos mediante otra función asíncrona que usa un <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">await</span></code> (<a class="reference external" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for-await...of">https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for-await…of</a>), que simplifica la consumición asíncrona de un iterable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">requestTemperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()=&gt;{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">r</span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(()=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mf">35</span><span class="p">),</span><span class="mf">100</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="o">*</span><span class="w"> </span><span class="nx">generateTemperatures</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">requestTemperature</span><span class="p">();</span>
+<span class="w">      </span>
+<span class="w">          </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="mf">1000</span><span class="p">));</span>
+<span class="w">      </span>
+<span class="w">          </span><span class="k">yield</span><span class="w"> </span><span class="nx">result</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+
+
+<span class="w">      </span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">startTemperatureUpdates</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">temperature</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">generateTemperatures</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Update the UI...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">temperature</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Start it</span>
+<span class="w">    </span><span class="c1">//startTemperatureUpdates();</span>
+
+<span class="p">})()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1491,6 +1551,7 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encadenar-promesas">Encadenar Promesas</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-errores">Manejo de Errores</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-all">Promise.all()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#withresolvers">withResolvers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-y-promesas">Arrays y promesas</a></li>
 </ul>
 </li>
@@ -1499,6 +1560,7 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-javascript">Async/Await en JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-await">Top-Level Await</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-async-await">Ventajas de <code class="docutils literal notranslate"><span class="pre">async</span></code>/<code class="docutils literal notranslate"><span class="pre">await</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-interables">Async Await en interables</a></li>
 </ul>
 </li>
 </ul>

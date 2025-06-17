@@ -490,22 +490,7 @@ document.write(`
 </section>
 <section id="configuracion-en-package-json">
 <h3>Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code><a class="headerlink" href="#configuracion-en-package-json" title="Link to this heading">#</a></h3>
-<p>Vitest acepta muchas opciones en sus comandos, estas se pueden escribir directamente en la terminal o guardar en <code class="docutils literal notranslate"><span class="pre">package.json</span></code>.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run --coverage&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Podemos ejecutar las pruebas y obtener informes de cobertura de código con los siguientes comandos:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
-npm<span class="w"> </span>run<span class="w"> </span>coverage
-npx<span class="w"> </span>vitest<span class="w"> </span>--ui
-</pre></div>
-</div>
-<p>El ejemplo anterior sería el mínimo que se puede hacer, pero hay muchas más opciones, como las siguientes:</p>
+<p>Vitest acepta muchas opciones en sus comandos, estas se pueden escribir directamente en la terminal o guardar en <code class="docutils literal notranslate"><span class="pre">package.json</span></code>. Aquí tenemos un ejemplo bastante completo:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
@@ -519,6 +504,12 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </pre></div>
 </div>
 <p>Como se ve, los nombres de los scripts son arbitrarios. <code class="docutils literal notranslate"><span class="pre">testrun</span></code> ejecuta los tests una vez y no se queda a la espera de cambios en los ficheros. Esto puede ser útil para los tests en un proceso <code class="docutils literal notranslate"><span class="pre">CI/CD</span></code>. <code class="docutils literal notranslate"><span class="pre">webtest</span></code> abre un navegador con los tests. <code class="docutils literal notranslate"><span class="pre">coverage</span></code> informa del % de código que tiene tests. <code class="docutils literal notranslate"><span class="pre">webtest:basic</span></code> fuerza a testar solo con un fichero de tests específico.</p>
+<p>Podemos ejecutar las pruebas y obtener informes de cobertura de código con los siguientes comandos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
+npm<span class="w"> </span>run<span class="w"> </span>coverage
+npx<span class="w"> </span>vitest<span class="w"> </span>--ui
+</pre></div>
+</div>
 <p>También podemos agregar Vitest como una extensión en Visual Studio Code desde el siguiente enlace: <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=vitest.explorer">Vitest Explorer</a>.</p>
 </section>
 </section>

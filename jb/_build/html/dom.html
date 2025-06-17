@@ -488,6 +488,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-de-teclado">Eventos de teclado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cualquier-objeto-puede-ser-un-listener">Cualquier objeto puede ser un <code class="docutils literal notranslate"><span class="pre">listener</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>
@@ -706,6 +707,10 @@ document.write(`
 <blockquote>
 <div><p>Hay unos atributos que se sincronizan de forma especial con las propiedades. Son los que comienzan por <code class="docutils literal notranslate"><span class="pre">data-</span></code>, que se guardan en un objeto <code class="docutils literal notranslate"><span class="pre">.dataset</span></code> del elemento en el DOM. Esto lo explicamos en la sección de <strong>Atributos de datos</strong>.</p>
 </div></blockquote>
+<ul class="simple">
+<li><p>Cambiar la <strong>propiedad</strong> <strong>no siempre cambia el atributo</strong>.</p></li>
+<li><p>Cambiar el <strong>atributo</strong> inicializa la propiedad al cargar la página, pero después <strong>no están sincronizados automáticamente</strong>.</p></li>
+</ul>
 </section>
 <section id="estilos">
 <h4>Estilos<a class="headerlink" href="#estilos" title="Link to this heading">#</a></h4>
@@ -1868,6 +1873,24 @@ Aquí hay ejemplo sencillo que muestra cómo capturar eventos de teclado y obten
 </pre></div>
 </div>
 </section>
+<section id="cualquier-objeto-puede-ser-un-listener">
+<h3>Cualquier objeto puede ser un <code class="docutils literal notranslate"><span class="pre">listener</span></code><a class="headerlink" href="#cualquier-objeto-puede-ser-un-listener" title="Link to this heading">#</a></h3>
+<p>La función <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code> espera una función manejadora del evento o un objeto. Si le pasamos un objeto, este debe tener el método <code class="docutils literal notranslate"><span class="pre">handleEvents()</span></code>. Esa función tendrá como <code class="docutils literal notranslate"><span class="pre">this</span></code> el objeto pasado, pero aceptará el evento.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#proves&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Merlin&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">handleEvent</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`The </span><span class="si">${</span><span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb"> happened on </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">);</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Esto ahora puede no tener demasiado sentido, pero será muy útil con los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code>.</p>
+</div></blockquote>
+<p><a class="reference external" href="https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components/">https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components/</a></p>
+</section>
 </section>
 <section id="notas-finales">
 <h2>Notas finales<a class="headerlink" href="#notas-finales" title="Link to this heading">#</a></h2>
@@ -2010,6 +2033,7 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-de-teclado">Eventos de teclado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cualquier-objeto-puede-ser-un-listener">Cualquier objeto puede ser un <code class="docutils literal notranslate"><span class="pre">listener</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>

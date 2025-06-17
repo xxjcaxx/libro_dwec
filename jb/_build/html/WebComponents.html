@@ -464,6 +464,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-form-controls">Custom Form Controls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-editable">Hacerlo editable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-compatible-con-formularios">Hacerlo compatible con formularios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilo">Estilo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones">Validaciones</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#micro-frontend">Micro Frontend</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
 </ul>
             </nav>
@@ -1094,7 +1102,12 @@ document.write(`
 <section id="mediante-eventos">
 <h3>Mediante Eventos<a class="headerlink" href="#mediante-eventos" title="Link to this heading">#</a></h3>
 <p>Puesto que los componentes pueden emitir eventos, esto se puede usar para crear eventos personalizados para enviar información a los componentes padres. Incluso se puede hacer que un Web Component escuche los eventos en <code class="docutils literal notranslate"><span class="pre">document</span></code> para enviar información de unos componentes a otros.</p>
-<p>Veremos un ejemplo en el apartado de mantener el estado de la aplicación.</p>
+<blockquote>
+<div><p>Veremos un ejemplo en el apartado de <strong>mantener el estado de la aplicación</strong>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>En el apartado de <strong>Custom Form Controls</strong> veremos cómo gestionar los eventos de forma más eficiente en los Web Components.</p>
+</div></blockquote>
 <p>Como hay muchas opciones, podemos ver esta tabla comparativa:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1664,6 +1677,278 @@ Esta función ya registra el componente.</p>
 </div>
 <p>Este código suscribe el subject interno del componente a un observable externo y esto provoca todos los cambios reactivamente.</p>
 </section>
+<section id="custom-form-controls">
+<h2>Custom Form Controls<a class="headerlink" href="#custom-form-controls" title="Link to this heading">#</a></h2>
+<p>Dentro de los componentes, los <code class="docutils literal notranslate"><span class="pre">Form</span> <span class="pre">Controls</span></code> son casos especiales. A diferencia de otros componentes, los Form Control tienen un contenido editable y han de formar parte de formularios. Un Form Control ha de poder ser validado y su valor accedido mediante los estándares de los formularios.</p>
+<p>Un <code class="docutils literal notranslate"><span class="pre">Form</span> <span class="pre">Control</span></code>:</p>
+<ul class="simple">
+<li><p>Permite al usuario escribir, modificar, hacer click, drag… En definitiva, debe permitir interacción con Eventos.</p></li>
+<li><p>Mantiene una propiedad <code class="docutils literal notranslate"><span class="pre">value</span></code> o similar que puede ser inicializada como atributo y que debe ser alterada por la interacción del usuario y consultada por el formulario en el que está.</p></li>
+<li><p>Su valor debe poder ser validado y debe tener pseudoclases de validación.</p></li>
+<li><p>Dentro de los formularios tiene un <code class="docutils literal notranslate"><span class="pre">role</span></code> para tener un comportamiento predecible por el navegador.</p></li>
+</ul>
+<blockquote>
+<div><p>Normalmente no entraríamos a hacer algo tan complejo sin frameworks, pero hay dos motivos para hacerlo: El primero es que es un buen repaso de todo lo visto anteriormente y el segundo es que alguien tiene que hacer los frameworks de UI.</p>
+</div></blockquote>
+<p><strong>Cosas que hay que recordar</strong></p>
+<ul class="simple">
+<li><p>Hay atributos que podemos poner directamente en html y se convierten en propiedades, aunque no están necesariamente sincronizados.</p></li>
+<li><p>Los Form Control tiene una propiedad especial que es <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></li>
+<li><p>Cualquier objeto puede ser un <code class="docutils literal notranslate"><span class="pre">listener</span></code> si tiene el método <code class="docutils literal notranslate"><span class="pre">handleEvent</span></code> .</p></li>
+</ul>
+<section id="hacerlo-editable">
+<h3>Hacerlo editable<a class="headerlink" href="#hacerlo-editable" title="Link to this heading">#</a></h3>
+<p>Empezamos con un elemento mínimo cuyo <code class="docutils literal notranslate"><span class="pre">textContent</span></code> es editable:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;my-input&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contentEditable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">  </span><span class="c1">// Convertir el contenido en editable</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inline&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Debemos conseguir que los cambios que se produzcan por el usuario/a en el control afecten a su <code class="docutils literal notranslate"><span class="pre">value</span></code> y al formulario. Esto implica escuchar los eventos correspondientes. Para ello añadiremos el método <code class="docutils literal notranslate"><span class="pre">handleEvent</span></code> y convertiremos el propio objeto que es el <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Component</span></code> en un objeto manejador de eventos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* ... */</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w">  </span><span class="c1">// Le pasamos this, ya que this tiene la función handleEvent</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;focusout&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">handleEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Cualquier cambio producido por el usuario.</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;input&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cleanTextContent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span><span class="w">  </span><span class="c1">// Limpiamos y asignamos</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">shouldFireChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Los form control emiten un evento `change` </span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Sólo para el intro, que pedirá al form ser enviado </span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;keydown&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">key</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;Enter&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">internals</span><span class="p">.</span><span class="nx">form</span><span class="o">?</span><span class="p">.</span><span class="nx">requestSubmit</span><span class="p">();</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Emitir el evento de cambio al cambiar el foco a otro elemento</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;focusout&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">shouldFireChange</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">shouldFireChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">bubbles</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">composed</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}));</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Asociaremos todos los eventos que consideremos necesarios. Por lo general, un control de formulario debe atender al teclado, al cambio foco y al copiar/pegar, ya que son las maneras en la que canvia su valor.</p>
+</section>
+<section id="hacerlo-compatible-con-formularios">
+<h3>Hacerlo compatible con formularios<a class="headerlink" href="#hacerlo-compatible-con-formularios" title="Link to this heading">#</a></h3>
+<p>Para que este componente pueda ser parte de un formulario, debe tener un atributo estático <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">formAssociated</span> <span class="pre">=</span> <span class="pre">true;</span></code>. Además, para tener más control se pueden asociar <code class="docutils literal notranslate"><span class="pre">ElementInternals</span></code> (<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals">https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals</a>):</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;my-input&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="w"> </span><span class="p">{</span>
+<span class="cm">/*.....*/</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">formAssociated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="err">#</span><span class="nx">internals</span><span class="p">;</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">internals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">attachInternals</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">internals</span><span class="p">.</span><span class="nx">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;textbox&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="cm">/*.....*/</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Se le asigna un <code class="docutils literal notranslate"><span class="pre">role</span></code>. Hay muchos posibles <code class="docutils literal notranslate"><span class="pre">roles</span></code>: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Techniques#roles">https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Techniques#roles</a></p>
+<p>Hay que tener en cuenta que <code class="docutils literal notranslate"><span class="pre">value</span></code> es una propiedad que recibe su valor inicial de un atributo que se llama igual, pero que los formularios no tienen porqué saber que ese es el valor que se quiere enviar. Por tanto, al actualizar el <code class="docutils literal notranslate"><span class="pre">value</span></code> hay que indicar el nuevo valor con <code class="docutils literal notranslate"><span class="pre">setFormValue</span></code> en los <code class="docutils literal notranslate"><span class="pre">ElementInternals</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="nx">set</span><span class="w"> </span><span class="nx">value</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+<span class="w">           </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">internals</span><span class="p">.</span><span class="nx">setFormValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span><span class="p">);</span><span class="w"> </span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="nx">get</span><span class="w"> </span><span class="nx">value</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">defaultValue</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="nx">get</span><span class="w"> </span><span class="nx">defaultValue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="nx">set</span><span class="w"> </span><span class="nx">defaultValue</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">this</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">   </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Como se ve, se usa <code class="docutils literal notranslate"><span class="pre">#value</span></code> para almacenar el valor y un <code class="docutils literal notranslate"><span class="pre">setter</span></code> para <code class="docutils literal notranslate"><span class="pre">value</span></code>, que es lo que será modificado o leído externamente y por los eventos. Ya de paso se ha gestionado el valor por defecto que será útil después.</p>
+<p>En el momento en que ponemos <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">formAssociated</span> <span class="pre">=</span> <span class="pre">true;</span></code> debemos respetar el estándar. Eso quiere decir que el componente se ha de comportar de manera predecible por el formulario que lo contiene. Así que hay que implementar varias funciones:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">disabled</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">get</span><span class="w"> </span><span class="nx">disabled</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">hasAttribute</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">set</span><span class="w"> </span><span class="nx">readOnly</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;readonly&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;readonly&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">get</span><span class="w"> </span><span class="nx">readOnly</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">hasAttribute</span><span class="p">(</span><span class="s1">&#39;readonly&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">get</span><span class="w"> </span><span class="nx">name</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">set</span><span class="w"> </span><span class="nx">name</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">v</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">      </span><span class="k">static</span><span class="w"> </span><span class="nx">observedAttributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;readonly&#39;</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">attributeChangedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="err">#</span><span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inline&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">internals</span><span class="p">.</span><span class="nx">setFormValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">isDisabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">formDisabled</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">disabled</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">internals</span><span class="p">.</span><span class="nx">ariaDisabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">isDisabled</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">internals</span><span class="p">.</span><span class="nx">ariaReadOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">readOnly</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contentEditable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">readOnly</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nx">isDisabled</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="s1">&#39;plaintext-only&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">tabIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">isDisabled</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">formResetCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nx">formDisabledCallback</span><span class="p">(</span><span class="nx">disabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">formDisabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">disabled</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nx">formStateRestoreCallback</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Aquí gestionamos las llamadas desde el formulario para ser deshabilitado o que sea de sólo lectura. También la llamada del <code class="docutils literal notranslate"><span class="pre">reset</span></code>. Todo esto es opcional, pero estamos haciendo el <code class="docutils literal notranslate"><span class="pre">form</span> <span class="pre">control</span></code> más compatible.</p>
+<p>Los tres métodos <code class="docutils literal notranslate"><span class="pre">formResetCallback</span></code> <code class="docutils literal notranslate"><span class="pre">formDisabledCallback</span></code> <code class="docutils literal notranslate"><span class="pre">formStateRestoreCallback</span></code> son llamados por el navegador cuando se resetea el formulario mediante un boton de <code class="docutils literal notranslate"><span class="pre">type=&quot;reset&quot;</span></code>, cuando se deshabilita un <code class="docutils literal notranslate"><span class="pre">fieldset</span></code>. Y <code class="docutils literal notranslate"><span class="pre">formStateRestoreCallback()</span></code> Es un método del Web Component que el navegador llama cuando necesita restaurar el estado del formulario, como si reescribiera los valores del input, por ejemplo cuando el usuario recarga la página o restaura una pestaña con historial.</p>
+</section>
+<section id="estilo">
+<h3>Estilo<a class="headerlink" href="#estilo" title="Link to this heading">#</a></h3>
+<p>Nos interesa que se vea un poco diferente a un texto normal. Así que vamos a darle un cierto estilo:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="nd">host</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">lightgray</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">layer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">:</span><span class="nd">host</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nv">--my-input-border-color</span><span class="p">:</span><span class="w"> </span><span class="nf">light-dark</span><span class="p">(</span><span class="nb">rgb</span><span class="p">(</span><span class="mi">118</span><span class="p">,</span><span class="w"> </span><span class="mi">118</span><span class="p">,</span><span class="w"> </span><span class="mi">118</span><span class="p">),</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">161</span><span class="p">,</span><span class="w"> </span><span class="mi">161</span><span class="p">,</span><span class="w"> </span><span class="mi">161</span><span class="p">));</span>
+<span class="w">        </span><span class="nv">--my-input-border-color-hover</span><span class="p">:</span><span class="w"> </span><span class="nf">light-dark</span><span class="p">(</span><span class="nb">rgb</span><span class="p">(</span><span class="mi">78</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">),</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">));</span>
+<span class="w">        </span><span class="nv">--my-input-border-color-disabled</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">        </span><span class="nv">--my-input-text-color</span><span class="p">:</span><span class="w"> </span><span class="nf">light-dark</span><span class="p">(</span><span class="n">fieldtext</span><span class="p">,</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">240</span><span class="p">));</span>
+<span class="w">        </span><span class="nv">--my-input-text-color-disabled</span><span class="p">:</span><span class="w"> </span><span class="nf">light-dark</span><span class="p">(</span><span class="nb">rgb</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w"> </span><span class="mi">84</span><span class="p">),</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">170</span><span class="p">));</span>
+<span class="w">        </span><span class="nv">--my-input-bg-color</span><span class="p">:</span><span class="w"> </span><span class="kc">inherit</span><span class="p">;</span>
+<span class="w">        </span><span class="nv">--my-input-bg-color-disabled</span><span class="p">:</span><span class="w"> </span><span class="kc">inherit</span><span class="p">;</span>
+<span class="w">        </span><span class="nv">--my-input-min-width</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">ch</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nt">div</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">        </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-bg-color</span><span class="p">);</span>
+<span class="w">        </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-text-color</span><span class="p">);</span>
+<span class="w">        </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">dotted</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-border-color</span><span class="p">);</span>
+<span class="w">        </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">        </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">        </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="w">        </span><span class="err">&amp;:focus-visible</span><span class="w"> </span><span class="err">{</span>
+<span class="w">            </span><span class="k">border-color</span><span class="p">:</span><span class="w"> </span><span class="kc">transparent</span><span class="p">;</span>
+<span class="w">            </span><span class="k">outline-offset</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">outline</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">royalblue</span><span class="p">;</span>
+<span class="w">            </span><span class="c">/* firefox */</span>
+<span class="w">            </span><span class="k">outline-color</span><span class="p">:</span><span class="w"> </span><span class="bp">-webkit-</span><span class="n">focus-ring-color</span><span class="p">;</span>
+<span class="w">            </span><span class="c">/* the rest */</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+
+<span class="w">    </span><span class="nt">div</span><span class="o">[</span><span class="nt">disabled</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">border-color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-border-color-disabled</span><span class="p">);</span>
+<span class="w">        </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-bg-color-disabled</span><span class="p">);</span>
+<span class="w">        </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-text-color-disabled</span><span class="p">);</span>
+<span class="w">        </span><span class="kp">-webkit-</span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">        </span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nt">div</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">border-color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--input-inline-border-color-hover</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="nt">div</span><span class="o">[</span><span class="nt">readonly</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-text-color-disabled</span><span class="p">);</span>
+<span class="w">        </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-bg-color-disabled</span><span class="p">);</span>
+<span class="w">        </span><span class="k">border-color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--my-input-border-color-disabled</span><span class="p">);</span>
+<span class="w">        </span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">text</span><span class="p">;</span>
+<span class="w">        </span><span class="k">pointer-events</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">        </span><span class="c">/* bloquea edición/clics */</span>
+<span class="w">        </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="p">;</span>
+<span class="w">        </span><span class="c">/* opcional, efecto visual */</span>
+<span class="w">        </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">default</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="err">}</span>
+</pre></div>
+</div>
+<p>Observemos que le damos un estilo global al componente y un estilo al div interno en función de sus atributos y pseudoclases. Estos son modificados por los setters del componente.</p>
+<p>Este estilo lo podemos poner con <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">literal</span></code> en una variable y asignar al shadowRoot:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="c1">// Dentro de  connectedCallback</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">styleSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">styleSheet</span><span class="p">.</span><span class="nx">replaceSync</span><span class="p">(</span><span class="nx">cssText</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">styleSheet</span><span class="p">];</span>
+</pre></div>
+</div>
+</section>
+<section id="validaciones">
+<h3>Validaciones<a class="headerlink" href="#validaciones" title="Link to this heading">#</a></h3>
+<p>Ejemplo completo: <a class="github reference external" href="https://github.com/xxjcaxx/exemples-dwec/tree/master/08-WebComponents/exempleformcontrol">xxjcaxx/exemples-dwec</a></p>
+<p>Tutorial: <a class="reference external" href="https://plainvanillaweb.com/blog/articles/2025-05-09-form-control/">https://plainvanillaweb.com/blog/articles/2025-05-09-form-control/</a></p>
+</section>
+</section>
+<section id="micro-frontend">
+<h2>Micro Frontend<a class="headerlink" href="#micro-frontend" title="Link to this heading">#</a></h2>
+<p>Los <strong>micro frontends</strong> son una arquitectura que traslada los principios de los <code class="docutils literal notranslate"><span class="pre">microservicios</span></code> al mundo del frontend. En lugar de construir una sola aplicación monolítica con un único código, repositorio y pipeline, se divide la interfaz en módulos independientes. Cada módulo puede estar desarrollado con una tecnología distinta (React, Angular, Vue, Vanilla JS), tiene su propio ciclo de despliegue, y está gestionado por un equipo autónomo. Esto permite escalar mejor en proyectos grandes, mantener independencia entre equipos, integrar distintas tecnologías y desplegar partes de la aplicación sin afectar al resto.</p>
+<p>Esta arquitectura se vuelve cada vez más popular por sus ventajas: despliegues independientes, autonomía total de los equipos, facilidad para hacer migraciones incrementales, agnosticismo tecnológico y una mayor escalabilidad.</p>
+<p>No tiene porqué ser la mejor opción, ya que presenta muchos problemas sólo al prepararlo, pero es necesario al menor conocerlos.</p>
+<p>Las formas de enforcar el <code class="docutils literal notranslate"><span class="pre">micro</span> <span class="pre">frontend</span></code> son muy variadas, desde el <code class="docutils literal notranslate"><span class="pre">iframe</span></code> a soluciones específicas como los <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">federation</span></code> de <code class="docutils literal notranslate"><span class="pre">webpack</span></code>. Pero si no queremos depender de esas soluciones específicas ni del problemático <code class="docutils literal notranslate"><span class="pre">iframe</span></code>, podemos hacerlo con <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code>.</p>
+<blockquote>
+<div><p>Se recomienda leer todas las opciones descritas en el artículo <a class="reference external" href="https://www.freecodecamp.org/news/complete-micro-frontends-guide/">https://www.freecodecamp.org/news/complete-micro-frontends-guide/</a> y otros sitios. Como en todo, en estos apuntes se opta por una opción por sus ventajas y por ser coherente con lo que ya se ha visto.</p>
+</div></blockquote>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> tienen un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code> y sus propios estilos y pueden ser totalmente independientes entre ellos. Además se pueden comunicar entre ellos por eventos, atributos, propiedades o servicios comunes.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/microfrontendwebcomponents.png"><img alt="_images/microfrontendwebcomponents.png" src="_images/microfrontendwebcomponents.png" style="width: 1152.0px; height: 768.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Una única aplicación web con varias aplicaciones relacionadas.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>En el caso de Angular, se puede convertir un <code class="docutils literal notranslate"><span class="pre">component</span></code> en un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code>. Inicialmente no es lo mismo, ya que Angular tiene su propio método de hacer componentes que no es el estándar. Para ello se necesita la librería <code class="docutils literal notranslate"><span class="pre">elements</span></code>: <a class="reference external" href="https://angular.dev/guide/elements">https://angular.dev/guide/elements</a></p>
+<p>El paquete &#64;angular/elements de Angular ofrece la función createCustomElement(), que actúa como puente entre los componentes de Angular y la API del DOM nativo. Al transformar un componente en un elemento personalizado, Angular expone toda su infraestructura (detección de cambios, enlace de datos, etc.) al navegador, conectando automáticamente la vista del componente con el sistema de renderizado y comportamiento de HTML.</p>
+</section>
 <section id="conclusiones">
 <h2>Conclusiones<a class="headerlink" href="#conclusiones" title="Link to this heading">#</a></h2>
 <p>Como se ve en todo este capítulo, hay muchas opciones para hacer Web Components. En la práctica se vuelve casi imprescindible para proyectos grandes y para reutilizar dentro del mismo proyecto o en otros. Se han mencionado alternativas a todo y ventajas y desventajas, pero no una guía definitiva porque no la hay, depende del tipo de proyecto. Así que vamos a hacer una breve reseña de cada técnica y el tipo de web adecuado:</p>
@@ -1792,6 +2077,14 @@ Esta función ya registra el componente.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-form-controls">Custom Form Controls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-editable">Hacerlo editable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-compatible-con-formularios">Hacerlo compatible con formularios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilo">Estilo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones">Validaciones</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#micro-frontend">Micro Frontend</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
 </ul>
   </nav></div>
