@@ -426,18 +426,10 @@ document.write(`
 <li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-de-funcion">Contexto de Ejecución de Función</a></li>
 </ul>
 </li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pila-de-llamadas-call-stack">Pila de Llamadas (Call Stack)</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-analizar-el-call-stack">Herramientas para Analizar el Call Stack</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pila-de-llamadas-call-stack">Pila de Llamadas (Call Stack)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cola-de-macrotareas-y-microtareas">Cola de Macrotareas y Microtareas</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-dividir-el-trabajo-con-settimeout">Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-ejemplo-con-promesas-microtareas">Código de Ejemplo con Promesas (Microtareas)</a></li>
-</ul>
-</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a></li>
 </ul>
 </li>
 </ul>
@@ -456,6 +448,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-all">Promise.all()</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#withresolvers">withResolvers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-y-promesas">Arrays y promesas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#las-promesas-como-microtasks">Las promesas como microtasks</a></li>
 </ul>
 </li>
 </ul>
@@ -466,6 +459,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-interables">Async Await en interables</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos-thenables">Objetos thenables</a></li>
 </ul>
             </nav>
         </div>
@@ -625,8 +619,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">console.log(&quot;Exiting</span> <span class="pre">first&quot;)</span></code> se ejecuta dentro de <code class="docutils literal notranslate"><span class="pre">first()</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">first()</span></code> se elimina de la pila de llamadas.</p></li>
 </ol>
-<section id="herramientas-para-analizar-el-call-stack">
-<h6>Herramientas para Analizar el Call Stack<a class="headerlink" href="#herramientas-para-analizar-el-call-stack" title="Link to this heading">#</a></h6>
+<p><strong>Herramientas para Analizar el Call Stack</strong></p>
 <p>En Firefox:</p>
 <ol class="arabic simple">
 <li><p>Presiona <code class="docutils literal notranslate"><span class="pre">F12</span></code> para abrir las herramientas de desarrollo.</p></li>
@@ -637,12 +630,9 @@ document.write(`
 <p>También puedes usar <code class="docutils literal notranslate"><span class="pre">console.trace()</span></code> y <code class="docutils literal notranslate"><span class="pre">debugger;</span></code> en tu código para depurar y analizar el flujo de ejecución.</p>
 </section>
 </section>
-</section>
 <section id="tareas-y-microtareas">
 <h4>Tareas y Microtareas<a class="headerlink" href="#tareas-y-microtareas" title="Link to this heading">#</a></h4>
 <p>JavaScript gestiona las operaciones asíncronas utilizando varias colas de tareas, cada una con una prioridad diferente. Estas colas incluyen la <strong>cola de macrotareas</strong> y la <strong>cola de microtareas</strong>.</p>
-<section id="cola-de-macrotareas-y-microtareas">
-<h5>Cola de Macrotareas y Microtareas<a class="headerlink" href="#cola-de-macrotareas-y-microtareas" title="Link to this heading">#</a></h5>
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="_images/microtasks.png"><img alt="_images/microtasks.png" src="_images/microtasks.png" style="width: 441.0px; height: 469.0px;" /></a>
 <figcaption>
@@ -652,6 +642,7 @@ document.write(`
 <p>Las <strong>macrotareas</strong> incluyen operaciones como los eventos del DOM, <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>, <code class="docutils literal notranslate"><span class="pre">setInterval</span></code> y otras operaciones asíncronas. Las macrotareas se gestionan en la “cola de macrotareas” y se procesan una por una.</p>
 <p>Las <strong>microtareas</strong>, por otro lado, incluyen las promesas (<code class="docutils literal notranslate"><span class="pre">Promises</span></code>) y las mutaciones del DOM (a través de <code class="docutils literal notranslate"><span class="pre">MutationObserver</span></code>). Estas tareas se gestionan en la “cola de microtareas”, que tiene una prioridad más alta que la de las macrotareas. Esto significa que después de cada macrotarea, el motor de JavaScript procesará todas las microtareas antes de continuar con la siguiente macrotarea.</p>
 <p>Cuando se completa una macrotarea, el motor de JavaScript pasa a procesar todas las microtareas pendientes. Este ciclo de procesamiento asegura que las microtareas reciban atención inmediata después de cada macrotarea.</p>
+<p>Observemos este código que bloquea el navegador:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -678,10 +669,8 @@ document.write(`
 <li><p>Si <code class="docutils literal notranslate"><span class="pre">count</span></code> se ejecuta directamente, bloquea el navegador porque el bucle es muy largo.</p></li>
 <li><p>Utilizando <code class="docutils literal notranslate"><span class="pre">setTimeout(count,</span> <span class="pre">0)</span></code>, la función <code class="docutils literal notranslate"><span class="pre">count</span></code> se coloca en la cola de macrotareas, permitiendo que el navegador procese otras tareas mientras tanto.</p></li>
 </ol>
-<p>Este ejemplo ilustra cómo retrasar el bloqueo hasta que, por ejemplo, se ejecute todo el programa principal. Pero no soluciona el hecho de que, al final se va a quedar el navegador bloqueado, ya que se ejecutará en el único hilo de ejecución de Javascript. Si queremos tener más hilos, podemos usar <code class="docutils literal notranslate"><span class="pre">worker</span></code>. En el siguiente ejemplo se ve cómo dividir el trabajo para que, en medio, dé tiempo a renderizar o ejecutar otras tareas y microtareas como atender eventos:</p>
-</section>
-<section id="ejemplo-de-dividir-el-trabajo-con-settimeout">
-<h5>Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code><a class="headerlink" href="#ejemplo-de-dividir-el-trabajo-con-settimeout" title="Link to this heading">#</a></h5>
+<p>Este ejemplo ilustra cómo retrasar el bloqueo hasta que, por ejemplo, se ejecute todo el programa principal. Pero no soluciona el hecho de que, al final se va a quedar el navegador bloqueado, ya que se ejecutará en el único hilo de ejecución de Javascript. Si queremos tener más hilos, podemos usar <code class="docutils literal notranslate"><span class="pre">workers</span></code>. En el siguiente ejemplo se ve cómo dividir el trabajo para que, en medio, dé tiempo a renderizar o ejecutar otras tareas y microtareas como atender eventos:</p>
+<p><strong>Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code></strong></p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#progress&quot;</span><span class="p">);</span>
 <span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
@@ -707,61 +696,15 @@ document.write(`
 </ol>
 <p>Otro ejemplo: <a class="reference external" href="https://www.bbss.dev/posts/eventloop/">https://www.bbss.dev/posts/eventloop/</a></p>
 </section>
-<section id="codigo-de-ejemplo-con-promesas-microtareas">
-<h5>Código de Ejemplo con Promesas (Microtareas)<a class="headerlink" href="#codigo-de-ejemplo-con-promesas-microtareas" title="Link to this heading">#</a></h5>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">  </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Script start&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;SetTimeout&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">printMessages</span><span class="p">();</span>
-<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
-<span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Promise 1&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}).</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Promise 2&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">});</span>
-<span class="w">  </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Script end&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">printMessages</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;\n&#39;</span><span class="p">));</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">})();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1185ms
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script start
-Script end
-Promise 1
-Promise 2
-SetTimeout
-</pre></div>
-</div>
-</div>
-</div>
-<ol class="arabic simple">
-<li><p>El log ‘Script start’ se imprime primero porque es código síncrono.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> coloca su función de callback en la cola de macrotareas.</p></li>
-<li><p>La promesa se resuelve inmediatamente, colocando sus callbacks en la cola de microtareas.</p></li>
-<li><p>El log ‘Script end’ se imprime porque es código síncrono.</p></li>
-<li><p>Las microtareas (las promesas) se ejecutan antes de la macrotarea (<code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>), imprimiendo ‘Promise 1’ y ‘Promise 2’.</p></li>
-<li><p>Finalmente, la función de <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se ejecuta, imprimiendo ‘SetTimeout’.</p></li>
-</ol>
-<p>Este mecanismo de tareas y microtareas permite que JavaScript gestione de manera eficiente las operaciones asíncronas, asegurando que el código se ejecute de manera ordenada y que las tareas con mayor prioridad (microtareas) se completen antes de procesar tareas menos prioritarias (macrotareas).</p>
-<p><a class="reference external" href="https://www.deepintodev.com/blog/how-javascript-works-behind-the-scenes">https://www.deepintodev.com/blog/how-javascript-works-behind-the-scenes</a></p>
-</section>
-</section>
 </section>
 </section>
 <section id="callbacks-en-javascript">
 <h2>Callbacks en JavaScript<a class="headerlink" href="#callbacks-en-javascript" title="Link to this heading">#</a></h2>
 <p>En JavaScript, un callback es una función que se pasa como argumento a otra función para que se ejecute después de que se complete alguna operación. Los callbacks son esenciales para manejar operaciones asíncronas como la comunicación con servidores, temporizadores, y eventos del DOM.
 El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funciones de callback, com forEach, map, filter, addEventListener…</p>
+<blockquote>
+<div><p>Si hay algo que diferencie el desarrollo moderno en Javascript respecto a otros lenguajes de maś bajo nivell es el uso de funciones de <code class="docutils literal notranslate"><span class="pre">callback</span></code> para todo. Recordemos que las funciones son objetos asignables a variables y son posibles de ser pasadas como argumentos o retornadas. Esto supone un cambio de paradigma para la gente acostumbrada a otros lenguajes.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -784,6 +727,9 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data is being fetched...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1259ms
 </pre></div>
 </div>
 </div>
@@ -1215,6 +1161,42 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 </div>
 </div>
 </section>
+<section id="las-promesas-como-microtasks">
+<h4>Las promesas como microtasks<a class="headerlink" href="#las-promesas-como-microtasks" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Script start&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;SetTimeout&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">printMessages</span><span class="p">();</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Promise 1&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}).</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Promise 2&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Script end&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">printMessages</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;\n&#39;</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>El log ‘Script start’ se imprime primero porque es código síncrono.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> coloca su función de callback en la cola de macrotareas.</p></li>
+<li><p>La promesa se resuelve inmediatamente, colocando sus callbacks en la cola de microtareas.</p></li>
+<li><p>El log ‘Script end’ se imprime porque es código síncrono.</p></li>
+<li><p>Las microtareas (las promesas) se ejecutan antes de la macrotarea (<code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>), imprimiendo ‘Promise 1’ y ‘Promise 2’.</p></li>
+<li><p>Finalmente, la función de <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> se ejecuta, imprimiendo ‘SetTimeout’.</p></li>
+</ol>
+<p>Este mecanismo de tareas y microtareas permite que JavaScript gestione de manera eficiente las operaciones asíncronas, asegurando que el código se ejecute de manera ordenada y que las tareas con mayor prioridad (microtareas) se completen antes de procesar tareas menos prioritarias (macrotareas).</p>
+<p><a class="reference external" href="https://www.deepintodev.com/blog/how-javascript-works-behind-the-scenes">https://www.deepintodev.com/blog/how-javascript-works-behind-the-scenes</a></p>
+</section>
 </section>
 </section>
 <section id="async-await-en-javascript">
@@ -1234,6 +1216,15 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 <span class="c1">// Ejecutar función asíncrona</span>
 <span class="nx">getUser</span><span class="p">();</span>
 <span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Script start
+Script end
+Promise 1
+Promise 2
+SetTimeout
 </pre></div>
 </div>
 </div>
@@ -1449,6 +1440,54 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 </div>
 </section>
 </section>
+<section id="objetos-thenables">
+<h2>Objetos thenables<a class="headerlink" href="#objetos-thenables" title="Link to this heading">#</a></h2>
+<p>Este apartado sirve para profundizar en qué es realmente una promesa. Lo que hemos usado en los ejemplos es una función constructora de promesas, funciones que retornan promesas o <code class="docutils literal notranslate"><span class="pre">async/await</span></code>. El mecanismo de las promesas en Javascript es interno. El comportamiento de delegar la ejecución de una función a la cola de microtareas cuando se ejecuta la función <code class="docutils literal notranslate"><span class="pre">resolve</span></code> y que esta función sea la asignada cuando ponemos <code class="docutils literal notranslate"><span class="pre">then()</span></code> o directamente se retorne un valor cuando usamos <code class="docutils literal notranslate"><span class="pre">await</span></code>; es algo muy incómodo de hacer manualmente y <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Promise</span></code> lo simplifica.</p>
+<p>Analizemos primero qué es lo que pasa realmente cuando usamos <code class="docutils literal notranslate"><span class="pre">await</span></code> con un ejemplo:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">      </span>
+<span class="w">        </span><span class="nx">resolve</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">P</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>Es equivalente a:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">      </span>
+<span class="w">        </span><span class="nx">resolve</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">P</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span><span class="p">=&gt;{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p>Y el motor de Javascript, conceptualmente, pone el resto del código dentro de un <code class="docutils literal notranslate"><span class="pre">then()</span></code>.</p>
+<p>Pero es que <code class="docutils literal notranslate"><span class="pre">await</span></code> ni siquiera necesita una promesa completa para funcionar, ya que solo necesita “esperar” a un objeto con el método <code class="docutils literal notranslate"><span class="pre">then()</span></code>. Esto es un <code class="docutils literal notranslate"><span class="pre">thenable</span></code>:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="mf">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// 6</span>
+<span class="w">  </span><span class="p">})();</span>
+<span class="w">  </span>
+</pre></div>
+</div>
+<p>Funciona incluso de forma asíncrona:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">then</span><span class="o">:</span><span class="w">  </span><span class="p">(</span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span>
+<span class="w">        </span><span class="nx">f</span><span class="p">(</span><span class="mf">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span><span class="mf">100</span><span class="p">)</span><span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// 6</span>
+<span class="w">  </span><span class="p">})();</span>
+</pre></div>
+</div>
+<p>El objeto <code class="docutils literal notranslate"><span class="pre">thenable</span></code> no es una promesa, pero el hecho de usarlo después de un <code class="docutils literal notranslate"><span class="pre">await</span></code> hace que el motor de Javascript lo interprete como tal y ponga su función en la cola de <code class="docutils literal notranslate"><span class="pre">microtasks</span></code>.</p>
+<p>Por supuesto, esto es un ejemplo y en muy pocas ocasiones puede ser mejor hacerlo así que con una <code class="docutils literal notranslate"><span class="pre">Promise</span></code> real, ya que esta incorpora muchas mejoras. Puede que algunas librerías lo usen para imitar el comportamiento de las promesas y permitir <code class="docutils literal notranslate"><span class="pre">async/await</span></code> o <code class="docutils literal notranslate"><span class="pre">Promise.resolve()</span></code> si en algunas ocasiones no quieren usar promesas.</p>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#thenables">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#thenables</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1523,18 +1562,10 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-ejecucion-de-funcion">Contexto de Ejecución de Función</a></li>
 </ul>
 </li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pila-de-llamadas-call-stack">Pila de Llamadas (Call Stack)</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-analizar-el-call-stack">Herramientas para Analizar el Call Stack</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pila-de-llamadas-call-stack">Pila de Llamadas (Call Stack)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cola-de-macrotareas-y-microtareas">Cola de Macrotareas y Microtareas</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-dividir-el-trabajo-con-settimeout">Ejemplo de Dividir el Trabajo con <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-ejemplo-con-promesas-microtareas">Código de Ejemplo con Promesas (Microtareas)</a></li>
-</ul>
-</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas-y-microtareas">Tareas y Microtareas</a></li>
 </ul>
 </li>
 </ul>
@@ -1553,6 +1584,7 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-all">Promise.all()</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#withresolvers">withResolvers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-y-promesas">Arrays y promesas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#las-promesas-como-microtasks">Las promesas como microtasks</a></li>
 </ul>
 </li>
 </ul>
@@ -1563,6 +1595,7 @@ Utilizando <code class="docutils literal notranslate"><span class="pre">await</s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-await-en-interables">Async Await en interables</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos-thenables">Objetos thenables</a></li>
 </ul>
   </nav></div>
 
