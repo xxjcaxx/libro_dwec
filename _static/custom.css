@@ -1,0 +1,16 @@
+/* custom.css */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+body {
+    font-family: 'Lora', serif;
+}
+
+/* Cambia las fuentes de los encabezados */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Cambia las fuentes de los párrafos */
+p {
+    font-family: 'Lora', serif;
+}
