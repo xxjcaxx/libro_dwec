@@ -425,15 +425,15 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclient">HttpClient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peticiones-get">Peticiones GET</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros">Parametros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#headers">Headers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
@@ -442,10 +442,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
@@ -512,7 +508,7 @@ document.write(`
 </pre></div>
 </div>
 <p>El decorador <code class="docutils literal notranslate"><span class="pre">&#64;Injectable</span></code> asegura que Angular gestione la instancia del servicio como un Singleton, lo que significa que se crea una única instancia del servicio y se comparte entre todos los componentes que lo requieran.</p>
-<p>Si el servicio se declara con <code class="docutils literal notranslate"><span class="pre">providedIn:</span> <span class="pre">'root'</span></code>, no es necesario agregarlo a <code class="docutils literal notranslate"><span class="pre">providers</span></code> porque Angular se encargará de su inyección automáticamente en toda la aplicación.</p>
+<p>En el ejemplo se indica cómo se ha de proveer esta dependencia al resto de componentes. Si el servicio se declara con <code class="docutils literal notranslate"><span class="pre">providedIn:</span> <span class="pre">'root'</span></code>, no es necesario agregarlo a <code class="docutils literal notranslate"><span class="pre">providers</span></code> porque Angular se encargará de su inyección automáticamente en toda la aplicación. Pero hay otras formas, como en cada componente a través de <code class="docutils literal notranslate"><span class="pre">providers</span></code> en el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> oo a nivel de aplicación con <code class="docutils literal notranslate"><span class="pre">ApplicationConfig</span></code>. En los ejempls usaremos la que hemos usado por su simplicidad, pero para saber más: <a class="reference external" href="https://angular.dev/guide/di/dependency-injection#providing-a-dependency">https://angular.dev/guide/di/dependency-injection#providing-a-dependency</a></p>
 <section id="inyeccion-de-dependencias">
 <h4>Inyección de Dependencias<a class="headerlink" href="#inyeccion-de-dependencias" title="Link to this heading">#</a></h4>
 <p>En Angular, la inyección de dependencias (DI) permite a los componentes solicitar servicios de manera eficiente. En lugar de crear instancias de servicios con <code class="docutils literal notranslate"><span class="pre">new</span></code>, Angular maneja la creación y provisión de servicios mediante el constructor:</p>
@@ -533,18 +529,36 @@ document.write(`
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
 </pre></div>
 </div>
-</section>
-</section>
-</section>
-<section id="httpclientmodule">
-<h2>HttpClientModule<a class="headerlink" href="#httpclientmodule" title="Link to this heading">#</a></h2>
-<p>Los servicios en Angular a menudo obtienen datos de un servidor a través de HTTP. Para hacer esto, se debe importar <code class="docutils literal notranslate"><span class="pre">HttpClientModule</span></code>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
-<span class="p">....</span>
+<p><code class="docutils literal notranslate"><span class="pre">inject</span></code> también se puede usar en las clases para no ponerlo en el constructor:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.service&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">inject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-product&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./product.component.html&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">productService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">ProductService</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<section id="servicios-como-clientes-http">
-<h3>Servicios como Clientes HTTP<a class="headerlink" href="#servicios-como-clientes-http" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+<section id="httpclient">
+<h2>HttpClient<a class="headerlink" href="#httpclient" title="Link to this heading">#</a></h2>
+<p>Los servicios en Angular a menudo obtienen datos de un servidor a través de HTTP. PAra ello usaremos el servicio inyectable <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code>. Debemos hacer que sea accesible en toda la aplicación mediante un <code class="docutils literal notranslate"><span class="pre">provider</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">appConfig</span><span class="o">:</span><span class="w"> </span><span class="kt">ApplicationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">provideHttpClient</span><span class="p">(),</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Este provider acepta muchas opciones. Algunas de ellas las veremos más adelante.</p>
+<section id="peticiones-get">
+<h3>Peticiones GET<a class="headerlink" href="#peticiones-get" title="Link to this heading">#</a></h3>
 <p>Los servicios pueden utilizar <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code> para realizar solicitudes HTTP. Esto se logra mediante la inyección de dependencias. Aquí hay un ejemplo de un servicio que obtiene productos de un servidor:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
@@ -558,7 +572,7 @@ document.write(`
 <span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">productURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/products&#39;</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">HttpClient</span><span class="p">);</span>
 
 <span class="w">  </span><span class="nx">getProducts</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[]}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">productURL</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
@@ -569,33 +583,31 @@ document.write(`
 </pre></div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">getProducts</span></code> realiza una solicitud HTTP GET para obtener una lista de productos. Utiliza <code class="docutils literal notranslate"><span class="pre">map</span></code> de RxJS para transformar la respuesta antes de devolverla como un <code class="docutils literal notranslate"><span class="pre">Observable</span></code>.</p>
+<p>En este ejemplo asumimos que vamos a recibir un <code class="docutils literal notranslate"><span class="pre">JSON</span></code> que será un objeto con un array de productos. Pero puede ser que no se reciba un JSON. Entonces hay que indicar con <code class="docutils literal notranslate"><span class="pre">responseType</span></code> lo que vamos a recibir:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/images/dog.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">responseType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;arraybuffer&#39;</span><span class="p">}).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">buffer</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The image is &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">buffer</span><span class="p">.</span><span class="nx">byteLength</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; bytes large&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Las opciones pueden ser: <code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">arraybuffer</span></code>, <code class="docutils literal notranslate"><span class="pre">blob</span></code>.</p>
+</section>
 <section id="envio-de-datos-con-post">
-<h4>Envío de Datos con POST<a class="headerlink" href="#envio-de-datos-con-post" title="Link to this heading">#</a></h4>
+<h3>Envío de Datos con POST<a class="headerlink" href="#envio-de-datos-con-post" title="Link to this heading">#</a></h3>
 <p>Para enviar datos al servidor, se utiliza el método <code class="docutils literal notranslate"><span class="pre">post</span></code> de <code class="docutils literal notranslate"><span class="pre">HttpClient</span></code>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
-
-<span class="kd">@Injectable</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AuthService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">loginURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/login&#39;</span><span class="p">;</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">loginURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/login&#39;</span><span class="p">;</span>
 <span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">httpOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">({</span>
 <span class="w">      </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">})</span>
 <span class="w">  </span><span class="p">};</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="kt">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
 <span class="w">  </span><span class="nx">login</span><span class="p">(</span><span class="nx">credentials</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">})</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">loginURL</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">credentials</span><span class="p">),</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">httpOptions</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">login</span></code> envía credenciales de usuario al servidor utilizando una solicitud HTTP POST. Se configuran las cabeceras HTTP para especificar que el contenido es JSON.</p>
 <section id="envio-de-datos-con-post-multipart">
-<h5>Envio de datos con POST Multipart<a class="headerlink" href="#envio-de-datos-con-post-multipart" title="Link to this heading">#</a></h5>
+<h4>Envio de datos con POST Multipart<a class="headerlink" href="#envio-de-datos-con-post-multipart" title="Link to this heading">#</a></h4>
 <p>En este caso es más sencillo incluso, ya que es el comportamiento por defecto de <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code>:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">UploadService</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">apiUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://api.ejemplo.com/upload&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reemplazar con la URL real</span>
@@ -615,8 +627,41 @@ document.write(`
 </div>
 </section>
 </section>
+<section id="parametros">
+<h3>Parametros<a class="headerlink" href="#parametros" title="Link to this heading">#</a></h3>
+<p>En caso de la <code class="docutils literal notranslate"><span class="pre">URL</span></code> necesite parámetros, por ejemplo: <code class="docutils literal notranslate"><span class="pre">?filter=all&amp;sort=asc</span></code>. Los podriamos poner en la URL concatenando, pero Angular proporciona <code class="docutils literal notranslate"><span class="pre">params</span></code> para sanitizar los parámetros y simplificar:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/config&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">filter</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">sort</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;asc&#39;</span><span class="p">},</span>
+<span class="p">}).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">config</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Incluso se puede usar un objeto <code class="docutils literal notranslate"><span class="pre">HttpParams</span></code> que aún proporciona más control:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">baseParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">HttpParams</span><span class="p">().</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;filter&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+<span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/config&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="kt">baseParams.set</span><span class="p">(</span><span class="s1">&#39;sort&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;asc&#39;</span><span class="p">),</span>
+<span class="p">}).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">config</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En el ejemplo, ponemos un parámetro immutable y luego añadimos otro en el momento de hacer el get.</p>
+</section>
+<section id="headers">
+<h3>Headers<a class="headerlink" href="#headers" title="Link to this heading">#</a></h3>
+<p>En ejemplos anteriores los hemos puesto, si queremos un control mayor, podemos crear un objeto <code class="docutils literal notranslate"><span class="pre">HttpHeaders</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">baseHeaders</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">().</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;X-Debug-Level&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;minimal&#39;</span><span class="p">);</span>
+<span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">Config</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;/api/config&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="kt">baseHeaders.set</span><span class="p">(</span><span class="s1">&#39;X-Debug-Level&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;verbose&#39;</span><span class="p">),</span>
+<span class="p">}).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">config</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
 <section id="gestion-de-errores-de-comunicacion">
-<h4>Gestión de errores de comunicación<a class="headerlink" href="#gestion-de-errores-de-comunicacion" title="Link to this heading">#</a></h4>
+<h3>Gestión de errores de comunicación<a class="headerlink" href="#gestion-de-errores-de-comunicacion" title="Link to this heading">#</a></h3>
 <p>Los errores al comunicarse con el servidor son por dos causas principales: Error del servidor (400, 500…) o error de la red o de la URL. <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> genera <code class="docutils literal notranslate"><span class="pre">Observables</span></code> que emiten la función <code class="docutils literal notranslate"><span class="pre">error</span></code> de los <code class="docutils literal notranslate"><span class="pre">Observers</span></code> en caso de fallo. Estos errores hay que tratarlos antes de enviar datos a los componentes que están suscritos al servicio.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">getData</span><span class="p">(</span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
@@ -650,7 +695,6 @@ document.write(`
 <p>En este caso capturamos el error dentro del <code class="docutils literal notranslate"><span class="pre">pipe</span></code> con <code class="docutils literal notranslate"><span class="pre">catchError</span></code> y lo tratamos. La función <code class="docutils literal notranslate"><span class="pre">handleError</span></code> acepta un <code class="docutils literal notranslate"><span class="pre">HttpErrorResponse</span></code> y retorna un <code class="docutils literal notranslate"><span class="pre">Observable&lt;never&gt;</span></code> que en TypeScript y RxJS indica que el observable nunca emitirá un valor exitoso.</p>
 <p>Aquí se manejan varios tipos específicos de error: <code class="docutils literal notranslate"><span class="pre">HttpErrorResponse</span></code> es una respuesta que da el HTTPClient cuando algo no va bien. Esta respuesta siempre la da si falla. Su contenido <code class="docutils literal notranslate"><span class="pre">.error</span></code> puede ser <code class="docutils literal notranslate"><span class="pre">ErrorEvent</span></code> o otro específico. Si es <code class="docutils literal notranslate"><span class="pre">ErrorEvent</span></code> indica que es un error de red. Además, el <code class="docutils literal notranslate"><span class="pre">throwError</span></code> emite un <code class="docutils literal notranslate"><span class="pre">Error</span></code> que es más genérico.</p>
 <p>Algunos servidores envían una respuesta 200, pero con un mensaje en su interior que indica un error. En ese caso, se puede capturar el mensaje con un operador <code class="docutils literal notranslate"><span class="pre">map</span></code> y lanzar el error. En el ejemplo, en caso de que no falle la red, pasará al <code class="docutils literal notranslate"><span class="pre">map</span></code> que lanzará el error dependiendo del contenido.</p>
-</section>
 </section>
 </section>
 <section id="datos-asincronos">
@@ -711,15 +755,40 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Este procesamiento es bastante manual y permite mucho control, pero hay formas más elegante, como veremos a continuación.</p>
 </section>
 <section id="mostrar-datos-asincronos">
 <h3>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h3>
 <p>La carga de datos asíncronos puede retrasarse, lo que puede causar errores si Angular intenta acceder a datos que aún no están disponibles. Para manejar esto, se pueden utilizar varias técnicas:</p>
 <ul class="simple">
 <li><p><strong>Objetos Vacíos</strong>: Crear un objeto con datos vacíos para evitar errores.</p></li>
-<li><p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code></strong>: Mostrar los datos sólo cuando estén completamente cargados.</p></li>
+<li><p><strong>Directiva <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> con el pipe <code class="docutils literal notranslate"><span class="pre">async</span></code></strong>: Mostrar los datos sólo cuando estén completamente cargados.</p></li>
 <li><p><strong>Operador <code class="docutils literal notranslate"><span class="pre">?</span></code></strong>: Asegurar que los datos no se accedan hasta que tengan un valor válido.</p></li>
 </ul>
+<p>Imaginemos un servicio que retorna un Observable de <code class="docutils literal notranslate"><span class="pre">User</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AsyncPipe</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common&#39;</span><span class="p">;</span>
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AsyncPipe</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    @if (user$ | async; as user) {</span>
+<span class="sb">      &lt;p&gt;Name: {{ user.name }}&lt;/p&gt;</span>
+<span class="sb">      &lt;p&gt;Biography: {{ user.biography }}&lt;/p&gt;</span>
+<span class="sb">    }</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">UserProfileComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">userId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">required</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">user$</span><span class="o">!:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">User</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">UserService</span><span class="p">);</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">user$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">userService</span><span class="p">.</span><span class="nx">getUser</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">userId</span><span class="p">());</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aquí hay muchos conceptos usados para hacer un código más límpio. En primer lugar se usa <code class="docutils literal notranslate"><span class="pre">inject</span></code> para inyectar la dependencia del servicio que nos dará los usuarios. A continuación se crea un <code class="docutils literal notranslate"><span class="pre">effect</span></code> para ejecutar la función interna cuando se produzca un cambio en <code class="docutils literal notranslate"><span class="pre">userID</span></code>, el cual es enviado por el componente padre. Este <code class="docutils literal notranslate"><span class="pre">effect</span></code> hará una petición al servicio y guardará el resultado en <code class="docutils literal notranslate"><span class="pre">user$</span></code>, será un Observable de <code class="docutils literal notranslate"><span class="pre">User</span></code>. En la plantilla se usa <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> con <code class="docutils literal notranslate"><span class="pre">async</span></code>, de forma que esperará a tener datos para validar el <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> y usarlos.</p>
 </section>
 <section id="signals">
 <h3>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h3>
@@ -730,52 +799,6 @@ document.write(`
 <span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
 <span class="nx">updateNum</span><span class="p">(){</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">update</span><span class="p">((</span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="resolver">
-<h2>Resolver<a class="headerlink" href="#resolver" title="Link to this heading">#</a></h2>
-<p>A veces es necesario obtener datos del servidor antes de acceder a una ruta específica. Para esto, se utiliza un tipo especial de servicio llamado Resolver.</p>
-<p>Un Resolver es un servicio que implementa el método <code class="docutils literal notranslate"><span class="pre">resolve</span></code>, el cual obtiene los datos antes de que la ruta se cargue:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">RouterStateSnapshot</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProductService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.service&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="p">,</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">catchError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.model&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-
-<span class="kd">@Injectable</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductResolver</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">Resolve</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">productsService</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductService</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRouteSnapshot</span><span class="p">,</span><span class="w"> </span><span class="nx">state</span><span class="o">:</span><span class="w"> </span><span class="kt">RouterStateSnapshot</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">productsService</span><span class="p">.</span><span class="nx">getProduct</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
-<span class="w">      </span><span class="nx">catchError</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/products&#39;</span><span class="p">]);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">of</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="w">      </span><span class="p">})</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Este resolver utiliza el servicio real para obtener los productos y maneja cualquier error redirigiendo al usuario a una ruta segura.</p>
-<section id="configuracion-de-rutas-con-resolver">
-<h3>Configuración de Rutas con Resolver<a class="headerlink" href="#configuracion-de-rutas-con-resolver" title="Link to this heading">#</a></h3>
-<p>Las rutas pueden configurarse para utilizar un resolver, asegurando que los datos necesarios estén disponibles antes de cargar el componente:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="kt">Routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;product/edit/:id&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">ProductDetailGuard</span><span class="p">],</span>
-<span class="w">    </span><span class="nx">canDeactivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">LeavePageGuard</span><span class="p">],</span>
-<span class="w">    </span><span class="nx">resolve</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">product</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductResolver</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">ProductEditComponent</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">// Otras rutas</span>
-<span class="p">];</span>
 </pre></div>
 </div>
 </section>
@@ -1458,15 +1481,15 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclientmodule">HttpClientModule</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-como-clientes-http">Servicios como Clientes HTTP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#httpclient">HttpClient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peticiones-get">Peticiones GET</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post">Envío de Datos con POST</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-de-datos-con-post-multipart">Envio de datos con POST Multipart</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros">Parametros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#headers">Headers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
@@ -1475,10 +1498,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver">Resolver</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-con-resolver">Configuración de Rutas con Resolver</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">

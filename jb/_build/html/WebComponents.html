@@ -553,6 +553,7 @@ document.write(`
 <h3>Ciclo de vida<a class="headerlink" href="#ciclo-de-vida" title="Link to this heading">#</a></h3>
 <p>Los elementos personalizados cuentan con una serie de funciones que pueden ser implementadas y que son invocadas a lo largo de su ciclo de vida. Estas son:</p>
 <ul class="simple">
+<li><p>constructor(): Como toda clase, tiene función constructora. Hay que recalcar que el <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> se suele poder poner directamente en el HTML, por lo que al no llamar explícitamente a esta función, no se puede hacer un constructor con parámetros. Esto impide usar técnicas como la <code class="docutils literal notranslate"><span class="pre">inyección</span> <span class="pre">de</span> <span class="pre">dependencias</span></code> que veremos más adelante.</p></li>
 <li><p>connectedCallback(): Se llama cada vez que se agrega el elemento al documento. Se recomienda configurar el elemento en este punto, mejor que en el constructor.</p></li>
 <li><p>disconnectedCallback(): Se llama cada vez que se elimina el elemento del documento.</p></li>
 <li><p>adoptedCallback(): Se llama cada vez que se mueve el elemento a un nuevo documento.</p></li>
@@ -884,6 +885,9 @@ document.write(`
 <li><p>Elementos hijos con <slot></p></li>
 <li><p>Custom Events</p></li>
 </ul>
+<blockquote>
+<div><p>Según las especificaciones del estándar, sólo se pueden usar atributos, data-, slots y custom events. Usar el constructor, propiedades, métodos o Observables no es estándar y por tanto no tiene porqué ser reutilizable en otros proyectos. No obstante, si estamos haciendo componentes para una aplicación en la que lo controlamos todo, pueden ser una buena idea.</p>
+</div></blockquote>
 <section id="constructor-de-los-componentes">
 <h3>Constructor de los componentes<a class="headerlink" href="#constructor-de-los-componentes" title="Link to this heading">#</a></h3>
 <p>Como se trata de una clase, tiene constructor. Si lo creamos con <code class="docutils literal notranslate"><span class="pre">new</span></code>, podemos pasarle parámetros por ahí. Esta forma excluye el uso de la etiqueta en un HTML. La forma de crear un Web Component sería la siguente:</p>
@@ -964,7 +968,7 @@ document.write(`
 </section>
 <section id="propiedades">
 <h3>Propiedades<a class="headerlink" href="#propiedades" title="Link to this heading">#</a></h3>
-<p>En este caso, los datos se pasan como propiedades de la instancia del componente en JavaScript. Las propiedades permiten una interacción más directa entre el componente y el código JavaScript que lo maneja.  Las propiedades no son visibles en el código HTML y pueden ser objetos más complejos que simples <code class="docutils literal notranslate"><span class="pre">strings</span></code> como, Sets, Maps, funciones o Observables.</p>
+<p>En este caso, los datos se pasan como propiedades de la instancia del componente en JavaScript. Las propiedades permiten una interacción más directa entre el componente y el código JavaScript que lo maneja. Las propiedades no son visibles en el código HTML y pueden ser objetos más complejos que simples <code class="docutils literal notranslate"><span class="pre">strings</span></code> como, Sets, Maps, funciones o Observables. Al igual que pasarlo por el constructor, ya no se pueden crear los componentes por <code class="docutils literal notranslate"><span class="pre">HTML</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">my</span><span class="o">-</span><span class="nx">component</span><span class="o">&gt;&lt;</span><span class="err">/my-component&gt;</span>
 <span class="p">...</span>
 
@@ -989,6 +993,7 @@ document.write(`
 <span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
+<p>Los métodos son muy útiles para indicar a los componentes que hagan alguna cosa. Por ejemplo, un componente <code class="docutils literal notranslate"><span class="pre">modal</span></code> o <code class="docutils literal notranslate"><span class="pre">accordion</span></code> pueden exponer métodos como <code class="docutils literal notranslate"><span class="pre">show</span></code>, <code class="docutils literal notranslate"><span class="pre">toggle</span></code>, <code class="docutils literal notranslate"><span class="pre">showAll</span></code>… para interaccionar con el resto de la aplicación.</p>
 </section>
 <section id="observables">
 <h3>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h3>
@@ -1188,7 +1193,8 @@ document.write(`
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Decidiendo entre dos posibles gestiones del estado global.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Mantener el estado es complejo. Podemos hechar mano de patrones de diseño. Por ejemplo, podemos centralizar el estado en un <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> Observable y que todos los componentes se suscriban. Esto los hace muy acoplados con el estado global y puede ser complejo de gestionar en aplicaciones grandes. La solución puede ser usar la inyección de dependencias al construir el componente y así seguir manteniendo la aplicación desacoplada. Si optamos por esa alternativa sólo podemos crear los componentes por Javascript, ya que necesitamos usar el <code class="docutils literal notranslate"><span class="pre">constructor</span></code>.</p>
+<p>Mantener el estado es complejo. La idea fundamental es centralizarlo en un objeto, Observable, Map o con librerías específicas como Redux. El problema es que los componentes son autocontenidos y deben compartir el estado con otros.</p>
+<p>Podemos echar mano de patrones de diseño. Por ejemplo, podemos centralizar el estado en un <code class="docutils literal notranslate"><span class="pre">Singleton</span></code> Observable y que todos los componentes se suscriban. Esto los hace muy acoplados con el estado global y puede ser complejo de gestionar en aplicaciones grandes. La solución puede ser usar la inyección de dependencias al construir el componente y así seguir manteniendo la aplicación desacoplada. Si optamos por esa alternativa sólo podemos crear los componentes por Javascript, ya que necesitamos usar el <code class="docutils literal notranslate"><span class="pre">constructor</span></code>.</p>
 <section id="mantener-el-estado-con-inyeccion-de-dependencias">
 <h3>Mantener el estado con Inyección de dependencias<a class="headerlink" href="#mantener-el-estado-con-inyeccion-de-dependencias" title="Link to this heading">#</a></h3>
 <p>El framework <code class="docutils literal notranslate"><span class="pre">Angular</span></code> utiliza servicios que inyecta en los componentes. Con Javascript vanilla se puede conseguir algo similar.</p>
@@ -1298,11 +1304,14 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Aún tenemos el problema de tener que ir construyendo <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Api()</span></code> en muchos sitios. En caso de que el constructor de <code class="docutils literal notranslate"><span class="pre">Api</span></code>necesite parámetros, hay que ir repitiendo por todo el código y es difícil de mantener. Para solucionar este problema podemos recurrir al patrón <code class="docutils literal notranslate"><span class="pre">Factory</span></code> y centralizar la creación de objetos o usar técnicas más avanzadas como <code class="docutils literal notranslate"><span class="pre">proxies</span></code> (tutorial con proxies: <a class="reference external" href="https://medium.com/&#64;sasha.kub95/dependency-injection-di-and-di-container-with-vanilla-javascript-adb888498bd">https://medium.com/&#64;sasha.kub95/dependency-injection-di-and-di-container-with-vanilla-javascript-adb888498bd</a> )</p>
+<p>Aún tenemos el problema de tener que ir construyendo <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Api()</span></code> en muchos sitios. En caso de que el constructor de <code class="docutils literal notranslate"><span class="pre">Api</span></code> necesite parámetros, hay que ir repitiendo por todo el código y es difícil de mantener. Para solucionar este problema podemos recurrir al patrón <code class="docutils literal notranslate"><span class="pre">Factory</span></code> y centralizar la creación de objetos o usar técnicas más avanzadas como <code class="docutils literal notranslate"><span class="pre">proxies</span></code> (tutorial con proxies: <a class="reference external" href="https://medium.com/&#64;sasha.kub95/dependency-injection-di-and-di-container-with-vanilla-javascript-adb888498bd">https://medium.com/&#64;sasha.kub95/dependency-injection-di-and-di-container-with-vanilla-javascript-adb888498bd</a> )</p>
 </section>
 <section id="di-en-web-components">
 <h4>DI en Web Components<a class="headerlink" href="#di-en-web-components" title="Link to this heading">#</a></h4>
 <p>En los Web Components contamos con una dificultad extra. Puesto que podemos necesitar crearlos sin javascript directamente en HTML, no podemos llamar a su constructor explícitamente para inyectarle las dependencias.</p>
+<blockquote>
+<div><p>En términos estrictos, un web component no puede tener más comunicación con el exterior que los atributos, propiedades y pueden emitir eventos personalizados. No obstante, si estamos haciendo una aplicación entera, tenemos más con los componentes porque tenemos el control total de la aplicación. Así, estos pueden tener dependencias, servicios y otras formas de comunicarse con otros componentes como los <code class="docutils literal notranslate"><span class="pre">Observables</span></code> o <code class="docutils literal notranslate"><span class="pre">Signals</span></code>.</p>
+</div></blockquote>
 <p>Una de las posibles soluciones es usar un contenedor global de dependencias. Este puede estar disponible para todos los componentes. Los componentes dependen del contenedor para acceder a sus servicios. Si bien el contenedor centraliza las dependencias y simplifica la gestión, esto puede crear un acoplamiento con el propio contenedor, haciéndolo menos flexible si se necesita cambiar la estrategia de inyección.</p>
 <p>Ejemplo:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">contenedorDependencias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span>
@@ -1942,7 +1951,8 @@ Esta función ya registra el componente.</p>
 <li><p><a class="github reference external" href="https://github.com/mdn/web-components-examples:">mdn/web-components-examples:</a> Ejemplos de Custom Elements de la MDN.</p></li>
 <li><p><a class="reference external" href="https://es.javascript.info/web-components">https://es.javascript.info/web-components</a> Otro muy buen manual.</p></li>
 <li><p><a class="reference external" href="https://learn-wcs.com/?active-item=why-web-components">https://learn-wcs.com/?active-item=why-web-components</a> Colección de enlaces muy buena.</p></li>
-<li><p><a class="reference external" href="https://positive-intentions.com/blog/dim-functional-webcomponents/">https://positive-intentions.com/blog/dim-functional-webcomponents/</a> Un ejemplo de programación funcional y reactiva con Web Components</p></li>
+<li><p><a class="reference external" href="https://positive-intentions.com/blog/dim-functional-webcomponents/">https://positive-intentions.com/blog/dim-functional-webcomponents/</a> Un ejemplo de programación funcional y reactiva con Web Components.</p></li>
+<li><p><a class="github reference external" href="https://github.com/davatron5000/awesome-standalones?tab=readme-ov-file">davatron5000/awesome-standalones</a>, <a class="github reference external" href="https://github.com/scottaohara/accessible_components?tab=readme-ov-file:">scottaohara/accessible_components</a> Ejemplos completos.</p></li>
 </ul>
 </section>
 </section>

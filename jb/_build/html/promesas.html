@@ -477,6 +477,28 @@ document.write(`
 <div><p>Parece ser que la salida de los scripts en Jupyter Notebook no funciona correctamente con la asincronía. Puede que alguna salida no sea totalmente correcta en los ejemplos. Se recomienda probarlos en un navegador.</p>
 </div></blockquote>
 <p>Antes de estudiar las promesas, vamos a repasar algunos conceptos sobre cómo funciona internamente el motor de javascript. De esta manera será más fácil entender cómo funcionan las promesas y cómo usarlas.</p>
+<p>Cuando leemos un programa secuencialmente, podemos pensar que se va a ejecutar en el órden en que está escrito. Pero en Javascript no siempre es así. Veamos un código tan simple como este:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ajax</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;http://...&quot;</span><span class="w"> </span><span class="p">);</span><span class="w">  </span><span class="c1">// Función inventada que hace una petición a un servidor</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En este caso, es muy probable que <code class="docutils literal notranslate"><span class="pre">data</span></code> no tenga los datos en ese momento, ya que la petición es asíncrona y se ejecutará después de hacer el <code class="docutils literal notranslate"><span class="pre">console.log()</span></code>.</p>
+<p>Esta particularidad es la que vamos a estudiar, veremos porqué se produce y cómo tratarla. En general, la idea es que hay que indicar a Javascript que quieres hacer el log después de que estén los datos, no antes. Esto en general se hace con funciones de <code class="docutils literal notranslate"><span class="pre">callback</span></code> que son llamadas cuando se produce el evento y así liberan el hilo de ejecución.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">ajax</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;http://...&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">myCallbackFunction</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+<span class="w">	</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La función <code class="docutils literal notranslate"><span class="pre">myCallbackFunction</span></code> se crea para dar respuesta a los datos cuando lleguen. Es pasada como argumento a <code class="docutils literal notranslate"><span class="pre">ajax</span></code> y en este ejemplo suponemos que la llamará cuando tenga los datos.</p>
+<p>Las funciones asíncronas existen porque llaman a la API del navegador para algo, puede ser <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> o <code class="docutils literal notranslate"><span class="pre">fetch</span></code>, entre otras, esto hace que se ejecute en algún momento y la función de callback sirve para darle instrucciones de qué hacer cuando se complete la petición. Puesto que no podemos garantizar el tiempo que va a tardar o el órden, este código es impredecible:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;}</span>
+<span class="nx">ajax</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;http://...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">);</span>
+<span class="nx">ajax</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;http://...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>El resultado puede ser 42 o 41.</p>
 <section id="el-motor-de-javascript">
 <h2>El Motor de JavaScript<a class="headerlink" href="#el-motor-de-javascript" title="Link to this heading">#</a></h2>
 <p>El motor de JavaScript dentro del navegador es responsable de compilar y ejecutar el código JavaScript, manejar la pila de funciones (call stack), gestionar el alojamiento de los objetos en memoria (heap) y recolectar la basura de los objetos que ya no se necesitan. Además, proporciona una API con utilidades del navegador, red, funciones asíncronas y más.</p>
@@ -729,7 +751,7 @@ El propio lenguaje Javascript cuenta con multitud de funciones que aceptan funci
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data is being fetched...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1259ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done in 1318ms
 </pre></div>
 </div>
 </div>

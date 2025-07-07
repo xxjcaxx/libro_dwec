@@ -447,17 +447,15 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-entre-componentes">Comunicación entre componentes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input">@Input</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input">input()</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#property-has-no-initializers">Property has no initializers…</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output">@Output</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-configuracion-en-el-componente-hijo">Paso 1: Configuración en el Componente Hijo</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-captura-del-evento-en-el-componente-padre">Paso 2: Captura del Evento en el Componente Padre</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-output">función output</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ng-content">ng-content</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes">Pipes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-pipes-predefinidos">Uso de Pipes Predefinidos</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-pipes-personalizados">Creación de Pipes Personalizados</a></li>
@@ -468,7 +466,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-en-angular">Directivas en Angular</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-de-atributo">Crear directivas de atributo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementref-vs-renderer2">ElementRef vs Renderer2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-estructurales">Crear directivas estructurales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos">Eventos</a></li>
 </ul>
 </li>
@@ -537,8 +534,9 @@ document.write(`
 <p>El framework ha experimentado cambios en su nombre y esquema de versiones a lo largo del tiempo:</p>
 <ul class="simple">
 <li><p><strong>Hasta la versión 1.7:</strong> Angular.js</p></li>
-<li><p><strong>Desde la versión 2:</strong> Angular 2, 4, 5, 6, 7, …, 19 (actual)</p></li>
+<li><p><strong>Desde la versión 2:</strong> Angular 2, 4, 5, 6, 7, …, 20 (actual)</p></li>
 </ul>
+<p><a class="reference external" href="https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301">https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301</a></p>
 <p>Cada 6 meses libera una nueva versión. Suelen ser bastante compatibles entre las que están próximas y las últimas son retrocompatibles, excepto entre la 1 y la 2, donde cambió casi todo.</p>
 <p><strong>Características principales</strong></p>
 <ul class="simple">
@@ -772,7 +770,7 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 </div></blockquote>
 <section id="reactividad">
 <h3>Reactividad<a class="headerlink" href="#reactividad" title="Link to this heading">#</a></h3>
-<p>La reactividad web permite simplificar la manera en la que se actualizan los datos entre la interfaz y el estado de la aplicación. Esta gestión de la reactividad, en Angular está basada en <code class="docutils literal notranslate"><span class="pre">RxJS</span></code> y actualmente también en <code class="docutils literal notranslate"><span class="pre">Signals</span></code>. En ocasiones usaremos los elementos de RxJS de forma explícita, pero en el caso de las plantillas de los componentes, se hace de forma mucho más simplificada mediante interpolaciones.</p>
+<p>La reactividad web permite simplificar la manera en la que se actualizan los datos entre la interfaz y el estado de la aplicación. Esta gestión de la reactividad, en Angular está basada en <code class="docutils literal notranslate"><span class="pre">Signals</span></code> a partir de la versión 20. En ocasiones usaremos signals de forma explícita, pero en el caso de las plantillas de los componentes, se hace de forma mucho más simplificada mediante interpolaciones.</p>
 <section id="interpolacion">
 <h4>Interpolación<a class="headerlink" href="#interpolacion" title="Link to this heading">#</a></h4>
 <p>La interpolación en Angular es una herramienta fundamental para inyectar datos dinámicos en las plantillas HTML, permitiendo que la interfaces de usuario sean reactivas y se actualicen automáticamente en función de los cambios en los datos.</p>
@@ -880,7 +878,7 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 </div>
 <p><strong><code class="docutils literal notranslate"><span class="pre">&#64;for</span></code>:</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> itera sobre una colección de datos, mostrando un elemento HTML por cada elemento de la colección. Su sintaxis es la siguiente:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (elemento of colección; trackBy clave) {
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (elemento of colección; track clave) {
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ elemento }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 }
 </pre></div>
@@ -1041,13 +1039,16 @@ Hello, {{name}}
 <p>Los componentes se pueden anidar en una estructura jerárquica. Un componente padre puede contener uno o más componentes hijos, y cada componente hijo puede contener a su vez otros componentes hijos. Todo esto se hace importando el componente y usando la etiqueta HTML definida en la propiedad <code class="docutils literal notranslate"><span class="pre">selector</span></code>.</p>
 <p>Los componentes pueden comunicarse entre sí mediante diferentes mecanismos, como:</p>
 <ul class="simple">
-<li><p><strong>Entrada y salida de datos:</strong> Los componentes pueden intercambiar datos a través de propiedades de entrada y salida &#64;Input y &#64;Output.</p></li>
+<li><p><strong>Entrada y salida de datos:</strong> Los componentes pueden intercambiar datos a través de propiedades de entrada y salida <code class="docutils literal notranslate"><span class="pre">input()</span></code> y <code class="docutils literal notranslate"><span class="pre">output()</span></code>.</p></li>
 <li><p><strong>Servicios:</strong> Los componentes pueden compartir lógica y datos mediante servicios, que son clases que encapsulan funcionalidad reutilizable.</p></li>
 <li><p><strong>Eventos:</strong> Los componentes pueden emitir eventos que otros componentes pueden escuchar y responder.</p></li>
 </ul>
 <p>A su vez, esa comunicación suele ser internamente reactiva mediante <code class="docutils literal notranslate"><span class="pre">Observables</span></code> o <code class="docutils literal notranslate"><span class="pre">Signals</span></code>. Veremos cómo funciona la comunicación típica entre componentes padres e hijos y más adelante veremos cómo comunicarse a través de un servicio.</p>
+<blockquote>
+<div><p>En Angular 20 han consolidado el uso de <code class="docutils literal notranslate"><span class="pre">Signals</span></code> frente a <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. En ejemplos antiguos encontraremos &#64;Input, pero ahora vamos a usar <code class="docutils literal notranslate"><span class="pre">input()</span></code>, que no es un decorador, es una función y usa los mecanismos de los signals. El resultado es muy parecido, pero más eficiente.</p>
+</div></blockquote>
 <section id="input">
-<h4>&#64;Input<a class="headerlink" href="#input" title="Link to this heading">#</a></h4>
+<h4>input()<a class="headerlink" href="#input" title="Link to this heading">#</a></h4>
 <figure class="align-right" id="id3">
 <a class="reference internal image-reference" href="_images/inputoutputparentchild.png"><img alt="_images/inputoutputparentchild.png" src="_images/inputoutputparentchild.png" style="width: 318.5px; height: 120.0px;" /></a>
 <figcaption>
@@ -1068,7 +1069,7 @@ Hello, {{name}}
 </pre></div>
 </div>
 <p>El componente hijo:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 <span class="p">...</span>
 
 <span class="kd">@Component</span><span class="p">({</span>
@@ -1076,133 +1077,171 @@ Hello, {{name}}
 <span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./product-item.component.html&#39;</span><span class="p">,</span>
 <span class="p">})</span>
 <span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductItemComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">p</span><span class="o">!:</span><span class="w"> </span><span class="nx">Product</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">required</span><span class="o">&lt;</span><span class="nx">Product</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>La propiedad <code class="docutils literal notranslate"><span class="pre">p</span></code> está decorada con <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code>, lo que permite que este componente reciba un valor desde su componente padre.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">p!:</span> <span class="pre">Product</span></code> indica que <code class="docutils literal notranslate"><span class="pre">p</span></code> es una propiedad obligatoria de tipo <code class="docutils literal notranslate"><span class="pre">Product</span></code>. El <code class="docutils literal notranslate"><span class="pre">!</span></code> es una aserción de no nulo/no indefinido, lo que le dice a TypeScript que confíe en que <code class="docutils literal notranslate"><span class="pre">p</span></code> será inicializada correctamente.</p></li>
+<li><p>La propiedad <code class="docutils literal notranslate"><span class="pre">p</span></code> está inicializada como una <code class="docutils literal notranslate"><span class="pre">Signal</span></code> de tipo <code class="docutils literal notranslate"><span class="pre">Product</span></code> con <code class="docutils literal notranslate"><span class="pre">input()</span></code>, lo que permite que este componente reciba un valor desde su componente padre.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required</span></code> indica que <code class="docutils literal notranslate"><span class="pre">p</span></code> es una propiedad obligatoria de tipo <code class="docutils literal notranslate"><span class="pre">Product</span></code>.</p></li>
 </ul>
-<p>El decorador <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> en Angular se utiliza para marcar una propiedad de un componente como pública, permitiendo que este reciba datos desde un componente padre.</p>
-<p>Existen varias opciones y formas de usar <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code>, cada una con sus características y beneficios.</p>
-<p><strong>Ejemplo 1: <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> Requerido</strong></p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Input</span><span class="p">({</span><span class="w"> </span><span class="nx">required</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<p>La función <code class="docutils literal notranslate"><span class="pre">input()</span></code> en Angular se utiliza para marcar una propiedad de un componente como pública, permitiendo que este reciba datos desde un componente padre.</p>
+<p>Existen varias opciones y formas de usar <code class="docutils literal notranslate"><span class="pre">input()</span></code>, cada una con sus características y beneficios.</p>
+<p><strong>Calculando a partir del input</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span><span class="w"> </span>
+<span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`The slider&#39;s value is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span>
 </pre></div>
 </div>
-<p>En este ejemplo, la propiedad <code class="docutils literal notranslate"><span class="pre">name</span></code> está marcada como requerida. Si el componente padre no proporciona un valor para <code class="docutils literal notranslate"><span class="pre">name</span></code>, Angular generará un error. Esto asegura que todos los componentes hijos tengan los datos necesarios para funcionar correctamente.</p>
-<p><strong>Ejemplo 2: <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> con Getters y Setters</strong></p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">private</span><span class="w"> </span><span class="nx">myCourses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[];</span>
-
-<span class="kd">@Input</span><span class="p">()</span>
-<span class="nx">get</span><span class="w"> </span><span class="nx">courses</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">myCourses</span><span class="p">;</span>
+<p>Con <code class="docutils literal notranslate"><span class="pre">computed</span></code> se puede calcular reactivamente a partir de signals.</p>
+<p><strong>Input transforms</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;custom-slider&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="cm">/*...*/</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomSlider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="kt">trimString</span><span class="p">});</span>
 <span class="p">}</span>
-<span class="nx">set</span><span class="w"> </span><span class="nx">courses</span><span class="p">(</span><span class="nx">courses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">myCourses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">courses</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">trimString</span><span class="p">(</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Aquí se define una propiedad <code class="docutils literal notranslate"><span class="pre">courses</span></code> con <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code>, pero se utiliza un enfoque más avanzado con getters y setters. Esto permite controlar la forma en que los datos se asignan y se acceden. En este caso, <code class="docutils literal notranslate"><span class="pre">myCourses</span></code> es una propiedad privada y <code class="docutils literal notranslate"><span class="pre">courses</span></code> es una propiedad pública que expone <code class="docutils literal notranslate"><span class="pre">myCourses</span></code> de manera controlada. Cada vez que se asignan nuevos cursos, se puede agregar lógica adicional en el setter para manejar la asignación de los datos.</p>
-<p><strong>Ejemplo 3: <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code> con Alias</strong></p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Input</span><span class="p">(</span><span class="s1">&#39;userName&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<p>La función de transformación ha de ser <strong>pura</strong>.</p>
+<p>Hay dos transformaciones muy típicas que ya tiene Angular:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">input</span><span class="p">,</span><span class="w"> </span><span class="nx">booleanAttribute</span><span class="p">,</span><span class="w"> </span><span class="nx">numberAttribute</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="kd">@Component</span><span class="p">({</span><span class="cm">/*...*/</span><span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomSlider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">disabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="kt">booleanAttribute</span><span class="p">});</span><span class="w"> </span>
+<span class="w">  </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="kt">numberAttribute</span><span class="p">});</span><span class="w"> </span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Este ejemplo muestra cómo se puede usar un alias con <code class="docutils literal notranslate"><span class="pre">&#64;Input</span></code>. La propiedad pública del componente hijo será <code class="docutils literal notranslate"><span class="pre">name</span></code>, pero el componente padre puede pasarle datos usando el nombre <code class="docutils literal notranslate"><span class="pre">userName</span></code>. Esto es útil cuando se quiere mantener una convención de nombres específica en el componente hijo, pero se quiere proporcionar un nombre más descriptivo o claro para el componente padre.</p>
+<p><strong>input con Alias</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span><span class="cm">/*...*/</span><span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomSlider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">alias</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;sliderValue&#39;</span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">custom-slider</span> <span class="err">[</span><span class="na">sliderValue</span><span class="err">]=&quot;</span><span class="na">50</span><span class="err">&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p><strong>Model inputs</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomSlider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Define a model input named &quot;value&quot;.</span>
+<span class="w">  </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">model</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Update the model input with a new value, propagating the value to any bindings. </span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">oldValue</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">oldValue</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="cm">/* ... */</span>
+<span class="w">  </span><span class="c1">// Using the two-way binding syntax means that any changes to the slider&#39;s</span>
+<span class="w">  </span><span class="c1">// value automatically propagate back to the `volume` signal.</span>
+<span class="w">  </span><span class="c1">// Note that this binding uses the signal *instance*, not the signal value.</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;custom-slider [(value)]=&quot;volume&quot; /&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">MediaControls</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Create a writable signal for the `volume` local state. </span>
+<span class="w">  </span><span class="nx">volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Al igual que el <code class="docutils literal notranslate"><span class="pre">NgModel</span></code> en las plantillas, se puede usar <code class="docutils literal notranslate"><span class="pre">model</span></code> y <code class="docutils literal notranslate"><span class="pre">[()]</span></code> para permitir la comunicación bidireccional.</p>
+<p>En el ejemplo, el padre le pasa el signal al hijo, pero también se podría hacer con propiedades planas:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="cm">/* ... */</span>
+<span class="w">  </span><span class="c1">// `value` is a model input.</span>
+<span class="w">  </span><span class="c1">// The parenthesis-inside-square-brackets syntax (aka &quot;banana-in-a-box&quot;) creates a two-way binding</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;custom-slider [(value)]=&quot;volume&quot; /&gt;&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">MediaControls</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">protected</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <section id="property-has-no-initializers">
 <h5>Property has no initializers…<a class="headerlink" href="#property-has-no-initializers" title="Link to this heading">#</a></h5>
-<p>En TypeScript, el error “Property has no initializers…” se produce cuando se declara una propiedad sin asignarle un valor inicial. Esto es particularmente relevante cuando se utiliza el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code> en Angular, ya que indica que una propiedad será inicializada por el componente padre, lo cual podría no suceder siempre. Es importante manejar este caso adecuadamente para evitar errores en tiempo de ejecución y asegurar que el código sea robusto.</p>
-<p>Existen varias formas de solucionar este problema en TypeScript:</p>
-<ol class="arabic">
-<li><p><strong>Utilizar el operador <code class="docutils literal notranslate"><span class="pre">!</span></code></strong>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">products</span><span class="o">!:</span><span class="w"> </span><span class="nx">IProduct</span><span class="p">[];</span>
-</pre></div>
-</div>
-<p>Esta opción no es recomendable porque el operador <code class="docutils literal notranslate"><span class="pre">!</span></code> le dice a TypeScript que confíe en que la propiedad será inicializada eventualmente, lo que podría no ser cierto. Esto puede ocultar errores potenciales y llevar a problemas difíciles de depurar.</p>
-</li>
-<li><p><strong>Utilizar <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">undefined</span></code> o <code class="docutils literal notranslate"><span class="pre">?</span></code></strong>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">products?</span><span class="o">:</span><span class="w"> </span><span class="kt">IProduct</span><span class="p">[];</span>
-<span class="c1">// o</span>
-<span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">IProduct</span><span class="p">[]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>Esta es la solución más recomendable. Indica explícitamente que la propiedad <code class="docutils literal notranslate"><span class="pre">products</span></code> puede no ser inicializada, permitiendo a TypeScript manejar correctamente este caso. Esto obliga a tratar la propiedad como potencialmente <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, lo cual ayuda a prevenir errores en tiempo de ejecución.</p>
-</li>
-<li><p><strong>Desactivar <code class="docutils literal notranslate"><span class="pre">strictPropertyInitialization</span></code> en <code class="docutils literal notranslate"><span class="pre">tsconfig.json</span></code></strong>:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;compilerOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;strictPropertyInitialization&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Esta opción no es recomendable porque desactiva la verificación estricta de inicialización de propiedades en todo el proyecto. Esto puede llevar a pasar por alto otros errores de inicialización, reduciendo la seguridad y robustez del código.</p>
-</li>
+<p>En TypeScript, el error “Property has no initializers…” se produce cuando se declara una propiedad sin asignarle un valor inicial. Esto es particularmente relevante cuando se utiliza el decorador <code class="docutils literal notranslate"><span class="pre">input</span></code> en Angular, ya que indica que una propiedad será inicializada por el componente padre, lo cual podría no suceder siempre. Es importante manejar este caso adecuadamente para evitar errores en tiempo de ejecución y asegurar que el código sea robusto.</p>
+<p>Existen varias formas de solucionar este problema:</p>
+<ol class="arabic simple">
+<li><p>Con .required():</p></li>
 </ol>
-<p>Para manejar adecuadamente la inicialización de propiedades en Angular y TypeScript, es importante usar técnicas que indiquen claramente las posibles opciones de inicialización. Usar <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">undefined</span></code> o <code class="docutils literal notranslate"><span class="pre">?</span></code> es la mejor práctica, ya que proporciona una forma segura y explícita de tratar con propiedades opcionales. Se debería evitar el uso del operador <code class="docutils literal notranslate"><span class="pre">!</span></code>, a menos que sea una propiedad que, seguro que va a llegar.</p>
+<p>Fuerza al componente padre a poner siempre un valor en el atributo.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Utilizar <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">undefined</span></code> o <code class="docutils literal notranslate"><span class="pre">?</span></code></strong>:</p></li>
+</ol>
+<p>Si no está garantizado que el atributo llegue es la mejor opción, ya que fuerza a evaluar en el propio componente qué hacer si no tiene valor definido.</p>
 </section>
 </section>
-<section id="output">
-<h4>&#64;Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h4>
-<p>En Angular, el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Output</span></code> se utiliza para permitir que un componente hijo emita eventos personalizados que puedan ser capturados por su componente padre. Esto es útil para la comunicación de eventos y datos desde un componente hijo hacia su padre.</p>
-<p>Al emitir eventos desde el hijo y capturarlos en el padre, se puede gestionar fácilmente la lógica de la aplicación y mantener una separación clara de responsabilidades entre los componentes.</p>
-<p>En este ejemplo, un componente hijo emite un evento personalizado cuando se produce un cambio en la puntuación (<code class="docutils literal notranslate"><span class="pre">ratting</span></code>). El componente padre escucha este evento y actúa en consecuencia.</p>
-<section id="paso-1-configuracion-en-el-componente-hijo">
-<h5>Paso 1: Configuración en el Componente Hijo<a class="headerlink" href="#paso-1-configuracion-en-el-componente-hijo" title="Link to this heading">#</a></h5>
-<p>Primero, definimos un <code class="docutils literal notranslate"><span class="pre">EventEmitter</span></code> en el componente hijo que emitirá el evento cuando cambie la puntuación:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">EventEmitter</span><span class="p">,</span><span class="w"> </span><span class="nx">Output</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-
-<span class="kd">@Component</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-rating&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./rating.component.html&#39;</span><span class="p">,</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">RatingComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">@Output</span><span class="p">()</span><span class="w"> </span><span class="nx">rattingChanged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventEmitter</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">();</span>
-
-<span class="w">  </span><span class="nx">auxRatting</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nx">puntuar</span><span class="p">(</span><span class="nx">i</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">auxRatting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">rattingChanged</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">auxRatting</span><span class="p">);</span>
+<section id="funcion-output">
+<h4>función output<a class="headerlink" href="#funcion-output" title="Link to this heading">#</a></h4>
+<p>Se utiliza para permitir que un componente hijo emita eventos personalizados que puedan ser capturados por su componente padre. Esto es útil para la comunicación de eventos y datos desde un componente hijo hacia su padre.</p>
+<p>En el hijo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">toggleFav</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">fav</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">fav</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">favToggled</span><span class="p">.</span><span class="nx">emit</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+
+<span class="w">  </span><span class="nx">favToggled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">output</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">  </span><span class="nx">fav</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&#64;Output()</span> <span class="pre">rattingChanged</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">EventEmitter&lt;number&gt;();</span></code>: Define un evento <code class="docutils literal notranslate"><span class="pre">rattingChanged</span></code> que emitirá un número.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">puntuar(i:</span> <span class="pre">number):</span> <span class="pre">void</span></code>: Esta función se llama cuando se cambia la puntuación y emite el nuevo valor usando <code class="docutils literal notranslate"><span class="pre">rattingChanged.emit(this.auxRatting)</span></code>.</p></li>
-</ul>
-</section>
-<section id="paso-2-captura-del-evento-en-el-componente-padre">
-<h5>Paso 2: Captura del Evento en el Componente Padre<a class="headerlink" href="#paso-2-captura-del-evento-en-el-componente-padre" title="Link to this heading">#</a></h5>
-<p>En el componente padre, se escucha el evento emitido por el hijo y se define una función para manejar el cambio de puntuación:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- product-list.component.html --&gt;</span>
-<span class="p">&lt;</span><span class="nt">app-rating</span> <span class="err">(</span><span class="na">rattingChanged</span><span class="err">)=&quot;</span><span class="na">changeRatting</span><span class="err">($</span><span class="na">event</span><span class="err">,</span> <span class="na">product</span><span class="err">)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">app-rating</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">toggleFav</span><span class="err">()&quot;</span><span class="p">&gt;</span>{{fav ? &#39;👍&#39; : &#39;👎&#39;}}<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Product</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./product.model&#39;</span><span class="p">;</span>
+<p>En el padre:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">favs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">productList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">p</span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="nx">p</span><span class="p">,</span><span class="kc">false</span><span class="p">]));</span>
 
-<span class="kd">@Component</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-product-list&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./product-list.component.html&#39;</span><span class="p">,</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ProductListComponent</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">  </span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">[];</span>
-
-<span class="w">  </span><span class="nx">changeRatting</span><span class="p">(</span><span class="nx">stars</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="o">:</span><span class="w"> </span><span class="kt">Product</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">p</span><span class="p">.</span><span class="nx">ratting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stars</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">toggleFav</span><span class="p">(</span><span class="nx">p</span><span class="o">:</span><span class="kt">Product</span><span class="p">){</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">favs</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span><span class="o">!</span><span class="nb">Boolean</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">favs</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">p</span><span class="p">)));</span><span class="w">  </span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">(rattingChanged)=&quot;changeRatting($event,</span> <span class="pre">product)&quot;</span></code>: El componente padre escucha el evento <code class="docutils literal notranslate"><span class="pre">rattingChanged</span></code> del componente hijo y llama a la función <code class="docutils literal notranslate"><span class="pre">changeRatting</span></code>, pasando el valor del evento <code class="docutils literal notranslate"><span class="pre">$event</span></code> y el producto correspondiente <code class="docutils literal notranslate"><span class="pre">product</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">changeRatting(stars:</span> <span class="pre">number,</span> <span class="pre">p:</span> <span class="pre">Product):</span> <span class="pre">void</span></code>: Esta función actualiza la puntuación (<code class="docutils literal notranslate"><span class="pre">ratting</span></code>) del producto con el nuevo valor recibido desde el componente hijo.</p></li>
-</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">app-product-item</span> <span class="err">[</span><span class="na">product</span><span class="err">]=&quot;</span><span class="na">p</span><span class="err">&quot;</span> <span class="err">(</span><span class="na">favToggled</span><span class="err">)=&quot;</span><span class="na">toggleFav</span><span class="err">(</span><span class="na">p</span><span class="err">)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">app-product-item</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Es una simpliciación de la emisión de eventos personalizados.</p>
+</section>
+<section id="resumen">
+<h4>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h4>
+<p>Se pueden comunicar los componentes unidireccionalmente y bidireccionalmente. Lo más común es de padres a hijos con <code class="docutils literal notranslate"><span class="pre">input</span></code>. También de hijos a padres con <code class="docutils literal notranslate"><span class="pre">output</span></code>. Si se implementan los dos ya es una comunicación bidireccional. Aún puede ser más simple en determinadas circunstancias con el <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">input</span></code>.</p>
 </section>
 </section>
+<section id="ng-content">
+<h3>ng-content<a class="headerlink" href="#ng-content" title="Link to this heading">#</a></h3>
+<p>Al igual que en <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> en vanilla js usamos <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code> Angular tiene esta opción con algunas mejoras. Si queremos hacer que un componente pueda tener una parte con un HTML interno arbitrario, se puede poner dentro de su plantilla <code class="docutils literal notranslate"><span class="pre">&lt;ng-content&gt;</span></code></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;custom-card&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;div class=&quot;card-shadow&quot;&gt;</span>
+<span class="sb">      &lt;ng-content /&gt;</span>
+<span class="sb">    &lt;/div&gt;</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CustomCard</span><span class="w"> </span><span class="p">{</span><span class="cm">/* ... */</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Se usaría así:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">custom-card</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is the projected content<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">custom-card</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Para que quede un DOM así:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- The rendered DOM --&gt;</span>
+<span class="p">&lt;</span><span class="nt">custom-card</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-shadow&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is the projected content<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">custom-card</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Hay limitaciones como no poder manipular el contenido dinámicamente o no poder usar &#64;for o &#64;if con su contenido.</p>
+<p><a class="reference external" href="https://angular.dev/guide/components/content-projection">https://angular.dev/guide/components/content-projection</a></p>
 </section>
 <section id="pipes">
 <h3>Pipes<a class="headerlink" href="#pipes" title="Link to this heading">#</a></h3>
@@ -1290,8 +1329,8 @@ Hello, {{name}}
 <p>Las directivas en Angular son un mecanismo para manipular el DOM de manera declarativa. Pueden modificar elementos HTML y su comportamiento en función de la lógica de la aplicación. Existen tres tipos principales de directivas en Angular:</p>
 <ol class="arabic simple">
 <li><p><strong>Directivas de componente:</strong> Se definen mediante el selector en el decorador <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> y son las que hemos creado hasta ahora.</p></li>
-<li><p><strong>Directivas de atributo:</strong> Modifican el comportamiento de un elemento. Ejemplos comunes son <code class="docutils literal notranslate"><span class="pre">NgClass</span></code> y <code class="docutils literal notranslate"><span class="pre">NgStyle</span></code>.</p></li>
-<li><p><strong>Directivas estructurales:</strong> Manipulan la estructura del DOM, como <code class="docutils literal notranslate"><span class="pre">ngIf</span></code>, <code class="docutils literal notranslate"><span class="pre">ngFor</span></code> y <code class="docutils literal notranslate"><span class="pre">ngSwitch</span></code>, controlando si un elemento se muestra o no.</p></li>
+<li><p><strong>Directivas de atributo:</strong> Modifican el comportamiento de un elemento. Ejemplos comunes son <code class="docutils literal notranslate"><span class="pre">NgModel</span></code>, <code class="docutils literal notranslate"><span class="pre">NgClass</span></code> y <code class="docutils literal notranslate"><span class="pre">NgStyle</span></code>.</p></li>
+<li><p><strong>Directivas estructurales:</strong> Manipulan la estructura del DOM.</p></li>
 </ol>
 <section id="crear-directivas-de-atributo">
 <h3>Crear directivas de atributo<a class="headerlink" href="#crear-directivas-de-atributo" title="Link to this heading">#</a></h3>
@@ -1361,55 +1400,6 @@ Hello, {{name}}
 <span class="p">&lt;</span><span class="nt">p</span> <span class="err">#</span><span class="na">ocultar</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;margin-bottom: 0; display:none;&quot;</span><span class="p">&gt;</span>
   Producción: <span class="p">&lt;</span><span class="nt">span</span> <span class="err">*</span><span class="na">appForDelay</span><span class="o">=</span><span class="s">&quot;100; let p of placa.production&quot;</span><span class="p">&gt;</span>{{p}}W<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</section>
-<section id="crear-directivas-estructurales">
-<h3>Crear directivas estructurales<a class="headerlink" href="#crear-directivas-estructurales" title="Link to this heading">#</a></h3>
-<p>Las directivas estructurales, como <code class="docutils literal notranslate"><span class="pre">ngIf</span></code>, <code class="docutils literal notranslate"><span class="pre">ngFor</span></code> y <code class="docutils literal notranslate"><span class="pre">ngSwitch</span></code>, utilizan el asterisco (*) para simplificar la manipulación de etiquetas <code class="docutils literal notranslate"><span class="pre">&lt;ng-template&gt;</span></code> que rodean al elemento que están manipulando.</p>
-<p>Vamos a crear una directiva estructural llamada <code class="docutils literal notranslate"><span class="pre">ForDelay</span></code> que retrasa la visualización de elementos en un bucle.</p>
-<p>Primero, generamos la directiva:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ng<span class="w"> </span>g<span class="w"> </span>directive<span class="w"> </span>directives/for-delay
-</pre></div>
-</div>
-<p>Implementamos la lógica en el archivo <code class="docutils literal notranslate"><span class="pre">for-delay.directive.ts</span></code>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Directive</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="p">,</span><span class="w"> </span><span class="nx">TemplateRef</span><span class="p">,</span><span class="w"> </span><span class="nx">ViewContainerRef</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-
-<span class="kd">@Directive</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[appForDelay]&#39;</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ForDelayDirective</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">items</span><span class="o">:</span><span class="w"> </span><span class="kt">Array</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">delay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">templateRef</span><span class="o">:</span><span class="w"> </span><span class="kt">TemplateRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="nx">viewContainer</span><span class="o">:</span><span class="w"> </span><span class="kt">ViewContainerRef</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
-
-<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">appForDelay</span><span class="p">(</span><span class="nx">t</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">delay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">t</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">appForDelayOf</span><span class="p">(</span><span class="nx">array</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">array</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">renderItems</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">renderItems</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">viewContainer</span><span class="p">.</span><span class="nx">createEmbeddedView</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">templateRef</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">$implicit</span><span class="o">:</span><span class="w"> </span><span class="kt">item</span>
-<span class="w">      </span><span class="p">});</span>
-<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">delayTime</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">delay</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">delayTime</span><span class="p">(</span><span class="nx">ms</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>En el archivo de plantilla HTML, utilizamos nuestra directiva <code class="docutils literal notranslate"><span class="pre">ForDelay</span></code>:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">span</span> <span class="err">*</span><span class="na">appForDelay</span><span class="o">=</span><span class="s">&quot;100; let p of placa.production&quot;</span><span class="p">&gt;</span>{{p}}W<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -2018,17 +2008,15 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-entre-componentes">Comunicación entre componentes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input">@Input</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input">input()</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#property-has-no-initializers">Property has no initializers…</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output">@Output</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-configuracion-en-el-componente-hijo">Paso 1: Configuración en el Componente Hijo</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-captura-del-evento-en-el-componente-padre">Paso 2: Captura del Evento en el Componente Padre</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-output">función output</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ng-content">ng-content</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes">Pipes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-pipes-predefinidos">Uso de Pipes Predefinidos</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-pipes-personalizados">Creación de Pipes Personalizados</a></li>
@@ -2039,7 +2027,6 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-en-angular">Directivas en Angular</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-de-atributo">Crear directivas de atributo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementref-vs-renderer2">ElementRef vs Renderer2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-estructurales">Crear directivas estructurales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos">Eventos</a></li>
 </ul>
 </li>
