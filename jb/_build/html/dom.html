@@ -425,23 +425,23 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window">Window</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document">Document</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-nodos">Crear Nodos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-nodos">Buscar Nodos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-nodos">Modificar Nodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-elementos">Crear Elementos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-elementos">Buscar Elementos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-elementos">Modificar Elementos</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos">Estilos</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-eficiente-del-dom">Manipulación eficiente del DOM</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-plantillas">Creación de elementos mediante plantillas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con template</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
@@ -475,7 +475,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-y-handlers">Eventos y Handlers</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-events">Eventos (Events)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-handlers">Manejadores (Handlers)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso-en-html-y-javascript">Ejemplo de uso en HTML y JavaScript</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-linea">Eventos en línea</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-en-html-no-recomendable">Ejemplo en HTML (No recomendable)</a></li>
 </ul>
@@ -585,6 +584,40 @@ document.write(`
 <h2>Document<a class="headerlink" href="#document" title="Link to this heading">#</a></h2>
 <p>Este Objeto representa el documento HTML resultante de interpretar el HTML estático con las modificaciones que haya hecho javascript sobre él. Este Objeto también tiene métodos para manipular los elementos del DOM. Estos elementos están organizados en forma de árbol a partir de un nodo <code class="docutils literal notranslate"><span class="pre">HTML</span></code> del cual parten <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> y <code class="docutils literal notranslate"><span class="pre">BODY</span></code>.</p>
 <p>Muchos nodos son <code class="docutils literal notranslate"><span class="pre">Element</span></code>y otros son nodos de texto. Por tanto, en ocasiones hay que distinguir entre cualquier nodo o los que son <code class="docutils literal notranslate"><span class="pre">Element</span></code>, que parten de una etiqueta HTML.</p>
+<p>Ejemplo:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;contenedor&quot;</span><span class="p">&gt;</span>
+  Hola
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Este es un párrafo<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  Mundo
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Este <code class="docutils literal notranslate"><span class="pre">div</span></code> contiene tres nodos hijos:</p>
+<ol class="arabic simple">
+<li><p>Un nodo de texto: <code class="docutils literal notranslate"><span class="pre">&quot;Hola&quot;</span></code></p></li>
+<li><p>Un nodo <code class="docutils literal notranslate"><span class="pre">Element</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;Este</span> <span class="pre">es</span> <span class="pre">un</span> <span class="pre">párrafo&lt;/p&gt;</span></code></p></li>
+<li><p>Otro nodo de texto: <code class="docutils literal notranslate"><span class="pre">&quot;Mundo&quot;</span></code></p></li>
+</ol>
+<p>Ahora el código JavaScript para distinguirlos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">contenedor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;contenedor&#39;</span><span class="p">);</span>
+
+<span class="nx">contenedor</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">nodo</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">nodo</span><span class="p">.</span><span class="nx">nodeType</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">Node</span><span class="p">.</span><span class="nx">ELEMENT_NODE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Es un Element:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nodo</span><span class="p">.</span><span class="nx">tagName</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">nodo</span><span class="p">.</span><span class="nx">nodeType</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">Node</span><span class="p">.</span><span class="nx">TEXT_NODE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Es un nodo de texto:&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`&quot;</span><span class="si">${</span><span class="nx">nodo</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="si">}</span><span class="sb">&quot;`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Otro tipo de nodo:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nodo</span><span class="p">.</span><span class="nx">nodeType</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Es</span> <span class="n">un</span> <span class="n">nodo</span> <span class="n">de</span> <span class="n">texto</span><span class="p">:</span> <span class="s2">&quot;Hola&quot;</span>
+<span class="n">Es</span> <span class="n">un</span> <span class="n">Element</span><span class="p">:</span> <span class="n">P</span>
+<span class="n">Es</span> <span class="n">un</span> <span class="n">nodo</span> <span class="n">de</span> <span class="n">texto</span><span class="p">:</span> <span class="s2">&quot;Mundo&quot;</span>
+</pre></div>
+</div>
+<p>Esto demuestra que no todos los nodos son elementos HTML (<code class="docutils literal notranslate"><span class="pre">Element</span></code>), y que a veces es importante filtrarlos si solo te interesan las etiquetas HTML. Para eso, se debe usar <code class="docutils literal notranslate"><span class="pre">children</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">childNodes</span></code>, ya que <code class="docutils literal notranslate"><span class="pre">children</span></code> solo incluye nodos <code class="docutils literal notranslate"><span class="pre">Element</span></code>.</p>
 <section id="esperar-a-que-cargue-el-dom">
 <h3>Esperar a que Cargue el DOM<a class="headerlink" href="#esperar-a-que-cargue-el-dom" title="Link to this heading">#</a></h3>
 <p>Podemos asegurarnos de que el DOM esté completamente cargado antes de ejecutar nuestro script utilizando <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
@@ -605,18 +638,18 @@ document.write(`
 <p>Si, además, añadimos el atributo <code class="docutils literal notranslate"><span class="pre">defer</span></code>a un script, este se descargará de manera asíncrona y se ejecutará cuando el HTML haya sido totalmente interpretado y justo antes que <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code>.</p>
 <p>Si es necesario esperar a que carge también todo el CSS, es decir el <code class="docutils literal notranslate"><span class="pre">CSSOM</span></code>, podemos recurrir al evento <code class="docutils literal notranslate"><span class="pre">load</span></code>, que espera a cargar e interpretar todo el CSS. Pero si no es necesario, es mejor esperar sólo al DOM. Esto es porque hay recursos muy pesados como imágenes o vídeos que puede incluso que no lleguen a cargar.</p>
 <blockquote>
-<div><p>En general, recomendaremos usar <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code> en vez de poner el script al final o <code class="docutils literal notranslate"><span class="pre">load</span></code> porque al ser ejecutado al principio, ya hay cosas que se puede ir ejecutando sin necesidad de DOM antes de que cargue totalmente. En cualquier caso, los script en <em><strong>Módulos</strong></em> siempre se ejecutan en modo <code class="docutils literal notranslate"><span class="pre">defer</span></code>.</p>
+<div><p>En general, recomendaremos usar <code class="docutils literal notranslate"><span class="pre">DOMContentLoaded</span></code> en vez de poner el script al final o <code class="docutils literal notranslate"><span class="pre">load</span></code> porque al ser ejecutado al principio, ya hay cosas que se puede ir ejecutando sin necesidad de DOM antes de que cargue totalmente. Además, hace que el código sea independiente de cómo se inserta en la web. En cualquier caso, los script en <em><strong>Módulos</strong></em> siempre se ejecutan en modo <code class="docutils literal notranslate"><span class="pre">defer</span></code>.</p>
 </div></blockquote>
 </section>
-<section id="crear-nodos">
-<h3>Crear Nodos<a class="headerlink" href="#crear-nodos" title="Link to this heading">#</a></h3>
+<section id="crear-elementos">
+<h3>Crear Elementos<a class="headerlink" href="#crear-elementos" title="Link to this heading">#</a></h3>
 <p>Normalmente se crean nodos con <code class="docutils literal notranslate"><span class="pre">document.createElement()</span></code> y similares. También se crean implícitamente cuando cambiamos el <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code> de un nodo o usando <code class="docutils literal notranslate"><span class="pre">.append()</span></code> con código HTML.</p>
 <p>Además de esas técnicas, existen otras formas de crear nodos en el DOM. Una alternativa es <code class="docutils literal notranslate"><span class="pre">document.createDocumentFragment()</span></code>, que permite construir múltiples nodos en memoria antes de agregarlos al DOM, mejorando el rendimiento. También se pueden usar plantillas <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>, que facilitan la creación de contenido estructurado sin insertarlo inmediatamente en el documento.</p>
 <p>En cuanto a las mejores prácticas, es recomendable evitar la manipulación excesiva del DOM porque puede afectar el rendimiento. Si se usa <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>, hay que tener cuidado con la seguridad, ya que puede introducir vulnerabilidades como XSS. También es preferible crear y modificar nodos en memoria antes de insertarlos en el DOM, para reducir el número de reflujo y repintado. Además, el uso de APIs modernas como <code class="docutils literal notranslate"><span class="pre">cloneNode()</span></code> y <code class="docutils literal notranslate"><span class="pre">importNode()</span></code> puede ser útil para manejar estructuras de manera eficiente.</p>
 <p>Al crear un nodo se crea un objeto a partir del prototipo <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> que puede ser manipulado como cualquier otro objeto, puede ser clonado con <code class="docutils literal notranslate"><span class="pre">cloneNode()</span></code> y puede ser insertado con <code class="docutils literal notranslate"><span class="pre">append()</span></code> en otros elementos.</p>
 </section>
-<section id="buscar-nodos">
-<h3>Buscar Nodos<a class="headerlink" href="#buscar-nodos" title="Link to this heading">#</a></h3>
+<section id="buscar-elementos">
+<h3>Buscar Elementos<a class="headerlink" href="#buscar-elementos" title="Link to this heading">#</a></h3>
 <p>Para manipular elementos del DOM, primero debemos encontrarlos. Los métodos más comunes son:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">document.getElementById(id)</span></code>: Encuentra un elemento por su ID.</p></li>
@@ -666,8 +699,8 @@ document.write(`
 <div><p>No hay una manera mejor que otras en todas las ocasiones de encontrar los nodos. Si no queremos fallar se puede usar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> y usar selectores de CSS. De esta manera, cambiar el selector es cambiar la “query”. No obstante, los otros selectores más primitivos puede que sean más rápidos en ciertas ocasiones.</p>
 </div></blockquote>
 </section>
-<section id="modificar-nodos">
-<h3>Modificar Nodos<a class="headerlink" href="#modificar-nodos" title="Link to this heading">#</a></h3>
+<section id="modificar-elementos">
+<h3>Modificar Elementos<a class="headerlink" href="#modificar-elementos" title="Link to this heading">#</a></h3>
 <p>Una vez que hemos encontrado los nodos, podemos modificarlos. Algunos métodos útiles incluyen:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.innerHTML</span></code>, <code class="docutils literal notranslate"><span class="pre">.innerText</span></code>, <code class="docutils literal notranslate"><span class="pre">.outerHTML</span></code>: Para cambiar el contenido HTML o texto de un elemento.</p></li>
@@ -686,6 +719,9 @@ document.write(`
 <span class="nx">element</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>En la programación de una SPA se recurre muchas veces a <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>, pero si solo nos interesa modificar el contenido del texto, es mejor <code class="docutils literal notranslate"><span class="pre">innerText</span></code> o <code class="docutils literal notranslate"><span class="pre">textContent</span></code>. Estas son más seguras porque no interpretan ni ejecutan código HTML, lo que reduce el riesgo de ataques <code class="docutils literal notranslate"><span class="pre">XSS</span> <span class="pre">(cross-site</span> <span class="pre">scripting)</span></code>. Además, suelen ser más rápidas porque no requieren que el navegador analice y reprocese el árbol DOM con nuevas etiquetas. <code class="docutils literal notranslate"><span class="pre">innerText</span></code> tiene en cuenta los estilos CSS y el layout mientras que <code class="docutils literal notranslate"><span class="pre">textContent</span></code> extrae o asigna el contenido textual bruto. En la mayoría de los casos <code class="docutils literal notranslate"><span class="pre">textContent</span></code> es la mejor opción.</p>
+</div></blockquote>
 <p>Lo que más habitualmente se hace es crear nodos y sustituir contenidos. Podemos distinguir dos metodologías diferenciadas que suelen mezclarse en proyectos reales. Un es crear todo con <code class="docutils literal notranslate"><span class="pre">document.createElement()</span></code> y la otra ir generando una <code class="docutils literal notranslate"><span class="pre">string</span></code> con código <code class="docutils literal notranslate"><span class="pre">HTML</span></code> y insertarlo en un elemento existente con <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code>. Luego veremos técnicas más sofisticadas como las <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">literals</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code>. Para cambiar el contenido de un nodo existente se pueden añadir o quitar nodos hijos con las funciones vistas anteriormente. Si se quiere limpiar totalmente un elemento podemos usar <code class="docutils literal notranslate"><span class="pre">innerHTML=''</span></code> o mejor <code class="docutils literal notranslate"><span class="pre">.replaceChildren()</span></code>.</p>
 <section id="atributos">
 <h4>Atributos<a class="headerlink" href="#atributos" title="Link to this heading">#</a></h4>
@@ -695,6 +731,28 @@ document.write(`
 
 <span class="nx">button</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;helloButton&quot;</span><span class="p">);</span>
 <span class="nx">button</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;disabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="atributos-de-datos">
+<h4>Atributos de Datos<a class="headerlink" href="#atributos-de-datos" title="Link to this heading">#</a></h4>
+<p>HTML5 permite agregar atributos personalizados no visuales a las etiquetas utilizando <code class="docutils literal notranslate"><span class="pre">data-*</span></code>. Estos atributos pueden ser accesibles a través de JavaScript usando <code class="docutils literal notranslate"><span class="pre">dataset</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">article</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&quot;electriccars&quot;</span>
+    <span class="na">data-columns</span><span class="o">=</span><span class="s">&quot;3&quot;</span>
+    <span class="na">data-index-number</span><span class="o">=</span><span class="s">&quot;12314&quot;</span>
+    <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;cars&quot;</span><span class="p">&gt;</span>
+    ...
+<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">article</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;electriccars&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">columns</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">indexNumber</span><span class="p">);</span><span class="w"> </span><span class="c1">// 12314</span>
+</pre></div>
+</div>
+<p>Para encontrar luego un elemento con un dato determinado podemos usar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="sb">`[data-columns=&quot;3&quot;]`</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -744,8 +802,8 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="creacion-de-elementos-plantillas">
-<h3>Creación de elementos (plantillas)<a class="headerlink" href="#creacion-de-elementos-plantillas" title="Link to this heading">#</a></h3>
+<section id="creacion-de-elementos-mediante-plantillas">
+<h3>Creación de elementos mediante plantillas<a class="headerlink" href="#creacion-de-elementos-mediante-plantillas" title="Link to this heading">#</a></h3>
 <p>Se pueden crear elementos totalmente de forma programática. Pero puede ser tedioso. Muchas veces, si sabemos que hay fragmentos de HTML bastante estáticos, podemos usar <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code> y <code class="docutils literal notranslate"><span class="pre">.append()</span></code> con plantillas creadas mediante strings.</p>
 <p>Para crear elementos del DOM mediante plantillas hay muchas formas. Obviaremos las más farragosas y nos centraremos en aquellas que son más rápidas.</p>
 <section id="creacion-de-elementos-template-literal">
@@ -793,7 +851,8 @@ document.write(`
 </div>
 </div>
 </div>
-<p>En el siguiente ejemplo, extraido de <a class="reference external" href="https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation">https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation</a> se puede ver cómo hacer una función para tagged template literal que personalice una plantilla.</p>
+<p>En el siguiente ejemplo, extraído de <a class="reference external" href="https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation">https://exploringjs.com/es6/ch_template-literals.html#sec_html-tag-function-implementation</a> se puede ver cómo hacer una función para tagged template literal que personalice una plantilla.</p>
+<p>Las funciones sirven para sanitizar el texto para evitar inyecciones de código. Además, crea todo un motor de plantillas. A continuación declara una plantilla <code class="docutils literal notranslate"><span class="pre">tmpl</span></code> como una función que llama a la función <code class="docutils literal notranslate"><span class="pre">html</span></code> con los datos pasados como parámetros.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">htmlEscape</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -932,7 +991,7 @@ document.write(`
 </div>
 </section>
 <section id="creacion-de-elementos-con-template">
-<h4>Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code><a class="headerlink" href="#creacion-de-elementos-con-template" title="Link to this heading">#</a></h4>
+<h4>Creación de elementos con template<a class="headerlink" href="#creacion-de-elementos-con-template" title="Link to this heading">#</a></h4>
 <p>La etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> es especial. Su interior no se renderiza como el resto, pero queda accesible para ser buscado. La utilidad es crear plantillas en HTML que puedan ser clonadas y rellenadas como se desee.</p>
 <p>Veamos este HTML extraido de la web de referencia: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template:">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template:</a></p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;producttable&quot;</span><span class="p">&gt;</span>
@@ -986,31 +1045,9 @@ document.write(`
 </pre></div>
 </div>
 <blockquote>
-<div><p>Cualquiera de las formas que hemos visto para crear elementos, mediante template literal o funciones tagged, creando nuestras interpolaciones o con templates es válida y combinable. Para lograr lo que los frameworks hacen con sus motores de plantilla hay mucho trecho, porque no se ha hablado del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">DOM</span></code> y otras técnicas avanzadas como los <code class="docutils literal notranslate"><span class="pre">custom</span> <span class="pre">elements</span></code> para lograr plantillas con reactividad. Si logramos hacer un motor de plantillas suficientemente genérico para la aplicación en la que estamos trabajando, el uso de frameworks queda mucho menos justificado.</p>
+<div><p>Cualquiera de las formas que hemos visto para crear elementos, mediante template literal o funciones tagged, creando nuestras interpolaciones o con templates es válida y combinable. Para lograr lo que los frameworks hacen con sus motores de plantilla hay mucho trecho, porque no se ha hablado del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">DOM</span></code> y otras técnicas avanzadas como los <code class="docutils literal notranslate"><span class="pre">custom</span> <span class="pre">elements</span></code> para lograr plantillas con reactividad. Si logramos hacer un motor de plantillas suficientemente genérico para la aplicación en la que estamos trabajando, el uso de frameworks queda mucho menos justificado. En la sección de <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> explicaremos más técnicas y con más profundidad este tema.</p>
 </div></blockquote>
 </section>
-</section>
-<section id="atributos-de-datos">
-<h3>Atributos de Datos<a class="headerlink" href="#atributos-de-datos" title="Link to this heading">#</a></h3>
-<p>HTML5 permite agregar atributos personalizados no visuales a las etiquetas utilizando <code class="docutils literal notranslate"><span class="pre">data-*</span></code>. Estos atributos pueden ser accesibles a través de JavaScript usando <code class="docutils literal notranslate"><span class="pre">dataset</span></code>.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">article</span>
-    <span class="na">id</span><span class="o">=</span><span class="s">&quot;electriccars&quot;</span>
-    <span class="na">data-columns</span><span class="o">=</span><span class="s">&quot;3&quot;</span>
-    <span class="na">data-index-number</span><span class="o">=</span><span class="s">&quot;12314&quot;</span>
-    <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;cars&quot;</span><span class="p">&gt;</span>
-    ...
-<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">article</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;electriccars&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">columns</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">indexNumber</span><span class="p">);</span><span class="w"> </span><span class="c1">// 12314</span>
-</pre></div>
-</div>
-<p>Para encontrar luego un elemento con un dato determinado podemos usar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code>:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="sb">`[data-columns=&quot;3&quot;]`</span><span class="p">);</span>
-</pre></div>
-</div>
 </section>
 </section>
 <section id="formularios-en-javascript">
@@ -1021,6 +1058,12 @@ document.write(`
 <div><p>De hecho, la única validación estrictamente necesaria se debe hacer en el servidor para evitar peticiones ilegales por clientes como postman o curl.</p>
 </div></blockquote>
 <p>Pero se puede usar Javascript para mucho más que validar formularios. Por ejemplo, nos puede ayudar a autocompletar campos, descargar datos en segundo plano o tratar con imágenes o datos complejos antes de enviar al servidor.</p>
+<blockquote>
+<div><p>En este apartado iremos desgranando cómo JS puede ayudar a tratar con formularios desde casi ningún control a control total por parte de JS.</p>
+</div></blockquote>
+<blockquote>
+<div><p>En este capítulo vamos a tratar los formularios desde el punto de vista del DOM. Pero estos envían datos al servidor. Este tema es complejo por su parte y lo trataremos en el capítulo de comunicación con el servidor.</p>
+</div></blockquote>
 <section id="atributos-de-formularios">
 <h3>Atributos de Formularios<a class="headerlink" href="#atributos-de-formularios" title="Link to this heading">#</a></h3>
 <p>El contenido de los campos de entrada en un formulario se puede visualizar y modificar utilizando el atributo <code class="docutils literal notranslate"><span class="pre">value</span></code>. Otros elementos del formulario, como los botones de opción (radio button) y las casillas de verificación (checkbox), deben tener un <code class="docutils literal notranslate"><span class="pre">name</span></code> común y también utilizan los atributos <code class="docutils literal notranslate"><span class="pre">value</span></code> y <code class="docutils literal notranslate"><span class="pre">checked</span></code>. Para los elementos <code class="docutils literal notranslate"><span class="pre">select</span></code>, se utilizan los atributos <code class="docutils literal notranslate"><span class="pre">options</span></code> y <code class="docutils literal notranslate"><span class="pre">selectedIndex</span></code>.</p>
@@ -1189,7 +1232,7 @@ document.write(`
 </pre></div>
 </div>
 <blockquote>
-<div><p>Esta solución está a medio camino entre el control total por JS y el control por HTML tradicional. Puede ser útil si usamos JS para su uso</p>
+<div><p>Esta solución está a medio camino entre el control total por JS y el control por HTML tradicional. En aplicaciones web hechas, por ejemplo, con PHP tradicional, se puede usar pequeños fragmentos de Javascript para estas cosas. Recordemos que no todas las webs deben ser necesariamente SPAs y hay muchas opciones.</p>
 </div></blockquote>
 </section>
 </section>
@@ -1217,7 +1260,7 @@ document.write(`
 </pre></div>
 </div>
 <blockquote>
-<div><p>Mirar el capítulo de comunicación con el servidor para más información y ejemplos con `FormData</p>
+<div><p>Mirar el capítulo de comunicación con el servidor para más información y ejemplos con <code class="docutils literal notranslate"><span class="pre">FormData</span></code></p>
 </div></blockquote>
 </section>
 </section>
@@ -1246,7 +1289,13 @@ document.write(`
 </section>
 <section id="validacion-y-estilo">
 <h4>Validación y estilo<a class="headerlink" href="#validacion-y-estilo" title="Link to this heading">#</a></h4>
-<p>En caso de que un campo no sea válido, se puede manipular las clases CSS o mostrar un mensaje de error. Aquí entra el tema de la usabilidad. Estamos muy acostumbrados a un comportamiento de los formularios que nos informe de si estamos haciendo las cosas bien. Por ejemplo: un <code class="docutils literal notranslate"><span class="pre">input</span></code> que no haya sido manipulado de momento, no debería mostrarse como erróneo. Pero si ya se ha escrito algo en él y saltamos de <code class="docutils literal notranslate"><span class="pre">input</span></code>, ya debería mostrarse como erróneo. Esto también puede ser farragoso y siempre es mejor separar por funciones puras la validación y la aplicación de estilos.</p>
+<p>Aquí entra el tema de la usabilidad. Estamos muy acostumbrados a un comportamiento de los formularios que nos informe de si estamos haciendo las cosas bien. Por ejemplo: un <code class="docutils literal notranslate"><span class="pre">input</span></code> que no haya sido manipulado de momento, no debería mostrarse como erróneo. Pero si ya se ha escrito algo en él y saltamos de <code class="docutils literal notranslate"><span class="pre">input</span></code>, ya debería mostrarse como erróneo. Esto también puede ser farragoso y siempre es mejor separar por funciones puras la validación y la aplicación de estilos.</p>
+<p>En general, Javascript puede manipular las clases de los inputs en función de si son válidos. No se puede “forzar” directamente un input a ser <code class="docutils literal notranslate"><span class="pre">:valid</span></code> desde JavaScript sin cumplir las condiciones que lo hacen válido. Pero se pueden manipular los valores o restricciones que lo hacen válido:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">input</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s2">&quot;required&quot;</span><span class="p">);</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s2">&quot;pattern&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En una aplicación con muchos formularios es buena idea crear un “motor” de validación donde declarar las restricciones por un lado y validar todos los formularios mediante las mismas funciones. Esto es algo que hacen frameworks como <code class="docutils literal notranslate"><span class="pre">Angular</span></code>.</p>
 </section>
 </section>
 <section id="ficheros-en-formularios">
@@ -1332,7 +1381,7 @@ document.write(`
 <li><p>Se crea un objeto JSON con el nombre, tipo y datos del fichero en Base64.</p></li>
 <li><p>Se envía el objeto JSON utilizando <code class="docutils literal notranslate"><span class="pre">fetch</span></code> con el método <code class="docutils literal notranslate"><span class="pre">POST</span></code> y el encabezado <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> establecido como <code class="docutils literal notranslate"><span class="pre">application/json</span></code>.</p></li>
 </ul>
-<p>Algunos servicios como supabase aceptan que se les envíe los binarios con el método tradicional y los datos textuales en <code class="docutils literal notranslate"><span class="pre">JSON</span></code>, eso implica dos peticiones. En el apartado de <span class="xref std std-doc">../supabase.ipynb</span> hay ejemplos.</p>
+<p>Algunos servicios como Supabase aceptan que se les envíe los binarios con el método tradicional y los datos textuales en <code class="docutils literal notranslate"><span class="pre">JSON</span></code>, eso implica dos peticiones. En el apartado de Supabase hay ejemplos.</p>
 </section>
 <section id="validacion-de-ficheros">
 <h4>Validación de ficheros<a class="headerlink" href="#validacion-de-ficheros" title="Link to this heading">#</a></h4>
@@ -1530,157 +1579,37 @@ document.write(`
 </section>
 <section id="el-objeto-file">
 <h4>El Objeto <code class="docutils literal notranslate"><span class="pre">File</span></code><a class="headerlink" href="#el-objeto-file" title="Link to this heading">#</a></h4>
-<p>Un objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> en JavaScript representa un archivo que se ha seleccionado a través de un elemento <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;file&quot;&gt;</span></code> o que se ha creado mediante la API de archivos. Este objeto hereda de <code class="docutils literal notranslate"><span class="pre">Blob</span></code> y, por lo tanto, tiene todos los atributos y métodos de un <code class="docutils literal notranslate"><span class="pre">Blob</span></code>, además de algunos atributos específicos para los archivos. Aquí tenemos una lista de los atributos principales del objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> y su utilidad:</p>
-<ol class="arabic simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">name</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: El nombre del archivo, incluido su extensión.</p></li>
-<li><p><strong>Utilidad</strong>: Utilizado para mostrar o manipular el nombre del archivo. Por ejemplo, se puede mostrar al usuario el nombre del archivo que se ha seleccionado o utilizarlo para enviarlo al servidor.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">lastModified</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: El timestamp (en milisegundos desde el 1 de enero de 1970) de la última vez que el archivo fue modificado.</p></li>
-<li><p><strong>Utilidad</strong>: Permite conocer la fecha y hora de la última modificación del archivo. Puede ser útil para sincronización, control de versiones o simplemente para mostrar esta información al usuario.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">lastModifiedDate</span></code></strong> (obsoleto, usar <code class="docutils literal notranslate"><span class="pre">lastModified</span></code> en su lugar)</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Un objeto <code class="docutils literal notranslate"><span class="pre">Date</span></code> que representa la fecha de la última modificación del archivo.</p></li>
-<li><p><strong>Utilidad</strong>: Similar a <code class="docutils literal notranslate"><span class="pre">lastModified</span></code>, pero como un objeto <code class="docutils literal notranslate"><span class="pre">Date</span></code>. Este atributo está obsoleto y no se recomienda su uso.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">size</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: El tamaño del archivo en bytes.</p></li>
-<li><p><strong>Utilidad</strong>: Permite conocer el tamaño del archivo. Es útil para validar si el archivo cumple con los requisitos de tamaño antes de subirlo o para mostrar esta información al usuario.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">type</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: El tipo MIME del archivo (por ejemplo, “image/png” o “application/pdf”).</p></li>
-<li><p><strong>Utilidad</strong>: Utilizado para determinar el tipo de contenido del archivo. Esto es útil para validar el tipo de archivo que se ha seleccionado, para decidir cómo procesarlo o para enviarlo al servidor con el tipo correcto.</p></li>
-</ul>
-</li>
-</ol>
-<p>El objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> también hereda todos los métodos de <code class="docutils literal notranslate"><span class="pre">Blob</span></code>, lo que permite manipular el contenido del archivo de varias maneras. Algunos de estos métodos incluyen:</p>
-<ol class="arabic simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">slice([start[,</span> <span class="pre">end[,</span> <span class="pre">contentType]]])</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Crea un nuevo <code class="docutils literal notranslate"><span class="pre">Blob</span></code> representando una porción del archivo original.</p></li>
-<li><p><strong>Utilidad</strong>: Permite trabajar con una parte específica del archivo, lo cual puede ser útil para subir archivos en partes o para manipular solo una sección del archivo.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">text()</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Devuelve una promesa que se resuelve con el contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code> como una cadena de texto.</p></li>
-<li><p><strong>Utilidad</strong>: Permite leer el contenido de un archivo como texto, lo que es útil para archivos de texto, CSV, JSON, etc.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">arrayBuffer()</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Devuelve una promesa que se resuelve con el contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code> como un <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code>.</p></li>
-<li><p><strong>Utilidad</strong>: Útil para trabajar con datos binarios de bajo nivel.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">stream()</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Devuelve un <code class="docutils literal notranslate"><span class="pre">ReadableStream</span></code> del contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code>.</p></li>
-<li><p><strong>Utilidad</strong>: Permite trabajar con el contenido del archivo como un flujo de datos, lo que puede ser útil para grandes archivos que necesitan ser procesados por partes.</p></li>
-</ul>
-</li>
-</ol>
+<p>Un objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> en JavaScript representa un archivo que se ha seleccionado a través de un elemento <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;file&quot;&gt;</span></code> o que se ha creado mediante la API de archivos.</p>
+<p>Este objeto proporciona una forma sencilla de acceder a los metadatos del archivo (como su nombre, tamaño o tipo) y también permite manipular su contenido de forma eficiente. Dado que hereda de <code class="docutils literal notranslate"><span class="pre">Blob</span></code>, también se pueden usar todos los métodos de manipulación de datos binarios que ofrece esta interfaz.</p>
+<p>A la hora de usar un <code class="docutils literal notranslate"><span class="pre">File</span></code>, es común acceder a propiedades como <code class="docutils literal notranslate"><span class="pre">name</span></code> para obtener el nombre del archivo, o <code class="docutils literal notranslate"><span class="pre">size</span></code> y <code class="docutils literal notranslate"><span class="pre">type</span></code> para hacer validaciones antes de subirlo al servidor, asegurándonos, por ejemplo, de que no excede un tamaño máximo o que pertenece a un tipo MIME permitido. También es posible acceder a la fecha de última modificación del archivo con <code class="docutils literal notranslate"><span class="pre">lastModified</span></code>, lo cual puede ser útil en tareas de sincronización o control de versiones.</p>
+<p>Más allá de sus propiedades, lo más interesante del objeto <code class="docutils literal notranslate"><span class="pre">File</span></code> es cómo nos permite acceder a su contenido. Métodos como <code class="docutils literal notranslate"><span class="pre">text()</span></code> o <code class="docutils literal notranslate"><span class="pre">arrayBuffer()</span></code> devuelven el contenido completo del archivo como texto o como datos binarios, respectivamente, lo que abre la puerta a leer archivos CSV, JSON, imágenes, o cualquier otro tipo de dato. Para archivos grandes o cuando se requiere un procesamiento más controlado, también es posible trabajar con flujos usando <code class="docutils literal notranslate"><span class="pre">stream()</span></code>, o extraer partes específicas del archivo con <code class="docutils literal notranslate"><span class="pre">slice()</span></code>.</p>
 </section>
 <section id="el-objeto-filereader">
 <h4>El objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code><a class="headerlink" href="#el-objeto-filereader" title="Link to this heading">#</a></h4>
-<p>El objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> en JavaScript proporciona una forma de leer archivos de forma asíncrona desde el cliente, utilizando el API File de HTML5. Estos son los principales atributos y métodos del objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code>:</p>
-<ol class="arabic simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">readyState</span></code></strong>:</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Indica el estado actual de la operación de lectura del archivo.</p></li>
-<li><p><strong>Valores posibles</strong>:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">EMPTY</span></code> (0): Objeto recién creado, sin archivo asignado.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LOADING</span></code> (1): Archivo está siendo leído.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DONE</span></code> (2): Lectura del archivo completada correctamente.</p></li>
-</ul>
-</li>
-<li><p><strong>Uso</strong>: Puede ser útil para controlar el flujo de trabajo y saber cuándo ha finalizado la lectura del archivo.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">result</span></code></strong>:</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Contiene los datos del archivo leído, representados como una cadena de caracteres o como un <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code>, dependiendo del método utilizado para leer el archivo.</p></li>
-<li><p><strong>Uso</strong>: Después de que la lectura del archivo sea exitosa, este atributo contiene los datos del archivo en el formato especificado.</p></li>
-</ul>
-</li>
-</ol>
-<p><strong>Métodos del objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code></strong></p>
-<ol class="arabic simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsArrayBuffer(file)</span></code></strong>:</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Lee el contenido del archivo como un <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code>.</p></li>
-<li><p><strong>Uso</strong>: Útil cuando se trabaja con datos binarios, como imágenes o archivos PDF.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsBinaryString(file)</span></code></strong>:</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Lee el contenido del archivo como una cadena binaria (<code class="docutils literal notranslate"><span class="pre">String</span></code>).</p></li>
-<li><p><strong>Uso</strong>: Aunque está en desuso, puede ser útil para leer archivos en formatos antiguos que no son compatibles con <code class="docutils literal notranslate"><span class="pre">readAsText</span></code>.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsDataURL(file)</span></code></strong>:</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Lee el contenido del archivo y devuelve una URL de datos (<code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">URL</span></code>) que representa los datos del archivo.</p></li>
-<li><p><strong>Uso</strong>: Muy común para leer imágenes y otros tipos de archivos que pueden ser representados como URLs de datos en el navegador.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">readAsText(file,</span> <span class="pre">encoding)</span></code></strong>:</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Lee el contenido del archivo como texto (<code class="docutils literal notranslate"><span class="pre">String</span></code>), utilizando una codificación opcional.</p></li>
-<li><p><strong>Uso</strong>: Ideal para archivos de texto como archivos de configuración o documentos de texto plano.</p></li>
-</ul>
-</li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">abort()</span></code></strong>:</p>
-<ul class="simple">
-<li><p><strong>Descripción</strong>: Cancela la operación de lectura del archivo en curso.</p></li>
-<li><p><strong>Uso</strong>: Útil si se desea interrumpir la lectura de un archivo antes de que se complete, por ejemplo, en respuesta a una acción del usuario.</p></li>
-</ul>
-</li>
-</ol>
-<ul class="simple">
-<li><p><strong>Asincronía</strong>: Todas las operaciones de lectura del <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> son asíncronas, lo que significa que se debe manejar el resultado (o error) en los callbacks adecuados (<code class="docutils literal notranslate"><span class="pre">onload</span></code>, <code class="docutils literal notranslate"><span class="pre">onerror</span></code>).</p></li>
-<li><p><strong>Seguridad</strong>: Debido a las políticas de seguridad del navegador, la lectura de archivos locales puede estar limitada. Es importante entender y respetar estas limitaciones al desarrollar aplicaciones web que interactúan con archivos del cliente.</p></li>
-</ul>
+<p>El objeto <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> en JavaScript permite leer archivos del sistema local del usuario de forma <strong>asíncrona</strong>. Trabaja con archivos seleccionados a través de un <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;file&quot;&gt;</span></code>. Es útil en aplicaciones web que necesitan acceder al contenido de archivos sin necesidad de enviarlos inmediatamente a un servidor. En lugar de bloquear la interfaz, <code class="docutils literal notranslate"><span class="pre">FileReader</span></code> gestiona las operaciones de lectura en segundo plano y proporciona los resultados mediante eventos como <code class="docutils literal notranslate"><span class="pre">onload</span></code> o <code class="docutils literal notranslate"><span class="pre">onerror</span></code>.</p>
+<p>Al trabajar con <code class="docutils literal notranslate"><span class="pre">FileReader</span></code>, lo más importante es elegir el método de lectura adecuado según el tipo de archivo. Por ejemplo, si el archivo contiene texto (como un <code class="docutils literal notranslate"><span class="pre">.txt</span></code> o <code class="docutils literal notranslate"><span class="pre">.json</span></code>), lo natural es usar <code class="docutils literal notranslate"><span class="pre">readAsText()</span></code>. En cambio, si se trata de una imagen o un archivo binario, se pueden usar <code class="docutils literal notranslate"><span class="pre">readAsDataURL()</span></code> para mostrar una vista previa o <code class="docutils literal notranslate"><span class="pre">readAsArrayBuffer()</span></code> para trabajar con sus bytes. En todos los casos, el resultado de la lectura se almacena en la propiedad <code class="docutils literal notranslate"><span class="pre">result</span></code> del objeto una vez que la operación ha finalizado correctamente.</p>
+<p>Como estas operaciones son asíncronas, se trabaja con eventos. El evento <code class="docutils literal notranslate"><span class="pre">onload</span></code> se dispara cuando la lectura ha terminado con éxito, mientras que <code class="docutils literal notranslate"><span class="pre">onerror</span></code> se ejecuta si ocurre un problema. Además, el estado de la lectura se puede consultar en cualquier momento usando <code class="docutils literal notranslate"><span class="pre">readyState</span></code>, que indica si el lector está inactivo, leyendo o ha terminado. También se puede cancelar una lectura en curso con <code class="docutils literal notranslate"><span class="pre">abort()</span></code> si el usuario cambia de archivo o decide cancelar la acción.</p>
 </section>
 </section>
 </section>
 <section id="eventos-y-handlers">
 <h2>Eventos y Handlers<a class="headerlink" href="#eventos-y-handlers" title="Link to this heading">#</a></h2>
-<p>Los eventos y los manejadores (handlers) son elementos para capturar interacciones del usuario y realizar acciones en respuesta a estas interacciones.</p>
+<p>Los eventos y los manejadores (handlers) son elementos para capturar interacciones del usuario y realizar acciones en respuesta a estas interacciones. Estas interacciones pueden ser clics del ratón, pulsaciones de teclado, desplazamientos, cambios en el tamaño de la ventana, etc.</p>
 <p>Los eventos en JavaScript permiten capturar desde movimientos del mouse hasta pulsaciones de teclado y manipular el contenido y comportamiento de la página en respuesta a estas interacciones.</p>
+<blockquote>
+<div><p>En los ejemplos anteriores era inevitable usar eventos. Los hemos usado de distintas maneras, pero ahora vamos a profundizar explicar la mejor manera de usarlos.</p>
+</div></blockquote>
 <section id="eventos-events">
 <h3>Eventos (Events)<a class="headerlink" href="#eventos-events" title="Link to this heading">#</a></h3>
-<p>Los eventos son mecanismos que se activan cuando el usuario interactúa con la página web. Estas interacciones pueden ser clics del ratón, pulsaciones de teclado, desplazamientos, cambios en el tamaño de la ventana, etc. Los eventos permiten que JavaScript responda dinámicamente a las acciones del usuario.</p>
-<p><strong>Características principales:</strong></p>
-<ul class="simple">
-<li><p>Son disparados por el navegador o por el usuario.</p></li>
-<li><p>Pueden estar relacionados con elementos específicos del DOM, como un botón o un campo de entrada.</p></li>
-<li><p>El objeto <code class="docutils literal notranslate"><span class="pre">Event</span></code> contiene información detallada sobre el evento que ocurrió, como qué elemento lo originó y detalles específicos del tipo de evento.</p></li>
-</ul>
+<p>Los eventos son mecanismos que se activan cuando el usuario interactúa con la página web. Como casi todo en Javascript, se representan como <code class="docutils literal notranslate"><span class="pre">objetos</span></code> de tipo <code class="docutils literal notranslate"><span class="pre">Event</span></code>. Se crean a ser disparados por una interacción del usuario sobre un elemento del DOM.</p>
+<p>Este tipo de objetos tiene mucha información sobre cada evento como el elemento original, el tipo de evento, posición donde se ha producido o datos específicos de cada tipo de evento.</p>
+<p>Que se produzca un evento no significa que se atienda. En cualquier web se están produciendo eventos sin parar. Tan solo mover el ratón ya produce muchos eventos por segundo. Javascript está optimizado para no saturarse con eventos que no van a ser atendidos. Pero si queremos atenderlo, debemos poner un elemento del DOM a “escuchar” y asociarle una función a ejecutar si se produce. Esta función se llama <code class="docutils literal notranslate"><span class="pre">manejador</span></code> o <code class="docutils literal notranslate"><span class="pre">handler</span></code>.</p>
 </section>
 <section id="manejadores-handlers">
 <h3>Manejadores (Handlers)<a class="headerlink" href="#manejadores-handlers" title="Link to this heading">#</a></h3>
 <p>Un manejador, o handler en inglés, es una función que se ejecuta cuando ocurre un evento específico. Cada tipo de evento (como <code class="docutils literal notranslate"><span class="pre">click</span></code>, <code class="docutils literal notranslate"><span class="pre">submit</span></code>, <code class="docutils literal notranslate"><span class="pre">mouseover</span></code>, etc.) puede tener asociado un manejador que define qué acción debe realizarse en respuesta al evento.</p>
-<p><strong>Características principales:</strong></p>
-<ul class="simple">
-<li><p>Es una función que se asigna a un evento particular en un elemento del DOM.</p></li>
-<li><p>Define la acción o comportamiento que se debe llevar a cabo cuando el evento ocurre.</p></li>
-<li><p>Los manejadores pueden ser definidos directamente en el HTML, usando atributos como <code class="docutils literal notranslate"><span class="pre">onclick</span></code>, o pueden ser asignados dinámicamente desde JavaScript.</p></li>
-</ul>
-</section>
-<section id="ejemplo-de-uso-en-html-y-javascript">
-<h3>Ejemplo de uso en HTML y JavaScript<a class="headerlink" href="#ejemplo-de-uso-en-html-y-javascript" title="Link to this heading">#</a></h3>
+<p>El manejador se asignará a un evento en un elemento del DOM. Puesto que es una funció, podemos hacer lo que queramos cuando ocurra este evento. Si queremos obtener información del evento, el objeto <code class="docutils literal notranslate"><span class="pre">Event</span></code> generado se envía de forma implícita como primer parámetro de esa función, aunque podemos ignorarlo.</p>
+<p>Con todo esto, aquí tenemos un ejemplo básico de asignación de manejadores de eventos:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -1709,6 +1638,7 @@ document.write(`
 <span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleClick</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>Javascript permite tratar los los eventos de varias maneras muy diferenciadas, pero hay una que es mejor que las demás. Al ser relativamente más moderna, no siempre la veremos y no siempre es cómodo usarla, por lo que debemos conocer las tres maneras. Estas son <code class="docutils literal notranslate"><span class="pre">eventos</span> <span class="pre">en</span> <span class="pre">línea</span></code>, <code class="docutils literal notranslate"><span class="pre">registro</span> <span class="pre">tradicional</span> <span class="pre">de</span> <span class="pre">eventos</span></code> y <code class="docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">eventos</span> <span class="pre">con</span> <span class="pre">addEventListener</span></code>, que es la opción recomendada en cualquier aplicación mínimamente compleja.</p>
 </section>
 <section id="eventos-en-linea">
 <h3>Eventos en línea<a class="headerlink" href="#eventos-en-linea" title="Link to this heading">#</a></h3>
@@ -1722,7 +1652,7 @@ document.write(`
 </section>
 <section id="registro-tradicional-de-eventos">
 <h3>Registro tradicional de eventos<a class="headerlink" href="#registro-tradicional-de-eventos" title="Link to this heading">#</a></h3>
-<p>Para manejar eventos de manera más estructurada y mantenible, se utiliza el método tradicional de registrar eventos en JavaScript:</p>
+<p>Para manejar eventos de manera más estructurada separando la vista de la lógica, se utiliza el método tradicional de registrar eventos en JavaScript:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">).</span><span class="nx">onmouseover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">       </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#FF0000&#39;</span><span class="p">;</span>
@@ -1803,7 +1733,6 @@ document.write(`
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>La propagación de eventos permite que los eventos desencadenados en elementos hijos se propaguen hacia sus elementos padres. Esta característica es muy útil para enviar datos desde elementos hijos a sus elementos padres mediante eventos personalizados y es fundamental en el funcionamiento de los componentes en varios frameworks de JavaScript como React, Vue.js y Angular.</p>
 <p>La propagación de eventos tiene dos fases principales:</p>
 <ol class="arabic simple">
 <li><p><strong>Capturing Phase</strong>: La fase en la que el evento se propaga desde el documento raíz hasta el objetivo del evento.</p></li>
@@ -1811,6 +1740,7 @@ document.write(`
 </ol>
 <section id="enviar-datos-de-hijos-a-padres-con-eventos-personalizados">
 <h4>Enviar Datos de Hijos a Padres con Eventos Personalizados<a class="headerlink" href="#enviar-datos-de-hijos-a-padres-con-eventos-personalizados" title="Link to this heading">#</a></h4>
+<p>La propagación de eventos permite que los eventos desencadenados en elementos hijos se propaguen hacia sus elementos padres. Esta característica es muy útil para enviar datos desde elementos hijos a sus elementos padres mediante eventos personalizados y es fundamental en el funcionamiento de los componentes en varios frameworks de JavaScript como React, Vue.js y Angular.</p>
 <p>Los eventos personalizados se pueden utilizar para comunicar datos desde un componente hijo a un componente padre. A continuación se muestra un ejemplo de cómo se puede lograr esto en un entorno sin frameworks, utilizando la propagación de eventos del DOM:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
@@ -1854,7 +1784,7 @@ document.write(`
 </ol>
 <p>En <strong>React</strong>, los datos de un componente hijo se envían a un componente padre mediante la elevación del estado y callbacks, en lugar de utilizar directamente la propagación de eventos del DOM.</p>
 <p>En <strong>Vue.js</strong>, la comunicación de hijos a padres se realiza mediante la emisión de eventos personalizados.</p>
-<p><strong>Angular</strong> También proporciona <code class="docutils literal notranslate"><span class="pre">&#64;Output</span></code> que crea un evento que es capturado por el componente padre.</p>
+<p><strong>Angular</strong> También proporciona <code class="docutils literal notranslate"><span class="pre">output</span></code> que crea un evento que es capturado por el componente padre.</p>
 <ul class="simple">
 <li><p>Ejercicio de eventos y propagación: <a class="reference external" href="https://jsfiddle.net/xxjcaxx/wep0c2j9/1/">https://jsfiddle.net/xxjcaxx/wep0c2j9/1/</a></p></li>
 </ul>
@@ -1970,23 +1900,23 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window">Window</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document">Document</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esperar-a-que-cargue-el-dom">Esperar a que Cargue el DOM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-nodos">Crear Nodos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-nodos">Buscar Nodos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-nodos">Modificar Nodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-elementos">Crear Elementos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buscar-elementos">Buscar Elementos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-elementos">Modificar Elementos</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos">Atributos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos">Estilos</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-eficiente-del-dom">Manipulación eficiente del DOM</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-plantillas">Creación de elementos (plantillas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-plantillas">Creación de elementos mediante plantillas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-template-literal">Creación de Elementos: Template Literal</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-mediante-tagged-template-literals">Creación de elementos mediante Tagged Template Literals</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-interpolaciones-wrapper-fragments">Creación de Elementos: Interpolaciones, Wrapper, fragments</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-elementos-con-template">Creación de elementos con template</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-datos">Atributos de Datos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formularios-en-javascript">Formularios en JavaScript</a><ul class="nav section-nav flex-column">
@@ -2020,7 +1950,6 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-y-handlers">Eventos y Handlers</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-events">Eventos (Events)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-handlers">Manejadores (Handlers)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso-en-html-y-javascript">Ejemplo de uso en HTML y JavaScript</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-en-linea">Eventos en línea</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-en-html-no-recomendable">Ejemplo en HTML (No recomendable)</a></li>
 </ul>

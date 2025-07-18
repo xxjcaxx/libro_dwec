@@ -436,12 +436,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="gestion-de-errores">
 <h1>Gestión de Errores<a class="headerlink" href="#gestion-de-errores" title="Link to this heading">#</a></h1>
-<p>En JavaScript, es crucial capturar y manejar errores para asegurar que el código continúe funcionando adecuadamente, incluso cuando algo falla. En este capítulo, exploraremos cómo manejar errores utilizando diferentes métodos y técnicas disponibles en JavaScript.</p>
-<p>Cuando algo falla en JavaScript, el hilo de ejecución se detiene y deja de funcionar. Para evitar que esto ocurra, es posible capturar y manejar errores conocidos.</p>
+<p>En JavaScript, se pueden capturar y manejar errores para asegurar que el código continúe funcionando adecuadamente, incluso cuando algo falla.</p>
+<p>Cuando algo falla en JavaScript, el hilo de ejecución se detiene y deja de funcionar. Para evitar que esto ocurra, es posible capturar y manejar errores conocidos. Los errores no capturados paran el hilo en el que están. Puede ser el hilo principal o la ejecución de callbacks. Depende dónde se produzca el error puede ser maś o menos catastrófico y dejar la web inutilizable.</p>
+<blockquote>
+<div><p>Los errores pueden ser por errores, malas prácticas o simplemente porque falla algo sobre lo que no tenemos control como la red.</p>
+</div></blockquote>
 <section id="objeto-error">
 <h2>Objeto Error<a class="headerlink" href="#objeto-error" title="Link to this heading">#</a></h2>
 <p>Cuando algo falla, se lanza un objeto Error. Este objeto contiene propiedades específicas como <code class="docutils literal notranslate"><span class="pre">message</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">fileName</span></code>, <code class="docutils literal notranslate"><span class="pre">lineNumber</span></code>, <code class="docutils literal notranslate"><span class="pre">columnNumber</span></code>, y <code class="docutils literal notranslate"><span class="pre">stack</span></code>. Además, tiene un método útil llamado <code class="docutils literal notranslate"><span class="pre">toString()</span></code>.</p>
-<p>Es posible lanzar errores personalizados utilizando el constructor de Error. Aunque <code class="docutils literal notranslate"><span class="pre">Error</span></code> es genérico, también existen errores más específicos como <code class="docutils literal notranslate"><span class="pre">EvalError</span></code>, <code class="docutils literal notranslate"><span class="pre">InternalError</span></code>, <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>, <code class="docutils literal notranslate"><span class="pre">RangeError</span></code>, <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> y <code class="docutils literal notranslate"><span class="pre">URIError</span></code>.</p>
+<p>Aunque <code class="docutils literal notranslate"><span class="pre">Error</span></code> es genérico, también existen errores más específicos como <code class="docutils literal notranslate"><span class="pre">EvalError</span></code>, <code class="docutils literal notranslate"><span class="pre">InternalError</span></code>, <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>, <code class="docutils literal notranslate"><span class="pre">RangeError</span></code>, <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> y <code class="docutils literal notranslate"><span class="pre">URIError</span></code>.</p>
+<p>Ese error se puede lanzar con <code class="docutils literal notranslate"><span class="pre">throw</span></code> y capturar con un bloque <code class="docutils literal notranslate"><span class="pre">try...catch</span></code>. Si es tratado por el catch, el error no pasa de ahí y no corta la ejecución del hilo. Además, se puede aprovechar el <code class="docutils literal notranslate"><span class="pre">catch</span></code> para solucionar el problema que lo ha causado.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
@@ -490,10 +494,47 @@ document.write(`
 </div>
 </div>
 </div>
+<p>En ocasiones queremos tratar el error en una función pero que siga escalando para que lo trate una función superior. Esto es hacer un <code class="docutils literal notranslate"><span class="pre">rethrow</span></code> y consiste en poner un <code class="docutils literal notranslate"><span class="pre">throw</span></code> dentro del <code class="docutils literal notranslate"><span class="pre">catch</span></code>:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchUser</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`/users/</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;User not found&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getUser</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetchUser</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">user</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Fetching user failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;Unable to load user profile&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Es posible lanzar errores personalizados utilizando el constructor de Error.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">ValidationError</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">field</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ValidationError&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">field</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">validateUser</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">.</span><span class="nx">email</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValidationError</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid email format&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValidationError</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;User must be 18+&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="errores-en-promesas">
 <h2>Errores en Promesas<a class="headerlink" href="#errores-en-promesas" title="Link to this heading">#</a></h2>
 <p>Cuando una promesa no puede ser cumplida, se ejecuta la función <code class="docutils literal notranslate"><span class="pre">reject()</span></code>, la cual puede ser capturada en el bloque <code class="docutils literal notranslate"><span class="pre">.catch()</span></code>. Sin embargo, los errores en promesas no pueden ser capturados directamente con <code class="docutils literal notranslate"><span class="pre">try...catch</span></code> debido a que <code class="docutils literal notranslate"><span class="pre">.catch()</span></code> siempre retorna otra promesa.</p>
+<p>Por tanto el <code class="docutils literal notranslate"><span class="pre">.catch()</span></code> de las promesas no es igual y puede recibir tanto un <code class="docutils literal notranslate"><span class="pre">Error</span></code> como cualquier otra cosa que se pase a <code class="docutils literal notranslate"><span class="pre">reject</span></code>. De todas formas, un <code class="docutils literal notranslate"><span class="pre">throw</span></code> dentro de un <code class="docutils literal notranslate"><span class="pre">.then()</span></code> o <code class="docutils literal notranslate"><span class="pre">.catch()</span></code> provoca que retorne una promesa fallida que puede ser capturada por <code class="docutils literal notranslate"><span class="pre">.catch()</span></code>. Como se ve en el ejemplo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">promesa3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="nx">promesa</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -524,6 +565,8 @@ document.write(`
 </div>
 </div>
 </div>
+<p>En el interior de cualquier función ejecutora de promesas o de callback de <code class="docutils literal notranslate"><span class="pre">.then()</span></code> o <code class="docutils literal notranslate"><span class="pre">.catch()</span></code> se puede usar el bloque tradicional <code class="docutils literal notranslate"><span class="pre">try...catch</span></code> siempre que se use <code class="docutils literal notranslate"><span class="pre">reject</span></code> o <code class="docutils literal notranslate"><span class="pre">throw</span></code> en cada caso.</p>
+<p>En ocasiones se puede decidir trabajar sólo con la sintaxis de las promesas o con el método tradicional.</p>
 </section>
 <section id="errores-en-async-await">
 <h2>Errores en Async/Await<a class="headerlink" href="#errores-en-async-await" title="Link to this heading">#</a></h2>
@@ -564,6 +607,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>En código moderno, se recomienda usar <code class="docutils literal notranslate"><span class="pre">async/await</span></code> con <code class="docutils literal notranslate"><span class="pre">try...catch</span></code> por su legibilidad. Frente a la sintaxis de las promesas.</p>
 </section>
 <section id="errores-en-observables">
 <h2>Errores en Observables<a class="headerlink" href="#errores-en-observables" title="Link to this heading">#</a></h2>

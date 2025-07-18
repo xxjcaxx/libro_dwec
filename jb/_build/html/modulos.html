@@ -421,7 +421,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-de-nombres-y-estructuras-de-datos-que-no-son-modulos">Espacios de nombres y estructuras de datos que no son módulos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-antes-de-es6">Módulos antes de ES6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-manuales-con-estado-y-control-de-acceso">Módulos manuales (con estado y control de acceso)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-es6">Módulos ES6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-esm">Módulos ESM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-script-con-modulos">Uso de <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> con módulos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-asincrona">Importación asíncrona</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-en-bare-names">Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code></a></li>
@@ -438,8 +438,9 @@ document.write(`
                   
   <section id="modulos">
 <h1>Módulos<a class="headerlink" href="#modulos" title="Link to this heading">#</a></h1>
-<p>En JavaScript, los módulos son colecciones de datos y funciones útiles para el programa principal. Los módulos permiten encapsular el código, lo que ayuda a mantenerlo organizado y fácil de mantener. Además, siguen el Principio de Menor Exposición (POLE), lo que significa que solo exponen una API pública y pueden contener detalles privados. Los módulos pueden ser stateful, es decir, pueden guardar información a lo largo del tiempo.</p>
 <p>Cuando el código está en varios archivos .js sin usar módulos, el espacio de nombres global se llena de variables y funciones. Esto puede causar conflictos y errores difíciles de depurar. Además, el orden de los archivos importa, ya que se interpretan como si todo el código estuviera en un único archivo.</p>
+<p>En JavaScript, los módulos son colecciones de datos y funciones útiles para el programa principal. Los módulos permiten encapsular el código, lo que ayuda a mantenerlo organizado y fácil de mantener. Además, si siguen el Principio de Menor Exposición (POLE), solo exponen una API pública y pueden contener detalles privados. Los módulos pueden ser stateful, es decir, pueden guardar información a lo largo del tiempo.</p>
+<p>Los módulos modernos datan de la versión ES6 de Javascript. Anteriormente se usaban técnicas y patrones de diseño para conseguir una estructura modular. Veamos primero alternativas que no llegan a ser módulos para entender su necesidad y luego cómo usar módulos ESM, que es la forma maś conveniente.</p>
 <section id="espacios-de-nombres-y-estructuras-de-datos-que-no-son-modulos">
 <h2>Espacios de nombres y estructuras de datos que no son módulos<a class="headerlink" href="#espacios-de-nombres-y-estructuras-de-datos-que-no-son-modulos" title="Link to this heading">#</a></h2>
 <p><strong>Ejemplo de espacio de nombres (no es un módulo):</strong></p>
@@ -506,8 +507,8 @@ document.write(`
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">defineStudent</span></code> es una función que define un módulo. El array <code class="docutils literal notranslate"><span class="pre">records</span></code> y la función <code class="docutils literal notranslate"><span class="pre">getName</span></code> están encapsulados dentro del módulo, y solo <code class="docutils literal notranslate"><span class="pre">getName</span></code> se expone públicamente.</p>
 </section>
-<section id="modulos-es6">
-<h2>Módulos ES6<a class="headerlink" href="#modulos-es6" title="Link to this heading">#</a></h2>
+<section id="modulos-esm">
+<h2>Módulos ESM<a class="headerlink" href="#modulos-esm" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules</a></p>
 <p>Con la introducción de ES6, JavaScript nativo ahora admite módulos a través de las palabras clave <code class="docutils literal notranslate"><span class="pre">import</span></code> y <code class="docutils literal notranslate"><span class="pre">export</span></code>. Los módulos ES6 no agregan nada al ámbito global, siempre están en modo estricto y requieren un servidor para cargar los archivos a través de HTTP.</p>
 <p><strong>Definición y exportación de módulos ES6:</strong></p>
@@ -578,7 +579,7 @@ document.write(`
 </pre></div>
 </div>
 <blockquote>
-<div><p>El uso de <code class="docutils literal notranslate"><span class="pre">export</span></code> para funciones o clases y luego de <code class="docutils literal notranslate"><span class="pre">import</span></code> de esas funciones específicas o de todo lo exportado (*) es recomendable frente a importar los ficheros enteros (import ‘./characterList.js’;). Esta segunda posibilidad ejecuta los ficheros y declara variables globales como cuando ponemos varios  <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> seguidos. Pero no tenemos los benefícios como el encapsulamiento del código que es lo que se espera con los módulos.</p>
+<div><p>El uso de <code class="docutils literal notranslate"><span class="pre">export</span></code> para funciones o clases y luego de <code class="docutils literal notranslate"><span class="pre">import</span></code> de esas funciones específicas o de todo lo exportado (*) es recomendable frente a importar los ficheros enteros (import ‘./characterList.js’;). Esta segunda posibilidad ejecuta los ficheros y declara variables globales como cuando ponemos varios  <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> seguidos. Pero no tenemos los beneficios como la encapsulación del código que es lo que se espera con los módulos.</p>
 </div></blockquote>
 </section>
 <section id="importacion-asincrona">
@@ -669,7 +670,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-de-nombres-y-estructuras-de-datos-que-no-son-modulos">Espacios de nombres y estructuras de datos que no son módulos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-antes-de-es6">Módulos antes de ES6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-manuales-con-estado-y-control-de-acceso">Módulos manuales (con estado y control de acceso)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-es6">Módulos ES6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulos-esm">Módulos ESM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-script-con-modulos">Uso de <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> con módulos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-asincrona">Importación asíncrona</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-en-bare-names">Importar en <code class="docutils literal notranslate"><span class="pre">Bare</span> <span class="pre">Names</span></code></a></li>

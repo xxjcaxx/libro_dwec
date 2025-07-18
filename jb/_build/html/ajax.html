@@ -434,10 +434,6 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#webs-spa-single-page-application">Webs SPA (Single Page Application)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-spa-con-ajax">Ejemplo de SPA con AJAX</a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xmlhttprequest-en-javascript">XMLHttpRequest en JavaScript</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inicializacion-y-uso-basico">Inicialización y Uso Básico</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo Completo</a></li>
@@ -509,7 +505,8 @@ document.write(`
 <blockquote>
 <div><p>Esta es la definición original de AJAX, no obstante, aunque se puede mantener el nombre a la metodología, algunas tecnologías han mejorado. Ahora, en general, se usa <code class="docutils literal notranslate"><span class="pre">JSON</span></code> y en vez de <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> se usa <code class="docutils literal notranslate"><span class="pre">fetch</span></code>.</p>
 </div></blockquote>
-<p>Con AJAX, JavaScript puede enviar o solicitar datos en formato XML o JSON al servidor sin recargar la página. El servidor responde a estas solicitudes, generalmente a través de una API REST o similar. El cliente, usando JavaScript, procesa la respuesta y actualiza el contenido de la página dinámicamente.</p>
+<p>Con AJAX, JavaScript puede enviar o solicitar datos en formato XML o JSON al servidor sin recargar la página. El servidor responde a estas solicitudes, generalmente a través de una API REST o similar. El cliente, usando JavaScript, procesa la respuesta y actualiza el contenido de la página dinámicamente.
+Las aplicaciones de una sola página (SPA) utilizan AJAX para cargar y actualizar contenido sin necesidad de recargar la página completa. Esto permite crear aplicaciones web más rápidas y con una experiencia de usuario similar a las aplicaciones de escritorio.</p>
 <section id="ejemplo-basico-de-ajax">
 <h3>Ejemplo Básico de AJAX<a class="headerlink" href="#ejemplo-basico-de-ajax" title="Link to this heading">#</a></h3>
 <section id="enviar-una-solicitud-ajax-con-xmlhttprequest">
@@ -663,46 +660,6 @@ document.write(`
 </section>
 </section>
 </section>
-<section id="webs-spa-single-page-application">
-<h3>Webs SPA (Single Page Application)<a class="headerlink" href="#webs-spa-single-page-application" title="Link to this heading">#</a></h3>
-<p>Las aplicaciones de una sola página (SPA) utilizan AJAX para cargar y actualizar contenido sin necesidad de recargar la página completa. Esto permite crear aplicaciones web más rápidas y con una experiencia de usuario similar a las aplicaciones de escritorio.</p>
-<section id="ejemplo-de-spa-con-ajax">
-<h4>Ejemplo de SPA con AJAX<a class="headerlink" href="#ejemplo-de-spa-con-ajax" title="Link to this heading">#</a></h4>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>SPA Example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="w">        </span><span class="p">.</span><span class="nc">hidden</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;loadPage(&#39;home&#39;)&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;loadPage(&#39;about&#39;)&quot;</span><span class="p">&gt;</span>About<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;loadPage(&#39;contact&#39;)&quot;</span><span class="p">&gt;</span>Contact<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">loadPage</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="w">            </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;.html&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">};</span>
-<span class="w">            </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<p>En este ejemplo, cada botón en la navegación carga contenido diferente en el <code class="docutils literal notranslate"><span class="pre">div</span></code> con el ID “content” utilizando AJAX. Esto permite que la página se actualice dinámicamente sin necesidad de recargarla por completo.</p>
-</section>
-</section>
 <section id="xmlhttprequest-en-javascript">
 <h3>XMLHttpRequest en JavaScript<a class="headerlink" href="#xmlhttprequest-en-javascript" title="Link to this heading">#</a></h3>
 <p>XMLHttpRequest (XHR) es una API utilizada para enviar y recibir datos entre un cliente web y un servidor. A pesar de su nombre, XMLHttpRequest puede manejar diferentes tipos de datos, aunque en este capítulo nos centraremos principalmente en JSON debido a su popularidad en las aplicaciones web modernas.</p>
@@ -797,14 +754,14 @@ document.write(`
 </li>
 </ol>
 <blockquote>
-<div><p>Este capítulo ha cubierto los conceptos básicos y la implementación de XMLHttpRequest. En capítulos posteriores, exploraremos métodos modernos como <code class="docutils literal notranslate"><span class="pre">fetch</span></code> y la forma en que se integran con las características más recientes de JavaScript, como las promesas y la sintaxis <code class="docutils literal notranslate"><span class="pre">async/await</span></code>.</p>
+<div><p>Aunque conocer XMLHttpRequest es importante, actualmente está superado en la mayoría de casos con opciones más modernas. Exploraremos métodos modernos como <code class="docutils literal notranslate"><span class="pre">fetch</span></code> y la forma en que se integran con las características más recientes de JavaScript, como las promesas y la sintaxis <code class="docutils literal notranslate"><span class="pre">async/await</span></code>.</p>
 </div></blockquote>
 </section>
 </section>
 </section>
 <section id="fetch">
 <h2>Fetch<a class="headerlink" href="#fetch" title="Link to this heading">#</a></h2>
-<p>La función <code class="docutils literal notranslate"><span class="pre">fetch</span></code> de JavaScript proporciona una manera sencilla y poderosa de realizar solicitudes HTTP. Es similar a <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> (XHR), pero utiliza promesas y tiene una sintaxis más moderna y limpia.</p>
+<p>La función <code class="docutils literal notranslate"><span class="pre">fetch</span></code> de JavaScript proporciona una manera sencilla y poderosa de realizar solicitudes HTTP. Es similar a <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> (XHR), pero utiliza promesas y tiene una sintaxis más moderna.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -1405,10 +1362,6 @@ También ofrece un manejo centralizado de errores, permite implementar reconexio
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sdks-kits-de-desarrollo-de-software">SDKs (Kits de Desarrollo de Software)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#webs-spa-single-page-application">Webs SPA (Single Page Application)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-spa-con-ajax">Ejemplo de SPA con AJAX</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xmlhttprequest-en-javascript">XMLHttpRequest en JavaScript</a><ul class="nav section-nav flex-column">
