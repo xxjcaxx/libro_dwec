@@ -464,6 +464,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-elementos-nativos">Extender Elementos nativos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-form-controls">Custom Form Controls</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-editable">Hacerlo editable</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-compatible-con-formularios">Hacerlo compatible con formularios</a></li>
@@ -551,11 +552,11 @@ document.write(`
 <p>En el constructor se inicializa el elemento con valores por defecto, registro de eventos, creación del <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code> y poco más. Dejaremos la creación de elementos hijos o añadir atributos a estos para después, en otras etapas del ciclo de vida.</p>
 <section id="ciclo-de-vida">
 <h3>Ciclo de vida<a class="headerlink" href="#ciclo-de-vida" title="Link to this heading">#</a></h3>
-<p>Los elementos personalizados cuentan con una serie de funciones que pueden ser implementadas y que son invocadas a lo largo de su ciclo de vida. Estas son:</p>
+<p>Los elementos personalizados cuentan con una serie de funciones que pueden ser implementadas y que son invocadas a lo largo de su ciclo de vida. Las funciones las invoca el navegador.  Estas son:</p>
 <ul class="simple">
 <li><p>constructor(): Como toda clase, tiene función constructora. Hay que recalcar que el <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> se suele poder poner directamente en el HTML, por lo que al no llamar explícitamente a esta función, no se puede hacer un constructor con parámetros. Esto impide usar técnicas como la <code class="docutils literal notranslate"><span class="pre">inyección</span> <span class="pre">de</span> <span class="pre">dependencias</span></code> que veremos más adelante.</p></li>
 <li><p>connectedCallback(): Se llama cada vez que se agrega el elemento al documento. Se recomienda configurar el elemento en este punto, mejor que en el constructor.</p></li>
-<li><p>disconnectedCallback(): Se llama cada vez que se elimina el elemento del documento.</p></li>
+<li><p>disconnectedCallback(): Se llama cada vez que se elimina el elemento del documento. Es el sitio para eliminar todos los eventos, desuscribirse de Observables, Websockets, timers… En el caso de los Observables es totalmente necesario. En los eventos puede que el <code class="docutils literal notranslate"><span class="pre">Garbage</span> <span class="pre">Collector</span></code> los elimine con el tiempo, pero si las funciones forman <code class="docutils literal notranslate"><span class="pre">closures</span></code>, incluso involuntarias o difíciles de detectar, nunca se cancelará el <code class="docutils literal notranslate"><span class="pre">event</span> <span class="pre">listener</span></code>. El hecho de que un elemento salga del DOM no garantiza que sus eventos se limpien automáticamente.</p></li>
 <li><p>adoptedCallback(): Se llama cada vez que se mueve el elemento a un nuevo documento.</p></li>
 <li><p>attributeChangedCallback(): se llama cuando se cambian, agregan, eliminan o reemplazan atributos.</p></li>
 </ul>
@@ -600,6 +601,9 @@ document.write(`
 <p>Además de esas funciones del ciclo de vida, se pueden añadir otras. Una típica puede ser la función <code class="docutils literal notranslate"><span class="pre">render()</span></code> que retorna el elemento redibujado. Esto es útil si queremos que el contenido pueda ser actualizado reactivamente.</p>
 <blockquote>
 <div><p><strong>Elementos HTML nativos</strong> (como <code class="docutils literal notranslate"><span class="pre">div</span></code>, <code class="docutils literal notranslate"><span class="pre">span</span></code>, etc.) no tienen métodos del ciclo de vida de los Web Components, por lo que asignar <code class="docutils literal notranslate"><span class="pre">connectedCallback</span></code> o otras manualmente no funcionará.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Al extender a un Elemento, hay otras funciones que pueden ser escritas como son los manejadores de eventos nativos <code class="docutils literal notranslate"><span class="pre">onclick</span></code> <code class="docutils literal notranslate"><span class="pre">onmouseover</span></code>… Aunque se recomienda poner esos manejadores dentro del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code> y usar <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code>.</p>
 </div></blockquote>
 </section>
 <section id="registrar-el-elemento-personalizado">
@@ -1687,6 +1691,37 @@ Esta función ya registra el componente.</p>
 </div>
 <p>Este código suscribe el subject interno del componente a un observable externo y esto provoca todos los cambios reactivamente.</p>
 </section>
+<section id="extender-elementos-nativos">
+<h2>Extender Elementos nativos<a class="headerlink" href="#extender-elementos-nativos" title="Link to this heading">#</a></h2>
+<p>Además de los <code class="docutils literal notranslate"><span class="pre">autonomous</span> <span class="pre">custom</span> <span class="pre">elements</span></code> que heredan de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>, muchos elementos nativos también pueden ser heredados (<code class="docutils literal notranslate"><span class="pre">customized</span> <span class="pre">built-in</span> <span class="pre">elements</span></code>).</p>
+<p>Hay que usar la clase que corresponda:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HTMLButtonElement</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTMLInputElement</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTMLAnchorElement</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTMLParagraphElement</span></code>, etc.</p></li>
+</ul>
+<p>Lo bueno es que heredarán las propiedades y comportamiento de los elementos nativos y, además, tendrán el ciclo de vida de los <code class="docutils literal notranslate"><span class="pre">custom</span> <span class="pre">elements</span></code>.</p>
+<p>Para poder usarlos hay que registrarlos y invocarlos de manera distinta. Observemos el ejemplo:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyButton</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">HTMLButtonElement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">connectedCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;MyButton conectado al DOM&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Haz clic&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;my-button&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">MyButton</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">extends</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;button&#39;</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">btn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">is</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;my-button&#39;</span><span class="w"> </span><span class="p">});</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">btn</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La diferencia es que al definirlo también hay que indicar el tipo de elemento que extiende. Además, al invocarlo por código hay que añadir en el objeto de opciones <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">is:</span> <span class="pre">'...'</span> <span class="pre">}</span></code>. En caso de usarlo por HTML también cambia y necesita el <code class="docutils literal notranslate"><span class="pre">is=&quot;...&quot;</span></code> con la etiqueta original:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;my-button&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>No es 100% compatible con todos los navegadores. Por ejemplo Safari no contempla soportarlo. Al tener este problema junto con la complicación añadida se recomienda emplear elementos autónomos en la mayoría de los casos, incluso cuando el nuevo componente pretende replicar el comportamiento de un elemento nativo como un botón.</p>
+</div></blockquote>
+</section>
 <section id="custom-form-controls">
 <h2>Custom Form Controls<a class="headerlink" href="#custom-form-controls" title="Link to this heading">#</a></h2>
 <p>Dentro de los componentes, los <code class="docutils literal notranslate"><span class="pre">Form</span> <span class="pre">Controls</span></code> son casos especiales. A diferencia de otros componentes, los Form Control tienen un contenido editable y han de formar parte de formularios. Un Form Control ha de poder ser validado y su valor accedido mediante los estándares de los formularios.</p>
@@ -2068,6 +2103,7 @@ Esta función ya registra el componente.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-elementos-nativos">Extender Elementos nativos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-form-controls">Custom Form Controls</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-editable">Hacerlo editable</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hacerlo-compatible-con-formularios">Hacerlo compatible con formularios</a></li>
