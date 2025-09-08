@@ -621,9 +621,16 @@ npm<span class="w"> </span>init<span class="w"> </span>
 <span class="w">  </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./dist/chessmarro-board.js&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;exports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;.&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;./dist/chessmarro-board.js&quot;</span>
+<span class="w">    </span><span class="nt">&quot;.&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;import&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./build/dist/chessmarro-board.js&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./index.d.ts&quot;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./dist/index.d.ts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./index.d.ts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;build/dist&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;index.d.ts&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w"> </span><span class="err">...</span>
 <span class="w">  </span><span class="p">},</span>
@@ -690,11 +697,17 @@ npm<span class="w"> </span>init<span class="w"> </span>
 <span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0.6&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./dist/chessmarro-board.js&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;exports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;.&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./build/dist/chessmarro-board.js&quot;</span>
+<span class="w"> </span><span class="nt">&quot;exports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;.&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;import&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./build/dist/chessmarro-board.js&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./index.d.ts&quot;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./build/dist/index.d.ts&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;build/dist&quot;</span><span class="p">]</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./index.d.ts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;build/dist&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;index.d.ts&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 </pre></div>
 </div>
 <p>Veamos estas líneas:</p>

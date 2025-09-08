@@ -475,10 +475,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-recomendado">Uso Recomendado</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">Argumentos por Defecto</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-manual-de-argumentos-por-defecto">Implementación Manual de Argumentos por Defecto</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">Argumentos por Defecto</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-del-lenguaje">Elementos del lenguaje</a><ul class="nav section-nav flex-column">
@@ -719,7 +716,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <section id="conversiones">
 <h2>Conversiones<a class="headerlink" href="#conversiones" title="Link to this heading">#</a></h2>
 <p>En javascript las conversiones de tipos no siempre son necesarias, ya que existe un concepto llamado <em><strong>Type coercion</strong></em> que fuerza a una conversión automática cuando se usan distintos tipos.</p>
-<p>Además, las funciones constructoras de los objetos Number, String, Boolean invocadas sin <code class="docutils literal notranslate"><span class="pre">new</span></code> y hacen una conversión de tipos.</p>
+<p>Además, las funciones constructoras de los objetos Number, String, Boolean invocadas sin <code class="docutils literal notranslate"><span class="pre">new</span></code> hacen una conversión de tipos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
@@ -835,7 +832,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 <span class="nx">ejemplos</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="s2">&quot;2e1&quot;</span><span class="p">));</span><span class="w">           </span><span class="c1">// 20, notación exponencial</span>
 
 <span class="c1">// parseInt ignora caracteres al final que no corresponden con dígitos de la base actual</span>
-<span class="nx">ejemplos</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;010&quot;</span><span class="p">));</span><span class="w">         </span><span class="c1">// 8, octal implícito</span>
+<span class="nx">ejemplos</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;010&quot;</span><span class="p">));</span><span class="w">         </span><span class="c1">// 10 decimal implícito</span>
 <span class="nx">ejemplos</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;010&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">));</span><span class="w">     </span><span class="c1">// 10, usando la base decimal</span>
 
 <span class="c1">// Number no detecta octales implícitos, pero puede detectar la notación octal explícita</span>
@@ -918,7 +915,7 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 </div>
-<p>El orden de los argumentos es crucial. Los argumentos se asignan a los parámetros en el orden en que se pasan.</p>
+<p>El orden de los argumentos es estricto. Los argumentos se asignan a los parámetros en el orden en que se pasan.</p>
 <p>Javascript, en las funciones, crea un objeto llamando <code class="docutils literal notranslate"><span class="pre">arguments</span></code> que tiene los argumentos pasados, la posición como clave y la cantidad de argumentos con <code class="docutils literal notranslate"><span class="pre">length</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -933,6 +930,9 @@ No obstante, javascript como lenguaje tiene sus particularidades y son las que v
 </div>
 </div>
 </div>
+<blockquote>
+<div><p>En cuanto a los argumentos, en siguientes apartados se verán formas maś avanzadas de tratar con ellos como: “Default Parameters”, “Named parameters”, “Array parameter” , “Rest parameters”, “Spread Parameters”, “Object destructuring in parameters” o el “Currying”…</p>
+</div></blockquote>
 </section>
 <section id="variables-globales-y-efectos-secundarios">
 <h3>Variables Globales y Efectos Secundarios<a class="headerlink" href="#variables-globales-y-efectos-secundarios" title="Link to this heading">#</a></h3>
@@ -1525,8 +1525,6 @@ Soy una variable de la función padre
 </div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">x</span></code> es una función que acepta dos argumentos con valores por defecto de 2. Si no se pasan valores al llamar a la función, se utilizan los valores por defecto.</p>
-<section id="implementacion-manual-de-argumentos-por-defecto">
-<h4>Implementación Manual de Argumentos por Defecto<a class="headerlink" href="#implementacion-manual-de-argumentos-por-defecto" title="Link to this heading">#</a></h4>
 <p>Antes de que los argumentos por defecto fueran una característica del lenguaje, se usaban técnicas manuales para lograr el mismo resultado:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1555,7 +1553,6 @@ Soy una variable de la función padre
 </div>
 </div>
 <p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">multi</span></code> es una función que verifica si los argumentos <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> son <code class="docutils literal notranslate"><span class="pre">undefined</span></code> y les asigna un valor por defecto de 2 si es necesario. Además, la función utiliza <code class="docutils literal notranslate"><span class="pre">arguments.length</span></code> para mostrar la cantidad de argumentos pasados.</p>
-</section>
 </section>
 </section>
 <section id="elementos-del-lenguaje">
@@ -1911,10 +1908,7 @@ Soy una variable de la función padre
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-recomendado">Uso Recomendado</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">Argumentos por Defecto</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-manual-de-argumentos-por-defecto">Implementación Manual de Argumentos por Defecto</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">Argumentos por Defecto</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-del-lenguaje">Elementos del lenguaje</a><ul class="nav section-nav flex-column">

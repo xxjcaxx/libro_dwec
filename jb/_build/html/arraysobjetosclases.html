@@ -536,12 +536,13 @@ document.write(`
 </div>
 <section id="metodos-y-propiedades-de-los-arrays">
 <h3>Métodos y Propiedades de los Arrays<a class="headerlink" href="#metodos-y-propiedades-de-los-arrays" title="Link to this heading">#</a></h3>
-<p>Los arrays en JavaScript tienen varias propiedades y métodos interesantes que facilitan su manipulación. A lo largo de este capítulo y en el de programación funcional iremos viendo algunos de ellos. Entre otros:</p>
+<p>Los arrays en JavaScript tienen varias propiedades y métodos interesantes que facilitan su manipulación. La existencia de estos métodos convierte a los Arrays de Javascript en estructuras de datos que se pueden comportar como listas, colas o pilas clásicas.  Entre otros:</p>
 <ul class="simple">
 <li><p><strong>length</strong>: Devuelve el número de elementos en el array.</p></li>
 <li><p><strong>sort()</strong>: Ordena los elementos del array.</p></li>
 <li><p><strong>push()</strong>: Agrega uno o más elementos al final del array.</p></li>
 <li><p><strong>pop()</strong>: Elimina y retorna el último elemento del array.</p></li>
+<li><p><strong>shift()</strong>: Elimina el primer elemento.</p></li>
 </ul>
 <p>Ejemplo de uso:</p>
 <div class="cell docutils container">
@@ -1618,6 +1619,11 @@ document.write(`
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">userId</span><span class="p">(</span><span class="nx">user</span><span class="p">));</span><span class="w"> </span><span class="c1">// 42</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">whois</span><span class="p">(</span><span class="nx">user</span><span class="p">));</span><span class="w"> </span><span class="c1">// &quot;jdoe es John&quot;</span>
+
+<span class="c1">// Desestructuración con valores por defecto</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">createUser</span><span class="p">({</span><span class="w"> </span><span class="nx">displayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Anónimo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">displayName</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// Aquí usamos Object Literal enhacement</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
