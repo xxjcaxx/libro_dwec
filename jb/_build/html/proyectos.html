@@ -920,6 +920,23 @@ document.write(`
 <span class="p">});</span>
 </pre></div>
 </div>
+<p>Otra posible mejora es evitar los <code class="docutils literal notranslate"><span class="pre">if..else</span></code>y usar, por ejemplo, un Map para decidir qué hacer con la ruta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">([</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;#home&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chess-home&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;#login&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chess-login&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="p">])</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">hash</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">routes</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">hash</span><span class="p">)){</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">component</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">routes</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">webComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">component</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#content&#39;</span><span class="p">).</span><span class="nx">replaceChildren</span><span class="p">(</span><span class="nx">webComponent</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este caso, también es más simple por usar <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code></p>
 </section>
 <section id="componentes-web">
 <h5>Componentes Web<a class="headerlink" href="#componentes-web" title="Link to this heading">#</a></h5>

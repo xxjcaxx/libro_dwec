@@ -911,6 +911,26 @@ Los Generadores usan la expresión <code class="docutils literal notranslate"><s
 </div>
 </div>
 </div>
+<p>También se pueden crear Maps con un array bidimensional de clave-valor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">([</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;#home&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;home&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;#login&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;login&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">routes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Map(2) {
+  <span class=" -Color -Color-Green">&quot;#home&quot;</span> =&gt; { component: <span class=" -Color -Color-Green">&quot;home&quot;</span> },
+  <span class=" -Color -Color-Green">&quot;#login&quot;</span> =&gt; { component: <span class=" -Color -Color-Green">&quot;login&quot;</span> }
+}
+</pre></div>
+</div>
+</div>
+</div>
 <ul class="simple">
 <li><p>Ejemplo de Map y DOM: <a class="github reference external" href="https://github.com/xxjcaxx/exemples-dwec/tree/master/01-Javascript/iteradors/maps/maps_dom">xxjcaxx/exemples-dwec</a></p></li>
 </ul>

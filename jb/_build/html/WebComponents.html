@@ -418,10 +418,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-iniciales">Conceptos iniciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativas">Alternativas</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-iniciales">Conceptos iniciales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-elements">Custom Elements</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida">Ciclo de vida</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registrar-el-elemento-personalizado">Registrar el elemento personalizado</a></li>
@@ -430,6 +427,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-generales-en-shadow-dom">Estilos Generales en Shadow DOM</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#css-scopes-shadow-parts">CSS Scopes / Shadow Parts</a></li>
 </ul>
 </li>
@@ -510,8 +508,8 @@ document.write(`
 <li><p><strong>Shadow DOM</strong></p></li>
 <li><p><strong>Templates</strong></p></li>
 </ul>
-<p>Se pueden crear componentes de muchas maneras, pero la definición oficial parte de la posibilidad de crear <strong>Elementos personalizados</strong> o <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Elements</span></code>. Esto se puede hacer porque Javascript permite heredar de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements</a>. Luego veremos las posibilidades que hay con esto.</p>
-<p>Una de las necesidades cubiertas por los Web Components es la reutilización del código.  Los elementos personalizados pueden ser diferentes al resto de la aplicación y tener sus propios scripts y estilos. Estos pueden colisionar con una aplicación para la que no fueron creados desde el principio. Pero Javascript permite encapsular estos elementos en un DOM separado del principal. Esta técnica se llama <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>.</p>
+<p>Se pueden crear componentes de muchas maneras, pero la definición oficial parte de la posibilidad de crear <strong>Elementos personalizados</strong> o <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Elements</span></code>. Esto se puede hacer porque Javascript permite heredar de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements</a>.</p>
+<p>Una de las necesidades cubiertas por los Web Components es la reutilización del código entre distintos proyectos. Los elementos personalizados pueden ser diferentes al resto de la aplicación y tener sus propios scripts y estilos. Estos pueden colisionar con una aplicación para la que no fueron creados desde el principio. Pero Javascript permite encapsular estos elementos en un DOM separado del principal. Esta técnica se llama <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>.</p>
 <p>Para crear elementos personalizados en el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>, se pueden hacer programáticamente o a través del HTML con etiquetas como <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>.</p>
 <p>Por consiguiente, un <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Component</span></code> tiene una clase que hereda de <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> registrada en el <code class="docutils literal notranslate"><span class="pre">CustomElementRegistry</span></code> para que pueda ser utilizada en cualquier parte. Este elemento tiene un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> (opcional) para que su código y estilos no molesten al resto y se suele usar <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> para las plantillas. A continuación se puede usar como cualquier etiqueta.</p>
 <p>Veamos un ‘hola mundo’:</p>
@@ -529,12 +527,11 @@ document.write(`
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">x-hello-world</span><span class="p">&gt;&lt;/</span><span class="nt">x-hello-world</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<section id="alternativas">
-<h3>Alternativas<a class="headerlink" href="#alternativas" title="Link to this heading">#</a></h3>
-<p>Como todo en Javascript, es opcional usar Web components, pero es que también es opcional usar todas las técnicas anteriores. Si no hacemos un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code> no entra en la definición de lo que estamos tratando, pero se puede hacer una función que retorne un elemento con <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> y código personalizado que atiende a los eventos, descarga los datos, se suscribe a Observables… El problema es que perdemos las ventajas del ciclo de vida de los <code class="docutils literal notranslate"><span class="pre">HTMLElements</span></code>.</p>
-<p>Tampoco es necesario siempre hacer <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> si el código o estilo no va a interferir nunca.</p>
-<p>Por otro lado, el uso de <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> puede ser farragoso en algunos casos comparado con las <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. En nuestro caso, haremos un uso combinado de los mismos para aprovechar las ventajas de ambas técnicas.</p>
-</section>
+<blockquote>
+<div><p>Como todo en Javascript, es opcional usar Web components, pero es que también es opcional usar todas las técnicas anteriores. Si no hacemos un <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Element</span></code> no entra en la definición de lo que estamos tratando, pero se puede hacer una función que retorne un elemento con <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> y código personalizado que atiende a los eventos, descarga los datos, se suscribe a Observables… El problema es que perdemos las ventajas del ciclo de vida de los <code class="docutils literal notranslate"><span class="pre">HTMLElements</span></code>.
+Tampoco es necesario siempre hacer <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> si el código o estilo no va a interferir nunca.
+Por otro lado, el uso de <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> puede ser farragoso en algunos casos comparado con las <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Literals</span></code>. En nuestro caso, haremos un uso combinado de los mismos para aprovechar las ventajas de ambas técnicas.</p>
+</div></blockquote>
 </section>
 <section id="custom-elements">
 <h2>Custom Elements<a class="headerlink" href="#custom-elements" title="Link to this heading">#</a></h2>
@@ -632,11 +629,12 @@ document.write(`
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;./MiElemento.js&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Se registra automáticamente</span>
 </pre></div>
 </div>
-<p>Pero si se necesita poner otro nombre, podemo importar así:</p>
+<p>Pero si se necesita poner otro nombre, podemos importar así:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">MiElemento</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./MiElemento.js&#39;</span><span class="p">;</span>
 <span class="nx">MiElemento</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;otro-nombre&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Registro manual con otro tag</span>
 </pre></div>
 </div>
+<p>No obstante el elemento también quedará registrado con el nombre original.</p>
 </section>
 <section id="usar-el-elemento-personalizado">
 <h3>Usar el elemento personalizado<a class="headerlink" href="#usar-el-elemento-personalizado" title="Link to this heading">#</a></h3>
@@ -691,7 +689,7 @@ document.write(`
 <div><p>El segundo no se va a ver porque innerHTML no crea el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code>. Este, por javascript, ha de ser creado explícitamente como en el primer ejemplo. No obstante, aunque no se vea, el template queda accesible y puede ser clonado para incorporarlo más adelante.</p>
 </div></blockquote>
 <p>No es posible que un <code class="docutils literal notranslate"><span class="pre">Element</span></code> que actua como <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">host</span></code> tenga tanto shadow-root como elementos hijos en el árbol principal. No da error, pero no serán visibles. De la misma manera, cualquier <code class="docutils literal notranslate"><span class="pre">div</span></code> o otros elementos que contengan <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code> se convierte automáticamente en un <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">host</span></code>, por lo que no puede tener otras etiquetas normales dentro.</p>
-<p>los nodos descencientes del shadow-root no son accesibles mediante <code class="docutils literal notranslate"><span class="pre">document.querySelector</span></code>, por ejemplo. No obstante, son accesibles a través del atributo <code class="docutils literal notranslate"><span class="pre">shadowRoot</span></code>, el cual permite ejecutar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> internamente.</p>
+<p>los nodos descendientes del shadow-root no son accesibles mediante <code class="docutils literal notranslate"><span class="pre">document.querySelector</span></code>, por ejemplo. No obstante, son accesibles a través del atributo <code class="docutils literal notranslate"><span class="pre">shadowRoot</span></code>, el cual permite ejecutar <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> internamente.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">host</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -699,6 +697,35 @@ document.write(`
 <section id="estilos-en-shadow-dom">
 <h3>Estilos en shadow DOM<a class="headerlink" href="#estilos-en-shadow-dom" title="Link to this heading">#</a></h3>
 <p>Para dar estilo a un shadow DOM se puede hacer modificando <code class="docutils literal notranslate"><span class="pre">.style...</span></code> en los elementos hijos, poniendo la etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> y escribiendo el CSS ahí mismo o importando los ficheros CSS.</p>
+<p><strong>Añadir las reglas desde un CSS</strong></p>
+<p>Poner <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> dentro del html del componente puede ser incómodo para programar y en el resultado final. Si queremos tener un <code class="docutils literal notranslate"><span class="pre">.css</span></code> a parte y importar las reglas, podemos hacerlo con:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Cargar CSS externamente</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;style.css&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">cssText</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">styleSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">styleSheet</span><span class="p">.</span><span class="nx">replaceSync</span><span class="p">(</span><span class="nx">cssText</span><span class="p">);</span><span class="w"> </span><span class="c1">// Aplica el CSS al Shadow DOM</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">styleSheet</span><span class="p">];</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error cargando CSS:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Esto no es buena idea en general, ya que fuerza una descarga por componente y los estilos puede que se apliquen muy tarde o nunca. Para eso es mejor poner el <code class="docutils literal notranslate"><span class="pre">css</span></code> dentro de un template literal, si queremos en otro fichero, importarlo y insertarlo con <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;${importedStyle}&lt;/style&gt;</span></code>.</p>
+</div></blockquote>
+<p>En el caso de Vite:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">styles</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./style.css?inline&quot;</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">shadow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">styleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span>
+<span class="nx">styleSheets</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
+<span class="nx">shadow</span><span class="p">.</span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">styleSheets</span><span class="p">];</span>
+</pre></div>
+</div>
+<section id="estilos-generales-en-shadow-dom">
+<h4>Estilos Generales en Shadow DOM<a class="headerlink" href="#estilos-generales-en-shadow-dom" title="Link to this heading">#</a></h4>
 <p>Los estilos generales no se aplican a los elementos dentro del <code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">root</span></code>. En general es positivo que los estilos del DOM principal no afecten a los Web components. Esto los hace más robustos para poderlos reutilizar y que siempre se vean igual. También hace que sus estilos no puedan contaminar los de la web principal. No obstante, si estamos usando, por ejemplo, <code class="docutils literal notranslate"><span class="pre">Boostrap</span></code> tanto en el componente como en la web en general, podemos aplicar alguna de las técnicas que explicaremos a continuación:</p>
 <p><strong>Adoptar las reglas del documento</strong></p>
 <p>Podemos usar un código como este en la creación del componente para que adopte las reglas del documento:</p>
@@ -734,6 +761,7 @@ document.write(`
 <span class="nx">shadow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">span</span><span class="p">);</span>
 </pre></div>
 </div>
+</section>
 <section id="css-scopes-shadow-parts">
 <h4>CSS Scopes / Shadow Parts<a class="headerlink" href="#css-scopes-shadow-parts" title="Link to this heading">#</a></h4>
 <p>Si usamos en css la etiqueta en concreto si les afecta el css:</p>
@@ -759,30 +787,6 @@ document.write(`
 <span class="w">  </span><span class="k">vertical-align</span><span class="p">:</span><span class="w"> </span><span class="kc">super</span><span class="p">;</span>
 <span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="kc">small</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-<p><strong>Añadir las reglas desde un CSS</strong></p>
-<p>Poner <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> dentro del html del componente puede ser incómodo para programar y en el resultado final. Si queremos tener un <code class="docutils literal notranslate"><span class="pre">.css</span></code> a parte y importar las reglas, podemos hacerlo con:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="w"> </span><span class="p">});</span>
-
-<span class="w">    </span><span class="c1">// Cargar CSS externamente</span>
-<span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;style.css&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
-<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">cssText</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">styleSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span>
-<span class="w">        </span><span class="nx">styleSheet</span><span class="p">.</span><span class="nx">replaceSync</span><span class="p">(</span><span class="nx">cssText</span><span class="p">);</span><span class="w"> </span><span class="c1">// Aplica el CSS al Shadow DOM</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">styleSheet</span><span class="p">];</span>
-<span class="w">      </span><span class="p">})</span>
-<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error cargando CSS:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
-</pre></div>
-</div>
-<p>En el caso de Vite:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">styles</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./style.css?inline&quot;</span><span class="p">;</span>
-<span class="p">...</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">shadow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="w"> </span><span class="p">});</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">styleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CSSStyleSheet</span><span class="p">();</span>
-<span class="nx">styleSheets</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
-<span class="nx">shadow</span><span class="p">.</span><span class="nx">adoptedStyleSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">styleSheets</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>Como vemos, hay muchas posibilidades. La más cómoda es añadir <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> dentro de la plantilla, pero si queremos el estilo en un <code class="docutils literal notranslate"><span class="pre">.css</span></code> reutilizable lo importaremos ya sea manualmente o a la manera de <code class="docutils literal notranslate"><span class="pre">Vite</span></code>. Por otro lado, usar estilos globales es complejo en un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code>, por lo que debemos plantearnos si vale la pena y en ese caso, importarlos manualmente mediante <code class="docutils literal notranslate"><span class="pre">adoptedStyleSheets</span></code> en la construcción del elemento.</p>
@@ -2057,10 +2061,7 @@ Esta función ya registra el componente.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-iniciales">Conceptos iniciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativas">Alternativas</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-iniciales">Conceptos iniciales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-elements">Custom Elements</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida">Ciclo de vida</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registrar-el-elemento-personalizado">Registrar el elemento personalizado</a></li>
@@ -2069,6 +2070,7 @@ Esta función ya registra el componente.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-dom">Shadow DOM</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-en-shadow-dom">Estilos en shadow DOM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-generales-en-shadow-dom">Estilos Generales en Shadow DOM</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#css-scopes-shadow-parts">CSS Scopes / Shadow Parts</a></li>
 </ul>
 </li>
