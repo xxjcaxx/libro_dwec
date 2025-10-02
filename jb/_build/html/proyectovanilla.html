@@ -448,6 +448,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perfiles">Perfiles</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inicio-rapido">Inicio Rápido</a></li>
 </ul>
             </nav>
         </div>
@@ -1411,6 +1412,53 @@ npm<span class="w"> </span>run<span class="w"> </span>testrun
 </div>
 </section>
 </section>
+<section id="inicio-rapido">
+<h2>Inicio Rápido<a class="headerlink" href="#inicio-rapido" title="Link to this heading">#</a></h2>
+<p><strong>Inicio de Vite</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>create<span class="w"> </span>vite@latest<span class="w"> </span>my-app<span class="w"> </span>--<span class="w"> </span>--template<span class="w"> </span>vanilla
+<span class="nb">cd</span><span class="w"> </span>my-app
+npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>dev
+</pre></div>
+</div>
+<p><strong>Tests</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>vitest
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run --coverage&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
+npm<span class="w"> </span>run<span class="w"> </span>coverage
+npx<span class="w"> </span>vitest<span class="w"> </span>--ui
+</pre></div>
+</div>
+<p><strong>Linter</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>eslint<span class="w"> </span>--save-dev
+npm<span class="w"> </span>init<span class="w"> </span>@eslint/config@latest
+</pre></div>
+</div>
+<p><strong>Bootstrap</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>i<span class="w"> </span>--save<span class="w"> </span>bootstrap<span class="w"> </span>@popperjs/core
+npm<span class="w"> </span>i<span class="w"> </span>--save-dev<span class="w"> </span>sass
+</pre></div>
+</div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;bootstrap/scss/bootstrap&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Import our custom CSS</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;../scss/styles.scss&#39;</span>
+
+<span class="c1">// Import all of Bootstrap’s JS</span>
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">bootstrap</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;bootstrap&#39;</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1507,6 +1555,7 @@ npm<span class="w"> </span>run<span class="w"> </span>testrun
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perfiles">Perfiles</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inicio-rapido">Inicio Rápido</a></li>
 </ul>
   </nav></div>
 
