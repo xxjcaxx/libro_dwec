@@ -433,6 +433,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-2-end-testing">End 2 End Testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-deploy">Build and Deploy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-de-desarrollo">Backend de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatizaciones-en-github">Automatizaciones en Github</a></li>
 </ul>
             </nav>
         </div>
@@ -681,6 +682,254 @@ npx<span class="w"> </span>json-server<span class="w"> </span>db.json
 <p>Tan solo hay que llenar db.json con un objeto JSON y lo servirá como una API REST, modificando incluso el fichero si se le hace POST o PATCH.</p>
 <p>Si además queremos autenticación se puede usar <code class="docutils literal notranslate"><span class="pre">json-serve-auth</span></code>.</p>
 </section>
+<section id="automatizaciones-en-github">
+<h2>Automatizaciones en Github<a class="headerlink" href="#automatizaciones-en-github" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Esta parte está muy enfocada a la metodología del trabajo por proyectos en el módulo DWEC en DAW. Algunas técnicas se pueden aplicar a cualquier proyecto, pero no tiene porqué ser una práctica habitual fuera del ámbito educativo.</p>
+</div></blockquote>
+<p>Cuando desarrollemos un proyecto para clase, la organización del proyecto puede estar hecha a base de <code class="docutils literal notranslate"><span class="pre">issues</span></code>de Github. De esta manera se aproxima a la gestión de un proyecto real. En nuestro caso serán las mismas <code class="docutils literal notranslate"><span class="pre">issues</span></code> para todos los grupos, así que hemos de encontrar una forma de darlas de alta en todos los proyectos por igual. Una <code class="docutils literal notranslate"><span class="pre">Issue</span></code> la entenderemos como un requisito del proyecto, se la asignará una o varias personas y tiene unas <code class="docutils literal notranslate"><span class="pre">labels</span></code> que indican aspectos relativos a la evaluación posterior. Resolver una issue será siempre igual:</p>
+<ul class="simple">
+<li><p>Una persona se la asigna.</p></li>
+<li><p>Crea una nueva rama con el nombre similar al título de la issue.</p></li>
+<li><p>La resuelve en su rama.</p></li>
+<li><p>Crear un <code class="docutils literal notranslate"><span class="pre">pull</span> <span class="pre">request</span></code> para hacer el merge con la rama <code class="docutils literal notranslate"><span class="pre">master</span></code> <code class="docutils literal notranslate"><span class="pre">production</span></code> o como se llame la principal.</p></li>
+<li><p>El <code class="docutils literal notranslate"><span class="pre">pull</span> <span class="pre">request</span></code> es evaluado y aceptado por el encargado en el equipo.</p></li>
+<li><p>Se produce el <code class="docutils literal notranslate"><span class="pre">merge</span></code> resolviendo los posibles conflictos.</p></li>
+</ul>
+<p>El profesor os enviará un <code class="docutils literal notranslate"><span class="pre">.json</span></code> de las labels y otro de las issues. Hay que importar primero las labels y luego las issues. Para ello hay dos scripts que pondremos en el mismo directorio de los dos archivos:</p>
+<p><strong>importarlabels.js:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">;</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 1. Leer parámetros</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">owner</span><span class="p">,</span><span class="w"> </span><span class="nx">repo</span><span class="p">,</span><span class="w"> </span><span class="nx">labelsFile</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">owner</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">repo</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">labelsFile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Uso: node importar-labels.js &lt;usuario&gt; &lt;repo&gt; &lt;labels.json&gt;&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">GITHUB_TOKEN</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Falta la variable de entorno GITHUB_TOKEN&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 2. Cargar labels desde fichero</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">labels</span><span class="p">;</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">labelsFile</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">);</span>
+
+<span class="w">  </span>
+<span class="w">  </span><span class="nx">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ No se pudo leer el archivo:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">labels</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ El archivo debe contener un array JSON de labels.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 3. Crear un label en GitHub</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">crearLabel</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/labels`</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Accept&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.github+json&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;cccccc&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">description</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`❌ Error creando label &quot;</span><span class="si">${</span><span class="nx">label</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&quot;:`</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`✔️ Label creada: </span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> (</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">color</span><span class="si">}</span><span class="sb">)`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 4. Importar todas las labels</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">importar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`📥 Importando </span><span class="si">${</span><span class="nx">labels</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> labels en </span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">...\n`</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelsSimplificadas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">labels</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">label</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;cccccc&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">description</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">  </span><span class="p">}));</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">labelsSimplificadas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">crearLabel</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;\n✅ Importación completada.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">importar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>importarissues.js</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">;</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 1. Leer parámetros</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">owner</span><span class="p">,</span><span class="w"> </span><span class="nx">repo</span><span class="p">,</span><span class="w"> </span><span class="nx">issuesFile</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">owner</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">repo</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">issuesFile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Uso: node importar.js &lt;usuario&gt; &lt;repo&gt; &lt;issues.json&gt;&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">GITHUB_TOKEN</span><span class="p">;</span>
+<span class="c1">// export GITHUB_TOKEN=&quot;ghp_TuTokenAqui&quot;  --- IGNORE ---</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Falta la variable de entorno GITHUB_TOKEN&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 2. Cargar issues desde fichero</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">issues</span><span class="p">;</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">issuesFile</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">issues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ No se pudo leer el archivo:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">issues</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ El archivo debe contener un array JSON de issues.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 3. Función para crear una issue</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">crearIssue</span><span class="p">(</span><span class="nx">issue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/issues`</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Accept&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.github+json&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">body</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">labels</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">labels</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Error creando issue:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`✔️ Issue creada: #</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">number</span><span class="si">}</span><span class="sb">  (</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span><span class="sb">)`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 4. Importar todas las issues</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">importar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`📥 Importando </span><span class="si">${</span><span class="nx">issues</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> issues en </span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">...\n`</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">issuesSimplificadas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">issues</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">issue</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">body</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">labels</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">issue</span><span class="p">.</span><span class="nx">labels</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[]).</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}));</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">issue</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">issuesSimplificadas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">crearIssue</span><span class="p">(</span><span class="nx">issue</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;\n✅ Importación completada.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">importar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Para llamar a estos dos scripts ejecutaremos en una terminal bash:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_TOKEN</span><span class="o">=</span><span class="s2">&quot;ghp_...&quot;</span><span class="w"> </span><span class="c1"># Un token generado en la web de github</span>
+node<span class="w"> </span>./importarlabels.js<span class="w"> </span><span class="s2">&quot;tu-usuario&quot;</span><span class="w"> </span><span class="s2">&quot;tu-proyecto&quot;</span><span class="w"> </span>labels.json
+node<span class="w"> </span>./importarissues.js<span class="w"> </span><span class="s2">&quot;tu-usuario&quot;</span><span class="w"> </span><span class="s2">&quot;tu-proyecto&quot;</span><span class="w"> </span>issues.js
+</pre></div>
+</div>
+<p>En caso de querer exportar (no es necesario que los alumnos lo hagan):</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;usuario&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">repo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;proyecto&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">GITHUB_TOKEN</span><span class="p">;</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchAll</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">?per_page=100&amp;page=</span><span class="si">${</span><span class="nx">page</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Accept&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.github+json&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">page</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">exportar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;📥 Exportando issues...&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">issues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetchAll</span><span class="p">(</span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/issues`</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;📥 Exportando labels...&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetchAll</span><span class="p">(</span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/labels`</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;issues.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">issues</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+<span class="w">  </span><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;labels.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">labels</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;✅ Exportación completa:&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;   - issues.json&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;   - labels.json&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">exportar</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -762,6 +1011,7 @@ npx<span class="w"> </span>json-server<span class="w"> </span>db.json
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-2-end-testing">End 2 End Testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-deploy">Build and Deploy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-de-desarrollo">Backend de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatizaciones-en-github">Automatizaciones en Github</a></li>
 </ul>
   </nav></div>
 

@@ -472,6 +472,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">Tablas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-y-handlers">Eventos y Handlers</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-events">Eventos (Events)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-handlers">Manejadores (Handlers)</a></li>
@@ -1592,6 +1593,85 @@ document.write(`
 </section>
 </section>
 </section>
+<section id="tablas">
+<h2>Tablas<a class="headerlink" href="#tablas" title="Link to this heading">#</a></h2>
+<p>Dentro de la creación y modificación del DOM, las tablas tienen un papel especial. Por un lado son muy importantes en cualquier aplicación en la que se quieran mostrar datos. Por otro lado, las tablas son difíciles de gestionar. Por último, relacionado con la dificultad para gestionarlas, las tablas tienen su propia API, al igual que los formularios.</p>
+<p>Aquí tenemos un ejemplo de cómo crear una tabla con funciones comunes:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span><span class="s1">&#39;five&#39;</span><span class="p">,</span><span class="s1">&#39;six&#39;</span><span class="p">]</span>
+<span class="p">];</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">row</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">t</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">row</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">cell</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cell</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">r</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>El mismo ejemplo simplificado con innerHTML y template literals:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;five&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;six&#39;</span><span class="p">]</span>
+<span class="p">];</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">  &lt;table&gt;</span>
+<span class="sb">    </span><span class="si">${</span><span class="nx">table</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">row</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">        </span><span class="sb">`&lt;tr&gt;</span><span class="si">${</span><span class="nx">row</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">cell</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`&lt;td&gt;</span><span class="si">${</span><span class="nx">cell</span><span class="si">}</span><span class="sb">&lt;/td&gt;`</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/tr&gt;`</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span>
+<span class="sb">  &lt;/table&gt;</span>
+<span class="sb">`</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">html</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Pero javascript tiene acceso a una API de las tablas (<a class="reference external" href="https://developer.mozilla.org/es/docs/Web/API/HTMLTableElement">https://developer.mozilla.org/es/docs/Web/API/HTMLTableElement</a>) con funciones como:
+Aquí tienes una <strong>lista compacta</strong> con todas las propiedades y métodos de <code class="docutils literal notranslate"><span class="pre">table</span></code> 👇</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">caption</span></code> → leyenda de la tabla</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tHead</span></code> → encabezado</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tFoot</span></code> → pie</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rows</span></code> → colección de filas</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tBodies</span></code> → cuerpos de la tabla</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cellPadding</span></code> → relleno interno de celdas</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cellSpacing</span></code> → espacio entre celdas</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code> → lados con borde</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rules</span></code> → bordes internos visibles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summary</span></code> → resumen de la tabla</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code> → ancho de la tabla</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">createTHead()</span></code> / <code class="docutils literal notranslate"><span class="pre">deleteTHead()</span></code> → crear/eliminar encabezado</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">createTFoot()</span></code> / <code class="docutils literal notranslate"><span class="pre">deleteTFoot()</span></code> → crear/eliminar pie</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">createCaption()</span></code> / <code class="docutils literal notranslate"><span class="pre">deleteCaption()</span></code> → crear/eliminar leyenda</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insertRow()</span></code> / <code class="docutils literal notranslate"><span class="pre">deleteRow()</span></code> → insertar/eliminar fila</p></li>
+</ul>
+<p>De esta manera el código queda:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span><span class="s1">&#39;five&#39;</span><span class="p">,</span><span class="s1">&#39;six&#39;</span><span class="p">]</span>
+<span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">row</span><span class="p">,</span><span class="nx">ri</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="nx">ri</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">row</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">l</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">insertCell</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">l</span><span class="p">;</span><span class="w">  </span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Si queremos una versión más funcional:</p>
+</section>
 <section id="eventos-y-handlers">
 <h2>Eventos y Handlers<a class="headerlink" href="#eventos-y-handlers" title="Link to this heading">#</a></h2>
 <p>Los eventos y los manejadores (handlers) son elementos para capturar interacciones del usuario y realizar acciones en respuesta a estas interacciones. Estas interacciones pueden ser clics del ratón, pulsaciones de teclado, desplazamientos, cambios en el tamaño de la ventana, etc.</p>
@@ -1947,6 +2027,7 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">Tablas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-y-handlers">Eventos y Handlers</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-events">Eventos (Events)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-handlers">Manejadores (Handlers)</a></li>
