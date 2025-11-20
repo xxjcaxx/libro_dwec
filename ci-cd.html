@@ -1,0 +1,1069 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Integración y Despliegue Continuo (CI/CD) &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ci-cd';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyectos en Javascript" href="proyectos.html" />
+    <link rel="prev" title="Vite" href="vite.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jsenhtml.html">Javascript en el navegador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fci-cd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ci-cd.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Integración y Despliegue Continuo (CI/CD)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-tipicos-en-el-desarrollo-web">Pasos Típicos en el Desarrollo Web</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-mediante-linea-de-comandos">Vercel mediante Línea de comandos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-y-formatting">Linting y Formatting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-los-tests">Instalar los tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configurar-los-tests-en-github-actions">Configurar los tests en GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-tests">Integration Tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-2-end-testing">End 2 End Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-deploy">Build and Deploy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-de-desarrollo">Backend de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatizaciones-en-github">Automatizaciones en Github</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="integracion-y-despliegue-continuo-ci-cd">
+<h1>Integración y Despliegue Continuo (CI/CD)<a class="headerlink" href="#integracion-y-despliegue-continuo-ci-cd" title="Link to this heading">#</a></h1>
+<p>El módulo DWEC se centra en la creación de páginas web en el lado del cliente. Este enfoque implica, en su mayoría, la programación en JavaScript para interactuar dinámicamente con el navegador y proporcionar una mejor experiencia de usuario. Sin embargo, el desarrollo web moderno abarca más que simplemente escribir código JavaScript.</p>
+<p>En este libro hemos explorado tecnologías y metodologías modernas para el desarrollo frontend, como la programación funcional, la reactividad, los empaquetadores y las pruebas. Ahora vamos a abordar aspectos relacionados con el despliegue y la automatización de algunas de estas tareas. Si nos especializamos en estos temas y otros afines, nuestro perfil puede definirse como “DevOps”.</p>
+<p>Para abordar la complejidad y las múltiples etapas involucradas en el desarrollo y despliegue de una aplicación web y mejorar la calidad del software resultante, se recurre a los procesos de Integración Continua y Despliegue Continuo (CI/CD). Estos procesos permiten automatizar y estandarizar muchas tareas asociadas con el desarrollo de software, desde la escritura de código hasta la entrega al usuario final.</p>
+<section id="pasos-tipicos-en-el-desarrollo-web">
+<h2>Pasos Típicos en el Desarrollo Web<a class="headerlink" href="#pasos-tipicos-en-el-desarrollo-web" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Crear el proyecto:</strong> Iniciar un nuevo proyecto web utilizando herramientas como npm, lo que establece la estructura inicial del proyecto y crea el archivo <code class="docutils literal notranslate"><span class="pre">package.json</span></code> que contiene la información del proyecto y sus dependencias.</p></li>
+<li><p><strong>Instalar dependencias:</strong> Utilizar npm o yarn para instalar las dependencias necesarias para el desarrollo del proyecto, tanto las dependencias de desarrollo (por ejemplo, herramientas de construcción, linters, pruebas) como las dependencias específicas del proyecto (por ejemplo, frameworks o librerías JavaScript).</p></li>
+<li><p><strong>Instalar y configurar frameworks o librerías:</strong> Instalar y configurar cualquier framework o librería adicional necesaria para el desarrollo de la aplicación web, como React, Vue.js o Angular, junto con cualquier complemento o biblioteca asociada.</p></li>
+<li><p><strong>Escribir código correcto:</strong> Desarrollar el código de la aplicación web siguiendo las mejores prácticas. Para ello nos podemos ayudar en los <code class="docutils literal notranslate"><span class="pre">Linters</span></code> y <code class="docutils literal notranslate"><span class="pre">Tests</span></code>.</p></li>
+<li><p><strong>Utilizar linters:</strong> Configurar y utilizar linters como ESLint para asegurar que el código JavaScript cumpla con las convenciones de estilo y las reglas de calidad definidas, ayudando a detectar y corregir errores, así como a mantener la coherencia en el código base.</p></li>
+<li><p><strong>Escribir pruebas (Test-Driven Development - TDD):</strong> Implementar pruebas unitarias y de integración para validar el comportamiento del código y garantizar su correcto funcionamiento, utilizando el enfoque de desarrollo guiado por pruebas (TDD) para mejorar la calidad del software.</p></li>
+<li><p><strong>Crear el repositorio git y gestionarlo:</strong> Inicializar un repositorio git para controlar el historial de cambios en el código fuente y facilitar la colaboración entre miembros del equipo, utilizando comandos git para crear commits, ramas y fusiones según sea necesario.</p></li>
+<li><p><strong>Realizar pruebas de integración:</strong> Ejecutar pruebas de integración para asegurar que los diferentes componentes de la aplicación funcionen correctamente juntos y que no se produzcan conflictos o errores de interoperabilidad.</p></li>
+<li><p><strong>Crear el bundle:</strong> Utilizar herramientas de construcción como Vite, Webpack o Parcel para crear un bundle optimizado de los activos de la aplicación, incluidos los archivos HTML, CSS, JavaScript y recursos estáticos.</p></li>
+<li><p><strong>Configurar el servidor:</strong> Configurar un servidor web para servir los archivos estáticos de la aplicación y manejar solicitudes HTTP, lo que puede incluir la configuración de servidores locales para desarrollo y pruebas, así como la configuración de servidores de producción para el despliegue.</p></li>
+<li><p><strong>Subir los archivos estáticos al servidor:</strong> Transferir los archivos estáticos resultantes del proceso de construcción (bundle) al servidor de producción o a un entorno de pruebas, lo que puede implicar la implementación manual o automatizada de los archivos en el servidor remoto.</p></li>
+<li><p><strong>Poner en producción:</strong> Realizar pruebas finales en el entorno de producción para asegurarse de que la aplicación web funcione como se espera y, si todo está correcto, lanzarla para que los usuarios finales la utilicen.</p></li>
+</ol>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="_images/pasosproyecto.png"><img alt="_images/pasosproyecto.png" src="_images/pasosproyecto.png" style="width: 785.0px; height: 348.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Proceso de un proyecto de Frontend</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Como se puede ver, es muy difícil que los programadores lo hagan todo bien todo el tiempo. La parte del despliegue se trata con más profundidad en el módulo de despliegue del ciclo, pero es preciso desplegar rudimentariamente o en alguna plataforma alternativa que simplifique esta tarea. De esta manera se puede ver todo el proceso sin perder demasiado tiempo. La integración continua es una metodología que se apoya en unas tecnologías muy diversas. Vamos a explorar las tecnologías y poco a poco ir configurando todas las herramientas de un proyecto para automatizar las tareas descritas.</p>
+<p>En este manual vamos a explorar algunas técnicas para implementar el CI/CD en clase. En un proyecto real se mantiene la metodología, ampliando algunos aspectos. Lo que nadie nos garantiza es que se usará Vercel, Vitest, EsLint, Github… Porque cada empresa tiene un proceso personalizado y mucho más complejo.</p>
+</section>
+<section id="vercel">
+<h2>Vercel<a class="headerlink" href="#vercel" title="Link to this heading">#</a></h2>
+<p>Vercel es una plataforma que permite desplegar y gestionar aplicaciones web de manera sencilla. Este manual tratamos el proceso de alta en Vercel, la creación de un proyecto con Vite y el despliegue de la aplicación en la nube utilizando Vercel.</p>
+<blockquote>
+<div><p>Hay muchas alternativas de este estilo como Firebase, Netlify, Heroku…</p>
+</div></blockquote>
+<p>Es muy sencillo darse de alta con el usuario de Github. De esta manera, también se queda enlazado después.</p>
+<p>Para el tipo de proyectos sencillos se puede asociar el proyecto al repositorio via web de forma automática.</p>
+<blockquote>
+<div><p>Para que funcione la forma totalmente automática, has de ser propietario tanto del repositorio como del despliegue. Lo que hace es instalar Vercel como una <code class="docutils literal notranslate"><span class="pre">application</span></code> permitida por tu usuario para determinados repositorios. Esta App estará pendiente de los cambios para hacer despliegues.</p>
+</div></blockquote>
+<section id="vercel-mediante-linea-de-comandos">
+<h3>Vercel mediante Línea de comandos<a class="headerlink" href="#vercel-mediante-linea-de-comandos" title="Link to this heading">#</a></h3>
+<p>Si se quiere administrar via línea de comandos, procedemos a instalar el CLI y dar de alta el proyecto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>npm<span class="w"> </span>i<span class="w"> </span>-g<span class="w"> </span>vercel
+vercel<span class="w"> </span>--cwd<span class="w"> </span>&lt;carpeta<span class="w"> </span>del<span class="w"> </span>proyecto&gt;
+</pre></div>
+</div>
+<p>Aquí muestra un asistente que hay que seguir cuidadosamente. En un momento del asistente pide hacer login con Github y los comandos para hacer el build. En principio puede que los detecte, si no, ponemos los típicos de <code class="docutils literal notranslate"><span class="pre">Vite</span></code>.</p>
+<p>De esta manera, cada vez que queramos desplegar hay que ejecutar</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vercel<span class="w"> </span>--prod
+</pre></div>
+</div>
+<blockquote>
+<div><p>Esta opción requiere un paso más en el apartado de <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>. Ahí lo explicamos.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="linting-y-formatting">
+<h2>Linting y Formatting<a class="headerlink" href="#linting-y-formatting" title="Link to this heading">#</a></h2>
+<p>El linting y el formateo son esenciales para mantener el código consistente y limpio. Cada miembro del equipo debe seguir las mismas reglas y convenciones al escribir código. La consistencia en la base de código es fundamental para:</p>
+<ul class="simple">
+<li><p>No generar confusión sobre cómo escribir un fragmento de código específico en la aplicación cuando se incorpora un nuevo miembro del equipo.</p></li>
+<li><p>No tener que documentar múltiples formas de hacer lo mismo.</p></li>
+</ul>
+<p>El linter más conocido de Javascript es <a class="reference external" href="https://eslint.org/">ESLint</a>. Para ponerlo en funcionamiento:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>eslint<span class="w"> </span>--save-dev
+npm<span class="w"> </span>init<span class="w"> </span>@eslint/config@latest
+</pre></div>
+</div>
+<p>Y luego instalamos la extensión de ESLint en el VSCode.</p>
+<p>El linter marca como errores también los fallos en estilo. Desde cosas como no declarar correctamente variables que pueden provocar problemas en el futuro a reglas de estilo como los espacios que hay que dejar. Esas reglas de estilo están definidas en su configuración y se pueden modificar al gusto. Algunas colecciones de reglas conocidas y recomendables son las de Google y AirBnB que están codificadas en EsLint por defecto.</p>
+<p>Con la configuración anterior, tenemos el código lleno de “errores”, pero nos deja usarlo. No obstante, si queremos que no se pueda poner código en producción que no cumpla las reglas de estilo, podemos crear un Hook de pre-commit que evalue el linter y no deje ejecutar el push si no se cumplen.</p>
+<blockquote>
+<div><p>Los “hooks” en Git son scripts personalizados que se ejecutan automáticamente en respuesta a eventos específicos, como confirmar cambios o fusionar ramas, proporcionando automatización y personalización del flujo de trabajo de Git. Se almacenan en la carpeta <code class="docutils literal notranslate"><span class="pre">.git/hooks</span></code> y pueden realizar acciones antes o después de eventos como pre-commit, post-commit, pre-push, entre otros.</p>
+</div></blockquote>
+<p>Hay una aplicación que simplifica la creación de estos Hooks, se llama <a class="reference external" href="https://typicode.github.io/husky/get-started.html">Husky</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>husky
+npx<span class="w"> </span>husky<span class="w"> </span>init
+</pre></div>
+</div>
+<p>Estos comandos instalan Husky y crean una carpeta <code class="docutils literal notranslate"><span class="pre">.husky</span></code> donde hay un archivo <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> en el que podemos añadir comandos a ejecutar en ese Hook. Es similar a los scripts que se pueden poner en <code class="docutils literal notranslate"><span class="pre">package.json</span></code>. Con estos comandos podemos ejecutar Eslint, tests o lo que se necesite.</p>
+<p>En nuestro caso:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>eslint
+</pre></div>
+</div>
+<p>Al automatizar el Linter, estamos evitando tener que comprobarlo cada vez, lo cual nos aproxima a un ciclo CI/CD.</p>
+<p>Además de pasar el linter, podemos formatear el código con <a class="reference external" href="https://prettier.io/">Prettier</a>:</p>
+<p>Instalar:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>--save-exact<span class="w"> </span>prettier
+</pre></div>
+</div>
+<p>Comando para el pre-commit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>prettier<span class="w"> </span>.<span class="w"> </span>--write
+</pre></div>
+</div>
+</section>
+<section id="unit-testing">
+<h2>Unit Testing<a class="headerlink" href="#unit-testing" title="Link to this heading">#</a></h2>
+<p>Siendo totalmente rigurosos con estas metodologías, deberíamos aplicar técnicas TDD en nuestro desarrollo. Por tanto, los test unitarios forman parte de la etapa de desarrollo, incluso son anteriores a la creación del código funcional. Generalmente se configuran y programan los test y se mantiene una terminal o una web abierta mientras se programa. De esta manera, cualquier cambio en el código se testa y de un vistazo vemos si sigue funcionando o si todavía no funciona nuestro código.</p>
+<p>Por otra parte, no podemos confiar en que todos los desarrolladores van a hacer caso siempre a los tests o que no se van a equivocar justo antes de hacer un “commit”. Por tanto, podemos añadir los tests a un hook como en la sección anterior para evitar hacer el commit o podemos configurar GitHub Actions para testar en el propio repositorio. Esto nos permitirá también mantener un registro de los “commits” y hacer otras acciones como hacer el build y posteriormente poner en producción.</p>
+<section id="instalar-los-tests">
+<h3>Instalar los tests<a class="headerlink" href="#instalar-los-tests" title="Link to this heading">#</a></h3>
+<p>En este ejemplo, vamos a instalar Vitest, ya que proporciona un soporte nativo a módulos ESM y una interfaz por terminal cómoda para lo que necesitamos. Además, funciona perfectamente en GitHub Actions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>vitest
+</pre></div>
+</div>
+<p>En un fichero que tenga la palabra <code class="docutils literal notranslate"><span class="pre">.test.js</span></code> pondremos los test que nos interesan.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">expect</span><span class="p">,</span><span class="w"> </span><span class="nx">test</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vitest&#39;</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="nx">test</span><span class="p">(</span><span class="s1">&#39;test description&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="p">...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Si queremos ejecutar los tests en la terminal local, pondremos en el <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Luego ya lo ejecutamos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+<section id="configurar-los-tests-en-github-actions">
+<h3>Configurar los tests en GitHub Actions<a class="headerlink" href="#configurar-los-tests-en-github-actions" title="Link to this heading">#</a></h3>
+<p>Seguiremos este tutorial: <a class="reference external" href="https://docs.github.com/en/actions/quickstart#creating-your-first-workflow">https://docs.github.com/en/actions/quickstart#creating-your-first-workflow</a> Si lo hacemos más o menos hasta el final, los push provocarán que se ejecute el action y muestre el resultado, pero no hace ningún test. En nuestro caso, para hacer los test, podemos modificar el <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> para añadirlos:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub Actions Demo</span>
+<span class="nt">run-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.actor }} is testing out GitHub Actions 🚀</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Explore-GitHub-Actions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;🎉 The job was automatically triggered by a ${{ github.event_name }} event.&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}.&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check out repository code</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;💡 The ${{ github.repository }} repository has been cloned to the runner.&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;🖥️ The workflow is now ready to test your code on the runner.&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List files in the repository</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">ls ${{ github.workspace }}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;🍏 This job&#39;s status is ${{ job.status }}.&quot;</span>
+<span class="w">  </span><span class="nt">Test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">       </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;20.x&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Use Node.js ${{ matrix.node-version }}</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-node@v4</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.node-version }}</span><span class="w">  </span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies frontend</span>
+<span class="w">      </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm ci</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm test</span>
+<span class="w">      </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm test</span>
+</pre></div>
+</div>
+<p>Si no pasa el test mostrará un error en la pestaña de actions y si lo pasa, el push se ejecuta.</p>
+</section>
+</section>
+<section id="integration-tests">
+<h2>Integration Tests<a class="headerlink" href="#integration-tests" title="Link to this heading">#</a></h2>
+<p>Las herramientas para hacer tests de integración pueden ser las mismas que los unitarios o alguna más especializada. Estas herramientas, en el frontend pueden probar cosas como:</p>
+<ul class="simple">
+<li><p>La interacción y navegación del usuario.</p></li>
+<li><p>El funcionamiento de los formularios.</p></li>
+<li><p>La renderización de vistas.</p></li>
+<li><p>La comunicación con la API.</p></li>
+</ul>
+<p>En este caso, normalmente es necesario falsear (mocking) las peticiones a la red. Para ello, podemos usar herramientas como msw. También se pueden mockear funciones y eventos, así como usar espías para ver si se han ejecutado y cuantas veces.</p>
+</section>
+<section id="end-2-end-testing">
+<h2>End 2 End Testing<a class="headerlink" href="#end-2-end-testing" title="Link to this heading">#</a></h2>
+<p>Este tipo de tests son los más complicados porque implica seguir todo el proceso de los usuarios para cada acción que se realice en la web. Pueden ser muy tediosos de hacer y mantener. Además, es muy difícil de simular todas las secuencias que seguirán los usuarios, incluso sus errores. El software recomendable puede ser Cypress.</p>
+</section>
+<section id="build-and-deploy">
+<h2>Build and Deploy<a class="headerlink" href="#build-and-deploy" title="Link to this heading">#</a></h2>
+<p>Esta tarea la podemos hacer con GitHub Actions, al igual que los test unitarios. En otros casos, esta tarea es simplificada por el servicio en el que hacemos el deploy.</p>
+<p>En el caso de Vercel, se puede configurar para que se mantenga actualizado cuando se realiza push en Github.</p>
+<p>Si en Vercel no hemos podido instalar su <code class="docutils literal notranslate"><span class="pre">app</span></code> en el repositorio, hay que crear un Github Action para ello:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Vercel</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span><span class="w">  </span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Node.js</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-node@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm install</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build project</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Vercel</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">VERCEL_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.VERCEL_TOKEN }}</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npx vercel --prod --yes --token=$VERCEL_TOKEN --project=mi-proyecto</span>
+</pre></div>
+</div>
+<p>Se necesita guardar en <code class="docutils literal notranslate"><span class="pre">secrets</span></code> de Github el token generado en la web de Vercel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--project</span></code> puede que no sea ni necesario si ya se ha hecho un primer despliegue desde local.</p>
+</section>
+<section id="backend-de-desarrollo">
+<h2>Backend de desarrollo<a class="headerlink" href="#backend-de-desarrollo" title="Link to this heading">#</a></h2>
+<p>No queremos trabajar sobre datos reales de producción cuando estamos desarrollando o modificando una web. Si nuestro cliente web se conecta a un servidor y necesitamos probar a escribir o crear, necesitamos estar seguros de que no se va a romper nada. Además, no siempre se tiene un backend perfectamente funcional al inicio del desarrollo del frontend.</p>
+<p>Hay muchos métodos para tener backend de desarrollo diferenciado del de producción. Uno de los más sencillos es <code class="docutils literal notranslate"><span class="pre">json-server</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>json-server
+npx<span class="w"> </span>json-server<span class="w"> </span>db.json
+</pre></div>
+</div>
+<p>Tan solo hay que llenar db.json con un objeto JSON y lo servirá como una API REST, modificando incluso el fichero si se le hace POST o PATCH.</p>
+<p>Si además queremos autenticación se puede usar <code class="docutils literal notranslate"><span class="pre">json-serve-auth</span></code>.</p>
+</section>
+<section id="automatizaciones-en-github">
+<h2>Automatizaciones en Github<a class="headerlink" href="#automatizaciones-en-github" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Esta parte está muy enfocada a la metodología del trabajo por proyectos en el módulo DWEC en DAW. Algunas técnicas se pueden aplicar a cualquier proyecto, pero no tiene porqué ser una práctica habitual fuera del ámbito educativo.</p>
+</div></blockquote>
+<p>Cuando desarrollemos un proyecto para clase, la organización del proyecto puede estar hecha a base de <code class="docutils literal notranslate"><span class="pre">issues</span></code>de Github. De esta manera se aproxima a la gestión de un proyecto real. En nuestro caso serán las mismas <code class="docutils literal notranslate"><span class="pre">issues</span></code> para todos los grupos, así que hemos de encontrar una forma de darlas de alta en todos los proyectos por igual. Una <code class="docutils literal notranslate"><span class="pre">Issue</span></code> la entenderemos como un requisito del proyecto, se la asignará una o varias personas y tiene unas <code class="docutils literal notranslate"><span class="pre">labels</span></code> que indican aspectos relativos a la evaluación posterior. Resolver una issue será siempre igual:</p>
+<ul class="simple">
+<li><p>Una persona se la asigna.</p></li>
+<li><p>Crea una nueva rama con el nombre similar al título de la issue.</p></li>
+<li><p>La resuelve en su rama.</p></li>
+<li><p>Crear un <code class="docutils literal notranslate"><span class="pre">pull</span> <span class="pre">request</span></code> para hacer el merge con la rama <code class="docutils literal notranslate"><span class="pre">master</span></code> <code class="docutils literal notranslate"><span class="pre">production</span></code> o como se llame la principal.</p></li>
+<li><p>El <code class="docutils literal notranslate"><span class="pre">pull</span> <span class="pre">request</span></code> es evaluado y aceptado por el encargado en el equipo.</p></li>
+<li><p>Se produce el <code class="docutils literal notranslate"><span class="pre">merge</span></code> resolviendo los posibles conflictos.</p></li>
+</ul>
+<p>El profesor os enviará un <code class="docutils literal notranslate"><span class="pre">.json</span></code> de las labels y otro de las issues. Hay que importar primero las labels y luego las issues. Para ello hay dos scripts que pondremos en el mismo directorio de los dos archivos:</p>
+<p><strong>importarlabels.js:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">;</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 1. Leer parámetros</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">owner</span><span class="p">,</span><span class="w"> </span><span class="nx">repo</span><span class="p">,</span><span class="w"> </span><span class="nx">labelsFile</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">owner</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">repo</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">labelsFile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Uso: node importar-labels.js &lt;usuario&gt; &lt;repo&gt; &lt;labels.json&gt;&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">GITHUB_TOKEN</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Falta la variable de entorno GITHUB_TOKEN&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 2. Cargar labels desde fichero</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">labels</span><span class="p">;</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">labelsFile</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">);</span>
+
+<span class="w">  </span>
+<span class="w">  </span><span class="nx">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ No se pudo leer el archivo:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">labels</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ El archivo debe contener un array JSON de labels.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 3. Crear un label en GitHub</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">crearLabel</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/labels`</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Accept&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.github+json&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;cccccc&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">description</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`❌ Error creando label &quot;</span><span class="si">${</span><span class="nx">label</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&quot;:`</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`✔️ Label creada: </span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> (</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">color</span><span class="si">}</span><span class="sb">)`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 4. Importar todas las labels</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">importar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`📥 Importando </span><span class="si">${</span><span class="nx">labels</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> labels en </span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">...\n`</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelsSimplificadas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">labels</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">label</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;cccccc&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">.</span><span class="nx">description</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">  </span><span class="p">}));</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">labelsSimplificadas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">crearLabel</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;\n✅ Importación completada.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">importar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>importarissues.js</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">;</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 1. Leer parámetros</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">owner</span><span class="p">,</span><span class="w"> </span><span class="nx">repo</span><span class="p">,</span><span class="w"> </span><span class="nx">issuesFile</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">owner</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">repo</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">issuesFile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Uso: node importar.js &lt;usuario&gt; &lt;repo&gt; &lt;issues.json&gt;&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">GITHUB_TOKEN</span><span class="p">;</span>
+<span class="c1">// export GITHUB_TOKEN=&quot;ghp_TuTokenAqui&quot;  --- IGNORE ---</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Falta la variable de entorno GITHUB_TOKEN&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 2. Cargar issues desde fichero</span>
+<span class="c1">// -----------------------------</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">issues</span><span class="p">;</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">issuesFile</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">issues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ No se pudo leer el archivo:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">issues</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ El archivo debe contener un array JSON de issues.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 3. Función para crear una issue</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">crearIssue</span><span class="p">(</span><span class="nx">issue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/issues`</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Accept&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.github+json&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">body</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">labels</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">labels</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;❌ Error creando issue:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`✔️ Issue creada: #</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">number</span><span class="si">}</span><span class="sb">  (</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span><span class="sb">)`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------</span>
+<span class="c1">// 4. Importar todas las issues</span>
+<span class="c1">// -----------------------------</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">importar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`📥 Importando </span><span class="si">${</span><span class="nx">issues</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> issues en </span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">...\n`</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">issuesSimplificadas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">issues</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">issue</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">issue</span><span class="p">.</span><span class="nx">body</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">labels</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">issue</span><span class="p">.</span><span class="nx">labels</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[]).</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}));</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">issue</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">issuesSimplificadas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">crearIssue</span><span class="p">(</span><span class="nx">issue</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;\n✅ Importación completada.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">importar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Para llamar a estos dos scripts ejecutaremos en una terminal bash:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_TOKEN</span><span class="o">=</span><span class="s2">&quot;ghp_...&quot;</span><span class="w"> </span><span class="c1"># Un token generado en la web de github</span>
+node<span class="w"> </span>./importarlabels.js<span class="w"> </span><span class="s2">&quot;tu-usuario&quot;</span><span class="w"> </span><span class="s2">&quot;tu-proyecto&quot;</span><span class="w"> </span>labels.json
+node<span class="w"> </span>./importarissues.js<span class="w"> </span><span class="s2">&quot;tu-usuario&quot;</span><span class="w"> </span><span class="s2">&quot;tu-proyecto&quot;</span><span class="w"> </span>issues.js
+</pre></div>
+</div>
+<p>En caso de querer exportar (no es necesario que los alumnos lo hagan):</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;usuario&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">repo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;proyecto&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">GITHUB_TOKEN</span><span class="p">;</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchAll</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">?per_page=100&amp;page=</span><span class="si">${</span><span class="nx">page</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;Authorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Accept&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.github+json&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">page</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">exportar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;📥 Exportando issues...&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">issues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetchAll</span><span class="p">(</span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/issues`</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;📥 Exportando labels...&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetchAll</span><span class="p">(</span><span class="sb">`https://api.github.com/repos/</span><span class="si">${</span><span class="nx">owner</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">repo</span><span class="si">}</span><span class="sb">/labels`</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;issues.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">issues</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+<span class="w">  </span><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;labels.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">labels</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;✅ Exportación completa:&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;   - issues.json&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;   - labels.json&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">exportar</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="vite.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vite</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="proyectos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyectos en Javascript</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-tipicos-en-el-desarrollo-web">Pasos Típicos en el Desarrollo Web</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel">Vercel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-mediante-linea-de-comandos">Vercel mediante Línea de comandos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-y-formatting">Linting y Formatting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-los-tests">Instalar los tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configurar-los-tests-en-github-actions">Configurar los tests en GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-tests">Integration Tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-2-end-testing">End 2 End Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-deploy">Build and Deploy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-de-desarrollo">Backend de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatizaciones-en-github">Automatizaciones en Github</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
