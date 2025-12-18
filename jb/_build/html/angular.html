@@ -440,8 +440,8 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-flujo-en-plantillas">Control de flujo en plantillas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida-de-los-componentes">Ciclo de vida de los componentes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">ngOnInit</a></li>
 </ul>
@@ -463,6 +463,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-en-angular">Directivas en Angular</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-de-atributo">Crear directivas de atributo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementref-vs-renderer2">ElementRef vs Renderer2</a></li>
@@ -499,6 +500,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-del-cdn-de-bootstrap">Uso del CDN de Bootstrap</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-manual">Descarga Manual</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-via-npm">Instalación vía npm</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ng-bootstrap">Ng-Bootstrap</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-material">2. Angular Material</a><ul class="nav section-nav flex-column">
@@ -534,7 +536,7 @@ document.write(`
 <p>El framework ha experimentado cambios en su nombre y esquema de versiones a lo largo del tiempo:</p>
 <ul class="simple">
 <li><p><strong>Hasta la versión 1.7:</strong> Angular.js</p></li>
-<li><p><strong>Desde la versión 2:</strong> Angular 2, 4, 5, 6, 7, …, 20 (actual)</p></li>
+<li><p><strong>Desde la versión 2:</strong> Angular 2, 4, 5, 6, 7, …, 21 (actual)</p></li>
 </ul>
 <p><a class="reference external" href="https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301">https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301</a></p>
 <p>Cada 6 meses libera una nueva versión. Suelen ser bastante compatibles entre las que están próximas y las últimas son retrocompatibles, excepto entre la 1 y la 2, donde cambió casi todo.</p>
@@ -770,7 +772,13 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 </div></blockquote>
 <section id="reactividad">
 <h3>Reactividad<a class="headerlink" href="#reactividad" title="Link to this heading">#</a></h3>
-<p>La reactividad web permite simplificar la manera en la que se actualizan los datos entre la interfaz y el estado de la aplicación. Esta gestión de la reactividad, en Angular está basada en <code class="docutils literal notranslate"><span class="pre">Signals</span></code> a partir de la versión 20. En ocasiones usaremos signals de forma explícita, pero en el caso de las plantillas de los componentes, se hace de forma mucho más simplificada mediante interpolaciones.</p>
+<p>La reactividad web permite simplificar la manera en la que se actualizan los datos entre la interfaz y el estado de la aplicación. Esta gestión de la reactividad, en Angular está basada sobretodo en <code class="docutils literal notranslate"><span class="pre">Signals</span></code> a partir de la versión 20. En ocasiones usaremos signals de forma explícita, pero en el caso de las plantillas de los componentes, se hace de forma más simplificada mediante interpolaciones.</p>
+<blockquote>
+<div><p>Angular ha evolucionado a través de distintos modelos de gestión del estado y reactividad, que actualmente pueden coexistir. Tradicionalmente, Angular ha basado la detección de cambios en Zone.js, interceptando eventos, timers y operaciones asíncronas para revaluar el árbol de componentes. Este enfoque, aunque funcional, es poco granular y ha sido históricamente una de las críticas a los frameworks basados en detección de cambios global. Para la comunicación entre componentes y servicios, Angular ofrece el uso de Observables, que proporcionan un modelo reactivo eficiente basado en suscripciones y operadores, especialmente adecuado para flujos asíncronos, aunque con una mayor complejidad conceptual. Como alternativa más simple para la gestión de estado síncrono, Angular introduce las signals, un modelo reactivo declarativo y predecible que permite actualizaciones granulares sin necesidad de reevaluaciones globales. Gracias a signals y a los mecanismos actuales del framework, la dependencia de la detección de cambios basada en Zone.js es cada vez menor, haciendo posible el desarrollo de componentes e incluso aplicaciones completas sin Zone.js.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Un ciclo de change detection es el proceso mediante el cual Angular recorre el árbol de componentes para reevaluar sus expresiones y sincronizar el estado de la aplicación con el DOM. Tradicionalmente se dispara a través de Zone.js, aunque los modelos modernos basados en signals permiten actualizaciones mucho más granulares y predecibles.</p>
+</div></blockquote>
 <section id="interpolacion">
 <h4>Interpolación<a class="headerlink" href="#interpolacion" title="Link to this heading">#</a></h4>
 <p>La interpolación en Angular es una herramienta fundamental para inyectar datos dinámicos en las plantillas HTML, permitiendo que la interfaces de usuario sean reactivas y se actualicen automáticamente en función de los cambios en los datos.</p>
@@ -778,18 +786,28 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 <p>La interpolación hace que las plantillas sean dinámicas, ya que el contenido se actualiza automáticamente cuando los valores de las variables o las expresiones cambian en el código TypeScript. Esto permite crear interfaces de usuario que responden a eventos, interacciones del usuario o cambios en los datos.</p>
 <p><strong>Casos de uso comunes:</strong></p>
 <ul class="simple">
-<li><p><strong>Mostrar valores de variables:</strong> Puedes mostrar el valor de cualquier variable o propiedad de un componente dentro de una plantilla. Por ejemplo:</p></li>
+<li><p><strong>Mostrar valores de variables:</strong> Se puede mostrar el valor de cualquier propiedad de un componente dentro de una plantilla. Por ejemplo:</p></li>
 </ul>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Nombre: {{ nombre }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{ imagenURL }}&quot;</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>Ejecutar métodos de componentes:</strong> Puedes llamar a métodos de tu componente dentro de la plantilla y mostrar el resultado. Por ejemplo:</p></li>
+<li><p><strong>Ejecutar métodos de componentes:</strong> Se puede llamar a métodos de tu componente dentro de la plantilla y mostrar el resultado. Por ejemplo:</p></li>
 </ul>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Resultado: {{ metodoComponente() }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><strong>Mostrar un Signal:</strong> Si tenemos un signal, se puede mostrar como si fuera un método:</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="s1">&#39;Ana&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ name() }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>El resultado en apariencia es el mismo pero su funcionamiento es muy diferente. Interpolar una propiedad normal implica que Angular la evalúa en cada ciclo de detección de cambios, mientras que interpolar un signal registra una dependencia reactiva que solo se reevalúa cuando el signal cambia.</p>
 <p><strong>Limitaciones:</strong></p>
 <ul class="simple">
 <li><p><strong>Dirección única:</strong> La interpolación solo funciona en una dirección, desde JavaScript hacia HTML. No se pueden modificar variables o propiedades desde la plantilla.</p></li>
@@ -839,6 +857,9 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 <span class="na">name</span><span class="o">=</span><span class="s">&quot;filterDesc&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;filterDesc&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Filter...&quot;</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>Esta es la manera más simple de hacer formularios llamada de <code class="docutils literal notranslate"><span class="pre">plantilla</span></code>. Para pequeñas interacciones es suficiente, pero hay formas mejores.</p>
+</div></blockquote>
 </section>
 <section id="vincular-eventos">
 <h4>Vincular eventos<a class="headerlink" href="#vincular-eventos" title="Link to this heading">#</a></h4>
@@ -853,6 +874,52 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 </pre></div>
 </div>
 </section>
+</section>
+<section id="signals">
+<h3>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h3>
+<p>Las Signals son parte del núcleo de Angular y muy útiles para la reactividad dentro de un componente. La versión 20 ya las incorporó totalmente y están ganando terreno a la reactividad tradicional.</p>
+<blockquote>
+<div><p>Signals pueden usarse como fuente de datos reactiva para bindings de propiedad como <code class="docutils literal notranslate"><span class="pre">[src]</span></code> o<code class="docutils literal notranslate"><span class="pre">[ngClass]</span></code>, pero no reemplazan los event bindings <code class="docutils literal notranslate"><span class="pre">(click)</span></code> ni el two-way binding <code class="docutils literal notranslate"><span class="pre">[(ngModel)]</span></code>; en esos casos se deben manejar los eventos de forma explícita y actualizar los signals manualmente.</p>
+</div></blockquote>
+<p>Su uso básico es muy simple, hay que declararlas y actualizarlas así:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="nx">count</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The count is: &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">count</span><span class="p">());</span><span class="w">  </span><span class="c1">// Una signal es una función getter</span>
+</pre></div>
+</div>
+<p>Si queremos computar un nuevo valor se puede usar una función de callback:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">count</span><span class="p">.</span><span class="nx">update</span><span class="p">((</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>La función <code class="docutils literal notranslate"><span class="pre">.update()</span></code> es más recomendable que <code class="docutils literal notranslate"><span class="pre">count.set(count()</span> <span class="pre">+</span> <span class="pre">1);</span></code> por ser atómica y más expresiva.</p>
+</div></blockquote>
+<p>Se pueden crear <code class="docutils literal notranslate"><span class="pre">computed</span> <span class="pre">signals</span></code></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="kt">WritableSignal</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">doubleCount</span><span class="o">:</span><span class="w"> </span><span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">count</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Aquí vemos también el tipo <code class="docutils literal notranslate"><span class="pre">WritableSignal</span></code> de las signals normales y cómo las computed no se pueden escribir.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Otra cosa sutil es que <code class="docutils literal notranslate"><span class="pre">computed</span></code> no indica la signal que la modifica, pero es <code class="docutils literal notranslate"><span class="pre">lazy</span></code> y solo se modifica su valor cuando cambia el de las signals que tenga dentro de su función de callback. Esto evita escribir mucho código, pero hay que tenerlo en cuenta.</p>
+</div></blockquote>
+<p>No debería ser común ejecutar código reactivamente cuando cambia el valor de un signal excepto en las <code class="docutils literal notranslate"><span class="pre">computed</span></code>, pero si es necesario se puede usar <code class="docutils literal notranslate"><span class="pre">effect</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User set to </span><span class="si">${</span><span class="nx">currentUser</span><span class="p">()</span><span class="si">}</span><span class="sb"> and the counter is </span><span class="si">${</span><span class="nx">counter</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">effect</span></code> le pasa lo mismo que a <code class="docutils literal notranslate"><span class="pre">computed</span></code> y si no queremos que se ejecute siempre que cambia, por ejemplo, <code class="docutils literal notranslate"><span class="pre">counter</span></code>, podemos poner:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User set to </span><span class="si">${</span><span class="nx">currentUser</span><span class="p">()</span><span class="si">}</span><span class="sb"> and the counter is </span><span class="si">${</span><span class="nx">untracked</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>No debería ser común el uso de <code class="docutils literal notranslate"><span class="pre">effect</span></code> por lo que su propio nombre indica (Efectos secundarios). Siempre es mejor <code class="docutils literal notranslate"><span class="pre">computed</span></code> y/o interpolaciones en la plantilla.</p>
+</div></blockquote>
 </section>
 <section id="control-de-flujo-en-plantillas">
 <h3>Control de flujo en plantillas<a class="headerlink" href="#control-de-flujo-en-plantillas" title="Link to this heading">#</a></h3>
@@ -938,47 +1005,9 @@ Hello, {{name}}
 <blockquote>
 <div><p>A partir de Angular 17, las directivas estructurales <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code> se han simplificado y no requieren la importación de ninguna librería adicional. Además, la sintaxis se ha hecho más intuitiva y fácil de leer. Es muy probable que encontremos ejemplos con ngFor, ngIf… Estos todavía funcionan, pero no se recomienda usarlos ya.</p>
 </div></blockquote>
-</section>
-<section id="interfaces">
-<h3>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h3>
-<p>Las interfaces en Angular son un mecanismo fundamental para definir la estructura de objetos de datos. Proporcionan un contrato que describe las propiedades que un objeto debe tener y sus respectivos tipos. Esto mejora la legibilidad, mantenibilidad y seguridad del código, ya que Angular puede detectar errores en tiempo de compilación si se intenta utilizar un objeto que no cumple con la interfaz definida.</p>
-<p>Typescript necesita saber el contenido de los objetos y el tipo de todo. Se puede usar <code class="docutils literal notranslate"><span class="pre">any</span></code> en ocasiones contadas, pero siempre es mejor crear la interfaz.</p>
-<p><strong>¿Por qué utilizar interfaces?</strong></p>
-<ul class="simple">
-<li><p><strong>Claridad y definición:</strong> Las interfaces documentan de forma explícita la estructura de los objetos, mejorando la comprensión del código.</p></li>
-<li><p><strong>Detección temprana de errores:</strong> Angular puede detectar en tiempo de compilación si se intenta utilizar un objeto que no cumple con la interfaz, evitando errores en tiempo de ejecución.</p></li>
-<li><p><strong>Refactorización segura:</strong> Al modificar la estructura de una interfaz, Angular te avisará de los lugares donde se utilizan objetos afectados, facilitando la refactorización segura del código.</p></li>
-<li><p><strong>Autocompletado:</strong> Los editores de código modernos utilizan las interfaces para ofrecer autocompletado y sugerencias de tipos, mejorando la productividad del desarrollador.</p></li>
-</ul>
-<p><strong>Creando una interfaz:</strong></p>
-<p>Para crear una interfaz, se utiliza la palabra clave <code class="docutils literal notranslate"><span class="pre">interface</span></code> seguida por el nombre de la interfaz y un bloque con llaves que define sus propiedades:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">IProduct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">available</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">imageUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">rating</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Cada propiedad de la interfaz se define con su nombre, seguido de dos puntos <code class="docutils literal notranslate"><span class="pre">:</span></code> y el tipo de dato esperado.</p>
-<p><strong>Utilizando interfaces:</strong></p>
-<p>Una vez definida la interfaz, puedes utilizarla para declarar variables o propiedades de componentes que deben contener objetos con esa estructura. Por ejemplo:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">IProduct</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SSD hard drive&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">available</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2016-10-03&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">75</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">imageUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;assets/ssd.jpg&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">rating</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">// ... otros productos</span>
-<span class="p">];</span>
-</pre></div>
-</div>
-<p>En este ejemplo, el array <code class="docutils literal notranslate"><span class="pre">products</span></code> está tipado como un array de objetos que cumplen con la interfaz <code class="docutils literal notranslate"><span class="pre">IProduct</span></code>. Esto garantiza que cada objeto del array tenga las propiedades esperadas y del tipo correcto.</p>
+<blockquote>
+<div><p>El uso de <code class="docutils literal notranslate"><span class="pre">Signals</span></code> en vez de atributos normales como variables de control de estas directivas es más recomendable y prepara el terreno para componentes <code class="docutils literal notranslate"><span class="pre">Zoneless</span></code></p>
+</div></blockquote>
 </section>
 <section id="ciclo-de-vida-de-los-componentes">
 <h3>Ciclo de vida de los componentes<a class="headerlink" href="#ciclo-de-vida-de-los-componentes" title="Link to this heading">#</a></h3>
@@ -1323,6 +1352,47 @@ Hello, {{name}}
 </ol>
 </section>
 </section>
+</section>
+<section id="interfaces">
+<h2>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h2>
+<p>Las interfaces en Angular son un mecanismo fundamental para definir la estructura de objetos de datos. Proporcionan un contrato que describe las propiedades que un objeto debe tener y sus respectivos tipos. Esto mejora la legibilidad, mantenibilidad y seguridad del código, ya que Angular puede detectar errores en tiempo de compilación si se intenta utilizar un objeto que no cumple con la interfaz definida.</p>
+<p>Typescript necesita saber el contenido de los objetos y el tipo de todo. Se puede usar <code class="docutils literal notranslate"><span class="pre">any</span></code> en ocasiones contadas, pero siempre es mejor crear la interfaz.</p>
+<p><strong>¿Por qué utilizar interfaces?</strong></p>
+<ul class="simple">
+<li><p><strong>Claridad y definición:</strong> Las interfaces documentan de forma explícita la estructura de los objetos, mejorando la comprensión del código.</p></li>
+<li><p><strong>Detección temprana de errores:</strong> Angular puede detectar en tiempo de compilación si se intenta utilizar un objeto que no cumple con la interfaz, evitando errores en tiempo de ejecución.</p></li>
+<li><p><strong>Refactorización segura:</strong> Al modificar la estructura de una interfaz, Angular te avisará de los lugares donde se utilizan objetos afectados, facilitando la refactorización segura del código.</p></li>
+<li><p><strong>Autocompletado:</strong> Los editores de código modernos utilizan las interfaces para ofrecer autocompletado y sugerencias de tipos, mejorando la productividad del desarrollador.</p></li>
+</ul>
+<p><strong>Creando una interfaz:</strong></p>
+<p>Para crear una interfaz, se utiliza la palabra clave <code class="docutils literal notranslate"><span class="pre">interface</span></code> seguida por el nombre de la interfaz y un bloque con llaves que define sus propiedades:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">IProduct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">available</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">imageUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">rating</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cada propiedad de la interfaz se define con su nombre, seguido de dos puntos <code class="docutils literal notranslate"><span class="pre">:</span></code> y el tipo de dato esperado.</p>
+<p><strong>Utilizando interfaces:</strong></p>
+<p>Una vez definida la interfaz, puedes utilizarla para declarar variables o propiedades de componentes que deben contener objetos con esa estructura. Por ejemplo:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">products</span><span class="o">:</span><span class="w"> </span><span class="kt">IProduct</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SSD hard drive&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">available</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2016-10-03&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">75</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">imageUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;assets/ssd.jpg&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">rating</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// ... otros productos</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>En este ejemplo, el array <code class="docutils literal notranslate"><span class="pre">products</span></code> está tipado como un array de objetos que cumplen con la interfaz <code class="docutils literal notranslate"><span class="pre">IProduct</span></code>. Esto garantiza que cada objeto del array tenga las propiedades esperadas y del tipo correcto.</p>
 </section>
 <section id="directivas-en-angular">
 <h2>Directivas en Angular<a class="headerlink" href="#directivas-en-angular" title="Link to this heading">#</a></h2>
@@ -1703,7 +1773,7 @@ Hello, {{name}}
 <p>Bootstrap es un framework de CSS que facilita la creación de interfaces web responsivas y modernas. Hay varias maneras de integrarlo en un proyecto Angular:</p>
 <section id="uso-del-cdn-de-bootstrap">
 <h4>Uso del CDN de Bootstrap<a class="headerlink" href="#uso-del-cdn-de-bootstrap" title="Link to this heading">#</a></h4>
-<p>Esta es la forma más simple y rápida de agregar Bootstrap a tu proyecto.</p>
+<p>Esta es la forma más simple y rápida de agregar Bootstrap a un proyecto.</p>
 <p><strong>Ventajas:</strong></p>
 <ul class="simple">
 <li><p>Puede estar en la caché del navegador del cliente.</p></li>
@@ -1725,25 +1795,43 @@ Hello, {{name}}
 </section>
 <section id="descarga-manual">
 <h4>Descarga Manual<a class="headerlink" href="#descarga-manual" title="Link to this heading">#</a></h4>
-<p>Otra opción es descargar el archivo comprimido de Bootstrap y colocarlo en el directorio <code class="docutils literal notranslate"><span class="pre">assets</span></code> de tu proyecto.</p>
+<p>Otra opción es descargar el archivo comprimido de Bootstrap y colocarlo en el directorio <code class="docutils literal notranslate"><span class="pre">assets</span></code> del proyecto.</p>
 </section>
 <section id="instalacion-via-npm">
 <h4>Instalación vía npm<a class="headerlink" href="#instalacion-via-npm" title="Link to this heading">#</a></h4>
-<p>La forma más recomendada para proyectos Angular es instalar Bootstrap a través de npm, ya que facilita la gestión de dependencias.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>bootstrap
+<p>La forma recomendada de usar Bootstrap puro para proyectos Angular es instalar a través de npm, ya que facilita la gestión de dependencias.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>i<span class="w"> </span>--save<span class="w"> </span>bootstrap<span class="w"> </span>@popperjs/core
 npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>@types/bootstrap
 </pre></div>
 </div>
-<p>Luego, agrega las rutas a los archivos de Bootstrap en tu archivo <code class="docutils literal notranslate"><span class="pre">angular.json</span></code>:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;styles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="s2">&quot;node_modules/bootstrap/dist/css/bootstrap.min.css&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;src/styles.scss&quot;</span>
-<span class="p">],</span>
-<span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<p>A continuación se añade el <code class="docutils literal notranslate"><span class="pre">scss</span></code> de bootstrap al scss de Angular. Si es necesario se cambia la extensión del archivo y su referencia en angular.json:</p>
+<div class="highlight-scss notranslate"><div class="highlight"><pre><span></span><span class="k">@use</span><span class="w"> </span><span class="s2">&quot;bootstrap/scss/bootstrap&quot;</span><span class="w"> </span><span class="nt">as</span><span class="w"> </span><span class="o">*;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Esta manera de añadir el scss permite modificar variables antes de cargar, que Vite haga tree-shaking y no usar los estilos no necesarios.</p>
+</div></blockquote>
+<p>Luego, agregar las rutas a los archivos de Bootstrap en el archivo <code class="docutils literal notranslate"><span class="pre">angular.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">  </span><span class="s2">&quot;node_modules/bootstrap/dist/js/bootstrap.bundle.min.js&quot;</span>
 <span class="p">]</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>Esto es inevitable, ya que bootstrap es javascript y hay que añadir sus funciones al contexto global junto a Angular. Esto puede dar algunos problemas con el js de Boostrap.</p>
+</div></blockquote>
+</section>
+<section id="ng-bootstrap">
+<h4>Ng-Bootstrap<a class="headerlink" href="#ng-bootstrap" title="Link to this heading">#</a></h4>
+<p>Esta sería la forma más recomendable, ya que es totalmente compatible.</p>
+<p>ng-bootstrap no utiliza el JavaScript original de Bootstrap; reimplementa sus comportamientos interactivos como componentes Angular, manteniendo el CSS y las clases. Por ello, usar los comportamientos de Bootstrap implica adoptar una forma de programación propia de Angular, mientras que para la apariencia basta con seguir usando sus clases CSS.</p>
+<p><a class="reference external" href="https://ng-bootstrap.github.io/#/home">https://ng-bootstrap.github.io/#/home</a></p>
+<blockquote>
+<div><p>El desarrollo de ng-boostrap ha mejorado sustancialmente, pero siempre va un poco por detrás de las dos librerías. Puede que no siempre se pueda usar en la última versión de cada una.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Puesto que esto no es un curso de Boostrap, preferiremos la instalación de Boostrap tradicional para no perder tiempo, pero recordemos que en un proyecto profesional esta puede ser la opción más recomendable.</p>
+</div></blockquote>
 </section>
 </section>
 <section id="angular-material">
@@ -2001,8 +2089,8 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-flujo-en-plantillas">Control de flujo en plantillas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida-de-los-componentes">Ciclo de vida de los componentes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">ngOnInit</a></li>
 </ul>
@@ -2024,6 +2112,7 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directivas-en-angular">Directivas en Angular</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-directivas-de-atributo">Crear directivas de atributo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementref-vs-renderer2">ElementRef vs Renderer2</a></li>
@@ -2060,6 +2149,7 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-del-cdn-de-bootstrap">Uso del CDN de Bootstrap</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-manual">Descarga Manual</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-via-npm">Instalación vía npm</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ng-bootstrap">Ng-Bootstrap</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-material">2. Angular Material</a><ul class="nav section-nav flex-column">
