@@ -491,11 +491,12 @@ document.write(`
 </pre></div>
 </div>
 <p>Esto es más antiguo, pero funciona en todos los navegadores, simplifica el envío de parámetros y evita la manipulación del servidor. Para que funcione, se debe agregar <code class="docutils literal notranslate"><span class="pre">withHashLocation()</span></code> al los providers del bootstrap:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">bootstrapApplication</span><span class="p">(</span><span class="nx">AppComponent</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">appConfig</span><span class="o">:</span><span class="w"> </span><span class="kt">ApplicationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w"> </span><span class="nx">withHashLocation</span><span class="p">()),</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="p">});</span>
+<span class="w">    </span><span class="nx">provideBrowserGlobalErrorListeners</span><span class="p">(),</span>
+<span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w">  </span><span class="nx">withHashLocation</span><span class="p">(),</span><span class="w">  </span><span class="nx">withComponentInputBinding</span><span class="p">()),</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 </section>
@@ -559,7 +560,19 @@ document.write(`
 </section>
 <section id="obtener-parametros-de-las-rutas">
 <h2>Obtener Parámetros de las Rutas<a class="headerlink" href="#obtener-parametros-de-las-rutas" title="Link to this heading">#</a></h2>
-<p>Las rutas pueden contener parámetros, como un <code class="docutils literal notranslate"><span class="pre">id</span></code>. Para obtener estos parámetros, se utiliza <code class="docutils literal notranslate"><span class="pre">ActivatedRoute</span></code>:</p>
+<p>Veamos cómo se declaran rutas con parámetros:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Las rutas pueden contener parámetros, como un <code class="docutils literal notranslate"><span class="pre">id</span></code>. Para obtener estos parámetros se pueden usar diversas técnicas. La más recomendada actualmente es con <code class="docutils literal notranslate"><span class="pre">signals</span></code>.</p>
+<p>Con signals es muy sencillo, tan solo hace falta usar un <code class="docutils literal notranslate"><span class="pre">input</span></code> con el mismo nombre que el que se ponga en el <code class="docutils literal notranslate"><span class="pre">router</span></code>. En este caso es el <code class="docutils literal notranslate"><span class="pre">id</span></code>.</p>
+<p>De esta manera en el componente se pone:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="nx">input</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="c1">//.....</span>
+<span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>En versiones anteriores se usaba <code class="docutils literal notranslate"><span class="pre">ActivatedRoute</span></code>, la cual crea un Observable al que nos podemos suscribir:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ActivatedRoute</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
 
 <span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">activatedRoute</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
@@ -572,7 +585,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Los parámetros (<code class="docutils literal notranslate"><span class="pre">params</span></code>) son un observable al que nos suscribimos para recibir los valores pasados en la URL.</p>
-<p>A partir de Angular 16, se pueden configurar los parámetros del router para aceptarlos mediante <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code> usando <code class="docutils literal notranslate"><span class="pre">withComponentInputBinding()</span></code>.</p>
+<p>A partir de Angular 16, también se podían configurar los parámetros del router para aceptarlos mediante <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code> usando <code class="docutils literal notranslate"><span class="pre">withComponentInputBinding()</span></code>.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">bootstrapApplication</span><span class="p">(</span><span class="nx">App</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w"> </span>
@@ -592,6 +605,9 @@ document.write(`
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:query&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>Se puede usar cualquiera de los tres métodos para obtener parámetros, pero en las últimas versiones se recomienda usar <code class="docutils literal notranslate"><span class="pre">Signals</span></code>.</p>
+</div></blockquote>
 </section>
 <section id="transiciones-en-angular-2024">
 <h2>Transiciones en Angular (2024)<a class="headerlink" href="#transiciones-en-angular-2024" title="Link to this heading">#</a></h2>
