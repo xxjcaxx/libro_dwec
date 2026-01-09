@@ -1,0 +1,1340 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Proyectos en Javascript &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'proyectos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentación en JavaScript" href="documentacion.html" />
+    <link rel="prev" title="Integración y Despliegue Continuo (CI/CD)" href="ci-cd.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jsenhtml.html">Javascript en el navegador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fproyectos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/proyectos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Proyectos en Javascript</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-generales">Consejos generales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escribir-codigo-facil-de-leer">Escribir Código Fácil de Leer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estilo">Guía de Estilo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-el-codigo-espagueti">Evitar el Código Espagueti</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-estructura">Arquitectura y estructura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-de-arquitectura">Principios de arquitectura</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsular-el-codigo">Encapsular el código</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acoplamiento">Acoplamiento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cohesion">Cohesión</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura">Estructura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos">Elementos</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-modelos">Utilización de Modelos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#vistas">Vistas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#controlador">Controlador</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-opcionales">Servicios (Opcionales)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-routers-en-aplicaciones-spa">Rutas (Routers) en Aplicaciones SPA</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-web">Componentes Web</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-aplicacion">Estado de la Aplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-esta-el-estado">Dónde está el estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-del-estado">Separación del Estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centralizacion-del-control-del-estado">Centralización del Control del Estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-del-uso-de-redux">Beneficios del Uso de Redux</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i18n-internacionalizacion">I18N (Internacionalización)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-librerias-para-i18n">Uso de Librerías para I18N</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-i18next">Ejemplo con i18next</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-loading">Lazy Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-loading-en-vanilla-javascript">Lazy Loading en Vanilla JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lazy-loading-en-vanilla-javascript">Ejemplo de Lazy Loading en Vanilla JavaScript</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="proyectos-en-javascript">
+<h1>Proyectos en Javascript<a class="headerlink" href="#proyectos-en-javascript" title="Link to this heading">#</a></h1>
+<p>Puesto que Javascript es un lenguaje “agnóstico” y muy flexible, programar un frontend puede ser una tarea muy libre. Esto da mucho poder para hacer cualquier cosa, pero exige una gran responsabilidad por parte de l&#64;s programador&#64;s. En este capítulo vamos a recopilar algunos consejos para enfocar un proyecto grande con Javascript.</p>
+<section id="consejos-generales">
+<h2>Consejos generales<a class="headerlink" href="#consejos-generales" title="Link to this heading">#</a></h2>
+<section id="escribir-codigo-facil-de-leer">
+<h3>Escribir Código Fácil de Leer<a class="headerlink" href="#escribir-codigo-facil-de-leer" title="Link to this heading">#</a></h3>
+<p>El código se lee muchas más veces de las que se escribe. Si te conviertes en un ‘hacker’ demasiado sofisticado, tendrás que encargarte del proyecto tú solo porque los demás no entenderán tu código. Incluso tú mismo olvidarás cómo has hecho tu código con el tiempo.</p>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="_images/comic-years.webp"><img alt="_images/comic-years.webp" src="_images/comic-years.webp" style="width: 363.75px; height: 363.75px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text"><a class="reference external" href="https://workchronicles.substack.com/p/comic-as-the-years-go-by">https://workchronicles.substack.com/p/comic-as-the-years-go-by</a></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Los comentarios son esenciales para explicar por qué se hace algo, no solo cómo. Sin embargo, los comentarios no pueden reemplazar un código que ya sea legible por sí mismo. Usa comentarios para agregar contexto o explicar decisiones complejas, pero asegúrate de que el código sea lo más claro y autoexplicativo posible.</p>
+<section id="guia-de-estilo">
+<h4>Guía de Estilo<a class="headerlink" href="#guia-de-estilo" title="Link to this heading">#</a></h4>
+<p>Seguir una guía de estilo es fundamental para mantener la coherencia y legibilidad del código en un equipo de trabajo. Algunas de las guías de estilo más recomendadas son:</p>
+<ul class="simple">
+<li><p><strong>Guía de Estilo de AirBnb:</strong> <a class="reference external" href="https://github.com/airbnb/javascript">AirBnb JavaScript Style Guide</a></p></li>
+<li><p><strong>Guía de Estilo de Google:</strong> <a class="reference external" href="https://google.github.io/styleguide/jsguide.html">Google JavaScript Style Guide</a></p></li>
+</ul>
+<p>Es importante leer varias guías y llegar a un consenso en el equipo de trabajo sobre cuál seguir. También puedes consultar la guía de código limpio para JavaScript de <a class="reference external" href="https://github.com/devictoribero/clean-code-javascript">devictoribero</a>.</p>
+<p>Si queremos que la guía de estilo nos condicione permanentemente, podemos usar un linter como <code class="docutils literal notranslate"><span class="pre">EsLint</span></code>.</p>
+</section>
+<section id="evitar-el-codigo-espagueti">
+<h4>Evitar el Código Espagueti<a class="headerlink" href="#evitar-el-codigo-espagueti" title="Link to this heading">#</a></h4>
+<p>El código espagueti es difícil de leer, entender y mantener. Aquí hay algunas prácticas para evitarlo:</p>
+<ul class="simple">
+<li><p><strong>Refactoriza pronto y con frecuencia:</strong> No esperes a que el código se vuelva inmanejable. Realiza pequeños ajustes continuamente.</p></li>
+<li><p><strong>Separa la vista del estado:</strong> Mantén la lógica de la interfaz de usuario separada de la lógica del estado de la aplicación.</p></li>
+<li><p><strong>Utiliza módulos:</strong> Divide tu código en módulos para mantenerlo organizado y reutilizable.</p></li>
+<li><p><strong>Exporta pocas cosas:</strong> Los módulos deben exportar solo lo necesario para mantener una interfaz clara y concisa.</p></li>
+<li><p><strong>Estado de la aplicación:</strong> Mantener el estado centralizado es una de las tareas más complejas e importantes en el frontend. Se recomienda usar alguna solución reactiva como RxJS o Redux o al menos una única variable global immutable.</p></li>
+</ul>
+</section>
+</section>
+<section id="deuda-tecnica">
+<h3>Deuda Técnica<a class="headerlink" href="#deuda-tecnica" title="Link to this heading">#</a></h3>
+<p>La <strong>deuda técnica</strong> es un concepto del desarrollo de software que se refiere a la cantidad de trabajo adicional que es necesario realizar para modificar un programa debido a la elección de soluciones fáciles o rápidas en lugar de las adecuadas o más sostenibles a largo plazo. En otras palabras, es el costo acumulado de tomar atajos o soluciones temporales que, si bien pueden permitir un desarrollo más rápido inicialmente, generan una mayor carga de trabajo en el futuro.</p>
+<p>La deuda técnica es una realidad inevitable en el desarrollo de software. Factores como las presiones de tiempo, los cambios en los requisitos y las limitaciones de recursos pueden llevar a la acumulación de compromisos que impactan la calidad del código. Existen distintos tipos de deuda técnica, desde la <strong>intencional</strong>, cuando se prioriza la velocidad sobre la calidad con conocimiento de sus consecuencias, hasta la <strong>inadvertida</strong>, que surge por falta de experiencia o desconocimiento. También se puede clasificar según su impacto en la arquitectura del software, la calidad del código o la ausencia de pruebas adecuadas. Si no se gestiona correctamente, la deuda técnica ralentiza el desarrollo, encarece el mantenimiento y aumenta el riesgo de errores, dificultando la evolución del producto.</p>
+<p>Para mitigar estos efectos, es fundamental adoptar estrategias de gestión como La identificación, monitoreo y refactorización temprano, con herramientas como linters y revisiones de código. La priorización es clave, ya que no toda la deuda necesita ser resuelta de inmediato. Lo mínimo que un proyecto debe tener son <strong>tests</strong>.</p>
+</section>
+</section>
+<section id="arquitectura-y-estructura">
+<h2>Arquitectura y estructura<a class="headerlink" href="#arquitectura-y-estructura" title="Link to this heading">#</a></h2>
+<section id="principios-de-arquitectura">
+<h3>Principios de arquitectura<a class="headerlink" href="#principios-de-arquitectura" title="Link to this heading">#</a></h3>
+<section id="encapsular-el-codigo">
+<h4>Encapsular el código<a class="headerlink" href="#encapsular-el-codigo" title="Link to this heading">#</a></h4>
+<p>Encapsular el código implica restringir el acceso a ciertos componentes del código y sólo exponer lo que es necesario. Si se utilizan módulos correctamente, ya hay una encapsulación básica. Sin embargo, hay más técnicas y prácticas que puedes aplicar para mejorar aún más esta encapsulación. Estos son algunos de los motivos por los que buscar la encapsulación:</p>
+<p>Una buena encapsulación evita la contaminación del ámbito global, reduciendo conflictos de nombres y mejorando la seguridad del código. Además, facilita el mantenimiento, permitiendo modificaciones internas sin afectar otras partes mientras la interfaz pública se mantiene estable. También promueve la modularidad, haciendo que los componentes sean reutilizables y fáciles de probar, además de mejorar la claridad y legibilidad del código. Finalmente, al limitar el acceso a elementos internos, se minimizan riesgos de manipulación no deseada, lo que refuerza la seguridad del sistema.</p>
+<p>Formas de encapsular en Javascript:</p>
+<ul class="simple">
+<li><p><strong>Encapsulación con IIFE (Immediately Invoked Function Expression)</strong>: Una técnica eficaz para encapsular el código es utilizar una IIFE (Immediately Invoked Function Expression). Una IIFE es una función que se define y se ejecuta inmediatamente. Esto se hace para crear un ámbito local y evitar la contaminación del ámbito global.</p></li>
+<li><p><strong>Módulos ES6</strong>: Exportando lo necesario, se puede encapsular muy eficientemente. Además, mantienen un estado si es necesario.</p></li>
+<li><p><strong>Closures</strong>: Tećnica muy utilizada antes de los módulos, puede ser útil a nivel de funciones en técnicas como el <code class="docutils literal notranslate"><span class="pre">Curring</span></code>.</p></li>
+<li><p><strong>Espacios de Nombres</strong>: se trata de crear objetos literales donde añadir atributos.</p></li>
+<li><p><strong>Clases ES6</strong>: Mediante clases se pueden encapsular partes del código. Luego con closures o atributos privados se pueden ocultar cosas al exterior.</p></li>
+</ul>
+</section>
+<section id="acoplamiento">
+<h4>Acoplamiento<a class="headerlink" href="#acoplamiento" title="Link to this heading">#</a></h4>
+<p><strong>Acoplamiento</strong> se refiere a la interdependencia entre diferentes módulos o unidades de software. Un alto grado de acoplamiento implica que los cambios en un módulo pueden afectar a otros, lo que dificulta la modificación y el mantenimiento del sistema. En general, se busca un bajo acoplamiento para mejorar la modularidad y flexibilidad del código.</p>
+<p><strong>Ejemplo de Alto Acoplamiento:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Módulo A</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">obtenerDatos</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.example.com/datos&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// Módulo B</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">procesarDatos</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">obtenerDatos</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">datos</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Procesa los datos</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">datos</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este ejemplo, el módulo B depende directamente del módulo A para obtener los datos, creando un alto acoplamiento.</p>
+<p><strong>Ejemplo de Bajo Acoplamiento:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Módulo A</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">obtenerDatos</span><span class="p">(</span><span class="nx">apiUrl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">apiUrl</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// Módulo B</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">procesarDatos</span><span class="p">(</span><span class="nx">apiUrl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">obtenerDatos</span><span class="p">(</span><span class="nx">apiUrl</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">datos</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Procesa los datos</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">datos</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aquí, el módulo B no depende directamente del módulo A, sino que solo necesita una URL de API. Esto reduce el acoplamiento.</p>
+</section>
+<section id="cohesion">
+<h4>Cohesión<a class="headerlink" href="#cohesion" title="Link to this heading">#</a></h4>
+<p><strong>Cohesión</strong> se refiere a cuán estrechamente relacionados y enfocados están los elementos dentro de un módulo. Un módulo altamente cohesivo tiene elementos que están fuertemente relacionados entre sí y juntos realizan una única tarea. Una alta cohesión es deseable porque facilita la comprensión, reutilización y mantenimiento del código.</p>
+<p><strong>Ejemplo de Baja Cohesión:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Módulo con baja cohesión</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">modulo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Calcula algo</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">calcular</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Procesa datos</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">procesar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Gestiona la interfaz de usuario</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">gestionarUI</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Este módulo realiza múltiples tareas no relacionadas, lo que indica baja cohesión.</p>
+<p><strong>Ejemplo de Alta Cohesión:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Módulo con alta cohesión</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">moduloCalculo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Calcula algo</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">calcular</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">calcular</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">moduloProcesamiento</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Procesa datos</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">procesar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">procesar</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">moduloUI</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Gestiona la interfaz de usuario</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">gestionarUI</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">gestionarUI</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este ejemplo, cada módulo tiene una única responsabilidad claramente definida, indicando alta cohesión.</p>
+</section>
+</section>
+<section id="estructura">
+<h3>Estructura<a class="headerlink" href="#estructura" title="Link to this heading">#</a></h3>
+<p>Una estructura bien organizada facilita la navegación y el mantenimiento del código. Aquí hay una estructura propuesta (el nombre de las carpetas es opcional):</p>
+<ul class="simple">
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">models</span></code>:</strong> Contiene los modelos de datos.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">pages</span></code>:</strong> Contiene las vistas organizadas por URL.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">views</span></code>:</strong> Contiene los componentes de la vista.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">helpers</span></code>:</strong> Contiene utilidades reutilizables.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">forms</span></code>:</strong> Contiene los formularios.</p></li>
+<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">app.js</span></code>:</strong> Archivo principal de la aplicación.</p></li>
+<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">router.js</span></code>:</strong> Contiene la lógica de enrutamiento.</p></li>
+<li><p><strong>Carpeta <code class="docutils literal notranslate"><span class="pre">libraries</span></code>:</strong> Contiene bibliotecas externas como jQuery.</p></li>
+<li><p><strong>Archivo <code class="docutils literal notranslate"><span class="pre">templates.js</span></code>:</strong> Contiene plantillas de código.</p></li>
+</ul>
+<p>Esta estructura no es rígida y puede ajustarse según las necesidades del proyecto, pero proporciona un buen punto de partida.</p>
+</section>
+<section id="arquitectura">
+<h3>Arquitectura<a class="headerlink" href="#arquitectura" title="Link to this heading">#</a></h3>
+<p>La arquitectura de una aplicación frontend se basa en la separación de responsabilidades para lograr un código más limpio, mantenible y escalable. Esta separación permite que los diferentes componentes de la aplicación interactúen de manera organizada. A continuación, se describen los elementos básicos que deben separarse y su función:</p>
+<ol class="arabic simple">
+<li><p><strong>Interfaz de Usuario (Vista y Controlador)</strong></p>
+<ul class="simple">
+<li><p><strong>Vista:</strong> Es la parte de la aplicación que interactúa directamente con el usuario, mostrando datos y capturando entradas.</p></li>
+<li><p><strong>Controlador:</strong> Gestiona la lógica de la interfaz de usuario, facilitando la comunicación entre la vista y el modelo.</p></li>
+</ul>
+</li>
+<li><p><strong>Estado de la Aplicación (Modelo)</strong></p>
+<ul class="simple">
+<li><p><strong>Modelo:</strong> Representa y gestiona los datos y la lógica de negocio de la aplicación.</p></li>
+</ul>
+</li>
+<li><p><strong>Lógica (Controlador y Servicios)</strong></p>
+<ul class="simple">
+<li><p><strong>Controlador:</strong> Implementa la lógica de la aplicación, conectando la vista con el modelo.</p></li>
+<li><p><strong>Servicios:</strong> Gestionan la comunicación con el servidor y otras fuentes de datos externas.</p></li>
+</ul>
+</li>
+<li><p><strong>Comunicación HTTP (Modelo y Servicios)</strong></p>
+<ul class="simple">
+<li><p><strong>Servicios:</strong> Encargados de realizar solicitudes HTTP para obtener y enviar datos al servidor.</p></li>
+</ul>
+</li>
+<li><p><strong>Rutas (Router)</strong></p>
+<ul class="simple">
+<li><p><strong>Router:</strong> Gestiona la navegación y las rutas de la aplicación.</p></li>
+</ul>
+</li>
+</ol>
+<section id="elementos">
+<h4>Elementos<a class="headerlink" href="#elementos" title="Link to this heading">#</a></h4>
+<section id="utilizacion-de-modelos">
+<h5>Utilización de Modelos<a class="headerlink" href="#utilizacion-de-modelos" title="Link to this heading">#</a></h5>
+<p>Siempre hay que separar el Document Object Model (DOM) de los datos de la aplicación. Entre los datos recibidos en formato JSON y los mostrados en HTML, es necesario tener objetos que gestionen esos datos, conocidos como modelos.</p>
+<ul class="simple">
+<li><p><strong>Funcionalidad de los Modelos:</strong></p>
+<ul>
+<li><p>Validan la integridad de los datos.</p></li>
+<li><p>Obtienen y modifican datos del servidor.</p></li>
+</ul>
+</li>
+<li><p><strong>Limitaciones de los Modelos:</strong></p>
+<ul>
+<li><p>No deben manipular el DOM.</p></li>
+<li><p>No deben manejar eventos.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="vistas">
+<h5>Vistas<a class="headerlink" href="#vistas" title="Link to this heading">#</a></h5>
+<p>Las vistas se encargan de la interacción con el DOM. Permiten modificar toda la vista sin alterar los modelos ni el servidor y gestionar eventos sin interferir con los modelos. Muchos frameworks separan las vistas de los modelos y, en algunos casos, también los modelos de los controladores.</p>
+<ul class="simple">
+<li><p><strong>Método render():</strong> Las vistas suelen tener un método <code class="docutils literal notranslate"><span class="pre">render()</span></code> que muestra la vista en las plantillas correspondientes y las subvistas si es necesario.</p></li>
+<li><p><strong>Plantillas:</strong> Pueden ser <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>, literales o funciones de template literals etiquetados.</p></li>
+<li><p><strong>Comunicación con el Controlador:</strong> Puede ser a través de eventos, eventos personalizados o observables.</p></li>
+</ul>
+</section>
+<section id="controlador">
+<h5>Controlador<a class="headerlink" href="#controlador" title="Link to this heading">#</a></h5>
+<p>El controlador conecta inicialmente la vista y el modelo, gestionando la interacción del usuario y modificando el modelo. En el patrón Model-View-Presenter (MVP), el presentador desacopla totalmente la vista del modelo y actúa como intermediario.</p>
+<ul class="simple">
+<li><p><strong>Funcionalidad del Controlador:</strong></p>
+<ul>
+<li><p>Gestiona la interacción del usuario y modifica el modelo.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="servicios-opcionales">
+<h5>Servicios (Opcionales)<a class="headerlink" href="#servicios-opcionales" title="Link to this heading">#</a></h5>
+<p>Los servicios se encargan de obtener y enviar datos al servidor o al almacenamiento local, permitiendo que los modelos se mantengan manejables y que la lógica de comunicación no afecte al modelo.</p>
+<ul class="simple">
+<li><p><strong>Funcionalidad de los Servicios:</strong></p>
+<ul>
+<li><p>Facilitan la comunicación con el servidor.</p></li>
+<li><p>Permiten cambiar de servidor, protocolos o APIs sin afectar al modelo.</p></li>
+<li><p>Pueden gestionar el estado de la aplicación.</p></li>
+</ul>
+</li>
+<li><p><strong>Ventajas:</strong></p>
+<ul>
+<li><p>Mantienen los modelos ligeros y enfocados en la gestión de datos locales.</p></li>
+<li><p>Desacoplan la lógica de negocio de la lógica de comunicación.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="rutas-routers-en-aplicaciones-spa">
+<h5>Rutas (Routers) en Aplicaciones SPA<a class="headerlink" href="#rutas-routers-en-aplicaciones-spa" title="Link to this heading">#</a></h5>
+<p>Las Single Page Applications (SPA) presentan un problema importante: no tienen rutas reales en la URL. Esto implica varios problemas:</p>
+<ul class="simple">
+<li><p>No se puede volver atrás mediante el botón de retroceso del navegador.</p></li>
+<li><p>No se pueden crear enlaces a partes específicas de la aplicación.</p></li>
+<li><p>Es necesario crear rutas artificiales que nuestro código JavaScript pueda entender para mostrar diferentes contenidos.</p></li>
+</ul>
+<p>Para solucionar esto, se implementan routers que pueden o no modificar la URL, pero que igualmente deben proporcionar un sistema para navegar hacia atrás.</p>
+<ol class="arabic simple">
+<li><p><strong>Navegación Fluida:</strong> Los routers permiten una navegación fluida y natural dentro de una SPA, simulando la navegación de una aplicación multipágina.</p></li>
+<li><p><strong>URL Amigables:</strong> Facilitan la creación de URLs amigables que los usuarios pueden compartir y que los motores de búsqueda pueden indexar.</p></li>
+<li><p><strong>Gestión del Estado:</strong> Permiten gestionar el estado de la aplicación a través de la URL, haciendo posible volver a estados previos o específicos.</p></li>
+<li><p><strong>Modularidad:</strong> Ayudan a mantener el código modular y organizado, separando claramente la lógica de navegación de la lógica de presentación y negocio.</p></li>
+</ol>
+<p>El siguiente ejemplo no es la mejor opción por motivos que iremos desgranando más adelante, pero es muy fácil de implementar y de entender inicialmente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Establecer una ruta inicial</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#/login&quot;</span><span class="p">;</span>
+
+<span class="c1">// Llamar al router cuando se establece la ruta inicial</span>
+<span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+
+<span class="c1">// Agregar un listener para cambios en el hash de la URL</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;hashchange&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Definir la función del router</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">route</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Rutas con expresiones regulares</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/city\/[0-9]+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cityId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">CityDetails</span><span class="p">(</span><span class="nx">cityId</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/building\/[0-9]+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">buildingId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">BuildingDetails</span><span class="p">(</span><span class="nx">buildingId</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/survivor\/[0-9]+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">survivorId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">SurvivorDetails</span><span class="p">(</span><span class="nx">survivorId</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="c1">// Rutas a páginas específicas</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">home</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Home</span><span class="p">();</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">home</span><span class="p">.</span><span class="nx">renderHome</span><span class="p">();</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/survivors&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">survivors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SurvivorsPage</span><span class="p">();</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">survivors</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="c1">// Añadir más rutas según sea necesario</span>
+<span class="w">      </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">notFound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">NotFoundPage</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">notFound</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<ol class="arabic">
+<li><p><strong>Establecer una Ruta Inicial:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#/login&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Se define una ruta inicial <code class="docutils literal notranslate"><span class="pre">#/login</span></code> que será la primera vista cuando se cargue la aplicación.</p>
+</li>
+<li><p><strong>Llamar al Router con la Ruta Inicial:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Se llama a la función <code class="docutils literal notranslate"><span class="pre">router</span></code> con la ruta inicial para que la aplicación muestre el contenido correspondiente a esa ruta.</p>
+</li>
+<li><p><strong>Listener para Cambios en el Hash:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;hashchange&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Se añade un event listener para escuchar los cambios en el hash de la URL. Cada vez que cambia el hash, se llama a la función <code class="docutils literal notranslate"><span class="pre">router</span></code> con el nuevo valor del hash.</p>
+</li>
+<li><p><strong>Definición del Router:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">route</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Rutas con expresiones regulares</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/city\/[0-9]+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cityId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">CityDetails</span><span class="p">(</span><span class="nx">cityId</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/building\/[0-9]+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">buildingId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">BuildingDetails</span><span class="p">(</span><span class="nx">buildingId</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/survivor\/[0-9]+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">survivorId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">SurvivorDetails</span><span class="p">(</span><span class="nx">survivorId</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="c1">// Rutas a páginas específicas</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">home</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Home</span><span class="p">();</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">home</span><span class="p">.</span><span class="nx">renderHome</span><span class="p">();</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/survivors&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">survivors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SurvivorsPage</span><span class="p">();</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">survivors</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="c1">// Añadir más rutas según sea necesario</span>
+<span class="w">      </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">notFound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">NotFoundPage</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">notFound</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>La función <code class="docutils literal notranslate"><span class="pre">router</span></code> toma una ruta como parámetro y determina qué contenido mostrar basándose en esa ruta.</p>
+<ul>
+<li><p><strong>Rutas con Expresiones Regulares:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/#\/city\/[0-9]+/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">route</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">cityId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">route</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">  </span><span class="nx">CityDetails</span><span class="p">(</span><span class="nx">cityId</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Este bloque de código utiliza expresiones regulares para identificar rutas dinámicas, como <code class="docutils literal notranslate"><span class="pre">#/city/123</span></code>. Extrae el ID de la ciudad de la ruta y llama a una función <code class="docutils literal notranslate"><span class="pre">CityDetails</span></code> con ese ID.</p>
+</li>
+<li><p><strong>Rutas a Páginas Específicas:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/&quot;</span><span class="o">:</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">home</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Home</span><span class="p">();</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">home</span><span class="p">.</span><span class="nx">renderHome</span><span class="p">();</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;#/survivors&quot;</span><span class="o">:</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">survivors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SurvivorsPage</span><span class="p">();</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">survivors</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">notFound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">NotFoundPage</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">notFound</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Este bloque maneja rutas estáticas, como la página de inicio <code class="docutils literal notranslate"><span class="pre">#/</span></code> y la página de sobrevivientes <code class="docutils literal notranslate"><span class="pre">#/survivors</span></code>. Dependiendo de la ruta, se instancia y se renderiza la vista correspondiente.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><em><strong>Mejoras en el router</strong></em></p>
+<p>Para mejorar este router podemo usar el objeto <code class="docutils literal notranslate"><span class="pre">URL</span></code> y no usar rutas con <code class="docutils literal notranslate"><span class="pre">hash</span></code>.</p>
+<blockquote>
+<div><p>Si usamos rutas sin hash y queremos desplegar en Apache o otros servidores hay que configurarlos específicamente para que no busquen esas rutas en los directorios. Con el <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">dev</span></code> o en <code class="docutils literal notranslate"><span class="pre">Live</span> <span class="pre">Server</span></code> en tiempo de desarrollo no tendremos ese problema.</p>
+</div></blockquote>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">routeURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="nx">route</span><span class="p">);</span><span class="w">  </span><span class="c1">// Objeto URL </span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">routeURL</span><span class="p">.</span><span class="nx">pathname</span><span class="p">;</span><span class="w">   </span><span class="c1">// Lo que está detrás de la /</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">(</span><span class="nx">routeURL</span><span class="p">.</span><span class="nx">search</span><span class="p">);</span><span class="w">  </span><span class="c1">// Lo que está detrás de ? en una estructura parecida al Map()</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">search</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span><span class="w">     </span><span class="c1">// Se obtiene id si la ruta tenía ?id=</span>
+</pre></div>
+</div>
+<p>Al usar tanto <code class="docutils literal notranslate"><span class="pre">paths</span></code> como parámetros con ? y &amp; (<code class="docutils literal notranslate"><span class="pre">search</span></code>), ya no vale el <code class="docutils literal notranslate"><span class="pre">haschange</span></code>, ahora hay que atender a <code class="docutils literal notranslate"><span class="pre">popstate</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;popstate&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">router</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Otra posible mejora es evitar los <code class="docutils literal notranslate"><span class="pre">if..else</span></code>y usar, por ejemplo, un Map para decidir qué hacer con la ruta:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">([</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;#home&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chess-home&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;#login&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chess-login&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="p">])</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">hash</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">routes</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">hash</span><span class="p">)){</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">component</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">routes</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">webComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">component</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#content&#39;</span><span class="p">).</span><span class="nx">replaceChildren</span><span class="p">(</span><span class="nx">webComponent</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este caso, también es más simple por usar <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code></p>
+</section>
+<section id="componentes-web">
+<h5>Componentes Web<a class="headerlink" href="#componentes-web" title="Link to this heading">#</a></h5>
+<p>En el desarrollo de aplicaciones web modernas, la idea de componentes ha ganado una gran popularidad. Los componentes, o widgets, son elementos que encapsulan tanto la vista como la lógica de una parte específica de la aplicación. Son la base de algunos frameworks modernos.</p>
+<p>Los componentes web son un conjunto de tecnologías que permiten crear elementos personalizados reutilizables en aplicaciones web, con su propia funcionalidad y estilo encapsulados. Esto significa que puedes definir nuevos elementos HTML, con comportamiento y apariencia específicos, que se pueden utilizar como cualquier otro elemento estándar de HTML. Los componentes, bien hechos, pueden proporcionar los siguientes beneficios:</p>
+<ol class="arabic simple">
+<li><p><strong>Encapsulamiento:</strong> Los componentes web permiten encapsular completamente el HTML, CSS y JavaScript necesarios para un elemento, evitando conflictos con el resto del código.</p></li>
+<li><p><strong>Reutilización:</strong> Una vez creados, los componentes pueden ser reutilizados en diferentes partes de una aplicación o en múltiples aplicaciones, lo que ahorra tiempo y esfuerzo.</p></li>
+<li><p><strong>Mantenibilidad:</strong> Al tener una lógica encapsulada, los componentes facilitan el mantenimiento del código, ya que los cambios en un componente no afectan al resto de la aplicación.</p></li>
+<li><p><strong>Modularidad:</strong> Permiten dividir la aplicación en partes más pequeñas y manejables, mejorando la organización y estructura del código.</p></li>
+</ol>
+<p>Los componentes web se basan en cuatro tecnologías principales:</p>
+<ol class="arabic simple">
+<li><p><strong>Custom Elements:</strong> Permiten definir nuevos tipos de elementos HTML.</p></li>
+<li><p><strong>Shadow DOM:</strong> Proporciona encapsulamiento de estilo y estructura para evitar colisiones en el DOM global.</p></li>
+<li><p><strong>HTML Templates:</strong> Permiten definir fragmentos de HTML que se pueden reutilizar.</p></li>
+<li><p><strong>ES Modules:</strong> Proporcionan una manera de organizar y cargar código JavaScript de manera modular.</p></li>
+</ol>
+<p>En el capítulo de Web Component se explican de forma técnica.</p>
+</section>
+</section>
+</section>
+<section id="estado-de-la-aplicacion">
+<h3>Estado de la Aplicación<a class="headerlink" href="#estado-de-la-aplicacion" title="Link to this heading">#</a></h3>
+<p>El estado de la aplicación es un concepto complicado en el desarrollo de aplicaciones web modernas. Controlar y gestionar correctamente el estado puede hacer la diferencia entre una aplicación mantenible y una que sea difícil de manejar y propensa a errores.</p>
+<section id="donde-esta-el-estado">
+<h4>Dónde está el estado<a class="headerlink" href="#donde-esta-el-estado" title="Link to this heading">#</a></h4>
+<p>Si estamos separando las páginas y, dentro de estas, hacemos componentes independientes, estos pueden tener su propio estado. Pueden ser autocontenidos, lo cual puede llevar a varios problemas:</p>
+<ul class="simple">
+<li><p><strong>Estados compartidos</strong>: Puede que varios componentes tengan un estado que se ha de actualizar a la vez. En ese caso, es mejor unirlos en una única variable.</p></li>
+<li><p><strong>Contradicciones en el estado</strong>: Puede que el estado está estructurado de forma que se contradiga.</p></li>
+<li><p><strong>Redundancias</strong>: Puede que un componente padre tenga una información y también la tengan los hijos y al mismo tiempo esté en otro sitio. El problema es actualizar a la vez todos esos datos.</p></li>
+<li><p><strong>Estados anidados</strong>: Puede que unos componentes padres tengan parte del estado y los hijos mantengan otra parte, si es muy profundo ese estado jerárquico es mejor “aplanarlo”.</p></li>
+<li><p><strong>Pasar datos profundamente</strong>: Pasar datos de unos componentes a otros mediante propiedades, atributos… puede ser conveniente. El problema es cuando para por muchos niveles que no hacen nada con los datos a parte de enviarlos a sus componentes hijos. Este anti patrón se llama <code class="docutils literal notranslate"><span class="pre">Prop</span> <span class="pre">Drilling</span></code> y hay que evitarlo. En React, por ejemplo, lo evitan con el concepto de <code class="docutils literal notranslate"><span class="pre">context</span></code>, un objeto que tiene el estado y es accesible desde todos los componentes.
+Leer: <a class="reference external" href="https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/">https://plainvanillaweb.com/blog/articles/2024-10-07-needs-more-context/</a></p></li>
+</ul>
+</section>
+<section id="separacion-del-estado">
+<h4>Separación del Estado<a class="headerlink" href="#separacion-del-estado" title="Link to this heading">#</a></h4>
+<p>Es importante separar el estado en dos categorías:</p>
+<ol class="arabic simple">
+<li><p><strong>Estado del Servidor:</strong> Datos que se obtienen y almacenan en el servidor, como información de usuarios, productos, etc.</p></li>
+<li><p><strong>Estado del Cliente:</strong> Datos que solo existen en el cliente, como la interfaz de usuario, configuraciones temporales, credenciales…</p></li>
+</ol>
+</section>
+<section id="inmutabilidad">
+<h4>Inmutabilidad<a class="headerlink" href="#inmutabilidad" title="Link to this heading">#</a></h4>
+<p>Trabajar con datos inmutables significa que, una vez creados, los datos no pueden cambiar. En lugar de modificar un objeto o array existente, se crea una nueva versión del mismo con las modificaciones requeridas. Este enfoque ofrece varios beneficios:</p>
+<ul class="simple">
+<li><p><strong>Facilidad de Depuración:</strong> Si los datos no cambian, es más fácil rastrear de dónde provienen los errores.</p></li>
+<li><p><strong>Predictibilidad:</strong> Las funciones puras y los datos inmutables hacen que el comportamiento de la aplicación sea más predecible.</p></li>
+<li><p><strong>Evitar Efectos Colaterales:</strong> Al no modificar directamente los objetos, se evitan efectos colaterales que puedan afectar otras partes de la aplicación.</p></li>
+</ul>
+<p>El estado debe tener métodos para acceder (getters) y modificar (setters) sus valores. No se debe modificar el estado directamente, ya que esto puede llevar a inconsistencias y errores difíciles de rastrear.</p>
+</section>
+<section id="centralizacion-del-control-del-estado">
+<h4>Centralización del Control del Estado<a class="headerlink" href="#centralizacion-del-control-del-estado" title="Link to this heading">#</a></h4>
+<p>Centralizar el control del estado significa tener un único lugar donde se maneja el estado de la aplicación. Esto facilita su gestión y mejora la coherencia en cómo se accede y modifica el estado. Algunos enfoques para centralizar el estado incluyen:</p>
+<ul class="simple">
+<li><p><strong>Espacio de Nombres:</strong> Utilizar un objeto global para guardar el estado. Aunque es una solución simple, puede volverse inmanejable a medida que la aplicación crece. Este espacio de nombres puede estar en un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> de <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>, por ejemplo, para conseguir reactividad.</p></li>
+<li><p><strong>Servicios:</strong> Los servicios centralizan la gestión del estado y pueden ser accesible mediante funciones importadas. Para no hacer que los componentes estén demasiado acoplados a los servicios se puede usar el patrón de <code class="docutils literal notranslate"><span class="pre">Inyección</span> <span class="pre">de</span> <span class="pre">dependencias</span></code>.</p></li>
+<li><p><strong>Redux:</strong> Una biblioteca para manejar el estado de manera predecible en aplicaciones JavaScript.</p></li>
+</ul>
+</section>
+<section id="beneficios-del-uso-de-redux">
+<h4>Beneficios del Uso de Redux<a class="headerlink" href="#beneficios-del-uso-de-redux" title="Link to this heading">#</a></h4>
+<p>Redux es una biblioteca popular para gestionar el estado de aplicaciones JavaScript, especialmente en el contexto de aplicaciones de React. Algunos de sus beneficios incluyen:</p>
+<ul class="simple">
+<li><p><strong>Estado Centralizado:</strong> Todo el estado de la aplicación se almacena en un solo objeto.</p></li>
+<li><p><strong>Inmutabilidad:</strong> Se asegura que el estado sea inmutable.</p></li>
+<li><p><strong>Debugging:</strong> Herramientas como Redux DevTools facilitan la depuración.</p></li>
+<li><p><strong>Middleware:</strong> Facilita la integración de lógica asíncrona y otras funcionalidades adicionales.</p></li>
+</ul>
+<p>A continuación se muestra un ejemplo básico de cómo usar Redux para gestionar el estado de una aplicación de tareas.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createStore</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;redux&#39;</span><span class="p">;</span>
+
+<span class="c1">// Estado inicial</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">initialState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">tasks</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">};</span>
+
+<span class="c1">// Reducer</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">reducer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">initialState</span><span class="p">,</span><span class="w"> </span><span class="nx">action</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;SET_USER&#39;</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">...</span><span class="nx">state</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;ADD_TASK&#39;</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">...</span><span class="nx">state</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">tasks</span><span class="o">:</span><span class="w"> </span><span class="p">[...</span><span class="nx">state</span><span class="p">.</span><span class="nx">tasks</span><span class="p">,</span><span class="w"> </span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">]</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">state</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Crear el store</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createStore</span><span class="p">(</span><span class="nx">reducer</span><span class="p">);</span>
+
+<span class="c1">// Acciones</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">setUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SET_USER&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">addTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">task</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ADD_TASK&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="nx">task</span><span class="w"> </span><span class="p">});</span>
+
+<span class="c1">// Usar el store</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">setUser</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;John Doe&#39;</span><span class="w"> </span><span class="p">}));</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">addTask</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Learn JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">completed</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}));</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">getState</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="i18n-internacionalizacion">
+<h3>I18N (Internacionalización)<a class="headerlink" href="#i18n-internacionalizacion" title="Link to this heading">#</a></h3>
+<p>La internacionalización, comúnmente abreviada como I18N (debido a las 18 letras que hay entre la “I” inicial y la “N” final en inglés), es el proceso de diseñar una aplicación de software para que pueda ser adaptada a diferentes idiomas y regiones sin necesidad de realizar cambios en el código base.</p>
+<section id="uso-de-librerias-para-i18n">
+<h4>Uso de Librerías para I18N<a class="headerlink" href="#uso-de-librerias-para-i18n" title="Link to this heading">#</a></h4>
+<p>Existen muchas librerías que facilitan el proceso de internacionalización en aplicaciones web. Algunas de las más populares incluyen:</p>
+<ul class="simple">
+<li><p><strong>i18next:</strong> Una potente librería de JavaScript que proporciona una solución completa para la internacionalización.</p></li>
+<li><p><strong>react-i18next:</strong> Una extensión de i18next para aplicaciones React.</p></li>
+<li><p><strong>Polyglot.js:</strong> Una librería ligera para manejar la internacionalización en aplicaciones JavaScript.</p></li>
+<li><p><strong>Intl:</strong> Una API nativa de JavaScript para la internacionalización.</p></li>
+</ul>
+<section id="ejemplo-con-i18next">
+<h5>Ejemplo con i18next<a class="headerlink" href="#ejemplo-con-i18next" title="Link to this heading">#</a></h5>
+<p>A continuación se muestra un ejemplo básico de cómo utilizar i18next para internacionalizar una aplicación web:</p>
+<ol class="arabic">
+<li><p><strong>Instalación:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>i18next
+</pre></div>
+</div>
+</li>
+<li><p><strong>Configuración:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">i18next</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;i18next&#39;</span><span class="p">;</span>
+
+<span class="nx">i18next</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">lng</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;en&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Idioma por defecto</span>
+<span class="w">  </span><span class="nx">debug</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">resources</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">en</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">translation</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;welcome&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Welcome to our application&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">es</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">translation</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;welcome&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bienvenido a nuestra aplicación&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">).</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i18next</span><span class="p">.</span><span class="nx">t</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>HTML:</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Internacionalización<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;changeLanguage(&#39;en&#39;)&quot;</span><span class="p">&gt;</span>Inglés<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;changeLanguage(&#39;es&#39;)&quot;</span><span class="p">&gt;</span>Español<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;path/to/your/js/file.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Función para cambiar el idioma:</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">changeLanguage</span><span class="p">(</span><span class="nx">language</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">i18next</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="p">(</span><span class="nx">language</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">).</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">i18next</span><span class="p">.</span><span class="nx">t</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Aunque existen múltiples librerías que facilitan este proceso, también es posible implementar soluciones personalizadas utilizando variables y funciones en JavaScript. Independientemente del enfoque elegido, la clave está en separar los textos del código y proporcionar mecanismos para cambiar fácilmente entre diferentes idiomas.</p>
+</section>
+</section>
+</section>
+<section id="lazy-loading">
+<h3>Lazy Loading<a class="headerlink" href="#lazy-loading" title="Link to this heading">#</a></h3>
+<p>Lazy Loading es una técnica utilizada en el desarrollo de software para retrasar la carga o la inicialización de un recurso hasta el momento en que realmente se necesita. Esta técnica es especialmente útil en el desarrollo web, ya que permite optimizar el rendimiento de las aplicaciones, reduciendo el tiempo de carga inicial y la cantidad de recursos consumidos.</p>
+<p>En JavaScript, se puede implementar Lazy Loading para cargar módulos de manera dinámica cuando se necesiten. Esto es particularmente beneficioso para aplicaciones grandes y complejas donde no es necesario cargar todos los módulos en el momento de iniciar la aplicación.</p>
+<section id="lazy-loading-en-vanilla-javascript">
+<h4>Lazy Loading en Vanilla JavaScript<a class="headerlink" href="#lazy-loading-en-vanilla-javascript" title="Link to this heading">#</a></h4>
+<p>En JavaScript Vanilla, se pueden cargar módulos de manera dinámica utilizando la sintaxis <code class="docutils literal notranslate"><span class="pre">import()</span></code>. Esta sintaxis devuelve una promesa que se resuelve con el módulo cargado, permitiendo así cargar solo los módulos necesarios en el momento adecuado.</p>
+<section id="ejemplo-de-lazy-loading-en-vanilla-javascript">
+<h5>Ejemplo de Lazy Loading en Vanilla JavaScript<a class="headerlink" href="#ejemplo-de-lazy-loading-en-vanilla-javascript" title="Link to this heading">#</a></h5>
+<p>Supongamos que tenemos un módulo que queremos cargar de manera dinámica:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">WelcomeModule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;WelcomeModule loaded&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">greet</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello from WelcomeModule&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;loadModuleBtn&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WelcomeModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">import</span><span class="p">(</span><span class="s1">&#39;./welcome/ModuleImpl.js&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">WelcomeModule</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">module</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En este ejemplo, el módulo <code class="docutils literal notranslate"><span class="pre">WelcomeModule</span></code> se carga solo cuando el usuario hace clic en el botón “Load Module”. Esto significa que el código del módulo no se incluye en la carga inicial de la página, lo que puede mejorar significativamente el tiempo de carga y el rendimiento de la aplicación.</p>
+<p>Tanto en JavaScript Vanilla como en frameworks modernos, implementar Lazy Loading es una práctica recomendada para gestionar aplicaciones complejas y de gran escala.</p>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ci-cd.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Integración y Despliegue Continuo (CI/CD)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="documentacion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Documentación en JavaScript</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-generales">Consejos generales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escribir-codigo-facil-de-leer">Escribir Código Fácil de Leer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estilo">Guía de Estilo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-el-codigo-espagueti">Evitar el Código Espagueti</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deuda-tecnica">Deuda Técnica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-estructura">Arquitectura y estructura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-de-arquitectura">Principios de arquitectura</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsular-el-codigo">Encapsular el código</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#acoplamiento">Acoplamiento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cohesion">Cohesión</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura">Estructura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos">Elementos</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizacion-de-modelos">Utilización de Modelos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#vistas">Vistas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#controlador">Controlador</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-opcionales">Servicios (Opcionales)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-routers-en-aplicaciones-spa">Rutas (Routers) en Aplicaciones SPA</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-web">Componentes Web</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-aplicacion">Estado de la Aplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-esta-el-estado">Dónde está el estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-del-estado">Separación del Estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inmutabilidad">Inmutabilidad</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centralizacion-del-control-del-estado">Centralización del Control del Estado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-del-uso-de-redux">Beneficios del Uso de Redux</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i18n-internacionalizacion">I18N (Internacionalización)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-librerias-para-i18n">Uso de Librerías para I18N</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-i18next">Ejemplo con i18next</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-loading">Lazy Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-loading-en-vanilla-javascript">Lazy Loading en Vanilla JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lazy-loading-en-vanilla-javascript">Ejemplo de Lazy Loading en Vanilla JavaScript</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
