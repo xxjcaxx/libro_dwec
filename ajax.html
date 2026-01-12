@@ -1,0 +1,1466 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comunicación con el servidor &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ajax';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Almacenamiento en el Lado del Cliente" href="webstorage.html" />
+    <link rel="prev" title="Asincronía y Promesas" href="promesas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jsenhtml.html">Javascript en el navegador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Fajax.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ajax.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Comunicación con el servidor</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajax-en-javascript">AJAX en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-ajax">Ejemplo Básico de AJAX</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-una-solicitud-ajax-con-xmlhttprequest">Enviar una solicitud AJAX con <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-de-ajax">Beneficios de AJAX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-ajax">Problemas de AJAX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apis">APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-apis">Tipos de APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#api-rest">API REST</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#api-graphql">API GraphQL</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sdks-kits-de-desarrollo-de-software">SDKs (Kits de Desarrollo de Software)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xmlhttprequest-en-javascript">XMLHttpRequest en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inicializacion-y-uso-basico">Inicialización y Uso Básico</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo Completo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch">Fetch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objeto-response">Objeto Response</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#guardar-los-datos">Guardar los Datos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encadenar-promesas">Encadenar Promesas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-datos-con-fetch">Enviar Datos con Fetch</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-el-metodo-post">Usar el método POST</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-json">Enviar JSON</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-formdata">Uso de FormData</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-formdata-a-json">Convertir FormData a JSON</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-imagenes-en-segundo-plano">Cargar Imágenes en Segundo Plano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-urls">Construcción de URLs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets">WebSockets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#establecer-una-conexion-websocket">Establecer una Conexión WebSocket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-de-eventos">Manejadores de Eventos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-open">Evento <code class="docutils literal notranslate"><span class="pre">open</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-message">Evento <code class="docutils literal notranslate"><span class="pre">message</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-error">Evento <code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-close">Evento <code class="docutils literal notranslate"><span class="pre">close</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mockear-websockets">Mockear Websockets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-y-rxjs">Websockets y RxJS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-los-datos">Tratamiento de los Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-objetos-a-json">Convertir Objetos a JSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-json-a-objetos">Convertir JSON a Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-binarios-para-enviar-como-json">Conversión de binarios para enviar como JSON</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="comunicacion-con-el-servidor">
+<h1>Comunicación con el servidor<a class="headerlink" href="#comunicacion-con-el-servidor" title="Link to this heading">#</a></h1>
+<section id="ajax-en-javascript">
+<h2>AJAX en JavaScript<a class="headerlink" href="#ajax-en-javascript" title="Link to this heading">#</a></h2>
+<p><strong>Lectura recomendada:</strong> <a class="reference external" href="https://developer.mozilla.org/es/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data">https://developer.mozilla.org/es/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data</a></p>
+<p>AJAX, acrónimo de “Asynchronous JavaScript and XML”, es un conjunto de tecnologías que permite a las aplicaciones web enviar y recibir datos del servidor de manera asíncrona, sin necesidad de recargar la página completa. Esto mejora significativamente el rendimiento y la experiencia del usuario. No obstante tiene unos inconvenientes que también hay que mencionar. De esta manera, originalmente, AJAX se compone de:</p>
+<ol class="arabic simple">
+<li><p><strong>JavaScript</strong>: El lenguaje de programación que controla la interacción y el comportamiento dinámico de la página web.</p></li>
+<li><p><strong>XHTML y CSS</strong>: Utilizados para estructurar y estilizar la página web.</p></li>
+<li><p><strong>XML o JSON</strong>: Formatos de datos que se envían y reciben desde el servidor.</p></li>
+<li><p><strong>XMLHttpRequest</strong>: El objeto que permite a JavaScript realizar solicitudes HTTP de manera asíncrona.</p></li>
+</ol>
+<blockquote>
+<div><p>Esta es la definición original de AJAX, no obstante, aunque se puede mantener el nombre a la metodología, algunas tecnologías han mejorado. Ahora, en general, se usa <code class="docutils literal notranslate"><span class="pre">JSON</span></code> y en vez de <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> se usa <code class="docutils literal notranslate"><span class="pre">fetch</span></code>.</p>
+</div></blockquote>
+<p>Con AJAX, JavaScript puede enviar o solicitar datos en formato XML o JSON al servidor sin recargar la página. El servidor responde a estas solicitudes, generalmente a través de una API REST o similar. El cliente, usando JavaScript, procesa la respuesta y actualiza el contenido de la página dinámicamente.
+Las aplicaciones de una sola página (SPA) utilizan AJAX para cargar y actualizar contenido sin necesidad de recargar la página completa. Esto permite crear aplicaciones web más rápidas y con una experiencia de usuario similar a las aplicaciones de escritorio.</p>
+<section id="ejemplo-basico-de-ajax">
+<h3>Ejemplo Básico de AJAX<a class="headerlink" href="#ejemplo-basico-de-ajax" title="Link to this heading">#</a></h3>
+<section id="enviar-una-solicitud-ajax-con-xmlhttprequest">
+<h4>Enviar una solicitud AJAX con <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code><a class="headerlink" href="#enviar-una-solicitud-ajax-con-xmlhttprequest" title="Link to this heading">#</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>AJAX Example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;loadData&quot;</span><span class="p">&gt;</span>Load Data<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;result&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;loadData&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;https://api.example.com/data&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">var</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="w">                    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;result&#39;</span><span class="p">).</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">            </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>En este ejemplo, cuando se hace clic en el botón “Load Data”, se envía una solicitud <code class="docutils literal notranslate"><span class="pre">GET</span></code> al servidor. La respuesta, que se espera esté en formato JSON, se procesa y se muestra en el <code class="docutils literal notranslate"><span class="pre">div</span></code> con el ID “result”.</p>
+<blockquote>
+<div><p>Este ejemplo se puede considerar anticuado, a partir de ES6 es mejor hacerlo con fetch y promesas. No obstante, es interesante analizar este código y entender cómo funciona. Además, fetch no permite un control a tan bajo nivel de todas las etapas de una petición, por lo que sigue siendo necesario para hacer barras de progreso, cancelar peticiones…</p>
+</div></blockquote>
+</section>
+</section>
+<section id="beneficios-de-ajax">
+<h3>Beneficios de AJAX<a class="headerlink" href="#beneficios-de-ajax" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Mejora del Rendimiento</strong>: Al no recargar la página completa, solo se actualizan las partes necesarias, lo que resulta en una experiencia de usuario más rápida y fluida.</p></li>
+<li><p><strong>Experiencia de Usuario Mejorada</strong>: Las actualizaciones dinámicas permiten una interacción más rápida y eficiente.</p></li>
+</ul>
+</section>
+<section id="problemas-de-ajax">
+<h3>Problemas de AJAX<a class="headerlink" href="#problemas-de-ajax" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>SEO</strong>: Las páginas que utilizan AJAX pueden ser más difíciles de indexar por los motores de búsqueda, ya que gran parte del contenido se carga de manera dinámica.</p></li>
+<li><p><strong>Complejidad en el Desarrollo</strong>: El desarrollo de aplicaciones AJAX puede ser más complicado debido a la necesidad de manejar las solicitudes asíncronas y actualizar el DOM dinámicamente.</p></li>
+</ul>
+</section>
+<section id="apis">
+<h3>APIs<a class="headerlink" href="#apis" title="Link to this heading">#</a></h3>
+<p>La comunicación entre el cliente y el servidor en una aplicación web puede llevarse a cabo de varias maneras. Dos enfoques comunes incluyen:</p>
+<ol class="arabic simple">
+<li><p><strong>Solicitudes de HTML:</strong> JavaScript puede solicitar un HTML estático o dinámico y luego insertar el resultado en la página.</p></li>
+<li><p><strong>Interacción con APIs:</strong> JavaScript puede enviar y recibir datos en formato XML o JSON a través de una API.</p></li>
+</ol>
+<p>Las APIs (Interfaz de Programación de Aplicaciones) permiten que diferentes software se comuniquen entre sí. Existen varios tipos de APIs, cada una con sus propias características y casos de uso:</p>
+<section id="tipos-de-apis">
+<h4>Tipos de APIs<a class="headerlink" href="#tipos-de-apis" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>SOAP (Simple Object Access Protocol):</strong></p>
+<ul class="simple">
+<li><p>Es un protocolo basado en XML.</p></li>
+<li><p>Conocido por su complejidad y sobrecarga debido a la utilización de XML.</p></li>
+<li><p>No está optimizado para HTTP.</p></li>
+</ul>
+</li>
+<li><p><strong>REST (Representational State Transfer):</strong></p>
+<ul class="simple">
+<li><p>Basado en HTTP y utiliza URLs.</p></li>
+<li><p>Aprovecha los verbos HTTP (GET, POST, PUT, DELETE, PATCH).</p></li>
+<li><p>Es popular por su simplicidad y eficiencia.</p></li>
+</ul>
+</li>
+<li><p><strong>GraphQL:</strong></p>
+<ul class="simple">
+<li><p>Permite consultas más granulares y controladas.</p></li>
+<li><p>Envía un JSON con la consulta en la URL.</p></li>
+<li><p>Independiente del protocolo HTTP.</p></li>
+<li><p>Utiliza un lenguaje de definición de esquemas (IDL).</p></li>
+</ul>
+</li>
+<li><p><strong>gRPC (gRPC Remote Procedure Calls):</strong></p>
+<ul class="simple">
+<li><p>Utiliza HTTP/2, permitiendo una comunicación más eficiente.</p></li>
+<li><p>Ofrece soporte para múltiples lenguajes de programación.</p></li>
+</ul>
+</li>
+</ol>
+<section id="api-rest">
+<h5>API REST<a class="headerlink" href="#api-rest" title="Link to this heading">#</a></h5>
+<p>Las APIs REST utilizan las peticiones HTTP como verbos del protocolo:</p>
+<ul class="simple">
+<li><p><strong>GET:</strong> Recuperar recursos.</p></li>
+<li><p><strong>POST:</strong> Crear nuevos recursos.</p></li>
+<li><p><strong>PUT:</strong> Actualizar recursos existentes.</p></li>
+<li><p><strong>DELETE:</strong> Eliminar recursos.</p></li>
+<li><p><strong>PATCH:</strong> Actualizar parcialmente recursos.</p></li>
+</ul>
+<p><strong>Características de las APIs REST:</strong></p>
+<ul class="simple">
+<li><p>Utilizan rutas URL para identificar los recursos.</p></li>
+<li><p>Los códigos de respuesta HTTP indican el estado de la solicitud (por ejemplo, 200 para éxito, 404 para no encontrado, 500 para error del servidor).</p></li>
+<li><p>Los datos (payload) pueden enviarse en XML o JSON.</p></li>
+<li><p>Una API que sigue estrictamente las características REST se denomina RESTful.</p></li>
+</ul>
+<p><strong>Ejemplo de API REST:</strong></p>
+<p>Supongamos una API para gestionar una colección de libros:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/books</span></code>: Recupera la lista de libros.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/books</span></code>: Crea un nuevo libro.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/books/:id</span></code>: Recupera un libro específico.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/books/:id</span></code>: Actualiza un libro específico.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/books/:id</span></code>: Elimina un libro específico.</p></li>
+</ul>
+</section>
+<section id="api-graphql">
+<h5>API GraphQL<a class="headerlink" href="#api-graphql" title="Link to this heading">#</a></h5>
+<p>GraphQL es una alternativa a REST que permite realizar consultas más precisas y específicas. En lugar de varias URLs, una sola URL acepta consultas en JSON.</p>
+<p><strong>Características de las APIs GraphQL:</strong></p>
+<ul class="simple">
+<li><p>Permiten más control y granularidad en las consultas.</p></li>
+<li><p>Las peticiones son fáciles de entender y leer para los humanos.</p></li>
+<li><p>No están limitadas a HTTP.</p></li>
+<li><p>Utilizan el IDL (Schema Definition Language) para definir el esquema.</p></li>
+</ul>
+<p><strong>Ejemplo de API GraphQL:</strong></p>
+<p>Consulta para obtener el título y autor de un libro específico:</p>
+<div class="highlight-graphql notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="n">book</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">title</span>
+<span class="w">    </span><span class="n">author</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="sdks-kits-de-desarrollo-de-software">
+<h5>SDKs (Kits de Desarrollo de Software)<a class="headerlink" href="#sdks-kits-de-desarrollo-de-software" title="Link to this heading">#</a></h5>
+<p>Las APIs pueden ser complejas, y herramientas como Firebase, MongoDB Realm, y Supabase ofrecen SDKs que simplifican tareas comunes como la autenticación de usuarios y las consultas avanzadas.</p>
+<p><strong>Características de los SDKs:</strong></p>
+<ul class="simple">
+<li><p>Facilitan la interacción con las APIs al proporcionar bibliotecas preconstruidas.</p></li>
+<li><p>Ahorra tiempo en la programación de la comunicación entre el cliente y el servidor.</p></li>
+<li><p>No son estándar y dependen del proveedor del servicio.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Nota:</strong> Aunque los SDKs pueden simplificar mucho el trabajo, en este curso evitaremos su uso para centrarnos en aprender los fundamentos de las APIs.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="xmlhttprequest-en-javascript">
+<h3>XMLHttpRequest en JavaScript<a class="headerlink" href="#xmlhttprequest-en-javascript" title="Link to this heading">#</a></h3>
+<p>XMLHttpRequest (XHR) es una API utilizada para enviar y recibir datos entre un cliente web y un servidor. A pesar de su nombre, XMLHttpRequest puede manejar diferentes tipos de datos, aunque en este capítulo nos centraremos principalmente en JSON debido a su popularidad en las aplicaciones web modernas.</p>
+<section id="inicializacion-y-uso-basico">
+<h4>Inicialización y Uso Básico<a class="headerlink" href="#inicializacion-y-uso-basico" title="Link to this heading">#</a></h4>
+<p>Para comenzar a utilizar XMLHttpRequest, primero debemos crear una instancia del objeto <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Una vez creado el objeto, debemos configurar la solicitud utilizando el método <code class="docutils literal notranslate"><span class="pre">open</span></code>. Este método tiene tres parámetros principales:</p>
+<ol class="arabic simple">
+<li><p><strong>Método HTTP</strong>: El método de la solicitud, como ‘GET’ o ‘POST’.</p></li>
+<li><p><strong>URL</strong>: La URL a la que se envía la solicitud.</p></li>
+<li><p><strong>Asíncrono</strong>: Un valor booleano que indica si la solicitud debe ser asíncrona (<code class="docutils literal notranslate"><span class="pre">true</span></code>) o síncrona (<code class="docutils literal notranslate"><span class="pre">false</span></code>). En la mayoría de los casos, queremos que sea asíncrona para no bloquear la ejecución del script.</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;http://www.mozilla.org/&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>XMLHttpRequest tiene un conjunto de estados que indican el progreso de la solicitud. Estos estados están representados por la propiedad <code class="docutils literal notranslate"><span class="pre">readyState</span></code> del objeto XHR. Los posibles valores de <code class="docutils literal notranslate"><span class="pre">readyState</span></code> son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (UNSENT): La solicitud no ha sido inicializada.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (OPENED): Se ha establecido la conexión con el servidor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> (HEADERS_RECEIVED): Se han recibido los encabezados de la respuesta.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> (LOADING): El cuerpo de la respuesta se está recibiendo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> (DONE): La solicitud se ha completado y la respuesta está lista.</p></li>
+</ul>
+<p>Para realizar alguna acción cuando la solicitud cambie de estado, se utiliza la propiedad <code class="docutils literal notranslate"><span class="pre">onreadystatechange</span></code>, que se asigna a una función. Esta función se ejecutará cada vez que cambie el estado de la solicitud.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">req</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">aEvt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">readyState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Error loading page\n&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Finalmente, enviamos la solicitud al servidor utilizando el método <code class="docutils literal notranslate"><span class="pre">send</span></code>. Si estamos enviando datos (por ejemplo, en una solicitud <code class="docutils literal notranslate"><span class="pre">POST</span></code>), estos se pasan como argumento a <code class="docutils literal notranslate"><span class="pre">send</span></code>. En una solicitud <code class="docutils literal notranslate"><span class="pre">GET</span></code>, simplemente pasamos <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="ejemplo-completo">
+<h4>Ejemplo Completo<a class="headerlink" href="#ejemplo-completo" title="Link to this heading">#</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;http://www.mozilla.org/&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">aEvt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">readyState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Error loading page\n&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p><strong>Crear el Objeto XHR</strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Aquí se crea una nueva instancia del objeto <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code>.</p>
+</li>
+<li><p><strong>Configurar la Solicitud</strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;http://www.mozilla.org/&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Se configura la solicitud para hacer una petición <code class="docutils literal notranslate"><span class="pre">GET</span></code> a la URL especificada. El tercer parámetro, <code class="docutils literal notranslate"><span class="pre">true</span></code>, indica que la solicitud debe ser asíncrona.</p>
+</li>
+<li><p><strong>Monitorear Cambios de Estado</strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">req</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">aEvt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">readyState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Error loading page\n&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Se define una función que se ejecuta cada vez que cambia el estado de la solicitud. Cuando <code class="docutils literal notranslate"><span class="pre">readyState</span></code> es <code class="docutils literal notranslate"><span class="pre">4</span></code>, significa que la solicitud se ha completado. Si <code class="docutils literal notranslate"><span class="pre">status</span></code> es <code class="docutils literal notranslate"><span class="pre">200</span></code>, significa que la solicitud fue exitosa y se imprime la respuesta en la consola. Si el estado es diferente, se imprime un mensaje de error.</p>
+</li>
+<li><p><strong>Enviar la Solicitud</strong>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Finalmente, se envía la solicitud al servidor.</p>
+</li>
+</ol>
+<blockquote>
+<div><p>Aunque conocer XMLHttpRequest es importante, actualmente está superado en la mayoría de casos con opciones más modernas. Exploraremos métodos modernos como <code class="docutils literal notranslate"><span class="pre">fetch</span></code> y la forma en que se integran con las características más recientes de JavaScript, como las promesas y la sintaxis <code class="docutils literal notranslate"><span class="pre">async/await</span></code>.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="fetch">
+<h2>Fetch<a class="headerlink" href="#fetch" title="Link to this heading">#</a></h2>
+<p>La función <code class="docutils literal notranslate"><span class="pre">fetch</span></code> de JavaScript proporciona una manera sencilla y poderosa de realizar solicitudes HTTP. Es similar a <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> (XHR), pero utiliza promesas y tiene una sintaxis más moderna.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:5500/datos.json&#39;</span><span class="p">)</span>
+<span class="w"> </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+<span class="w">   </span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Looks like there was a problem. Status Code: &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+<span class="w">       </span><span class="k">return</span><span class="p">;</span><span class="w">     </span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">     </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">     </span><span class="p">});</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Fetch Error : &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">);</span>
+<span class="w"> </span><span class="p">});</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, <code class="docutils literal notranslate"><span class="pre">fetch</span></code> solicita un archivo JSON. Si la respuesta tiene un estado diferente de 200 (OK), se imprime un mensaje de error. Si la respuesta es correcta, se convierte a JSON y se imprime.</p>
+<section id="objeto-response">
+<h3>Objeto Response<a class="headerlink" href="#objeto-response" title="Link to this heading">#</a></h3>
+<p>Si la solicitud tiene éxito, <code class="docutils literal notranslate"><span class="pre">fetch</span></code> devuelve un objeto <code class="docutils literal notranslate"><span class="pre">Response</span></code>, que es un flujo (stream) con varias propiedades y métodos útiles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://github.com/&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">));</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">));</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="kr">type</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fetch Error :  TypeError: error sending request for url (http://127.0.0.1:5500/datos.json): error trying to connect: tcp connect error: Connection refused (os error 111)
+    at async mainFetch (ext:deno_fetch/26_fetch.js:170:12)
+    at async fetch (ext:deno_fetch/26_fetch.js:391:7)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Este ejemplo muestra cómo acceder a diferentes propiedades del objeto <code class="docutils literal notranslate"><span class="pre">Response</span></code>, como los encabezados y el estado de la solicitud.</p>
+<section id="guardar-los-datos">
+<h4>Guardar los Datos<a class="headerlink" href="#guardar-los-datos" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> permite obtener el texto o un objeto de la respuesta. Las funciones <code class="docutils literal notranslate"><span class="pre">response.json()</span></code> y <code class="docutils literal notranslate"><span class="pre">response.text()</span></code> devuelven promesas que se resuelven con el contenido adecuado. No es posible usar ambas funciones en una misma petición.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://dwec-daw-default-rtdb.firebaseio.com/productos.json&quot;</span><span class="p">)</span>
+<span class="w">       </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">       </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://dwec-daw-default-rtdb.firebaseio.com/productos.json&quot;</span><span class="p">)</span>
+<span class="w">       </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+<span class="w">       </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En estos ejemplos, se hace una solicitud a una URL y se procesan los datos como JSON en el primer caso y como texto en el segundo.</p>
+</section>
+</section>
+<section id="encadenar-promesas">
+<h3>Encadenar Promesas<a class="headerlink" href="#encadenar-promesas" title="Link to this heading">#</a></h3>
+<p>Es posible encadenar promesas para manejar el flujo de la solicitud de manera más estructurada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">showStatus</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">));</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">json</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span><span class="w">  </span>
+<span class="p">}</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;datos.json&#39;</span><span class="p">)</span>
+<span class="w">   </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">showStatus</span><span class="p">)</span>
+<span class="w">   </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span>
+<span class="w">   </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Request succeeded with JSON response&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Request failed: &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">   </span><span class="p">});</span>
+<span class="w">  </span><span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Request failed:  TypeError: Invalid URL: &#39;datos.json&#39;
+    at getSerialization (ext:deno_url/00_url.js:98:11)
+    at new URL (ext:deno_url/00_url.js:405:27)
+    at new Request (ext:deno_fetch/23_request.js:329:25)
+    at ext:deno_fetch/26_fetch.js:319:27
+    at new Promise (&lt;anonymous&gt;)
+    at fetch (ext:deno_fetch/26_fetch.js:315:18)
+    at &lt;anonymous&gt;:12:3
+    at &lt;anonymous&gt;:17:3
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, la función <code class="docutils literal notranslate"><span class="pre">status</span></code> verifica si la respuesta es correcta, y la función <code class="docutils literal notranslate"><span class="pre">json</span></code> convierte la respuesta en un objeto JSON. Luego, se manejan los datos o se capturan errores según corresponda.</p>
+</section>
+<section id="enviar-datos-con-fetch">
+<h3>Enviar Datos con Fetch<a class="headerlink" href="#enviar-datos-con-fetch" title="Link to this heading">#</a></h3>
+<p>En el desarrollo web, al interactuar con APIs o al enviar datos a un servidor, es común utilizar diferentes tipos de formatos de envío. Tres de los más utilizados son <strong>multipart/form-data</strong>, <strong>x-www-form-urlencoded</strong> y <strong>JSON</strong>. Cada uno tiene sus características y se usa según el tipo de datos que necesitemos enviar.</p>
+<ul class="simple">
+<li><p><strong>Multipart/form-data</strong> es el formato ideal para enviar archivos junto con otros datos, ya que permite dividir los datos en partes y manejar de manera eficiente archivos binarios como imágenes o documentos.</p></li>
+<li><p><strong>x-www-form-urlencoded</strong> es un formato de texto simple en el que los datos se envían en pares de clave-valor, muy utilizado en formularios HTML tradicionales, pero sin soporte para archivos binarios.</p></li>
+<li><p><strong>JSON</strong> es un formato ligero y ampliamente utilizado para intercambiar datos estructurados entre el cliente y el servidor. Es ideal para enviar información de texto, pero no maneja archivos directamente.</p></li>
+</ul>
+<p>En esta explicación, veremos cómo y cuándo usar cada uno de estos formatos según las necesidades de tu aplicación web.</p>
+<section id="usar-el-metodo-post">
+<h4>Usar el método POST<a class="headerlink" href="#usar-el-metodo-post" title="Link to this heading">#</a></h4>
+<p>Para enviar datos a un servidor, se puede usar el método <code class="docutils literal notranslate"><span class="pre">POST</span></code> con <code class="docutils literal notranslate"><span class="pre">fetch</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;Content-type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="w">       </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;foo=bar&amp;lorem=ipsum&#39;</span>
+<span class="w">     </span><span class="p">})</span>
+<span class="w">     </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">     </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Request succeeded with JSON response&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">     </span><span class="p">})</span>
+<span class="w">     </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Request failed&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">     </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>En este ejemplo, se envían datos codificados en la URL (formato de formulario) al servidor.</p>
+<p>En el siguiente ejemplo se usa <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code> para poder adjuntar ficheros:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;fileInput&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"> </span><span class="c1">// Obtiene el archivo seleccionado</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;archivo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;archivo&quot; es el nombre del campo</span>
+
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://ejemplo.com/upload&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">formData</span><span class="p">,</span><span class="w"> </span><span class="c1">// Enviamos el FormData con el archivo</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Archivo subido:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="enviar-json">
+<h4>Enviar JSON<a class="headerlink" href="#enviar-json" title="Link to this heading">#</a></h4>
+<p>Para enviar datos en formato JSON, se debe configurar el encabezado <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> y convertir el objeto de datos a JSON.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;example&#39;</span><span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;Content-type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json; charset=UTF-8&quot;</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="w">       </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">datos</span><span class="p">)</span>
+<span class="w">     </span><span class="p">})</span>
+<span class="w">     </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">     </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Request succeeded with JSON response&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">     </span><span class="p">})</span>
+<span class="w">     </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Request failed&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">     </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>En este ejemplo, un objeto JavaScript se convierte a JSON y se envía al servidor.</p>
+</section>
+</section>
+<section id="uso-de-formdata">
+<h3>Uso de FormData<a class="headerlink" href="#uso-de-formdata" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">FormData</span></code> es un objeto predefinido en JavaScript que se utiliza para crear pares clave-valor para enviar formularios mediante <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> o <code class="docutils literal notranslate"><span class="pre">fetch</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">formElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;myFormElement&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Un formulario HTML</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">formElement</span><span class="p">);</span><span class="w"> </span><span class="c1">// Constructor de FormData con un formulario</span>
+
+<span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;serialnumber&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">serialNumber</span><span class="o">++</span><span class="p">);</span><span class="w"> </span><span class="c1">// Añadir más datos</span>
+<span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;afile&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">fileInputElement</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span><span class="w"> </span><span class="c1">// Añadir un archivo</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000/upload&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">formData</span><span class="w"> </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Este ejemplo muestra cómo crear un objeto <code class="docutils literal notranslate"><span class="pre">FormData</span></code> a partir de un formulario HTML y enviar datos adicionales, incluyendo un archivo, al servidor.</p>
+<section id="convertir-formdata-a-json">
+<h4>Convertir FormData a JSON<a class="headerlink" href="#convertir-formdata-a-json" title="Link to this heading">#</a></h4>
+<p>Para enviar <code class="docutils literal notranslate"><span class="pre">FormData</span></code> como JSON, se puede convertir a un objeto JavaScript y luego a una cadena JSON.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+
+<span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">   </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="s2">&quot;Content-type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json; charset=UTF-8&quot;</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="nx">body</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>En este ejemplo, se convierte <code class="docutils literal notranslate"><span class="pre">FormData</span></code> en un objeto JSON antes de enviarlo.</p>
+</section>
+</section>
+<section id="cargar-imagenes-en-segundo-plano">
+<h3>Cargar Imágenes en Segundo Plano<a class="headerlink" href="#cargar-imagenes-en-segundo-plano" title="Link to this heading">#</a></h3>
+<p>Es posible cargar imágenes en segundo plano utilizando <code class="docutils literal notranslate"><span class="pre">fetch</span></code> y el método <code class="docutils literal notranslate"><span class="pre">blob</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">img</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;placeholder.png&quot;</span><span class="w"> </span><span class="nx">alt</span><span class="o">=</span><span class="s2">&quot;${name}&quot;</span><span class="o">&gt;</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">image_url</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">blob</span><span class="p">())</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">imageBlob</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kd">let</span><span class="w"> </span><span class="nx">imageURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">imageBlob</span><span class="p">);</span>
+<span class="w">   </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">).</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">imageURL</span><span class="p">;</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Este ejemplo muestra cómo cargar una imagen en segundo plano y actualizar la fuente de una etiqueta <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> con la URL del <code class="docutils literal notranslate"><span class="pre">blob</span></code> de la imagen.</p>
+<p>La función URL.createObjectURL(blob) es un método del API de URL en JavaScript que permite crear una URL temporal, de tipo “blob”, que representa un objeto de datos (Blob o File) en el navegador. Esta URL puede ser utilizada para acceder y manipular el contenido del objeto de datos como si fuera un archivo disponible en una URL normal.</p>
+<p><code class="docutils literal notranslate"><span class="pre">URL.createObjectURL(blob)</span></code> crea una URL única que representa el objeto <code class="docutils literal notranslate"><span class="pre">Blob</span></code> (o <code class="docutils literal notranslate"><span class="pre">File</span></code>). Esta URL es válida mientras el documento que la creó esté en memoria, y se puede usar como referencia al contenido del objeto de datos. La URL generada permite acceder y manipular el contenido del <code class="docutils literal notranslate"><span class="pre">Blob</span></code> como si fuera un archivo remoto. La URL no requiere que los datos sean enviados a un servidor; todo se maneja localmente en el navegador. La URL generada puede ser asignada a elementos HTML, como <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;audio&gt;</span></code>, o cualquier otro elemento que acepte una URL de recursos. También se puede usar para descargar archivos, mostrar previsualizaciones, o procesar datos de archivos de manera local.</p>
+<p>Las URLs creadas con <code class="docutils literal notranslate"><span class="pre">URL.createObjectURL(blob)</span></code> ocupan recursos en el navegador. Para liberar estos recursos cuando ya no se necesite la URL, se debe llamar a <code class="docutils literal notranslate"><span class="pre">URL.revokeObjectURL(url)</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">objectURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="c1">// Usar la URL...</span>
+<span class="nx">URL</span><span class="p">.</span><span class="nx">revokeObjectURL</span><span class="p">(</span><span class="nx">objectURL</span><span class="p">);</span><span class="w"> </span><span class="c1">// Liberar la URL cuando ya no sea necesaria</span>
+</pre></div>
+</div>
+</section>
+<section id="construccion-de-urls">
+<h3>Construcción de URLs<a class="headerlink" href="#construccion-de-urls" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> puede utilizar URLs construidas dinámicamente. Esto es útil cuando los parámetros de la consulta cambian en tiempo de ejecución.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Saint Vincent &amp; the Grenadines`</span><span class="p">;</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="sb">`/api/cities?country=</span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="c1">//&quot;/api/cities?country=Saint Vincent &amp; the Grenadines&quot;</span>
+
+<span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`/api/cities?</span><span class="si">${</span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">([[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">country</span><span class="p">]])</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+<span class="c1">//&quot;/api/cities?country=Saint+Vincent+%26+the+Grenadines&quot;</span>
+</pre></div>
+</div>
+<p>En este ejemplo, se construye una URL con parámetros de consulta utilizando <code class="docutils literal notranslate"><span class="pre">URLSearchParams</span></code>, asegurándose de que los caracteres especiales estén correctamente codificados.</p>
+<p>Si usamos el constructor con una URL ya formada nos retorna un objeto URLSearchParams, que es un iterable con los datos:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="s2">&quot;http://example.com/search?query=%40&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">searchParams3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">search</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">searchParams3</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="websockets">
+<h2>WebSockets<a class="headerlink" href="#websockets" title="Link to this heading">#</a></h2>
+<p>WebSocket es una tecnología que proporciona un canal de comunicación full-duplex sobre un único socket TCP. Es decir, permite establecer una conexión persistente entre el cliente y el servidor, donde ambos pueden enviar y recibir datos en tiempo real. Esto es especialmente útil para aplicaciones que requieren comunicación bidireccional constante, como chats en línea, notificaciones en tiempo real, y juegos multijugador.</p>
+<p>A continuación, analizamos un ejemplo de uso de WebSocket en JavaScript.</p>
+<section id="establecer-una-conexion-websocket">
+<h3>Establecer una Conexión WebSocket<a class="headerlink" href="#establecer-una-conexion-websocket" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">WebSocket</span><span class="p">(</span><span class="s2">&quot;ws://localhost:8080&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Esta línea crea una nueva instancia de WebSocket, abriendo una conexión a la URL proporcionada. En este caso, la URL es <code class="docutils literal notranslate"><span class="pre">&quot;ws://localhost:8080&quot;</span></code>, lo que indica que se está intentando conectar a un servidor WebSocket que está ejecutándose en <code class="docutils literal notranslate"><span class="pre">localhost</span></code> en el puerto <code class="docutils literal notranslate"><span class="pre">8080</span></code>.</p>
+</section>
+<section id="manejadores-de-eventos">
+<h3>Manejadores de Eventos<a class="headerlink" href="#manejadores-de-eventos" title="Link to this heading">#</a></h3>
+<section id="evento-open">
+<h4>Evento <code class="docutils literal notranslate"><span class="pre">open</span></code><a class="headerlink" href="#evento-open" title="Link to this heading">#</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">socket</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Conexión establecida.&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;¡Hola, servidor!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>El evento <code class="docutils literal notranslate"><span class="pre">open</span></code> se dispara cuando la conexión WebSocket se ha establecido con éxito. En este manejador, se imprime un mensaje en la consola indicando que la conexión se ha establecido, y se envía un mensaje al servidor utilizando <code class="docutils literal notranslate"><span class="pre">socket.send(&quot;¡Hola,</span> <span class="pre">servidor!&quot;);</span></code>.</p>
+</section>
+<section id="evento-message">
+<h4>Evento <code class="docutils literal notranslate"><span class="pre">message</span></code><a class="headerlink" href="#evento-message" title="Link to this heading">#</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">socket</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Mensaje recibido del servidor: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>El evento <code class="docutils literal notranslate"><span class="pre">message</span></code> se dispara cada vez que el cliente recibe datos del servidor. El objeto <code class="docutils literal notranslate"><span class="pre">event</span></code> contiene la propiedad <code class="docutils literal notranslate"><span class="pre">data</span></code>, que almacena los datos recibidos. En este manejador, los datos recibidos se imprimen en la consola.</p>
+</section>
+<section id="evento-error">
+<h4>Evento <code class="docutils literal notranslate"><span class="pre">error</span></code><a class="headerlink" href="#evento-error" title="Link to this heading">#</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">socket</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Error en la conexión: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>El evento <code class="docutils literal notranslate"><span class="pre">error</span></code> se dispara cuando ocurre un error en la comunicación WebSocket. En este manejador, el error se imprime en la consola.</p>
+</section>
+<section id="evento-close">
+<h4>Evento <code class="docutils literal notranslate"><span class="pre">close</span></code><a class="headerlink" href="#evento-close" title="Link to this heading">#</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">socket</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Conexión cerrada. Código: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>El evento <code class="docutils literal notranslate"><span class="pre">close</span></code> se dispara cuando la conexión WebSocket se cierra. El objeto <code class="docutils literal notranslate"><span class="pre">event</span></code> contiene una propiedad <code class="docutils literal notranslate"><span class="pre">code</span></code>, que indica el código de cierre de la conexión. En este manejador, se imprime un mensaje en la consola indicando que la conexión se ha cerrado y mostrando el código de cierre.</p>
+</section>
+</section>
+<section id="mockear-websockets">
+<h3>Mockear Websockets<a class="headerlink" href="#mockear-websockets" title="Link to this heading">#</a></h3>
+<p>Para probar un WebSocket de manera local, se puede usar herramientas como <code class="docutils literal notranslate"><span class="pre">WebSocket</span> <span class="pre">Server</span></code> de <code class="docutils literal notranslate"><span class="pre">ws</span></code> en Node.js o Mockoon.</p>
+<p>Aquí tenemos un ejemplo con <code class="docutils literal notranslate"><span class="pre">ws</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Importa WebSocket desde la librería &#39;ws&#39;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WebSocketServer</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ws&#39;</span><span class="p">;</span>
+
+<span class="c1">// Crea el servidor WebSocket en el puerto 8080</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">wss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">WebSocketServer</span><span class="p">({</span><span class="w"> </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="mf">8090</span><span class="w"> </span><span class="p">});</span>
+
+<span class="nx">wss</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">ws</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Cliente conectado.&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Enviar un mensaje al cliente al conectarse</span>
+<span class="w">  </span><span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Conexión exitosa&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="p">}));</span>
+
+<span class="w">  </span><span class="c1">// Manejar mensajes entrantes del cliente</span>
+<span class="w">  </span><span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Mensaje recibido del cliente:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Responder al cliente</span>
+<span class="w">    </span><span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Mensaje recibido&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">echo</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="p">}));</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Cliente desconectado.&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Servidor WebSocket escuchando en ws://localhost:8080&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Este lo ejecutamos en <code class="docutils literal notranslate"><span class="pre">Node</span></code> en el servidor local con:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>node mock-websocket.js 
+</pre></div>
+</div>
+</section>
+<section id="websockets-y-rxjs">
+<h3>Websockets y RxJS<a class="headerlink" href="#websockets-y-rxjs" title="Link to this heading">#</a></h3>
+<p>Si estamos haciendo una web con la metodología reactiva, podemos usar la librería <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>.</p>
+<blockquote>
+<div><p>Este apartado está aquí por estar más relacionado con los Websockets, pero se recomienda dominar la programación reactiva antes de entenderlo.</p>
+</div></blockquote>
+<p>Usar WebSockets con <code class="docutils literal notranslate"><span class="pre">RxJS</span></code> tiene varias ventajas, como la posibilidad de manejar flujos de datos de manera reactiva, aprovechando operadores como <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code> o <code class="docutils literal notranslate"><span class="pre">retry</span></code>, lo que facilita transformar datos en tiempo real.
+También ofrece un manejo centralizado de errores, permite implementar reconexiones automáticas y garantiza una limpieza sencilla de suscripciones para evitar fugas de memoria.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/internal/Observable&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WebSocketSubject</span><span class="p">,</span><span class="w"> </span><span class="nx">webSocket</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/webSocket&#39;</span><span class="p">;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">socket$</span><span class="o">:</span><span class="w"> </span><span class="nx">WebSocketSubject</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Establecer la conexión WebSocket</span>
+<span class="w">  </span><span class="nx">socket$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">webSocket</span><span class="p">(</span><span class="s1">&#39;ws://localhost:8090&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Enviar un mensaje al servidor cuando la conexión esté lista</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">sendMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Enviando mensaje:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">socket$</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="c1">// Manejar mensajes recibidos del servidor</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">getMessages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">socket$</span><span class="p">.</span><span class="nx">asObservable</span><span class="p">();</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="c1">// Cerrar la conexión WebSocket</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">closeConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Cerrando conexión...&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">socket$</span><span class="p">.</span><span class="nx">complete</span><span class="p">();</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="c1">// Suscribirse a los mensajes del servidor</span>
+<span class="w">  </span><span class="nx">getMessages</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">message</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Mensaje recibido del servidor:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error en WebSocket:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Conexión WebSocket cerrada&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// Esperar un breve tiempo antes de enviar el mensaje para asegurar que el WebSocket esté abierto</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Puedes ajustar el tiempo si el servidor responde más lento</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tratamiento-de-los-datos">
+<h2>Tratamiento de los Datos<a class="headerlink" href="#tratamiento-de-los-datos" title="Link to this heading">#</a></h2>
+<p>En las aplicaciones web modernas, es común recibir datos del servidor en formato JSON, que es un formato ligero para el intercambio de datos. JavaScript proporciona herramientas potentes para trabajar con JSON, permitiendo convertir objetos en JSON y viceversa. Además, también es importante poder almacenar datos en el lado del cliente para mejorar la experiencia del usuario. En este capítulo, exploraremos cómo convertir objetos a JSON y cómo trabajar con almacenamiento en el lado del cliente, incluyendo cookies y LocalStorage.</p>
+<section id="convertir-objetos-a-json">
+<h3>Convertir Objetos a JSON<a class="headerlink" href="#convertir-objetos-a-json" title="Link to this heading">#</a></h3>
+<p>JavaScript permite convertir objetos en cadenas JSON utilizando el método <code class="docutils literal notranslate"><span class="pre">JSON.stringify</span></code>. Este método es útil cuando necesitamos enviar datos al servidor o almacenarlos en el lado del cliente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Apple</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="kr">type</span><span class="p">){</span>
+<span class="w">     </span><span class="k">this</span><span class="p">.</span><span class="kr">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">type</span><span class="p">;</span>
+<span class="w">     </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w">  </span><span class="nx">apple1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Apple</span><span class="p">(</span><span class="s1">&#39;Golden&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Se crea una instancia</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">appleJson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">apple1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">appleJson</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;type&quot;:&quot;Golden&quot;,&quot;color&quot;:&quot;red&quot;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ol class="arabic simple">
+<li><p><strong>Definimos una clase <code class="docutils literal notranslate"><span class="pre">Apple</span></code></strong> que tiene un constructor que inicializa el tipo y el color de la manzana.</p></li>
+<li><p><strong>Creamos una instancia</strong> de <code class="docutils literal notranslate"><span class="pre">Apple</span></code> con el tipo ‘Golden’.</p></li>
+<li><p><strong>Convertimos la instancia en una cadena JSON</strong> usando <code class="docutils literal notranslate"><span class="pre">JSON.stringify</span></code>.</p></li>
+<li><p><strong>Imprimimos la cadena JSON</strong> resultante en la consola.</p></li>
+</ol>
+<p>El resultado en la consola será: <code class="docutils literal notranslate"><span class="pre">{&quot;type&quot;:&quot;Golden&quot;,&quot;color&quot;:&quot;red&quot;}</span></code>, que es la representación JSON del objeto <code class="docutils literal notranslate"><span class="pre">apple1</span></code>.</p>
+</section>
+<section id="convertir-json-a-objetos">
+<h3>Convertir JSON a Objetos<a class="headerlink" href="#convertir-json-a-objetos" title="Link to this heading">#</a></h3>
+<p>Para convertir una cadena JSON en un objeto de JavaScript, utilizamos el método <code class="docutils literal notranslate"><span class="pre">JSON.parse</span></code>. Esto es útil cuando recibimos datos del servidor en formato JSON y necesitamos trabajar con ellos en nuestro código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">(()=&gt;{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Hero</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">car</span><span class="p">){</span>
+<span class="w">     </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">     </span><span class="k">this</span><span class="p">.</span><span class="nx">car</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">car</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">heroJSON</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Max&quot;,&quot;car&quot;:&quot;V8&quot;}&#39;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">heroObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">heroJSON</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">heroClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Hero</span><span class="p">,</span><span class="w"> </span><span class="nx">heroObject</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">heroObject</span><span class="p">,</span><span class="w"> </span><span class="nx">heroClass</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ name: <span class=" -Color -Color-Green">&quot;Max&quot;</span>, car: <span class=" -Color -Color-Green">&quot;V8&quot;</span> } Hero { name: <span class=" -Color -Color-Green">&quot;Max&quot;</span>, car: <span class=" -Color -Color-Green">&quot;V8&quot;</span> }
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ol class="arabic simple">
+<li><p><strong>Definimos una clase <code class="docutils literal notranslate"><span class="pre">Hero</span></code></strong> que tiene un constructor que inicializa el nombre y el coche del héroe.</p></li>
+<li><p><strong>Creamos una cadena JSON</strong> que representa un héroe.</p></li>
+<li><p><strong>Convertimos la cadena JSON en un objeto</strong> usando <code class="docutils literal notranslate"><span class="pre">JSON.parse</span></code>.</p></li>
+<li><p><strong>Asignamos las propiedades del objeto JSON</strong> a una nueva instancia de <code class="docutils literal notranslate"><span class="pre">Hero</span></code> usando <code class="docutils literal notranslate"><span class="pre">Object.assign</span></code>.</p></li>
+<li><p><strong>Imprimimos el objeto JSON y la instancia de <code class="docutils literal notranslate"><span class="pre">Hero</span></code></strong> en la consola.</p></li>
+</ol>
+<p>El resultado en la consola mostrará el objeto plano y la instancia de <code class="docutils literal notranslate"><span class="pre">Hero</span></code> con las propiedades correspondientes.</p>
+</section>
+<section id="conversion-de-binarios-para-enviar-como-json">
+<h3>Conversión de binarios para enviar como JSON<a class="headerlink" href="#conversion-de-binarios-para-enviar-como-json" title="Link to this heading">#</a></h3>
+<p>Si se necesita enviar un binario dentro de un mensaje JSON, podemos convertirlo a Base64:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileForm&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fileInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;fileInput&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;loadend&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">base64String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^.+,/</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">fileName</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">fileType</span><span class="o">:</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">fileData</span><span class="o">:</span><span class="w"> </span><span class="nx">base64String</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/upload-json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">)</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "deno"
+        },
+        kernelOptions: {
+            name: "deno",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'deno'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="promesas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Asincronía y Promesas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="webstorage.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Almacenamiento en el Lado del Cliente</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajax-en-javascript">AJAX en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-ajax">Ejemplo Básico de AJAX</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-una-solicitud-ajax-con-xmlhttprequest">Enviar una solicitud AJAX con <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beneficios-de-ajax">Beneficios de AJAX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-ajax">Problemas de AJAX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apis">APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-apis">Tipos de APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#api-rest">API REST</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#api-graphql">API GraphQL</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sdks-kits-de-desarrollo-de-software">SDKs (Kits de Desarrollo de Software)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xmlhttprequest-en-javascript">XMLHttpRequest en JavaScript</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inicializacion-y-uso-basico">Inicialización y Uso Básico</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-completo">Ejemplo Completo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch">Fetch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objeto-response">Objeto Response</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#guardar-los-datos">Guardar los Datos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encadenar-promesas">Encadenar Promesas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-datos-con-fetch">Enviar Datos con Fetch</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-el-metodo-post">Usar el método POST</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enviar-json">Enviar JSON</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-formdata">Uso de FormData</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-formdata-a-json">Convertir FormData a JSON</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-imagenes-en-segundo-plano">Cargar Imágenes en Segundo Plano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-urls">Construcción de URLs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets">WebSockets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#establecer-una-conexion-websocket">Establecer una Conexión WebSocket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejadores-de-eventos">Manejadores de Eventos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-open">Evento <code class="docutils literal notranslate"><span class="pre">open</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-message">Evento <code class="docutils literal notranslate"><span class="pre">message</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-error">Evento <code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-close">Evento <code class="docutils literal notranslate"><span class="pre">close</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mockear-websockets">Mockear Websockets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#websockets-y-rxjs">Websockets y RxJS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-los-datos">Tratamiento de los Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-objetos-a-json">Convertir Objetos a JSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-json-a-objetos">Convertir JSON a Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-binarios-para-enviar-como-json">Conversión de binarios para enviar como JSON</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

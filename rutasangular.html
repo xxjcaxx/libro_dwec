@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rutas en Angular &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'rutasangular';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Formularios en Angular" href="formulariosangular.html" />
+    <link rel="prev" title="Comunicación con el servidor en Angular" href="httpangular.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jsenhtml.html">Javascript en el navegador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Frutasangular.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/rutasangular.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Rutas en Angular</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-rutas">Ejemplo Básico de Rutas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-con-hash">Rutas con Hash</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-rutas">Creación de Rutas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-de-navegacion">Enlaces de Navegación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navegacion-por-codigo">Navegación por Código</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-parametros-de-las-rutas">Obtener Parámetros de las Rutas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transiciones-en-angular-2024">Transiciones en Angular (2024)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-animaciones-en-css">Definición de Animaciones en CSS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-en-angular">Configuración de Rutas en Angular</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizacion-de-transiciones">Personalización de Transiciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-onviewtransitioncreated">Uso de <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="rutas-en-angular">
+<h1>Rutas en Angular<a class="headerlink" href="#rutas-en-angular" title="Link to this heading">#</a></h1>
+<p>Angular es comúnmente utilizado para desarrollar Single Page Applications (SPA). A pesar de ser una SPA, la aplicación debe comportarse de manera similar a los sitios web tradicionales en términos de URLs (Uniform Resource Identifiers). Esto implica que necesitamos poder referenciar externamente las diferentes partes de la aplicación, tener la capacidad de navegar hacia atrás y adelante en el historial del navegador y manejar rutas virtuales adecuadamente.</p>
+<p>Las rutas en Angular se definen en el archivo <code class="docutils literal notranslate"><span class="pre">app-routing.module.ts</span></code>. Las rutas son objetos que contienen el camino (<code class="docutils literal notranslate"><span class="pre">path</span></code>) y el componente al que hacen referencia. Las páginas en una SPA de Angular son representadas por componentes, y el enrutador carga las rutas dentro de un <code class="docutils literal notranslate"><span class="pre">&lt;router-outlet&gt;</span></code> en la plantilla principal de la aplicación.</p>
+<section id="ejemplo-basico-de-rutas">
+<h2>Ejemplo Básico de Rutas<a class="headerlink" href="#ejemplo-basico-de-rutas" title="Link to this heading">#</a></h2>
+<p>El siguiente es un ejemplo de cómo configurar rutas básicas en Angular:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RouterModule</span><span class="p">,</span><span class="w"> </span><span class="nx">Routes</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HomeComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./home/home.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetListComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-list/planet-list.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SunComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./sun/sun.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-detail/planet-detail.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetEditComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-edit/planet-edit.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">LoginComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./auth/login/login.component&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AuthGuard</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./auth/auth.guard&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">PlanetResolveService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./planets/planet-resolve.service&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="kt">Routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">HomeComponent</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planets&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetListComponent</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;suns&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">SunComponent</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/edit/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">resolve</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">planet</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetResolveService</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetEditComponent</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;login&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">LoginComponent</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">pathMatch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;full&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">redirectTo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useHash</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">})],</span>
+<span class="w">  </span><span class="nx">exports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">RouterModule</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppRoutingModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: Define el URI para la ruta.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">component</span></code>: El componente que se carga cuando se navega a esa ruta.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">canActivate</span></code>: Define guardias que protegen las rutas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resolve</span></code>: Permite precargar datos antes de que el componente se cargue.</p></li>
+</ul>
+</section>
+<section id="rutas-con-hash">
+<h2>Rutas con Hash<a class="headerlink" href="#rutas-con-hash" title="Link to this heading">#</a></h2>
+<p>Una manera de implementar SPA sin manipular el servidor es usar una almohadilla (<code class="docutils literal notranslate"><span class="pre">#</span></code>) al principio de la ruta:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>http://localhost:4200/#/home
+</pre></div>
+</div>
+<p>Esto es más antiguo, pero funciona en todos los navegadores, simplifica el envío de parámetros y evita la manipulación del servidor. Para que funcione, se debe agregar <code class="docutils literal notranslate"><span class="pre">withHashLocation()</span></code> al los providers del bootstrap:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">appConfig</span><span class="o">:</span><span class="w"> </span><span class="kt">ApplicationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">provideBrowserGlobalErrorListeners</span><span class="p">(),</span>
+<span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w">  </span><span class="nx">withHashLocation</span><span class="p">(),</span><span class="w">  </span><span class="nx">withComponentInputBinding</span><span class="p">()),</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="creacion-de-rutas">
+<h2>Creación de Rutas<a class="headerlink" href="#creacion-de-rutas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Ruta Básica</strong>: Define un camino y el componente que se activa.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">HomeComponent</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Ruta con Guard</strong>: Protege rutas usando guardias.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planets&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetListComponent</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Ruta con Parámetros</strong>: Permite pasar parámetros en la URL.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Ruta con Resolve</strong>: Precarga datos necesarios para el componente.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/edit/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">resolve</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">planet</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetResolveService</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetEditComponent</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Ruta por Defecto</strong>: Redirige a una ruta específica si la ruta no existe.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">pathMatch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;full&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">redirectTo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;home&#39;</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="enlaces-de-navegacion">
+<h2>Enlaces de Navegación<a class="headerlink" href="#enlaces-de-navegacion" title="Link to this heading">#</a></h2>
+<p>Para crear enlaces de navegación en Angular, se utiliza <code class="docutils literal notranslate"><span class="pre">[routerLink]</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">href</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-link active&quot;</span> <span class="na">aria-current</span><span class="o">=</span><span class="s">&quot;page&quot;</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;</span><span class="na">home</span><span class="err">&#39;]&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Si la ruta tiene más niveles, se usarán elementos adicionales en el array.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-link&quot;</span> <span class="na">aria-current</span><span class="o">=</span><span class="s">&quot;page&quot;</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;</span><span class="na">home</span><span class="err">&#39;]&quot;</span> <span class="err">[</span><span class="na">routerLinkActive</span><span class="err">]=&quot;[&#39;</span><span class="na">active</span><span class="err">&#39;]&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>El atributo <code class="docutils literal notranslate"><span class="pre">routerLinkActive</span></code> puede estar sin corchetes y aplicarse al elemento padre del enlace si es necesario.</p>
+</section>
+<section id="navegacion-por-codigo">
+<h2>Navegación por Código<a class="headerlink" href="#navegacion-por-codigo" title="Link to this heading">#</a></h2>
+<p>Para navegar por código en Angular, se importa el <code class="docutils literal notranslate"><span class="pre">Router</span></code> y se inyecta en el constructor:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="kt">Router</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="nx">detailsProduct</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/product&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="obtener-parametros-de-las-rutas">
+<h2>Obtener Parámetros de las Rutas<a class="headerlink" href="#obtener-parametros-de-las-rutas" title="Link to this heading">#</a></h2>
+<p>Veamos cómo se declaran rutas con parámetros:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Las rutas pueden contener parámetros, como un <code class="docutils literal notranslate"><span class="pre">id</span></code>. Para obtener estos parámetros se pueden usar diversas técnicas. La más recomendada actualmente es con <code class="docutils literal notranslate"><span class="pre">signals</span></code>.</p>
+<p>Con signals es muy sencillo, tan solo hace falta usar un <code class="docutils literal notranslate"><span class="pre">input</span></code> con el mismo nombre que el que se ponga en el <code class="docutils literal notranslate"><span class="pre">router</span></code>. En este caso es el <code class="docutils literal notranslate"><span class="pre">id</span></code>.</p>
+<p>De esta manera en el componente se pone:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="nx">input</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="c1">//.....</span>
+<span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>En versiones anteriores se usaba <code class="docutils literal notranslate"><span class="pre">ActivatedRoute</span></code>, la cual crea un Observable al que nos podemos suscribir:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ActivatedRoute</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">activatedRoute</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">activatedRoute</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">params</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Los parámetros (<code class="docutils literal notranslate"><span class="pre">params</span></code>) son un observable al que nos suscribimos para recibir los valores pasados en la URL.</p>
+<p>A partir de Angular 16, también se podían configurar los parámetros del router para aceptarlos mediante <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code> usando <code class="docutils literal notranslate"><span class="pre">withComponentInputBinding()</span></code>.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">bootstrapApplication</span><span class="p">(</span><span class="nx">App</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="c1">//... other features</span>
+<span class="w">        </span><span class="nx">withComponentInputBinding</span><span class="p">()</span><span class="w"> </span><span class="c1">// &lt;-- enable this feature</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En el componente:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">query?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// Normal</span>
+<span class="w"> </span><span class="kd">@Input</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">queryParam?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// Renombrar el parámetro</span>
+</pre></div>
+</div>
+<p>En el router:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;planet/:query&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canActivate</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AuthGuard</span><span class="p">],</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">PlanetDetailComponent</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Se puede usar cualquiera de los tres métodos para obtener parámetros, pero en las últimas versiones se recomienda usar <code class="docutils literal notranslate"><span class="pre">Signals</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="transiciones-en-angular-2024">
+<h2>Transiciones en Angular (2024)<a class="headerlink" href="#transiciones-en-angular-2024" title="Link to this heading">#</a></h2>
+<p>Las transiciones en Angular permiten crear animaciones fluidas entre diferentes estados de la aplicación. En la actualidad, la funcionalidad completa de estas transiciones solo está totalmente disponible en Google Chrome. A continuación, se detalla cómo implementar y personalizar las transiciones en Angular.</p>
+<section id="definicion-de-animaciones-en-css">
+<h3>Definición de Animaciones en CSS<a class="headerlink" href="#definicion-de-animaciones-en-css" title="Link to this heading">#</a></h3>
+<p>Primero, definimos las animaciones CSS utilizando <code class="docutils literal notranslate"><span class="pre">&#64;keyframes</span></code>. Esto permite rotar los elementos durante las transiciones.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">keyframes</span><span class="w"> </span><span class="nt">rotate-out</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">to</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">rotate</span><span class="p">(</span><span class="mi">90</span><span class="kt">deg</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">keyframes</span><span class="w"> </span><span class="nt">rotate-in</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">from</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">rotate</span><span class="p">(</span><span class="mi">-90</span><span class="kt">deg</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">),</span>
+<span class="p">::</span><span class="nd">view-transition-new</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">animation-duration</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">ms</span><span class="p">;</span>
+<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-in</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">in</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-out</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rotate-out</span></code>: rota un elemento 90 grados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rotate-in</span></code>: rota un elemento desde -90 grados hasta su posición original.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">::view-transition-old(count)</span></code> y <code class="docutils literal notranslate"><span class="pre">::view-transition-new(count)</span></code>: aplican las animaciones durante la transición.</p></li>
+</ul>
+</section>
+<section id="configuracion-de-rutas-en-angular">
+<h3>Configuración de Rutas en Angular<a class="headerlink" href="#configuracion-de-rutas-en-angular" title="Link to this heading">#</a></h3>
+<p>Para habilitar las transiciones, configuramos las rutas en <code class="docutils literal notranslate"><span class="pre">app-routing.module.ts</span></code> utilizando <code class="docutils literal notranslate"><span class="pre">provideRouter</span></code> y añadiendo <code class="docutils literal notranslate"><span class="pre">withViewTransitions()</span></code>.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nx">provideRouter</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">pathMatch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;full&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">redirectTo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/0&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;:count&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">Counter</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nx">withViewTransitions</span><span class="p">(),</span>
+<span class="w">    </span><span class="nx">withComponentInputBinding</span><span class="p">()</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">],</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">provideRouter</span></code>: Define las rutas de la aplicación.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">withViewTransitions()</span></code>: Habilita las transiciones de vista.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">withComponentInputBinding()</span></code>: Permite el enlace de entrada del componente.</p></li>
+</ul>
+</section>
+<section id="personalizacion-de-transiciones">
+<h3>Personalización de Transiciones<a class="headerlink" href="#personalizacion-de-transiciones" title="Link to this heading">#</a></h3>
+<p>Es posible personalizar las transiciones en el archivo CSS.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">),</span>
+<span class="p">::</span><span class="nd">view-transition-new</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">animation-duration</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">ms</span><span class="p">;</span>
+<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-in</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">in</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">::</span><span class="nd">view-transition-old</span><span class="o">(</span><span class="nt">count</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">animation-name</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">ua-view-transition-fade-out</span><span class="p">,</span><span class="w"> </span><span class="k">rotate</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aquí, se definen las duraciones y los nombres de las animaciones para las transiciones de entrada y salida.</p>
+</section>
+<section id="uso-de-onviewtransitioncreated">
+<h3>Uso de <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code><a class="headerlink" href="#uso-de-onviewtransitioncreated" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">withViewTransitions</span></code> acepta un objeto con la función <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code> para manejar eventos de transición.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">withViewTransitions</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">onViewTransitionCreated</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">transition</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">targetUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">.</span><span class="nx">getCurrentNavigation</span><span class="p">()</span><span class="o">!</span><span class="p">.</span><span class="nx">finalUrl</span><span class="o">!</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">paths</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;exact&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">matrixParams</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;exact&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">fragment</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ignored&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">queryParams</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ignored&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">router</span><span class="p">.</span><span class="nx">isActive</span><span class="p">(</span><span class="nx">targetUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">transition</span><span class="p">.</span><span class="nx">skipTransition</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">}),</span>
+</pre></div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code>: Se invoca cuando se crea una transición de vista.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transition.skipTransition()</span></code>: Cancela la animación si solo cambian el fragmento o los parámetros de consulta.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="httpangular.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Comunicación con el servidor en Angular</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="formulariosangular.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Formularios en Angular</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-rutas">Ejemplo Básico de Rutas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rutas-con-hash">Rutas con Hash</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-rutas">Creación de Rutas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-de-navegacion">Enlaces de Navegación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navegacion-por-codigo">Navegación por Código</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtener-parametros-de-las-rutas">Obtener Parámetros de las Rutas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transiciones-en-angular-2024">Transiciones en Angular (2024)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-animaciones-en-css">Definición de Animaciones en CSS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-rutas-en-angular">Configuración de Rutas en Angular</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizacion-de-transiciones">Personalización de Transiciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-onviewtransitioncreated">Uso de <code class="docutils literal notranslate"><span class="pre">onViewTransitionCreated</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tests &#8212; Libro DWEC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dd2cc81e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tests';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vite" href="vite.html" />
+    <link rel="prev" title="NPM" href="npm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Libro DWEC - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Libro DWEC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Desarrollo Web en Entorno Cliente (DWEC)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="desarrollofrontend.html">La Web y el Desarrollo Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Javascript</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jsenhtml.html">Javascript en el navegador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenguajejavascript.html">El lenguaje Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraysobjetosclases.html">Arrays Objetos y clases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteradores.html">Iteradores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="promesas.html">Asincronía y Promesas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ajax.html">Comunicación con el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webstorage.html">Almacenamiento en el Lado del Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programacionfuncionalreactiva.html">Programación Funcional, Asíncrona y Reactiva en JavaScript</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="errores.html">Gestión de Errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webworkers.html">Web Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebComponents.html">Web Components</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Desarrollo de proyectos fronted</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supabase.html">Supabase: (Backend como Servicio)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">NPM</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vite.html">Vite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci-cd.html">Integración y Despliegue Continuo (CI/CD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectos.html">Proyectos en Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación en JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectovanilla.html">Proyecto completo en Javascript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Angular</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular.html">Introducción a Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpangular.html">Comunicación con el servidor en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutasangular.html">Rutas en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulariosangular.html">Formularios en Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyectoangular.html">Proyecto Angular</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/libro_dwec/tree/master/issues/new?title=Issue%20on%20page%20%2Ftests.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tests.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tests</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivaciones">Motivaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-de-pruebas">Frameworks de Pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-vitest">Instalación de Vitest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-en-package-json">Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-red-green-refactor">Ciclo Red - Green - Refactor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-de-la-pruebas">Sintaxis de la pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matchers">Matchers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-deterministas">Promesas Deterministas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-spies-fake-dummy">Mocking, Stubs, Spies, Fake, Dummy…</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-prueba-de-variables">Datos de prueba de Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-y-spy-de-funciones">Mocking y spy de Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stub-de-la-red">Mocking (stub) de la Red</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#red-determinista">Red determinista</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-fake-del-navegador">Mocking (fake) del Navegador</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-jsdom">Instalación de JSDOM</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-integracion">Pruebas de integración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-del-dom">Mocking del DOM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-end-to-end-e2e-y-qa">Pruebas End-to-End (E2E) y QA</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tests">
+<h1>Tests<a class="headerlink" href="#tests" title="Link to this heading">#</a></h1>
+<section id="motivaciones">
+<h2>Motivaciones<a class="headerlink" href="#motivaciones" title="Link to this heading">#</a></h2>
+<p>En el desarrollo de aplicaciones web, probar manualmente cada cambio es una tarea complicada y propensa a errores. Modificar una parte del código puede tener efectos colaterales difíciles de predecir, por lo que necesitamos automatizar las pruebas. Existen varias estrategias para realizar pruebas automáticas:</p>
+<ul class="simple">
+<li><p><strong>Probar elementos concretos sin un plan definido.</strong></p></li>
+<li><p><strong>Desarrollo guiado por pruebas (Test Driven Development, TDD).</strong></p></li>
+<li><p><strong>Desarrollo guiado por comportamiento (Behaviour Driven Development, BDD).</strong></p></li>
+<li><p><strong>Desarrollo guiado por pruebas de aceptación (Acceptance Test Driven Development, ATDD).</strong></p></li>
+</ul>
+</section>
+<section id="frameworks-de-pruebas">
+<h2>Frameworks de Pruebas<a class="headerlink" href="#frameworks-de-pruebas" title="Link to this heading">#</a></h2>
+<p>Algunos de los frameworks más utilizados para realizar pruebas en JavaScript son:</p>
+<ul class="simple">
+<li><p><strong>Jasmine</strong></p></li>
+<li><p><strong>Mocha + Chai</strong></p></li>
+<li><p><strong>Jest</strong></p></li>
+<li><p><strong>Selenium</strong></p></li>
+<li><p><strong>Puppeteer</strong></p></li>
+<li><p><strong>Vitest</strong></p></li>
+</ul>
+<p>Nosotros usaremos <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> en esta primera parte del curso porque se integra fácilmente en Vite y porque tiene algunas características de suites más modernas, en especial su facilidad de uso, su facilidad de emular a un navegador y su funcionamiento nativo con módulos ES6. Otra alternativa coherente con el curso podría ser <code class="docutils literal notranslate"><span class="pre">Jasmine</span></code>, ya que es la suite de tests por defecto en <code class="docutils literal notranslate"><span class="pre">Angular</span></code>. No obstante, es mucho más complicado de usar en Javascript Vanilla y funciona con dificultad con módulos ES6.</p>
+<section id="instalacion-de-vitest">
+<h3>Instalación de Vitest<a class="headerlink" href="#instalacion-de-vitest" title="Link to this heading">#</a></h3>
+<p>Para instalar Vitest, utilizamos el siguiente comando:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>vitest
+</pre></div>
+</div>
+<p>Debemos crear archivos de prueba que tengan la extensión <code class="docutils literal notranslate"><span class="pre">.test.js</span></code>.</p>
+</section>
+<section id="configuracion-en-package-json">
+<h3>Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code><a class="headerlink" href="#configuracion-en-package-json" title="Link to this heading">#</a></h3>
+<p>Vitest acepta muchas opciones en sus comandos, estas se pueden escribir directamente en la terminal o guardar en <code class="docutils literal notranslate"><span class="pre">package.json</span></code>. Aquí tenemos un ejemplo bastante completo:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;testrun&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;webtest&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest --ui&quot;</span><span class="p">,</span><span class="w">  </span>
+<span class="w">        </span><span class="nt">&quot;coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run --coverage&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;webtest:basic&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest spec/basic_spec.test.js --ui&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;webtest:functional&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest spec/functional_spec.test.js --ui&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Como se ve, los nombres de los scripts son arbitrarios. <code class="docutils literal notranslate"><span class="pre">testrun</span></code> ejecuta los tests una vez y no se queda a la espera de cambios en los ficheros. Esto puede ser útil para los tests en un proceso <code class="docutils literal notranslate"><span class="pre">CI/CD</span></code>. <code class="docutils literal notranslate"><span class="pre">webtest</span></code> abre un navegador con los tests. <code class="docutils literal notranslate"><span class="pre">coverage</span></code> informa del % de código que tiene tests. <code class="docutils literal notranslate"><span class="pre">webtest:basic</span></code> fuerza a testar solo con un fichero de tests específico.</p>
+<p>Ahora haremos un test mínimo. Las condiciones para un “hola mundo” del test es importar la librería y hacer un <code class="docutils literal notranslate"><span class="pre">describe</span></code> con un <code class="docutils literal notranslate"><span class="pre">test</span></code> dentro de un fichero que necesariamente tiene la extensión: <code class="docutils literal notranslate"><span class="pre">.test.js</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">describe</span><span class="p">,</span><span class="w"> </span><span class="nx">expect</span><span class="p">,</span><span class="w"> </span><span class="nx">test</span><span class="p">,</span><span class="w"> </span><span class="nx">vi</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">sumModule</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./sum&quot;</span><span class="p">;</span>
+<span class="w"> </span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Sum&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Sum suma&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">sumModule</span><span class="p">.</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">6</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w"> </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Podemos ejecutar las pruebas y obtener informes de cobertura de código con los siguientes comandos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
+npm<span class="w"> </span>run<span class="w"> </span>coverage
+npx<span class="w"> </span>vitest<span class="w"> </span>--ui
+</pre></div>
+</div>
+<p>También podemos agregar Vitest como una extensión en Visual Studio Code desde el siguiente enlace: <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=vitest.explorer">Vitest Explorer</a>.</p>
+</section>
+</section>
+<section id="desarrollo-guiado-por-pruebas-tdd">
+<h2>Desarrollo Guiado por Pruebas (TDD)<a class="headerlink" href="#desarrollo-guiado-por-pruebas-tdd" title="Link to this heading">#</a></h2>
+<p>El TDD es parte de la metodología de Extreme Programming y se basa en realizar pruebas unitarias. Sigue tres leyes fundamentales:</p>
+<ol class="arabic simple">
+<li><p>No escribirás código de producción sin antes escribir una prueba que falle.</p></li>
+<li><p>No escribirás más de una prueba unitaria suficiente para fallar (y no compilar es fallar).</p></li>
+<li><p>No escribirás más código del necesario para hacer pasar la prueba.</p></li>
+</ol>
+<section id="ciclo-red-green-refactor">
+<h3>Ciclo Red - Green - Refactor<a class="headerlink" href="#ciclo-red-green-refactor" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Red:</strong> Escribir una prueba que falle antes de implementar la funcionalidad.</p></li>
+<li><p><strong>Green:</strong> Implementar el código mínimo necesario para que la prueba pase.</p></li>
+<li><p><strong>Refactor:</strong> Mejorar el código una vez que la prueba pase.</p></li>
+</ol>
+<p>Una vez completado el ciclo, comenzamos de nuevo con el siguiente requisito. En cada ciclo se pueden redefinir o agregar nuevos requisitos.</p>
+<p>Otro aspecto a tener en cuenta en los tests es la cobertura, es decir, el porcentaje de código que cubren los tests. Suele ser muy difícil tener el 100% salvo en librerías implementadas con funciones puras. En entornos reales, los métodos privados no pueden tener un test unitario y hay muchas funciones con efectos colaterales muy difíciles de testar. En vitest se hace con <code class="docutils literal notranslate"><span class="pre">--coverage</span></code> y retorna un HTML con esa información para poderlo compartir.</p>
+</section>
+</section>
+<section id="sintaxis-de-la-pruebas">
+<h2>Sintaxis de la pruebas<a class="headerlink" href="#sintaxis-de-la-pruebas" title="Link to this heading">#</a></h2>
+<p>Vitest acepta pruebas similares a las de Mocha-Chai, Jasmine o Jest. Podemos usar <code class="docutils literal notranslate"><span class="pre">test</span></code> o <code class="docutils literal notranslate"><span class="pre">it</span></code> para definir pruebas, y <code class="docutils literal notranslate"><span class="pre">expect</span></code> o <code class="docutils literal notranslate"><span class="pre">assert</span></code> para realizar afirmaciones. Aquí algunos enlaces útiles:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://vitest.dev/api/expect.html">Expect</a></p></li>
+<li><p><a class="reference external" href="https://vitest.dev/api/assert.html">Assert</a></p></li>
+</ul>
+<p>Este sería un ejemplo muy básico para probar una función que está en un módulo ESM:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">describe</span><span class="p">,</span><span class="w"> </span><span class="nx">expect</span><span class="p">,</span><span class="w"> </span><span class="nx">test</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">ex1</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../index.js&quot;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Javascript Básico&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Variables&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Debe retornar un array elementos de los tipo solicitados&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">().</span><span class="nx">map</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">typeof</span><span class="w"> </span><span class="nx">element</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span>
+<span class="w">          </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;undefined&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;function&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">]);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">3</span><span class="p">]</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nb">Array</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">5</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">6</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">undefined</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">(</span><span class="mf">7</span><span class="p">))).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">ex1</span><span class="p">.</span><span class="nx">createArraySomeTypes</span><span class="p">()[</span><span class="mf">8</span><span class="p">]</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nb">Function</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En el ejemplo se importa como ex1 todo lo que exporta el <code class="docutils literal notranslate"><span class="pre">index.js</span></code> y se testa la función <code class="docutils literal notranslate"><span class="pre">createArraySomeTypes()</span></code>. Para ello se ha usado <code class="docutils literal notranslate"><span class="pre">describe</span></code> para organizar las suites de pruebas y <code class="docutils literal notranslate"><span class="pre">test</span></code> como función para hacer la prueba.</p>
+<p>Una vez visto lo fundamental en cuanto a qué son los tests, vamos a detallar algunos aspectos técnicos para hacerlos. Lo mejor es ir directamente a la documentación de <code class="docutils literal notranslate"><span class="pre">Vitest</span></code>, pero puede resultar complicada en un principio.</p>
+<section id="matchers">
+<h3>Matchers<a class="headerlink" href="#matchers" title="Link to this heading">#</a></h3>
+<p>Lo primero que debemos dominar son las diversas manera que tienen las suites de tests para comprobar si el resultado es el esperado. Para ello se usan funciones <code class="docutils literal notranslate"><span class="pre">matchers</span></code> que son más cómodas que probar las cosas artesanalmente y que retornan un error interpretable por el test.</p>
+<p>Algunos matchers importantes que podemos usar en nuestras pruebas son:</p>
+<ul class="simple">
+<li><p><strong>not:</strong> <code class="docutils literal notranslate"><span class="pre">expect(something).not.toBe(true);</span></code></p></li>
+<li><p><strong>toBe:</strong> <code class="docutils literal notranslate"><span class="pre">expect(thing).toBe(realThing);</span></code></p></li>
+<li><p><strong>toBeDefined:</strong> <code class="docutils literal notranslate"><span class="pre">expect(result).toBeDefined();</span></code></p></li>
+<li><p><strong>toBeInstanceOf:</strong> <code class="docutils literal notranslate"><span class="pre">expect('foo').toBeInstanceOf(String);</span></code></p></li>
+<li><p><strong>toBeNaN, toBeNull, toBeUndefined:</strong> <code class="docutils literal notranslate"><span class="pre">expect(thing).toBeNaN();</span></code></p></li>
+<li><p><strong>toContain:</strong> <code class="docutils literal notranslate"><span class="pre">expect(array).toContain(anElement);</span></code></p></li>
+<li><p><strong>toEqual:</strong> <code class="docutils literal notranslate"><span class="pre">expect(bigObject).toEqual({&quot;foo&quot;:</span> <span class="pre">['bar',</span> <span class="pre">'baz']});</span></code></p></li>
+<li><p><strong>toMatch:</strong> <code class="docutils literal notranslate"><span class="pre">expect(&quot;my</span> <span class="pre">string&quot;).toMatch(/string$/);</span></code></p></li>
+</ul>
+<p>Con pocos podemos funcionar en la mayoría de las ocasiones, pero hay otros muy específicos como, por ejemplo, <code class="docutils literal notranslate"><span class="pre">toHaveProperty()</span></code> que comprueba que un objeto tiene una propiedad determinada. Cuanto más específico sea el <code class="docutils literal notranslate"><span class="pre">matcher</span></code> mejor, por ejemplo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Esto:</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">toHaveProperty</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+<span class="c1">// Es lo mismo que esto:</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">user</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">30</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En el ejemplo, el primero es más conciso y el error resultante se entiende mejor.</p>
+</section>
+<section id="pruebas-de-promesas">
+<h3>Pruebas de Promesas<a class="headerlink" href="#pruebas-de-promesas" title="Link to this heading">#</a></h3>
+<p>Para probar funciones asíncronas, solo necesitamos agregar <code class="docutils literal notranslate"><span class="pre">async</span></code> / <code class="docutils literal notranslate"><span class="pre">await</span></code> en la función de callback de <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Test Promesas&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;incrementar decrementar&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;should return the number +1&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">incrementar</span><span class="p">(</span><span class="mf">1</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">incrementar</span><span class="p">(</span><span class="mf">1000</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">1001</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;should return the number -1&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">decrementar</span><span class="p">(</span><span class="mf">1</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">decrementar</span><span class="p">(</span><span class="mf">1000</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">999</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Hay un problema con las promesas, si no se cumplen nunca, el test no acaba y tampoco falla. En caso de que pueda pasar eso, se puede usar <code class="docutils literal notranslate"><span class="pre">setTimeOut</span></code> con un tiempo razonable y dar fallo si no se cumple en ese plazo:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Timeout exceeded&#39;</span><span class="p">)),</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Al fer el try catch vitest no dona error al detectar rejects</span>
+<span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">result1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">timeout</span><span class="p">(</span><span class="mf">500</span><span class="p">)]);</span>
+<span class="w"> </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">expect</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;Timeout exceeded&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vitest acepta poner un timeout al test para sustituir al que tiene por defecto de 5 segundos. Pero es más recomendable el ejemplo anterior porque, en caso de fallo, tenemos un try..catch para controlarlo.</p>
+<section id="promesas-deterministas">
+<h4>Promesas Deterministas<a class="headerlink" href="#promesas-deterministas" title="Link to this heading">#</a></h4>
+<p>Con las promesas podemos testar si retornan lo correcto o si manejan bien los errores. En caso de promesas de, por ejemplo, un fetch, debemos distinguir entre si queremos un test unitario o de integración. Si es unitario debemos hacer que ese fetch sea determinista mockeando el servidor y siempre retornando lo mismo o el mismo error.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">promesas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w"> </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;promesas debe funcionar de forma determinista&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">randomSpy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nb">Math</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;random&quot;</span><span class="p">).</span><span class="nx">mockReturnValue</span><span class="p">(</span><span class="mf">0.9</span><span class="p">);</span><span class="w"> </span><span class="c1">// Así seguro que no falla</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">promesas</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">randomSpy</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">randomSpyReject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nb">Math</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;random&quot;</span><span class="p">).</span><span class="nx">mockReturnValue</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Así siempre falla</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">promesas</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">rejects</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">randomSpy</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En el ejemplo anterior se falsea la funció <code class="docutils literal notranslate"><span class="pre">random()</span></code> para que el test siempre pase o no.</p>
+</section>
+</section>
+</section>
+<section id="mocking-stubs-spies-fake-dummy">
+<h2>Mocking, Stubs, Spies, Fake, Dummy…<a class="headerlink" href="#mocking-stubs-spies-fake-dummy" title="Link to this heading">#</a></h2>
+<p>A veces necesitamos datos, funciones o servicios ficticios para realizar pruebas. Esto puede ser útil para no afectar la base de datos en producción o para tener más control sobre los datos que se están probando.</p>
+<p>Los términos enunciados en el título de esta sección se refieren a esas técnicas para aislar totalmente los tests de los datos y servicios en producción.</p>
+<p>Así, llamamos <code class="docutils literal notranslate"><span class="pre">stub</span></code> a un servicio al que pueden consultar las funciones de una manera más sencilla, de manera que siempre retorna los datos conocidos y controlados (funciona o falla a nuestra elección). Los <code class="docutils literal notranslate"><span class="pre">stub</span></code> sustituyen a la función original. Un <code class="docutils literal notranslate"><span class="pre">mock</span></code> es un término más genérico. En términos de funciones, se suele usar para simular una función y observar si ha sido invocada o cuantas veces se llama. Los <code class="docutils literal notranslate"><span class="pre">mock</span></code> no sustituyen una función que debe funcionar.</p>
+<p>Otra herramienta son los <code class="docutils literal notranslate"><span class="pre">spies</span></code>, que en el caso de <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> se invocan con funciones como <code class="docutils literal notranslate"><span class="pre">vi.spyOn()</span></code>. Estos no cambian para nada el comportamiento, pero espian a las funciones para ver si son invocadas.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">Fake</span></code> son objetos, funciones o otras cosas que tienen una estructura como la real, pero que creamos específicamente para los tests. Si no tienen una estructura compleja o comportamiento propio, les llamamos <code class="docutils literal notranslate"><span class="pre">Datos</span> <span class="pre">de</span> <span class="pre">prueba</span></code> o <code class="docutils literal notranslate"><span class="pre">fixtures</span></code>.</p>
+<p>Por otro lado, llamamos <code class="docutils literal notranslate"><span class="pre">Dummies</span></code> a variables o funciones que no importan, pero que deben estar ahí para que no falle el test. Son objetos o funciones ficticios que no importa lo que hagan mientras sean sintacticamente correctos.</p>
+<blockquote>
+<div><p>En cualquier caso, mucha gente usar el término genérico <code class="docutils literal notranslate"><span class="pre">mock</span></code> para todo.</p>
+</div></blockquote>
+<section id="datos-de-prueba-de-variables">
+<h3>Datos de prueba de Variables<a class="headerlink" href="#datos-de-prueba-de-variables" title="Link to this heading">#</a></h3>
+<p>En el siguiente ejemplo creamos tres constantes que sirven para ver si los resultados de las funciones son los esperables. Esto es muy habitual en los tests:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">initial_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">example_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">full_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">],[</span><span class="mf">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">],[</span><span class="mf">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">]];</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;3 en raya&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Funciones del juego&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;TicTacToeGetInitialState Debe retornar un array 3x3 de 0s&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">alg</span><span class="p">.</span><span class="nx">TicTacToeGetInitialState</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">initial_state</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;TicTacToeGetNextState Debe retornar una copia con la jugada&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">alg</span><span class="p">.</span><span class="nx">TicTacToeGetNextState</span><span class="p">(</span><span class="nx">initial_state</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">1</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]]);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">alg</span><span class="p">.</span><span class="nx">TicTacToeGetNextState</span><span class="p">(</span><span class="nx">initial_state</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]]);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">alg</span><span class="p">.</span><span class="nx">TicTacToeGetNextState</span><span class="p">(</span><span class="nx">initial_state</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">1</span><span class="p">)).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">initial_state</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;TicTacToeGetValidMoves Debe retornar la lista de posibles acciones&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">alg</span><span class="p">.</span><span class="nx">TicTacToeGetValidMoves</span><span class="p">(</span><span class="nx">initial_state</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">]);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">alg</span><span class="p">.</span><span class="nx">TicTacToeGetValidMoves</span><span class="p">(</span><span class="nx">example_state</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">]);</span>
+<span class="w">      </span><span class="nx">expect</span><span class="p">(</span><span class="nx">alg</span><span class="p">.</span><span class="nx">TicTacToeGetValidMoves</span><span class="p">(</span><span class="nx">full_state</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="mocking-y-spy-de-funciones">
+<h3>Mocking y spy de Funciones<a class="headerlink" href="#mocking-y-spy-de-funciones" title="Link to this heading">#</a></h3>
+<p>A veces queremos saber si una función se ejecutó (espiar), aunque no siempre nos interesa su retorno. Vitest proporciona la utilidad <code class="docutils literal notranslate"><span class="pre">vi</span></code> para este propósito.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">vi.fn()</span></code></strong>: Crea una función simulada.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">vi.spyOn()</span></code></strong>: Añade un espía a una función de un objeto.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;ensureOneCall debe ejecutar la función sólo una vez&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//Creamos una función simulada</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">onceSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ensureOneCall</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">result1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">onceSum</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result1</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">9</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">sum</span><span class="p">).</span><span class="nx">toHaveBeenCalledTimes</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">sum</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">result2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">onceSum</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result2</span><span class="p">).</span><span class="nx">toBeUndefined</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">sum</span><span class="p">).</span><span class="nx">toHaveBeenCalledTimes</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// sigue siendo 1</span>
+
+<span class="w">  </span><span class="nx">onceSum</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">onceSum</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="nx">once</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">sum</span><span class="p">).</span><span class="nx">toHaveBeenCalledTimes</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Otro ejemplo con handlers:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;DOMEventListener añade un listenre a un evento&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">div</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+<span class="w">            </span><span class="c1">// se espera que retorne una función para eliminar el evento</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">removeListener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">domEventListener</span><span class="p">(</span><span class="nx">div</span><span class="p">)(</span><span class="nx">handler</span><span class="p">);</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">div</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">MouseEvent</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">));</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">handler</span><span class="p">).</span><span class="nx">toHaveBeenCalled</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">removeListener</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Function</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">removeListener</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>También se puede ‘mockear’ el funcionamiento de la función al mismo tiempo que se espía:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;sendForm debe enviar por post datos a un servidor&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">formExample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">formExample</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;form&gt;</span>
+<span class="sb">            &lt;label for=&quot;login&quot;&gt;Login:&lt;/label&gt;</span>
+<span class="sb">            &lt;input type=&quot;text&quot; id=&quot;login&quot; name=&quot;login&quot; value=&quot;usuario&quot;&gt;</span>
+<span class="sb">            &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;</span>
+<span class="sb">            &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; value=&quot;1234&quot;&gt;</span>
+<span class="sb">            &lt;button type=&quot;submit&quot;&gt;Iniciar sesión&lt;/button&gt;</span>
+<span class="sb">          &lt;/form&gt;`</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">opciones</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">formExample</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// Con mockImplementation modificamos el comportamiento de fetch</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">spyFetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;fetch&#39;</span><span class="p">).</span><span class="nx">mockImplementation</span><span class="p">((</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span>
+<span class="w">                    </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">),</span><span class="w"> </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">statusText</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;OK&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">postForm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">sendForm</span><span class="p">(</span><span class="nx">formExample</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;http://localhost/fakeServer&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">postForm</span><span class="p">).</span><span class="nx">toBeInstanceOf</span><span class="p">(</span><span class="nb">Promise</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">postForm</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">data</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="sb">`{&quot;name&quot;:&quot;usuario&quot;,&quot;password&quot;:&quot;1234&quot;}`</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">spyFetch</span><span class="p">).</span><span class="nx">toHaveBeenCalled</span><span class="p">();</span>
+<span class="w">            </span><span class="c1">// En este caso, comprobamos que se han enviado bien los datos. </span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">spyFetch</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="s1">&#39;http://localhost/fakeServer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">opciones</span><span class="p">);</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">// Restauramos la función anterior</span>
+<span class="w">            </span><span class="nx">spyFetch</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="mocking-stub-de-la-red">
+<h3>Mocking (stub) de la Red<a class="headerlink" href="#mocking-stub-de-la-red" title="Link to this heading">#</a></h3>
+<p>Vitest recomienda utilizar <a class="reference external" href="https://mswjs.io/">msw</a> para interceptar peticiones y crear respuestas falsas.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">http</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;msw&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">setupServer</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;msw/node&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">mockServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setupServer</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://dominiobueno.com/datos.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// Mock de respuesta exitosa</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://dominioquenoexiste.noexiste/datos.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">error</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://dominiobueno.com/noexiste.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">(</span><span class="s1">&#39;Not found&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">404</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://dominiobueno.com/jsonMalo.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;json malo&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;http://dominiobueno.com/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">newPost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">clone</span><span class="p">().</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">newPost</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://dominiobueno.com/logo.png&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">__dirname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">fileURLToPath</span><span class="p">(</span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">url</span><span class="p">));</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">readFile</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;logo.png&quot;</span><span class="p">));</span>
+<span class="w">            </span><span class="c1">//console.log(buffer);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">HttpResponse</span><span class="p">.</span><span class="nx">arrayBuffer</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;content-type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Server&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">beforeAll</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">mockServer</span><span class="p">.</span><span class="nx">listen</span><span class="p">());</span><span class="w">  </span><span class="c1">// Hay que inicializar y finalizar el servidor al acabar los tests</span>
+<span class="w">        </span><span class="nx">afterAll</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">mockServer</span><span class="p">.</span><span class="nx">close</span><span class="p">());</span>
+<span class="w">        </span><span class="nx">afterEach</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">mockServer</span><span class="p">.</span><span class="nx">resetHandlers</span><span class="p">());</span>
+<span class="w">        </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;server ha de retornar un objecte&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">server</span><span class="p">(</span><span class="s2">&quot;http://dominiobueno.com/datos.json&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">({</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Es más correcto llamarlo <code class="docutils literal notranslate"><span class="pre">stub</span></code> porque sustituye el comportamiento real de un servicio por uno falso y controlado. Pero no es estrictamente un <code class="docutils literal notranslate"><span class="pre">mock</span></code> nos interesa “espiar” al servicio.</p>
+<section id="red-determinista">
+<h4>Red determinista<a class="headerlink" href="#red-determinista" title="Link to this heading">#</a></h4>
+<p>El caso de uso más importante del <code class="docutils literal notranslate"><span class="pre">mock</span></code> de la red es para hacer que los tests sean deterministas. En este caso no nos importa si el servidor real contesta correctamente, tenemos acceso a la red o el nombre de dominio es el definitivo, lo importante es qué hacen estas funciones con la red y qué datos esperan.</p>
+<p>Incluso se puede hacer que el servidor falso tenga un comportamiento errático o falle siempre. Así podemos comprobar la robustez de nuestras funciones frente a fallos de red sin tener que parar un servidor real o en producción.</p>
+<p>Además de hacer las pruebas deterministas, el uso de mocks de red reduce el tiempo de ejecución de los tests (no hay esperas de red) y garantiza su independencia respecto a entornos externos o a la conectividad del desarrollador o del CI/CD.</p>
+<p>Este comportamiento falso y determinista provoca que sigan siendo tests unitarios y no de integración.</p>
+</section>
+</section>
+<section id="mocking-fake-del-navegador">
+<h3>Mocking (fake) del Navegador<a class="headerlink" href="#mocking-fake-del-navegador" title="Link to this heading">#</a></h3>
+<p>Vitest se ejecuta a través de la terminal, en Node.js. Para simular un navegador, se recomienda usar JSDOM. Simular el navegador nos permite acceder a <code class="docutils literal notranslate"><span class="pre">document</span></code>, eventos… De esta manera podemos testar funciones del frontend, siempre que no produzcan efectos colaterales.</p>
+<blockquote>
+<div><p>Forzarnos a crear funciones de la vista testables es una buena práctica, ya que nos enfrentamos a algunas de las tareas maś complicadas de la programación funcional. De esta manera hay que aislar las funciones que usan el document.querySelector(), mutan el DOM o la gestión de eventos.</p>
+</div></blockquote>
+<section id="instalacion-de-jsdom">
+<h4>Instalación de JSDOM<a class="headerlink" href="#instalacion-de-jsdom" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>jsdom
+</pre></div>
+</div>
+<p>Y agregamos el siguiente comentario al principio del archivo de pruebas:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * @vitest-environment jsdom</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>JSDOM no es del todo capaz de testar operaciones con el DOM, por ejemplo, no tiene total compatibilidad con el <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">DOM</span></code> o no funciona bien <code class="docutils literal notranslate"><span class="pre">innerText</span></code>. Los navegadores son mucho más potentes que un emulador. Si queremos tests más capaces hay que buscar alternativas más manuales o otras suites que se ejecuten en el navegador como <code class="docutils literal notranslate"><span class="pre">Puppeteer</span></code> o <code class="docutils literal notranslate"><span class="pre">Karma</span></code> con <code class="docutils literal notranslate"><span class="pre">Jasmine</span></code>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="pruebas-de-integracion">
+<h3>Pruebas de integración<a class="headerlink" href="#pruebas-de-integracion" title="Link to this heading">#</a></h3>
+<p>Podemos enumerar algunos tests que, escritos con Vitest de la misma forma, son de integración:</p>
+<ul class="simple">
+<li><p><strong>Funciones que modifican el DOM del document</strong>: Deberían ser pocas, pero si existen, no son puras y dependen de un DOM existente determinado. Para que funcionen necesitamos <strong>JSDom</strong> y resetear el DOM al principio del test.</p></li>
+<li><p><strong>Funciones de APIs del navegador</strong>: No todas las soporta <code class="docutils literal notranslate"><span class="pre">JSDom</span></code>, así que se pueden <code class="docutils literal notranslate"><span class="pre">mockear</span></code>, usar <code class="docutils literal notranslate"><span class="pre">polyfills</span></code> o librerías específicas.</p></li>
+<li><p><strong>Funciones que utilizan otras funciones de nuestro mismo código</strong>: En realidad siguen siendo tests unitarios si no tienen efectos colaterales. Si integran dependencias que pueden testarse aisladas para ver cómo se comportan en conjunto se pueden considerar <code class="docutils literal notranslate"><span class="pre">tests</span> <span class="pre">unitarios</span> <span class="pre">de</span> <span class="pre">composición</span></code> o de <code class="docutils literal notranslate"><span class="pre">flujo</span></code>.</p></li>
+<li><p><strong>Funciones que conectan con nuestro servidor real o un servidor que también está testándose</strong>: Cuando los tests modifican datos reales (por ejemplo, creando usuarios, cambiando estados, eliminando registros, etc.), si no limpiamos la base de datos después los dejan datos residuales. Los resultados de los siguientes tests dependen del orden de ejecución y eso rompe una regla de oro del testing: los tests deben ser independientes y deterministas.</p></li>
+</ul>
+<p>Las pruebas de integración deben ser consensuadas con el equipo de backend. Si el frontend prueba contra endpoints reales, necesita conocer qué datos devuelve el backend, qué formato tienen las respuestas, qué errores puede emitir y en qué entorno se están ejecutando las pruebas. Acordar esas pruebas permite definir conjuntamente los contratos de la API.</p>
+</section>
+<section id="mocking-del-dom">
+<h3>Mocking del DOM<a class="headerlink" href="#mocking-del-dom" title="Link to this heading">#</a></h3>
+<p>Para simular interacciones con el DOM, podemos utilizar <a class="reference external" href="https://testing-library.com/docs/dom-testing-library/example-intro">DOM Testing Library</a>.</p>
+</section>
+<section id="pruebas-end-to-end-e2e-y-qa">
+<h3>Pruebas End-to-End (E2E) y QA<a class="headerlink" href="#pruebas-end-to-end-e2e-y-qa" title="Link to this heading">#</a></h3>
+<p>Para pruebas de extremo a extremo, podemos utilizar herramientas como Cypress. Vitest proporciona una metodología más tradicional tipo “scripted testing”.</p>
+<ul class="simple">
+<li><p>Ejercicios de todo tipo con tests que los evalúan: <a class="github reference external" href="https://github.com/xxjcaxx/actividades_javascript">xxjcaxx/actividades_javascript</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "deno"
+        },
+        kernelOptions: {
+            name: "deno",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'deno'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="npm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">NPM</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="vite.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vite</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivaciones">Motivaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-de-pruebas">Frameworks de Pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-vitest">Instalación de Vitest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-en-package-json">Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-red-green-refactor">Ciclo Red - Green - Refactor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-de-la-pruebas">Sintaxis de la pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matchers">Matchers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-promesas">Pruebas de Promesas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-deterministas">Promesas Deterministas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stubs-spies-fake-dummy">Mocking, Stubs, Spies, Fake, Dummy…</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-prueba-de-variables">Datos de prueba de Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-y-spy-de-funciones">Mocking y spy de Funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-stub-de-la-red">Mocking (stub) de la Red</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#red-determinista">Red determinista</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-fake-del-navegador">Mocking (fake) del Navegador</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-jsdom">Instalación de JSDOM</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-integracion">Pruebas de integración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking-del-dom">Mocking del DOM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-end-to-end-e2e-y-qa">Pruebas End-to-End (E2E) y QA</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
