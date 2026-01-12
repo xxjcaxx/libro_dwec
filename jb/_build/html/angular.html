@@ -951,9 +951,24 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 </pre></div>
 </div>
 <p><strong>Ejemplo:</strong></p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (let nombre of nombres) {
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (let nombre of nombres()) {
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ nombre }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 }
+</pre></div>
+</div>
+<p>dentro de los bloques <code class="docutils literal notranslate"><span class="pre">&#64;for</span></code> hay algunas variables siempre disponibles:</p>
+<ul class="simple">
+<li><p>$count 	Number of items in a collection iterated over</p></li>
+<li><p>$index 	Index of the current row</p></li>
+<li><p>$first 	Whether the current row is the first row</p></li>
+<li><p>$last 	Whether the current row is the last row</p></li>
+<li><p>$even 	Whether the current row index is even</p></li>
+<li><p>$odd 	Whether the current row index is odd</p></li>
+</ul>
+<p>Esas variables se puede usar tal cual o ponerles un alias con <code class="docutils literal notranslate"><span class="pre">let</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@for (item of items(); track item.id; let idx = $index, e = $even) {  
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Item #{{ idx }}: {{ item.name }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  }
 </pre></div>
 </div>
 <p><strong><code class="docutils literal notranslate"><span class="pre">&#64;switch</span></code>:</strong></p>
