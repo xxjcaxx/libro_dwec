@@ -440,7 +440,10 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals-asincronas-con-resource">Signals asíncronas con Resource</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-flujo-en-plantillas">Control de flujo en plantillas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida-de-los-componentes">Ciclo de vida de los componentes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">ngOnInit</a></li>
@@ -920,6 +923,35 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 <blockquote>
 <div><p>No debería ser común el uso de <code class="docutils literal notranslate"><span class="pre">effect</span></code> por lo que su propio nombre indica (Efectos secundarios). Siempre es mejor <code class="docutils literal notranslate"><span class="pre">computed</span></code> y/o interpolaciones en la plantilla.</p>
 </div></blockquote>
+<section id="signals-asincronas-con-resource">
+<h4>Signals asíncronas con Resource<a class="headerlink" href="#signals-asincronas-con-resource" title="Link to this heading">#</a></h4>
+<p>Si los datos de las <code class="docutils literal notranslate"><span class="pre">signals</span></code> van a llegar de forma asíncrona la mejor manera de trabajar con ellos es con un <code class="docutils literal notranslate"><span class="pre">Resource</span></code>. Estos permiten hacer operaciones asíncronas como descargar datos de un servidor y actualizar los datos de las singals. Uno de los resources más útiles es <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>, el cual se explora en el capítulo de comunicación con el servidor. Un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> sencillo se crea con la función <code class="docutils literal notranslate"><span class="pre">resource</span></code> la cual acepta un objeto de tipo <code class="docutils literal notranslate"><span class="pre">ResourceOptions</span></code> que debe tener <code class="docutils literal notranslate"><span class="pre">params</span></code> y <code class="docutils literal notranslate"><span class="pre">loader</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">resource</span><span class="p">,</span><span class="w"> </span><span class="nx">Signal</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getUserId</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">userResource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resource</span><span class="p">({</span>
+<span class="w">  </span><span class="c1">// Los params se calculan reactivamente y retornan los datos que necesita el loader</span>
+<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">userId</span><span class="p">()}),</span>
+<span class="w">  </span><span class="c1">// La función asíncrona que recibe los datos, usa params.</span>
+<span class="w">  </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="nx">params</span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fetchUser</span><span class="p">(</span><span class="nx">params</span><span class="p">),</span>
+<span class="p">});</span>
+<span class="c1">// Create a computed signal based on the result of the resource&#39;s loader function.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">userResource</span><span class="p">.</span><span class="nx">hasValue</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// `hasValue` tiene dos propositos</span>
+<span class="w">    </span><span class="c1">// - Evita tener valores undefined</span>
+<span class="w">    </span><span class="c1">// - Evita dar valores si la fuente de datos da error</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">userResource</span><span class="p">.</span><span class="nx">value</span><span class="p">().</span><span class="nx">firstName</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// En caso de error retorna undefined</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Los resource tienen muchas más opciones como poder abortar las peticiones, recargar, o ver el status.</p>
+<blockquote>
+<div><p>Si queremos descargar datos por <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> y tener signals es mejor usar <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>. A menos que usemos un SDK, por ejemplo, donde podemos envolver la peticiones en un resource. Esto lo se verá en el capítulo de comunicación con el servidor.</p>
+</div></blockquote>
+</section>
 </section>
 <section id="control-de-flujo-en-plantillas">
 <h3>Control de flujo en plantillas<a class="headerlink" href="#control-de-flujo-en-plantillas" title="Link to this heading">#</a></h3>
@@ -2104,7 +2136,10 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vincular-eventos">Vincular eventos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signals-asincronas-con-resource">Signals asíncronas con Resource</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-flujo-en-plantillas">Control de flujo en plantillas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-vida-de-los-componentes">Ciclo de vida de los componentes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">ngOnInit</a></li>

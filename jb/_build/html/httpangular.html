@@ -441,7 +441,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
@@ -458,6 +462,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sse">SSE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-signals">Conversión de promesas a Signals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-y-recepcion-de-ficheros-con-angular">Envío y recepción de ficheros con Angular</a><ul class="nav section-nav flex-column">
@@ -548,7 +553,7 @@ document.write(`
 </section>
 <section id="httpclient">
 <h2>HttpClient<a class="headerlink" href="#httpclient" title="Link to this heading">#</a></h2>
-<p>Los servicios en Angular a menudo obtienen datos de un servidor a través de HTTP. PAra ello usaremos el servicio inyectable <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code>. Debemos hacer que sea accesible en toda la aplicación mediante un <code class="docutils literal notranslate"><span class="pre">provider</span></code>:</p>
+<p>Los servicios en Angular a menudo obtienen datos de un servidor a través de HTTP. Para ello usaremos el servicio inyectable <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code>. Debemos hacer que sea accesible en toda la aplicación mediante un <code class="docutils literal notranslate"><span class="pre">provider</span></code>:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">appConfig</span><span class="o">:</span><span class="w"> </span><span class="kt">ApplicationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="nx">provideHttpClient</span><span class="p">(),</span>
@@ -801,6 +806,66 @@ document.write(`
 <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
+<section id="convertir-a-signal">
+<h4>Convertir a Signal<a class="headerlink" href="#convertir-a-signal" title="Link to this heading">#</a></h4>
+<p>Si usamos el método <code class="docutils literal notranslate"><span class="pre">get()</span></code> nos retorna un Observable que puede ser convertido en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> en el componente mediante <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">//Servicio</span>
+<span class="w"> </span><span class="nx">getPlantes</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/rest/v1/plantes?select=*&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">HttpHeaders</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">apikey</span><span class="o">:</span><span class="w"> </span><span class="kt">environment.supabaseKey</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseKey</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="p">}),</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="c1">//Componente</span>
+<span class="w"> </span><span class="nx">plantes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">toSignal</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">supaservice</span><span class="p">.</span><span class="nx">getPlantes</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">initialValue</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">});</span><span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="httpresource">
+<h4>httpResource<a class="headerlink" href="#httpresource" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://angular.dev/guide/http/http-resource">https://angular.dev/guide/http/http-resource</a></p>
+<p>Para trabajar directamente con <code class="docutils literal notranslate"><span class="pre">Signals</span></code> se puede usar <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> el cual es un objeto reactivo como las signal, pero además con la capacidad de hacer consultas con <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">getPlantesSignal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">httpResource</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">      </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseUrl</span><span class="si">}</span><span class="sb">/rest/v1/plantes?select=*`</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">apikey</span><span class="o">:</span><span class="w"> </span><span class="kt">environment.supabaseKey</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseKey</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">}));</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>El resultado es un objeto <code class="docutils literal notranslate"><span class="pre">Resource</span></code>, el cual es la fuente de datos usada cuando se trabaja por <code class="docutils literal notranslate"><span class="pre">Signals</span></code></p>
+<p>Hay ciertas diferencias como que no necesita una suscripción como los Observables de <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>, sino que empieza a descargar en cuanto es declarado. Permite añadir <code class="docutils literal notranslate"><span class="pre">headers</span></code>, <code class="docutils literal notranslate"><span class="pre">method</span></code> y otros parámetros de http. Al igual que <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>, se puede usar para otro tipo de respuestas:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">httpResource</span><span class="p">.</span><span class="nx">text</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="p">}));</span><span class="w"> </span><span class="c1">// returns a string in value()</span>
+<span class="nx">httpResource</span><span class="p">.</span><span class="nx">blob</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="p">}));</span><span class="w"> </span><span class="c1">// returns a Blob object in value()</span>
+<span class="nx">httpResource</span><span class="p">.</span><span class="nx">arrayBuffer</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="p">}));</span><span class="w"> </span><span class="c1">// returns an ArrayBuffer in value()</span>
+</pre></div>
+</div>
+<p>Puesto que es un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> tiene <code class="docutils literal notranslate"><span class="pre">hasValue()</span></code> y <code class="docutils literal notranslate"><span class="pre">value()</span></code>. Así que para usarlo como signal</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">plantesResource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supaservice</span><span class="p">.</span><span class="nx">getPlantesSignal</span><span class="p">();</span>
+<span class="nx">plantes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">plantesResource</span><span class="p">.</span><span class="nx">hasValue</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">plantesResource</span><span class="p">.</span><span class="nx">value</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span>
+<span class="w">  </span><span class="p">[]);</span>
+</pre></div>
+</div>
+<p>O en la plantilla:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@if(user.hasValue()) {
+  <span class="p">&lt;</span><span class="nt">user-details</span> <span class="err">[</span><span class="na">user</span><span class="err">]=&quot;</span><span class="na">user</span><span class="err">.</span><span class="na">value</span><span class="err">()&quot;</span><span class="p">&gt;</span>
+} @else if (user.error()) {
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Could not load user information<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+} @else if (user.isLoading()) {
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading user info...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+}
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 <section id="autenticacion-con-angular">
@@ -1222,6 +1287,107 @@ document.write(`
 </pre></div>
 </div>
 </section>
+<section id="conversion-de-promesas-a-signals">
+<h3>Conversión de promesas a Signals<a class="headerlink" href="#conversion-de-promesas-a-signals" title="Link to this heading">#</a></h3>
+<p>Puesto que Supabase retorna promesas, estas pueden ser usadas dentro de un <code class="docutils literal notranslate"><span class="pre">Resource</span></code>. Aquí tenemos el ejemplo completo con gestión de errores:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getPlantesSupabase</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;plantes&#39;</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Resource signal para obtener las plantas</span>
+<span class="w">  </span><span class="nx">plantesResource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resource</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({}),</span><span class="w">  </span><span class="c1">// Si no se computa se podria omitir</span>
+<span class="w">    </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="kt">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getPlantesSupabase</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="w">  </span><span class="c1">// Signal que contiene las plantas computado a partir del resource</span>
+<span class="w">  </span><span class="nx">plantesSignal</span><span class="o">:</span><span class="w"> </span><span class="kt">Signal</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">plantesResource</span><span class="p">.</span><span class="nx">hasValue</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">plantesResource</span><span class="p">.</span><span class="nx">value</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[]);</span>
+</pre></div>
+</div>
+<p>Ahora se puede usar esa <code class="docutils literal notranslate"><span class="pre">signal</span></code> en cualquier plantilla. Incluso si se quiere mostrar más en detalle el proceso de carga o errores:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@if (plantesResource.isLoading()) {
+  <span class="p">&lt;</span><span class="nt">mat-spinner</span><span class="p">&gt;&lt;/</span><span class="nt">mat-spinner</span><span class="p">&gt;</span>
+}
+
+@if (plantesResource.error()) {
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;error-banner&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hubo un error al cargar las plantas.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">plantesResource</span><span class="err">.</span><span class="na">reload</span><span class="err">()&quot;</span><span class="p">&gt;</span>Reintentar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+}
+
+@for (planta of plantes(); track planta.id) {
+  <span class="p">&lt;</span><span class="nt">app-planta-card</span> <span class="err">[</span><span class="na">planta</span><span class="err">]=&quot;</span><span class="na">planta</span><span class="err">&quot;</span> <span class="p">/&gt;</span>
+}
+</pre></div>
+</div>
+<p>En caso de querer una planta en concreto con un id, hay que tomar una decisión, ya que el id va a afectar a la petición a la API, podemos delegar el <code class="docutils literal notranslate"><span class="pre">resource</span></code> al componente y simplificar la actualización o crear una función en el servicio centralizando el resource para otros posibles componentes.</p>
+<p><strong>Versión con resource en el componente</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// En el servicio:</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getPlantaSupabaseById</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;plantes&#39;</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span><span class="w"> </span><span class="c1">// .single();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// En el componente</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">supaservice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Supaservice</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">required</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span><span class="w"> </span>
+
+<span class="w">  </span><span class="c1">// Creamos un recurso local que depende directamente del input</span>
+<span class="w">  </span><span class="nx">plantaResource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resource</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">this.id</span><span class="p">()</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">    </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supaservice</span><span class="p">.</span><span class="nx">getPlantaSupabaseById</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">))</span>
+<span class="w">  </span><span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Versión con el resource en el servicio</strong></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// En el servicio:</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getPlantaSupabaseById</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;plantes&#39;</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span><span class="w"> </span><span class="c1">// .single();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">plantaId</span><span class="o">:</span><span class="w"> </span><span class="kt">WritableSignal</span><span class="o">&lt;</span><span class="kt">number</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">getPlantaById</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">plantaId</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">plantaResourceById</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">plantaResourceById</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resource</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">this.plantaId</span><span class="p">()</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">    </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="kt">async</span><span class="w"> </span><span class="p">({</span><span class="nx">params</span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getPlantaSupabaseById</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="o">!</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// En el componente</span>
+<span class="w">  </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">planta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supaservice</span><span class="p">.</span><span class="nx">plantaIdSignal</span><span class="p">;</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// El efecto detecta cambios en id() y actualiza el servicio</span>
+<span class="w">    </span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">supaservice</span><span class="p">.</span><span class="nx">getPlantaById</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">()));</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>El problema de la primera solución es delegar al componente el resource que no puede ser compartido por otros como el estado de la aplicación. El problema de la segunda solución es la necesidad de hacer un <code class="docutils literal notranslate"><span class="pre">effect</span></code>.</p>
+</section>
 </section>
 <section id="envio-y-recepcion-de-ficheros-con-angular">
 <h2>Envío y recepción de ficheros con Angular<a class="headerlink" href="#envio-y-recepcion-de-ficheros-con-angular" title="Link to this heading">#</a></h2>
@@ -1497,7 +1663,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
@@ -1514,6 +1684,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sse">SSE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-angular-con-supabase">Integración de Angular con Supabase</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-observables">Conversión de Promesas a Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-promesas-a-signals">Conversión de promesas a Signals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#envio-y-recepcion-de-ficheros-con-angular">Envío y recepción de ficheros con Angular</a><ul class="nav section-nav flex-column">
