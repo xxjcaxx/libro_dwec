@@ -436,18 +436,17 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-y-componentes">Servicios y Componentes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cookies-y-tokens">Cookies y Tokens</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interceptores">Interceptores</a></li>
@@ -705,8 +704,9 @@ document.write(`
 <section id="datos-asincronos">
 <h2>Datos asíncronos<a class="headerlink" href="#datos-asincronos" title="Link to this heading">#</a></h2>
 <p>En Angular utiliza la librería RxJS para implementar una versión avanzada de manejo de datos asíncronos conocida como Observables, que ofrece capacidades más robustas en comparación con las Promesas tradicionales de JavaScript.</p>
+</section>
 <section id="promesas-vs-observables">
-<h3>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h3>
+<h2>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h2>
 <p>Aunque se puede trabajar con promesas para obtener datos, Angular utiliza por defecto los Observables de RxJS debido a sus ventajas:</p>
 <ul class="simple">
 <li><p><strong>Valores Múltiples</strong>: Mientras que una promesa retorna un solo valor o un error, un Observable puede emitir múltiples valores a lo largo del tiempo.</p></li>
@@ -716,7 +716,7 @@ document.write(`
 </ul>
 </section>
 <section id="uso-de-operadores-en-observables">
-<h3>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h3>
+<h2>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h2>
 <p>Los operadores en RxJS son funciones que permiten transformar, filtrar y combinar flujos de datos de observables. Aquí hay un ejemplo de cómo se utilizan los operadores <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">filter</span></code>:</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">map</span></code></strong>: Manipula los datos y los retorna.</p></li>
@@ -740,7 +740,7 @@ document.write(`
 </div>
 </section>
 <section id="procesamiento-de-respuestas-de-observables">
-<h3>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h3>
+<h2>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h2>
 <p>Un observable puede tener múltiples suscriptores y sólo comienza a emitir datos cuando alguien se suscribe a él. El método <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code> acepta tres funciones como parámetros:</p>
 <ol class="arabic simple">
 <li><p><strong>Función de éxito</strong>: Se ejecuta cuando el observable emite un valor.</p></li>
@@ -763,7 +763,7 @@ document.write(`
 <p>Este procesamiento es bastante manual y permite mucho control, pero hay formas más elegante, como veremos a continuación.</p>
 </section>
 <section id="mostrar-datos-asincronos">
-<h3>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h3>
+<h2>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h2>
 <p>La carga de datos asíncronos puede retrasarse, lo que puede causar errores si Angular intenta acceder a datos que aún no están disponibles. Para manejar esto, se pueden utilizar varias técnicas:</p>
 <ul class="simple">
 <li><p><strong>Objetos Vacíos</strong>: Crear un objeto con datos vacíos para evitar errores.</p></li>
@@ -796,7 +796,7 @@ document.write(`
 <p>Aquí hay muchos conceptos usados para hacer un código más límpio. En primer lugar se usa <code class="docutils literal notranslate"><span class="pre">inject</span></code> para inyectar la dependencia del servicio que nos dará los usuarios. A continuación se crea un <code class="docutils literal notranslate"><span class="pre">effect</span></code> para ejecutar la función interna cuando se produzca un cambio en <code class="docutils literal notranslate"><span class="pre">userID</span></code>, el cual es enviado por el componente padre. Este <code class="docutils literal notranslate"><span class="pre">effect</span></code> hará una petición al servicio y guardará el resultado en <code class="docutils literal notranslate"><span class="pre">user$</span></code>, será un Observable de <code class="docutils literal notranslate"><span class="pre">User</span></code>. En la plantilla se usa <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> con <code class="docutils literal notranslate"><span class="pre">async</span></code>, de forma que esperará a tener datos para validar el <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> y usarlos.</p>
 </section>
 <section id="signals">
-<h3>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h3>
+<h2>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h2>
 <p>Las señales (<code class="docutils literal notranslate"><span class="pre">signals</span></code>) son una opción más simple y menos potente que los observables para tareas reactivas básicas. Desde Angular 17, se consideran una buena opción para tareas reactivas simples.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(){</span>
 <span class="w">  </span><span class="nx">effect</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Valor de num: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
@@ -807,7 +807,7 @@ document.write(`
 </pre></div>
 </div>
 <section id="convertir-a-signal">
-<h4>Convertir a Signal<a class="headerlink" href="#convertir-a-signal" title="Link to this heading">#</a></h4>
+<h3>Convertir a Signal<a class="headerlink" href="#convertir-a-signal" title="Link to this heading">#</a></h3>
 <p>Si usamos el método <code class="docutils literal notranslate"><span class="pre">get()</span></code> nos retorna un Observable que puede ser convertido en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> en el componente mediante <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">//Servicio</span>
 <span class="w"> </span><span class="nx">getPlantes</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -826,7 +826,7 @@ document.write(`
 </div>
 </section>
 <section id="httpresource">
-<h4>httpResource<a class="headerlink" href="#httpresource" title="Link to this heading">#</a></h4>
+<h3>httpResource<a class="headerlink" href="#httpresource" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://angular.dev/guide/http/http-resource">https://angular.dev/guide/http/http-resource</a></p>
 <p>Para trabajar directamente con <code class="docutils literal notranslate"><span class="pre">Signals</span></code> se puede usar <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> el cual es un objeto reactivo como las signal, pero además con la capacidad de hacer consultas con <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">getPlantesSignal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -867,6 +867,18 @@ document.write(`
 </div>
 </section>
 </section>
+<section id="servicios-y-componentes">
+<h2>Servicios y Componentes<a class="headerlink" href="#servicios-y-componentes" title="Link to this heading">#</a></h2>
+<p>A la hora de obtener datos de un servicio y mostrarlo en un componente ha que distinguir la funcionalidad deseada y decidir la mejor estrategia. Veamos algunas posibilidades:</p>
+<ul class="simple">
+<li><p><strong>Descargar un Array</strong>: Si usamos <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>, que es lo recomendado, retornará un <code class="docutils literal notranslate"><span class="pre">Observable</span></code>, el cual podemos convertir en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> con <code class="docutils literal notranslate"><span class="pre">toSignal</span></code> o suscribirnos en <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code>. En caso de usar <code class="docutils literal notranslate"><span class="pre">fetch</span></code> o un SDK como el de Supabase, puesto que se va a descargar una vez, basta con que el servicio retorne una <code class="docutils literal notranslate"><span class="pre">Promise</span></code>. En ese caso lo mejor es crear un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> en el servicio o el componente. Si usamos <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> tendremos un <code class="docutils literal notranslate"><span class="pre">Signal</span></code> de forma más rápida.</p></li>
+<li><p><strong>Descargar un Array o Objeto con criterio de búsqueda una sola vez</strong>: Al introducir el criterio de búsqueda todas las alternativas de la situación anterior son viables con variaciones. Normalmente en criterio vendrá por un <code class="docutils literal notranslate"><span class="pre">input()</span></code>, que es una <code class="docutils literal notranslate"><span class="pre">Signal</span></code>. Por tanto, hay que llamar al servicio cuando esta cambie. <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> o un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> es muy cómodo para esto y se cuenta con la ventajas de <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>. Aunque poner el resource dentro del componente es maś fácil, es mejor, normalmente, ponerlo en el servicio pasando la <code class="docutils literal notranslate"><span class="pre">Signal</span></code> del <code class="docutils literal notranslate"><span class="pre">input()</span></code>. El método tradicional con <code class="docutils literal notranslate"><span class="pre">Observables</span></code> y <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code> también funciona bien.</p></li>
+<li><p><strong>Descargar cualquier dato y modificar la respuesta</strong>: Muchas veces los componentes necesitan los datos de otra manera. Para hacer esas modificaciones funcionan muy bien los operadores <code class="docutils literal notranslate"><span class="pre">Rxjs</span></code> con <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Así que <code class="docutils literal notranslate"><span class="pre">httpClient</span></code> puede ser la mejor opción. También se puede hacer añadiendo <code class="docutils literal notranslate"><span class="pre">compute</span></code>, <code class="docutils literal notranslate"><span class="pre">linkedSignal</span></code> o <code class="docutils literal notranslate"><span class="pre">effect</span></code> si trabajamos con <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>, <code class="docutils literal notranslate"><span class="pre">Resource</span></code> o <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>.</p></li>
+<li><p><strong>Descargar cualquier dato con criterio de búsqueda reactivo</strong>: Conforme se va complicando la situación comienzan a brillar los <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Crear un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> en el servicio y actualizarlo mediante suscripciones a <code class="docutils literal notranslate"><span class="pre">Observables</span></code> es muy cómodo. Luego en el componente se puede suscribir en <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code> o con <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>. Otra opción es usar <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>, pero las transformaciones complejas pueden ser un poco más incómodas.</p></li>
+<li><p><strong>Conectar con SSE o WebSockets</strong>: En ese caso lo más potente es convertir el flujo en <code class="docutils literal notranslate"><span class="pre">Observables</span></code> y luego suscribirse o convertir a <code class="docutils literal notranslate"><span class="pre">Signal</span></code>.</p></li>
+<li><p><strong>Peticiones Encadenadas o Dependientes</strong>:  Aquí es donde hay que decidir entre la “comodidad” de las <code class="docutils literal notranslate"><span class="pre">Signals</span></code> y la “potencia” de <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>. Con <code class="docutils literal notranslate"><span class="pre">Signals</span></code> se trataría de hacer una función de <code class="docutils literal notranslate"><span class="pre">load</span></code> en <code class="docutils literal notranslate"><span class="pre">Resource</span></code> más compleja o encadenar varios <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>. Con <code class="docutils literal notranslate"><span class="pre">httpClient</span></code> es más robusto porque permite encadenar <code class="docutils literal notranslate"><span class="pre">Observables</span></code> con <code class="docutils literal notranslate"><span class="pre">SwitchMap</span></code>. En este caso es mejor <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>.</p></li>
+</ul>
+<p>Quedarían otras situaciones como la <strong>Carga bajo demanda</strong> con <code class="docutils literal notranslate"><span class="pre">triggers</span></code> en los <code class="docutils literal notranslate"><span class="pre">Resource</span></code> o la <strong>Paginación con scroll</strong>, que es más sencilla con <code class="docutils literal notranslate"><span class="pre">scan</span></code> en RxJS.</p>
 </section>
 <section id="autenticacion-con-angular">
 <h2>Autenticación con Angular<a class="headerlink" href="#autenticacion-con-angular" title="Link to this heading">#</a></h2>
@@ -1386,7 +1398,7 @@ document.write(`
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>El problema de la primera solución es delegar al componente el resource que no puede ser compartido por otros como el estado de la aplicación. El problema de la segunda solución es la necesidad de hacer un <code class="docutils literal notranslate"><span class="pre">effect</span></code>.</p>
+<p>El problema de la primera solución es delegar al componente el resource que no puede ser compartido por otros como el estado de la aplicación. El problema de la segunda solución es la necesidad de hacer un <code class="docutils literal notranslate"><span class="pre">effect</span></code>. En general, para peticiones sencillas que no necesitan guardar el estado y que dependen de signals del componente es mejor hacer el <code class="docutils literal notranslate"><span class="pre">resource</span></code> en el componente pero con una función de <code class="docutils literal notranslate"><span class="pre">loader</span></code> sencilla que delegue casi todo al servicio.</p>
 </section>
 </section>
 <section id="envio-y-recepcion-de-ficheros-con-angular">
@@ -1658,18 +1670,17 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#servicios-y-componentes">Servicios y Componentes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacion-con-angular">Autenticación con Angular</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cookies-y-tokens">Cookies y Tokens</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interceptores">Interceptores</a></li>

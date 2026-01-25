@@ -988,6 +988,15 @@ document.write(`
 </div></blockquote>
 <section id="crear-un-formulario-con-signal">
 <h3>Crear un formulario con signal()<a class="headerlink" href="#crear-un-formulario-con-signal" title="Link to this heading">#</a></h3>
+<p>Hay que importar las funciones:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">form</span><span class="p">,</span><span class="w"> </span><span class="nx">FormField</span><span class="p">,</span><span class="w"> </span><span class="nx">required</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms/signals&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">FormField</span><span class="p">],</span>
+<span class="p">})</span>
+</pre></div>
+</div>
 <p>Todo formulario empieza con un modelo de datos:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">LoginData</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>

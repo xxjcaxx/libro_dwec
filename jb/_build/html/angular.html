@@ -510,10 +510,6 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso">Uso</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ngx-charts">3. Ngx Charts</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Uso</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#micro-frontend">Micro Frontend</a><ul class="nav section-nav flex-column">
@@ -1058,10 +1054,10 @@ Hello, {{name}}
 </section>
 <section id="ciclo-de-vida-de-los-componentes">
 <h3>Ciclo de vida de los componentes<a class="headerlink" href="#ciclo-de-vida-de-los-componentes" title="Link to this heading">#</a></h3>
-<figure class="align-right" id="id2">
+<figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="_images/components.png"><img alt="_images/components.png" src="_images/components.png" style="width: 291.5px; height: 224.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Estructura de una aplicación web típica</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Los componentes son elementos reutilizables por naturaleza. Se pueden importar y utilizar en otros componentes, promoviendo la modularidad y evitando la duplicación de código.</p>
@@ -1125,10 +1121,10 @@ Hello, {{name}}
 </div></blockquote>
 <section id="input">
 <h4>input()<a class="headerlink" href="#input" title="Link to this heading">#</a></h4>
-<figure class="align-right" id="id3">
+<figure class="align-right" id="id2">
 <a class="reference internal image-reference" href="_images/inputoutputparentchild.png"><img alt="_images/inputoutputparentchild.png" src="_images/inputoutputparentchild.png" style="width: 318.5px; height: 120.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Diagrama de comunicación entre componentes padres e hijos.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Diagrama de comunicación entre componentes padres e hijos.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Los componentes padres pueden enviar datos a sus componentes hijos mediante propiedades de entrada, y los componentes hijos pueden emitir eventos que sus componentes padres pueden escuchar.</p>
@@ -1814,10 +1810,10 @@ Hello, {{name}}
 </section>
 <section id="integracion-de-bibliotecas-de-terceros">
 <h2>Integración de Bibliotecas de Terceros<a class="headerlink" href="#integracion-de-bibliotecas-de-terceros" title="Link to this heading">#</a></h2>
-<p>Angular, al ser un framework altamente extensible, permite la integración de diversas bibliotecas de terceros que facilitan el desarrollo y mejoran la funcionalidad de nuestras aplicaciones. A continuación, se describen algunas de las bibliotecas más populares y cómo integrarlas en tu proyecto Angular.</p>
+<p>La integración de bibliotecas de terceros no siempre es simple. Algunas tiene su versión compatible con Angular como Bootstrap, pero corren el riesgo de no ser totalmente mantenidas. Las que son para Angular como <code class="docutils literal notranslate"><span class="pre">Angular</span> <span class="pre">Material</span></code> no tienen problemas, pero otras tienen el problema de no tener tipado o de necesitar ser cargadas en el ámbito global.</p>
 <section id="bootstrap">
 <h3>1. Bootstrap<a class="headerlink" href="#bootstrap" title="Link to this heading">#</a></h3>
-<p>Bootstrap es un framework de CSS que facilita la creación de interfaces web responsivas y modernas. Hay varias maneras de integrarlo en un proyecto Angular:</p>
+<p>Hay varias maneras de integrarlo en un proyecto Angular:</p>
 <section id="uso-del-cdn-de-bootstrap">
 <h4>Uso del CDN de Bootstrap<a class="headerlink" href="#uso-del-cdn-de-bootstrap" title="Link to this heading">#</a></h4>
 <p>Esta es la forma más simple y rápida de agregar Bootstrap a un proyecto.</p>
@@ -1908,75 +1904,6 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 </div>
 </section>
 </section>
-<section id="ngx-charts">
-<h3>3. Ngx Charts<a class="headerlink" href="#ngx-charts" title="Link to this heading">#</a></h3>
-<p>Ngx Charts es una biblioteca para crear gráficos y visualizaciones interactivas en Angular.</p>
-<p>Para instalar Ngx Charts, ejecuta el siguiente comando:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>@swimlane/ngx-charts<span class="w"> </span>--save
-</pre></div>
-</div>
-<p>Luego, importa el módulo en <code class="docutils literal notranslate"><span class="pre">app.module.ts</span></code>:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgxChartsModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@swimlane/ngx-charts&#39;</span><span class="p">;</span>
-
-<span class="kd">@NgModule</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">NgxChartsModule</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
-<section id="id1">
-<h4>Uso<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
-<p>Puedes encontrar ejemplos y documentación detallada en la <a class="reference external" href="https://swimlane.gitbook.io/ngx-charts/">web oficial de Ngx Charts</a>. Aquí tienes un ejemplo básico de cómo usar un gráfico de barras:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-
-<span class="kd">@Component</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">    &lt;ngx-charts-bar-vertical</span>
-<span class="sb">      [view]=&quot;[700, 400]&quot;</span>
-<span class="sb">      [scheme]=&quot;colorScheme&quot;</span>
-<span class="sb">      [results]=&quot;single&quot;</span>
-<span class="sb">      [gradient]=&quot;gradient&quot;</span>
-<span class="sb">      [xAxis]=&quot;showXAxis&quot;</span>
-<span class="sb">      [yAxis]=&quot;showYAxis&quot;</span>
-<span class="sb">      [legend]=&quot;showLegend&quot;</span>
-<span class="sb">      [showXAxisLabel]=&quot;showXAxisLabel&quot;</span>
-<span class="sb">      [showYAxisLabel]=&quot;showYAxisLabel&quot;</span>
-<span class="sb">      [xAxisLabel]=&quot;xAxisLabel&quot;</span>
-<span class="sb">      [yAxisLabel]=&quot;yAxisLabel&quot;&gt;</span>
-<span class="sb">    &lt;/ngx-charts-bar-vertical&gt;</span>
-<span class="sb">  `</span>
-<span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">single</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Germany&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">8940000</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;USA&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">5000000</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">];</span>
-
-<span class="w">  </span><span class="nx">showXAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">showYAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">gradient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">showLegend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">showXAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">xAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Country&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">showYAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">yAxisLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Population&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">colorScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">domain</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;#5AA454&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#A10A28&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#C7B42C&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#AAAAAA&#39;</span><span class="p">]</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-</section>
 </section>
 <section id="micro-frontend">
 <h2>Micro Frontend<a class="headerlink" href="#micro-frontend" title="Link to this heading">#</a></h2>
@@ -1988,10 +1915,10 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <div><p>Se recomienda leer todas las opciones descritas en el artículo <a class="reference external" href="https://www.freecodecamp.org/news/complete-micro-frontends-guide/">https://www.freecodecamp.org/news/complete-micro-frontends-guide/</a> y otros sitios. Como en todo, en estos apuntes se opta por una opción por sus ventajas y por ser coherente con lo que ya se ha visto.</p>
 </div></blockquote>
 <p>Los <code class="docutils literal notranslate"><span class="pre">Web</span> <span class="pre">Components</span></code> tienen un <code class="docutils literal notranslate"><span class="pre">Shadow</span> <span class="pre">Root</span></code> y sus propios estilos y pueden ser totalmente independientes entre ellos. Además se pueden comunicar entre ellos por eventos, atributos, propiedades o servicios comunes.</p>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="_images/microfrontendwebcomponents.png"><img alt="_images/microfrontendwebcomponents.png" src="_images/microfrontendwebcomponents.png" style="width: 1152.0px; height: 768.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Una única aplicación web con varias aplicaciones relacionadas.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Una única aplicación web con varias aplicaciones relacionadas.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="integrar-un-componente-angular-en-un-micro-frontend">
@@ -2204,10 +2131,6 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-material">2. Angular Material</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uso">Uso</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ngx-charts">3. Ngx Charts</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Uso</a></li>
 </ul>
 </li>
 </ul>
