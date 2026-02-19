@@ -456,6 +456,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geolocalizacion-en-formularios">Geolocalización en formularios</a></li>
 </ul>
             </nav>
         </div>
@@ -762,13 +763,13 @@ document.write(`
 <span class="p">}</span>
 
 <span class="nx">get</span><span class="w"> </span><span class="nx">nameNotValid</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">).</span><span class="nx">invalid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">).</span><span class="nx">touched</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">controls</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">].</span><span class="nx">invalid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formulario</span><span class="p">.</span><span class="nx">controls</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">].</span><span class="nx">touched</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Para aplicar las validaciones visualmente en el HTML, podemos utilizar getters:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inputName&quot;</span> <span class="na">formControlName</span><span class="o">=</span><span class="s">&quot;name&quot;</span> 
-  <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;</span><span class="na">nameNotValid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;&quot;</span><span class="p">&gt;</span>
+  <span class="err">[</span><span class="na">ngClass</span><span class="err">]=&quot;{</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">nameNotValid</span><span class="err">,</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span><span class="na">:</span> <span class="na">nameNotValid</span> <span class="err">}&quot;</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -1237,6 +1238,42 @@ document.write(`
 <div><p>Cuando hay ficheros, no importa que se trate de formularios reactivos o de plantilla, ya que los <code class="docutils literal notranslate"><span class="pre">FormControl</span></code> no manejar ficheros. Hay que atender al evento de subida del fichero y tratarlo por separado del <code class="docutils literal notranslate"><span class="pre">FormGroup</span></code>.</p>
 </div></blockquote>
 </section>
+<section id="geolocalizacion-en-formularios">
+<h2>Geolocalización en formularios<a class="headerlink" href="#geolocalizacion-en-formularios" title="Link to this heading">#</a></h2>
+<p>Puesto que puede que más de un componente formulario o no necesite la geolocalización, lo mejor es ponerla en un servicio:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// En el servicio </span>
+<span class="nx">getCurrentPosition</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">GeolocationPosition</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;Geolocalización no soportada&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">.</span><span class="nx">getCurrentPosition</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">// En el componente:</span>
+
+<span class="w"> </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">locationService</span><span class="o">:</span><span class="w"> </span><span class="kt">LocationService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">obtenerUbicacion</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">locationService</span><span class="p">.</span><span class="nx">getCurrentPosition</span><span class="p">()</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">pos</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">latitud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pos</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">latitude</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">longitud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pos</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">longitude</span><span class="p">;</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">      </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">obtenerUbicacion</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1341,6 +1378,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ficheros-en-formularios">Ficheros en Formularios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geolocalizacion-en-formularios">Geolocalización en formularios</a></li>
 </ul>
   </nav></div>
 

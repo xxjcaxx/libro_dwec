@@ -491,6 +491,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cualquier-objeto-puede-ser-un-listener">Cualquier objeto puede ser un <code class="docutils literal notranslate"><span class="pre">listener</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis">Web APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigator-geolocation">Navigator.geolocation</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>
 </ul>
             </nav>
@@ -1902,6 +1906,46 @@ Aquí hay ejemplo sencillo que muestra cómo capturar eventos de teclado y obten
 <p><a class="reference external" href="https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components/">https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components/</a></p>
 </section>
 </section>
+<section id="web-apis">
+<h2>Web APIs<a class="headerlink" href="#web-apis" title="Link to this heading">#</a></h2>
+<p>Muchas de las web APIs que proporciona el entorno de ejecución del navegador las vamos desgranando a lo largo de este curso como el <code class="docutils literal notranslate"><span class="pre">localstorage</span></code> o la capacidad de hacer <code class="docutils literal notranslate"><span class="pre">fetch</span></code> o la consola. Las damos por hechas, pero no forman parte del lenguaje Javascript estrictamente y algunas no están disponibles en <code class="docutils literal notranslate"><span class="pre">Node</span></code>, por ejemplo.</p>
+<p>Este apartado tiene ejemplos de algunas interesantes que pueden ser necesarias durante el curso:</p>
+<section id="navigator-geolocation">
+<h3>Navigator.geolocation<a class="headerlink" href="#navigator-geolocation" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">obtenerUbicacion</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;La geolocalización no está soportada en este navegador&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">.</span><span class="nx">getCurrentPosition</span><span class="p">(</span>
+<span class="w">      </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">position</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;latitud&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">latitude</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">6</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;longitud&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">longitude</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">6</span><span class="p">);</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">PERMISSION_DENIED</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Permiso de geolocalización denegado&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">POSITION_UNAVAILABLE</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Ubicación no disponible&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">TIMEOUT</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Tiempo de espera agotado&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">          </span><span class="k">default</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Error desconocido&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="notas-finales">
 <h2>Notas finales<a class="headerlink" href="#notas-finales" title="Link to this heading">#</a></h2>
 <p>Cuando programamos para el Frontend, la manera de tratar el DOM es muy diversa. Si distinguimos entre una SPA y una web generada en el servidor con algo de Javascript, las técnicas son muy diferentes. En el caso de la SPA, es muy importante tener claro una arquitectura MVC o similar en la que unas plantillas se rellenen con los datos del servidor. La interactividad y el manejo de formularios se suele implementar toda en Javascript porque préviamente no havia nada de HTML. En una web más tradicional en la que el HTML ya está generado por el servidor, es importante saber buscar nodos y manipularlos sin romper la estructura previa.
@@ -2044,6 +2088,10 @@ Por otro lado, está el Javascript enfocado a la parte visual: controlar el scro
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-de-teclado">Eventos de teclado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cualquier-objeto-puede-ser-un-listener">Cualquier objeto puede ser un <code class="docutils literal notranslate"><span class="pre">listener</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis">Web APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigator-geolocation">Navigator.geolocation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">Notas finales</a></li>
