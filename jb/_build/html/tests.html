@@ -422,6 +422,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-de-pruebas">Frameworks de Pruebas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-vitest">Instalación de Vitest</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-en-package-json">Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vitest-browser">Vitest Browser</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">
@@ -486,7 +487,8 @@ document.write(`
 <li><p><strong>Puppeteer</strong></p></li>
 <li><p><strong>Vitest</strong></p></li>
 </ul>
-<p>Nosotros usaremos <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> en esta primera parte del curso porque se integra fácilmente en Vite y porque tiene algunas características de suites más modernas, en especial su facilidad de uso, su facilidad de emular a un navegador y su funcionamiento nativo con módulos ES6. Otra alternativa coherente con el curso podría ser <code class="docutils literal notranslate"><span class="pre">Jasmine</span></code>, ya que es la suite de tests por defecto en <code class="docutils literal notranslate"><span class="pre">Angular</span></code>. No obstante, es mucho más complicado de usar en Javascript Vanilla y funciona con dificultad con módulos ES6.</p>
+<p>Nosotros usaremos <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> en esta primera parte del curso porque se integra fácilmente en Vite y porque tiene algunas características de suites más modernas, en especial su facilidad de uso, su facilidad de emular a un navegador o incluso funcionar en el navegador y su funcionamiento nativo con módulos ES6. Angular incorpora Vitest en sus últimas versiones.</p>
+<p>Tradicionalmente las suites de tests se ejecutan con <code class="docutils literal notranslate"><span class="pre">node</span></code>, lo que implica ejecutar código <code class="docutils literal notranslate"><span class="pre">javascript</span></code> en el sistema. Esto provoca varios problemas al testar frontend como las APIs del navegador o las distintas versiones soportadas y la integración con módulos ESM. No obstante, <code class="docutils literal notranslate"><span class="pre">Vitest</span></code> no tiene esos problemas y, además, han incorporado el <code class="docutils literal notranslate"><span class="pre">browser</span> <span class="pre">mode</span></code> para testar directamente en un navegador.</p>
 <section id="instalacion-de-vitest">
 <h3>Instalación de Vitest<a class="headerlink" href="#instalacion-de-vitest" title="Link to this heading">#</a></h3>
 <p>Para instalar Vitest, utilizamos el siguiente comando:</p>
@@ -528,6 +530,18 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 </pre></div>
 </div>
 <p>También podemos agregar Vitest como una extensión en Visual Studio Code desde el siguiente enlace: <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=vitest.explorer">Vitest Explorer</a>.</p>
+</section>
+<section id="vitest-browser">
+<h3>Vitest Browser<a class="headerlink" href="#vitest-browser" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://vitest.dev/guide/browser/">https://vitest.dev/guide/browser/</a></p>
+<p>Si el objetivo es validar componentes con total fidelidad visual y funcional, el <strong>Browser Mode</strong> de Vitest supera a <code class="docutils literal notranslate"><span class="pre">jsdom</span></code> al ejecutar las pruebas en un entorno real y permitir la depuración interactiva. Aunque alternativas como <code class="docutils literal notranslate"><span class="pre">Playwright</span></code> o <code class="docutils literal notranslate"><span class="pre">Cypress</span></code> también se integran en el ecosistema, la ventaja competitiva de Vitest radica en la <strong>unificación</strong>: utiliza el mismo motor de compilación de <strong>Vite</strong> para todo tipo de pruebas, eliminando la fricción de configuración entre tests unitarios y de componentes. No obstante, para flujos <strong>End-to-End (E2E)</strong> complejos y desacoplados del código fuente, sigue siendo recomendable mantener la especialización que ofrecen herramientas dedicadas.</p>
+<blockquote>
+<div><p>Un posible problema viene cuando se quiere integrar en un ciclo CI/CD, ya que entonces se deben usar herramientas más automáticas ejecutables en cualquier sitio y sin interactividad.</p>
+</div></blockquote>
+<p>La manera más sencilla es:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>vitest<span class="w"> </span>init<span class="w"> </span>browser
+</pre></div>
+</div>
 </section>
 </section>
 <section id="desarrollo-guiado-por-pruebas-tdd">
@@ -954,6 +968,7 @@ npx<span class="w"> </span>vitest<span class="w"> </span>--ui
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frameworks-de-pruebas">Frameworks de Pruebas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-vitest">Instalación de Vitest</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-en-package-json">Configuración en <code class="docutils literal notranslate"><span class="pre">package.json</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vitest-browser">Vitest Browser</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-guiado-por-pruebas-tdd">Desarrollo Guiado por Pruebas (TDD)</a><ul class="nav section-nav flex-column">

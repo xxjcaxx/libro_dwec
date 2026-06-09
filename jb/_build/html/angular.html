@@ -516,6 +516,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-un-componente-angular-en-un-micro-frontend">Integrar un componente Angular en un Micro Frontend</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programar-con-ia">Programar con IA</a></li>
 </ul>
             </nav>
         </div>
@@ -825,9 +826,18 @@ son entidades independientes y reutilizables en diferentes partes de una aplicac
 <p>Angular permite vincular atributos HTML a propiedades de componentes utilizando la sintaxis <code class="docutils literal notranslate"><span class="pre">[]</span></code>. Por ejemplo:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="err">[</span><span class="na">src</span><span class="err">]=&quot;</span><span class="na">product</span><span class="err">.</span><span class="na">imageUrl</span><span class="err">&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="err">[</span><span class="na">style</span><span class="err">.</span><span class="na">height</span><span class="err">.</span><span class="na">px</span><span class="err">]=&quot;</span><span class="na">imageHeight</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span> <span class="err">[</span><span class="na">style</span><span class="err">.</span><span class="na">background-color</span><span class="err">]=&quot;</span><span class="na">isEven</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">red</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">green</span><span class="err">&#39;&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span> <span class="err">[</span><span class="na">style</span><span class="err">.</span><span class="na">width</span><span class="err">.</span><span class="na">px</span><span class="err">]=&quot;</span><span class="na">width</span><span class="err">&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span> <span class="err">[</span><span class="na">style</span><span class="err">]=&quot;</span><span class="na">styleObject</span><span class="err">&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span> <span class="err">[</span><span class="na">class</span><span class="err">.</span><span class="na">even</span><span class="err">]=&quot;</span><span class="na">isEven</span><span class="err">&quot;</span> <span class="err">[</span><span class="na">class</span><span class="err">.</span><span class="na">last</span><span class="err">]=&quot;</span><span class="na">isLast</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span> <span class="err">[</span><span class="na">class</span><span class="err">.</span><span class="na">even</span><span class="err">]=&quot;</span><span class="na">isEven</span><span class="err">&quot;</span> <span class="err">[</span><span class="na">class</span><span class="err">.</span><span class="na">last</span><span class="err">]=&quot;</span><span class="na">isLast</span><span class="err">&quot;</span> <span class="err">[</span><span class="na">class</span><span class="err">.</span><span class="na">active</span><span class="err">]=&quot;</span><span class="na">isLast</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span> <span class="err">[</span><span class="na">class</span><span class="err">]=&quot;</span><span class="na">classObject</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p><strong>Directivas <code class="docutils literal notranslate"><span class="pre">ngStyle</span></code> y <code class="docutils literal notranslate"><span class="pre">ngClass</span></code>:</strong></p>
+<blockquote>
+<div><p><strong>No son recomendables</strong> a menos que queramos un comportamiento avanzado. Es mejor usar las interpolaciones [] simples.</p>
+</div></blockquote>
 <p>Las directivas <code class="docutils literal notranslate"><span class="pre">ngStyle</span></code> y <code class="docutils literal notranslate"><span class="pre">ngClass</span></code> proporcionan mayor flexibilidad para manipular estilos y clases CSS a partir de variables o expresiones. Ambas requieren la importación del módulo <code class="docutils literal notranslate"><span class="pre">CommonModule</span></code>.</p>
 <p><strong><code class="docutils literal notranslate"><span class="pre">ngStyle</span></code>:</strong></p>
 <ul class="simple">
@@ -1975,6 +1985,12 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 </div></blockquote>
 </section>
 </section>
+<section id="programar-con-ia">
+<h2>Programar con IA<a class="headerlink" href="#programar-con-ia" title="Link to this heading">#</a></h2>
+<p>Angular incorpora herramientas para facilitar el trabajo de programación con IA.</p>
+<p>Existe el riesgo de que los agentes usen soluciones obsoletas o no cumplan reglas de estilo. Para solucionarlo se pueden agregar <code class="docutils literal notranslate"><span class="pre">Skills</span></code> a las diferentes herramientas de IA agéntica. Angular proporciona en su web oficial unas <code class="docutils literal notranslate"><span class="pre">Skills</span></code> base.</p>
+<p>Si necesitamos que la IA interactue con el <code class="docutils literal notranslate"><span class="pre">CLI</span></code>, Angular proporciona un <code class="docutils literal notranslate"><span class="pre">MCP</span></code> oficial que ayuda a las herramientas de IA.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2139,6 +2155,7 @@ npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class=
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrar-un-componente-angular-en-un-micro-frontend">Integrar un componente Angular en un Micro Frontend</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programar-con-ia">Programar con IA</a></li>
 </ul>
   </nav></div>
 

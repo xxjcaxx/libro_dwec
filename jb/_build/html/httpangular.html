@@ -436,11 +436,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
@@ -488,6 +490,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="comunicacion-con-el-servidor-en-angular">
 <h1>Comunicación con el servidor en Angular<a class="headerlink" href="#comunicacion-con-el-servidor-en-angular" title="Link to this heading">#</a></h1>
 <p>En Javascript vanilla podemos usar <code class="docutils literal notranslate"><span class="pre">fetch</span></code> para comunicarnos con el servidor o librerias de terceros como <code class="docutils literal notranslate"><span class="pre">Axios</span></code> o <code class="docutils literal notranslate"><span class="pre">JQuery</span></code>. En Angular no se prohibe usar esas herramientas, pero su ecosistema está más preparado para usar su servicio <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> porque se integra con los <code class="docutils literal notranslate"><span class="pre">Observables</span></code>, los <code class="docutils literal notranslate"><span class="pre">Interceptores</span></code>, serialización de datos, gestión de errores y tests unitarios.</p>
+<p>Una vez obtenidos los datos, a partir de Angular 20, hay que transformarlos en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> con las técnicas que veremos en este capítulo.</p>
 <p>Antes de ver cómo usar ese servicio veamos lo que es un servicio.</p>
 <section id="servicios-en-angular">
 <h2>Servicios en Angular<a class="headerlink" href="#servicios-en-angular" title="Link to this heading">#</a></h2>
@@ -704,9 +707,8 @@ document.write(`
 <section id="datos-asincronos">
 <h2>Datos asíncronos<a class="headerlink" href="#datos-asincronos" title="Link to this heading">#</a></h2>
 <p>En Angular utiliza la librería RxJS para implementar una versión avanzada de manejo de datos asíncronos conocida como Observables, que ofrece capacidades más robustas en comparación con las Promesas tradicionales de JavaScript.</p>
-</section>
 <section id="promesas-vs-observables">
-<h2>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h2>
+<h3>Promesas vs. Observables<a class="headerlink" href="#promesas-vs-observables" title="Link to this heading">#</a></h3>
 <p>Aunque se puede trabajar con promesas para obtener datos, Angular utiliza por defecto los Observables de RxJS debido a sus ventajas:</p>
 <ul class="simple">
 <li><p><strong>Valores Múltiples</strong>: Mientras que una promesa retorna un solo valor o un error, un Observable puede emitir múltiples valores a lo largo del tiempo.</p></li>
@@ -716,7 +718,7 @@ document.write(`
 </ul>
 </section>
 <section id="uso-de-operadores-en-observables">
-<h2>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h2>
+<h3>Uso de Operadores en Observables<a class="headerlink" href="#uso-de-operadores-en-observables" title="Link to this heading">#</a></h3>
 <p>Los operadores en RxJS son funciones que permiten transformar, filtrar y combinar flujos de datos de observables. Aquí hay un ejemplo de cómo se utilizan los operadores <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">filter</span></code>:</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">map</span></code></strong>: Manipula los datos y los retorna.</p></li>
@@ -740,7 +742,7 @@ document.write(`
 </div>
 </section>
 <section id="procesamiento-de-respuestas-de-observables">
-<h2>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h2>
+<h3>Procesamiento de Respuestas de Observables<a class="headerlink" href="#procesamiento-de-respuestas-de-observables" title="Link to this heading">#</a></h3>
 <p>Un observable puede tener múltiples suscriptores y sólo comienza a emitir datos cuando alguien se suscribe a él. El método <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code> acepta tres funciones como parámetros:</p>
 <ol class="arabic simple">
 <li><p><strong>Función de éxito</strong>: Se ejecuta cuando el observable emite un valor.</p></li>
@@ -763,7 +765,7 @@ document.write(`
 <p>Este procesamiento es bastante manual y permite mucho control, pero hay formas más elegante, como veremos a continuación.</p>
 </section>
 <section id="mostrar-datos-asincronos">
-<h2>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h2>
+<h3>Mostrar Datos Asíncronos<a class="headerlink" href="#mostrar-datos-asincronos" title="Link to this heading">#</a></h3>
 <p>La carga de datos asíncronos puede retrasarse, lo que puede causar errores si Angular intenta acceder a datos que aún no están disponibles. Para manejar esto, se pueden utilizar varias técnicas:</p>
 <ul class="simple">
 <li><p><strong>Objetos Vacíos</strong>: Crear un objeto con datos vacíos para evitar errores.</p></li>
@@ -795,9 +797,11 @@ document.write(`
 </div>
 <p>Aquí hay muchos conceptos usados para hacer un código más límpio. En primer lugar se usa <code class="docutils literal notranslate"><span class="pre">inject</span></code> para inyectar la dependencia del servicio que nos dará los usuarios. A continuación se crea un <code class="docutils literal notranslate"><span class="pre">effect</span></code> para ejecutar la función interna cuando se produzca un cambio en <code class="docutils literal notranslate"><span class="pre">userID</span></code>, el cual es enviado por el componente padre. Este <code class="docutils literal notranslate"><span class="pre">effect</span></code> hará una petición al servicio y guardará el resultado en <code class="docutils literal notranslate"><span class="pre">user$</span></code>, será un Observable de <code class="docutils literal notranslate"><span class="pre">User</span></code>. En la plantilla se usa <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> con <code class="docutils literal notranslate"><span class="pre">async</span></code>, de forma que esperará a tener datos para validar el <code class="docutils literal notranslate"><span class="pre">&#64;if</span></code> y usarlos.</p>
 </section>
+</section>
 <section id="signals">
 <h2>Signals<a class="headerlink" href="#signals" title="Link to this heading">#</a></h2>
 <p>Las señales (<code class="docutils literal notranslate"><span class="pre">signals</span></code>) son una opción más simple y menos potente que los observables para tareas reactivas básicas. Desde Angular 17, se consideran una buena opción para tareas reactivas simples.</p>
+<p>A partir de la versión 20 se recomienda usarlas para casi todo.</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(){</span>
 <span class="w">  </span><span class="nx">effect</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Valor de num: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
 <span class="p">}</span>
@@ -806,9 +810,83 @@ document.write(`
 <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">num</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
+<p>El ejemplo anterior no tiene un código recomendable, pero se puede ver cómo crear una <code class="docutils literal notranslate"><span class="pre">signal</span></code>, un <code class="docutils literal notranslate"><span class="pre">effect</span></code>, como actualizarla mediante una función y <code class="docutils literal notranslate"><span class="pre">update</span></code> o asignar un valor directamente con `set.</p>
 <section id="convertir-a-signal">
 <h3>Convertir a Signal<a class="headerlink" href="#convertir-a-signal" title="Link to this heading">#</a></h3>
-<p>Si usamos el método <code class="docutils literal notranslate"><span class="pre">get()</span></code> nos retorna un Observable que puede ser convertido en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> en el componente mediante <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>:</p>
+<p>La manera recomendada de convertir el resultado de <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>, que es un <code class="docutils literal notranslate"><span class="pre">Observable</span></code> es mediante un <code class="docutils literal notranslate"><span class="pre">rxResource</span></code>. Este tiene la sintaxis de un <code class="docutils literal notranslate"><span class="pre">resource</span></code> específico de <code class="docutils literal notranslate"><span class="pre">rxjs</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-smart-search&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">standalone</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;!-- Evento que dispara el cambio --&gt;</span>
+<span class="sb">    &lt;input #term type=&quot;text&quot; (keyup.enter)=&quot;search(term.value)&quot; placeholder=&quot;Buscar...&quot;&gt;</span>
+<span class="sb">    &lt;button (click)=&quot;search(term.value)&quot;&gt;Consultar&lt;/button&gt;</span>
+
+<span class="sb">    @if (dataResource.isLoading()) {</span>
+<span class="sb">      &lt;p&gt;Cargando...&lt;/p&gt;</span>
+<span class="sb">    } @else {</span>
+<span class="sb">      &lt;ul&gt;</span>
+<span class="sb">        @for (item of dataResource.value(); track item.id) {</span>
+<span class="sb">          &lt;li&gt;{{ item.name }}&lt;/li&gt;</span>
+<span class="sb">        }</span>
+<span class="sb">      &lt;/ul&gt;</span>
+<span class="sb">    }</span>
+<span class="sb">  `</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SmartSearchComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">UserService</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 1. Definimos una señal para el parámetro de búsqueda</span>
+<span class="w">  </span><span class="c1">// Iniciamos con el valor por defecto</span>
+<span class="w">  </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;valor-por-defecto&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 2. El recurso se &quot;atara&quot; a la señal &#39;query&#39;</span>
+<span class="w">  </span><span class="nx">dataResource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rxResource</span><span class="p">({</span>
+<span class="w">    </span><span class="c1">// El &#39;request&#39; observa la señal. Si query() cambia, el loader se ejecuta.</span>
+<span class="w">    </span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">q</span><span class="o">:</span><span class="w"> </span><span class="kt">this.query</span><span class="p">()</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Se ejecuta al inicio con &#39;valor-por-defecto&#39; </span>
+<span class="w">      </span><span class="c1">// y cada vez que llames a search()</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">userService</span><span class="p">.</span><span class="nx">searchUsers</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">q</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// 3. El evento simplemente actualiza la señal</span>
+<span class="w">  </span><span class="nx">search</span><span class="p">(</span><span class="nx">newTerm</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">newTerm</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La adopción de este patrón a partir de Angular 21 optimiza el ciclo de vida de los componentes al eliminar la dependencia de hooks imperativos como <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code>. Al integrar la gestión de estados asíncronos mediante señales nativas, se prescinde del uso de <code class="docutils literal notranslate"><span class="pre">AsyncPipe</span></code>, lo que facilita la implementación de aplicaciones <em>zoneless</em> y mejora la eficiencia en la detección de cambios. Asimismo, el uso de recursos proporciona una infraestructura robusta para el manejo de estados de carga y error de forma intrínseca, garantizando una reactividad automática y coherente ante la fluctuación de parámetros de entrada sin requerir implementaciones manuales de lógica de suscripción.</p>
+<p>Si no queremos que descargue los datos al inicio del componente podemos implementar el patrón <code class="docutils literal notranslate"><span class="pre">lazy</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SmartComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">UserService</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1">// Iniciamos en null para no disparar la petición automática</span>
+<span class="w">  </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="o">&lt;</span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Datos por defecto que se muestran antes de la primera búsqueda</span>
+<span class="w">  </span><span class="nx">defaultData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Datos iniciales locales&#39;</span><span class="w"> </span><span class="p">}];</span>
+
+<span class="w">  </span><span class="nx">dataResource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rxResource</span><span class="p">({</span>
+<span class="w">    </span><span class="c1">// Si request devuelve undefined/null, el loader no se ejecuta</span>
+<span class="w">    </span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">query</span><span class="p">()</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="kc">undefined</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">userService</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// El evento que activa la primera petición real</span>
+<span class="w">  </span><span class="nx">onEvent</span><span class="p">(</span><span class="nx">term</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">term</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// En el template decides qué mostrar</span>
+<span class="w">  </span><span class="c1">// value.status() === ResourceStatus.Idle indica que no ha empezado nada</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Otra opción menos recomendable es que un Observable que puede ser convertido en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> en el componente mediante <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>:</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">//Servicio</span>
 <span class="w"> </span><span class="nx">getPlantes</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">Planta</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">environment</span><span class="p">.</span><span class="nx">supabaseUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/rest/v1/plantes?select=*&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
@@ -824,6 +902,7 @@ document.write(`
 <span class="w"> </span><span class="nx">plantes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">toSignal</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">supaservice</span><span class="p">.</span><span class="nx">getPlantes</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">initialValue</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">});</span><span class="w"> </span>
 </pre></div>
 </div>
+<p>Pero no tenemos acceso al estado, no ayuda a mejorar la reactividad o la recarga mediante <code class="docutils literal notranslate"><span class="pre">request</span></code>.</p>
 </section>
 <section id="httpresource">
 <h3>httpResource<a class="headerlink" href="#httpresource" title="Link to this heading">#</a></h3>
@@ -865,16 +944,17 @@ document.write(`
 }
 </pre></div>
 </div>
+<p>Es menos potente y versatil que la combinación <code class="docutils literal notranslate"><span class="pre">httpClient</span> <span class="pre">+</span> <span class="pre">rxResource</span></code>.</p>
 </section>
 </section>
 <section id="servicios-y-componentes">
 <h2>Servicios y Componentes<a class="headerlink" href="#servicios-y-componentes" title="Link to this heading">#</a></h2>
 <p>A la hora de obtener datos de un servicio y mostrarlo en un componente ha que distinguir la funcionalidad deseada y decidir la mejor estrategia. Veamos algunas posibilidades:</p>
 <ul class="simple">
-<li><p><strong>Descargar un Array</strong>: Si usamos <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>, que es lo recomendado, retornará un <code class="docutils literal notranslate"><span class="pre">Observable</span></code>, el cual podemos convertir en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> con <code class="docutils literal notranslate"><span class="pre">toSignal</span></code> o suscribirnos en <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code>. En caso de usar <code class="docutils literal notranslate"><span class="pre">fetch</span></code> o un SDK como el de Supabase, puesto que se va a descargar una vez, basta con que el servicio retorne una <code class="docutils literal notranslate"><span class="pre">Promise</span></code>. En ese caso lo mejor es crear un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> en el servicio o el componente. Si usamos <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> tendremos un <code class="docutils literal notranslate"><span class="pre">Signal</span></code> de forma más rápida.</p></li>
-<li><p><strong>Descargar un Array o Objeto con criterio de búsqueda una sola vez</strong>: Al introducir el criterio de búsqueda todas las alternativas de la situación anterior son viables con variaciones. Normalmente en criterio vendrá por un <code class="docutils literal notranslate"><span class="pre">input()</span></code>, que es una <code class="docutils literal notranslate"><span class="pre">Signal</span></code>. Por tanto, hay que llamar al servicio cuando esta cambie. <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> o un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> es muy cómodo para esto y se cuenta con la ventajas de <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>. Aunque poner el resource dentro del componente es maś fácil, es mejor, normalmente, ponerlo en el servicio pasando la <code class="docutils literal notranslate"><span class="pre">Signal</span></code> del <code class="docutils literal notranslate"><span class="pre">input()</span></code>. El método tradicional con <code class="docutils literal notranslate"><span class="pre">Observables</span></code> y <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code> también funciona bien.</p></li>
-<li><p><strong>Descargar cualquier dato y modificar la respuesta</strong>: Muchas veces los componentes necesitan los datos de otra manera. Para hacer esas modificaciones funcionan muy bien los operadores <code class="docutils literal notranslate"><span class="pre">Rxjs</span></code> con <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Así que <code class="docutils literal notranslate"><span class="pre">httpClient</span></code> puede ser la mejor opción. También se puede hacer añadiendo <code class="docutils literal notranslate"><span class="pre">compute</span></code>, <code class="docutils literal notranslate"><span class="pre">linkedSignal</span></code> o <code class="docutils literal notranslate"><span class="pre">effect</span></code> si trabajamos con <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>, <code class="docutils literal notranslate"><span class="pre">Resource</span></code> o <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>.</p></li>
-<li><p><strong>Descargar cualquier dato con criterio de búsqueda reactivo</strong>: Conforme se va complicando la situación comienzan a brillar los <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Crear un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> en el servicio y actualizarlo mediante suscripciones a <code class="docutils literal notranslate"><span class="pre">Observables</span></code> es muy cómodo. Luego en el componente se puede suscribir en <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code> o con <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>. Otra opción es usar <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>, pero las transformaciones complejas pueden ser un poco más incómodas.</p></li>
+<li><p><strong>Descargar un Array</strong>: Si usamos <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>, que es lo recomendado, retornará un <code class="docutils literal notranslate"><span class="pre">Observable</span></code>, el cual podemos convertir en <code class="docutils literal notranslate"><span class="pre">Signal</span></code> con <code class="docutils literal notranslate"><span class="pre">rxResource</span></code> o <code class="docutils literal notranslate"><span class="pre">toSignal</span></code> o suscribirnos en <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code>. En caso de usar <code class="docutils literal notranslate"><span class="pre">fetch</span></code> o un SDK como el de Supabase, puesto que se va a descargar una vez, basta con que el servicio retorne una <code class="docutils literal notranslate"><span class="pre">Promise</span></code>. En ese caso lo mejor es crear un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> en el servicio o el componente. Si usamos <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> tendremos un <code class="docutils literal notranslate"><span class="pre">Signal</span></code> de forma más simple, pero con menos control.</p></li>
+<li><p><strong>Descargar un Array o Objeto con criterio de búsqueda una sola vez</strong>: Al introducir el criterio de búsqueda todas las alternativas de la situación anterior son viables con variaciones. Normalmente en criterio vendrá por un <code class="docutils literal notranslate"><span class="pre">input()</span></code>, que es una <code class="docutils literal notranslate"><span class="pre">Signal</span></code>. Por tanto, hay que llamar al servicio cuando esta cambie. <code class="docutils literal notranslate"><span class="pre">rxResource</span></code>, <code class="docutils literal notranslate"><span class="pre">httpResource</span></code> o un <code class="docutils literal notranslate"><span class="pre">Resource</span></code> es muy cómodo para esto y se cuenta con la ventajas de <code class="docutils literal notranslate"><span class="pre">httpClient</span></code>. El método tradicional con <code class="docutils literal notranslate"><span class="pre">Observables</span></code> y <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code> también funciona bien.</p></li>
+<li><p><strong>Descargar cualquier dato y modificar la respuesta</strong>: Muchas veces los componentes necesitan los datos de otra manera. Para hacer esas modificaciones funcionan muy bien los operadores <code class="docutils literal notranslate"><span class="pre">Rxjs</span></code> con <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Así que <code class="docutils literal notranslate"><span class="pre">httpClient</span></code> puede ser la mejor opción. También se puede hacer añadiendo <code class="docutils literal notranslate"><span class="pre">compute</span></code>, <code class="docutils literal notranslate"><span class="pre">linkedSignal</span></code> o <code class="docutils literal notranslate"><span class="pre">effect</span></code> si trabajamos con <code class="docutils literal notranslate"><span class="pre">rxResource</span></code>, <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>, <code class="docutils literal notranslate"><span class="pre">Resource</span></code> o <code class="docutils literal notranslate"><span class="pre">toSignal</span></code>.</p></li>
+<li><p><strong>Descargar cualquier dato con criterio de búsqueda reactivo</strong>: Conforme se va complicando la situación comienzan a brillar los <code class="docutils literal notranslate"><span class="pre">Observables</span></code>. Crear un <code class="docutils literal notranslate"><span class="pre">Subject</span></code> en el servicio y actualizarlo mediante suscripciones a <code class="docutils literal notranslate"><span class="pre">Observables</span></code> es muy cómodo. Luego en el componente se puede suscribir en <code class="docutils literal notranslate"><span class="pre">ngOnInit</span></code> o con <code class="docutils literal notranslate"><span class="pre">rxResource</span></code>.</p></li>
 <li><p><strong>Conectar con SSE o WebSockets</strong>: En ese caso lo más potente es convertir el flujo en <code class="docutils literal notranslate"><span class="pre">Observables</span></code> y luego suscribirse o convertir a <code class="docutils literal notranslate"><span class="pre">Signal</span></code>.</p></li>
 <li><p><strong>Peticiones Encadenadas o Dependientes</strong>:  Aquí es donde hay que decidir entre la “comodidad” de las <code class="docutils literal notranslate"><span class="pre">Signals</span></code> y la “potencia” de <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>. Con <code class="docutils literal notranslate"><span class="pre">Signals</span></code> se trataría de hacer una función de <code class="docutils literal notranslate"><span class="pre">load</span></code> en <code class="docutils literal notranslate"><span class="pre">Resource</span></code> más compleja o encadenar varios <code class="docutils literal notranslate"><span class="pre">httpResource</span></code>. Con <code class="docutils literal notranslate"><span class="pre">httpClient</span></code> es más robusto porque permite encadenar <code class="docutils literal notranslate"><span class="pre">Observables</span></code> con <code class="docutils literal notranslate"><span class="pre">SwitchMap</span></code>. En este caso es mejor <code class="docutils literal notranslate"><span class="pre">RxJS</span></code>.</p></li>
 </ul>
@@ -1670,11 +1750,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-errores-de-comunicacion">Gestión de errores de comunicación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-asincronos">Datos asíncronos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promesas-vs-observables">Promesas vs. Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-operadores-en-observables">Uso de Operadores en Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-respuestas-de-observables">Procesamiento de Respuestas de Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mostrar-datos-asincronos">Mostrar Datos Asíncronos</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signals">Signals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convertir-a-signal">Convertir a Signal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#httpresource">httpResource</a></li>
